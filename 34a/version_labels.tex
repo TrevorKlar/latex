@@ -1,0 +1,152 @@
+\documentclass[12pt,letterpaper]{article}
+
+% \input{worksheet-setup.tex}
+\usepackage{fancyhdr,fancybox}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage[export]{adjustbox}
+
+\usepackage[more]{tasks}
+\NewTasks[style=enumerate,counter-format=tsk[1].,label-format=\bfseries,label-width=2.6ex,column-sep=2ex,before-skip=2pt,
+      item-indent = {1em}]{problems}[\problem](2)
+\ExplSyntaxOn
+\newcommand{\ShowProbNumber}{
+  \int_use:N \g__tasks_int
+}
+\newcommand{\SetProbNumber}[1]{
+  \int_gset:Nn \g__tasks_int {#1 + 1}
+}
+\ExplSyntaxOff
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{34A - Logs - Multiplying and Dividing, and Solving Equations}} %=================UPDATE THIS=================%
+\rhead{\textsc{Winter 2020}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\rfoot{trevorklar@math.ucsb.edu}
+\renewcommand{\headrulewidth}{1pt}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\thispagestyle{fancy}
+\begin{center}
+3B - Calculus for Social and Life Sciences\\
+Week 5 %=================UPDATE THIS=================%
+\end{center}
+
+\hrule
+
+\begin{center}
+\begin{tabular}{|rl|}
+\hline
+\multicolumn{2}{|c|}{Contact Information} \\
+\hline
+\bf{TA's name:} & Trevor Klar \\
+\bf{Email:} & trevorklar@math.ucsb.edu \\
+\bf{Office hours:} & Wednesdays 2:00-3:00 \\
+\bf{Math Lab hours:} & Tuesdays 3:00-5:00 \\
+\bf{Office:} & South Hall 6431x \\
+\hline
+\end{tabular}
+\end{center}
+
+ %=================START OF WORKSHEET=================%
+
+%Helpful hints and formulas go here
+\bigskip
+
+\begin{enumerate}
+
+\item Fill in the blanks in this table of Laws of Logs and Laws of Exponents, then check them with your partner. TRY TO USE ONLY YOUR BRAIN!
+
+\begin{center}
+\def\arraystretch{1.5}
+\begin{tabular}{ll}
+Laws of Exponents & Laws of Logs \\
+\hline
+$10^a \times 10^b = \rule{4ex}{0.15mm}$ & $\log(xy) = \rule{15ex}{0.15mm}$ \\
+$\rule{4ex}{0.15mm}=1$ & $\log(\rule{2ex}{0.15mm})=\rule{2ex}{0.15mm}$ \\
+$10^{-a}=\underline{\phantom{\frac{1}{10^a}\frac{1}{10^a}}}$ 
+& $\underline{\phantom{\frac{1}{10^a}\frac{1}{10^a}}}=-\log(x)$ \\
+$(10^a)^p=\rule{5ex}{0.15mm}$ & $\log(x^p) = \rule{7ex}{0.15mm}$ \\
+$\dfrac{10^a}{10^b} = \rule{5ex}{0.15mm}$ & $\log\left (\frac{x}{y}\right ) = \rule{15ex}{0.15mm}$
+\end{tabular}
+\end{center}
+
+\hspace*{-1.25em}\textbf{Evaluate using logs and antilogs.}
+\begin{problems}
+\problem\SetProbNumber{1} $\log(4.56)$
+\problem $\log(999)$
+\problem $\log(\text{1 billion})$
+\problem $\log(0.000738)$ 
+\problem $\log(2.125)$ [Hint: Linear interpolation]
+\problem $\text{antilog}(0.2945)$
+\problem $\sqrt{10}$
+\problem $10^{0.49}$
+\problem $10^{\sfrac{2}{3}}$
+\problem $(2.25)(8.12)$
+\problem $\dfrac{-4.33}{2.01}$
+\problem $\dfrac{1}{5.72}$
+\problem $\dfrac{2.01}{4.33}$
+\problem $\left (\dfrac{12 \text{ in}}{1 \text{ ft}} \right )\left (\dfrac{5280 \text{ ft}}{1 \text{ mi}}\right ) \left (\dfrac{1 \text{ mi}}{1.609 \text{ km}}\right )$
+\end{problems}
+
+\end{enumerate}
+
+\pagebreak 
+\mbox{}
+\vfill
+\begin{center}
+\Huge $\textsc{Version A}$
+\end{center}
+\vfill
+\vfill
+
+\pagebreak 
+\mbox{}
+\vfill
+\begin{center}
+\Huge $\textsc{Version B}$
+\end{center}
+\vfill
+\vfill
+
+\pagebreak 
+\mbox{}
+\vfill
+\begin{center}
+\Huge $\textsc{Version C}$
+\end{center}
+\vfill
+\vfill
+
+
+
+
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

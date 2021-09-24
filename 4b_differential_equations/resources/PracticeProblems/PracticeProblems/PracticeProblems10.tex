@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Practice Problems 10}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vv}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\vvv}[3]{\begin{bmatrix} #1 \\ #2 \\ #3\end{bmatrix}}
+\newcommand{\vvvv}[4]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4\end{bmatrix}}
+\newcommand{\vvvvv}[5]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4 \\ #5  \end{bmatrix}}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+Practice problems are for your own benefit. You won't turn them in or have them graded, but I have the expectation that you have done these when I write my tests. You can check answers with a TA, in Math Lab, or with the professor.
+
+\begin{enumerate}
+
+\item Go back to the pendulum problem from class. Let $\gamma=2$, $k=10$.
+ \begin{enumerate}
+  \item Confirm that the equilibria are of the types claimed by doing the calculations in greater detail using the Jacobian matrix.
+  \item Sketch the phase plane using the equilibrium types as your guide (you can compare your answer to the one in the textbook).
+  \item Use Euler's Method to graph $\theta(t)$ if the pendulum has initial position $\theta=3\pi/4$ and initial velocity $\omega=0$. Sketch this solution on the phase plane.
+  \item Use Euler's Method to graph $\theta(t)$ if the pendulum has initial position $\theta=0$, and initial velocity $\omega=3$. Sketch this solution on the phase plane.
+  \item Use Euler's Method to graph $\theta(t)$ if the pendulum has initial position $\theta=0$, and initial velocity $\omega=10$. Sketch this solution on the phase plane. Interpret the results, and in particular the difference between this part and the previous one.
+ \end{enumerate}
+ 
+ \item Consider the system from class
+  $$\begin{array}{ccl}
+ x' & = & 4x+2y+2x^2-3y^2\\
+ y' & = & 4x-3y+7xy
+ \end{array}$$
+ We showed that $(0,0)$ was a saddle.The other equilibria are
+ $$(0.279,1.065),\quad (0.933,-1.057),\quad (-2.354,-0.483)$$
+ Classify each of these using the Jacobian matrix at each point.
+ 
+ \item Find and classify all equilibria for the system
+ $$\begin{array}{ccl}
+ x' & = & x-x^2-xy\\
+ y' & = & 0.5y-0.75xy-0.25y^2
+ \end{array}$$
+
+
+\end{enumerate}
+
+\end{document}

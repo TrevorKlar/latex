@@ -1,0 +1,96 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Winter 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 4}%=================UPDATE THIS=================%
+\end{center}
+
+\jpg{width=\linewidth}{hw4-p1-1}
+
+\answer Both are true. 
+
+\begin{proof}
+If $\{B_n\}$ is an increasing sequence, then $B_1\subset \cap_{n=1}^{\infty} B_n$, so parts 1 and 2 are shown. 
+
+Otherwise, suppose $\{B_n\}$ is a decreasing sequence. Then for any fixed $N$, whenever $y\in B_N$ we have that $y\in B_n$ for all $n\leq N$. Let $A$ denote the set of all limit points of the set $\{x_n\}_{n=1}^\infty$. Then for all $y\in A$, there exists infinitely many $x_n$ such that $\norm{x_n - y}<r$, which means $y\in B_n$. Thus $A\subset \cap_{n=1}^{\infty} B_n$. 
+
+\textbf{Claim.} $A\neq\emptyset$. 
+
+\textsc{Proof of claim.} Let $m>n$. Since $B_m\subseteq B_n$, then $r_m\leq r_n$ and $x_m\in B_n$. Thus 
+\[\norm{x_n-x_m}\leq r_n-r_m.\]
+Letting $n\to\infty$, $\{r_n\}$ is a decreasing sequence bounded below by $r$, so it converges, and thus it is Cauchy. So for any $\epsilon>0$, there exists $M>0$ such that if $n,m>M$, then $\norm{x_n-x_m}\leq r_n-r_m<\epsilon$, so $\{x_n\}$ is Cauchy as well. Therefore $\{x_n\}$ converges with $x_n \to x$, and $x\in A$. 
+
+\textbf{Claim.} $\closure{B}_r(x)\subset \cap_{n=1}^\infty B_n$. 
+
+\textsc{Proof of claim.} We know that $\{r_n\}$ converges, so \Wlog{} suppose $r_n\to r$. We will show that for all $y\in \closure{B}_r(x)$, there exists $M\in \N$ such that for all $n>M$, we have that $y\in B_n$. This proves the claim, since we will have shown that $\closure{B}_r(x)\subset B_m $ for all $m>M,$ and $\closure{B}_r(x)\subset B_m$ implies $\closure{B}_r(x)\subset B_n$ for all $n<m$. Observe:
+\begin{align*}
+y\in \closure{B}_r(x) &\implies \norm{x-y}\leq r , \text{ so}\\
+\\
+\norm{x_n-y}&\leq \norm{x_n-x} + \norm{x-y} \\
+&\leq r_n-r+r \\
+&=r_n
+\end{align*}
+\end{proof}
+
+\pagebreak
+\jpg{width=\linewidth}{hw4-p2-1}
+
+\begin{definition*}
+A set $A$ is \emph{Baire first category} if it is a countable union of nowhere dense sets.
+\end{definition*}
+
+\answer For $k\geq 2$, let $C_k$ denote a fat Cantor set where at the $n$th stage (counting from 0) of the construction of $C_k$, intervals of length $2^{-k(n+1)}$ are removed. For example, 
+\begin{center}
+\begin{tabular}{lcccl}
+$C_2$ removes intervals of length &$\frac{1}{4}$, &$\frac{1}{8},$ &$\frac{1}{16}$ &$\ldots$ \\
+$C_3$ removes intervals of length &$\frac{1}{8},$ &$\frac{1}{16}$, & $\frac{1}{32}$ &$\ldots$ \\
+$C_4$ removes intervals of length &$\frac{1}{16}$, & $\frac{1}{32}$, &$\frac{1}{64}$ &$\ldots$ \\
+etc.
+\end{tabular}
+\end{center}
+Thus the total length of removed intervals in the construction of $C_k$ (we will denote this $S_k$) is 
+\[\sum_{n=0}^\infty \frac{2^{n}}{2^{2n+k}}
+=2^{-k+1}.
+\]
+Since $\lim_{k\to\infty} S_k = 0$, then $\lim_{k\to\infty}\mu(C_k)=1$. Let $A=\bigcup_{k=1}^\infty C_k$. Now $\mu(A)=1$, and $A$ is Borel by construction, so it is Lebesgue measurable. Thus it remains to be shown that each $C_k$ is nowhere dense, so $A$ is Baire first category. 
+
+Denote the $n$th stage of construction of $C_k$ by $C_{k,n}$. If we consider $C_{k,-1}$ to be the interval $[0,1]$ with nothing removed, then for any open interval $I$, we know that $I\cap C_{k,-1}$ is a non-degenerate interval $U$ whenever it is nonempty.
+
+During the rest of the stages, a central interval in $[0,1]$ will be removed, and central intervals from the two remaining intervals will be removed, and so on. At stage $n$, $[0,1]$ will be divided into $2^{n+1}$ intervals, and as $n\to \infty$, each of the intervals in $C_{k,n}$ has length less than $2^{-(n+1)}$ which goes to $0$. Thus since $U$ has nonzero length, some part of $U$ must be removed at some stage. Since we are removing intervals, the part removed from $U$ must also be an interval, and so must have positive length, which means $\closure{U}$ does not contain it. Thus $U=I\cap A$ is not dense in $I$. Therefore each $C_k$ is nowhere dense, and we are done.
+ \qed
+\end{document}

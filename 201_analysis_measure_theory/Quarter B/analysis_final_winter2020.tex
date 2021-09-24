@@ -1,0 +1,155 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{mathtools}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201B - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Winter 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Final Exam}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+
+\item Let the sequences $\{a_n\}, \{r_n\}\subset \R$ be such that 
+$$\sum_{i=1}^\infty |a_n|<\infty.$$
+Prove that the series 
+$$\sum_{i=1}^\infty \frac{a_n}{\sqrt{\abs{x-r_n}}}$$
+converges absolutely for almost every $x\in\R$. 
+
+\begin{proof}
+Let $\{a_n\}, \{r_n\}$ be given as above, and let $g_n(x)=\frac{1}{\sqrt{\abs{x-r_n}}}$. We will show that the integral 
+$$\int_{\alpha}^{\alpha+2} \sum_{n=1}^\infty {a_n}\,g_n(x)\dx$$
+is finite over any region of length 2,\footnote{That is, for any $\alpha\in\R$.} which means the series is infinite on a set of measure 0.
+
+First note that for any fixed $n$, 
+$$\int_{\alpha}^{\alpha+2} g_n\dx = \int_{\alpha}^{\alpha+2} (x-r_n)^{-\sfrac{1}{2}} \dx= \frac{2(\alpha+2-r_n)}{\sqrt{\abs{\alpha+2-r_n}}} - \frac{2(\alpha-r)}{\sqrt{\abs{\alpha-r}}},$$
+and by differentiating with respect to $\alpha$ we find that this value is greatest when 
+$$0=\frac{1}{\sqrt{\abs{\alpha-r_n-2}}} - \frac{1}{\sqrt{\abs{\alpha-r_n}}},$$
+which is to say that $\alpha-r_n=1$. Thus we conclude that 
+$$\int_{\alpha}^{\alpha+2} g_n\dx\leq \int_{r_n-1}^{r_n+1} g_n\dx=\int_{-1}^1\frac{1}{\sqrt{t}}\dt =4 $$ for all $\alpha\in\R$ and all $ n\in\N$. 
+
+To finish the proof, observe that 
+$$\int_{\alpha}^{\alpha+2} \sum_{n=1}^\infty \frac{|a_n|}{\sqrt{\abs{x-r_n}}}\dx 
+= \sum_{n=1}^\infty \int_{\alpha}^{\alpha+2} {|a_n|}\,g_n(x)\dx
+= \sum_{n=1}^\infty {|a_n|} \int_{\alpha}^{\alpha+2}  g_n(x)\dx
+%\leq \left(\sum_{n=1}^\infty {|a_n|}\right)(4)
+\leq 4\sum_{n=1}^\infty {|a_n|}
+$$
+which is finite. Since the series is infinite only on a zero-measure subset of an arbitrary interval of length 2, then the union of all such subsets also has measure zero, and we're done. 
+\end{proof}
+
+\pagebreak
+\item Suppose $f\in L^1[0,1]^2$ with respect to two dimensional Lebesgue measure $\mu$. Prove that if 
+$$\int_{[0,a],[0,b]} f \der\mu = 0$$
+for all $(a,b)\in [0,1]^2$, then $f=0$ \muae{} in $[0,1]^2$. 
+
+\begin{proof}Since we can decompose $f$ as $f=f^+-f^-$, then 
+$$f(x)=0\iff f^+(x)=f^-(x)=0$$ 
+so \Wlog{} suppose $f$ is nonnegative.
+
+($\int_R=0$) Observe that the integral over any rectangle
+\begin{align*}
+\int_{[a,b]\times[c,d]}  f\der\mu
+&= \int_{[0,b]\times[0,d]}  f\der\mu 
+	- \int_{[0,a]\times[0,d]}  f\der\mu 
+	- \int_{[0,b]\times[0,c]}  f\der\mu 
+	+ \int_{[0,a]\times[0,c]}  f\der\mu \\
+&= 0-0-0+0.
+\end{align*}
+%and note that any two rectangles intersect in a rectangle, 
+
+($\int_U=0$) Let $U$ be open. For each $n\in\N$, define a cover of $[0,1]^2$ by $2^{2n}$ squares of side length $2^{-n}$ and denote it $\{Q_n^i\}_{i=1}^\infty$. For any given $n$, there are finitely many $Q_n^i\subseteq U$, and so the union of all such is a countable union of cubes. To see that it covers $U$, let $(x,y)\in U$. Since $U$ is open, some neighborhood of $(x,y)$ is a subset of $U$, and certainly some sufficiently large $n$ gives a cube fully contained in that neighborhood which contains $n$\footnote{This can be made more rigorous, but this proof is getting absurdly long.}. Then 
+$$\int_U f\der\mu = \sum_{i,n:Q_n^i\subseteq U} \int_{Q_n^i} f\der\mu = 0.$$
+
+($\int_G=0$) Let $G$ be a $G_\delta$ set, so $G=\bigcap_{i=1}^\infty U_i$, where each $U_i$ is open. Then 
+$$\int_G f\der\mu = 0$$
+[I can't figure out how to prove this part.]
+
+($\int_B=0$) Let $B$ be any Borel set in $[0,1]^2$. Since $\mu$ is Radon, then for each $n\in\N$ there exists an open set $U_n$ such that $B\subseteq U_n$ and $\mu(U_n\setminus B)<\frac{1}{n}$. Since $U_n$ is a decreasing sequence\footnote{Although $U_{n+1}$ is not necessarily a subset of $U_n$ by default, we know that they both contain $B$, and intersecting them yields $\tilde{U}_{n+1}=U_n \cap U_{n+1}$ so that $B\subset \tilde{U}_{n+1} \subset U_n$ and $\mu(\tilde{U}_{n+1}\setminus B)\leq \mu({U}_{n+1}\setminus B) < \frac{1}{n}$. Starting with $\tilde{U}_1=U_1$ and constructing the rest inductively yields the desired $\{\tilde{U}_n\}_{n=1}^\infty$. We drop the $\sim$ notation above.}
+of sets with $\mu(U_1)\leq\mu[0,1]^2=1<\infty,$  then $\mu(U)=\lim\limits_n(\mu(U-n))$ where $U=\bigcap\limits_n U_n$. Thus 
+\begin{align*}
+B&\subset U, \\
+\text{and } \mu(U\setminus B)&< \frac{1}{n} \; \forall n, \\
+\text{so } \mu(U\setminus B)&=0.
+\end{align*}
+Therefore 
+\begin{align*}
+\int_B f\der\mu &= \int_U f\der\mu - \int_{U\setminus B} f\der\mu \\
+&= \int_U f\der\mu \\
+&=0 \text{ since }U\text{ is }G_\delta.
+\end{align*}
+
+($\int_A = 0$) Let $A=\{(x,y)\in[0,1]^2 : f(x,y)>0\}$, and suppose for contradiction that $\mu(A)>0$. This gives us that 
+$$\int_A f \der\mu >0.$$
+Since $\mu$ is Borel-regular, there exists a Borel set $B\supset A$ such that $\mu(B)=\mu(A)$. This means that $\mu(B\setminus A)=0$. Therefore 
+\begin{align*}
+\int_A f\der\mu &= \int_B f\der\mu - \int_{B\setminus A} f\der\mu \\
+&= \int_B f\der\mu \\
+&=0 \quad\quad\quad\quad\text{since $B$ is Borel.}
+\end{align*}
+This contradicts that $\int_A f\der\mu>0$, and so we conclude that $\mu(A)=0$. 
+\end{proof}
+
+\pagebreak
+\item Let $A \subset X$ be a closed subspace of of a Banach space $X$ and let $k\in X$ be fixed. Is the distance 
+$$\dist{k}{A}=\inf\{\norm{k-a} \;:\; a\in A\}$$
+attained? 
+
+\answer No. As a counterexample, let $X=\ell_\infty$, the space of all bounded sequences of real numbers, with norm $\norm{x}=\sup\limits_n \abs{x_n}$. Let 
+\[\begin{array}{rcllll}
+k&= &2, &2, &2, &2, \dots \\
+a_1&= &0.9, &2, &2, &2, \dots \\ 
+a_2&= &2, &0.99, &2, &2, \dots \\ 
+a_3&= &2, &2, &0.999, &2, \dots \\ 
+&\vdots
+\end{array}\]
+Observe that $A=\{a_n : n\in \N\}$ is closed, since it has no accumulation points: For any $n,m\in\N$, 
+\begin{align*}
+\norm{a_n-a_m}&=\norm{\big(0,0,\dots,0, (1+10^{-n}), 0, \dots, 0, (1+10^{-m}), 0, 0, \dots\big)} \\
+&= \max\{(1+10^{-n}), (1+10^{-m})\} \\
+&\geq1.
+\end{align*}
+Next note that for every $a_n$ the distance $\norm{k-a_n}=1+10^{-n}$, but
+\begin{align*}
+\dist{k}{A}
+&=\inf\limits_n\norm{k-a_n} \\
+&=\inf\limits_n\{1+10^{-n}\} \\
+&=1,
+\end{align*}
+so $\dist{k}{A}$ is never attained. \qed
+\end{enumerate}
+
+\end{document}

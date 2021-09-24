@@ -1,0 +1,82 @@
+\documentclass[220a]{homework}
+
+\title{Template}
+
+%===============================
+% Fill in each week.
+%===============================
+\date{Date}
+\topic{Topic}
+
+%===============================
+% Document
+%===============================
+\begin{document}
+\maketitle
+
+\begin{numedexercise}
+  This is my answer to the first exercise.
+
+  Don't forget to fill in your personal and class information at the top!
+\end{numedexercise}
+
+\begin{numedexercise}
+  This exercise's number will be auto-incremented.
+\end{numedexercise}
+
+
+% if you do not solve some of the exercises use this command to increment counter
+\setcounter{exerciseCounter}{4}
+\begin{numedexercise}
+  Exercises 2 and 3 were not solved, this is an answer to exercise 5.
+\end{numedexercise}
+
+
+% if exercises have subparts, use this command
+\begin{numedexercise}
+  Use the alphaparts environment to for letters.
+  \begin{alphaparts}
+    \item Part a
+    \item Part b
+    \item Part c
+  \end{alphaparts}
+\end{numedexercise}
+
+\begin{numedexercise}
+  You can still do things like nesting lists inside of these environments.
+  \begin{alphaparts}
+    \item part a
+      \begin{enumerate}[label=(\roman*)]
+        \item making point number 1
+        \item making point number 2
+        \item making point number 3
+      \end{enumerate}
+    \item part b
+    \item part c
+  \end{alphaparts}
+\end{numedexercise}
+
+% This is how to change the section numbering in mid-paper
+\renewcommand{\writtensection}{2}
+
+\begin{numedexercise}
+  This paper now has two numbering systems because of the "renewcommand" command.
+  
+  Using the \texttt{description} environment is a great way to typeset induction proofs!
+  \begin{description}
+    \item[Base Case:]
+      Here I have my base case.
+    \item[Induction Hypothesis:]
+      Assume things to make proof work. 
+    \item[Induction Step:]
+      Prove all the things.
+  \end{description}
+
+  Therefore, we have proven the claim by induction on in the \texttt{description} environment.
+\end{numedexercise}
+
+\begin{namedexercise}[TITLE OF EXERCISE WHICH YOU CAN CHANGE]
+    Testing this "namedexercise" thing.
+\end{namedexercise}
+
+\end{document}

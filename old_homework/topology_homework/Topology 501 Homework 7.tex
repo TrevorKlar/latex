@@ -1,0 +1,79 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\Rbad}{\R_\text{bad}}
+
+\title{Math 501 \linebreak
+Homework 7}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Recall for a set $A$ in a space $X$, we define $\partial A = \closure{A}-\text{int}(A)$. 
+	\begin{enumerate}
+	\item Prove that $x \in \partial A$ if and only if for every open set $U$ containing $x$, we have $U\cap A \neq \emptyset$ and $U \cap (X-A)\neq \emptyset$. 
+	\begin{proof}\mbox{}\\
+	Suppose $x \in \partial A$. By definition, $x\in\closure{A}$ and $x\not\in\text{int}(A)$. Since $x\in\closure{A}$, then by definition either $x\in A$, or $x$ is a limit point of $A$. If $x\in A$, then clearly for any open set $U$ containing $x$, $U\cap A\neq \emptyset$. Otherwise if $x$ is merely a limit point of $A$, then for any open $U$ containing $x$, 
+	$$U\cap A-\{x\}\neq \emptyset \implies U\cap A\neq \emptyset.$$
+	Since $x\not\in\text{int}(A)$, then by definition there is no open set $U$ containing $x$ such that $U\subset A$. That is, for every open set $U$ containing $x$, 
+	$$U\cap (X-A)\neq \emptyset.$$ 
+	Since this conclusion follows from definintions, and definitions are biconditional, then the converse is also true.
+	\end{proof}
+	
+	\item Prove that $A$ is open if and only if $\partial A \cap A = \emptyset$. Prove that $A$ is closed if and only if $\partial A \subseteq A$. 
+	\begin{proof}
+	Suppose $A$ is open. Then, $A=\text{int}(A)$, so 
+	$$\partial A \cap A = (\closure{A}-A)\cap A = \emptyset.$$
+	Suppose $A$ is closed. Then, $A=\closure{A}$, so 
+	$$\partial A \cap A = (A-\text{int}(A))\cap A = (A-\text{int}(A))\subseteq A.$$
+	Suppose $\partial A \cap A = \emptyset$. Since $\text{int}(A)\subset A\subset \closure{A}$, 
+	$$\partial A \cap A = (\closure{A}-\text{int}(A))\cap A=\emptyset \implies (A-\text{int}(A))=\emptyset \implies A\subset\text{int}(A) \implies A=\text{int}(A).$$
+	Suppose $\partial A \subseteq A$. Since $\text{int}(A)\subset A\subset \closure{A}$, 
+	$$\partial A = (\closure{A}-\text{int}(A))\subset A \implies \closure{A}\subset A \implies \closure{A}= A.$$	
+	\end{proof}
+	\end{enumerate}
+
+\item Let $X$ be a metric space with metric $d$, and suppose that for all $x\in X$ and $r<0$, the closed ball $\closure{B}(x,r) = \{y:d(x,y)\leq r\}$ is compact. Prove that $X$ is $d$-complete. 
+\begin{proof}
+First note that since we have assumed that all closed balls in $X$ are compact, then they are also all complete. Let $(x_n)_{n=1}^\infty$ be any Cauchy sequence in $X$. We will show that $(x_n)_{n=1}^\infty$ converges. Since$(x_n)_{n=1}^\infty$ is Cauchy, then there exists some $N\in\N$ such that for all $m,n>N$, $d(x_m,x_n)<1$. Let $n_0=N+1$. So, for all $n>N$, $d(x_{n_0},x_n)<1$. Now, let $M=max\{d(x_{n_0},x_n) : n \leq N\}$. So, for any $x_n$ in our sequence, $d(x_{n_0},x_n)\leq \max(M,1)$, and thus $x_n\in \closure{B}(x_{n_0},\max(M,1)), \forall n\in\N$. Since all closed balls in $X$ are complete, and $(x_n)_{n=1}^\infty\in\closure{B}(x_{n_0},\max(M,1))\,  \forall n\in\N$, then $(x_n)_{n=x1}^\infty$ converges. 
+\end{proof}
+
+\item Prove Corollary 28: Let $X$ be a complete metric space. Show that $X$ is not the countable union of nowhere dense closed sets.
+\begin{proof}
+Let $\bigcup_{i=1}^\infty F_i$ denote any countable union of nowhere dense closed sets. Consider the complement of this union:
+$$\left(\bigcup_{i=1}^\infty F_i\right)^\complement = \bigcap_{i=1}^\infty \left(F_i^\complement\right) = \bigcap_{i=1}^\infty \left(X - F_i\right)$$
+Now, each $(X-F_i)$ must be a dense open set, so by the Baire Category Theorem, this countable intersection of dense open sets is dense in $X$. Thus, $\bigcap_{i=1}^\infty \left(X - F_i\right)\neq\emptyset$, so $\bigcup_{i=1}^\infty F_i\neq X$.
+\end{proof}
+
+\item[3.5] Let $X$ be a complete metric space with metric $d$, and suppose that $X$ has no isolated points. Prove that $X$ is uncountable.
+\begin{proof}
+Suppose that $X$ is countable. Consider the colection $\{X-\{x\}\}_{x\in X}$. Since $X$ has no isolated points, each of these sets is dense. And since $X$ is Hausdorff, each of these sets is open (because singletons are closed in a Hausdorff space). Now, 
+$$\bigcap_{x\in X}\{X-\{x\}\}=\emptyset,$$
+but this countable union of dense open sets should be dense in $X$ by the Baire Category Theorem, so we have a contradiction. 
+\end{proof}
+\end{enumerate}
+
+\end{document}

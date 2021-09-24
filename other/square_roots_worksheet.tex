@@ -1,0 +1,61 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\usepackage[first=2, last=99]{lcg}
+%first: lower bound (\geq-2^{31}+1),
+%last: upper bound (\leq2^{31}-1),
+%counter: name of the random number (overwritten if existing) defalt='rand',
+%seed: starting value for reproducibility, and
+%quiet: suppress log and console output.
+\newcommand{\random}{\rand\arabic{rand}}
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\Rbad}{\R_\text{bad}}
+
+\title{Mental Square Roots Worksheet}
+\author{Mr. Klar}
+
+\begin{document}
+
+\maketitle
+
+In the following problems, estimate the square root mentally. Try to be accurate to within one or two decimal places. 
+
+\mbox{}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\\hline &&&&&&&&&\\
+$\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ & $\sqrt{\random} \quad\,\,$ \\ &&&&&&&&&\\ &&&&&&&&&\\ \hline
+\end{tabular}
+\end{center}
+
+\end{document}

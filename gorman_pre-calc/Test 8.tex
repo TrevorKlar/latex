@@ -1,0 +1,90 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.5in,bottom=1in,left=1in,right=2in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{tskpreamble} %located in ~/texmf/tex/latex/
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Pre-Calculus \linebreak
+Test 8}
+\author{Mr. Klar}
+\date{}
+
+\begin{document}
+
+%FORMATTING NOTE: The right margin is HUGE in this document to allow for margin figures. 
+
+\maketitle
+
+%\noindent	\textbf{Use the 3 famous points to write a short table of values for the function. Then sketch a graph of the function. Identify any asymptotes and intercepts. (Hint: Choose values of $x$ so that the entire exponent becomes a famous point.)}
+\noindent	\textbf{In problems 1-2, write the first five terms of the sequence.}
+\begin{enumerate}
+	\item $a_n = \left(-\frac{4}{5}\right)^{n-1}$ (Begin with $n=1$.)
+	\item $a_1 = -7$ and $a_n=a_{n+1}+5$. 
+  \item Simplify $\dfrac{13! \cdot 3!}{3!\cdot8!}$. 
+  \item Simplify $\dfrac{n!}{(n+1)!}$. 
+\end{enumerate}
+\noindent	\textbf{In problems 5-6, find a formula for the $\bm{n}$th term of the sequence.}
+\begin{enumerate}[resume]
+	\item Arithmetic: $ \quad a_1=42, \quad d = -1600$
+	\item Geometric: $\quad a_1 = 4544, \quad a_{k+1}=\frac{1}{4}a_k$
+	\item Use sigma notation to write $\dfrac{2}{3(1)+1}+\dfrac{2}{3(2)+1}+\dots+\dfrac{2}{3(12)+1}$.
+	\item Use sigma notation to write $2+\frac{1}{2}+\frac{1}{8}+\frac{1}{32}+\frac{1}{128}\cdots$.
+\end{enumerate}9
+\noindent	\textbf{In problems 9-11, find the sum.}
+\begin{enumerate}[resume]
+	\item $\displaystyle\sum_{n=1}^7(8n-5)$
+	\item $\displaystyle\sum_{n=1}^8 24\left(\tfrac{1}{6}\right)^{n-1}$
+	\item $5-2+\frac{4}{5}-\frac{8}{25}+\frac{16}{125}-\cdots$
+	\item Write Pascal's Triangle somewhere on this page. Do at least 5 levels.
+	\item Expand and simplify $(2a-5b)^4$. 
+\end{enumerate}
+\noindent	\textbf{In problems 14-17, Evaluate the expression.}
+\begin{enumerate}[resume]
+	\item $\prescript{}{9}{C}_3$
+	\item $\prescript{}{14}{C}_2$
+	\item $\prescript{}{70}{P}_3$
+	\item $\prescript{}{7}{P}_4$
+	\item Five students are randomly selected from a class of 23 to answer questions from a reading assignment. In how many ways can the five be selected? 
+	\item Two integers from 1 to 120 are chosen by a random number generator. What is the probability that (a) both numbers are odd, (b) both numbers are less than 12, and (c) the same number is chosen twice?
+	\item Use Proof by Induction to prove the formula
+	$$3+6+9+\dots+3n=\frac{3n(n+1)}{2}.$$
+	
+
+
+\begin{comment}
+\marginpar{
+\includegraphics[width=1.5\marginparwidth]{test4_prob2}
+%\captionof{figure}{Figure for 2}
+}
+\end{comment}
+
+
+\end{enumerate}
+\end{document}

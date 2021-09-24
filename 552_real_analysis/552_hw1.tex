@@ -1,0 +1,453 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{tskpreamble} %located in ~/texmf/tex/latex/
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference.
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+%\newcommand{\extmeasure}[1]{m_*(#1)}
+%\newcommand{\measure}[1]{m(#1)}
+\renewcommand{\mathcal}[1]{\pazocal{#1}}
+
+\title{Math 552 \linebreak
+Homework 1}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item The Cantor set $\mathcal{C}$ can also be described in terms of ternary expansions.
+	\begin{enumerate}
+		\item Every number in $[0, 1]$ has a ternary expansion
+		$$ x= \sum_{k=1}^{\infty}a_k3^{-k}, \quad \quad \text{where }a_k = 0, 1, \text{or } 2.$$
+		Note that this decomposition is not unique since, for example, $\frac{1}{3} = \sum_{k=2}^{\infty}\frac{2}{3^k}.$ Prove that $x \in  \mathcal{C}$ if and only if $x$ has a representation as above where every $a_k$ is either 0 or 2.
+
+		\begin{proof}
+		First, there is another notation for ternary expansions which the reader may find easier to internalize, namely ternary decimals. Representing a number as a decimal in base 3 is exactly equivalent to the summation notation above; i.e. $\frac{1}{2}=\sum_{k=1}^{\infty}\frac{1}{3^k}=0.111\ldots = 0.\overline{1}$\,. So the construction of the cantor set is as follows:
+		\jpg{width=0.5\textwidth}{cantor_set_ternary}
+		Now we begin the proof in earnest. For any $x\in \mathcal C$, one of the following must be true: Case I, there exists an expansion of $x$ with no 1s. Case II, there exists an expansion of $x$ with exactly one 1. Case III, there exists an expansion of $x$ with multiple 1s. \\
+		\mbox{}\\
+		Case III: Let $x\in \mathcal C$ and suppose there exists an expansion of $x$ with multiple 1s; that is, $x=0.\square_11\square_21\ldots$, where the $\square$s represent zero or more other digits of the ternary decimal form of $x$. Claim: $x$ cannot be in $\mathcal{C}$, a contradiction. The construction of $\mathcal{C}$ begins by starting with the interval $[0,1]$ and, in each step, proceeds by removing middle thirds. That is, first $(0.1, 0.2)$ is removed, then $(0.01, 0.02)$, $(0.11, 0.12)$\footnote{Note, this interval was already removed in the last step, but this method of describing the removed portions is helpful, as will be seen.}, and $(0.21, 0.22)$, and so on. Thus, every such interval $(0.\square1, \,\, 0.\square2)$ is removed from the set at some point in the construction. However, when we consider our element, $x=0.\square_11\square_21\ldots$, we find that $0.\square_11, < x < 0.\square_12$, and so $x\not\in\mathcal{C}$. Thus Case III is impossible. \\
+		\mbox{}\\
+		Case II: Let $x\in \mathcal C$ and suppose there exists an expansion of $x$ with exactly one 1. If 1 is the terminal digit of $x$, then $x$ is of the form $0.\square1$, and we can also write $x$ as $0.\square0\overline 2$. Otherwise if 1 is not the terminal digit of $x$ then the only way $x\in\mathcal C$ is if $x=\square1\overline 2$ (using the same argument as in Case III), so we can write $x=\square2$. Thus Case II implies Case I. \\
+		\mbox{}\\
+		Case I: Let $x\in \mathcal C$ and suppose there exists an expansion of $x$ with no 1s. This is that which was to be proven, so we are done.
+
+		\end{proof}
+	\end{enumerate}
+
+\setcounter{enumi}{3}
+	\item \textbf{Cantor-like sets.} Construct a closed set $\hat{\mathcal{C}}$ so that at the $k$th stage of the construction one removes $2^{k−1}$ centrally situated open intervals each of length $\ell_k$, with
+	$$\ell_1 + 2\ell_2 + ... + 2^{k-1}\ell_k < 1.$$
+	\begin{enumerate}[label=(\alph*)]
+		\item If $\ell_j$ are chosen small enough, then $\sum\limits_{k=1}^\infty 2^{k-1}\ell_k < 1$. In this case, show that $\measure{\hat{\mathcal{C}}} = 1 - \sum\limits_{k=1}^\infty 2^{k-1}\ell_k$.
+		\item Show that if $x\in\hat{\mathcal{C}}$, then there exists a sequence of points $\{x_n\}_{n=1}^\infty$ such that $x\not\in\hat{\mathcal{C}}$, yet $x_n\to x$ and $x_n\in I_n$, where $I_n$ is a sub-interval in the complement of $\hat{\mathcal{C}}$ with $\abs{I_n}\to0$.
+		\item Prove as a consequence that $\hat{\mathcal{C}}$ is perfect, and contains no open interval.
+		\begin{proof}
+		Exercise 4(b) is poorly posed, so I don't want to rely on it. This proof will be independent. We will show that for every $x\in\hat{\mathcal{C}}$ and any $\epsilon>0$, the open ball $B_\epsilon(x)$ contains a point in $\hat{\mathcal{C}}$ and a point not in $\hat{\mathcal{C}}$. This means that every element of $\hat{\mathcal{C}}$ is a limit point (thus $\hat{\mathcal{C}}$ is perfect), and no subset of $\hat{\mathcal{C}}$ is open (thus it contains no open intervals). \\
+		\mbox{} \\
+		Let $x\in\hat{\mathcal{C}}$ and $\epsilon>0$ be given. In step $k$ of the construction, there are $2^{k-1}$ disjoint closed intervals in $\hat{\mathcal{C}}_k$, so their lengths can be no more than $\frac{1}{2^{k-1}}$. Thus there exists some $K$ such that $\frac{1}{2^{K-1}}<\epsilon$. Since $x\in\hat{\mathcal{C}}$, then $x$ is in some interval in $\hat{\mathcal{C}}_k$ for all $k$. Thus $B_\epsilon(x)$ contains some closed interval $I$ in $\hat{\mathcal{C}}_K$, and in step $K+1$, an open interval $\hat{I}$ in $I$ is removed from $\hat{\mathcal{C}}_{K+1}$. The endpoints of $\hat{I}$ are elements of $\hat{\mathcal{C}}$, and the midpoint of $\hat{I}$ is not. Since $\hat{I}\subset I\subseteq B_\epsilon(x)$, then the ball contains a point in $\hat{\mathcal{C}}$ and a point not in $\hat{\mathcal{C}}$, as desired.
+		\end{proof}
+		\item Show also that $\hat{\mathcal{C}}$ is uncountable.
+		\begin{proof}
+		In each step $\hat{\mathcal{C}}_k$ of the construction of $\hat{\mathcal{C}}$, the set is composed of $2^{k-1}$ closed intervals. This is also true of the usual Cantor set, $\mathcal{C}$. Since any two closed intervals are isomorphic\footnote{If this is not obvious, consider $[\alpha, \beta]$ and $[a,b]$. Map $\alpha\mapsto a$ and $\beta\mapsto b$, and extend linearly.}, then each $\hat{\mathcal{C}}_k$ is isomorphic to $\mathcal{C}_k$, and so are the limiting sets $\hat{\mathcal{C}}\cong\mathcal{C}$. We know that $\mathcal{C}$ is uncountable, so we are done.
+		\end{proof}
+	\end{enumerate}
+
+	\setcounter{enumi}{11}
+	\item Theorem 1.3 states that every open set in $\mathbb{R}$ is the disjoint union of open intervals. The analogue in $\mathbb{R}^d, d >= 2$, is generally false. Prove the following:
+		\begin{enumerate}
+		\item An open disc in $\mathbb{R}^2$ is not the disjoint union of open rectangles.
+		\begin{proof}
+		Let $C\subset\R^2$ be an open disc.
+		% if $C$ is a disjoint union of open rectangles, then there are more than one.
+		Consider a rectangle $R\subset C$.\footnote{A rectangle is not a disk, so $R\subsetneq C$.} For any $x\in\del R$, we know $x\in C$ but $x$ cannot be an element of any open rectangle which is disjoint with $R$. Thus no disjoint union of open rectangles can contain $x$, nor can it cover $C$.
+		\end{proof}
+		\end{enumerate}
+
+  \item The following deals with $G_{\sigma}$ and $F_{\delta}$ sets.
+  \begin{enumerate}
+    \item[(b)] \item Give an example of an $F_{\sigma}$ which is not a $G_{\delta}$:
+    \answer $\Q$ is $F_{\sigma}$ but not $G_{\delta}$.
+    \begin{proof}
+      %$\Q$ is closed, so it is $F_\sigma$. To see that $\Q$ is not $G_\delta$, suppose for contradiction that $\Q=\bigcap_{n=1}^\infty U_n.$ Then each open set $U_n$ contains $Q$. Since $U_n$ is open, then for every rational $x\in\Q$ there exists an $\epsilon_x$ such that $B_{}\epsilon_x}(x)\subset U_n$, so $\bigcup_{x\in\Q} B_{}\epsilon_x}(x)$ covers
+    \end{proof}
+  \end{enumerate}
+
+	\item \mbox{}
+	\jpg{width=0.9\textwidth}{prob_14}
+		\begin{enumerate}
+		\item
+		\begin{proof}
+		$(\leq)$ To see that $J_*(E)\leq J_*(\closure{E})$ for all $E\in\R$, observe that any cover $\phi=\{I_n\}_{n=1}^\infty$ which covers $\closure{E}$ also covers $E$. Thus $J_*(E)$ cannot be greater than $J_*(\closure{E})$.
+		\end{proof}
+		\begin{proof}
+		$(\geq)$ To show that $J_*(E)\geq J_*(\closure{E})$ for all $E\in\R$, we will show that for any cover $\phi=\{I_n\}_{n=1}^\infty$ which covers $E$, $\closure{\phi}=\{\closure{I_n}\}_{n=1}^\infty$ also covers $\closure{E}$, and $\abs{\phi}=\abs{\closure{\phi}}$. \\
+		\mbox{}\\
+		Let $\phi$ be some cover of $E$ as described above. To see that $\closure{\phi}$ covers $\closure{E}$, let $x\in\closure{E}$. If $x$ is also in $E$, then $x\in I_n \subset \closure{I_n}$ for some $n$. Otherwise if $x\not\in E$, then $x$ must be a limit point of $E$, since $x\in\closure{E}$. Since $\closure{\phi}$ is a finite union of closed intervals, it is itself closed and thus contains all its limit points; and since $E\subset\closure{\phi}$, $\closure{\phi}$ contains all the limit points of $E$ as well. Thus $x\in\closure{\phi}$.
+		\end{proof}
+		\end{enumerate}
+
+\setcounter{enumi}{15}
+\item \textbf{The Borel-Cantelli lemma.} Suppose $\{E_k\}_{k=1}^\infty$ is a countable family of measurable subset of $\R^d$ and that
+$$\sum_{k=1}^\infty \measure{E_k}<\infty.$$
+Let
+\[\begin{array}{rcl}
+E &=& \{x\in\R^d: \forall n\in \N, \exists k\geq n \text{ s.t. } x \in E_k\}\\
+&=& \limsup\limits_{k\to\infty}(E_k).
+\end{array}\]
+	\begin{enumerate}
+	\item Show that $E$ is measurable.
+	\item Prove $\measure{E}=0$.
+	\end{enumerate}
+[Hint: Write $E=\bigcap_{n=1}^\infty \bigcup_{k\geq n} E_k.$]
+\begin{proof}
+We will show that $E$ is a subset of a set of measure zero, and thus is measurable with $\measure{E}=0$.
+
+Since $\sum_{k=1}^\infty \measure{E_k}$ is a convergent sum, then for any $\epsilon>0$, there exists some $N\in\N$ such that $\sum\limits_{k\geq N} \measure{E_k}<\epsilon$.
+
+Then for any $x\in E$, $x\in\bigcup\limits_{k\geq N}E_k$, since the union contains some $E_k$ with $k>N$ for any $x$. Now since $E \subseteq \bigcup\limits_{k\geq N}E_k$, then by sub-additivity,
+$$\measure{E}\leq\sum\limits_{k\geq N} \measure{E_k}<\epsilon$$
+and we are done.
+\end{proof}
+
+\item Let $\{f_n\}$ be a sequence of measurable functions on $[0,1]$ with $|f_n(x)|<\infty$ for a.e. $x$. Show that there exists a sequence $\{c_n\}$ of positive real numbers such that
+$$\frac{f_n(x)}{c_n}\to0 \quad \text{for a.e. }x.$$
+[Hint: Pick $c_n$ such that $\measure{\left\lbrace \abs{\frac{f_n(x)}{c_n}}>\frac{1}{n}\right\rbrace}<\frac{1}{2^n}$, and apply the Borel-Cantelli Lemma.]
+\begin{proof}
+Consider $D_n=\{|f_n|>\frac{c_n}{n}\}$, where $c_n$ is an as-yet undetermined positive number. We know that $f_n$ is measurable, so $\measure{D_n}$ exists for all values of $c_n$. If we consider $\measure{D_n}$ as a function of $c_n$ with $n$ fixed, then $\measure{D_n}(c_n)$ is monotonically decreasing. This is because $\{|f_n|>a\}\supseteq\{|f_n|>b\}$ for all $a<b$. Now we choose $c_n$ large enough that $\measure{D_n}<\frac{1}{2^n}$.\footnote{We know we can do this because if not, then $\measure{\{|f_n(x)|=\infty\}}>0$.}
+
+Thus we have constructed a sequence of sets $\{D_n\}_{n=1}^\infty$ such that
+$$\sum_{n=1}^\infty \measure{D_n} < \sum_{n=1}^\infty \frac{1}{2^n} = 1 < \infty,$$
+so by the Borel-Cantelli Lemma, $\measure{\limsup\limits_{n\to\infty} (D_n)}=0$.
+
+Now to see that we are done, observe that for $x\not\in D_n$,
+$$|f_n(x)|\leq \frac{c_n}{n} \text{, so } \abs{\frac{f_n(x)}{c_n}}\leq\frac{1}{n}.$$
+This means that for $x$ in finitely many $D_n$, that is, $x\not\in\limsup\limits_{n\to\infty} (D_n)$,
+$$\lim_{n\to\infty}\frac{f_n(x)}{c_n}=0.$$
+We have shown that $\measure{\limsup\limits_{n\to\infty} (D_n)}=0$, so we conclude that
+$$\frac{f_n(x)}{c_n}\to0 \quad \text{for a.e. }x,$$
+as desired.
+\end{proof}
+
+\item[] (Reading Question). Construct a function that is not measurable but finite valued everywhere. \\
+\textbf{Answer:} $\Chi_\mathcal{N}$, the characteristic function of the nonmeasurable set constructed in the text. It only takes the values $\{0,1\}$, but $\{$\raisebox{2pt}{$\chi$}$_\mathcal{N} > \frac{1}{2}\}=\mathcal{N}$ is not measurable.
+
+\end{enumerate}
+
+\pagebreak
+\textbf{1.3}
+
+\begin{enumerate}
+
+  \setcounter{enumi}{22}
+  \item Suppose $f(x,y)$ is a function on $\mathbb{R}^2$ that is separately continuous: for each fixed variable, $f$ is continuous in the other variable. Prove that $f$ is measurable on $\mathbb{R}^2$. [Hint: Approximate $f$ by functions $f_n$ which are piecewise-constant in the variable $x$, such that $f_n \rightarrow f$ pointwise.]
+  \begin{proof}
+    First we approximate $f(x,y)$ by rounding $x$ down to the nearest multiple of $\frac{1}{2^k}$. That is, given $n\in\N$ and $x\in\R$, there exists some $r\in\N$ such that $\frac{r}{2^n} \leq x < \frac{r+1}{2^n}$. So we approximate $f$ by $f_n(x,y)=f(\frac{r}{2^n}, y)$. To visualize, following is a pair of illustrations of a possible such $f_n$; having some fixed $y$ on the left, and some fixed $x$ on the right.
+    \jpg{width=0.66\textwidth}{f_n_1-23}
+    Now we ask; given some $\alpha\in\R$, is $\{f_n > \alpha\}$ measurable? We know that $f$ is continuous in $y$ for fixed $x$, so for some $r\in\Z$ we have that
+    $$\{y\in\R | f(\tfrac{r}{2^n}, y) > \alpha\}$$
+    is measurable. Also, for any $x \in \R$, we know there is some $r$ such that $x \in \left[\frac{r}{2^n}, \frac{r+1}{2^n}\right)$, so
+    $$\{y\in\R | f_n(x, y) > \alpha\} = \{y\in\R | f(\tfrac{r}{2^n}, y) > \alpha\}.$$
+    This means that for $x \in \left[\frac{r}{2^n}, \frac{r+1}{2^n}\right)$,
+    $$\{(x,y) | f_n(x,y) > \alpha\} = \left(\left[\tfrac{r}{2^n}, \tfrac{r+1}{2^n}\right) \times \{y\in\R | f(\tfrac{r}{2^n}, y) > \alpha\}\right),$$
+    which is certainly measurable. Now if we consider all possible values of $x$, we find that
+    $$\{f_n > \alpha\} = \bigcup_{r=-\infty}^\infty\left(\left[\tfrac{r}{2^n}, \tfrac{r+1}{2^n}\right) \times \{y\in\R | f(\tfrac{r}{2^n}, y) > \alpha\}\right),$$
+    which is a countable union of measurable sets, and thus a $G_\sigma$, therefore measurable. Thus we can conclude that $f_n$ is measurable for all $n\in\Z$. Since $f_n\to f$, we can conclude that $f$ is measurable as well, and we are done.
+  \end{proof}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \setcounter{enumi}{24}
+    \item An alternative definition of measurability is as follows: $E$ is measurable if for every $\epsilon >0$ there is a \textit{closed} set $F$ contained in $E$ with $m_*(E-F) < \epsilon.$ Show that Properties 1-4 of the Lebesgue measure still hold.
+    \begin{enumerate}[label=(\alph*)]
+    \item{}
+    \item{} Property 2: If $m_{∗}(E)=0$, then $E$ is measurable. In particular, if $F\subseteq E$ and $m_∗(E) = 0$, then F is measurable.
+    \begin{proof}
+    Suppose $m_{∗}(E)=0$ and let $\epsilon>0$ be given. Then let $F=\{x\}$ for some $x\in E$, thus $F$ is closed and $F\subset E$. Then by monotonicity, $\extmeasure{E-F}<\extmeasure{E}=0<\epsilon$.
+    \end{proof}
+    \item{} Property 3: If $E$ is a countable collection of measurable sets $E_j$ then $\bigcap_{j=1}^\infty E_j$ is also measurable.
+    \begin{proof}
+    Denote $E=\bigcap_{j=1}^\infty E_j$ with each $E_j$ measurable.  Then there exists an $F_j$ such that $F_j \subset E_j$ with $m_*(E_j - F_j) < \frac{\epsilon}{2^j}$.  As $F_j \subset E_j$ then $\bigcap_{j=1}^\infty F_j \subset \bigcap_{j=1}^\infty E_j$.   We denote $\bigcap_{j=1}^\infty F_j = F$ and note $F$ is the countable intersection of closed sets thus is closed.  We also observe the following:
+    $$E-F = \bigg[\bigcap_{j=1}^\infty E_j\bigg]  - \bigg[\bigcap_{j=1}^\infty F_j\bigg] = \bigg[\bigcap_{j=1}^\infty E_j\bigg] \bigcap \bigg[\bigcap_{j=1}^\infty F_j\bigg]^c =$$
+
+    $$\bigg[\bigcap_{j=1}^\infty E_j\bigg]\bigcap \bigg[ \bigcup_{j=1}^\infty F_j^c\bigg] \subseteq \bigg[\bigcup_{j=1}^\infty E_j\bigg] \bigcap \bigg[ \bigcup_{j=1}^\infty F_j^c \bigg] = \bigcup_{j=1}^\infty \big[E_j \bigcap F_j^c\big] = \bigcup_{j=1}^\infty \big[E_j - F_j\big]
+    $$
+
+    Thus by Observation 1 (Monotonicity) and $\big[E-F\big] \subseteq \bigcup_{j=1}^\infty \big[E_j - F_j\big]$ then:
+
+    $$m_*\big[E-F\big] \leq m_*\bigcup_{j=1}^\infty \big[E_j - F_j\big] \leq \sum^\infty_{j=1}m_*\big[E_j - F_j\big] < \sum^\infty_{j=1} \frac{\epsilon}{2^j} = \epsilon$$
+
+    Thus showing $E$ is measurable.
+    \end{proof}
+    \item{} Property 4: Open sets are measurable - we were unable to prove the general case, but did prove the following special cases:
+    \begin{enumerate}[label=\roman*]
+        \item{}Open sets with finite exterior measure are measurable.
+        \begin{proof}
+            Let $O$ be an open subset of $\mathbb{R}^d$ with $m_*(O) < \infty$ and let $\epsilon >0$ be arbitrary. Then $O$ is the countable union of almost disjoint cubes: $O = \cup_{j=1}^\infty Q_j$ and $m_*(O) = \sum_{j=1}^\infty |Q_j|$. Since $m_*(O) < \infty$, this is a convergent series and so the tails must go to 0. That is, there exists some $N \in {\N}$ such that $\sum_{j=N}^\infty |Q_j| < \epsilon$. Then, letting $F = \cup_{j=1}^{N-1} Q_j$, we have that $$m_*(O-F) = m_*( \cup_{j=1}^{\infty} Q_j - \cup_{j=1}^{N-1} Q_j ) = m_*(\cup_{j=N}^\infty Q_j) =  \sum_{j=N}^\infty |Q_j| < \epsilon.$$ Since $F$ is the intersection of closed sets, it is closed and $O$ is measurable.
+
+            % [We can't generally say that a measure of a difference is the difference of the measures, but we can with cubes, why is this? Does Observation 5 justify this?]
+
+            \end{proof}
+        \item{} Open sets with complements of finite exterior measure are measurable.
+        \begin{proof}
+         Let $O$ be an open subset of $\mathbb{R}^d$ with $m_*(O^c) < \infty$ and let $\epsilon >0$ be arbitrary. Define $B_R$ to be the open ball of radius $R$ about the origin; clearly $B_R$ has finite measure. Observe that we can rewrite $O$ as $$ O = O\cap B_R \cup O \cap B_R^c.$$ The goal is to show that this is in fact the union of two open, measurable sets and hence measurable by Property 3, but it would have to be Property 3 of the open sets definition of measurable, so I don't see why that would be available to us at all. \textbf{Can anyone confirm that this is what we were aiming for?} Proceeding nonetheless.
+
+         The first term $O \cap B_R$ is open and has finite exterior measure: it is open because it is the intersection of two open sets and has finite exterior measure as a result of countable subadditivity. Then, the term is measurable by Property 4.i. Dr. Horn seemed to be concerned that this was not actually open and began instead working with $O \cap Int(B_{n+1} \cap B_n$; I don't understand that construction.
+
+         \textbf{Remaining questions: how does that construction help us? Why would the second term be open and of finite measure?} In fact, since we're given that $O^c$ is finite, then $O \cap B_R^c = B_R^c - O^c$ would seem to be a set of infinite exterior measure less something of finite exterior measure, and thus still having infinite exterior measure.
+
+        \end{proof}
+    \end{enumerate}
+    \end{enumerate}
+
+\setcounter{enumi}{26}
+\item Suppose $E_1$ and $E_2$ are a pair of compact sets in $\R^d$ with $E_1\subseteq E_2$, and let $a=\measure{E_1}$ and $b=\measure{E_2}$. Prove that for any $c$ with $a<c<b$, there is a compact set $E$ with $E_1\subset E \subset E_2$ and $\measure{E}=c$.
+\begin{proof}
+For this proof, we will construct a continuous function to make a correspondence between numbers in $[a,b]$ and subsets of $E_2$, and use the IVT to produce the desired set.
+
+Let $E_1\subset E_2\subset \R^d$ with $a=\measure{E_1}$ and $b=\measure{E_2}$, and let $a<c<b$. Let $\{r_i\}_{i=0}^\infty$ be an enumeration of the rational numbers $\Q\cap[1,2]$. Since $\R^d$ is a normal topological space, we can find a compact set $E_{r_0}$ such that $$E_1\subsetneq E_{r_0}\subsetneq E_2,$$ and continue this construction for all other $r_i$. That is, for each $i\in\N$ and $p,q\in\Q\cap[1,2]$, we can find $E_{r_i}$ such that
+$$\text{if }p<r_i<q\text{, then }E_{p}\subsetneq E_{r_i}\subsetneq E_{q}.$$
+Now we define a continuous function $f:[1,2]\to[a,b]\text{ by }$
+$$f(q)=\measure{E_q} \text{ for } q\in\Q,$$ and extending continuously\footnote{This function is unique since a continuous function is completely determined by its behavior on a dense subset of its domain.}. Since $f$ is continuous, there exists some $\gamma\in[1,2]$ such that $f(\gamma)=c$ by the Intermediate Value Theorem. We would like to take $E_\gamma$ as our desired set, but $\gamma$ is probably an irrational number, so $E_\gamma$ may not be defined. However, using the decimal expansion $\gamma=1+\sum\limits_{i=1}^\infty g_i(10)^{-i}$, we can obtain a countable sequence of sets $\{E_{\gamma_n}\}_{n=1}^\infty\text{ where }$
+$$\gamma_n=\left(1+\sum\limits_{i=1}^n g_i(10)^{-i}\right)+10^{-i}.$$
+Note that $\gamma<\gamma_n$ for all $n$, and $\gamma_n\to\gamma$. Finally we can define $E_\gamma$ as $\bigcap_{i=1}^\infty E_{\gamma_i}$. Since $E_{\gamma_i}\searrow E_\gamma$ and $\measure{E_{\gamma_i}}<2<\infty$, then
+$$\measure{E}=\lim\limits_{i\to\infty} \measure{E_{\gamma_i}}=c.$$
+We know that $E_\gamma$ is compact since it is the countable intersection of compact sets, and thus we are done.
+\end{proof}
+
+
+\setcounter{enumi}{37}
+\item Prove that $(a+b)^\gamma\geq a^\gamma + b^\gamma$ whenever $\gamma\geq 1$ and $a, b \geq 0$. Also, show that the reverse inequality holds when $0 \leq \gamma \leq 1$. \\
+$[$Hint: Integrate the inequality between $(a+t)^{\gamma-1}$ and $t^{\gamma-1}$ from 0 to $b.]$
+\begin{proof}
+Recall that (assuming $x > 0$) $f(x)=x^\alpha$ is an increasing function when $\alpha>0$, and decreasing when $\alpha<0$. Thus when $\gamma\geq1$, then $(a+t)^{\gamma-1}-t^{\gamma-1} \geq 0$ for all $t,a\geq0$; and when $\gamma\leq1$, the inequality is reversed. Thus if $\gamma\geq1$,
+\[\begin{array}{rcl}
+0&\leq& \int_0^b (a+t)^{\gamma-1}-t^{\gamma-1} \der t\\
+&=&\left[\frac{1}{\gamma}(a+t)^\gamma - \frac{1}{\gamma}t^\gamma\right]_{t=0}^b\\
+&=&\frac{1}{\gamma}\left[(a+b)^\gamma-b^\gamma\right]-\frac{1}{\gamma}a^\gamma\\
+&=&\frac{1}{\gamma}	\left[(a+b)^\gamma-(a^\gamma+b^\gamma)\right].
+\end{array}\]
+Thus, $0\leq\frac{1}{\gamma}	\left[(a+b)^\gamma-(a^\gamma+b^\gamma)\right]$, and rearranging yields the desired result.
+\end{proof}
+
+
+\item[(reading question)] Find a continuous function $f:\R^+\to\R^+$ such that $\limsup f = \infty$, but $\int\limits_{\R^+} f < \infty$. \\
+\mbox{}\\
+\answer Let $f:\R^+\to\R^+$ be the function determined by countably many triangles $\{T_n\}$; each centered on an integer point $(n,0)$, with area $2^{-n}$, and height $n$.
+\jpg{width=0.33\textwidth}{spiky_fn}
+For a more formal definition, consider the set of all vertices of $T_n$ for all $n$, together with the origin. Define $f$ by connecting all these points with line segments, in order of their $x$-coordinates. We can confirm that this function is defined as expected by observing that none of the triangles overlap: Since they are all centered on integers, their centers have distance 1, and $T_1$ has radius $\sfrac{1}{2}$, \footnote{That is, it has vertices $(n-\sfrac{1}{2}, 0), (n,n), (n+\sfrac{1}{2}, 0)$} and all future triangles have smaller width.
+
+To see that this function has the desired properties, observe that $\limsup f = \infty$ because for all $n\in\N, f(n)=n$. Now observe that
+\[\begin{array}{rcl}
+\int\limits_0^\infty f &=& \sum\limits_{n=1}^\infty \text{area}(T_n)\\
+&=& \sum\limits_{n=1}^\infty \frac{1}{2^n}\\
+&=& 1\\
+&<& \infty.
+\end{array}
+\]
+\qed
+\end{enumerate}
+
+\section{Chapter 2}
+
+\begin{enumerate}
+  \item[]\textbf{Reading question for 2.1 stage 1:} Let $f$ and $g$ be simple functions with $f(x)=g(x)$ for a.e. $x$. Prove that $\int_\R f(x)\dx=\int_\R g(x)\dx$.
+  \begin{proof}
+    Let
+    $$\sum_{k=1}^N a_k \Chi_{E_k}, \; \sum_{k=1}^M b_k\Chi_{F_k}$$
+    be the canonical forms of $f$ and $g$ respectively, and let $\Delta = \{x:f(x)\neq g(x)\}$. Since $f=g$ almost everywhere, then $\measure{\Delta}=0$. Thus
+    $$\begin{array}{rcl}
+      f(x) &=& \ds\sum_{k=1}^N a_k\Chi_{\tilde{E_k}} + f(x)\Chi_\Delta, \text{ and} \\
+      g(x) &=& \ds\sum_{k=1}^N b_k\Chi_{\tilde{F_k}} + g(x)\Chi_\Delta,
+    \end{array}$$
+    where $\tilde{E_k}=E_k-\Delta$ and $\tilde{F_k}=F_k-\Delta$. Note that after a possible reordering, $\tilde{E_k}=\tilde{F_k}$ and $a_k=b_k$, since $f|_{\R-\Delta} = g|_{\R-\Delta}$ and these are the canonical forms of $f$ and $g$. Thus
+    $$\begin{array}{>{\ds}rc>{\ds}l}
+      \int_\R f(x)\dx &=& \int_\R\left(\sum_{k=1}^Na_k\Chi_{\tilde{E_k}}+f(x)\Chi_\Delta\right)\dx \\
+      &=&\sum_{k=1}^Na_k\measure{\tilde{E_k}}+\int_\Delta f(x)\dx\\
+    \end{array}$$
+    and $\int_\R f = 0 = \int_\R g$, so
+    $$\begin{array}{>{\ds}rc>{\ds}l}
+      \phantom{\int_\R f(x)} &=& \sum_{k=1}^Nb_k\measure{\tilde{F_k}}+\int_\Delta g(x)\dx\\
+      &=& \int_\R g(x) \dx
+    \end{array}$$
+    and we are done.
+  \end{proof}
+
+  \setcounter{enumi}{9}
+  \item We can break exercise 10 into two parts:
+  \begin{enumerate}
+    \item[Part 1:] Suppose $f>0$, and let $E_{2^k}=\{f > 2^k\}$ and $F_{k}=\{2^k < f \leq 2^{k+1}\}$. If $f$ is finite almost everywhere, note that
+      $$\bigcup_{k=-\infty}^\infty F_k = \{ f > 0\}$$
+    and the sets $F_k$ are disjoint. Prove that the following are equivalent:
+    \begin{itemize}
+      \item $f$ is integrable,
+      \item $\ds\sum_{k=-\infty}^\infty 2^k\measure{F_k} < \infty$, and
+      \item $\ds\sum_{k=-\infty}^\infty 2^k\measure{E_{2^k}} < \infty$.
+    \end{itemize}
+    \begin{proof}
+      YELLOW
+    \end{proof}
+
+    \item[Part 2:] Let $f,g:\R^d\to\R$ be:
+      $$f(x) = \begin{cases}
+        \abs{x}^{-a} & \text{if } \abs{x}\leq1, \\
+        0 & \text{otherwise}
+      \end{cases}$$
+      $$g(x) = \begin{cases}
+        \abs{x}^{-b} & \text{if } \abs{x}>1, \\
+        0 & \text{otherwise}
+      \end{cases}$$
+    for some $a,b\in\R^+$. Prove that
+    \begin{enumerate}[label=(\roman*)]
+      \item $f$ is integrable on $\R^d$ iff $a<d$, and
+      \item $g$ is integrable on $\R^d$ iff $b>d$.
+    \end{enumerate}
+    \begin{proof}Part (i):
+      For the function $f$, consider $E_{2^k}$ for $k\in\Z$.
+        \jpg{width=0.33\textwidth}{f_and_g_prob_2-10}
+      Observe that for $k>0$,
+        $$E_{2^k} = \{f > 2^k\} = \{\abs{x}^{-a} > 2^k\} = \{\abs{x} < 2^{-\frac{k}{a}}\} = B_{2^{-\frac{k}{a}}},$$
+      where $B_{2^{-\frac{k}{a}}}$ is a ball of radius $2^{-\frac{k}{a}}$ centered at the origin. The volume of such a ball in $\R^d$ is given by $V_dr^d$, where $r$ is the radius and $V_d$ is some constant which depends on the dimension $d$. Also observe that for $k\leq 0$, we have
+        $$E_{2^k}=B_1,$$
+      so $\measure{E_{2^k}}=V_d$. Now we will use these observations to calculate one of the sums from Part 1, as it relates to $f$:
+      $$\begin{array}{rcl}
+        \ds\sum_{k=-\infty}^\infty 2^k\measure{E_{2^k}} &=& \ds\sum_{k=-\infty}^\infty 2^k\measure{B_{2^{-\frac{k}{a}}}} \\
+        &=& \ds\sum_{k=-\infty}^\infty (2^k)(V_d)(2^{-\frac{kd}{a}}) \\
+        &=& \ds\sum_{k=-\infty}^\infty (V_d)(2^{1-\frac{d}{a}})^k \\
+      \end{array}$$
+      which converges iff $a<d$. \phantom\qedhere \qedwhite
+    \end{proof}
+    \begin{proof}Part (ii):
+      Now we consider $E_{2^k}$ as it applies to $g$. For $k\geq0$, observe that $E_{2^k}$ is empty, so $\measure{E_{2^k}}=0$. Now we know that $g(x)=0$ for any $x\in B_1$, so for $k<0$,
+      $$\begin{array}{rcl}
+        E_{2^k}&=&B_{2^{-\frac{k}{b}}}\cap B_1^\complement \\
+        &\subset& B_{2^{-\frac{k}{b}}},
+      \end{array}$$
+      and we can calculate as in Part (i):
+      $$\begin{array}{rcl}
+        \ds\sum_{k=-\infty}^\infty 2^k\measure{E_{2^k}} &=& \ds\sum_{k=-\infty}^{-1} 2^k\measure{E_{2^k}} \\
+        &<& \ds\sum_{k=-\infty}^{-1} 2^k\measure{B_{2^{-\frac{k}{b}}}} \\
+        &=& \ds\sum_{k=-\infty}^{-1} (V_d)(2^{1-\frac{d}{b}})^k \\
+      \end{array}$$
+      which converges iff $b>d$. \footnote{If this is not obvious, note that $k$ is negative, so the sum converges iff $2^{1-\frac{d}{b}}>1$ iff $1-\frac{d}{b}>0$ iff $1>\frac{d}{b}$ iff $b>d$.}
+    \end{proof}
+  \end{enumerate}
+
+  \item Prove that if $f:\R^d\to\R$ is integrable on $\R^d$ with $\int_E f \geq 0$ for every measurable $E$, then $f(x) \geq 0$ for a.e. $x$. Also prove that if $\int_E f = 0$ for every measurable $E$, then $f(x) = 0$ for a.e. $x$.
+  \begin{proof}
+    Let $E_k = \{f<-\frac{1}{k}\}$. Then $\bigcup_{k=1}^\infty E_k = \{f < 0\}$. For any $k >0$,
+    $$\begin{array}{rcl}
+      0 &\leq& \int_{E_k} f(x)\dx \\
+      &<& \int_{E_k} -\frac{1}{k}\dx \\
+      &=& -\frac{1}{k}\measure{E_k}.
+    \end{array}$$
+    Thus $0\leq-\frac{1}{k}\measure{E_k}$, and measures are nonnegative, so $\measure{E_k}$ must be 0. Since $\measure{E_k}=0$ for all $k$, then by subadditivity
+    $$\measure{\bigcup_{k=1}^\infty E_k}\leq\sum_{k=1}^\infty \measure{E_k}=0,$$
+    so $\measure{\bigcup_{k=1}^\infty E_k}=\measure{f<0}=0$, and $f\geq0$ for a.e. $x$.
+  \end{proof}
+  \begin{proof}[Corollary]
+    If $\int_E f = 0$ for every measurable $E$, then we have that $\int_E f \geq 0$ and $\int_E -f \geq 0$, so we conclude that $f(x) \geq 0$ and $-f(x) \geq 0$ for a.e. $x$, thus $f(x)=0$ almost everywhere.
+  \end{proof}
+
+\item Show that there are $f\in L^1(\R^d)$ and a sequence $\{f_n\}$ with $f_n\in L^1(\R^d)$ such that
+$$\norm{f-f_n}_{L^1}\to0,$$
+but $f_n(x)\to f(x)$ for no $x$.
+
+[Hint: In $\R$, let $f_n=\Chi_{I_n}$, where $I_n$ is an appropriately chosen sequence of intervals with $\measure{I_n}\to 0$.]
+\begin{proof}
+  Phase I: We will first find such a sequence of functions that has the desired properties only on $[0,1]$. By Dirichlet's Approximation Theorem, we know that for any $x\in[0,1]$, there exist infinitely many $p,q$ such that
+  $$\abs{\frac{p}{q}-x}<\frac{1}{q^2}.$$
+  So we construct $\{I_n\}$ using an enumeration of the rationals in $[0,1]$ where $r_n=\frac{p}{q}$, so that
+  $$I_n=\left(\frac{p}{q}-\frac{1}{q^2}\,,\, \frac{p}{q}+\frac{1}{q^2}\right).$$
+  Now if we consider the characterstic functions of these sets, we find that $\{\Chi_{I_n}\}$ is a sequence of functions such that
+  $$\norm{0-\Chi_{I_n}}\to 0,$$
+  since $\int \Chi_{I_n} = \measure{I_n} = \frac{2}{q^2} \to 0$ as $n\to\infty$. To see that this is true, recall that for any $\epsilon>0$, there are finitely many $q\in\N$ such that $\frac{2}{q^2}\geq\epsilon$, and for each $q$ there are finitely many $\frac{p}{q}\in[0,1]$.
+
+  However, $\lim\limits_{n\to\infty}\Chi_{I_n}(x)\neq0$, since each $x\in I_n$ for infinitely many $I_n$. 
+  %Any enumeration of the rationals must contain $\Z$, and if $\frac{p}{q}$ is an integer, then $\frac{2}{q^2} = 2$. So $\measure{I_n}=2$ for infinitely many $I_n$, and the measure can't converge to zero.
+  %The only way I can think of to recover this property is instead considering the rationals between 0 and 1, but then $f_n(x)\to f(x)$ for $x\not\in[0,1]$.
+
+  Phase II: Now we extend the sequence of functions to work on $\R^+$. For any $x\in\R^+$, we can write $x$ as $m+\alpha$, where $m$ is given by truncating $x$, that is, $m=\floor{x}$ and $\alpha = x-m$. Then we define 
+  $$f_n(x)=\frac{1}{2^m}\Chi_{I_n}(\alpha).$$
+  To see that $\int f_n\to0$, observe that 
+  $$\int_\R f_n(x)\dx=\int_\R\frac{1}{2^m}\Chi_{I_n}(\alpha)\dx\leq\int_\R\frac{1}{2^m}\Chi_{[0,1]}(\alpha)\dx=\sum_{m=0}^\infty \frac{1}{2^m}=2<\infty,$$
+  so then since $\int\Chi_{I_n}\to0$, then so does $\int f_n\to0$ as $n\to\infty$. Also, $f_n(x)\not\to 0$ for the same reasons as in phase 1, since we are using the same map everywhere, and the only difference is in the magnitude. 
+  
+  Phase III: Finally, we extend the sequence of functions to all of $\R$ merely by considering $f_n(\abs{x})$, and we are done. 
+\end{proof}
+
+\item[2.7] \mbox{}
+	\begin{proof} \textbf{of (a) and (b)} (I could only think of a proof that accomplishes both parts simultaneously.) Let 
+	$$E_n = \bigcup_{k\in\Z}\left(\preimage{f}{\left[\frac{k}{2^n}, \frac{k+1}{2^n}\right]}\times\left[\frac{k}{2^n}, \frac{k+1}{2^n}\right]\right).$$
+	We would like to say that $E_n\to\Gamma$ and $\measure{E_n}\to0$ so we are done, but we need to be a bit more careful than that. First, we bound $E_n$ and $\Gamma$, so that 
+	$$E_n^b = E_n\cap\left([-\tfrac{b}{2}, \tfrac{b}{2}]^d\times\R\right), \text{ and}$$
+	$$\Gamma^b = \Gamma\cap\left([-\tfrac{b}{2}, \tfrac{b}{2}]^d\times\R\right).$$
+	Then we have that $\measure{E^b_n}=\frac{b^d}{2^n}$, so as $n\to\infty$ we have $E^b_n\searrow\Gamma^b$ and $\measure{\Gamma^b}=0$. \footnote{The bound was needed here because $\measure{\Gamma^b}=\lim_{n\to\infty}\measure{E^b_n}$ only when some $E^b_n$ has finite measure.} Now this holds for any $b\in\N$, so then $\Gamma^b\nearrow\Gamma$ and $\measure{\Gamma^b}=0$ for all $b$. Therefore  
+	$$\lim_{b\to\infty}\measure{\Gamma^b}=\measure{\Gamma}=0$$
+	and we are done. 
+	\end{proof}
+
+\item[3.14] 
+	\begin{enumerate}
+		\item[(b)] Let $F:[a, b]\to\R$ be increasing and bounded, and let $J(x)=\sum_{n=1}^\infty\alpha_nj_n(x)$ be the jump function associated with $F$. Show that 
+		$$\limsup_{h\to 0}\frac{J(x+h)-J(x)}{h}$$
+		is measurable.
+		\begin{proof}
+		Let $J_N=\sum_{n=1}^N\alpha_n j_n(x)$. Now define 
+		$$F^N_{k,m}(x)=\sup_{\frac{1}{k}<|h|<\frac{1}{m}}\abs{\frac{J_N(x+h)-J_N(x)}{h}}.$$
+		As $k\to\infty$, 
+		$$F^N_{k,m}\nearrow F^N_m=\sup_{0<|h|<\frac{1}{m}}\abs{\frac{J_N(x+h)-J_N(x)}{h}}, \text{and}$$
+		
+		\end{proof}				
+		
+		 
+		\begin{proof}
+		Since $F$ is bounded and increasing, we know it can have at most countably many discontinuities; so let $\{x_n\}_{n=1}^\infty$ denote the set of discontinuities of $F$. 
+		
+		\textbf{Claim:} If $x\in\{x_n\}_{n=1}^\infty$, then the desired lim sup is $\infty$, and it vanishes for all other $x$. 
+		
+		To see this, let $x\in\{x_n\}_{n=1}^\infty$. This means that since $x$ is a point of jump discontinuity, then $\abs{J(x+h)-J(x)}>0$ for any $h>0$ (or if not, then it works for any $h<0$), so 
+		$$\limsup_{h\to 0}\frac{J(x+h)-J(x)}{h}=\infty.$$
+		Now suppose that $x\not\in\{x_n\}_{n=1}^\infty$. Either $x$ is a limit point of $\{x_n\}_{n=1}^\infty$, or it is not. If it is not, then $J(x)$ is constant near $x$, so $J'(x)$ exists and is 0, which means the desired lim sup vanishes as well. 
+		
+		Otherwise suppose $x\not\in\{x_n\}_{n=1}^\infty$ but $x$ is a limit point of $\{x_n\}_{n=1}^\infty$. Since $F$ is bounded and $J\leq F$, then $\sum_{n=1}^\infty\alpha_nj_n(x)<\infty$ for any $x$, which means $\alpha_n\to0$. Thus for any subsequence $x_{n_i}\to x$, $J(x_{n_i})-J(x_{n_{i+1}})\to0$, so the lim sup vanishes in this case as well.		
+		$$\text{THIS TOTALLY DOESN'T WORK!}$$
+		This is a freshman calculus mistake, I should have known better. Just because the numerator goes to 0 doesn't mean the quotient goes to zero, since the denominator goes to 0 for sure, and thus we get 0/0 which is an indeterminate form. In fact, you can construct a counterexample. 
+		\jpg{width=0.1\textwidth}{counterexample_prob_3-14-b.jpg}		
+		Just let $\{x_n\}_{n=1}^\infty=\sfrac{1}{2^n}$ and $\alpha_n=x_n$. Then as $x\to 1$, $J(x)\to x$ and the desired lim sup at $x=1$ is 1. 
+		\end{proof}
+	\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

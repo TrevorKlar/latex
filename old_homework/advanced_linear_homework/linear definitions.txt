@@ -1,0 +1,37 @@
+Note: All magmas are assumed to be closed, otherwise the operation would be ill-defined.
+
+magma
+	(no assumptions)
+
+semigroup
+	associative
+
+monoid
+	associative
+	identity
+
+group 
+	associative
+	identity
+	inverse
+
+abelian group
+	associative 
+	identity
+	inverse
+	commutative
+
+ring
+	+ abelian group
+	* monoid
+	  distributive (right and left)
+
+commutative ring
+	+ abelian group
+	* monoid + commutative
+	  distributive
+	
+field 
+	+ abelian group
+	* abelian group
+	  distributive

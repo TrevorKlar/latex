@@ -1,0 +1,265 @@
+\documentclass[letterpaper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\title{Eigenvectors and Eigenspaces}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+This paper is written to give the reader an outline of Eigenvectors and Eigenvalues. We will assume that the reader is familiar with vectors, matrices, and basic calculations involving them. Just as a quick reminder, here's what a linear transformation is:
+\begin{definition}
+Let $V$ and $W$ be two vector spaces. We say that $T: V \to W$ is a \emph{linear transformation} if 
+\begin{enumerate}
+\item $T(x+y) = T(x) + T(y)$, $\forall x,y \in V$
+\item $T(cx) = cT(x)$, $\forall x \in V, c \in \F$
+\end{enumerate}
+\end{definition}
+
+So, a linear transformation is essentially a function which maps vectors to vectors, and has the above properties. Another convenient property of linear transformations is that they can also be represented as matrices. Let's explore why that's the case (This should still be review for the reader). 
+
+\begin{definition}
+A set of vectors $\{\vec{v_1}, \vec{v_2}, ... \vec{v_n}\}$ is said to be \emph{linearly independent} if  $$a_1 \vec{v_1} + a_2 \vec{v_2} + ... + a_n \vec{v_n} = \vec{0}$$ $$\text{ implies that }a_1 = a_2 = ... = a_n = 0.$$
+\end{definition}
+
+This means that none of the above vectors is a linear combination of the others. 
+
+\begin{definition}
+ A \emph{basis} is a set of vectors $\{\vec{b_1}, \vec{b_2}, ... \vec{b_n}\}$ which is linearly independent and spans $V$. 
+\end{definition}
+Every vector space $V$ can be represented using a basis. So, for any vector $\vec{v} \in V$, 
+$$\vec{v} = a_1\vec{b_1}+ a_2\vec{b_2}+ ... + a_n\vec{b_n}.$$
+This is convenient because it allows us to represent a vector just using the coefficients of the basis vectors. So another way to represent $\vec{v}$ is 
+\[
+\vec{v}= 
+\left[ \begin{array}{cc}
+a_1 \\
+a_2 \\ 
+\vdots \\ 
+a_n
+\end{array} \right]_.
+\]
+Now, the transformation $T$ is a function which takes the vector $\vec{v}$ as its input, and returns the coefficients for the vector which results. This is why a matrix is a great way to represent $T$. It takes in a vector (via matrix multiplication), and returns a corresponding vector coordinate for each row of the matrix.
+
+\[
+\left[ \begin{array}{cccc}
+t_{11} & t_{12} & \ldots & t_{1n} \\
+t_{21} & t_{22} & \ldots & t_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+t_{m1} & t_{m2} & \ldots & t_{mn} \\
+\end{array} \right]
+%
+\left[ \begin{array}{c}
+a_1\vec{v_1} \\
+a_2\vec{v_2} \\ 
+\vdots \\ 
+a_n\vec{v_n}
+\end{array} \right]
+%
+=
+%
+\left[ \begin{array}{c}
+a_1t_{11}\vec{v_1} + \ldots + a_nt_{1n}\vec{v_n} \\
+a_1t_{21}\vec{v_1} + \ldots + a_nt_{2n}\vec{v_n} \\
+\vdots \\
+a_1t_{m1}\vec{v_1} + \ldots + a_nt_{mn}\vec{v_n} \\
+\end{array} \right]
+\]
+
+This is an awful lot of notation to wade through, so we usually just write $T(\vec{v})$ to interchangably mean the function or the matrix product $T\vec{v}$.\footnotemark But, keep that in mind when we talk about eigenvalues. 
+\footnotetext{Strictly speaking, to say that a linear transformation and a matrix are equivalent requires the assumption that $V$ is finite-dimensional. However, we only concern ourselves with finite-dimensional vector spaces in this paper.}
+
+You may have noticed above that linear transformations often map from one vector space to another vector space, like $\R^2 \to \R^3$, for example. However, there are some really interesting properties to explore when a linear transformation maps from a space $V$ back to that same space. 
+\begin{definition}
+A \emph{linear operator} is a linear transformation $T: V \to V$.
+\end{definition}
+It turns out that for every linear operator, there are some vectors which map very nicely to a scalar multiple of themselves; that is, for some vector $\vec{v}$ and some scalar $\lambda$, $T(\vec{v})=\lambda\vec{v}$.
+\begin{definition}
+Let $T$ be a linear operator. An \emph{eigenvector} of $T$ is a vector $\vec{v}$ such that $T(\vec{v})=\lambda\vec{v}$, where $\lambda$ is a scalar called the \emph{eigenvalue} corresponding to $\vec{v}$.
+\end{definition}
+Sometimes, we can find a basis for $V$ which consists only of eigenvectors. If we can, applying the transformation $T$ is much nicer indeed, as shown in the following example. 
+\begin{example}
+Let $T:V \to V$, and let $\vec{v} $ be any vector in $V$. Let $\vec{v}_1, \vec{v}_2, \vec{v}_3$ and $\lambda_1, \lambda_2, \lambda_3$ be eigenvectors of $T$ and their corresponding eigenvalues, respectively. Then, $T(\vec{v})$ can be written as 
+
+\[
+\left[ \begin{array}{ccc}
+\lambda_1 & 0 & 0 \\
+0 & \lambda_2 & 0 \\
+0 & 0 & \lambda_3 \\
+\end{array} \right]
+%
+\left[ \begin{array}{c}
+a_1\vec{v_1} \\
+a_2\vec{v_2} \\ 
+a_n\vec{v_n}
+\end{array} \right]
+%
+=
+%
+\left[ \begin{array}{c}
+\lambda_1a_1\vec{v_1} \\
+\lambda_2a_2\vec{v_2} \\
+\lambda_3a_3\vec{v_3} \\
+\end{array} \right]_.
+\]
+\end{example}
+
+Notice that even though $\vec{v}$ itself was not necessarily an eigenvector of $T$, the problem was still simplified greatly by using a basis consisting of eigenvectors. We now understand how these vectors can be of great help, so let us begin the process of finding them.
+
+If $\vec{v}\neq\vec{0}$ is an eigenvector, then by definition, it is a nontrivial solution to the equation 
+$$T\vec{v}=\lambda\vec{v}.$$
+So we need to solve this equation for $\vec{v}$.
+$$T\vec{v}-\lambda\vec{v}=\vec{0}$$
+$$(T-\lambda I)\vec{v}=\vec{0}$$
+Now we're making progress. According to the above equation, we are searching for a matrix $(T-\lambda I)$ whose product with $\vec{v}$ is $\vec{0}$. One way to view this equation is as a linear combination of column vectors whose sum is zero.
+
+\[
+\left[ \begin{array}{cccc}
+t_{11} & t_{12} & \ldots & t_{1n} \\
+t_{21} & t_{22} & \ldots & t_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+t_{m1} & t_{m2} & \ldots & t_{mn} \\
+\end{array} \right] \vec{v}
+%
+=
+%
+\left[ \begin{array}{cccc}
+\vec{c_1} & \vec{c_2} & \ldots & \vec{c_n}
+\end{array} \right]
+%
+%
+\left[ \begin{array}{c}
+a_1 \\
+a_2 \\ 
+\vdots \\ 
+a_n
+\end{array} \right]
+%
+=
+%
+\vec{0}
+\]
+
+If the columns of $T$ were linearly independent, then by the definition of linear independence, $a_1 = a_2 = ... = a_n = 0$, which would imply that $\vec{v} = \vec{0}$. We want $\vec{v} \neq \vec{0}$, so we need to avoid this. The good news is, our search for eigenvectors $\vec{v}$ also involves finding eigenvalues $\lambda$, so we can find those first, and choose them such that $(T-\lambda I)$ is \emph{not} linearly independent.
+
+\begin{proposition}
+\label{prop:determinants}
+Let $A$ be a matrix. The determinant of $A$, denoted $det(A)$, has the following two properties: 
+\begin{enumerate}
+\item $det(A) = 0$ iff the rows and columns of $A$ are linearly dependent.
+\item $det(A) \neq 0$ iff the rows and columns of $A$ are linearly independent.\footnotemark
+\end{enumerate}
+\footnotetext{Proposition~\ref{prop:determinants} comprises part of the \emph{Invertible Matrix Theorem}, whose complete text is beyond the scope of this paper.}
+\end{proposition}
+
+So, if we require that $(T-\lambda I)$ be linearly dependent, then $det((T-\lambda I))$ should be $0$. Finding the determinant of an $n \times n$ matrix is rather complicated to describe in general (and the reader should be familiar with the method anyhow), so we will demonstrate the process for a particular $2 \times 2$ example, and give the general result afterword. 
+
+\begin{example}
+Let $T =
+\left[ \begin{array}{cc}
+0 & 1 \\
+-2 & -3 \\
+\end{array} \right]
+$.
+We will find $\lambda$ such that $$det(T-\lambda I) = 0.$$
+First, let's simplify this matrix, $T-\lambda I$. 
+\[
+\begin{array}{ccl}
+T - \lambda I & = &
+\left[ \begin{array}{cc}
+0 & 1 \\
+-2 & -3 \\
+\end{array} \right]
+- \lambda 
+\left[ \begin{array}{cc}
+1 & 0 \\
+0 & 1 \\
+\end{array} \right] \\
+\\
+& = &
+\left[ \begin{array}{cc}
+0 & 1 \\
+-2 & -3 \\
+\end{array} \right]
++ 
+\left[ \begin{array}{cc}
+-\lambda & 0 \\
+0 & -\lambda \\
+\end{array} \right]\\
+\\
+& = &
+\left[ \begin{array}{cc}
+-\lambda & 1 \\
+-2 & -3-\lambda \\
+\end{array} \right]
+\end{array}
+\]
+Now, let's take the determinant. 
+\[
+\begin{array}{ccl}
+\left| \begin{array}{cc}
+-\lambda & 1 \\
+-2 & -3-\lambda \\
+\end{array} \right|
+& = & 
+(-\lambda)(-3-\lambda)-(-2)(1) \\
+%
+& = & 
+\lambda^2+3\lambda+2 \\
+%
+& = & 
+(\lambda+1)(\lambda+2)
+\end{array}
+\]
+So, if $\lambda = -1$ or $\lambda = -2$, then $(\lambda+1)(\lambda+2)=0$, so $det(T-\lambda I) = 0.$
+\qedwhite
+\end{example}
+
+Here is that same result, in general. 
+
+\begin{proposition}
+Let $T$ be an $n \times n$ matrix. Then, $det(T-\lambda I)$ is a polynomial $f(t)$ of degree $n$ whose roots are the eigenvalues of $T$. We call $f(t)$ the \emph{characteristic polynomial} of $T$.
+\end{proposition} 
+
+So now, each value of $\lambda$ (there will be up to $n$ of them, so let's call them $\lambda_j$, for $j \in \{1...n\}$) will ensure that $(T-\lambda_j I)$ is linearly dependent, which will then give us a non-zero $\vec{v}_j$ such that 
+$(T-\lambda_j I)\vec{v}_j=\vec{0}.$ Actually finding these vectors $\vec{v}_j$ is a simple (though sometimes lengthy) matter of solving systems of equations for $\vec{v}_j$, after plugging in each value of $\lambda_j$.
+
+We now have a method for finding the eigenvectors and eigenvalues for a given linear operator, $T$. This lets us do some really simple evaluations involving $T$, as long as we can use a basis consisting of our eigenvectors. But there's one more really awesome result to discuss. 
+
+\begin{theorem}
+\textbf{(Cayley-Hamilton Theorem)}
+
+Let $T:V \to V$ be a linear operator, and let $f(t)$ denote the characteristic polynomial of $T$. Then, $f(T) \equiv \vec{0}$.
+\end{theorem}
+
+Now, this is a really suprising result, when you first look at it. It says that if you consider the characteristic polynomial $f$ composed with the linear transformation $T$, you get a function which maps every vector $\vec{v} \in V$ to $\vec{0}$.
+
+\begin{proof}
+\textbf{(Cayley-Hamilton Theorem)}
+Suppose that $V$ is a complex vector space. Let $\vec{v} \in V$, and suppose we can use the method described in this paper to find a basis $\{\vec{v}_1, \vec{v}_2, ... \vec{v}_n\}$ of $V$ consisting of eigenvectors of $T$.\footnote{If this basis can be found, we say that $T$ is diagonalizable. The Cayley-Hamilton Theorem also holds when $V$ is a real vector space, or $T$ is not diagonalizable, but it's a lot more work to prove, so we just give this version to give the reader an intuition for how it works.} This means that we can represent $\vec{v}$ as a linear combination of eigenvectors,
+$$\vec{v} = a_1\vec{v}_1 + a_2\vec{v}_2 + ... + a_n\vec{v}_n.$$
+We want to show that $f(T)(\vec{v}) = \vec{0}$. Since $f(t)$ is a complex polynomial of degree $n$ where each $\lambda_j$ is a root, we can factor it as 
+$$f(T) = (T-\lambda_1 I)(T-\lambda_2 I)...(T-\lambda_n I).$$
+We already know that for each $(T-\lambda_j I)\vec{v}_j=\vec{0},$ since that is how each $\lambda_j, \vec{v}_j$ was defined. So $f(T)(\vec{v}_j) = \vec{0}$ for each $\vec{v}_j$ in our basis, since a factor of $f(T)$ is guaranteed to be mapped to $\vec{0}$. 
+\[
+\begin{array}{rcl}
+f(T)(\vec{v}) &=& f(T)[a_1(\vec{v}_1) + a_2(\vec{v}_2) + ... + a_n(\vec{v}_n)] \\
+f(T)(\vec{v}) &=& a_1f(T)(\vec{v}_1) + a_2f(T)(\vec{v}_2) + ... + a_nf(T)(\vec{v}_n) \\ 
+&=& a_1\vec{0} + a_2\vec{0} + ... a_n\vec{0}\\
+&=& \vec{0}.
+\end{array}
+\]
+Therefore, for any $\vec{v} \in V$, $f(T)(\vec{v})=\vec{0}$.
+
+\end{proof}
+
+\end{document}

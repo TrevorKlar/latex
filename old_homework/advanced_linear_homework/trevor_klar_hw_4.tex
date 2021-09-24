@@ -1,0 +1,94 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\title{Math 462 - Advanced Linear Algebra \linebreak
+	Homework 4}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercises:}
+\begin{enumerate}
+%\setcounter{enumi}{4}
+\item Let $T$ be the $\R$-linear transformation given by 
+$$T : \R^3\to\R^3 : (x,y,z)\mapsto(y,x,0).$$
+Compute all the eigenvalues of $T$ and the corresponding eigenspaces.
+
+\textbf{Answer:}
+(We use the canonical basis for $\R^3$.) Let $A=M(T)$.
+
+\[A = \left(
+\begin{array}{ccc}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+\end{array}\right)\]
+
+\[\begin{array}{rcl}
+\det(A-\lambda I)&=&\left| 
+\begin{array}{ccc}
+-\lambda & 1 & 0 \\
+1 & -\lambda & 0 \\
+0 & 0 & -\lambda \\
+\end{array}\right|\\
+&=& -\lambda^3+\lambda\\
+&=& \lambda(1-\lambda^2)\\
+&=& \lambda(1-\lambda)(1+\lambda)\\
+\end{array}\]
+
+So, the eigenvectors are $\lambda_1=0, \lambda_2=1, \lambda_3=-1$. A quick mental calculation will find that the $0$-eigenspace is span$(0,0,1)$, the $1$-eigenspace is span$(1,1,0)$, and the $-1$-eigenspace is span$(1,-1,0)$. 
+
+
+\item Given any nonzero vector $v \in \C^2$, show that there exist some nonzero $\lambda \in C$ and some
+$\C$-linear transformation $T : \C^2\to\C^2$ such that $v$ is a $\lambda$-eigenvector of $T$.
+\begin{proof}
+Let $\lambda_0$ be any complex number. Consider the dilation\footnotemark $T(v):=\lambda_0v$ for all $v\in\C^2$. By definition, every element of $\C^2$ is a $\lambda_0$-eigenvector of $T$. In case there is any doubt that $T$ is a linear transformation, observe the matrix of $T$ with respect to the following basis of $\C^2$:
+\[\script{B}=\left\lbrace
+\begin{array}{cccc}
+\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)
+\left(\begin{array}{c}
+i\\
+0
+\end{array}\right)
+\left(\begin{array}{c}
+0\\
+1
+\end{array}\right)
+\left(\begin{array}{c}
+0\\
+i
+\end{array}\right)
+\end{array}\right\rbrace\]
+
+\[M_\script{B}(T)=\left(
+\begin{array}{cccc}
+\lambda_0 & 0 & 0 & 0 \\
+0 & \lambda_0 & 0 & 0 \\
+0 & 0 & \lambda_0 & 0 \\ 
+0 & 0 & 0 & \lambda_0 \\ 
+\end{array}
+\right)_.\]
+\end{proof}
+\end{enumerate}
+
+\footnotetext{We are using the term dilation loosely here to mean 'uniformly multiplying every component by a scalar'. In $\C^2$, this wouldn't quite appear as a dilation, as multiplication of complex numbers appears geometrically as a dilation composed with a rotation, and two complex dimensions would complicate matters even further.}
+
+\end{document}

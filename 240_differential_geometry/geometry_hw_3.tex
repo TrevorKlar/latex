@@ -1,0 +1,264 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%\DeclareMathOperator{\diameter}{diam}
+%\newcommand{\diam}[1]{\diameter\left(#1\right)}
+\newcommand{\CP}{\C\mathbb{P}}
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+\newcommand{\id}{\text{id}}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{240 - Differential Geometry \\}} 
+\rhead{\textsc{Dai, Fall 2019 \\ Trevor Klar}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\LARGE Final Exam}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+
+\item Let $M^n$ be an embedded submanifold of $N^m$. Show that $TM$ is an embedded submanifold of $TN$.
+\begin{proof}
+Since $M$ is an embedded submanifold of $N$, then the inclusion map $\iota:M\hookrightarrow N$ is an embedding; that is, a smooth map of rank $n$ which is a homeomorphism onto its image with the subspace topology. 
+
+If we consider the global differential $d\iota:TM\to TN$, we know that $d\iota$ is smooth since $\iota$ is smooth (Proposition 3.21). Now observe that 
+\begin{align*}
+d\iota(x^1, \dots, x^n, v^1, \dots, v^n)&= \left(\iota^1(x),\dots \iota^n(x), \frac{\del\iota^1}{\del x^i} (x)v^i, \dots, \frac{\del\iota^n}{\del x^i} (x)v^i\right) \\
+&= (x^1, \dots, x^n,v^1, \dots, v^n),\\
+\end{align*}
+where the last line comes from the fact that $\iota^i(n)$ just gives the $i$-th coordinate of $x$ and $\frac{\del\iota^j}{\del x^i} (x)$ is constantly 1 if $i=j$ and constantly 0 if $i\neq j$. This means that the rank of $d\iota$ is $2n$, and $d\iota$ is the inclusion map $TM\hookrightarrow TN$. Since $\iota$ is a homeomorphism onto its image and $T_pM$ is a linear subspace of $T_pN$ for every $p\in M$, then $d\iota$ is also a homeomorphism onto its image, so $d\iota$ is an embedding, and we are done. 
+\end{proof}
+
+\item Let $X,Y,Z$ be vector fields on $\R^3$ given by 
+$$X=y\frac{\del}{\del z}-z\frac{\del}{\del y}, \quad 
+  Y=z\frac{\del}{\del x}-x\frac{\del}{\del z}, \quad 
+  Z=x\frac{\del}{\del y}-y\frac{\del}{\del x}.$$
+Let $A$ be the linear space spanned by $X,Y,Z$. Show that $A$ is a 3-dimensional Lie algebra with the Lie bracket of $\mathfrak{X}(\R^3)$. 
+\begin{proof}
+Since $X,Y,Z$ are clearly linearly independent, then their span over coefficients in $\R$ is a 3-dimensional vector space. Now we show that the bracket $[X,Y]=XY-YX$ on $A$ satisfies the desired properties. By the symmetry in their definitions, $[X,Y], [Y,Z],$ and $[Z,X]$ will all have the same properties, and while an arbitrary vector field in $A$ will be of the form $(aX+bY+cZ)$, it suffices to show that the desired properties hold for the basis vectors. 
+	\begin{enumerate}
+	\item \textsc{Bilinearity}: 
+	\begin{align*}
+	[aX+bY,Z]f&=(aX+bY)Zf-Z(aX+bY)f\\
+	\\
+	(aX+bY)Zf&=\left(ay\frac{\del}{\del z}-az\frac{\del}{\del y}+bz\frac{\del}{\del x}-bx\frac{\del}{\del z} \right) \circ
+	  \left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right)f \\
+	&=\left(bz\frac{\del}{\del x} -az\frac{\del}{\del y}+ (ay-bx)\frac{\del}{\del z} \right) \circ	 
+	  \left(x\frac{\del f}{\del y}-y\frac{\del f}{\del x}\right)  \\
+ 	&=bz\frac{\del f}{\del y}+bxz\frac{\del^2f}{\del y\del x}-bzy\frac{\del^2f}{\del x^2}
+ 	  -axz\frac{\del^2f}{\del y^2}+az\frac{\del f}{\del x}+ayz\frac{\del^2f}{\del x\del y}\\
+ 	  &\quad +(ay-bx)\left(x\frac{\del^2f}{\del y\del z}-y\frac{\del^2f}{\del x\del z}\right) \\
+ 	\\ 
+ 	-Z(aX+bY)f&=
+ 	  -\left(x\frac{\del }{\del y}-y\frac{\del }{\del x}\right)
+ 	  \circ \left(bz\frac{\del}{\del x} -az\frac{\del}{\del y}+ (ay-bx)\frac{\del}{\del z} \right)f \\
+ 	&=\left(-x\frac{\del }{\del y}+y\frac{\del }{\del x}\right)
+ 	  \circ \left(bz\frac{\del f}{\del x} -az\frac{\del f}{\del y}+ ay\frac{\del f}{\del z}-bx\frac{\del f}{\del z} \right) \\
+ 	&=-bxz\frac{\del^2f}{\del x\del y}+axz\frac{\del^2f}{\del y^2}-ax\frac{\del f}{\del z}-axy\frac{\del^2f}{\del z\del y}+bx^2\frac{\del^2f}{\del z\del y} \\
+ 	  &\quad + byz\frac{\del^2f}{\del x^2}-ayz\frac{\del^2f}{\del y\del x}+ay^2\frac{\del^2f}{\del z\del x}-by\frac{\del f}{\del z}-bxy\frac{\del^2f}{\del z\del x}
+	\end{align*}
+	and all of the second-order derivatives cancel\footnote{Since $f\in C^\infty(\R)$, mixed partials are equal.}, the sum is given by
+	\[[aX+bY,Z]f = az\frac{\del f}{\del x}+bz\frac{\del f }{\del y}-(ax+by)\frac{\del f}{\del z}.\]
+	Now we check that this is equal to $a[X,Z]f+b[Y,Z]f:$
+	\begin{align*}
+	a[X,Z]f &= a(XZf-ZXf) \\
+%##1##	
+	&= a\left[\left(y\frac{\del}{\del z}-z\frac{\del}{\del y}\right)\circ\left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right)f-\left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right)\circ \left(y\frac{\del}{\del z}-z\frac{\del}{\del y}\right)f\right]\\
+%##2##
+  &= a\left[\left(y\frac{\del}{\del z}-z\frac{\del}{\del y}\right)\circ\left(x\frac{\del f}{\del y}-y\frac{\del f}{\del x}\right)
+  -\left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right)\circ \left(y\frac{\del f}{\del z}-z\frac{\del f}{\del y}\right)\right]\\
+%##3##
+  &=a\left[-x\frac{\del f}{\del z}+z\frac{\del f}{\del x}\right] \\
+    &=-ax\frac{\del f}{\del z}+az\frac{\del f}{\del x}
+\end{align*}
+\begin{align*}
+%##1##
+  b[Y,Z]f&=b(YZf-ZYf)\\
+%##2##
+  &=b\left[\left(z\frac{\del}{\del x}-x\frac{\del}{\del z} \right) \circ \left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right)f
+  -\left(x\frac{\del}{\del y}-y\frac{\del}{\del x}\right) \circ \left(z\frac{\del}{\del x}-x\frac{\del}{\del z} \right)f\right] \\
+%##3##
+	&= b\left[z\frac{\del f}{\del y}-y\frac{\del f}{\del z}\right] \\
+	&= bz\frac{\del f}{\del y}-by\frac{\del f}{\del z} 
+	\end{align*}
+	So, 
+	\begin{align*}
+	[aX+bY,Z]f &= az\frac{\del f}{\del x}+bz\frac{\del f }{\del y}-(ax+by)\frac{\del f}{\del z}\\
+	&=-ax\frac{\del f}{\del z}+az\frac{\del f}{\del x} + bz\frac{\del f}{\del y}-by\frac{\del f}{\del z} \\
+	&= a[X,Z]f + b[Y,Z]f
+	\end{align*}
+and	a similar proof will show that $[Z,aX+bY]=a[Z,X]+b[Z,Y]$. Thus, the bilinearity property is shown. 
+	
+	\item \textsc{Antisymmetry}:
+	\begin{align*}
+	[X,Y]f&=XYf-YXf\\
+	&=-(-XYf+YXf)\\
+	&=-[Y,X]f
+	\end{align*}
+	
+	\item \textsc{Jacobi Identity}:
+	
+	By examining some of the computations in the bilinearity part of this proof, we can see that 
+	\begin{align*}
+	[Y,X]&=Z,\\
+	[X,Z]&=Y, \text{ and}\\
+	[Z,Y]&=X.
+	\end{align*}
+	Thus 
+	\begin{align*}
+	[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]&=[X,-X]+[Y,-Y]+[Z,-Z]\\
+	&=0+0+0
+	\end{align*}
+	\end{enumerate}
+Therefore, $A$ is a 3-dimensional vector space with a bracket operation having the bilinearity, antisymmetry, and Jacobi identity properties, so $A$ is a 3-dimensional Lie algebra.
+\end{proof}
+
+\pagebreak
+\item %\mbox{}
+	\begin{enumerate} [label=\alph*)]
+	\item Compute the flow of the vector field $X$ on $\R^2$: 
+$$X=y\frac{\del}{\del x}-\frac{\del}{\del y}.$$
+	\answer The vector field $X$ corresponds to the ODE system 
+	\begin{align*}
+	\dot{y}&=-1\\
+	\dot{x}&=y
+	\end{align*}	
+which can be solved one at a time to find the solutions $y(t)=-t+y_0$ and $x(t)=-\frac{t^2}{2}+y_0t+x_0$. This corresponds to the flow 
+$$\theta_t(x,y)=(-\tfrac{t^2}{2}+ty+x, \,\, -t+y),$$
+where integral curves are parabolas. \qed
+
+	\item Let $M = M_n(\R)$ be the space of all $n \times n$ matrices. For $A \in M$ let $V_A$ be the vector field on $M$ so that $V_A(X) = AX, $ where $X \in M$ (we have used the identification $T_XM = \R^{n^2} = M$). Compute the
+flow $\theta_t$ generated by $V_A$. 
+	\answer	The vector field $AX$ corresponds to the linear system of ODEs 
+	$X'=AX,$ and if we write $X$ as a concatenation of column vectors, we obtain 
+	\[
+	\left[ \begin{array}{ccc}
+	\mid & & \mid \\
+	(\mathbf{x}^1)' & \cdots & (\mathbf{x}^n)' \\
+	\mid & & \mid
+	\end{array}	\right]
+	=	
+	\mathbf{A}
+	\left[ \begin{array}{ccc}
+	\mid & & \mid \\
+	\mathbf{x}^1 & \cdots & \mathbf{x}^n \\
+	\mid & & \mid
+	\end{array}	\right],	
+	\]
+	and this system can be solved column by column (they will all have the same family of solutions, differing only in their initial values) as 
+	\[ (\mathbf{x}^i)'=\mathbf{A}\mathbf{x}^i \quad, \text{for } i\in1, \dots, n\]
+	according to the usual method of finding eigenvalues and eigenvectors, finding coefficients, and determining constants assuming that $\mathbf{x}^i(0)=\mathbf{x}^i_0$ for each $i$. For example, 
+	$$\mathbf{x}^1(t)=\phi_1(t,\mathbf{x}^1_0)+\dots+ \phi_n(t,\mathbf{x}^1_0),$$
+	Where each $\phi_j$ is $\R^n$-valued. Now each $\mathbf{x}^i(t)$ is given by the same set of functions with different initial points, so 
+	$$\mathbf{x}^i(t)=\phi_1(t,\mathbf{x}^i_0)+\dots+ \phi_n(t,\mathbf{x}^i_0) \quad \text{for each i.}$$
+	To write the flow, let $\tau_t(\mathbf{x})=\phi_1(t,\mathbf{x})+\dots+ \phi_n(t,\mathbf{x})$, then 
+	\[ \theta_t(\mathbf{X})=
+	\left[\begin{array}{ccc}
+	\mid & & \mid \\
+	\tau_t(\mathbf{x}^1) & \cdots & \tau_t(\mathbf{x}^n) \\
+	\mid & & \mid \\
+	\end{array} \right]
+	\]\qed
+	
+	\end{enumerate}
+
+\pagebreak
+\item 
+	\begin{enumerate}[label=\alph*)]
+	\item Give an example of complete vector field and an example of incomplete vector field. Explain
+why it is complete or incomplete.
+
+	\answer We will discuss examples from the text, as they are readily available. Let $M=\R^2$, $V=\frac{\del}{\del x}$. Then the flow generated by $V$ is 
+	$$\tau_t(x,y)=(x+t,y),$$
+	and this is a global flow, since given any $(x,y)\in M$, we can see that $\tau_t(x,y)$ determines an integral curve which is defined for all $t\in\R$. Thus $V$ is complete. 
+	
+	For an incomplete example, let $M=\R^2$, $V=x^2\frac{\del }{\del x}$. This corresponds to the ODE system 
+	\begin{align*}
+	\frac{\der x}{\der t}&=x^2 &
+	\frac{\der y}{\der t}&\equiv 0
+	\end{align*}
+	which has solution\footnote{Assuming $x_0\neq0$. Otherwise if $x_0=0$ then $x=0$ for all time.}
+	\begin{align*}
+	x(t)&=\frac{1}{\frac{1}{x_0}-t} & y(t)=y_0
+	\end{align*}
+	so the flow is given by 
+	$$\theta_t(x,y)=\left(\frac{1}{\frac{1}{x}-t}, y \right).$$
+	Consider $\theta^{(1,0)}(t)$. Since 
+	$$\theta^{(1,0)}(t)=\left(\frac{1}{1-t}, 0 \right),$$
+	then the integral curve cannot be continuously extended past $t=1$, since $x\to\infty$ as $t\increasesto1$. \qed
+	
+	\item Let $X$ be a vector field on a manifold $M$, and $\gamma(t)$ an integral curve of $X$ starting at $p \in  M$. If $f \in C^\infty(M)$, $f > 0$, find the integral curve of $fX$ starting at $p$.
+	
+	\answer Assume that $fX$ denotes multiplication, so $(f\cdot X)|_p=f|_p\cdot X|_p$\footnote{This is one of those times when using juxtaposition for multiplication, composition, and evaluation makes me a go a liiiiiiiitle bit crazy.} for any point $p\in M$.	Since $\gamma'=X|_{\gamma}$, then 
+	$$(f\cdot X)|_\gamma=f|_\gamma\cdot X|_\gamma=f(\gamma)\cdot \gamma'.$$	
+	We seek a function $\Gamma:\R\to M$ such that $\Gamma'= (f\cdot X)|_\Gamma$, and $f(\gamma)\cdot \gamma'$ looks like a chain rule derivative:
+	\begin{align*}
+	(f\circ\gamma)(t)\cdot \gamma'(t) &= f\big(\gamma^1(t), \dots, \gamma^n(t)\big)\cdot \big(\tfrac{\del \gamma^1}{\del t}+ \dots + \tfrac{\del \gamma^n}{\del t}\big) \\
+	&= \sum_{i=1}^n \frac{\del \gamma^i}{\del t}\cdot f\big(\gamma^1(t), \dots, \gamma^n(t)\big)
+	\end{align*}
+	Thus if there exists a function $F$ such that\footnote{Here we are using $x^i\dots x^n$ to denote the coordinate functions on $M$.} 
+	$$\frac{\del F}{\del x^i}=\frac{\del F}{\del x^j}=f \quad\text{for all } 1\leq i,j\leq n,$$
+	then we can let $\Gamma=F\circ\gamma$ and we're done. Fortunately, since $f$ is smooth, we can just take indefinite integrals with respect to each $x^i$ and combine the antiderivatives to obtain $F$:
+	\begin{align*}
+	F(x^1, \dots, x^n)&=\int f(x^1, \dots, x^n) \der x^1 + g(x^2, \dots, x^n) + C_1\\
+	&\,\,\,\vdots\\
+	&=\int f(x^1, \dots, x^n) \der x^i + g(x^1, \dots, \hat{x}^i, \dots, x^n) + C_i\\
+	&\,\,\,\vdots\\
+	&=\int f(x^1, \dots, x^n) \der x^n + g(x^1, \dots, x^{n-1}) + C_{n-1}
+	\end{align*}
+	Combining these together yields a function $F\in C^\infty(M)$ such that 
+	$$(F(\gamma	)'=f(\gamma)\cdot\gamma'=fX|_\gamma,$$
+	So $\Gamma=F\circ\gamma$ is the desired integral curve. \qed
+	
+	
+	\item Give an explanation why the following statement could be true: for any manifold $M$ and any vector field $X$ on $M$, there is a $f\in C^\infty(M)$, $f > 0$, such that $fX$ is complete. 
+	
+	\answer Anywhere that an integral curve shoots off to infinity in finite time, you can multiply the vector field by a function which goes to zero faster than the integral curve would go to infinity. Anywhere an integral curve goes to a point not in the manifold, you can similarly scale down the vector field so that it takes infinite time to get there. 
+	\end{enumerate}
+
+\item Let $M^n$ be a compact manifold which carries $n$ vector fields $X_1, \dots , X_n$ such that $[X_i, X_j] = 0$ for all $i, j = 1, \dots , n$ and $X_1, \dots , X_n$ are pointwise linearly independent. Let $\theta^1_t, \dots , \theta^n_t$ be the flow generated by $X_1, \dots , X_n$ respectively.
+	\begin{enumerate}
+	\item Show that $F : \R^n \to M$ defined by $F(x_1, \dots , x_n) = \theta^1_{x_1} \circ \dots \circ \theta^n_{x_n}(p)$ for some fixed $p \in M$ is
+well-defined and a submersion. Conclude that $F$ is a local diffeomorphism.
+	
+	\begin{proof}
+	Since $[X_i, X_j] = 0$ for all $i, j = 1, \dots , n$, then the vector fields all commute, so they are invariant under each other's flows. This means that regardless of which vector field we call $X_1, X_2,$ etc, we are always referring to the same function when we say $F$ is the composition of all $n$ flows starting at $p$. 
+	
+	$F$ is a submersion because $[X_i, X_j] = 0$ for all $i, j = 1, \dots , n$ and $X_1, \dots , X_n$ are pointwise linearly independent, so each flow is locally moving in a linearly independent direction, which means $F$ has rank $n$. Since $F$ is a map of constant rank between two $n$-dimensional manifolds, then it is a local diffeomorphism. 
+	\end{proof}
+	\end{enumerate}
+
+
+\end{enumerate}
+\end{document}

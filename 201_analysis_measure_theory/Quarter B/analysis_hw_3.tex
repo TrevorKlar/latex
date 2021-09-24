@@ -1,0 +1,80 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Winter 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 3}%=================UPDATE THIS=================%
+\end{center}
+
+\jpg{width=\linewidth}{hw3-p1-1}
+\begin{proof}
+Let $\mu$ denote the Lebesgue measure. %\WLOG{} suppose $f(x)\geq0$ for all $x\in [0,1]$. 
+Since $f$ is a continuous function on a compact set, then it is uniformly continuous. Given $\epsilon>0$, choose $\delta$ according to the uniform continuity of $f$. Let 
+$$g_\epsilon (x) := f(n\delta), \text{ where $n\in \N$ is such that } n\delta\leq x<(n+1)\delta.$$
+This means that for any $x\in [0,1]$ we have $\abs{ x-n\delta}<\delta$, so $\abs{f(x)-g_\epsilon(x)}=\abs{f(x)-f(n\delta)}<\epsilon$. Furthermore, $g_\epsilon$ is a simple function, so $g'_\epsilon=0$ \muae{} and we are done. 
+\end{proof}
+
+\jpg{width=\linewidth}{hw3-p4-1}
+\begin{lemma}
+For $a,b\geq0$, $p\geq1$, 
+$$(a+b)^p\leq a^p+(p)(2^{p-1})(a^{p-1}b+b^p).$$
+\end{lemma}
+\textsc{Proof of Lemma} Let $a\geq0$, $p\geq1$ and define 
+$$\psi(t)=(a+t)^p- \big(a^p+(p)(2^{p-1})(a^{p-1}t+t^p)\big).$$
+Observe that $\psi(0)=0$, and 
+$$\psi'(t)=p\big((a+t)^{p-1}- (2^{p-1})(a^{p-1}+pt^{p-1})\big)$$
+and clearly $(a+t)^{p-1} < (2^{p-1})(a^{p-1}+pt^{p-1})$, so $\psi(t)<0$ for all $t>1$ and the lemma is proved. \qedwhite
+\begin{proof}To suppress notation, we write $\int f\dx$ to mean $\int_\R f(x)\dx$. 
+We will show that $\phi$ is locally Lipschitz, and therefore differentiable. For all $t\in \R$ and $h\in(0,1)$, 
+\begin{align*}
+\frac{\abs{\phi(t)-\phi(t+h)}}{|h|}
+&=\frac{1}{|h|}{\abs{\ds\int\abs{f+(t+h)g}^p\dx - \ds\int\abs{f+tg}^p\dx}} \\
+&=\frac{1}{|h|}{\abs{\ds\int\abs{A+hg}^p\dx - \ds\int\abs{A}^p\dx}} &\text{where }A=f+tg\\
+&\leq\frac{1}{|h|}{\abs{\ds\int\big|\abs{A}+\abs{hg}\big|^p\dx - \ds\int\abs{A}^p\dx}} \\
+&\leq\frac{1}{|h|}{\abs{\ds\int|A|^p+(2^{p-1})(p)\left(|A|^{p-1}|hg|+|hg|^p\right)\dx - \ds\int\abs{A}^p\dx}} &\text{by the Lemma}\\
+&=\frac{(2^{p-1})(p)}{|h|}{\abs{\ds\int|A|^{p-1}|hg|+|hg|^p\dx}} \\
+&={(2^{p-1})(p)}{\abs{\ds\int|A|^{p-1}|g|+|h|^{p-1}|g|^p\dx}}. \\
+\end{align*}
+We know that $\int|h|^{p-1}|g|^p\dx\leq |g|^p\dx<\infty$ since $h\in(0,1)$ and $g\in L^p(\R)$, so we need to show that $\int|A|^{p-1}|g|\dx<\infty$. Now $p\geq 1$, so the conjugate exponent of $p$ is $q\frac{p}{p-1}$, so by Young's inequality we can write 
+$$\int|A|^{p-1}|g|\dx=\int|g||A|^{p-1}\dx\leq \int\frac{|g|^p}{p}+\frac{|A|^{p}}{q}\dx.$$
+We know that $\int\frac{|g|^p}{p}\dx<\infty$ since $g\in L^p(\R)$, so it still remains to show that $\int\frac{|A|^{p}}{q}\dx<\infty$. Note that the function $|\cdot|^p:\R\to\R$ is convex, so 
+$$\int\frac{|A|^{p}}{q}\dx=\frac{1}{q}\int{|f+tg|^{p}}\dx\leq\frac{1}{q}\int{|f|^{p}+t|g|^{p}}\dx<\infty$$
+since $f,g\in L^p(\R)$ and we're done. 
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass[220b]{homework}
+
+% NOTE, the ``220b'' above has information that is found in the homework class, which loads the appropriate information from the ``local'' folder, which also has a spot for ``my info'' which is where stuff like the name at the top of the page gets set, and all of that.
+
+% if you want to do anything with the title, set it here.
+\title{Homework 1}
+
+%===============================
+% Fill in each week.
+%===============================
+\date{\today}
+\topic{Problem Set 1}
+
+%===============================
+% Document
+%===============================
+\begin{document}
+\maketitle
+
+% This initial stuff just gets all the counters in the right place.
+\setcounter{section}{7}
+\setcounter{subsection}{0}
+\subsection{Basic Definitions and Examples}
+\renewcommand{\writtensection}{7.1}
+
+% at the begining of each question, make sure to set exerciseCounter to the number BEFORE the number you're doing. (e.g. set it to 6 in order to display 7)
+\setcounter{exerciseCounter}{6}
+\begin{numedexercise}
+    Is this an example of a question with a number?
+    \begin{solution}
+        Yes, it is.
+    \end{solution}
+\end{numedexercise}
+
+% New sections help visually break up the work.
+\section{This is a new section}
+% subsections are nice too
+\subsection{But I don't even need subsections really.}
+
+% this will give the questions in the next section all the same header.
+\renewcommand{\writtensection}{New Section Name can be anything, even words. }
+\setcounter{exerciseCounter}{-1}
+\begin{numedexercise}
+    Is this question really relevant?
+    \begin{solution}
+        No.
+    \end{solution}
+\end{numedexercise}
+
+% named exercises ignore all the writtensection and exercisecounter stuff
+\begin{namedexercise}[Named Exercise]
+    Do exercise names need to have numbers in them?
+    \begin{solution}
+        % claims are nice
+        \begin{claim}
+            This is a named exercise.
+            % proofs are nice too
+            \begin{proof}
+                See the title of the question.
+            \end{proof}
+        \end{claim}
+        By the above claim, the answer is ``no''.
+    \end{solution}
+\end{namedexercise}
+
+% make sure to end the document!
+\end{document}

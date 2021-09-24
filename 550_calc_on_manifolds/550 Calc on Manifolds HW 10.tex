@@ -1,0 +1,249 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 550 \linebreak
+Homework 10}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item For a vector field $X = (f_x, f_y)$ on $\R^2$, we may define as associated 1-form, different from the one in class, by 
+$$\star\omega^1_X=-f_y\dx+f_x\dy.$$
+We may also define 
+$$\text{div} X = \frac{\del f_x}{\del x}+\frac{\del f_y}{\del y}.$$
+	\begin{enumerate}
+	\item Let $M$ be a compact 2-dimensional manifold with boundary in $\R^3$. Show that for all points $p\in \del M$, the equation $\star\omega^1_X = X \cdot n \der s$ holds. 
+	\begin{proof}
+	Let $p\in \del M$, and let $v\in \left(\del M\right)_p$. Then 
+		\[\def\arraystretch{1.05}
+		\begin{array}{rcl}
+		\star\omega^1_X(p)(v)&=&\big(-f_y(p)\dx+f_x(p)\dy\big)(v)\\
+		&=&\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			X_p & v\\
+			|&|\\
+			\end{array}\right]
+		\end{array}\]
+	Now $X_p$ can be written as $w+\inner{X_p}{N_p}N_p$, where $w\in(\del M)_p$ and $N_p$ is the unit outward normal vector of $M$ at $p$. Thus we have 
+	\[\def\arraystretch{1.05}
+	\begin{array}{rcl}
+	\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			X_p & v\\
+			|&|\\
+			\end{array}\right]
+	&=&
+	\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			w+\inner{X_p}{N_p}N_p & v\\
+			|&|\\
+			\end{array}\right]
+	\\
+  &=&
+	\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			w & v\\
+			|&|\\
+			\end{array}\right]
+	+
+	\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			\inner{X_p}{N_p}N_p & v\\
+			|&|\\
+			\end{array}\right]
+	\\
+	&=& 0 + \inner{X_p}{N_p}
+	\det 
+			\left[\begin{array}{cc}
+			|&|\\
+			N_p & v\\
+			|&|\\
+			\end{array}\right]
+	\\
+	&=&\inner{X_p}{N_p}\der s
+	\end{array}\]
+	and we are done. 
+	\end{proof}
+	
+	\item Prove the following \emph{Divergence form of Green's Theorem:}	Let $M$ be a 2-dimensional manifold with boundary in $\R^2$, and let $X$ be a vector field on $M$. Then 
+	$$\int_{M}\text{div}\,X\der A = \int_{\del M}\inner{X}{n}\der s.$$
+	\begin{proof}
+	Since the differential of the RHS is
+	\[\begin{array}{rcl}
+	\der\left(\inner{X}{n}\der s\right) &=& \der\big(-f_y(p)\dx+f_x(p)\dy\big)\\
+	&=&-\dfrac{\del f_y}{\del y}\dy\wedge\dx+\dfrac{\del f_x}{\del x}\dx\wedge\dy\\
+	&=&\left(\dfrac{\del f_y}{\del y}+\dfrac{\del f_x}{\del x}\right)\dx\wedge\dy\\
+	&=&\text{div}\,X\der A,
+	\end{array}\]
+	then by Stokes' Theorem, 
+	$$\int_{\del M}\inner{X}{n}\der s = \int_{M}\der\left(\inner{X}{n}\der s\right) = \int_{M}\text{div}\,X\der A,$$
+	and we are done. 
+	\end{proof}
+	\end{enumerate}
+
+\item Let $M$ be a compact 3-dimensional manifold with boundary in $\R^3$, with $\vec{0}\in M-\del M$. Consider the vector field $X(p)=\frac{p}{\norm{p}^3}$ defined on $\R^3-\vec{0}$. Prove that 
+$$\int_{\del M}\inner{X}{N}\der A = 4\pi.$$
+\begin{proof}
+Define a manifold $M'=M-B_\epsilon(\vec{0})$. We will integrate over $M'$ to find the integral over $M$. Note that $\del M' = \del M \cup S^2_\epsilon$, where $S^2_\epsilon$ is a sphere of radius $\epsilon$. This means that 
+$$\int_{\del M'}\inner{X}{N}\der A = \int_{\del M}\inner{X}{N}\der A - \int_{S^2_\epsilon}\inner{X}{N}\der A.$$
+By the Divergence form of Green's Theorem, the LHS is $\int_{M'}\text{div}\,X\der A$, and a straightforward calculation will show that $\text{div}\,X=0$. Thus we find that 
+\[\begin{array}{rcl}
+0 &=& \displaystyle\int_{\del M}\inner{X}{N}\der A - \displaystyle\int_{S^2_\epsilon}\inner{X}{N}\der A\\
+&=& \displaystyle\int_{\del M}\inner{X}{N}\der A - 4\pi
+\end{array}\]
+And we are done. 
+
+\begin{comment}
+\[\begin{array}{rcl}
+\displaystyle\int_{\del M}\inner{X}{N}\der A &=&\displaystyle\int_{\del M}\omega^2_X\\[2ex]
+&=&\displaystyle\int_{\del M}\dfrac{x\dy\wedge\dz-y\dx\wedge\dz+z\dx\wedge\dy}{(x^2+y^2+z^2)^{3/2}}
+\end{array}\]
+?????????
+\end{comment}
+
+\end{proof}
+
+\item 
+	\begin{enumerate}
+	\item Show that if $X$ is a vector field on $\R^3$ with $\curl X=0$, then $X =\grad F$ for some function $F:\R^3\to\R$. 
+	
+
+	\begin{proof} Let $X=(f_x, f_y, f_z)$. Then $\omega^1_X=f_x\dx + f_y\dy + f_z\dz$. So, 
+	\[
+	\der(\omega^1_X)=\omega^2_{\curl X}
+	=0, \]
+	since $\curl X=0$. Thus, $\omega^1_X$ is exact by Poinacar\'e's Lemma. Therefore there is some function $F$ such that $\der F=\omega^1_X$, and since $\der F = \omega^1_{\grad F}$, then $\omega^1_X = \omega^1_{\grad F}$. So 
+	\[f_x\dx+f_y\dy+f_z\dz=\frac{\del F}{\del x}\dx + \frac{\del F}{\del y}\dy + \frac{\del F}{\del z}\dz\]
+	and since $\dx, \dy, \dz$ are linearly independent, then we can equate the coefficients, and we are done. 
+	
+
+		\begin{comment}		
+	Notate $X=(f_1, f_2, f_3)$. Suppose that $\curl X =\vec{0}$, that is, 
+	\[\left|\begin{array}{ccc}
+	\vec{i} & \vec{j} & \vec{k}\\
+	\frac{\del}{\del x} & \frac{\del}{\del y} & \frac{\del}{\del z} \\
+	f_1&f_2&f_3	
+	\end{array}\right|
+  =0	
+	\]
+	This gives the following system:
+	\[\begin{array}{c}
+	\frac{\del f_3}{\del y}=\frac{\del f_2}{\del z}\\[.75ex]
+	\frac{\del f_1}{\del z}=\frac{\del f_3}{\del x}\\[.75ex]
+	\frac{\del f_2}{\del x}=\frac{\del f_1}{\del y}\\
+	\end{array}\]
+  Now we take indefinite integrals, 
+  \[\begin{array}{rcl}
+  \int f_1 \dx &=& F_1+C_1\\
+  \int f_2 \dy &=& F_2+C_2\\
+  \int f_3 \dz &=& F_3+C_3\\
+  \end{array}\]\footnote{We will take these constants to be 0, since we seek a function which we will differentiate, and the constants will map to zero.}
+  Each $F_i$ is a well-defined function on $\R^3$, so we write the terms of each $F_i$ as
+  \[\begin{array}{rcl}
+  F_1&=&F_1(x)+F_1(x,y)+F_1(x,z)+F_1(x,y,z)\\
+  F_2&=&F_2(y)+F_2(x,y)+F_2(y,z)+F_2(x,y,z)\\
+  F_3&=&F_3(z)+F_3(x,z)+F_3(y,z)+F_3(x,y,z)\\
+  \end{array}\]
+  Where $F_1(x)$ is only a function of $x$, $F_1(x,y)$ is only a function of $x$ and $y$, and so on.\footnote{This idea can be made more rigorous with kernels of partial derivatives; $F_1(x)$ is the part of $F_1$ that is in both the kernel of $\del y$ and $\del z$, etc.}  
+  
+  
+  Now we observe that $F_1(x,y)=F_2(x,y)$ and so on, with each  pair of components having matching variables being equal. 
+  \[\begin{array}{rcl}
+  \dfrac{\del f_1}{\del y}&=&\dfrac{\del^2 F_1 }{\del y\del x}\\
+  &=&\frac{\del^2}{\del y\del x}[F_1(x)+F_1(x,y)+F_1(x,z)+F_1(x,y,z)]\\
+  &=&\frac{\del}{\del y}[f_1(x)+f_1(x,y)+f_1(x,z)+f_1(x,y,z)]\\
+  &=&\frac{\del f_1(x,y)}{\del y}+\frac{\del f_1(x,y,z)}{\del y}\\
+  &\text{and}\\
+  \dfrac{\del f_2}{\del x}&=&\dfrac{\del^2 F_2 }{\del x\del y}\\
+  &=&\frac{\del^2}{\del x\del y}[F_2(y)+F_2(x,y)+F_2(y,z)+F_2(x,y,z)]\\
+  &=&\frac{\del}{\del x}[f_2(y)+f_2(x,y)+f_2(y,z)+f_2(x,y,z)]\\
+  &=&\frac{\del f_2(x,y)}{\del x}+\frac{\del f_2(x,y,z)}{\del x}\\
+  \end{array}\]
+  
+  Umm.. Crud this didn't exactly work the way I first thought it would. I wanted this to show that $F_1(x,y)+F_1(x,y,z)=F_2(x,y)+F_2(x,y,z)$. Anyways suppose I had shown this. 
+  
+  Then we define 
+  $$F=F_1(x)+F_2(y)+F_3(z)+F_1(x,y)+F_1(x,z)+F_2(y,z)+F_1(x,y,z),$$
+  that is, we "union" the terms of $F_1$, $F_2$, and $F_3$. Now let's confirm that this is the desired function:
+  \[\begin{array}{rcl}
+  \dfrac{\del F}{\del y}&=&\dfrac{\del}{\del y}[F_1(x)+F_2(y)+F_3(z)+F_1(x,y)+F_1(x,z)+F_2(y,z)+F_1(x,y,z)]\\
+  &=&0+f_2(y)+0+f_1(x,y)+0+f_2(y,z)+f_1(x,y,z)\\
+  &=&0+f_2(y)+0+f_2(x,y)+0+f_2(y,z)+f_2(x,y,z)\\
+  &=&f_2\\
+  \end{array}\]
+  and a similar computation works for $f_1$ and $f_3$ as well. Thus $\nabla F=(f_1, f_2, f_3)$ and we are done. 
+\end{comment}
+  
+  \begin{comment}
+  For $f_1, f_2$, we can write $f_2=\phi_2+g_2(y,z)$, $f_1=\phi_1+g_1(x,z)$, where each $g_i$ is only a function of the stated variables. Then we take double integrals:
+	\[\begin{array}{rcl}
+		\iint\frac{\del f_2}{\del x}\dx\dy&=&\iint\frac{\del f_1}{\del y}\dx\dy\\
+		\iint\frac{\del (\phi_2+g_2)}{\del x}\dx\dy&=&\iint\frac{\del (\phi_1+g_1)}{\del y}\dx\dy\\
+		\iint\frac{\del (\phi_2)}{\del x}\dx\dy&=&\iint\frac{\del (\phi_1)}{\del y}\dx\dy\\
+		\int\phi_2\dy&=&\int\phi_1\dx\\
+		\\
+		\iint\frac{\del f_2}{\del x}\dx\dy&=&\iint\frac{\del f_1}{\del y}\dy\dx\\
+		\int f_2+g_2(y,z)\dy&=&\int f_1 + g_1(x,z)\dx \\
+		F_2+G_2(y)&=&F_1+G_1(x)\\
+	
+		
+	
+	\end{array}\]
+	
+  \end{comment}
+	
+	\end{proof}
+	\item Show that if $X$ is a vector field on $\R^3$ with $\diverg X=0$, then $X =\curl Y$ for some vector field $Y$ on $\R^3$. 
+	\begin{proof}
+	Since $\diverg X=0$, then $(\diverg X)\dx\wedge\dy\wedge\dz=\der(\omega^2_X)=0$, so $\omega^2_X$ is exact. Then there is a one form $\eta$ such that $\der\eta=\omega^2_X$. Now $\eta=n_1\dx+n_2\dy+n_3\dz$ can be written as $\eta=\omega^1_Y$, where $Y=(n_1, n_2, n_3)$. Thus, 
+	\[\omega^2_X=\der \eta=\der(\omega^1_Y)=\omega^2_{\curl Y},\]
+	so $X=\curl Y$, by the linear independence argument of problem 3a. 
+	\end{proof}
+	
+	\end{enumerate}
+	
+\item Let $\omega=\frac{-y}{x^2+y^2}	\dx + \frac{x}{x^2+y^2}	\dy $ be a 1-form on $\R^2-\vec{0}$. Prove that $\omega$ does not extend to a 1-form on $\R^n$. 
+\begin{proof}
+Recall that we showed on a previous homework that $\omega$ is closed but not exact. If $\omega$ did extend to a 1-form on $\R^n$, then the extension would have to be given by the same formula, defined on all $\R^n$. So, it would be exact by Poincar\'e's Lemma, but it is not. 
+\end{proof} 
+	
+\end{enumerate}
+\end{document}

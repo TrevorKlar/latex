@@ -1,0 +1,65 @@
+\documentclass[epsf]{article}
+\usepackage{amsmath,amsthm,amsfonts,latexsym,amscd, framed}
+\usepackage{graphicx}
+
+\textwidth=6.0truein\hoffset=-.5truein
+\textheight=8.5truein\voffset=-.5truein
+
+\begin{document}
+%\maketitle
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\noi}{\noindent}
+\newcommand{\bs}{\bigskip}
+
+%%%%
+
+
+
+
+
+\begin{center}
+{\Large Project \#2: 2nd Order Linear DEs\\
+\vskip 2mm
+TA Guide Part 2}
+\end{center}
+
+\noi {\bf 1}.  You'll want to get them organized.  Tell them we're going to discuss the solutions to DP\#2 and ask them to sit with their partner if they worked with someone in section.    If they worked alone, group them up anyways to encourage sharing ideas.  Then choose 3 of your groups to write solutions to parts b, c, and d on the blackboard for the class to see.  While those students are writing, the rest of the class can compare and edit if they like. \\
+
+Once those three groups are done, walk through their solutions and make sure there are no questions from the class.  It will probably work best if you let the groups sit down and you do the talking-through.  Go part-by-part and ask the class if they agree or if something needs to be changed/added -- you may need to re-iterate that what is on the board should be a good example of what they should write on their pages.  I've written some specifics you may want to mention/consider for each part below.\\
+
+
+\noindent{\bf Problem 1} \footnote{This problem will be graded according to the DP Evaluation Rubric handout, available on GauchoSpace.}  Consider the DE $$y'' + 4y = 0.$$
+
+\begin{itemize}
+\item[(a)] Find a \textit{fundamental set} of solutions to the DE.  That is, find two linearly independent solutions to the DE, call them $y_1$ and $y_2$.
+
+\begin{itemize}
+\item[PROMPT:]\textit{How can we tell that these two functions are linearly independent?}  They don't have to show this for the problem, but it's worth talking about.  They will have seen the Wronskian Test by then... or some of them might know that it's enough to check that neither function can be expressed as a scalar multiple of the other function.  Some of them might have chosen $\sin(2t)$ and $\sin(-2t)$, which are linearly dependent.  
+\end{itemize}
+
+\item[(b)] \textit{Show} that any linear combination of your two solutions $y_1$ and $y_2$ from part (a) will also be a solution to the DE.
+
+\begin{itemize}
+\item[PROMPT:]\textit{Do $c_1$ and $c_2$ represent specific values? OR Why do we introduce the $c_1$ and $c_2$ here?  OR What is the biggest jump in this argument?}  This kind of question might get them talking about why we throw the $c_1$ and $c_2$ in the expression in the first place.  It's the only big step in the argument and many of them will do it just because they've seen it done before.  The general ``biggest jump" question is a good prompt for getting them talking about the thing they find most confusing, so it's good question to keep in your back pocket.   
+\end{itemize}
+
+\item[(c)] Explain how to find a solution (from your linear combination solutions in part (b)) that satisfies the general initial conditions $y(0)=a$ and $y'(0)=b$. 
+
+\begin{itemize}
+\item[PROMPT:]\textit{How are the variables $a$ and $b$ playing a different role from the $c_1$ and $c_2$?  OR What was the biggest jump here?}  I'm guessing they will either say the fact that $a$ and $b$ are not given - but fixed, which means they play a different role from $c_1$ and $c_2$ which are meant to represent all possibilities.  
+\end{itemize}
+
+\item[(d)] The DE $y'' + 4y = 0$ with initial conditions $y(0)=a$ and $y'(0)=b$ is an IVP.  Does this IVP \textit{always} have a solution?  Will there ever be more than one solution to the IVP that can be written as a linear combination of your functions $y_1$ and $y_2$?  Justify your claim by referring to your work for parts (b) and (c) above.
+\end{itemize}
+
+\begin{itemize}
+\item[PROMPT:]\textit{What ideas from 4A (linear algebra) did we need to use in this argument?  OR Will this always work out?}  This will get them connecting this question to the solution set for a 2 by 2 linear system.  The fact that we can generalize this depends on the columns of that matrix always being linearly independent.  Look at what might happened if they tried to solve the IVP with the two linearly dependent solutions $\sin(2t)$ and $\sin(-2t)$.
+\end{itemize}
+
+\noi{\bf 2. }After they're done, feel free to give them a few minutes to clean up their solutions before turning them in.  Then you will probably have some time left to answer homework questions.  Remind them that they get 50\% credit for late submissions, so it's worth it to ask about an old problem too.
+
+
+
+
+\end{document}
+

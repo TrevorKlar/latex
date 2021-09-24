@@ -1,0 +1,224 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./} }	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\Rbad}{\R_\text{bad}}
+
+\title{Math 501 \linebreak
+Homework 4}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+\item Let $f:X\to Y$ be a function. 
+	\begin{enumerate}
+	\item Assume $X=\arbcup{U}$, with each $U_\alpha$ open, and each $f|_{U_\alpha}:U_\alpha\to Y$ continuous. Prove that $f$ is continuous. 
+	\begin{proof}
+	Let $B\in Y$ be an arbitrary open subset of $Y$. Since $B$ is open, and each $f|_{U_\alpha}:U_\alpha\to Y$ is continuous, then each $\preimage{f|_{U_\alpha}}{B}$ is open in $U_\alpha$ and, since $U_\alpha$ is open in $X$, then $\preimage{f|_{U_\alpha}}{B}$ is open in $X$. Now, 
+	\[
+	\begin{array}{rcl}
+	\bigcup\limits_{\alpha\in\Gamma}\preimage{f|_{U_\alpha}}{B}&=&\bigcup\limits_{\alpha\in\Gamma}(\preimage{f}{B}\cap U_\alpha)\\
+	&=&(\preimage{f}{B}\cap \bigcup\limits_{\alpha\in\Gamma} U_\alpha)\\
+	&=&\preimage{f}{B}\cap X\\
+	&=&\preimage{f}{B}\\
+	
+	\end{array}
+	\]
+	So, $\preimage{f}{B}$ is a union of open sets, which means it is open. Thus, $f$ is continuous.  
+	\end{proof}
+	\item Assume $X=\arbcup{A}$, with each $A_\alpha$ closed, and each $f|_{A_\alpha}:A_\alpha\to Y$ continuous. Is $f$ continuous? Prove or give a counterexample. 
+	\begin{counterexample*}
+	Let $f:(\R,usual)\to(\R,usual)$ be 
+	$$f(x)=
+	\begin{cases}
+	0, & x=0\\
+	\sin\left(\frac{1}{x}\right), & x\neq0\\
+	\end{cases}
+	$$
+	and consider the collection of closed sets $\R=\bigcup\limits_{n\in\Z}A_n$ with $n\in Z$, and $A_n$ defined as follows:
+	$$
+	A_n=
+	\begin{cases}
+	\left[a,\tfrac{1}{a}\right], & n<0\\
+	\{0\}, & n=0\\
+	\left[\tfrac{1}{a},a\right], & n>0\\
+	\end{cases}
+	$$
+	Now, it is a common result from calculus that $\sin(\frac{1}{x})$ is continuous at every point except $x=0$, so for all $n\neq0$, $f|_{A_n}$ is continuous (since none of these sets contain 0). Now we will show that $f|_{A_0}$ is also continuous. For any closed set $F\in \R$, $\preimage{f|_{A_0}}{F}=\{0\}$ if $0\in F$, and $\preimage{f|_{A_0}}{F}=\emptyset$ if $0\not\in F$. Since $\{0\}$ and $\emptyset$ are both closed, then $\preimage{f|_{A_0}}{F}$ is closed, so $f|_{A_0}$ is continuous.
+	
+	The reader will recall that $f$ can easily be shown not to be continuous by the $\delta-\epsilon$ definition, but we will make the same case using the results we have learned in topology. Consider the following preimage of a closed set: 
+	$$\preimage{f}{\{-1,1\}}=\left\lbrace \frac{2}{\pi},\frac{2}{3\pi},\frac{2}{5\pi},\ldots\right\rbrace \cup \left\lbrace -\frac{2}{\pi},-\frac{2}{3\pi},-\frac{2}{5\pi},\ldots\right\rbrace$$
+	Since $\preimage{f}{\{-1,1\}}$ has a 0 as limit point, but does not contain $0$, then $\preimage{f}{\{-1,1\}}$ is not closed. Therefore, $f$ is not continuous.\qed
+	\end{counterexample*}
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+	\item Prove that the set of intervals of the form $[a,b)$ with $a,b\in\R$ are the basis for a topology on $\R$. We will refer to $\R$ with this topology as $\R^1_\text{bad}$. Show that $\R^1_\text{bad}$ is not the usual topology on $\R$. 
+	\begin{proof}\mbox{}
+		\begin{itemize}
+		\item Since $[1,0)=\{x\in\R:1\leq x < 0\}=\emptyset$, then $\emptyset\in\Rbad^1$. 
+		\item For any $x\in\R$, $x\in [x-1,x+1)$, so $\Rbad^1$ covers $\R$. 
+		\item For any $a,b,c,d\in\R$, 
+		%R1bad
+		\[
+		\begin{array}{rcl}
+		[a,b)\cap[c,d)&=&\{x\in\R:a\leq x < b\}\cap \{x\in\R:c\leq x < d\}\\
+		&=&\{x\in\R: \max(a,c)\leq x < \min(b,d)\}\\
+		&=&[\max(a,c),\min(b,d))\\
+		&\in& \Rbad^1\\
+		\end{array}
+		\]
+		So, as desired according to Theorem 13, for any $[a,b), [c,d) \in \Rbad^1$ which both contain $x$, there exists $[a,b)\cap[c,d) \in \Rbad^1$ such that $x\in [a,b)\cap[c,d)$. 
+		\end{itemize}
+	Thus, $\Rbad^1$ forms the basis for a topology on $\R$.
+	\end{proof}
+	\begin{proof}
+	Now we will show that $\R^1_\text{bad}$ is not the usual topology on $\R$. Consider the set $[a,b)$, for some $a,b \in \R$ and $a<b$. By definition, $[a,b)$ is open in $\Rbad^1$. We will show that $[a,b)$ is not open in the usual topology, and thus $\R_{usual}$ and $\Rbad^1$ are different. It suffices to show that no open interval $(m,n)$ containing $a$ is a subset of $[a,b)$.	
+	$$a \in (m,n) \implies m<a<n \implies m<\tfrac{m+a}{2}<a<n.$$
+	Thus, $\tfrac{m+a}{2}\in (m,n)$ but $\tfrac{m+a}{2}\not\in[a,b)$, so $(m,n)\not\subset[a,b)$. 
+	\end{proof}
+	\item Prove that intervals $[a,b)$ are both open and closed in $\Rbad^1$.
+	\begin{proof}
+	Any interval $[a,b)$ is open in $\Rbad^1$ by definition. If $a>b$, then $[a,b)=\emptyset$ and is closed. If $a=b$, then $[a,b)=\{x:a\leq x<a\}=\emptyset$, so $[a,b)$ is closed in this case as well.
+	
+	Now, suppose $a<b$ and consider $[a,b)^\complement = (-\infty,a)\cup[b,\infty)$. Since $(-\infty,a)=\bigcup\limits_{n\in\N}[-n,a)$, and $[b,\infty)=\bigcup\limits_{n\in\N}[b,n)$, then $(-\infty,a)\cup[b,\infty)$ is a union of sets which are open in $\Rbad^1$. Therefore, $(-\infty,a)\cup[b,\infty)$ is also open in $\Rbad^1$, so $[a,b)$ is closed.
+	\end{proof}
+	\item Prove that every open interval $(a,b)$ is open in $\Rbad^1$. 
+	\begin{proof}
+	$(a,b)=\bigcup\limits_{n\in\N}\left[a+\tfrac{1}{n},b\right)$, so $(a,b)$ is a union of open sets, and thus is open. 
+	\end{proof}
+	\item Prove that the set of intervals of the form $[a,b)$ with $a,b \in \Q$ are the basis for a topology on R. Show that this topology is different from $\Rbad^1$. 
+	\begin{proof} We will denote this topology as ${\Rbad^1}_\Q$. 
+		\begin{itemize}
+		\item Since $[1,0)=\{x\in\R:1\leq x < 0\}=\emptyset$, then $\emptyset\in{\Rbad^1}_\Q$. 
+		\item For any $x\in\R$, $x\in [\floor{x},\floor{x}+1)$, so ${\Rbad^1}_\Q$ covers $\R$. 
+		\item For any $a,b,c,d\in\Q$, 
+		%Rbad_Q
+		\[
+		\begin{array}{rcl}
+		[a,b)\cap[c,d)&=&\{x\in\R:a\leq x < b\}\cap \{x\in\R:c\leq x < d\}\\
+		&=&\{x\in\R: \max(a,c)\leq x < \min(b,d)\}\\
+		&=&[\max(a,c),\min(b,d))\\
+		&\in& {\Rbad^1}_\Q\\
+		\end{array}
+		\]
+		So, as desired according to Theorem 13, for any $[a,b), [c,d) \in {\Rbad^1}_\Q$ which both contain $x$, there exists $[a,b)\cap[c,d) \in {\Rbad^1}_\Q$ such that $x\in [a,b)\cap[c,d)$. 
+		\end{itemize}
+	Thus, ${\Rbad^1}_\Q$ forms the basis for a topology on $\R$.\qedwhite
+	
+	Now we will show that ${\Rbad^1}_\Q\neq \Rbad^1$. Consider the set $[\pi, 5)$. By definition, $[\pi, 5)$ is open in $\Rbad^1$. Now, $[\pi, 5)$ is not itself a basic open set in ${\Rbad^1}_\Q$, nor is it a union of basic sets in ${\Rbad^1}_\Q$, since any union of rational intervals $[a,b)$ must either disclude $\pi$, or include reals which are less than $\pi$. 
+	\end{proof}
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+	\item Show that the set of half-open rectangles of the form $\{(x, y) \in \R^2: a \leq x < b, c \leq y < d\}$ form the basis for a topology on $\R^2$. We will refer to $\R^2$ endowed with this topology as $\Rbad^2$.
+	\begin{notation*}
+	Let $[a,b)\times[c,d)$ denote a set $\{(x, y) \in \R^2: a \leq x < b, c \leq y < d\} \in \Rbad^2$.
+	\end{notation*}
+	\begin{proof}\mbox{}
+	\begin{itemize}
+	\item $[0,0)\times[0,0)=\emptyset$, so $\emptyset\in \Rbad^2$.
+	\item Let $(x,y)\in \R^2$. Then, $(x,y)\in[x,x+1)\times[y,y+1)$, so $\Rbad^2$ covers $\R^2$. 
+	\item For any $x_1, \ldots x_4, y_1, \ldots y_4 \in\R$, 
+		%R2bad================================		
+		\[
+		\begin{array}{rcll}
+		[x_1,x_2)\times[y_1,y_2)\cap[x_3,x_4)\times[y_3,y_4)&=& [\max(x_1,x_3),min(x_2,x_4))\times[\max(y_1,y_3),min(y_2,y_4))\\
+		%&&\{(x,y)\in\R^2:	&x_1\leq x<x_2 \\
+		%&&							&x_3\leq x<x_4 \\
+		%&&					 		&y_1\leq y<y_2 \\
+		%&&							&y_3\leq y<y_4\} \\
+		%&=&\{x\in\R: \max(a,c)\leq x < \min(b,d)\}\\
+		%&=&[\max(a,c),\min(b,d))\\
+		&\in& \Rbad^2\\
+		\end{array}
+		\]
+		So, as desired according to Theorem 13, this set of half-open rectangles is the basis for a topology on $\R^2$. \qedhere
+	\end{itemize}
+	\end{proof}
+	
+	\item Let $L_1$ denote the line $y = −x$ in $\R^2$. Show that the subspace topology on $L_1$, as a subspace of $\Rbad^2$, is the discrete topology.
+	\begin{proof}
+	Let $(x,-x)$ be any point on the line $y = −x$. Now, since the singleton $\{(x,-x)\} = [x,x+1)\times[-x,-x+1)\cap L_1$, then $\{(x,-x)\}$ is open in $L_1$. Thus, for any set $S\subset L_1$, the union $\bigcup\limits_{(x,-x)\in S}\{(x,-x)\}=S$ is open.
+	\end{proof}
+	
+	\item Let $L_2$ denote the line $y = x$ in $\R^2$. Show that the subspace topology on $L_2$, as a subspace of $\Rbad^2$, is not the discrete topology.
+	
+	\begin{proof}
+	To show that the subspace topology on $L_2$ is not the discrete topology, it suffices to produce a set which is not open. Consider the singleton $\{(0,0)\}$. If $\{(0,0)\}$ is open in $L_2$, then for any $(x,y)\in \{(0,0)\}$, there exists a basic open set $U$ containing $(x,y)$ such that $U\cap L_2 = \{(0,0)\}$. 
+	
+	Let $[a,b)\times[c,d)$ be an any set containing the origin which is a basic open set in $\Rbad^2$. Since $(0,0) \in [a,b)\times[c,d)$, then $b>0$ and $d>0$. Let $p=\min(b,d)$ Thus, $(\frac{p}{2},\frac{p}{2})\in[a,b)\times[c,d)\cap L_2$, but $(\frac{b}{2},\frac{d}{2})\not\in\{(0,0)\}$. Thus, there is no basic open set whose intersection with $L_2$ is $\{(0,0)\}$, so $\{(0,0)\}$ is not open. 
+	\end{proof}		
+	\end{enumerate}
+
+\setcounter{enumi}{4}
+\item Let $X$ be a set, and let $\{0,1\}^X$ denote the set of all functions $X \to \{0,1\}$. 
+
+	\begin{enumerate}
+	\item Prove that the collection of sets of the form $U(x, \epsilon) = \{ f \in \{0,1\}^X : f(x) = \epsilon\}$, for all $x \in X$ and $\epsilon \in \{0,1\}$ forms a subbasis for a topology on $\{0,1\}^X$. 
+	\begin{proof} Let $\script{S}$ be the collection of all sets of the form $U(x, \epsilon) = \{ f \in \{0,1\}^X : f(x) = \epsilon\}$, with $x \in X$ and $\epsilon \in \{0,1\}$. Let $\B$ be the collection of all finite intersections of sets in $\script{S}$. 
+		\begin{itemize}
+		\item For some $x_0\in X$, consider the sets $U(x_0, 1)$ and $U(x_0, 0)$. $U(x_0, 1)\cap U(x_0, 0)=\emptyset$, so $\emptyset\in\B$. 
+		\item Let $x_0$ be an arbitrary element of $X$, and let $f$ be an arbitrary function $f:X\to\{0,1\}$ where $f(x_0)=\epsilon_0$. Since $f\in U(x_0,\epsilon_0)$ by definition, then $\B$ covers $\{0,1\}^X$. 
+		%\item Let $U_1, U_2$ be two sets in $\B$. since $\B$ consists of all finite intersections of sets in $\script{S}$, then there exist sets in $\script{S}$ such that 
+		%$$U_1=\bigcap_{i=1}^m S_i, \quad U_2=\bigcap_{j=1}^n S_j.$$
+		%So, $U_1\cap U_2 = \bigcap S_i \cap \bigcap S_j$ is a finite intersection of sets in $\script{S}$, so $U_1\cap U_2 \in \B$.
+		\end{itemize}
+	
+	Thus, by Theorem 14, $\script{S}$ forms a subbasis for a topology on $\{0,1\}^X$. 
+	\end{proof}
+	\item Under what conditions are two basic open sets in this topology disjoint? \\
+	\textbf{Answer: }Since every basic open set is a finite intersection of sets of the form $U(x,\epsilon)$, every basic open set $U\in\B$ has the following property: $U$ has a nonempty "characteristic set" $C\subset X$ such that for any fixed $x\in C$, $f(x)=g(x)$ for all $f,g\in U$. That is, all functions in $U$ are equal at every point in $C$.\\
+	Thus, two basic open sets $U,V$ in $\B$ are disjoint if and only if their characteristic sets, $C(U), C(V)$ are equal; and for any $f\in U$ and $g\in V$, $f(x) \neq g(x)$ for all $x\in C(U)=C(V)$.
+	
+	\item Is this topology Hausdorff?\\
+	\textbf{Answer: }Yes.
+	\begin{proof}
+	Let $f$ and $g$ be any two distinct functions in $\{0,1\}^X$. Since they are distinct, there exists at least one $x \in X$ such that $f(x)\neq g(x)$. Without loss of generality, suppose $f(x)=1$ and $g(x)=0$. Therefore, the basic open sets $U(x,1)$ and $U(x,0)$ contain $f$ and $g$, respectively. Since their characteristic sets are equal but they contain functions which are not equal at $x\in C$, we can conclude that $U(x,1)$ and $U(x,0)$ are disjoint. Therefore, this topology is Hausdorff. 
+	\end{proof}	 
+	\end{enumerate}		
+
+\item 
+	\begin{enumerate}
+	\item Show that the collection consisting of $\emptyset$ and the set of all intervals $[a,b]$ with $a < b$ does not form the basis for a topology on $\R$.
+	\begin{proof}
+	In order for this collection of sets to be a basis for some topology on $\R$, it must be true that for any two basic sets $U,V$ with $x\in U\cap V$, there exists another basic set $W$ such that $x\in W \subset U\cap V$. However, consider the basic sets 
+	$$[j,k]\text{ and }[k,m].$$
+	The element $k$ is in the intersection $[j,k]\cap[k,m]=\{k\}$, but the set $\{k\}$ cannot contain any interval $[a,b]$; since $a<b$ implies that $[a,b]$ contains more than just one element. 
+	\end{proof}
+	
+	\item Show that the collection consisting of $\emptyset$ and the set of all intervals $[a,b]$ with $a < b$ does form a subbasis for a topology on $\R$.  That topology is one we have seen before. Identify it.\\
+	\\
+	\textbf{Claim: }Let $\script{S}$ be the collection consisting of $\emptyset$ and the set of all intervals $[a,b]$ with $a < b$, and let $\B$ be the collection of all finite intersections of sets in $\script{S}$. Then, $\B$ is a basis for the discrete topology on $\R$.
+	\begin{proof} First, since $[1,2]\cap[3,4]=\emptyset$, then $\emptyset\in\B$. Now, Let $S$ be an arbitrary subset of $\R$, and let $x$ be any real number such that $x\in S$. We can see that $\{x\}\in\B$ by observing that $[x-,x]\cap[x,x+1]=\{x\}$, so we can take the union $\bigcup\limits_{x\in S}\{x\}=S$. Thus, $S$ is a union of open sets, so $S$ is open. Therefore, since any arbitrary $S\subset\R$ is open in this topology, then $\B$ is a basis for the discrete topology on $\R$.
+	\end{proof}
+	
+	\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

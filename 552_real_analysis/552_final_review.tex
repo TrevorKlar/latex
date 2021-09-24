@@ -1,0 +1,130 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{tskpreamble} %located in ~/texmf/tex/latex/
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference.
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+%\newcommand{\extmeasure}[1]{m_*(#1)}
+%\newcommand{\measure}[1]{m(#1)}
+\renewcommand{\mathcal}[1]{\pazocal{#1}}
+
+\title{Math 552 \linebreak
+Final Review}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item[Ch 2 Corr 3.8] Suppose $f(x)$ is a non-negative function on $\R^d$, and let
+	$\script{A}=\{(x,y)\in\R^d\times\R:0\leq y\leq f(x)\}.$
+	
+Prove:
+	\begin{enumerate}[label=(\roman*)]
+		\item $f$ is measurable on $\R^d$ if and only if $\script{A}$ is measurable in $\R^{d+1}$.
+		\item If the conditions in (i) hold, then
+		$\ds\int_{\R^d}f(x)\dx=\measure{\script{A}}.$
+	\end{enumerate}
+
+	
+	\pagebreak
+	\item[ex 2.19] Suppose $f$ is integrable on $\mathbb{R}^d$. For each $\alpha > 0$, let $E_\alpha=\{x: \abs{f(x)} > \alpha \}$. Prove that $$\int_{\mathbb{R}^d} \abs{f(x)}\dx = \int_0^\infty m(E_\alpha)\der\alpha.$$
+	
+	\pagebreak
+	
+	\item[Def:]	Write the definition of a function of bounded variation. \vspace{1.5in}
+	
+	\item[Thm 3.3] Prove that a real-valued function $F$ on $[a, b]$ is of bounded variation if and only if $F$ is the difference of two increasing bounded functions.
+	
+	\pagebreak
+	\item[Def:]	Write the definition of a point of Lebesgue density. \vspace{1.5in}
+	
+	\item[Cor 1.5] Suppose $E$ is a measurable subset of $\R^d$. 
+	
+	Prove:
+	\begin{enumerate}
+		\item Almost every $x \in E$ is a point of density of $E$.
+		\item Almost every $x \not\in E$ is not a point of density of $E$.
+	\end{enumerate}
+	
+	\pagebreak
+	\item[Ex 3.3] Suppose $0$ is a point of (Lebesgue) density of the set $E \subset \R$.  Show that for each of the individual conditions below there is an infinite sequence of points $x_n \in E$, with $x_n \neq 0$, and $x_n \rightarrow 0$ as $n \rightarrow \infty$.
+	\begin{enumerate}
+		\item The sequence also satisfies $-x_n \in E$ for all $n.$
+	\pagebreak
+	\item[Ex 3.6] In one dimension there is a version of the basic inequality (1) for the maximal function in the form of an identity. We define the "one-sided" maximal function $$f_+^*= \sup_{h>0}\; \frac{1}{h} \int_x^{x+h}\abs{f(y)}dy.$$ Prove that if $E_{\alpha}^+=\{x \in \mathbb{R}: f_+^*(x) > \alpha\}$, then $$m(E_\alpha^+)=\frac{1}{\alpha}\int_{E_\alpha^+}\abs{f(y)}dy.$$
+	\end{enumerate}
+	
+	\pagebreak
+	\item[Ex 3.7] Use Corollary 1.5 to prove that if a measurable subset E of [0,1] satisfies $m(E\cap I)\geq \alpha m(I)$ for some $\alpha >0$ and all intervals in $[0,1]$, then $E$ has measure 1. 
+	
+	\pagebreak
+	\item[Ex 3.14 (a)] Suppose $F$ is continuous on $[a,b].$ Show that 
+        $$D^+(F)(x) = \limsup_{\substack{h\to0 \\ h>0}} \frac{F(x+h) - F(x)}{h}$$
+        is measurable.
+
+	\pagebreak
+	\item[Ex 3.14 (b)] Let $F:[a, b]\to\R$ be increasing and bounded, and let $J(x)=\sum_{n=1}^\infty\alpha_nj_n(x)$ be the jump function associated with $F$. Show that 
+        $$\limsup_{h\to 0}\frac{J(x+h)-J(x)}{h}$$
+        is measurable. 
+        
+  \pagebreak
+	\item[Ex 3.20] This exercise deals with functions $F$ that are absolutely continuous on $[a,b]$ and are increasing.  Let $A = F(a)$ and $B=F(b)$.
+	\begin{enumerate}[label=(\alph*)]
+		\item[(a)] There exists such an $F$ that is in addition strictly increasing, but such that $F'(x) = 0$ on a set of positive measure.
+	\end{enumerate}
+	
+	\pagebreak
+	\item[Ex 3.20] This exercise deals with functions $F$ that are absolutely continuous on $[a,b]$ and are increasing.  Let $A = F(a)$ and $B=F(b)$.
+	\begin{enumerate}[label=(\alph*)]
+		\item[(b)] Show that $F(x) =  \int^x_a \Chi _K(t)dt$ has a measurable subset $E \subset [A,B]$ with $m(E)=0$ and $F^{-1}(E)$ nonmeasurable. 
+	\end{enumerate}
+	
+	\pagebreak
+	\item[Ex 3.20] This exercise deals with functions $F$ that are absolutely continuous on $[a,b]$ and are increasing.  Let $A = F(a)$ and $B=F(b)$.
+	\begin{enumerate}[label=(\alph*)]
+		\item[(c)] Modified version solved in class: Prove that for any increasing absolutely continuous $F$ and $O$, an open subset of $[A,B]$, $m(O) = \int_F^{-1}(0) F'(x) dx$. 
+	\end{enumerate}
+	
+	\pagebreak
+	\item[Def:]	State the definition of Caratheodory measurability. 
+	\vspace{1.5in}
+	
+	\item[Ex 6.3] Consider the exterior Lebesgue measure $m_*$ introduced in Chapter 1.  Prove that a set $E$ in $\R^d$ is Caratheodory measurable if and only if $E$ is Lebesgue measurable in the sense of Chapter 1. 
+    
+	
+	
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

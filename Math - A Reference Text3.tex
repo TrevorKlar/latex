@@ -1,0 +1,931 @@
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a5paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\renewenvironment{proof}{{\bfseries Proof}}{\qed}
+
+\makeatletter
+\renewenvironment{proof}[1][\bfseries \proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  %\itemindent\normalparindent
+  \item[\hskip\labelsep
+        \scshape
+    #1\@addpunct{}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+
+%\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand{\inner}[1]{\left< #1 \right>}
+%\newcommand{\>}{\right>}
+
+
+\title{Linear Algebra: Theorems and Definitions}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+\section{Vector Spaces}
+
+\begin{definition}
+A \underline{field} (denoted $\F$) is a set with two operations, $\bullet$ and $+$, such that the following properties hold:
+\begin{enumerate}
+\item $+$ Commutative
+\item $+$ Associative
+\item $+$ Identity
+\item $+$ Inverse
+\item $\bullet$ Commutative
+\item $\bullet$ Associative
+\item $\bullet$ Identity
+\item $\bullet$ Inverse
+\item Distributive prop of $+$ over $\bullet$ 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A \underline{vector space} is a set with two operations, $+$ and scalar $\bullet$, with the following properties:
+\begin{enumerate}
+\item $+$ Closure
+\item $+$ Commutative
+\item $+$ Associative
+\item $+$ Identity
+\item $+$ Inverse
+\item Scalar $\bullet$ Closure
+\item $\bullet$ Scalars distribute over vectors
+\item $\bullet$ Vectors distribute over scalars
+\item Scalar $\bullet$ Associative
+\item Scalar $\bullet$ Identity
+\item Distributive prop of $+$ over $\bullet$ 
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+Let $W_1$ and $W_2$ be subspaces of $V$. Then,
+\begin{enumerate}
+\item $W_1 \cap W_2$ is a subspace of $V$.
+\item $W_1 + W_2 = \{w_1 + w_2 | w_1 \in W_1, w_2 \in W_2\}$ is a subspace of $V$.  
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+\textbf{(Subspace Criterion)} Let $V$ be a vector space. 
+
+Iff
+\begin{itemize}
+\item $W \subset V$
+\item $W$ is closed under $+$ and scalar $\bullet$ 
+\item $\exists \vec{0} \in W$
+\end{itemize}
+
+Then $W$ is a subspace of $V$. 
+\end{theorem}
+
+\begin{definition}
+Let $U, W$ be subspaces of a vector space $V$. We say that $V$ is a \underline{direct sum} of $U$ and $W$, denoted by $U \oplus W = V$ iff
+\begin{enumerate}
+\item $V = U + W$
+\item $U \cap W = \{\vec{0}\}$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+\textbf{(or alternate definition)} $V = U \bigoplus W$ is a \underline{direct sum} iff 
+\begin{enumerate}
+\item $V = U + W$
+\item The only way to write $\vec{0}$ as a sum of $\vec{u} \in U$ and $\vec{w} \in W$ is by taking $\vec{u} = \vec{w} = \vec{0}$. 
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+Let $W_1, ... , W_k$ be a finite collection of subspaces of a vector space $V$. We say that $V$ is a \underline{direct sum} of $W_1, ... , W_k$, denoted $W_1 \oplus ... \oplus W_k = V$, iff
+\begin{enumerate}
+\item $V = W_1 + ... + W_k$
+\item Each of the subspaces $W_n$ have a trivial intersection. That is, $\forall i,j \in \N$ s.t. $ i \neq j$, $W_i \cap W_j = \{\vec{0}\}$ 
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+Let $V = W_1 \oplus ... \oplus W_k$. Then, $\forall \vec{v} \in V,$ $\exists$ unique $\vec{w_1} \in W_1, \vec{w_2} \in W_2, ... \vec{w_k} \in W_k$ such that 
+$\vec{v} = \vec{w_1} + \vec{w_2} + ... + \vec{w_k}$.
+\end{theorem}
+
+\begin{definition}
+Let $V$ be a vector space, and let $\vec{v_1}, ... \vec{v_n} \in V$. A \underline{linear combination} of $\vec{v_1}, ... \vec{v_n}$ is an element in $V$ given by $a_1 \vec{v_1} + a_2 \vec{v_2} + ... + a_n \vec{v_n} \in V$. 
+\end{definition}
+
+\begin{proposition}
+Let $W = span\{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\}$, where $\{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\} \subset V$. Then, $W$ is a subspace of $V$. 
+\end{proposition}
+
+\begin{definition}
+ Let $S = \{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\} \subset V$. $S$ is said to be \underline{linearly} \underline{independent} iff $a_1 \vec{v_1} + a_2 \vec{v_2} + ... + a_n \vec{v_n} = \vec{0}$ implies $a_1 = a_2 = ... = a_n = 0$. 
+\end{definition}
+
+\begin{definition}
+Let $S = \{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\} \subset V$. $S$ is said to be \underline{linearly} \underline{dependent} if there exists at least one nonzero element of $\{a_1, a_2, ... ,a_n\}$ such that $a_1 \vec{v_1} + a_2 \vec{v_2} + ... + a_n \vec{v_n} = \vec{0}$.
+\end{definition}
+
+\begin{proposition}
+ Let $\{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\}$ be a set of linearly dependent vectors in $V$. Then, $\exists v_i \in \{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\}$ such that $v_i \in span(\{\vec{v_1}, \vec{v_2}, ... , \vec{v_n}\}\setminus\{v_i\})$. That is, one $v_i$ is in the span of all the others.  
+\end{proposition}
+
+\begin{theorem}
+
+Let $V = span(\vec{\beta}_1, \vec{\beta}_2, ... , \vec{\beta}_n)$. Then, any linearly independent set of $V$ is finite and contains at most $n$ elements. 
+\end{theorem}
+
+\begin{definition} 
+$S$ is a \underline{basis} for $V$ iff:
+\begin{enumerate}
+\item $S$ spans $V$
+\item $S$ is linearly independent
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+we say that $V_\F$ is \underline{finite-dimensional} if there exists a basis for $V$ with finitely many elements of $V$. 
+\end{definition}
+
+\begin{proposition}
+Let $V$ be a finite-dimensional vector space. Let $\{B_1 = v_, ... v_m\}$ and $B_2 = \{w_1, ... w_n\}$. suppose $B_1$ and $B_2$  are bases of $V$. 
+Then $m = n$.
+\end{proposition}
+
+\begin{definition}
+We say that the \underline{dimension} of a vector space is $N$ if $V$ has a basis (and all bases) with $n$ elements of $V$. 
+\end{definition}
+
+\begin{proposition}
+Let $V$ be a vector space such that $dim(V)=n$. Then, 
+\begin{enumerate}
+\item Every subset of $V$ that has more than $n$ vectors is linearly dependent.
+\item Every set that has less than $n$ vectors cannot span $V$.
+\item Every linearly independent subset of $V$ with $n$ vectors spans $V$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+Let $W, V$ be vector spaces such that $W \subset V$, $dim(V) = n$. Every linearly independent subset of $W$ is finite and part of a basis of $V$. 
+\end{theorem}
+
+\begin{corollary}
+Let $dim(V) = n$. Then, 
+\begin{itemize}
+\item If $W \subsetneq V$, then $dim(W) < n$.
+\item If $W \subset V$ such that $dim(W) = n$, then $W = V$.
+\end{itemize}
+\end{corollary}
+
+\begin{theorem}
+Let $W_1$ and $W_2$ be subspaces of a finite-dimensional vector space $V$. Then, $dim(W_1 + W_2) = dim(W_1) + dim(W_2) - dim(W_1 \cap W_2)$.
+\begin{proof}
+claim: $B = B_{W_1} \cup B_{W_2}$ is a basis for $W_1 + W_2$.
+let $\vec{v} \in W_1 + W_2$. Then, $\vec{v} = \vec{w_1} + \vec{w_2}$. $B$ contains a basis for $W_1$, so $\vec{w_1} \in span(B)$. Similarly, $B$ contains a basis for $B_{W_2}$, so $\vec{w_2} \in span(B)$. Since $\vec{w_1}, \vec{w_2} \in span(B)$, then $\vec{v} \in span(B)$. So, $B$ spans $W_1 + W_2$. 
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+Suppose now that $V = W_1 \oplus W_2$. Then, $dim(W_1 + W_2) = dim(W_1) + dim(W_2)$. (since $dim(W_1 \cap W_2) = 0$)
+\end{corollary}
+
+\section{Linear Transformations}
+
+\begin{definition}
+Let $V$ and $W$ be two vector spaces. We say that $T: V \to W$ is a \underline{linear transformation} if 
+\begin{enumerate}
+\item $T(x+y) = T(x) + T(y)$, $\forall x,y \in V$
+\item $T(cx) = cT(x)$, $\forall x \in V, c \in \F$
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+$T(\vec{0}_V) = T(\vec{0}_W)$.
+\begin{proof}
+$T(\vec{0}) = T(c\vec{0}) = cT(\vec{0}), \forall c \in \F$
+So, $T(\vec{0}) = \vec{0}$.
+\end{proof}
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%things got messy around here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{definition}
+$V:$ Domain of $T$
+
+
+\end{definition}
+
+\begin{definition}
+ range of T: $\{T(v) | v \in V\}$
+ 
+ $\{w \in W | \exists v \in V s.t. T(v)=w\}$
+\end{definition}
+
+\begin{definition}
+ker(T): Kernel of T or null-space of T: N(T)
+
+$N(T) = \{v \in V | T(v) = \vec{0}\}$
+
+(the vectors in $V$ which map to $\vec{0}$.)
+
+\end{definition}
+
+\begin{proposition}
+$ker(T) = N(T)$ is a subspace of $V$.
+\end{proposition}
+
+\begin{proposition}
+$R(T) = Im(T)$ is a subspace of $W$. 
+\end{proposition}
+
+\begin{definition}
+We say that $T$ is \underline{onto} (or \underline{surjective}) if R(T) = W. That is, $\forall	w \in W$, $\exists v \in V$ such that $T(v)=w$.
+\end{definition}
+
+\begin{definition}
+We say that $T$ is \underline{one-to-one} (or \underline{injective}) if $T(x) = T(y) \implies x=y$.
+\end{definition}
+
+\begin{proposition}
+$T$ is one-to-one iff $ker(T)=\vec{0}$.
+
+%\begin{proof}
+%(=>) suppose T is one-to-one. Let $v \in ker(T)$. This means that $T(v) = \vec{0}$. Since 
+%\end{proof}
+
+\end{proposition}
+
+\begin{definition}
+dim(N(T)) = nullity of T
+\end{definition}
+
+\begin{definition}
+dim(Im(T)) = Rank of T
+\end{definition}
+
+\begin{theorem}
+\textbf{(Rank-Nullity Theorem)}
+Let $V$ be an n-dimensional vector space. Let $k=dim(null(T))$ and $m=rank(T)$. Then, $n=k+m$. 
+
+That is, $dim(V) = dim(N(T)) + dim(Im(T))$. 
+\end{theorem} 
+
+\begin{proposition}
+Suppose $T: V \to W$ is linear. Thn, $T$ is one-to-one iff $T$ carries linearly independent subsets of $V$ to linearly independent subsets of $W$. 
+
+\begin{proof}
+$(\implies)$ Assume that $T$ is one-to-one. Let $\{v_1, ... v_k\}$ be a linearly independent subset of $V$. We want to show that $\{T(v_1), ... T(v_k)\}$ is a linearly independent subset of W. Let us consider $a_1T(v_1)+ ... + a_k T(v_k) = \vec{0}$. Since $T$ is linear, $T(a_1v_1+ ... + a_kv_k) = \vec{0}$. So, this means that $(a_1v_1+ ... + a_kv_k) \in ker(T)$. Since T is one-to-one, then $ker(T) = \vec{0}$, so $a_1v_1+ ... + a_kv_k = \vec{0}$. Now, $\{v_1, ... v_k\}$ are linearly independent, so $a_1, ... a_k = 0$; and we are done.
+\end{proof}
+
+\begin{proof}
+$(\impliedby)$
+Let $v \in ker(T)$ and suppose that $ker(T) \neq \{\vec{0}\}$. Let $\{v_1, ... v_k\}$ be a basis for $V$. Now consider $T(v) = T(a_1v_1+ ... + a_kv_k) = \vec{0}$, since $v \in ker(T)$. Since $T$ maps linearly independent subsets of $V$ to linearly independent subsets of $W$, then $a_1T(v_1), ... a_k T(v_k)$ are linearly independent vectors. so, $a_1, ... a_k = 0$, which means that $v = \vec{0}$, so $ker(T) = \{\vec{0}\}$.
+\end{proof}
+\end{proposition}
+
+\section{Linear Operators}
+
+\begin{definition}
+let $\mathcal{L}(V,W) = \{T:V \to W | T$ is a linear transformation$\}$. 
+
+Then, if $dim(V) = n$ and $dim(W) = m$, then 
+
+$dim\mathcal{L}(V,W) = m \bullet n$. 
+
+\begin{proof}
+The proof is too hard. 
+\end{proof}
+\end{definition}
+
+\begin{remark}
+So, if you consider the set of all linear transformations between two vector spaces, that set is \textbf{itself} a vector space, and each transformation can be seen as a vector in that space. So, Linear Transformations also have all the same properties of vectors; closure under addition and scalar multiplication, distributive, identities, inverses, etc. 
+\end{remark}
+
+\begin{remark}
+If $T$ is a linear operator, then 
+
+$ker(T) \subset	ker(T^2) \subset ... \subset ker(T^k) \subset ...$
+\end{remark}
+
+\begin{remark}
+If $T$ is a linear operator, then 
+
+$Im(T) \supset Im(T^2) \supset ... \supset Im(T^k) \supset ...$
+\end{remark}
+
+\begin{definition}
+If $T: V \to V$ is linear, then it is a \underline{linear operator}. 
+\end{definition}
+
+\begin{definition}
+If $T: V \to W$ is one-to-one and onto, then there exists a function $T^{-1}: W \to V$ such that $T \circ T^{-1} = I$ and $T^{-1} \circ T = I$, where $I$ is the identity transformation. We call $T^{-1}$ the \underline{inverse} of $T$. 
+\end{definition}
+
+\begin{proposition}
+$T^{-1}: W \to V$ is also linear transformation. 
+\begin{proof}
+Let $w_1, w_2 \in W$. $T^{-1}(w_1 + w_2) = T^{-1}(T(v_1) + T(v_2)) = T^{-1} \circ T(v_1) + T^{-1} \circ T(v_2) = v_1 + v_2 = T^{-1}(w_1) + T^{-1}(w_2). $
+\end{proof}
+\end{proposition}
+
+\begin{definition}
+We say that a linear map from $V$ to $W$ is an \underline{isomorphism} if this map is invertible. That is, it must be one-to-one and onto. (Note, it follows that the inverse will be linear)
+
+In this case, we say that the vector spaces $V$ and $W$ are \underline{isomorphic}.
+\end{definition}
+
+\begin{proposition}
+Let $V$ be a finite-dimensional vector space. Then, another vector space $W$ is isomorphic to $V$ iff $dim(V) = dim(W)$. 
+
+\begin{proof}
+$(\implies)$ Suppose there exists an isomorphism $T: V \to W$ that is one-to-one and onto. Suppose that $\{v_1, ... v_k\}$ be a basis for $V$. Then, $\{T(v_1), ... T(v_k)\}$ is linearly independent in $W$. 
+
+actually scratch all that. 
+
+since $dim(ker(T)) = 0$, and $dim(V) = dim(ker(T)) + dim(Im(T))$, then $dim(V) = 0 + dim(W)$
+\end{proof}
+
+\begin{proof}
+$(\impliedby)$
+
+Let $\beta_V$ be a basis for $V$, and let $\beta_W$ be a basis for $W$. Define $T$ such that $T(\beta_V) = \beta_W$. Then show that $T$ is linear, one-to-one, and onto. That should be pretty easy. $T$ is one-to-one because it maps l.i. vectors to l.i. vectors, by our earlier proof. Now we know that $dim(ker(T)) = 0$, so $dim(V) = dim(Im(T))$. Therefore, $T$ is onto. 
+\end{proof}
+\end{proposition}
+
+\begin{definition}
+Given $A,B \in M_n(\R)$, we say that $A$ and $B$ are \underline{similiar} matrices if there exists an invertible matrix $P$ such that $B=P^{-1}AP$. 
+\end{definition}
+
+\begin{proposition}
+Let $A,B$ be similar matrices then
+\begin{enumerate}
+\item $det(A) = det(B)$
+\item $trace(A) = trace(B)$
+\end{enumerate}
+\begin{proof}
+(1) 
+
+\begin{tabular}{rl}
+$B $&$= P^{-1}AP$ \\ 
+$det(B) $&$= det(P^{-1}AP)$ \\ 
+$det(B) $&$= det(P^{-1}AP)$ \\ 
+&$= det(P^{-1})det(A)det(P)$\\
+&$= \frac{1}{det(P)}det(A)det(P)$\\
+&$= det(A)$\\
+\end{tabular}
+
+\end{proof}
+\end{proposition}
+
+\begin{theorem}
+$\left[ [I]_\beta^\alpha \right]^{-1} = [I]_\alpha^\beta$
+\end{theorem}
+
+\begin{theorem}
+If $T:V \to V$, then 
+
+$[T]_\alpha = [I]_\alpha^\beta [T]_\beta [I]_\beta^\alpha$
+
+And, $[T]_\alpha$ and $[T]_\beta$ are similar. 
+\end{theorem}
+
+\begin{definition}
+Let $T:V^n \to V^n$ be a linear operator. We say that $T$ is \underline{diagonalizable} if $V$ has a basis $\alpha$ such that $[T]_\alpha$ is a diagonal matrix. 
+\end{definition}
+
+\section{Eigenvectors}
+
+\begin{definition}
+Let $T:V \to V$ be a linear operator. 
+\begin{itemize}
+\item We say that a nonzero vector $v$ is an \underline{eigenvector} of $T$ if $\exists	\lambda \in \F$ s.t. $T(v) = \lambda v$. 
+\item In this case, we say that $\lambda$ is an \underline{eigenvalue} of $T$.
+\item Then we say that $v$ is an \underline{eigenvector} of $T$ corresponding to the \underline{eigenvalue} $\lambda$. 
+\item We call $E_\lambda = \{v \in V | T(v)=\lambda v\}$ the \underline{eigenspace} of $T$ corresponding to $\lambda$. (Note: The set of all eigenvectors does not contain $\vec{0}$, so it cannot technically be a vector space. This is why we phrase the definition using set theory)
+\end{itemize} 
+
+\end{definition}
+
+\begin{remark}
+If $\vec{v}\neq\vec{0}$ is an eigenvector, then it is a nontrivial solution to the equation $$A\vec{v}=c\vec{v},$$ where $A$ is a matrix (your transformation) and $c$ is some scalar (your eigenvalue). 
+
+So, this is equivalent to solving the system $$(A-cI)\vec{v}=\vec{0}.$$
+
+To do this, we first solve $det((A-cI)\vec{v})=0$ for $c$, and there will be multiple solutions (since this determinant generates a polynomial). These are our eigenvalues. 
+
+Now that we have realized that $det(A-cI)$ is a polynomial, we call it $$f(t) = det(A-cI)$$ and we say that the eigenvalues are the roots of that polynomial.
+
+We call this $f(t)$ the \underline{characteristic polynomial}.
+\end{remark}
+
+\begin{proposition}
+Suppose $B$ is similar to $A$. Then, $B$ and $A$ have the same characteristic polynomial.
+\begin{proof}
+Determinants are magic. 
+\end{proof}
+\end{proposition}
+
+\begin{definition}
+Let $T:V^n \to V^n$ be a linear operator.
+Then, the characteristic polynomial of $T$ is defined as the characteristic polynomial of the matrix $[T]_{\beta}$, where $\beta$ is any basis of $V$. 
+
+That is, the characteristic polynomial of $T$ is 
+$$det([T]_{\beta}-cI).$$
+\end{definition}
+
+\begin{definition}
+Let $T:V \to V$ be a linear operator. We say that $T$ is \underline{diagonalizable} if there exists a basis $\beta$ of $V$ such that $[T]_{\beta}$ is diagonal, that is, every element of $\beta$ is an eigenvector of $T$. 
+\end{definition}
+
+\subsection{Eigenspaces}
+
+\begin{remark}
+We are now going to assume that our field $\F$ is the complex numbers. This is because our characterstic functions are polynomials, and we want them to have roots (eigenvalues). 
+
+So now, Let $T:V^n \to V^n$ be a linear operator. Let $c_1, ... c_n$ be the roots of the characterstic poolynomial of $T$. 
+
+$f(t) = det([T]_{\beta}-cI)$
+$= (t-c_1)^{m_1}(t-c_2)^{m_2} ... (t-c_k)^{m_k}$ (we have just factored here)
+
+where ${m_n}$ is the algebraic multiplicity of each root. 
+\end{remark}
+
+\begin{remark}
+[I was listening and not typing during this part - i took a picture of the board.] [it's about geometric multiplicities]
+\end{remark}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator and $c_1, ... c_k$ be distinct eigenvalues of $T$. 
+
+If $\alpha_1, ... , \alpha_k$ are the eigenvectors which correspond to the above eigenvalues, then $\alpha_1, ... , \alpha_k$ are linearly independent. 
+
+\begin{proof}
+\textbf{by induction on k.}
+Obviously, a set containing only 1 vector is linearly independent. 
+
+Assume the result is true for $k-1$; that is, if $c_1, ... c_{k-1}$ are distinct eigenvalues, then  $\alpha_1, ... , \alpha_{k-1}$ are linearly independent. Now we need to show that $\alpha_1, ... , \alpha_{k}$ are linearly independent. 
+
+For that, we set $(a_1\alpha_1+...a_k\alpha_k) = 0$. 
+
+Then apply $(T-c_kI)$, which is linear. 
+
+$(T-c_kI)(a_1\alpha_1+...a_k\alpha_k) = 0$.
+
+Now, we know that $(T-c_kI)(\alpha_k) = T(\alpha_k) - c_k\alpha_k$ = $c_k\alpha_k - c_k\alpha_k = 0$
+[i had to listen again]
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+Let $T:V^n \to V^n$ be a linear operator.
+If $T$ has $n$ distinct eigenvalues, then $T$ is diagonalizable. 
+
+Note: This is because every eigenvalue would have to have multiplicity 1. 
+\end{corollary}
+
+\begin{theorem}
+Let $T:V^n_\C \to V^n_\C$ be a linear operator. Let $c$ be an eigenvalue of (algebraic) multiplicity $m$. Then, 
+$$1\leq dim(E_c) \leq m,$$ 
+where $d = dim(E_c)$ is the geometric multiplicity of the eigenvalue $c$.   
+\end{theorem}
+
+\begin{lemma}
+Let $T:V^n \to V^n$ be a linear operator, and  $c_1, ... c_{k}$ be distinct eigenvalues of $T$. Then, for each $i = 1,2,...k$ take elements of the eigenspaces $x_i \in E_{c_i}$. Then, $$x_1 + x_2 + ... + x_k = 0 \implies x_i = 0 \forall i.$$
+\end{lemma}
+
+\begin{lemma}
+Let $c_1, ... c_{k}$ be distinct eigenvalues  and $S_i$ a linearly independent subset of $E_{c_i}$. Then, 
+$$S = \bigcup_{i=1}^kS_i \text{ is a linearly independent subset of V.}$$
+\end{lemma}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator, and  $c_1, ... c_{k}$ be distinct eigenvalues of $T$. Then,
+\begin{enumerate}
+\item $T$ is diagonalizable iff 
+$$m_i = d_i = dim(E_{c_i}), \forall i = 1, ...k$$
+\item If $T$ is diagonalizable and $S_i$ is a basis for the eigenspace $E_{c_i}$, then 
+$$S = \bigcup_{i=1}^kS_i \text{ is a basis of V.}$$
+\end{enumerate}
+\end{theorem}
+
+\section{Cayley-Hamilton Theorem}
+
+\begin{remark}.
+
+$f(t) = a_0 + a_1t + a_2t^2 + ... + a_nt^n, a_n \neq 0$
+
+$f(T) = a_0I + a_1T + a_2T^2 + ... + a_nT^n, a_n \neq 0$
+
+$f(T) = 0$ means that $f(T(\vec{v})) = \vec{0}, \forall \vec{v} \in V.$
+\end{remark}
+
+\begin{theorem}
+\textbf{Cayley-Hamilton Theorem}
+Let $T:V^n \to V^n$ be a linear operator, and $f(t)$ be the characteristic polynomial of $T$. Then, 
+$$f(T) = \vec{0}$$
+\end{theorem}
+
+\begin{definition}
+$V, x \neq 0, x \in V$.
+
+$$W = span\{x, T(x), T^2(x), T^2(x), ... T^m(x), ...\} $$
+We call $W$ the \underline{$T$-cyclic subspace} of $V$ generated by $x$. 
+\end{definition}
+
+\begin{definition}
+Let $W \subset V, T:V \to V.$ We say that $W$ is \underline{$T$-invariant} if $T(W) \subset W$. 
+\end{definition}
+
+\begin{proposition}
+A $T$-cyclic subspace of $V$ is $T$-invariant.
+\end{proposition}
+
+\begin{proposition}
+Let $T:V^n \to V^n$ be a linear operator, and $W \subset V$, a $T$-invariant subspace of $V$. Then, 
+\begin{itemize}
+\item the characteristic polynomial of $T_W$ divides (is a factor of) the characteristic polynomial of $T$. 
+\end{itemize}
+Note: $T_W$ means $T$, restricted to $W$ as its domain. So, $T_W: W \to V$. But actually, $W$ is $T$-invariant, so $T_W:W \to W$ is a linear operator, and has its own characteristic polynomial. 
+\end{proposition}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator, and $W \subset V$, a $T$-cyclic subspace of $V$, generated by $x$. Suppose $dim(W) = k \geq 1 $ $(x\neq0)$. Then, 
+\begin{enumerate}
+\item $\{x, T(x), T^2(x), ... T^{k-1}(x)\}$ is a basis of $W$.
+\item If $T^k(x) = -a_0x - a_1T(x) - ... - a_{k-1}T^{k-1}(x)$, then the characteristic polynomial of $T_W$ is $f_{T_W}(t) = a_0 + a_1t + ... + a_{k-1}t^{k-1}+t^k$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Minimal Polynomials}
+
+\begin{definition}
+Let $T:V \to V$ be a linear operator. A polynomial $p(t)$ is called the \underline{minimal polynomial} of $T$ if:
+\begin{enumerate}
+\item It is monic (the leading coefficient is 1)
+\item $p(t)$ is the polynomial of least degree for which $p(T)=0$.
+\end{enumerate}
+
+%Note: one way to find this is by taking the characteristic polynomial, and reducing the powers of the factors so that the algebraic multiplicity is equal to the geometric multiplicity for each factor. 
+\end{definition}
+
+\begin{proposition}
+Let $T:V \to V$ be a linear operator, and let $p(t)$ be the minimal polynomial of of $T$. Suppose $g(t)$ is any polynomial such that $g(T) = 0$. Then, $$p(t) | g(t).$$
+\end{proposition}
+
+\begin{corollary}
+$p(t)$ is unique. 
+\begin{proof}
+Let $q(t)$ also be a minimal polnpomial.
+By the previous proposition, $p(t) | q(t)$ and $q(t) | p(t)$. Also, $p$ and $q$ are both monic, so $p(t)=q(t)$. 
+\end{proof}
+\end{corollary}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator, and let $p(t)$ be the minimal polynomial of of $T$. Then, \textbf{$\lambda$ is an eigenvalue} of $T$ iff $$p(\lambda)=0.$$ (That is, the roots of $p(t)$ are the eigenvalues of $T$.)
+\end{theorem}
+
+\begin{remark}
+(characterization of the minimal polynomial)
+
+C.P.  $f(t)=(t-\lambda_1)^{m_1}(t-\lambda_2)^{m_2}...(t-\lambda_k)^{m_k}$
+
+M.P.  $p(t)=(t-\lambda_1)^{n_1}(t-\lambda_2)^{n_2}...(t-\lambda_k)^{n_k}$
+
+Where $n_i \leq m_i $ $\forall i$
+\end{remark}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator, and let $p(t)$ be the minimal polynomial of of $T$. \textbf{$T$ is diagonalizable} iff $$p(t)=(t-\lambda_1)(t-\lambda_2)...(t-\lambda_k)$$ Where every $\lambda_i$ is a distinct eigenvalue. Note: all factors have multiplicity 1.
+\end{theorem}
+
+\section{Inner Products and Norms}
+
+\begin{definition}
+An inner product defined on $V$ is $<,>:V \times	V \to \F = \C$ with the following properties:
+\begin{enumerate}
+\item $\inner{x+y,z} = \inner{x,z} + \inner{y,z}$
+\item $\inner{x,y} = \conj{\inner{y,x}}$
+\item $\inner{cx,y} = c\inner{x,y} = \inner{x,\conj{c}y}$
+\item $\inner{x,x} > 0$ if $x \neq 0.$
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+It can be shown than an inner product has the following properties:
+\begin{enumerate}
+\item $\inner{x,y+z} = \inner{x,y}+\inner{x,z}$
+\item $\inner{x,x}=0$ iff $x=0$
+\item If $\inner{x,z} = \inner{y,z} \forall z$, then $x=y$.
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+Let $V$ be $n$-dimensional V.S. 
+
+Let $\{\vec{v}_1, \vec{v}_2, ... \vec{v}_n,\}$ be a basis for $V$. 
+
+Define $\inner{v_i,v_j}, \forall i,j  $
+
+Extend $\inner{v,w}=\inner{\sum_{i=1}^na_iv_i, \sum_{i=1}^nb_iv_j,}$
+
+Try this at home by writing the vectors $\vec{v}, \vec{w}$ as linear combinations of the basis vectors, and then applying the properties of inner products. 
+\end{example}
+
+\begin{definition} 
+We say that two vectors are \emph{orthogonal} ($\perp$) if 
+$$\left<v,w\right>=0.$$
+\end{definition}
+
+\begin{definition}
+The \emph{norm} of a vector is 
+$$||u||=\sqrt{\left<u,u\right>}.$$
+\end{definition}
+
+\begin{definition}
+We say that $u \in V$ is a \emph{unit vector} if $$||u|| = 1.$$
+\end{definition}
+
+\begin{definition}
+We say that a basis $p$ is \emph{orthonormal} if 
+\[p=\{v_1, v_2, ... v_n\} \text{ such that }
+<v_i, v_j> = 
+%
+\begin{cases}
+0 & \text{if }i \neq j \\
+1 & \text{if }i = j \\
+\end{cases}
+\]
+\end{definition}
+
+\begin{proposition}
+Let $V$ be an inner product vector space. Let $\beta =\{v_1, v_2, ... v_n\}$ be an orthonormal (o.n.) basis of $V$. Then, for each $v_1 \in V$ we have
+$$ v = <v,v1>v_1 + <v,v2>v_2 + ... <v,vn>v_n.$$ 
+\end{proposition}
+
+\begin{algorithm}
+\textbf{(Gram-Schmidt Process)}
+
+Let $\beta = \{v_1, ... v_n\}$ be a basis for $V$. Then 
+$$w_k = v_k - \sum_{j=1}^{k-1} \frac{\left<v_k,w_j\right>}{||w_j||^2}w_j$$ is an orthogonal basis. 
+
+\[
+\begin{array}{rcl}
+w_1 &=& v_1\\
+w_2 &=& v_2 - \frac{<v_2, w_1>}{||w_1||^2}w_1 \\
+w_3 &=& v_3 - \frac{<v_3, w_1>}{||w_1||^2}w_1 - \frac{<v_3, w_2>}{||w_2||^2}w_2
+\end{array}
+\]
+\end{algorithm}
+
+\begin{definition}
+Let $V$ be an inner product vector space. Let $W \subset V$. We define the \emph{orthogonal complement} of $W$ to be 
+$$W^{\perp} = \{v \in V | \left<v,w\right>=0, \forall w \in W\}.$$
+\end{definition}
+
+\begin{proposition}
+$W^\perp$ is a subspace of $V$.
+\end{proposition}
+
+\begin{lemma}
+If $\vec{v}_1, \vec{v}_2, ... \vec{v}_n$ are orthogonal vectors, then $\vec{v}_1, \vec{v}_2, ...\vec{v}_n$ are linearly independent.
+\end{lemma}
+
+\begin{theorem}
+$dim(W) + dim(W^\perp) = dim(V).$
+\end{theorem}
+
+\begin{theorem}
+The following properties of norms can be shown to be true:
+\begin{enumerate}
+\item $||cx||=|c| \cdot ||x||, \forall c \in \F, \forall x \in V$
+\item $||x|| = 0$ iff $x=0$
+\item $|\inner{x,y}| \leq ||x|| \cdot ||y||$ (Cauchy-Schwarz Inequality)
+\item $||x+y|| \leq ||x|| + ||y|| $(Triangle Inequality)
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+Let $V$ be an inner product space of finite dimension. Then, 
+$$V=W \oplus W^\perp.$$
+\end{proposition}
+
+\begin{definition}
+Let $A$ be an $n \times n$ matrix. The matrix $A^\star=\conj{A}^T$ is called the \emph{adjoint} of $A$.
+\end{definition}
+
+\begin{definition}
+We say that a matrix $A$ is \emph{unitary} if $$A \cdot A^\star = I.$$
+\end{definition}
+
+\begin{remark}
+So, we now know a couple of interesting facts about transition matrices. 
+
+$${[I]_{\beta_1}^{\beta_2}}^\star = \conj{\left([I]_{\beta_1}^{\beta_2}\right)}^T = [I]_{\beta_2}^{\beta_1}$$
+(This is only true for orthonormal bases)
+
+
+$${[I]_{\beta_1}^{\beta_2}}^{-1} = [I]_{\beta_2}^{\beta_1}$$
+\end{remark}
+
+\begin{proposition}
+In particular, if $\F = \R$, and $\beta_1, \beta_2$ are orthonormal bases, then 
+$${[I]_{\beta_1}^{\beta_2}}^{T} = [I]_{\beta_2}^{\beta_1} = {[I]_{\beta_1}^{\beta_2}}^{-1}$$
+\end{proposition}
+
+\begin{definition}
+If $F = \R$, We say that a matrix $A$ is \emph{orthogonal} if 
+$$AA^T = A^TA=I$$
+$$\iff A^T=A^{-1}$$
+\end{definition}
+
+\subsection{Adjoint of a Linear Operator}
+
+\begin{theorem}
+Let $V$ be a finte-dimensional inner product vector space. Let $g:V \to \F$ be a linear transformation. Then, there exists a unique vector $y \in V$ such that 
+$$g(x)=\inner{x,y} \forall x \in V.$$
+\end{theorem}
+
+\begin{theorem}
+Let $T:V^n \to V^n$ be a linear operator. Then, there exists a linear operator $T^\star:V^n \to V^n$ such that 
+$$\inner{T(x),y} = \inner{x, T^\star(y)} \forall x,y \in V.$$
+Moreover, $T^\star$ is linear. 
+\end{theorem}
+
+\begin{remark}
+Notice that it follows from the above theorem, 
+$$\inner{x, T(y)} = \conj{\inner{T(y), x}} = \conj{\inner{y, T^\star(x)}} = \inner{T^\star(x),y}$$
+$$\therefore \inner{x,T(y)} = \inner{T^\star(x),y}$$
+\end{remark}
+
+\begin{proposition}
+$T:V \to V$ and $T^\star: V \to V$. If $\beta$ is an orthonormal basis and $[T]_\beta = A$, then 
+$$[T]^\star_\beta = A^\star$$
+\end{proposition}
+
+\begin{lemma}
+$T:V \to V$ and $T^\star: V \to V$. If $T$ has an eigenvector, then so does $T^\star$. 
+
+note: in the proof, we notice an interesting fact that if $\lambda$ is an eigenvalue of $T$, then $\conj{\lambda}$ is an eigenvalue of $T^\star$. 
+\end{lemma}
+
+\begin{definition}
+$T:V \to V$ and $T^\star : V \to V$. We say that $T$ is a \emph{normal} operator if $$TT^\star =T^\star T.$$ That is, $T$ and $T^\star$ have the same eigenvectors and eigenvalues (i think).
+\end{definition}
+
+\pagebreak
+\begin{theorem}
+$T:V \to V$ and $T^\star : V \to V$. Then, 
+\begin{enumerate}
+\item $||T9x)||=||T^\star(x)||$
+\item $T-cI$ is normal.
+\item If $x$ is an eigenvector of $T$ then $x$ isd also en eigenvector of $T^\star$. 
+$$T(x)=\lambda x \text{ and } T^\star(x)=\conj{\lambda} x$$
+\item If $\lambda_1$ and $\lambda_2$ are \emph{distinct} eigenvalues then corresponding eigenvetors are orthogonal.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+If $T:V \to V$ is \emph{normal}, then $T$ is diagonalizable. (By the way, so is $T^\star$ as well.)
+
+In other words, there exists an \emph{orthonormal} basis of eigenvalues of $T$. 
+\end{theorem}
+
+\begin{definition}
+We say that $T$ is \emph{self-adjoint} if $T^\star=T$.
+\begin{remark} Self-adjoint $\implies$ normal, and Self-adjoint $\implies$ diagonalizable.
+\end{remark}
+\end{definition}
+
+\begin{theorem}
+Suppose $T$ is self-adjoint. then, 
+\begin{enumerate}
+\item Each eigenvalue is real
+\item The characteristic polynomial of $T$ has all linear real factors (we also say it \emph{splits}).
+\end{enumerate}
+\begin{proof}
+(1) Supose we have $T(x)=\lambda x$, $x \neq 0$.
+$$\lambda T(x) = \lambda T^\star(x) = T^\star(\lambda x) = \conj{\lambda}T^\star(x) = \conj{\lambda}T(x)$$
+$$(\lambda	- \conj{\lambda})T^\star(x) = 0 \implies \lambda= \conj{\lambda} \implies \lambda \in \R.$$
+\end{proof}
+\end{theorem}
+
+\begin{remark}
+Check this out:
+$$A=A^\star=\conj{A}^T=A^T$$
+
+So for a real matrix $A$, self-adjoint $\iff$ symmetric.
+\end{remark}
+
+\begin{corollary}
+Every symmetric matrix is diagonalizable and all eigenvalues are real. 
+\end{corollary}
+
+\begin{definition}
+We say that $T:V \to V$ is a \emph{unitary} operator if 
+$$TT^\star = T^\star T=I$$
+\end{definition}
+
+\begin{definition}
+Let $V$ be over $\R$, the real numbers. Then $T$ is \emph{orthogonal} if
+$$TT^T = T^T T=I$$
+\end{definition}
+
+\begin{theorem}
+Let $V$ be a finite-dimensional inner product vector space with $T:V \to V$. Then, the following are equivalent:
+\begin{enumerate}
+\item $TT^\star = T^\star T=I$ (That is, $T$ is unitary)
+\item $\inner{T(x), T(y)} = \inner{x,y} \quad \forall x,y, \in V$
+\item If $\beta$ is an orthonormal basis of V, then the set $T(\beta)$ is an orthonormal basis of $V$. 
+\item There exists on orthonormal basis $\beta$ of $V$ such that $T(\beta)$ is an orthonormal basis of $V$. 
+\item $||T(x)||=||x||, \quad \forall x \in V$. 
+\end{enumerate}
+\end{theorem}
+
+\section{The Spectral Theorem}
+
+\begin{remark}
+suppose $V = W_1 \oplus W_2 \oplus ... W_n$
+
+$t:V \to V$
+
+Each $W_1$ is $T$-invariant
+
+$v=w_1+w_2+...w_n$
+
+$E_i$ projects $v$ onto each $W_i$, 
+
+and then each $T_i$ maps each $w_i \in W_i$ to the appropriate place such that $\sum T_i(v) = T(v)$.
+
+\end{remark}
+
+\begin{definition}
+the \emph{spectrum} of an operator si the set of eigenvalues of an operattor. 
+\end{definition}
+
+\begin{theorem}
+\textbf{(The Spectral Theorem)}
+Let $T:V \to V$ be diagonalizable.
+
+$$V = E_{\lambda_1} \oplus E_{\lambda_2} \oplus ... \oplus E_{\lambda_k}$$
+
+In addition to the $E$s, Let $T_i$ be projections such that 
+$$ T = \lambda_1T_1 + \lambda_2T_2 + ... + \lambda_kT_k.$$
+
+note: $T:V \to V$ such that $v \mapsto w \in E_{\lambda_i}$.
+
+Moreover, if $T$ is normal, so is each $T_i$.
+
+\end{theorem}
+
+\end{document}

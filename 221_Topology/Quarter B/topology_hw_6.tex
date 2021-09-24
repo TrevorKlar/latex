@@ -1,0 +1,164 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\ }
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\inv}[1]{\overline{#1}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 6}%===============UPDATE THIS===============%
+\end{center}
+
+\begin{enumerate}
+
+\setcounter{enumi}{7}
+\item Does the Borsuk-Ulam Theorem hold for the torus? In other words, for every map $f:S^1\times S^1\to \R^2$ must there exist $(x,y)\in S^1\times S^1$ such that $f(x,y)=f(-x,-y)$?
+
+\answer No. Consider $f(x,y)=(\cos x, \sin x)$. This is clearly a map since it is constant with respect to $y$ and it is the inclusion map with respect to $x$, but $f$ never vanishes and is odd, so $f(x,y)\neq f(-x,-y)$ for all $(x,y)$. \qed
+
+\setcounter{enumi}{9}
+\item From the isomorphism $\pi_1\big((X\times Y),(x_0,y_0)\big)\approx \pi_1(X,x_0)\times \pi_1(Y,y_0)$ it follows that loops in $X\times	\{y_0\}$ and $\{x_0\times Y\}$ represent commuting elements of $\pi_1\big((X\times Y),(x_0,y_0)\big)$. Construct an explicit homotopy demonstrating this. 
+
+\answer Let 
+\begin{itemize}
+\item $\gamma=\big(\tilde{\gamma}(s),y_0\big)$, where $\tilde{\gamma}$ is a loop in $(X,x_0)$. 
+\item $\eta=\big(x_0,\tilde{\eta}(s)\big)$ where $\tilde{\eta}$ is a loop in $(Y,y_0)$. 
+\item For any loop $\alpha$ in any space, let $\omega_t\sqcdot\alpha$ denote a reparametrization of $\alpha$ which is constant for $s\in [0,t]$, then does $\alpha$ over the remaining $s$-values in $[0,1]$. Define $\alpha\sqcdot\omega_t$ similarly except do $\alpha$ first, then wait. 
+\end{itemize}
+Observe that 
+\begin{align*}
+\gamma\sqcdot\eta&=(\tilde{\gamma}\sqcdot\omega_{\sfrac{1}{2}}\,\,,\, \omega_{\sfrac{1}{2}}\sqcdot\tilde{\eta})\\
+\eta\sqcdot\gamma&=(\omega_{\sfrac{1}{2}}\sqcdot\tilde{\gamma}\,\,,\, \tilde{\eta}\sqcdot\omega_{\sfrac{1}{2}}),
+\end{align*}
+so 
+$$f_t=(\omega_{\sfrac{t}{2}}\sqcdot\tilde{\gamma}\sqcdot\omega_{1-\sfrac{t}{2}}\,\,,\, \omega_{1-\sfrac{t}{2}}\sqcdot\tilde{\eta}\sqcdot\omega_{\sfrac{t}{2}})$$
+is the desired homotopy. \qed
+
+\end{enumerate}
+\jpg{width=\textwidth}{hw6-p15-1}
+\begin{enumerate}
+\item[]
+\begin{proof}
+Let $\gamma$ be a loop based at $x_1$. Then 
+$$\gamma\xmapsto{\quad\beta_h\quad}h\sqcdot\gamma\sqcdot\inv{h}\xmapsto{\quad f_*\quad}f(h\sqcdot \gamma\sqcdot \inv{h})=fh\sqcdot f\gamma\sqcdot f\inv{h}$$
+and 
+$$\gamma\xmapsto{\quad f_*\quad} f\gamma \xmapsto{\quad\beta_{fh}\quad}fh\sqcdot f\gamma\sqcdot \overline{fh}=fh\sqcdot f\gamma\sqcdot f\inv{h},$$
+so the diagram commutes.
+\end{proof}
+
+\pagebreak
+\setcounter{enumi}{15}
+\item Show that there are no retractions $r:X\to A$ in the following cases:
+	\begin{enumerate}[label=(\alph*)]
+	\item $X=\R^3$ with $A$ any subspace homeomorphic to $S^1$. 
+	\begin{proof}
+	Suppose for contradiction there is a retraction $r:X\to A$, and let $\gamma$ be any loop in $A$, where $x_0$ denotes the basepoint. We know $\R^3$ is contractible, so by composing such a homotopy with $\gamma$ we can produce $f_t$, a straight-line homotopy in $\R^3$ from $\gamma$ to $x_0$. Then $r\circ f_t$ is a homotopy in $A$ from $\gamma$ to $x_0$, contradicting that $\pi_1(A)\neq0$. \qedwhitehere
+	\end{proof}
+	\item $X=S^1\times D^2$ with $A$ its boundary torus $S^1\times S^1$.
+	\begin{proof}
+	We know that $\pi_1(S^1\times S^1)=\Z\times\Z$, so any loop in $A$ is homotopic to a loop $(\omega_n, \gamma_m)$ for $n,m\in \Z$ which goes around the torus $n$ times in one direction and $m$ times in the the other.  Consider $(\omega_n, \gamma_m)\in X$, and note that $D^2$ is contractible, so there is a homotopy $f_t$ in $X$ between $(\omega_n, \gamma_m)$ and $(\omega_n, 0)$. Assuming a retraction $r:X\to A$ exists, we can compose $r\circ	f$ to find that $(\omega_n, \gamma_m)\simeq(\omega_n, x_0)$ in $A$, contradicting that $\pi_1(S^1\times S^1)\neq \Z\times 0$. \qedwhitehere
+	\end{proof}
+	\item $X=S^1\times D^2$ with $A$ the circle shown in the figure. 
+	\begin{proof}
+	We will use the fact that if $X$ retracts to $A$, then the inclusion map $A\hookrightarrow X$ induces an injection $\pi_1(A)\inj\pi_1(X)$ (and in fact, would have saved time by using it on parts (a) and (b) as well). Observe that the loop which traverses $A$ once is homotopic to $0$ in $X$ by the following homotopy: 
+	\jpg{width=0.8\textwidth}{hw6-p16c-1}
+	Thus $1\in\pi_1(A)\mapsto 0\in\pi_1(X)$, so the kernel is nontrivial, and the homomorphism is not injective. 
+	\qedwhitehere
+	\end{proof}
+	\item $X=D^2\wedgeprod D^2$ with $A$ its boundary $S^1\wedgeprod S^1$.
+	\begin{proof}
+	We know that $\pi_1(X)=0$ since $X$ is contractible and $\pi_1(A)$ is the free group on two generators, so any homomorphism from $\pi_1(A)\to\pi_1(X)$ fails to be injective since everything maps to zero. 
+	\end{proof}
+	\item $X$ a disk with two points on its boundary identified and $A$ its boundary $S^1\wedgeprod S^1$.
+	\begin{proof}
+	If $g,f$ are the generators of $\pi_1(A)$, then $g\inv{f}$ is a nonzero element in $\pi_1(A)$ which maps to $0\in \pi_1(X)$ under the homomorphism induced by the inclusion:
+	\jpg{width=0.5\textwidth}{hw6-p16e-1}
+	so the homomorphism is not injective. \qedwhitehere
+	\end{proof}
+	\item $X$ the M\"obius band and $A$ its boundary circle. 
+	\begin{proof}
+	I can't figure this out. $X$ deformation retracts to its central circle, so $\pi_1(X)=\Z$, but also $A$ is a circle, so $\pi_1(A)=\Z$ as well. I can't come up with any reason why $\iota^*$ would fail to be injective either, since we can't homotope a nontrivial loop in the boundary to a constant loop in $X$ in any obvious way. In fact, it seems to me that $\iota^*(n)=2n$, which \emph{is }injective. 
+	\end{proof}
+	\end{enumerate}
+
+\item Construct infinitely many nonhomotopic retractions $S^1\wedgeprod S^1\to S^1$. 
+
+\answer Denote points in $S^1\wedgeprod S^1$ by $\theta\in(0,4\pi)$, so that $(0,2\pi]$ represents a point in the first circle, $[2\pi,4\pi)$ represents a point in the second circle, and $2\pi$ is in both circles. Then define 
+\[
+r_n(\theta)=\begin{cases}
+\theta, &\theta \in (0,2\pi] \\
+n\theta, &\theta \in [2\pi,4\pi)
+\end{cases}
+\]
+where we make the usual identification in the codomain that $\theta\sim 2n\pi \,\,\forall n\in \N$. It is clear that these are nonhomotopic maps since they are loops in distinct equivalence classes of $\pi_1(S^1)$. 
+\item 
+Using Lemma 1.15, show that if a space $X$ is obtained from a path-connected subspace $A$ by attaching a cell $e^n$ with $n\geq 2$, then the inclusion $A\hookrightarrow X$ induces a surjection on $\pi_1$. Use this to show:
+	\begin{enumerate}
+	\item The wedge sum $S^1\wedgeprod S^2$ has fundamental group $\Z$. 
+	\item For a path-connected CW complex $X$ the inclusion map $X^1\hookrightarrow X$ of its 1-skeleton induces a surjection $\pi_1(X^1)\to \pi_1(X)$. [For the case that $X$ has infinitely many cels, see Proposition A.1 in the appendix.]
+	\end{enumerate}
+\begin{proof}Consider $X$ as the union of $A_\epsilon$ and $e^n_\epsilon$, which are $\epsilon$-neighborhoods of $A$ and $e^n$ respectively in $X$. Since $A,e^n$ are deformation retractions of $A_\epsilon, e^n_\epsilon$, it suffices to show that the property holds for those subspaces. 
+\jpg{width=0.8\textwidth}{hw6-p18-1}
+For path-connected spaces, we know that $\pi_1$ is independent of base point, and $A$ and $e^n$ are both path-connected, which means $X$ is as well. Thus \Wlog{} we can suppose the basepoint $x_0\in(A_\epsilon\cap e^n_\epsilon)$. Given any loop $f$ in $X$, we can use Lemma 1.15 to write it as $f=\left(\bigsqcdot_{i=1}^n \gamma_i\right)$, where each $\gamma_i$ is in $A_\epsilon$ or $e^n_\epsilon$. Let 
+$$E=\{i:\gamma_i\in e^n_\epsilon\}.$$
+Since $e^n_\epsilon$ is contractible, then for each ${\gamma_i}$ such that ${i\in E}$, $\gamma_i\simeq\id$, so 
+$$f=\left(
+%\overset{n}{\underset{i=1}{\bigsqcdot}}
+\bigsqcdot_{i=1}^n
+\gamma_i\right)\simeq \left(\bigsqcdot_{i\in E^\complement} \gamma_i\right)$$
+which is a loop in $A_\epsilon$. 
+
+Thus for every loop in $X$, there is a homotopy equivalent loop in $A$, which means $\pi_1(X)$ is a subgroup of $\pi_1(A)$ (up to isomorphism). 
+\qedwhitehere 
+\end{proof}
+\begin{proof}(i)
+It suffices to show that the inclusion $S^1\hookrightarrow S^1\wedgeprod S^2$ induces an injective homomorphism $\pi_1(S^1)\to\pi_1(S^1\wedgeprod S^2)$, since it is already surjective by above. For any loop $\gamma\in S^1$ such that $\gamma\not\simeq c$ where $c$ is the constant loop, consider $\gamma\in (S^1\wedgeprod S^2)$. Call the intersection point of the wedge $x_0$, and \Wlog{} suppose $x_0$ is the basepoint. Suppose there is a homotopy $f_t$ of loops in $(S^1\wedgeprod S^2)$ such that $f_0=\gamma$ and $f_1=c$.  Since any loop with points in $S^1-\{x_0\}$ and $S^2-\{x_0\}$ must pass through $\{x_0\}$, then at every time $t$, $f_t$ is a concatenation of loops in $S^1$ with loops in $S^2$. Then we can write $F$ as a concatenation of homotopies 
+$$f_t=\left(\bigsqcdot_{i=1}^n f_{i,t}\right). $$
+Since $f_1=c$, then $f_{i,1}=c$ for all $i$, which means that if $f_{j,0}$ is any of the loops in $S^1$, then $f_{j,t}$ is a homotopy between that loop and $c$ ion $S^1$, contradicting that $\gamma\not\simeq c$. \qedwhitehere
+\end{proof}
+\begin{proof}(ii)
+Inductively, we can see that 
+$$\pi_1(X^1)\surj \pi_1(X^2)$$ 
+since $X^2$ is exactly $X^1$ with 2-cells attached, and 
+$$\pi_1(X^1)\surj \pi_1(X^n)\implies \pi_1(X^1)\surj \pi_1(X^{n+1})$$ 
+since $X^n$ is exactly $X^{n+1}$ with $(n+1)$-cells attached. Thus the map is surjective for finite-dimensional CW complexes. 
+
+Proposition A.1 shows that a compact subspace of a CW complex is contained in a finite subcomplex. This means that for an arbitrary curve $\gamma\in X^\infty$, the image of the curve is compact since $I$ is compact, so it is contained in $X^n$ for some $n$. Thus there is some $\gamma'\in X^n$ with $\gamma'\simeq\gamma	$ and we are done. 
+\end{proof}
+\end{enumerate}
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\item[] None for this homework.
+\end{enumerate}
+\end{document}
+
+
+

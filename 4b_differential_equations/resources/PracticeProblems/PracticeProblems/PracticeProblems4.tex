@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Practice Problems 4}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+Practice problems are for your own benefit. You won't turn them in or have them graded, but I have the expectation that you have done these when I write my tests. You can check answers with a TA, in Math Lab, or with the professor.
+
+\begin{enumerate}
+
+ \item Work through the details of our in-class derivation of the logistic equation.
+
+ \item A Chipotle sofritas burrito's temperature will change at a rate of 10\% of the difference between its temperature and the temperature of its surrounding per minute.
+ 
+ Such a burrito is placed in an oven, which is also at $70^\circ$F initially, but then the temperature of the oven increases by $20^\circ$F per minute for the first 10 minutes, then remains at a constant temperature of $270^\circ$F for an additional 10 minutes. After this, the burrito is taken out of the oven, and left on the counter in a $70^\circ$ room for 5 minutes to cool.
+ \begin{enumerate}
+  \item Write down a differential equation modeling the burrito's temperature.
+  \item Along what interval does the existence and uniqueness theorem guarantee that there a unique solution to the initial value problem in which the burrito's initial temperature is $50^\circ$F?
+  \item If the burrito's initial temperature is $50^\circ$, find the burrito's final temperature, and sketch a graph of the burrito's temperature as a function of time.
+ \end{enumerate}
+  
+  
+  \item Consider the differential equation $x\frac{dy}{dx}=2y$. Consider solutions of the form $y=Cx^2$ and variations as possible solutions (there may be others!). Is there one, more than one, or no solution(s) with the following initial conditions:
+ \be
+  \item $y(0)=1$
+  \item $y(0)=0$
+  \item $y(-1)=1$
+ \ee
+ 
+ \item On what interval can we be sure there is a unique solution to the initial value problem
+ $$y'=\sqrt x+\frac{y}{x-3},\quad y(1)=1$$
+ 
+ \item On what interval can we be sure there is a unique solution to the initial value problem
+ $$y'=x^{2/3}+\frac{y}{x-3},\quad y(1)=1$$
+ 
+ \item Solve the ODE $y'=\sqrt{x+y+1}$ using the substitution $v=x+y+1$.
+ 
+ \item Solve the ODE by reducing the order: $xy''=y'$ with $v=y'$, $\frac{dv}{dx}=y''$.
+ 
+ \item Solve the ODE by reducing the order: $y''=y(y')^3$ with $v=y'$, $\frac{dv}{dy}v=y''$.
+ 
+ \item Solve the ODE by noticing that it is exact: $2x+3y+(3x+2y)y'=0$.
+ 
+ \item Come up with a new example of an exact ODE.
+ 
+ \end{enumerate}
+
+\end{document}

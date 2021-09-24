@@ -1,0 +1,156 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 550 \linebreak
+Homework 8}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}\setcounter{enumi}{1}
+	\item Let $C$ be the intersection of the sphere $x^2+y^2+z^2=1$ and the plane $x+y+z=0$, oriented counterclockwise as viewed from above the $xy$-plane. Use Stokes' Theorem to evaluate 
+	$$\int_Cz^3\dx.$$
+	\textbf{Answer} Let $\tilde{C}$ be the part of the given plane which is bounded by $C$. Then since $C=\del\tilde{C}$, 
+	$$\int_C z^3\dx=\int_{\tilde{C}}\der(z^3\dx)=\int_{\tilde{C}}3z^2\dz\wedge\dx=\int_{\tilde{C}}-3z^2\dx\wedge\dz$$
+	%Now, if I could only find a freaking parameterization for the hemisphere or the disc, I would pull it back and integrate! But I can't think of one...
+	Now we parameterize the disc $\tilde{C}$. Let 
+	\[g(r,\theta)=\left(
+	\begin{array}{c}
+	  ar\cos\theta+abr\sin\theta,\\
+	  ar\cos\theta-abr\sin\theta,\\
+	  -2ar\cos\theta
+	\end{array}\right), \text{ where }a=\frac{1}{\sqrt{2}}, \, \, b=\frac{1}{\sqrt{3}}\]
+	To see that $g$ parameterizes $\tilde{C}$\footnote{In checking my work afterwards, I realized that my parameterization for $g_2$ has the wrong sign. This changes everything, so the rest of the work is based on a faulty parameterization. Have mercy on my soul!}, first note that the boundary $C$ is can be found by solving the system of equations, and one will find the solution set is given by $2x^2+2xy+2y^2=1$, which is an ellipse oriented diagonally. Now Observe that $g_1$ and $g_2$ are given by rotation $\rho_{\pi/4}$ composed with the parameterization in polar coordinates for an ellipse with half-width 1 and half-height $1/\sqrt{3}$:
+	\[\left[\begin{array}{c}
+	g_1\\g_2
+	\end{array}\right]
+	=
+	\frac{1}{\sqrt{2}}\left[\begin{array}{cc}
+	1&1\\
+	-1&1
+	\end{array}\right]
+	\left[\begin{array}{c}
+	r\cos\theta\\
+	\frac{r}{\sqrt{3}}\sin\theta
+  \end{array}\right]		
+	\]
+	and $g_3$ is given by $-g_1-g_2$. Now that we have a parameterization of $\tilde{C}$, we calculate the pullback.
+	\[\begin{array}{rcl}
+		\int_C z^3\dx&=&\int_{\tilde{C}}-3z^2\dx\wedge\dz\\
+		&=&\int_{\preimage{g}{\tilde{C}}}g^*(-3z^2)\dx\wedge\dz\\
+	\end{array}\]
+	To compute the pullback, we calculate
+		\[\begin{array}{rcl}
+			g^*(-3z^2)&=&-6r^2\cos^2\theta\\
+			g^*{\dx}&=&(a\cos\theta+ab\sin\theta)\der r+(-ar\sin\theta+abr\cos\theta)\der\theta\\
+			g^*{\dz}&=&(a\cos\theta-ab\sin\theta)\der r+(-ar\sin\theta-abr\cos\theta)\der\theta\\
+		\end{array}	\]
+		Thus after quite some simplifying we find that 
+		$$g^*(-3z^2)\dx\wedge\dz=4\sqrt{3}r^3\cos^2\theta\der r \wedge\der\theta.$$
+		Then we integrate and obtain $\int_0^{2\pi}\int_0^1 4\sqrt{3}r^3\cos^2\theta\der r\der\theta=\sqrt3\pi$. \qed
+	
+	\item Show that 
+	$$\omega = \frac{x\dy\wedge\dz-y\dx\wedge\dz+z\dx\wedge\dy}{(x^2+y^2+z^2)^{3/2}}$$
+	is closed, but not exact. 
+	\begin{proof}
+		(Closed) To reduce notation, let $\rho^2=x^2+y^2+z^2$. Then 
+		\[\begin{array}{rcl}
+			\der\omega&=&\der({x}{\rho	^{-3}}\dy\wedge\dz)-\der({y}{\rho	^{-3}}\dx\wedge\dz)+\der({z}{\rho	^{-3}}\dx\wedge\dy)\\
+\\			&=&\phantom{+}(-2x^2+z^2+y^2)\rho^{-5} \,\dx\wedge\dy\wedge\dz\\
+			&&{+}(+2y^2-x^2-z^2)\rho^{-5} \,\dy\wedge\dx\wedge\dz\\
+			&&{+}(-2z^2+y^2+x^2)\rho^{-5} \,\dz\wedge\dx\wedge\dy\\
+			\\
+			&=&\phantom{+}(-2x^2+z^2+y^2)\rho^{-5} \,\dx\wedge\dy\wedge\dz\\
+			&&{-}(+2y^2-x^2-z^2)\rho^{-5} \,\dx\wedge\dy\wedge\dz\\
+			&&{+}(-2z^2+y^2+x^2)\rho^{-5} \,\dx\wedge\dy\wedge\dz\\
+\\			&=&0
+		\end{array}\]
+	\end{proof}
+	\begin{proof}
+		(Not exact) Suppose for contradiction that $\omega$ is exact, and write $\omega=\der\eta$. Let $M$ be any compact manifold with $\del M=\emptyset$. Then since Stokes' Thm gives $\int_M\der\eta=\int_{\del M}\eta$, then 
+		\[
+		%\begin{array}{rcl}
+			\int_M\omega=0.
+		%\end{array}
+		\]
+		Now, $S^2$ is such a manifold, but we will show that $\int_{S^2}\omega\neq0$. Observe that 
+		$$g(\theta, \phi)=(\cos\theta\sin\phi, \sin\theta\sin\phi, \cos\phi)$$ is a parameterization of $S^2$, and also that on $S^2$, $\omega$ is equivalent to $(x\dy\wedge\dz-y\dx\wedge\dz+z\dx\wedge\dy)$. So, 
+		\[\begin{array}{rcl}
+		  \int_{S^2}\omega &=& \int\limits_{\preimage{g}{S^2}}g^*\omega\\
+		  &=& \int g^*(x\dy\wedge\dz-y\dx\wedge\dz+z\dx\wedge\dy)
+		\end{array}\]
+		To compute this, we first calculate
+		\[\begin{array}{rcl}
+			g^*{\dx}&=&-\sin\theta\sin\phi\der\theta+\cos\theta\cos\phi\der\phi\\
+			g^*{\dy}&=&\phantom{-}\cos\theta\sin\phi\der\theta+\sin\theta\cos\phi\der\phi\\
+			g^*{\dz}&=&-\sin\phi\der\phi			
+		\end{array}	\]
+		Thus, 
+		\[\begin{array}{rcl}
+			\int_{S^2}\omega &=& \int g^*(x\dy\wedge\dz-y\dx\wedge\dz+z\dx\wedge\dy)\\
+			&=&\iint\big[-\cos^2\theta\sin^3\phi-\sin^2\theta\sin^3\phi+\cos\phi(-\cos^2\theta\sin\phi\cos\phi-\sin^2\theta\sin\phi\cos\phi)\big]\der\theta\der\phi\\
+			&&\text{(Pythagorean identity 3 times)}\phantom{\int\
+			limits^{2}_{2}}\\
+			&=&\int\limits_0^{2\pi}\der\theta\int\limits_0^{\pi}-\sin\phi\der\phi\\
+			&=&4\pi
+		\end{array}\]
+		This contradicts our assumption that $\omega$ is exact, so we are done. 
+	\end{proof}
+	
+	\item Show that Stokes' Theorem is false if $M$ is not compact. 
+	\begin{proof}
+		Let $M=\R^2$ and $\omega=x\dy$, so $\del M=\emptyset$ and $\der\omega=\dx\wedge\dy$. Then Stokes' Theorem should say that 
+		$$\int\limits_{\R^2}\dx\dy=\int\limits_\emptyset x\dy,$$
+		but $\int\limits_{\R^2}\dx\dy=\infty$ (that is, the integral diverges) and $\int\limits_\emptyset x\dy=0$.
+	\end{proof}
+	
+	\item Let $M$ be a compact $k$-manifold without boundary. Show that $\int_M\der\omega=0$ for all $\omega \in \Omega^{k-1}(M)$. Give a counterexample if $M$ is not compact. 
+	\begin{proof}
+		Since $M$ is compact, it can be parameterized as a $k$-manifold with boundary. To see this, let $\{g_\alpha\}_{\alpha\in\Gamma}$ be a parameterization of $M$. Since $M$ is compact, there is a finite subcollection $\{g_i\}_{i\in1,\dots, N}$ which parameterizes $M$. Thus, there is a least element in the set $\{\inf \{x_k : (x_1, \dots, x_k)\in U_i\}: \forall i\}$ where each $g_i:U_i\to M$. Call this number $\beta$. Then compose each $g_i$ with the translation $\tau_\beta(x_1, \dots, x_k)=(x_1, \dots, x_k+\abs{\beta})$. Now we have a parameterization where all $U_i\subseteq H^k$, so $M$ is a manifold with boundary. 
+		
+		Thus $M$ and $\omega$ satisfy all the criteria for Stokes' Theorem, so 
+		$$\int_M\der\omega=\int_{\del M}\omega=\int_\emptyset\omega=0.$$
+		See problem 4 for the requested counterexample. 
+	\end{proof}
+	
+	\item Suppose that $C$ is a compact 2-dimensional manifold with boundary in $\R^2$, and assume $(0,0)\not\in\del C$. Let $\omega=\frac{-y}{x^2+y^2}\dx+\frac{x}{x^2+y^2}\dy$. Prove that
+	\[\int_{\del C}\omega = 
+	\begin{cases}
+		0 & \text{if } (0,0)\in C,\\ 
+		2\pi & \text{if } (0,0)\not\in C,\\
+	\end{cases}\]
+	
+\end{enumerate}
+\end{document}

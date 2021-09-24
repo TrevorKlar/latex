@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Graded Problem 6}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+\begin{enumerate}
+
+ \item Consider a 50 kg mass on a spring with spring constant 800 N/m.
+ \be
+  \item What damping constant would the shock absorber need to be critically damped (include units)?
+  \item Suppose the system is damped using the shock absorber and damping constant from part (a). The mass starts at rest, but a driving force of $F(t)=70\sin(3t)$ is applied to mass. Find the position function for the mass.
+  \item In your solution to part (b), what is the frequency and amplitude of the steady-state oscillation (i.e. of the oscillation that will persist as $t\rightarrow\infty$)?
+ \ee
+ 
+ \item Look back at the fox and mouse problem that we set up in class.
+  \be
+   \item Use Excel or some other program to get more specific information of what happens to the mouse-fox populations if there are initially $2000$ mice and $10$ foxes. Use an appropriate value for $\Delta t$.
+   \item Give a visual representation of your numerical solutions.
+   \item (Bonus) For an analytic approach, find the ``slope'' $\frac{dF}{dM}$ as an expression in $F$ and $M$ using the chain rule $\frac{dF}{dM}\frac{dM}{dt}=\frac{dF}{dt}$. Use separation of variables to find an implicit solution relating $F$ and $M$. (Do not try to solve for $F$.) Use \url{http://www.desmos.com} to graph the implicit solution with the initial values from part (a) and sketch the result. Write a sentence explaining how the graph you obtain here is different from the one obtained from the numerical approach, and why this happened.
+  \ee
+\end{enumerate}
+
+
+
+\end{document}

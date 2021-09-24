@@ -1,0 +1,99 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{mathtools}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201B - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Winter 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Final Exam}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+
+\item Let $X$ be a nonempty topological space and let $\{\mu_n\}_{n=1}^\infty$ be a sequence of Borel-regular measures on $X$. Assume for any $A\subset X$ the sequence $\mu_n(A)\decreasesto\mu(A)$. Prove that if $\mu_1(X)<\infty$, then $\mu$ is a measure on $X$. 
+
+\begin{proof}
+(Null empty set) Observe that 
+$$\mu(\emptyset)=\lim_{n\to\infty}\mu_n(\emptyset)=\lim_{n\to\infty}0=0.$$
+
+(Monotonicity and subadditivity)
+Suppose that $A\subset\bigcup_{i=1}^\infty A_i$. Letting 
+\begin{align*}
+B_1&=A_1 \\
+B_n&=A_{n}\setminus B_{n-1}
+\end{align*} 
+gives $A\subset\bigcup_{i=1}^\infty A_i=\coprod_{i=1}^\infty B_i$. Thus since every $B_i\subseteq A_i$, then $\mu_n(B_i)\leq\mu_n(A_i)$ for all $n$, so $\mu(B_i)\leq\mu(A_i)$, which means it suffices to show that $\mu(A)\leq\sum_{i=1}^\infty \mu(B_i)$. 
+
+%If $\sum_{i=1}^\infty \mu(B_i)=\infty$ then we're done, since we know that $\infty > \mu_1(X) \geq \mu_1(A) \geq \mu(A)$. So assume $\sum_{i=1}^\infty \mu(B_i)<\infty$. 
+Observe that 
+\begin{align*}
+\mu(A) &=\lim_{n\to\infty}\mu_n(A)\\
+&\leq \lim_{n\to\infty}\sum_{i=1}^\infty \mu_n (B_i)\\
+&= \limsup_{n\to\infty}\sum_{i=1}^\infty \mu_n (B_i)\\
+&
+\begin{rcases*}
+\ds = \limsup_{n\to\infty}\int_{x=1}^\infty \mu_n (B_{\floor{x}}) \dx\\
+\ds\leq \int_{x=1}^\infty \limsup_{n\to\infty} \mu_n (B_{\floor{x}}) \dx \quad 
+\end{rcases*}\text{By reverse Fatou's lemma}\\
+&=\int_{x=1}^\infty \mu (B_{\floor{x}}) \dx \\
+&=\sum_{i=1}^\infty \mu(B_i).
+\end{align*}
+To finish the proof, we will justify the above use of reverse Fatou's lemma. 
+
+\pagebreak
+Observe that $\mu_n (B_{\floor{x}})$ is a countable sequence of real-valued measurable functions of $x$, and $\mu_1 (B_{\floor{x}})$ dominates the sequence since $\mu_n(B)\leq\mu_1(B)$ for all sets $B$, and 
+\begin{align*}
+\int_1^\infty \mu_1 (B_{\floor{x}}) \dx &= \sum_{i=1}^\infty \mu_1(B_i) \\
+&\begin{rcases*}
+\ds= \sum_{i=1}^\infty \mu_1(B_i) \\
+\ds=\mu_1\bigg(\bigcup_{i=1}^\infty B_i\bigg) \quad 
+\end{rcases*}\text{Since }B_i\text{ sets are disjoint}\\
+&\leq\mu_1 (X)\\
+&<\infty.
+\end{align*}
+Thus $\mu_1 (B_{\floor{x}})$ is $\dx$-summable, and the conditions of reverse Fatou's lemma are satisfied.
+\end{proof}
+
+
+\item Let $f:\R\to \R$ be Lebesgue-measurable. Prove that there exists a Borel-measurable function $g:\R\to\R$ such that $f(x)=g(x)$ Lebesgue-$a.e.$ in $\R$. 
+
+\begin{proof}
+Approximate $f$ by simple functions as follows. Let $A_k^n=[\frac{n}{2^k}, \frac{n+1}{2^k}]$ 
+\end{proof}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,213 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+%================Start of document==============
+
+\title{Modern Algebra - Castella, Winter 2020}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevorklar@math.ucsb.edu}{trevorklar@math.ucsb.edu}. If you could include the page number, that would be helpful. 
+\end{highlight}
+
+\addcontentsline{toc}{section}{Introduction}
+\section*{Rings - The Boring Stuff}
+
+
+\begin{definition*}\mbox{}
+\begin{enumerate}
+\item A \emph{ring} is a set $R$ together with $\times$, $+$, such that
+	\begin{itemize}
+	\item $(R,+)$ is an \emph{abelian} group,
+	\item $\times$ is associative, and 
+	\item $\times$ distributes over $+$. 
+	\end{itemize}
+\item $R$ is \emph{commutative} if multiplication is commutative. 
+\item $R$ is a \emph{ring with unity} if it has a multiplicative identity. We will assume all rings have a 1	 unless otherwise specified. 
+\item A ring with unity $R$ is a \emph{division ring} if every nonzero element has a multiplicative inverse.
+\item $R$ is a \emph{field} if it is a commutative division ring. 
+\end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+Let R be a ring. 
+\begin{enumerate}
+\item $a,b\in R$ are \emph{zero divisors} if $a,b\neq0$ and either $ab = 0$ or $ba = 0$. 
+\item $u,v \in R$ are \emph{units} if $u v = vu = 1$. The set of units in R is denoted $R^\times$. 
+\end{enumerate}
+\end{definition*}
+
+\begin{remark*}
+$(R^\times, \times)$ is a group. 
+\end{remark*}
+
+
+\begin{highlight}
+\begin{definition*}
+Let $R$ be a ring. $I\subset R$ is an \emph{ideal} of $R$ (denoted $I\ideal R$) if for any $r\in R$, $i\in I$, 
+$$ri\in I,  \text{ and }  ir\in I.$$
+\end{definition*}
+\end{highlight}
+\begin{remark*}
+We define one-sided ideals as you would expect, though we will mostly only consider two-sided ideals. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+For every $I\properideal R$, there exists a maximal ideal $J\properideal R$ such that $I\subset J$. 
+\end{theorem*}
+\end{highlight}
+
+\section*{Operations on Ideals}
+
+\begin{proposition*}(Chinese Remainder Theorem)
+Let $R$ be a rinf, and $a_1, \dots a_n$ ideals in $R$. If $a_i$ and $a_j$ are coprime for all $i\neq j $, then 
+$$\prod_{i=1}^n a_i = \bigcap_{i=1}^n a_i$$
+and the natural map $\phi:R\to R/a_1 \times \dots \times R/a_n$ where $x\mapsto (x\mod a_1, \dots, a\mod a_n)$ induces a ring isomorphism 
+$$R/\prod_{i=1}^n a_i \cong R/a_1 \times \dots \times R/a_n. $$
+
+(proof in photos) 
+\end{proposition*}
+
+\begin{corollary}
+If $m=p_1^{r_1}\dots p_t^{r_t}$ is the prime factorization of some $m\in\Z_{>0}$, we have 
+$$\quotient {\Z }{m\Z} \cong \quotient {\Z }{p_1^{r_1}} \times \dots \times \quotient {\Z }{p_t^{r_t}}$$ as rings. 
+\end{corollary}
+
+\begin{highlight}
+\begin{definition*}
+\begin{enumerate}
+\item If $a$ and $b$ are ideals in a ring $R$, the \emph{ideal quotient} is 
+$$(a:b) = \{x\in R : xb\subset a\}$$
+
+\item In particular, the \emph{annihilator} of $b$ is 
+$$\text{Ann}(b) := (0:b) = \{x\in R : xb=0\}$$
+
+\end{enumerate}
+\end{definition*}
+\end{highlight}
+
+examples in photos
+
+\begin{highlight}
+\begin{definition*}
+If $a$ is a ideal of $R$, the \emph{radical }of $a$ is 
+$$\text{rad}(a):= \{x \in R : x^n\in a \text{ for some }n>0\}$$
+\end{definition*}
+
+note: in photos
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+\begin{enumerate}
+\item $\rad(a)\supset a$
+\item $\rad(\rad(a)) = \rad(a)$
+\item $\rad (ab) = \rad (a\cap b) = \rad(a)\cap \rad(b)$
+\item $\rad(a) = (1)$ iff $a=(1)$
+\item $\rad (a+b) = \rad(\rad(a)+\rad(b))$
+\item if $\wp$ is prime, then $\rad(\wp^n)=\wp \quad \forall n>0$.
+\end{enumerate}
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+$\rad(a)$ is the intersection of the prime ideals containing $a$. 
+\end{proposition*}
+\end{highlight}
+\begin{proof}
+in photos
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Graded Problem 2}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+\begin{enumerate}
+
+  \item In physics, one can show that the air pressure $P$ at altitude $h$ is proportional to the integral of $P(y)$ for $y>h$. That is 
+  $$P(h)=k\int_h^\infty P(y)\;dy$$
+  \begin{enumerate}
+   \item Take the derivative of both sides of the equation above to get a differential equation (rather than an integral equation). You will need to use the Fundamental Theorem of Calculus, Part 1.
+   \item If the air pressure at sea level is $100$ kPa, and the top of Mt. Whitney, which is at elevation 4000m, is $60$ kPa, what is the air pressure at the top of Annapurna, which is at elevation 8000m?
+  \end{enumerate}
+  
+  \item We will use our model from class in which a person's liver can remove caffeine from the blood at a rate of 20\% per hour. Caixing started with no caffeine in his blood. For four hours, he drank coffee at continuous rate of 1 cup per hour (there are 100 mg of caffeine in one cup), and then he stopped drinking caffeine.
+ \begin{enumerate}
+  \item How much caffeine do you predict would be in Caixing's blood three hours after he stopped drinking coffee (so, seven hours after he started)?
+  \item Sketch a graph of the amount of caffeine in Caixing's blood as a function of time.
+ \end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,80 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis}} 
+\rhead{\textsc{Harutyunyan, Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 1}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{definition*}
+Let $\Sigma$ be a subset of $(X,d)$. We say $\Sigma$ is \textbf{bounded} if there exists $x_0\in X$ and $0<r<\infty$ such that $\Sigma\subset B_r(x_0)$. 
+\end{definition*}
+
+\begin{enumerate}
+\item Prove that $\Sigma$ is bounded if and only if there exists $L>0$ such that
+$$d(x,x')\leq L$$
+for any $x, x'\in\Sigma$.
+
+\item Suppose $\Sigma$ is bounded and $A\subset\Sigma$. 
+\begin{enumerate}
+\item Prove that $A$ is bounded. 
+\end{enumerate}
+\begin{definition*}
+Define $\diam{\Sigma} = \sup\limits_{\delta, \delta'\in\Sigma} d(\delta, \delta')$.
+\end{definition*}
+\begin{enumerate}[resume]
+\item Prove that $\diam{A}\leq\diam{\Sigma}$. 
+\end{enumerate}
+
+\item Let $(X,d)$ be a metric space, and let 
+$$d_p\big((x,y),(x',y')\big)=d(x,x')+d(y,y').$$
+\begin{enumerate}
+\item Show that $d_p$ is a metric on $X^2$. 
+\item Prove that $d_p:X^2\times X^2 \to (\R, \text{MKM})$ is continuous. 
+\end{enumerate}
+
+\item Give examples to show that if $B_r(x)=B_s(y)$, it need not be true that $r=s$ or $x=y$. 
+\end{enumerate}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

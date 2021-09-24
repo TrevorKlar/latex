@@ -1,0 +1,58 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Trevor Klar\\
+Math 320 - Foundations of Higher Mathematics}
+\title{Test 1 Review Problems}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+\maketitle
+
+\begin{problem}{2.21}
+Negate the following: for $n \in \Z$, $x \in \R$, $(\forall n >0) (\exists x > 0)(x<1/n)$. 
+\end{problem}
+\begin{proof}
+for $n \in \Z$, $x \in \R$, $(\exists n > 0)(\forall x >0 ) (x \geq 1/n)$.
+
+There exists some positive integer $n$ such that for any positive real number $x$, $(x \geq 1/n)$. The original statement is true, and the negation is false. 
+\end{proof}
+
+\begin{problem}{3.42}
+Use induction on $n$ to show that the sum of $n$ numbers is independent of the order of addition. 
+\end{problem}
+
+\begin{proof}
+For $n=2$ summands, addition is independent of order by the commutative property.
+
+Suppose that, for  $n \geq 3$, it is true that for all $k<n$, the sum of $k$ numbers is independent of order. Any sum of $n$ numbers (where $a_i$ denotes the $i\ts{th}$ summand) can be broken up into a sum of two sums: $(a_1 + a_2 + \ldots +a_{n-1}) + a_n$. Since this first part is a sum of fewer than $n$ numbers, it is equal to some $C$ regardless of the order of summation, therefore, $$(a_1 + a_2 + \ldots +a_{n-1}) + a_n = C + a_n$$.
+
+And we now have a sum of two numbers, $C$, and $a_n$, therefore $C + a_n$ is equal to some other number $D$ regardless of the order of summation. 
+
+$$\sum_{i=1}^n a_i = C + a_n\,, $$ and since $C + a_n$ is a sum of 2 numbers, that sum is independent of order as well. Therefore, the sum of $n$ numbers is independent of the order of addition by strong induction. 
+\end{proof}
+
+\begin{problem}{}
+
+\end{problem}
+
+
+\end{document}

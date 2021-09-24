@@ -1,0 +1,192 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{3B - FTC and $u$-sub}} %=================UPDATE THIS=================%
+\rhead{\textsc{Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{1pt}
+%
+\renewcommand{\footrulewidth}{1pt}
+\lfoot{
+%\begin{tabular}{rll}
+Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+Math Lab: \, W 12-2 \, SH 1607
+%\end{tabular}
+}
+\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+3B - Integral Calculus \\
+Week 2 %=================UPDATE THIS=================%
+\end{center}
+
+\hrule
+
+\begin{comment}
+\begin{center}
+\begin{tabular}{|rl|}
+\hline
+\multicolumn{2}{|c|}{Contact Information} \\
+\hline
+\bf{TA's name:} & Trevor Klar \\
+\bf{Email:} & trevorklar@math.ucsb.edu \\
+\bf{Office hours:} & Mondays 2:00-3:00 \\
+\bf{Math Lab hours:} & Wednesdays 12:00-2:00 \\
+\bf{Office:} & South Hall 6431x \\
+\hline
+\end{tabular}
+\end{center}
+\end{comment}
+
+ %=================START OF WORKSHEET=================%
+
+\noindent\textbf{Fundamental Theorem of Calculus}
+
+\begin{itemize}
+
+\item Fundamental Theorem of Calculus Part 1: If $g(x) = \ds \int_{a}^x f(t) \, dt$ then \hrulefill %$g'(x) = f(x)$. 
+
+\item BE CAREFUL: If $\ds h(x) = \int^{\sin(x)}_1 4x \, dx $ then $h'(x) = $ \underline{\hspace{3cm}}
+
+\item Fundamental Theorem of Calculus Part 2: If $F$ is an antiderivative of $f$, then $$\hspace{-1in}\ds \int_a^b f(x) \, dx = \text{\underline{\hspace{3cm}}}$$% F(a) - F(b)
+
+\item What's the difference between definite and indefinite integrals? \hrulefill 
+\\ \mbox{} \hrulefill
+%\\ \mbox{} \hrulefill
+
+\end{itemize}
+
+\begin{itemize}
+\item You Try!
+
+(1) $\ds \int_0^2 x(2 + x^2) \, dx$ \hspace{1.5in} (2) Find $h'(x)$ if $h(x) = \ds \int_0^{x^2} \sqrt{1+r^3} \, dr$
+
+%\vspace{1in}
+\vfill
+
+(3) $\ds\int \sqrt[3]{x} \, dx$
+
+\end{itemize}
+
+
+\noindent\textbf{$U$-Substitutions:}
+
+\begin{itemize}
+
+\item Strategy: (1) Choose $u$ to be \hrulefill \\
+(2) Find $\du$ and substitute. You might need to \hrulefill \\
+(3) Evaluate the integral. Then \hrulefill
+
+\item Example: $\ds \int \sec^2(10x)\tan^7(10x) \, dx$
+
+%\bigskip\bigskip\bigskip
+\vfill
+\end{itemize}
+
+\begin{itemize}
+\item You Try!
+
+(1) $\ds \int \dfrac{x}{x^2 + 1} \, dx$ \hspace{2in} (2) $\ds\int \tan(x) \, dx$
+
+%\bigskip\bigskip\bigskip
+\vfill
+
+\end{itemize}
+
+
+
+% Net Change Theorem: The integral of a rate of change is the net change $\ds \int_a^b F'(x) \, dx = F(b) - F(a)$
+
+
+
+
+
+
+
+
+\newpage
+
+
+\noindent\textbf{Definite Integrals W/ U-Substitutions:}
+
+
+\begin{itemize}
+
+\item Strategy: (1) Choose $u$. (2) Find $\du$ and substitute. (3) Change the bounds. (\hrulefill \\
+ %Plug in $x=a,b$ and find $u(a) and u(b)$.
+\underline{\hspace{3in}}) (4) Evaluate the definite integral.  
+
+
+\item Example: $\ds \int_{-\pi/40}^{\pi/40} \sec^2(10x)\tan^7(10x) \, dx$
+
+\vfill
+\end{itemize}
+
+\begin{itemize}
+\item You Try!
+
+(1) $\ds \int_0^{\pi} \sec^2(t/4) \, dt$ \hspace{2in} (2) $\ds \int_0^2 (x-1)^{25} \, dx$
+
+\vfill
+
+\end{itemize}
+
+
+\noindent\textbf{Integrals of Piecewise Functions and the Absolute Value Function:}
+
+\begin{itemize}
+
+\item Absolute value: $\ds |x| = \left\{ \begin{array}{cl} -x & x< 0 \\ x & x \geq 0 \end{array} \right. \text{   so   } \int_{-5}^5 |x| \, dx = $ \begin{tabular}{l}
+\\
+\underline{\hspace{2.5in}}
+\end{tabular}
+
+\bigskip
+
+\item Piecewise Functions (example): If $\ds f(x) = \left\{ \begin{array}{cl} -x+3 & x \leq -1 \\ x^2 + 3 & x > -1 \end{array} \right. \text{ then }$ 
+
+\medskip
+
+$\ds \int_{-2}^2 f(x) \, dx= $
+
+\vfill
+\end{itemize}
+
+\begin{itemize}
+\item You Try! $\ds \int_{-3}^4 |x^2 - 4| \, dx$
+
+\vfill
+
+
+\end{itemize}
+
+
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,68 @@
+\documentclass[epsf]{article}
+\usepackage{amsmath,amsthm,amsfonts,latexsym,amscd, framed}
+\usepackage{graphicx}
+
+\textwidth=6.0truein\hoffset=-.5truein
+\textheight=8.5truein\voffset=-.5truein
+
+\begin{document}
+%\maketitle
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\noi}{\noindent}
+\newcommand{\bs}{\bigskip}
+
+%%%%
+
+\vspace{-0.5 in}
+\noi NAME(S): \line(1,0){130} \hspace{.2in}TA (circle one): Elizabeth \ \ \ Christian 
+\vskip .2 in
+\hspace{.44 in} \line(1,0){130} \hspace{.2in}SECTION (circle one): 8AM \ 12PM\ 4PM \ 5PM 
+\vskip 1mm
+\hspace{3.9 in} 6PM\ \ 7PM
+
+
+
+\begin{center}
+{\Large Project \#3: First Order Linear Systems of DEs.\\
+\vskip 2mm
+Solutions Page}
+
+\vskip 4mm
+Feedback
+\vskip 2mm
+\begin{tabular}{| l | c |}
+\hline
+ & \\
+quality of mathematical ideas (7 pts) &  \hspace{2 cm}   \\
+ & \\
+\hline
+ & \\
+clarity of communication (3 pts) & \\
+ & \\
+\hline
+\end{tabular}
+\end{center}
+
+\vskip 2mm
+Please write your group or individual solution on this page.  Staple any additional work for your solutions on the back of this page to turn in during section on Wednesday, November 19th.  If you cannot attend section, get your solutions to your TAs mailbox in SH 6623 by 4:00pm that day.\\
+
+
+
+\noindent{\bf Problem 1} Let $A$ be a $2 \times 2$ matrix with real entries.  You may have conjectured from your pre-work that solutions to a linear system $\vec{\mathbf{ x}}' = A\vec{\mathbf{ x}}$ should be of the form $$ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t},$$ where $\vec{\bf v}\in \mathbb{R}^2$ is a constant vector and $\lambda$ is a scalar.  
+\vskip 2mm
+Show that if the solution takes the form $ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t}$, then $\lambda$ must be an eigenvalue of $A$ corresponding to the eigenvector $\vec{\bf v}$.  In other words, suppose your solution is of the form $ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t}$ where $\vec{\bf v}\in \mathbb{R}^2$ is a constant vector and $\lambda$ is a scalar, plug it into the DE and show that this will only be a solution if $\lambda$ is an eigenvalue of $A$ corresponding to the eigenvector $\vec{\bf v}$.
+
+
+\newpage
+
+\noindent{\bf Problem 2} (a) Use the claim from Problem 1 to find two solutions, $\vec{\bf x}_1(t)$ and $\vec{\bf x}_2(t)$, to the system
+$$\dot{\vec{\mathbf{ x}}} = \begin{bmatrix}\ \ 1 & 1 \cr -2 & 4  \end{bmatrix}\vec{\mathbf{x}}.$$ 
+\vskip 3in
+
+\noi (b) Show that \textit{any} linear combination of your two solutions, $\vec{\bf x}_1(t)$ and $\vec{\bf x}_2(t)$, will also be a solution to the system of equations.
+
+
+
+
+\end{document}
+

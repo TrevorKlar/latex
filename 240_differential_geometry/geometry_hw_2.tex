@@ -1,0 +1,109 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+\newcommand{\CP}{\C\mathbb{P}}
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+\newcommand{\id}{\text{id}}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{240 - Differential Geometry \\}} %=================UPDATE THIS=================%
+\rhead{\textsc{Dai, Fall 2019 \\ Trevor Klar}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 2}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $\pi;\C^{n+1}-\{0\}\to\C\mathbb{P}^n$ be the quotient map defined by 
+$$\pi(\vec{z})=\{w(z^1, \dots, z^n, z^{n+1}) | w\in\C\} = [z^1, \dots, z^{n+1}]=[\vec{z}].$$
+We will show that $\CP^n$ is a smooth compact topological manifold. First we will show that $\CP^n$ is locally Euclidean by producing a smooth atlas on it. Let $\tilde{U}_i=\{\vec{z}\in\C^{n+1}|z^i\neq0\}$, and let $U_i=\pi\left(\tilde{U}_i\right)$. So an element of $U_i\subset \CP^n$ is of the form $[z^1, \dots, z^i\neq0, \dots, z^{n+1}]$. Then we define a map $\tilde{\phi}_i:U_i\to\C^n$ by 
+$$\tilde{\phi}_i[\vec{z}]=\left(\frac{z^1}{z^i}, \dots, \hat{z}^i, \dots, \frac{z^{n+1}}{z^i} \right)_,$$
+where hat denotes a removed quantity. 
+We can see that $\tilde{\phi}_i$ is well-defined because taking $\tilde{\phi}(w\vec{z})$ just gives a multiple of $w\inv{w}$ in each coordinate. Finally we push forward the map to $\R^{2n}$ in the obvious way: let 
+$$\phi_i=\rho\circ\tilde{\phi}_i,$$ 
+where $\rho(x^1+iy^1, \dots, x^n+iy^n)=(x^1, y^1, \dots, x^n, y^n)$. 
+Now $\{\left(U_i,\phi_i\right)\}$ is an atlas on $\CP^n$. 
+To see this, observe that $\{U_i\}$ covers $C^{n+1}$ and each $\phi_i$ is continuous (since $z_i\neq0$) with continuous inverse $\inv{\tilde{\phi}}\circ\inv{\rho}$, where $\inv{\tilde{\phi}}_i:\C^n\to U_i$ is given by 
+$$\inv{\tilde{\phi}}_i(\vec{w})=\left[w^1, \dots, w^{i-1}, 1, w^{i+1},\dots, w^n\right],$$
+so $\CP^n$ is locally Euclidean. \qedwhite
+
+If $\pi$ is open, then we can show that $\CP^n$ is second countable and Hausdorff. Let $U\subset\CP^n$ be open, then $\pi(U)=\{\xi U | \xi \in \C\}$, so $\inv{\pi}(\pi(U))=\{\xi U | \xi \in \C\}$, which is open. Thus $\pi$ is open. Since $\R^{2n+2}\cong C^{n+1} \supset \left(\C^{n+1}-\{\vec{0}\}\right)$ and $\R^{2n+2}$ is second countable, then so is $\pi\left(\C^{n+1}-\{\vec{0}\}\right)=\CP^n$. 
+
+Now we show that $\CP^n$ is Hausdorff. To do this, let 
+$$R=\left\lbrace(\vec{z},\vec{w})  \vert \pi(\vec{z})=\pi(\vec{w})\right\rbrace,$$
+where $\vec{z},\vec{w} \in\left(\C^{n+1}-\{\vec{0}\}\right)$, and if $R$ is closed, then $\pi\left(\C^{n+1}-\{\vec{0}\}\right)=\CP^n$ is Hausdorff. Consider $(\vec{z},\vec{w})\in R$. Since $[\vec{z}]=[\vec{w}]$, then there exists some $\xi\in\C$ such that $\xi\vec{z}=\vec{w}$, that is, $z^iw^j=z^jw^i$ for each $i,j=1,\dots n+1$. Now let 
+$$f(\vec{z},\vec{w})=\sum_{1\leq i,j \leq n+1}\norm{w^iz^j-z^iw^j}^2$$
+and we find that $f$ is a continuous function which vanishes precisely on $R$. Thus since $\{0\}$ is closed, then so is $\inv{f}(\{0\})=R$ and $\CP^n$ is Hausdorff. \qedwhite
+
+\pagebreak
+The fact that $\pi$ is open also gives us that $\CP^n$ is compact. To see this, note that it is also continuous since $\inv{\pi}[\vec{z}]=[\vec{z}]$, where we think of $[\vec{z}]$ as an equivalence class on the left hand side and a set on the right hand side. This means that for an open subset of $\CP^n$, call it $U=\{[\vec{z}]| \vec{z}\in\Gamma\}$ for $\Gamma$ an indexing set, $\inv{\pi}(U)=\bigcup_\Gamma[\vec{z}]$. For simplicity, we can simply write $\inv{\pi}(U)=U$, with the understanding that $U\in\CP^n$ is a collection of equivalence classes and $U\in C^{n+1}-\{\vec{0}\}$ consists of all the elements of those equivalence classes. Now denote the box 
+$$Q_\C^{n+1}=\{(w^1, \dots, w^{n+1}) \quad|\quad \real{w^i}, \imaginary{w^i} \in [-1,1] \quad \forall i\in1, \dots n+1\},$$
+and observe that $Q_\C^{n+1}\subset \C^{n+1}-\{0\}$ is compact. 
+For any open cover $\arbcoll{U}$ of $\CP^n$, 
+$$\preimage{\pi}{\arbcoll{U}}=\arbcoll{U},$$
+which covers $Q_\C^{n+1}$. Since $Q_\C^{n+1}$ is compact, we can produce a finite subcover $\{U_{\alpha_i}\}_{i=1}^n$, and $\pi\left(\{U_{\alpha_i}\}_{i=1}^n\right)=\{U_{\alpha_i}\}_{i=1}^n$ which is open and covers $\CP^n$. To see this, let $[\vec{z}]\in\CP^n$ and observe that $[\vec{z}]=\frac{1}{\delta}[\vec{z}]\in\Q_\C^{n+1}$, where $\delta=\max_i(\abs{\real{z^i}}, \abs{\imaginary{z^i}})$. Thus $\{U_{\alpha_i}\}_{i=1}^n$ covers $\CP^n$, so it is compact. \qedwhite
+
+Thus we have shown that $\CP^n$ is a compact topological manifold. It only remains to be shown that it is a smooth manifold, that is, that the atlas we constructed is a smooth atlas. Let's check that two arbitrary charts $(U_i, \phi_i)$ and $(U_j, \phi_j)$ are compatible. Clearly $\phi_j\circ\inv{\phi_i}=\rho\circ\tilde{\phi}_j\circ\inv{\tilde{\phi}_i}\circ\inv{\rho}$ is smooth if and only if $\tilde{\phi}_j\circ\inv{\tilde{\phi}_i}$ is, so we will check the latter. 
+$$\tilde{\phi}_j\circ\inv{\tilde{\phi}_i} (z^1, \dots, z^n)= \left(\frac{z^1}{z^j},\dots,\widehat{z^j},\dots,\frac{z^{i-1}}{z^j}, \frac{1}{z^j}, \frac{z^{i+1}}{z^j} \dots, \frac{z^n}{z^j}\right),$$
+which is smooth since $z^j\neq0$ on $U_j$, and we are done. \qed
+
+
+\item Let $f:\R\to\R$ be defined by 
+$$f(x)=
+\begin{cases}
+1, &x\geq 0,\\
+0, &x<0.
+\end{cases}$$
+Consider the charts $(\R,\id)$ on the domain and $(B_\frac{1}{2}(1), \id), (B_\frac{1}{2}(0), \id)$ on the range. 
+\jpg{width=0.7\textwidth}{geo_hw2-2}
+For any $x\in\R$ in the domain of $f$, $f(x)=0,1$, so suppose $f(x)=1$. Then $(\R,\id)$ contains $x$ and $(B_\frac{1}{2}(1), \id)$ contains $f(x)$, and 
+\begin{align*}
+\id\left(\R\cap\preimage{f}{B_\frac{1}{2}(1)}\right) &= \left(\R\cap[0,\infty)\right)\\
+&= [0,\infty),
+\end{align*}
+and $\id\circ f\circ \id =f$ which is constantly $1$ on $[0,\infty)$, so it is smooth. Similarly, for $x$ such that $f(x)=0$, we can use the other chart which contains $0$ and we find that $\id\circ f\circ \id =f$ is constant in that case as well. \qedwhite
+
+However, $f$ is not a smooth function from $\R\to\R$, because for $x=0$ in the domain, there is no chart $(U,\phi)\ni x$ such that $f\circ\inv{\phi}$ is smooth because $f$ is discontinuous at 0 (the choice of chart for the range doesn't help with this). \qed
+
+\end{enumerate}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

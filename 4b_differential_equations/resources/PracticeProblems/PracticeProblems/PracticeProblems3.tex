@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Practice Problems 3}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+Practice problems are for your own benefit. You won?t turn them in or have them graded, but I have the expectation that you have done these when I write my tests. You can check answers with a TA, in Math Lab, or with the professor.
+
+\begin{enumerate}
+
+ \item Suppose that $y=G(x)$ is a particular solution to a differential equation of the form $y'=f(x)$. Check that $y=G(x)+C$ is as well.
+ 
+ \item Suppose that $y=G(x)$ is a particular solution to a differential equation of the form $y'=f(y)$. Check that $y=G(x+C)$ is as well.
+ 
+ \item Suppose that $y=G(x)$ is a particular solution to the differential equation of the form $y'=f(x)y$. Check that $y=CG(x)$ is as well.
+ 
+ \item A barrel of wine is shaped like a cylinder with a circular base of radius 30 cm, and height of 60 cm. It is filled to the top, and a tap with radius 1 cm is drilled into the bottom. How long does it take for the wine to drain out of the barrel?
+ 
+ \item You come across the barrel above, and it is empty. Can you say how long ago it was full? Explain your answer in terms of the existence and uniqueness theorem.
+ 
+ \item Find the general solution to $y'+xy=xe^{x^2/2}$.
+ \item This problem deals with Newton's Law of Burritos, a physical law discovered by Isaac Newton while he was eating at Chipotle\footnote{Like the story of an apple falling on his head, this account is probably apocryphal.}. The law states that ``the rate of change of a burrito's temperature is proportional to the difference between the temperature of its surroundings and its own temperature.'' The constant of proportionality depends on the size, ingredients, etc. of the burrito.
+
+\begin{enumerate}
+ \item Write a differential equation for this model. In what units are your variables, functions, and constants?
+% \item If the ambient temerpature is a constant $70^\circ$F, draw a phase line and slope field for the differential equation. Also state what the equlibrium solution(s) is/are and whether they are stable or unstable (you can let $k$ be any positive value you want; I just want a general picture).
+\item If the ambient temerpature is a constant $70^\circ$F, draw a phase line and slope field for the differential equation. Also state what the equlibrium solution(s) is/are and whether they are stable or unstable (you can use any constant of proportionality you want; I just want a general picture).
+ \item Assume that the ambient temperature is a constant $70^\circ$F. Find the general solution to the differential equation resulting from the cooling model.
+ \item Again assume that the ambient temperature is a constant $70^\circ$F. A hot burrito is (tragically) left on the counter at 12pm. At 1pm, its temperature is $100^\circ$F,  and at 3pm, its temperature is $75^\circ$F. What was its initial temperature at noon?
+  
+ \end{enumerate}
+ \end{enumerate}
+
+\end{document}

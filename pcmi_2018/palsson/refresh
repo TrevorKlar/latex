@@ -1,0 +1,15 @@
+#!/bin/bash
+# This redownloads everything for pcmi
+
+cd ~/Documents/latex/pcmi_2018/palsson/
+wget -m -np -nd http://www.math.vt.edu/people/palsson/
+git clone https://github.com/icarlitoss/PCMI-USS-Palsson-public.git
+mv -v PCMI-USS-Palsson-public/Lecture\ Notes/*.* ./
+rm -v PCMI-USS-Palsson-public/README.md
+mv -v PCMI-USS-Palsson-public/*.* ./
+
+rm -v -d PCMI-USS-Palsson-public/Lecture\ Notes/
+rm -v -rf PCMI-USS-Palsson-public/.git/
+rm -v -d PCMI-USS-Palsson-public/
+rm -v robots.txt.*
+

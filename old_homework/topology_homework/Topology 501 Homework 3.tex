@@ -1,0 +1,150 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./} }	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\newcommand{\T}{\mathcal{T}}
+
+\title{Math 501 \linebreak
+Homework 3}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+\item Prove 
+
+\begin{theorem*}\emph{\textbf{1: (Openness Criterion)}}
+Let $(X, \T)$ be a topological space. A set $S \subset X$ is open if and only if for every $x \in S$, there exists an open set $U_x \subset S$. 
+\end{theorem*}
+
+\begin{proof}\mbox{}\\
+$\implies$: Suppose $S \subset X$ is open. For any $x \in S$, let $U_x = S$. $U_x$ is an open set such that $x \in U_x \subset S$, so we are done. \qedwhite \\
+$\impliedby$ Suppose for every $x \in S$, there exists an open set $U_x \subset S$. Consider 
+$$\bigcup_{x\in S}U_x.$$
+Now, every element of $\bigcup_{x\in S} U_x$ is in $S$, and every element of $S$ is in $U_x \subset \bigcup_{x\in S} U_x$, so $\bigcup_{x\in S} U_x = S$. Since any arbitrary union of open sets is open, $S$ is open. 
+\end{proof}
+
+\item Prove that in a Hausdorff space, a set consisting of a single point is a closed set. 
+
+\begin{proof}
+Let $(X,\T)$ be a Hausdorff space, and let $x_0$ be any point in $X$. \\
+\textbf{Claim:} $S = X-\{x_0\}$ is open, so $\{x_o\}$ is closed.\\
+Since $(X,\T)$ is Hausdorff, for any $x \in X$ which is distinct from $x_0$, there exist open sets $U_x \in \T$ and $V_x \in \T$ such that 
+$$x \in U_x, \, x_0 \in V_x, \, \text{and }U_x\cap V_x=\emptyset.$$ 
+%Note that since $U_x\cap V_x=\emptyset$, $x_0 \not\in U_x$. 
+Now consider $\bigcup_{x\in S}U_x \equiv \bigcup U_x$. For every $x \in S$, 
+$$x \in U_x \subset \bigcup U_x, $$
+and every $U_x \subset S$ since $x_0 \not\in U_x \subset X$, which means that $\bigcup U_x \subset S$. Therefore, $\bigcup U_x = S$.
+
+Thus, we have shown that $S$ can be written as a union of open sets, and since an arbitrary union of open sets is open, $S = X-\{x_0\}$ is open in $X$, so $\{x_o\}$ is closed in $X$.
+\end{proof}
+
+\item Let $U$ be open and $C$ closed subsets of a 
+space $X$, with $C \subset U$. Prove that $U-C$ is open.
+\begin{proof} 
+By definition of set subtraction, $U-C=U\cap (X-C)$, and since $C$ is closed in $X$, $(X-C)$ is open. Thus, $U-C$ is the intersction of two open sets, so it is open.
+\end{proof} 
+\pagebreak
+\item Let $A$ be a subset of a space $X$. Prove that $C$ is closed in $A$ if and only if $C$ = $A\cap F$, where $F$ is closed in $X$.
+\begin{proof}\mbox{}\\
+$\implies$: Assume $C$ is closed in $A$. By definition of closed in $A$, there exists some $U$ which is open in $X$ such that $$A-C=A\cap U.$$ Let $F = X-U$. Now, $F$ and $U$ are complements in $X$, and $A \subset X$. This means that $A\cap U$ and $A \cap F$ are complements in $A$. Thus, taking the complement in $A$ of both sides, we find that 
+$$A-C=A\cap U \implies C=A\cap F.$$ 
+This completes the proof. \qed
+
+$\impliedby$: Assume $C$ = $A\cap F$, where $F$ is closed in $X$. Let $U=X-F$. Then, using the same reasoning as above, we can take the complement in $A$ of both sides to obtain
+$$C=A\cap F \implies A-C=A\cap U.$$
+Thus, $C$ is closed in $A$ by definition.
+\end{proof}
+
+\item Find $\closure{A}$, int $A$, and $A^\ell$ for the following sets $A$ in $\R^2$. (Just answers, no proofs.)
+	\begin{enumerate}[label=(\alph*)]
+	\item $A=\{(x,0): 0 \leq x < 1\}$
+		\begin{itemize}
+		\item $\closure{A} = \{(x,0): 0 \leq x \leq 1\}$
+		\item int$(A) = \emptyset$
+		\item $A^\ell = \closure{A} = \{(x,0): 0 \leq x \leq 1\}$
+		\end{itemize}
+	\item $A=\{(x,y):x^2+y^2\leq10\}$
+		\begin{itemize}
+		\item $\closure{A} = A$
+		\item int$(A) = \{(x,y):x^2+y^2<10\}$
+		\item $A^\ell = A$
+		\end{itemize}
+	\item $A=\{(x,y):x,y\in\Q$, $x^2+y^2\leq10\}$
+		\begin{itemize}
+		\item $\closure{A} = \{(x,y):x^2+y^2\leq10\}$
+		\item int$(A) = \emptyset$
+		\item $A^\ell = \closure{A} = \{(x,y):x^2+y^2\leq10\}$
+		\end{itemize}
+	\item $A=\{(x,y):x,y\in\Z$, $x^2+y^2\leq10\}$
+		\begin{itemize}
+		\item $\closure{A} = A$
+		\item int$(A) = \emptyset$
+		\item $A^\ell = \emptyset$
+		\end{itemize}
+	\end{enumerate}
+
+\item Let $\R_f^1$ denote the real numbers endowed with the finite complement topology. What is the set of limit points of $\Z$ in $\R_f^1$?
+
+\textbf{Claim:} $\Z^\ell$ in $\R_f^1$ is $\R$. 
+\begin{proof}
+In the finite complement topology on $\R$, every open set has a finite complement; that is, there is a greatest element of $\R$ which the set does not contain. This means every open set is unbounded above. Since $\Z$ is also unbounded above, every set which is open in $\R$ contains elements of $\Z$. Thus, for any real number $x$, every open set containing $x$ also contains elements of $\Z$ distinct from $x$, so $x$ is a limit point.
+\end{proof}
+\pagebreak
+\item Let $X$ be a space, $A$ a subset of $X$. A point $p \in A$ is called an \emph{isolated point} of $A$ if $p$ is not a limit point of $A$.
+	\begin{enumerate}[label=(\alph*)]
+	\item What is the set of all isolated points of $\Z$ in $\R$, where $\R$ has the usual topology?\\
+	\textbf{Claim: }The set of all isolated points of $\Z$ is $\Z$.
+	\begin{proof}
+	For any integer $n$, the interval $B=(n-\frac{1}{2},n+\frac{1}{2})$ is an open set such that $A\cap(B-\{n\})=\emptyset$, so every integer is an isolated point. 
+	\end{proof}
+	\item What is the set of all isolated points of $\Z$ in $\R_f^1$, where $\R_f^1$ denotes the finite complement topology?\\
+	\textbf{Answer:} The set of all isolated points of $\Z$ in $\R_f^1$ is $\emptyset$, since we proved in Exercise 6 that $\Z^\ell$ in $\R_f^1$ is $\R$, and $\Z \subset	\R$. 
+	\end{enumerate}
+
+\item Prove that in a Hausdorff space $X$ with subset $A$, $x$ is a limit point of $A$ if and only if every open set containing $x$ contains infinitely many points of $A$.
+
+\begin{proof}\mbox{}\\
+$\impliedby$: If every open set $U$ containing $x$ contains infinitely many points of $A$, then $A\cap(U-\{x\})\neq \emptyset$, so $x$ is a limit point and we are done. 
+
+$\implies$: Assume that $x$ is a limit point of $A$, and let $U$ be an arbitrary open set which contains $x$. Suppose for contradiction that $U$ contains only finitely many elements of $A$, denoted $a_1, a_2, \ldots, a_n$. Since $X$ is Hausdorff, then $U$ with the subspace topology is also Hausdorff, so
+there exist $n+1$ disjoint sets which are open in $U$ and contain $a_1, a_2, \ldots, a_n,$ and $x$, respectively. Let $U_x$ denote the last of these sets, which intersects with $A$ only at the point $x$. Now, by definition, $U_x$ is the intersection of some open set and $U$, so $U_x$ is also open in $X$. 
+
+Since $x$ is a limit point of $A$, then $A\cap(U_x-\{x\})\neq\emptyset$, so $U_x$ contains at least one element of $A$ distinct from $x$, which contradicts our construction of $U_x$. Therefore, every open set $U$ contains infinitely many points of $A$. 
+\end{proof}
+
+\item Suppose that $A$ is a subset of a space $X$. Prove that $\closure{A} = A\cup A^\ell$. 
+
+\item Let $A$ be a subset of a space $X$. We say $A$ is \emph{dense} in $X$ if $\closure{A} = X$. (For example, $\Q$ is dense in $\R$.)\
+
+Prove that $A$ is dense in $X$ if and only if for every nonempty open set $U$ in $X$, we have $U\cap A \neq \emptyset$.
+
+\begin{proof}\mbox{}\\
+$\implies$: Suppose $A$ is dense in $X$. Then, by definition, 
+$$\closure{A} = \bigcap\{F: F\subset X\text{ is closed and } F \supset A\} = X,$$
+so the only closed set which contains $A$ is $X$. Let $U$ be any nonempty open set in $X$. Now, $(X-U)$ is closed and not equal to $X$, so it does not contain $A$. This means that $U$, the complement of $(X-U)$, must contain some elements of $A$. So, $U\cap A\neq\emptyset$ and we are done. 
+
+$\impliedby$: Suppose that for every nonempty open set $U$ in $X$, it is true that $U\cap A \neq \emptyset$. Let $F$ be any closed set in $X$ which is not equal to $X$. Now, $(X-F)$ is a nonempty open set in $X$, so $(X-F)\cap A\neq\emptyset$. This means that $F\not\supset A$. Since it is given that $A\subset X$, $X$ can be the only closed set which contains $A$, so $\closure{A}=X$. 
+\end{proof}
+
+\end{enumerate}
+
+\end{document}

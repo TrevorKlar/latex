@@ -1,0 +1,84 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 550 \linebreak
+Homework 7}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item Let $M$ be a $k$-dimensional manifold in $\R^Nn$. Prove that if there exists a nowhere zero $k$-form on $M$, then $M$ is orientable.
+		\begin{proof}
+			Since $M$ is a manifold, then for every point $x\in M$ there exists a parameterization \mbox{$\varphi_x:U_x\to V_x$} with $x\in V_x$. Thus the collection $\left\{\varphi_x\right\}_{x\in M}$ parametrizes all of $M$. Let 
+			\[\begin{array}{rl}
+				G=&\{\varphi_x \,|\, {\varphi_x}^*\omega(\preimage{\varphi_x}{x})\left(e_1, \dots, e_k\right) > 0\},\\
+			B=&\{\varphi_x \,|\, {\varphi_x}^*\omega(\preimage{\varphi_x}{x})\left(e_1, \dots, e_k\right) < 0\}, \text{ and }\\
+			\tau_{12}:&\R^k\to\R^k \text{ defined by } \tau_{12}(x_1, x_2, x_3, \dots, x_k)=(x_2, x_1, x_3, \dots, x_k).
+			\end{array}\]
+		Consider a point $p_g\in M$ such that for some $x_1, x_2 \in M$, we have $p_g\in V_{x_1}\cap V_{x_2}$ and $\varphi_{x_1}, \varphi_{x_2}\in G$. Then by a previous homework problem, $\varphi_{x_1}$ and $\varphi_{x_2}$ induce the same orientation on $M_{p_g}$ for every $p_g\in V_{x_1}\cap V_{x_2}$. Thus all the parameterizations in $G$ have compatible orientations. The same argument shows that the parameterizations in $B$ are also compatible. Now, define 
+		\[\psi_x=\begin{cases}
+			\varphi_x & \text{ if } \varphi_x\in G\\
+			\tau_{12}\circ\varphi_x & \text{ if } \varphi_x\in B.\\
+		\end{cases}\]
+		Thus, the parameterizations $\{\psi_x\}_{x\in M}$ are all compatible. To see this, observe that for any $\varphi_x\in B$, 
+		\[\begin{array}{rcl}
+			{\psi_x}^*\omega(e_1, \dots, e_k) &=& (\tau_{12}\circ\varphi_x)^*\omega(e_1, e_2, \dots, e_k)\\
+			&=& {\varphi_x}^*{\tau_{12}}^*\omega(e_1, e_2, \dots, e_k)\\
+			&=& {\varphi_x}^*\omega(e_2, e_1, \dots, e_k)\\
+			&=& -{\varphi_x}^*\omega(e_1, e_2, \dots, e_k)\\
+			&>&0\\
+		\end{array}\]
+		Thus, we have produced a collection of parameterizations $\{\psi_x\}_{x\in M}$ covering $M$ for which all $\psi_{x_1}, \psi_{x_2}$ induce the same orientation on $M_x$ whenever $x\in V_{x_1}\cup V_{x_2}$, so $M$ is orientable. 
+		\end{proof}		
+	\item There is a general correspondence between $k$-forms and $(n-k)$-forms on $\R^n$, for all $1\leq k\leq n$. Given $\omega	\in \Omega^k(\R^n)$, we define $\star\omega\in\Omega^{n-k}(\R^n)$ using the rule 
+	$$\star(dx_{i_1}\wedge\dots\wedge dx_{i_k})=\pm dx_{j_1}\wedge\dots\wedge\dx_{j_{n-k}},$$
+	and extending linearly, where $i_1<\dots<i_k, j_1<\dots<j_{n-k}$, and $\{i_1,\dots,i_k, j_1,\dots,j_{n-k}\}=\{1, \dots, n\}$. The sign is chosen so that $\omega\wedge\star\omega = \dx_1\wedge\dots\wedge\dx_n$. \\
+	\textbf{Notation} Another way to notate $\star$ is: Let $\Gamma\subset\{1, \dots n\}$, and define $\star$ by 
+	\[\star\left(\bigwedge_{i\in\Gamma}\dx_i\right)=\pm\bigwedge_{j\in\Gamma^\complement}\dx_j\]
+	and extending linearly. The sign is chosen so that $\omega\wedge\star\omega=\bigwedge_1^n\dx_i$. \\
+	\textbf{Example} In $\R^5$, $\star(\dx_1\wedge\dx_4)=\dx_2\wedge\dx_3\wedge\dx_5$ and $\star(\dx_1\wedge\dx_3)=-\dx_2\wedge\dx_4\wedge\dx_5$. \\
+	\textbf{Prove} that $\star\star\omega=(-1)^{k(n-k)}\omega$. 
+	\begin{proof}
+		By definition of $\star$, we know that $\omega\wedge\star\omega=\bigwedge_1^n\dx_i$ and $\star\omega\wedge\star\star\omega=\bigwedge_1^n\dx_i$. So, by properties of wedge products, we can commute and write 
+		\[\begin{array}{rcl}
+			(-1)^{k(n-k)}\star\star\omega\wedge\star\omega&=&\bigwedge_1^n\dx_i\\
+			\omega\wedge\star\omega&=&\bigwedge_1^n\dx_i\\
+		\end{array}\]
+		Now since $\star\star\omega$ and $\omega$ differ by at most a sign\footnote{Since $\star\star\omega$ is a wedge indexed over $\Gamma^{\complement\complement}=\Gamma$, and all that remains is to determine the sign.}, then $\sign(\star\star\omega)=(-1)^{k(n-k)}$. Thus, $\star\star\omega=(-1)^{k(n-k)}\omega$ as desired. 
+	\end{proof}
+	
+\end{enumerate}
+\end{document}

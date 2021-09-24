@@ -1,0 +1,254 @@
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\newcommand{\redtext}[1]{{\textcolor{red}{#1}}}
+\newcommand{\greentext}[1]{{\textcolor{dgreen}{#1}}}
+\newcommand{\bluetext}[1]{{\textcolor{dblue}{#1}}}
+\newcommand{\blacktext}[1]{{\textcolor{black}{#1}}}
+\newcommand{\remph}[1]{\textit{#1}}
+\newcommand{\blemph}[1]{\textit{#1}}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{ {images/} }	  %%uncomment this if you want to put all your images for this document into their own folder
+
+\input{../tskpreamble}
+
+%\renewcommand\qedsymbol{$\blacksquare$}
+%\newcommand{\qedwhite}{\hfill\ensuremath{\square}}
+ 
+\title{Some Problems About Consecutive Products of Primes}
+\author{Trevor Klar \\ Eli Moore}
+ 
+\begin{document}
+\maketitle
+\section{Introduction}
+Suppose $p$ and $q$ are both prime numbers with $p < q$. Consider all integers of the form $p^\alpha q^\beta$ with $\alpha, \beta \in \N$ and let $\{a_n\}$ be the sequence of these integers in increasing order.
+ 
+\begin{definition*}
+If two integers $p^m, q^n$ are elements of $\{a_k\}$ such that $p^m=a_i$ and $q^n=a_{i+1}$, we say that $(p^m, q^n)$ is a \emph{critical pair}. Note that this notation means that $p^m,<q^n$. It is also possible that $(q^n, p^m)$ is a critical pair, so that $q^n < p^m$.
+\end{definition*}
+ 
+\begin{lemma}
+    If $a_k = q^n$, then $a_{k+1} \neq q^{n+1}$.
+\begin{proof} \textit{(By Contradiction)} 
+    Assume that $a_k = q^n$, and suppose for contradiction that $a_{k+1} = q^{n+1}$. Since $1 < p < q$, then $q^n < pq^n < q^{n+1}$. However, this contradicts our assumption that $a_k = q^n$ and $a_{k+1} = q^{n+1}$, as $pq^n$ must be a term of the sequence which falls between $a_k$ and $a_{k+1}$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{finite_repetition_lemma}
+    There exist at most finitely many $a_k = p^n$ such that $a_{k+1} = p^{n+1}$.
+\begin{proof} 
+    Since $p<q$, let $n$ be the largest $n \in \N$ such that $p^n < q$. Then it follows that $p^n < q < p^{n+1}$. This means that $\{a_n\}$ begins as $$\{a_n\} = \{1,p, p^2, ..., p^n, q, p^{n+1},...\}.$$
+    %
+    Claim: $\forall m \in \N, \quad p^{n+m} < p^mq < p^{n+m+1}$. Let $T(m)$ denote this statement. We now prove this claim by induction on $m$. We already know that $p^n < q < p^{n+1}$, so $p^{n+1} < pq < p^{n+2}$. Thus, $T(1)$ holds. We now assume $T(m)$ and show $T(m+1)$ holds:
+    $$p^{n+m} < p^mq < p^{n+m+1} \implies p^{n+m+1} < p^{m+1}q < p^{n+m+2}$$
+    %
+    As such, every integer $p^{n+m} > p^n$ is followed by the term $p^mq$ before $p^{n+m+1}$ in the sequence $a_n$. Thus, $a_k = p^n$ and $a_{k+1} = p^{n+1}$ can only occur at the beginning of the sequence (finitely many times) as shown above.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+    If $a_i = p^m$ and $a_{i+1} = q^n$, then $m$ and $n$ are relatively prime.
+\begin{proof}\textit{(By Contradiction)} 
+    Assume $a_i = p^m$ and $a_{i+1} = q^n$ and suppose for contradiction that gcd$(m,n) = d$. Then $m = m'd$ and $n = n'd$ for some $m', n' \in \N$. Since $p^m = p^{m'd} < q^{n'd} = q^n$, we have $p^{m'} < q^{n'}$. Consider the following inequality:
+    \[
+    \begin{array}{rcl}
+        p^m & = & p^{m'd}\\
+        & = & p^{m'd - m' + m'}\\
+        & = & p^{m'(d-1)}p^{m'} \\
+        & < & p^{m'(d-1)}q^{n'} \\
+        & < & q^{n'(d-1)}q^{n'} \\
+        & = & q^{n'd} \\
+        & = & q^n.
+    \end{array}
+    \]
+    Since $p^{m'(d-1)}q^{n'}$ must come between $p^m$ and $q^n$, $p^m$ and $q^n$ cannot be consecutive terms in ${a_k}$. Thus we have reached a contradiction. Notice, a similar argument holds for when $a_i = q^n$ and $a_{i+1} = p^m$.
+    
+\end{proof}
+\end{lemma}
+
+\begin{lemma}For any two consecutive $p^m$, $q^n \in \{a_k\}$, 
+%$$ \frac{m}{n} \approx \frac{\ln(q)}{\ln(p)}.$$ And furthermore,  
+$$\lim_{k \to \infty} \frac{m}{n} = \frac{\ln(q)}{\ln(p)}.$$
+\begin{proof}
+Since $p<q$, we know already that 
+\[
+    \begin{array}{rcl}
+       m\ln{p}-n\ln{q} & < & \min(\ln{p},\ln{q})\\
+                     & = & \ln{p},
+    \end{array}
+\]
+
+So we can divide by $n\ln{p}$ to find that 
+
+\[
+    \begin{array}{rcl}
+       \dfrac{m}{n}-\dfrac{\ln{q}}{\ln{p}} & < & \dfrac{\ln{p}}{n\ln{p}}\\
+       & = & \sfrac{1}{n}
+    \end{array}
+\]
+\end{proof}
+\end{lemma}
+
+\pagebreak
+
+\section{The (flawed) Proof}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b \in \Z^+$. 
+
+A \emph{pure power} of $p$ is an integer of the form $p^a$. 
+
+This is as opposed to a \emph{mixed power} of $p$ and $q$, which is an integer of the form $p^a q^b$.
+\end{definition*}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b,\alpha,\beta \in \Z^+$. 
+
+We say that $p^\alpha q^\beta$ is an \emph{intermediate mixed power} of $p^a$ and $q^b$ if $p^\alpha q^\beta$ is between $p^a$ and $q^b$. 
+\end{definition*}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b \in \Z^+$. 
+
+A \emph{critical pair} of $p$ and $q$ is a pair of pure powers of $p$ and $q$ which do not have an intermediate mixed power. 
+\end{definition*}
+
+\begin{lemma}\label{thelemma}
+If $p$, $q$ are distinct prime integers, then there exists at least one critical pair of $p$ and $q$. 
+
+\begin{proof}
+Without loss of generality, suppose that $p<q$. Then, let $n$ be the largest $n\in\N$ such that $p^n<q$. Now, $p^n<q^1$ is a critical pair and we are done.
+\end{proof}
+\end{lemma}
+
+\begin{algorithm}\label{phase1} Let $p,q$ be distinct primes, and let $a,b \in \Z^+$. Suppose $q^a \approx p^b$ and, without loss of generality, suppose that $q^a>p^b$. That is, 
+$$1 < \frac{q^a}{p^b} < 1+\epsilon, \quad \text{where } \epsilon <<.$$
+If an intermediate mixed power exists, it is of the form 
+\begin{equation}\label{thechink}
+p^b < q^{a-k}p^{b+\ell} < q^a
+\end{equation}
+where $k,\ell \in \Z^+$. So, since $q^{a-k}p^{b+\ell} > p^b$, 
+\[
+\begin{array}{rcl}
+1+\epsilon &>& \frac{q^a}{p^b}\\
+&>&\frac{q^a}{q^{a-k}p^{b+\ell}}\\
+&=&\frac{q^k}{p^{b+\ell}}.\\
+\end{array}
+\]
+Now, let $k=\tilde{a}$, and let $b+\ell=\tilde{b}$. If an intermediate mixed power exists, apply Algorithm \ref{phase1} until one no longer exists. Note, since $a>k\geq 1$ and $b<b+\ell$, this process cannot continue indefinitely. 
+
+Thus, we can always apply this algorithm to find a critical pair between any two pure powers of $p$ and $q$.
+\end{algorithm}
+
+\noindent\textbf{Claim: }There exist infinitely many critical pairs of any two distinct primes $p$ and $q$.
+
+\begin{proof}\textbf{by Induction}. Let $p,q$ be distinct primes. Let $P(n)$ be the statement "There exist $n$ distinct critical pairs of $p$ and $q$." We will prove that there are infinitely many critical pairs of $p$ and $q$ by induction on $n$. \\
+\\
+By Lemma \ref{thelemma}, there must exist at least one critical pair $p^{b_0}<q^{a_0}$. Thus, $P(1)$ holds. \\
+\\
+Now, assume that $P(n)$ holds. Let $p^b=p^{b_n}$, and choose some $q^a$ such that 
+$$1<\frac{q^a}{p^b}<1+\epsilon.$$
+Apply Algorithm \ref{phase1} to obtain $p^{b_{n+1}},q^{a_{n+1}}$ such that $p^{b_n}<p^{b_{n+1}}$, and $p^{b_{n+1}}<q^{a_{n+1}}$ are a critical pair. Thus, we have a critical pair such that $p^{b_{n+1}} > p^{b_{n}} > \ldots > p^{b_{1}}$, so we have $n+1$ distinct critical pairs. Therefore, P(n+1) holds. 
+\end{proof}
+
+\noindent \textbf{Issue: }There is a critical problem with this proof. The statement given in Equation \ref{thechink} is false. It is actually true that if an intermediate power exists, it is of the form 
+$$p^b < q^{a-k}p^{0+\ell} < q^a$$
+$$\text{or}$$
+$$p^b < q^{0+k}p^{b-\ell} < q^a.$$
+
+\pagebreak
+\section{Working proof}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b \in \Z^+$. 
+
+A \emph{pure power} of $p$ is an integer of the form $p^a$. 
+
+This is as opposed to a \emph{mixed power} of $p$ and $q$, which is an integer of the form $p^a q^b$.
+\end{definition*}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b,\alpha,\beta \in \Z^+$. 
+
+We say that $p^\alpha q^\beta$ is an \emph{intermediate mixed power} of $p^a$ and $q^b$ if $p^\alpha q^\beta$ is between $p^a$ and $q^b$. (That is, either $p^a < p^\alpha q^\beta < q^b$ or $q^b < p^\alpha q^\beta < p^a$)
+\end{definition*}
+
+\begin{definition*}Let $p,q$ be distinct primes, and let $a,b \in \Z^+$. 
+
+A \emph{critical pair} of $p$ and $q$ is a pair of pure powers of $p$ and $q$ which do not have an intermediate mixed power. 
+\end{definition*}
+
+\begin{theorem}
+Consider the pure powers $p^a, q^b$ with $p^a < q^b$ and $a,b \in \Z^+$. If, for all critical pairs $p^s,q^t$ with $s<a$ and $t<b$, 
+$$1<\frac{q^b}{p^a}<\frac{q^t}{p^s}, \quad s,t \in \Z^+$$
+then $p^a, q^b$ is a critical pair. 
+\end{theorem}
+
+\begin{proof} \textbf{by contradiction}
+Assume that for all critical pairs $p^s,q^t$ with $s<a$ and $t<b$, 
+$$1<\frac{q^b}{p^a}<\frac{q^t}{p^s},$$ and suppose for contradiction that $p^a, q^b$ is not a critical pair. Since $p^a, q^b$ is not a critical pair, then there exists an intermediate mixed power of the form
+$$p^a < q^{b-\ell}p^{a-k} < q^b$$
+where $1\leq k < a, 1\leq \ell < b$. So, since $q^{b-\ell}p^{a-k} > p^a$, 
+\[\frac{q^b}{p^a}>\frac{q^b}{q^{b-\ell}p^{a-k}}=\frac{q^\ell}{p^{a-k}}.\]
+Now, let $a - k=\tilde{a}$, and let $\ell=\tilde{b}$. If $p^{\tilde{a}}$ and $q^{\tilde{b}}$ are a critical pair, we have a contradiction. If they are not, then we can repeat the preceding process in this proof. Note, since $a>\tilde{a}\geq 1$ and $b>\tilde{b}\geq 1$, the process can be repeated at most $\min(a,b)$ times. At the end of this process, we are guaranteed to find at least one critical pair.
+\end{proof}
+
+
+
+
+%=============================================
+
+\begin{highlight}
+\textit{(this is basically Dirichlet's Lemma, we just need to connect the dots.)}
+\begin{lemma}
+Let $\alpha$ be an irrational number. Given any $\epsilon > 0$, there exists an $n \in \N$ such that $n\alpha-\floor{n\alpha}<\epsilon$.
+\end{lemma}
+\end{highlight}
+
+
+%(this part will be reversed in the final proof?)
+%\[
+%\begin{array}{rcl}
+%\dfrac{q^\Omega}{p^a} &=& 1\\
+%q^\Omega &=& p^a\\
+%\Omega\log_pq &=&a\\
+%\Omega\log_pq &=&\floor{a}+\epsilon\\
+%q^\Omega &=& p^{\floor{a}}p^\epsilon\\
+%\dfrac{q^\Omega}{p^{\floor{a}}}&=&p^\epsilon\\
+%&<&\min\left(\dfrac{q^\ell}{p^k}\right)\\
+%\end{array}
+%\]
+
+\begin{theorem}
+For any two distinct prime numbers $p$, and $q$, there exist infinitely many critical pairs. 
+\begin{proof}
+Let $p$ and $q$ be distinct primes. Suppose for contradiction that there exist finitely many critical pairs, and denote the set of these as $S=\{(p^{k_1}, q^{\ell_1}), \ldots, (p^{k_N}, q^{\ell_N})\}$. Of these critical pairs, consider the subset $C=\{(p^{k_i}, q^{\ell_i}) : \, p^{k_i} < q^{\ell_i}\}$, where $i\in\N$ such that $1\leq i \leq N$. This means that 
+$$1 < \frac{q^{\ell_i}}{p^{k_i}}, \quad \forall (p^{k_i}, q^{\ell_i}) \in C.$$
+Choose some $\epsilon\in\R$ such that 
+$$1<p^\epsilon<\min\left(\frac{q^{\ell_i}}{p^{k_i}}\right).$$
+Now, consider the irrational number $\log_pq$. By the Lemma, there exists some $\Omega\in\N$ such that 
+$$\Omega\log_pq - \floor{\Omega\log_pq} < \epsilon.$$
+To simplify the notation, let $a=\floor{\Omega\log_pq}$. Thus, with a little algebra, 
+\[
+\begin{array}{rcl}
+\Omega\log_pq 	&<&a+\epsilon\\
+q^\Omega 		&<& p^{a}p^\epsilon\\
+\dfrac{q^\Omega}{p^a}&<&p^\epsilon\\
+				&<&\min\left(\frac{q^{\ell_i}}{p^{k_i}}\right)\\
+\end{array}
+\]
+and we find that for all $({q^{\ell_i}},{p^{k_i}})\in C$,
+$$1<\dfrac{q^\Omega}{p^a}<\frac{q^{\ell_i}}{p^{k_i}}.$$
+Therefore, by Proposition 3.2, $({q^\Omega},{p^a})$ is a critical pair with ${p^a}<{q^\Omega}$. But, since $\frac{q^\Omega}{p^a}<\frac{q^{\ell_i}}{p^{k_i}}$ for all $({q^{\ell_i}},{p^{k_i}})\in C$, then $({q^\Omega},{p^a})\not\in C$, which is a contradiction. 
+
+Therefore, we have shown that $C$ cannot be finite, and since $C\subset S$, then $S$ cannot be finite either. 
+\end{proof}
+\end{theorem}
+
+
+\end{document}

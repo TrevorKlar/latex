@@ -1,0 +1,47 @@
+	%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\title{Consecutive Powers of Primes}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+\begin{lemma}For any two consecutive $p^m$, $q^n \in \{a_k\}$, 
+%$$ \frac{m}{n} \approx \frac{\ln(q)}{\ln(p)}.$$ And furthermore,  
+$$\lim_{k \to \infty} \frac{m}{n} = \frac{\ln(q)}{\ln(p)}.$$
+\begin{proof}
+Without loss of generality, let $p<q$. We know already that 
+$$m\ln{p}-n\ln{q} < \min(\ln{p}, \ln{q}) = \ln{p},$$
+So we can divide by $n\ln{p}$ to find that 
+$$\frac{m}{n}-\frac{\ln{q}}{\ln{p}} < \frac{\ln{p}}{n\ln{p}} = \frac{1}{n}$$
+
+\end{proof}
+
+\end{lemma}
+
+\begin{definition*}
+If two integers $p^m, q^n$ are elements of $\{a_k\}$ such that $p^m=a_i$ and $q^n=a_{i+1}$, we say that $(p^m, q^n)$ is a \emph{critical pair}. Note that this notation means that $p^m,<q^n$. It is also possible that $(q^n, p^m)$ is a critical pair, so that $q^n < p^m$.
+\end{definition*}
+
+\begin{lemma*}Dirichlet Lemma\\
+
+$m,k \in \R$
+
+find out how to get money from Associated Students to go to San Diego
+
+\end{lemma*}
+
+
+\end{document}

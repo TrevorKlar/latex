@@ -1,0 +1,676 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+%\documentclass[a5paper,draft]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{/home/trevor/texmf/tex/latex/tskpreamble_nothms.tex} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\subsetopen}{\undertext{\subset}{open}}
+\newcommand{\diffeo}{\cong}
+\renewcommand{\emph}{\textbf}
+
+%================Start of document==============
+
+\title{Differential Topology}
+\author{Darren Long, UC Santa Barbara}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+Notes prepared by Trevor Klar
+\end{center}
+
+\tableofcontents
+
+%\addcontentsline{toc}{section}{Introduction}
+%\section*{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevorklar@math.ucsb.edu}{trevorklar@math.ucsb.edu}. If you could include the page number, that would be helpful. 
+
+Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not Professor Fuller's. Bear that in mind when studying. 
+\end{highlight}
+
+\section{Smooth Manifolds and smooth maps}
+
+The text is John W. Milnor: Topology from the Differentiable Viewpoint. 
+
+\subsection{Smoothness}
+
+\begin{definition*}
+$f$ \emph{smooth} on $U\undertext{\subset}{open} \R^n$ $\iff$ all partials\footnote{All partials of all orders, not just first order.} exist and are continuous. 
+\end{definition*}
+
+\begin{definition*}
+$f$ \emph{smooth} on arbitrary $X\subset \R^n$ $\iff$ $\exists$ $F$ smooth which extends $f$. 
+\end{definition*}
+
+\begin{definition*}
+$f$ \emph{diffeomorphism} $\iff$ $f$ smooth bijection w/ smooth inverse. 
+\end{definition*}
+
+\begin{definition*}
+$X\diffeo Y \iff \exists$ a diffeomorphism $f:X\to Y$. 
+\end{definition*}
+
+\begin{definition*}
+$X$\footnote{Assume $X\subset \R^n$, with the subspace topology.} \emph{locally diffeomorphic} to $\R^k$ $\iff$ 
+every $x\in X$ has a neighborhood $U\diffeo V\subsetopen \R^k$. 
+\end{definition*}
+
+\begin{definition*}
+$X$ is a \emph{smooth $k$-manifold} $\iff$ $X$ is locally diffeomorphic to $\R^k$.
+\end{definition*}
+
+%\pagebreak
+\begin{example*}
+$\S^1$ is a smooth 1-manifold. 
+
+\jpg{width=0.5\textwidth}{topo-notes-ch1-fig1}
+
+To see this, observe that $\phi(x,y)=x$ is a smooth map, and if we restrict it to a sufficiently small neighborhood of a point $(x_0, y_0)$, then it is a diffeomorphism.\footnote{this gets kinda weird at $(0,1)$, but don't worry too hard about that right now.} It has smooth inverse $x\mapsto(x,\sqrt{1-x^2})$, so $\S^1$ is a smooth 1-manifold. 
+\end{example*}
+
+\begin{example*}
+If $X$ is an $a$-manifold, and $Y$ is a $b$-manifold, then $X\times Y$ is an $(a+b)$-manifold. \textsc{Proof} Exercise.
+\end{example*}
+
+\subsection{Tangent Spaces and Derivatives}
+\begin{definition*}
+The \emph{directional derivative	of $f$ at $\vec{x}$ in the direction of $\vec{v}$} is 
+$$\der f_{\vec{x}}(\vec{v}) = \lim_{t\to0} \frac{f(\vec{x}+t\vec{v})-f(\vec{x})}{t}
+$$
+\end{definition*}
+
+\begin{remark*}
+For a fixed ${\vec{x}}$, then $f_{\vec{x}}:\R^a\to \R^b$ is a linear map, so it can be written as a matrix mapping $\R^a\to \R^b$. 
+\end{remark*}
+
+\begin{definition*}
+The \emph{derivative of $f$ at $\vec{x}$} is 
+$$\der f_{\vec{x}} = \left[ \frac{\del f_i}{\del x_j}(\vec{x})\right]$$
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+Recall the key fact from differential calculus is the \emph{chain rule.}
+
+Given appropriately composable smooth maps $f,g$ defined on $\R^n$, then 
+$$\der(g\circ	f)_x = \der g_{f(x)} \circ \der f_x$$
+which is sort of what you'd expect.
+\end{definition*}
+\end{highlight}
+
+\noindent\textbf{Goal.} Find a way to formulate this for smooth manifolds. We'll need:
+\begin{enumerate}
+\item Notion of tangent spaces
+\item Show that under $\der f_x$, tangent space at $x$ to $X$ $\mapsto$ tangent space at $f(x)$ to $Y$. 
+\item Show chain rule
+\end{enumerate}
+
+\begin{highlight}
+\begin{definition*}
+Given a chart $\phi$ of the $n$-manifold $X$ at the point $p$, we define the \emph{tangent space of 
+$X$ at $p$} to be 
+$$T_p(X)=\der\phi_0(\R^n),$$
+that is, the tangent space is the image of the derivative of the chart. 
+\end{definition*}
+\end{highlight}
+\begin{remark*}
+In our context, the directional derivative and the derivative are the same thing. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+Defining \emph{the derivative of a smooth function between manifolds} $f:X\to Y$ takes a little effort. First, let $\phi,\psi$ be charts of $X,Y$ that map $0\mapsto x, 0\mapsto y$. Then define $h$ so that the following diagram commutes:
+\jpg{width=0.3\textwidth}{derivative-smooth-fn-1}
+Then we can take the derivative of $h$ at 0 using ordinary calculus, and differentiate $\phi$ and $\psi$ at 0 using the previous definition. Then we define $\der f_x$ so that the following diagram commutes:
+\jpg{width=0.3\textwidth}{derivative-smooth-fn-2}
+\end{definition*}
+\end{highlight}
+
+\section{Immersions and Submersions}
+
+\begin{definition*}
+Suppose $f:X\to Y$ smooth. $f$ is a \emph{local diffeomorphism }at $x\in X$ if there exists an open neighborhood $U$ of $x$ such that $F|_U:U\to F(U)$ is a diffeomorphism.
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem}\textbf{(Inverse Function Theorem)}
+Let $f:X\to Y$ smooth. 
+$$\text{If }\der f_x:T_xX\to T_{f(x)Y} \text{ is an isomorphism (is invertible),}$$
+then $f$ is a local diffeomorphism at $x$. 
+\end{theorem}
+\end{highlight}
+
+%\begin{corollary*}
+%If $f$ smooth and $\der f_x$ invertible, then using the following diagram,  
+%
+%we can write $\psi\circ h$ and obtain a chart of $Y$. 
+%
+%So definitely $X$ and $Y$ have the same dimension, and even $f$ is a local diffeomorphism, and there is some sense if which $f$ is like the identity map, as can be seen in the second diagram. 
+%\end{corollary*}
+%
+%\begin{remark*}
+%We want to generalize this to the case where $\der f$ is only injective, or $\der f$ is only surjective. 
+%\end{remark*}
+
+\begin{definition*}
+The \emph{canonical immersion} $\R^a\to \R^b$ is 
+
+$$(x_1, \dots, x_a) \mapsto (x_1, \dots, x_a, 0, \dots, 0)$$
+\end{definition*}
+
+\begin{definition*}
+An \emph{immersion at a point $x$} is a function $f$ which is smooth and $\der	f_x:T_x(X)\to T_{f(x)}(Y)$ is injective. 
+\end{definition*}
+
+%\pagebreak
+\begin{highlight}
+\begin{theorem}(Local Immersion Theorem)
+Let $f:X\to Y$ smooth, with $\dim X < \dim Y$, so that $\der f_x$ is injective. 
+%
+%[figure at 10:11 am]
+%
+Then there exist local coordinates 
+
+\jpg{width=0.6\textwidth}{local_immersion_thm-2-gray}
+
+so that $U\hookrightarrow V$ by the canonical immersion. %Thus, if $\der f_x$ is injective, then $\der f_\xi$ is injective for any $\xi$ in some neighborhood of $x$.
+
+"If $f$ is an immersion at $x$, then it is an immersion near $x$."
+\end{theorem}
+\end{highlight}
+
+\begin{definition*}
+An \emph{submersion at a point $x$} is a function $f$ which is smooth and $\der	f_x:T_x(X)\to T_{f(x)}(Y)$ is surjective. 
+\end{definition*}
+
+\begin{definition*}
+The \emph{canonical submersion} $\R^b\to \R^a$ (with $a<b$) is 
+
+$$(x_1, \dots, x_a, \dots, x_b) \mapsto (x_1, \dots, x_a)$$
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem}(Local Submersion Theorem)
+Let $f:X\to Y$ smooth with $\der f_x$ surjective. 
+%
+%[figure at 10:11 am]
+%
+Then there exist local coordinates 
+
+\jpg{width=0.6\textwidth}{local_submersion_thm-2-gray}
+
+so that $U\mapsto V$ by the canonical submersion. %Thus, if $\der f_x$ is surjective, then $\der f_\xi$ is surjective for any $\xi$ in some neighborhood of $x$.
+
+"If $f$ is a submersion at $x$, then it is a submersion near $x$."
+\end{theorem}
+\end{highlight}
+
+\section{Regular Values}
+
+\begin{highlight}
+\begin{definition*}
+Let $f:X\to Y$ smooth. We say $y$ is a \emph{regular value} of $f$ if every $x\in \preimage{f}{y}$ is a submersive point (That is, $\der f_x$ is surjective at those points.)
+\end{definition*}
+\end{highlight}
+
+\begin{example*}\mbox{}
+\jpg{width=0.6\textwidth}{regular-val-ex1}
+\end{example*}
+
+\begin{example*}\mbox{}
+\jpg{width=0.6\textwidth}{regular-val-ex2}
+\end{example*}
+
+\begin{definition*}
+If $y$ is not regular, then it is a \emph{critical point} of $f$. 
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem}
+If $f:X\to Y$ is smooth and $y$ is a regular value, then $\preimage{f}{y}$ is a smooth manifold of dimension $\dim X-\dim Y$. 
+\end{theorem}
+
+\noindent \textbf{Reason.} For carefully chosen charts, $f$ can be thought of as the canonical submersion from $U^b\to V^a$, so if $0\xmapsto{\psi} y$, then $(\overbrace{0,\dots, 0}^{a},\overbrace{x_{a+1}, \dots, x_b}^{b-a})\xmapsto{f}y$. 
+\end{highlight}
+
+\begin{remark*}
+Note that for a map into $\R$, it's derivative is always surjective unless it is the zero map. 
+\end{remark*}
+
+\begin{example*}\mbox{}
+\jpg{width=0.6\textwidth}{thm4-ex1}
+\end{example*}
+
+\begin{example*}
+Let $f:\R^k\to \R$ given by $$f(x_1, \dots	x_n)=\sum_{i=1}^k x_i^2 = \norm{x}.$$ Fix $p=(p_1, \dots, p_k)\in \R^k$. What is $\der f_p$?
+$$\der	f_p(e_1) = \lim_{t\to0} \frac{f(te_1+p)-f(p)}{t}$$
+and 
+$$ f(te_1+p)=f(t+p_1, p_2, \dots, p_k) = t^2 + 2tp_1 + \overbrace{p_1^2 + p_2^2 + \dots + p_n^2}^{f(p)} $$
+so 
+$$\der	f_p(e_1) = \lim_{t\to 0}t+2p_1 = 2p_1$$
+which, by the way, is pretty clearly $\frac{\del f}{\del x_1}(p)$. 
+
+\begin{highlight}
+In general, for $f:X^k\to Y^1$, the derivative $\der f_p:\R^k\to \R$ is given by the dot product
+$$\der f_p(v)=(v_1, \dots, v_k)\cdot\left.\left(\frac{\del f}{\del x_1}, \dots, \frac{\del f}{\del x_k}\right)\right|_p$$
+\end{highlight}
+
+\begin{highlight}
+I'm pretty sure that this generalizes as follows. For $f:X^a\to Y^b$, the derivative $\der f_p:\R^a\to \R^b$ is given by the matrix product
+$$\der f_p(v) = vJ|_p$$
+where $v$ is a row vector and $J$ is the Jacobian of $f$. In $J$, you want columns to have the same $f$-index and rows to have the same $x$-index. 
+\end{highlight}
+
+So when is the derivative zero? When all partials are zero, i.e. $p=0$ in this case. 
+
+Thus all nonzero numbers in $\R$ are regular values of $f$. 
+\end{example*}
+
+\begin{example*}(Lie Group)
+
+\begin{highlight}
+\begin{definition*}
+The set of all \emph{orthogonal real matrices}, denoted $O(n)$, is the set of all real $n\times n$ matrices such that 
+$$A^TA=AA^T=I_n$$
+or equivalently, 
+$$A^{-1}=A^T$$
+\end{definition*}
+\end{highlight}
+\begin{remark*}
+The Wikipedia page lists quite a few very helpful facts about orthogonal matrices. 
+\end{remark*}
+\pagebreak
+Prove that $O(n)$ is a smooth manifold, and find its dimension. 
+
+\begin{proof}
+Let $f:M_n(\R)\to \Sigma_n(\R)$ be the map given by 
+$$f(A)=A^\top A.$$
+	We will show that (i) $M_n(\R)$\footnote{Where $M_n(\R)$ denotes the set of all real $n\times n$ matrices.} and $\Sigma_n(\R)$\footnote{Where $\Sigma_n(\R)$ denotes the set of symmetric $n\times n$ real matrices.} are both smooth manifolds, (ii) $f$ is a smooth map, and (iii) $O(n)=f^{-1}(I)$ with $I$ a regular value of $f$, and then we're done since the preimage of a regular point is a smooth manifold.
+
+(i) As vector spaces, $M_n(\R)\cong \R^{n^2}$ and $\Sigma_n(\R)\cong\R^{t(n)}$ where $t(n)$ is the $n$-th triangle number, so they are definitely smooth manifolds. 
+
+(ii) Since the computations of $A^\top A$ just consist of multiplying and adding different elements of $A$, then the function $f$ is just a polynomial in $n^2$ variables, so it is smooth. 
+
+(iii) We can see by inspection that $O(n)=f^{-1}(I)$, so let us show that $I$ is a regular value of $f$. Fix $A\in M_n(\R)$, and let's compute the derivative $\der f_A:T_A(M_n\R)\to T_{A^\top A}(\Sigma_n)$, and check that it is surjective whenever $A\in f^{-1}(I)$. 
+\begin{align*}
+\der f_A(B)&= \lim_{t\to0}\frac{f(A+tB)-f(A)}{t} \\
+&= \lim_{t\to0}\frac{(A+tB)^\top (A+tB)-A^\top A}{t}\\
+&= \lim_{t\to0}\tfrac{1}{t}\left(tB^\top A+tA^\top B+t^2B^\top B\right)\\
+&= B^\top A+A^\top B
+\end{align*}
+For any $C\in \Sigma_n(\R)$\footnote{The tangent space to a vector space at any point is itself.} and $A\in\preimage{f}{I}$, if we can find $B$ such that $B^\top A+A^\top B=C$, then we're done. Observe that, since $A^\top =A^{-1}$, then if $B=\frac{1}{2}AC$, then 
+$$B^\top A+A^\top B=C.$$
+Thus $\der f_A$ is surjective for all $A\in\preimage{f}{I}$, so we're done.
+\end{proof}
+
+\begin{remark*}
+In particular, $O(n)$ is not only a smooth manifold, but it is a Lie group. These are important, so let's talk about them a bit. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+We say a space $X$ is a \emph{Lie group} when:	
+	\begin{itemize}
+	\item $X$ is a smooth manifold
+	\item $X$ is a group with $xy\xmapsto{\text{smooth}} z$ and $x\xmapsto{\text{smooth}}\inv{x}$. 
+	\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\pagebreak
+%\begin{highlight}
+\noindent\textbf{Variation of Submersion} Suppose $g_1, \dots g_\ell$ are smooth functions $X^k\to \R$, where $\ell\leq k$.
+
+\noindent\textbf{Question} When is the set $Z$ of common zeros of $g$'s a reasonable object?
+
+\noindent \textsc{Answer.} We think of $g:X^k\to\R^\ell$ as putting them all together, and\emph{ when every $x\in\preimage{g}{0}$ is a regular value,} then $Z$ is a smooth manifold.
+$$\der g_x \text{ is onto } \iff (\der g_1)_x, \dots, (\der g_\ell)_x \text{ are linearly independent}
+$$
+\qedwhite
+
+\noindent\textbf{Question} Given a submanifold of $X$, when can it be defined as the set of common zeros of some functions? 
+
+\noindent\textsc{Easy case} Suppose the submanifold of $X$ is $\preimage{f}{y}$ for some $f:X\to Y$ and $y$ is regular. We need to show that $f$ can be decomposed into coordinate functions $f_1, f_2,\dots f_n$. Consider a chart $\phi$ of $Y$ at $y$:
+\jpg{width=0.4\textwidth}{variation-of-submersion}
+then we can use the coordinate functions on $\R^b$. The reader can verify that $\der(\phi^{-1}\circ f)_x$ is onto and $0$ is regular for $\phi^{-1}\circ f$.
+%\end{highlight}
+\end{example*}
+
+\begin{highlight}
+\begin{lemma}
+Let $f:X\xto{\text{smooth}}Y$ be regular at $y\in Y$, and denote $Z=\preimage{f}{\{y\}}$. Then 
+$$T_z(Z)=\ker(\der f_z).
+$$
+\end{lemma}
+\end{highlight}
+\begin{proof}\mbox{}
+\jpg{width=0.5\textwidth}{lemma-5}
+It's obvious from the picture that $T_z(Z)\subset\ker(\der f_z)$, and since $\der f_z:T_z X\to T_y Y$ is onto, then 
+$\dim T_z(X\setminus Z) = \dim Y,$
+so $$\dim X -  \dim Y=\dim \ker (\der f_z)$$ and 
+$$\dim X -  \dim Y=\dim T_z Z.$$
+\end{proof}
+
+\section{Transversality}
+
+\begin{definition*}
+(Transverse at a point) Let $f:X\xto{\text{smooth}} Y$ with $Z\undertext{\subset}{manif.} Y$. We say \emph{$f$ is transverse to $Z$ at $f(x)=y$} if 
+$$\image{(\der f_x)}\oplus T_y Z=T_y Y.$$
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+(Transverse to a submanifold) Let $f:X\xto{\text{smooth}} Y$ with $Z\undertext{\subset}{manif.} Y$. We write $f\pitchfork Z$ and say \emph{$f$ is transverse to $Z$} if for all $x\in\preimage{f}{Z}$, 
+$$\image{(\der f_x)}\oplus T_y Z=T_y Y.$$
+where $y=f(x)$. 
+\end{definition*}
+\end{highlight}
+
+\jpg{width=.8\textwidth}{transversality-surfaces-in-R3-1}
+
+\jpg{width=.5\textwidth}{transversality-surfaces-in-R3-2}
+
+Why do we care? Because transversals give us nice, \textit{stable} intersections. 
+
+\begin{highlight}
+\begin{definition*}
+Let $P$ be a property of some function $f$. We say that $P(f)$ is \emph{stable} if for any homotopy $f_t$ of $f$, there exists $\epsilon>0$ such that 
+$$P(f_t)\text{ is true for all }0\leq t<\epsilon.$$
+\end{definition*}
+\end{highlight}
+
+\begin{example*}
+Let $f:X\to Y$, and let $P(f)$ be the property that $f$ is a local diffeomorphism at $x$. Then $P$ is a stable property. 
+\end{example*}
+\begin{proof} (sketch) WLOG suppose $f:\R^a\to\R^a$ (since we can always take charts). Since $f$ is a diffeomorphism, then the Jacobian 
+$$\left.\left( \frac{\del f_\alpha}{\del x_\beta}\right)\right|_{\mathbf{x}=0} $$
+has $\det\neq0$. So since a small homotopy of $f$ changes $\det f$ by a small amount (IFT), then $f_\epsilon$ is a local diffeomorphism as well. 
+\end{proof}
+
+\pagebreak
+\begin{highlight}
+\begin{theorem}
+Let $X$ be compact, and consider functions $X\to Y$. The following function classes are stable: 
+	\begin{enumerate}[label=(\alph*)]
+	\item Local diffeomorphism
+	\item Immersion
+	\item Submersion
+	\item Maps transverse to $Z\undertext{\subset}{subspace}Y$
+	\item \vspace*{-5pt} Embeddings (Injective Immersions)
+	\item Diffeomorphisms.
+	\end{enumerate}
+\end{theorem}
+\end{highlight}
+
+\begin{remark*}
+It would really be a nightmare if $f:X\overtext{\xto{\;}}{smooth} Y$, but $f$ had no regular values. Fortunately, Sard's Theorem will imply that regular values are dense. 
+\end{remark*}
+
+\begin{definition*}\mbox{}
+\jpg{width=0.6\textwidth}{rn_measure_zero}
+\end{definition*}
+
+\begin{definition*}\mbox{}
+\jpg{width=0.6\textwidth}{manifold_measure_zero}
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem}
+\vspace*{-12pt} Let $f:X \smoothto Y$ with $Z\submanifold Y$. If $f\pitchfork Z$, then $\preimage{f}{Z}$ is a smooth manifold.
+\end{theorem}
+\end{highlight}
+\begin{proof}
+Dr. Long referred to this theorem as if we had proved it in lecture, but I don't see it in my notes here. Perhaps another time I'll write out the proof. 
+\end{proof}
+
+\begin{highlight}
+\begin{theorem}[Sard's Theorem]
+\vspace*{-12pt} Let $f:X\overtext{\xto{\;}}{smooth} Y$. Then the critical values of $f$ have measure zero in $Y$. 
+\end{theorem}
+\end{highlight}
+\begin{proof}
+The proof of this theorem is a bunch of analysis, which (a) sucks, and (b) is kinda beside the point of this course. So we'll just regard Sard's Theorem to be an "axiom".
+\end{proof}
+
+\begin{highlight}
+\begin{corollary*}
+\vspace*{-12pt} Let $f:X\overtext{\xto{\;}}{smooth} Y$. Then the regular values of $f$ are dense in $Y$. 
+\end{corollary*}
+\end{highlight}
+
+\begin{proof}
+Since the set of critical value $C$ has measure zero, then it can't contain any $k$-cubes. Thus any $k$-cube contains a regular value, so we're done. 
+\end{proof}
+
+\begin{remark*}
+Our goal is a version of the Whitney Embedding Theorem, but first we need to make a relevant digression:
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}[Tangent bundle]
+Let $X^k\subset \R^n$ be a smooth $k$-manifold. We form the \emph{tangent bundle of $X$}, by 
+\begin{align*}
+TX&=\{(x,v)\in X\times\R^n \mid v\in T_x X \} \\
+&=\{(x,v) \mid x\in X, \; v\in T_x X \} 
+\end{align*}
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}
+You can prove that this is a smooth $2k$-manifold. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+\vspace*{-12pt} Let $f:X\overtext{\xto{\;}}{smooth} Y$. Then we can define an obvious smooth map $\der f:TX\to TY$ by 
+$$\der f(x,v) = \big(f(x), \der f_x (v)\big)$$
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}
+This satisfies the chain rule:
+$$\der(g\circ f)=\der g \circ \der f$$
+and also $\der I_X$ is the identity on $TX$:
+$$\der I_X = I_{TX}$$
+and 
+$$\text{if }f:X\xto{\text{diffeo}} Y\text{, then }\der f:TX\xto{\text{diffeo}} TY.$$
+\end{remark*} 
+
+\begin{highlight}
+\begin{theorem}[Whitney Embedding Theorem](Slightly Weak Version)
+
+Let $X$ be a compact\footnotemark{} smooth $k$-manifold. Then $X$ embeds in $\R^{2k+1}$. 
+\footnotetext{In the full theorem, we don't require that $X$ is compact, and $X$ embeds in $\R^{2k}$.}
+\end{theorem}
+\end{highlight}
+\begin{proof}
+see lec 9. it's a good proof, but for the sake of time I didn't type it here. 
+\end{proof}
+
+\section{Manifolds with Boundary}
+
+\begin{remark*}
+In the big picture, we're planning to talk about homotopies of smooth maps between smooth manifolds, which means we're going to have to care about the manifold $I$ and products of $I$ with other manifolds, but $I$ is a manifold \textit{with boundary}, so we'll have to develop some theory about how those manifolds work. 
+\end{remark*}
+
+\renewcommand{\H}{\mathbb{H}}
+\begin{highlight}
+\begin{definition*}
+We define the \textbf{$k$-dimensional half space} as
+$$\H^k=\braces{x_1, x_2, \dots, x_k \mid h_k\geq0}.$$
+And its boundary is
+$$\del \H^k=\braces{x_1, x_2, \dots, x_k \mid h_k=0}.$$
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+$X\subset \R^N$ is a \textbf{$k$-manifold with boundary} if every point $x\in X$ has a chart $\phi$ from $U\to X$ where $U\subsetopen \H^k$. 
+\end{definition*}
+\end{highlight}
+
+\jpg{width=0.3\linewidth}{manifold-with-boundary}
+\begin{remark*}
+If we have an arbitrary chart $\phi$ of $X$ near $x$, we can almost assume \Wlog{} that $\phi(\vec 0)=x$, but instead we need that $\phi(\vec 0,\lambda)=x$ where the last coordinate $\lambda$ could be anything nonnegative. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+The \textbf{boundary of $X$}
+$$\del X = \braces{x\in X \;\middle|\; x=\phi(t) \text{ for some chart } \phi \text{ and some } t\in\del \H^k}.$$
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{remark*}
+From here on out, we assume that every map is smooth and every manifold is with boundary (unless specified otherwise). 
+\end{remark*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}
+Suppose $g:X\to\R$ is a map, $\del X=\emptyset$ and $g$ has 0 as a regular value. Then $\preimage{g}{[0,\infty)}$ is a manifold with boundary and $\del =\preimage{g}{0}$. 
+\end{proposition}
+\end{highlight}
+\begin{proof}
+Exercise for the reader.
+\end{proof}
+ 
+\begin{corollary*}
+The unit ball $B^n$ is a manifold, and $\del B^n=S^{n-1}$. 
+\end{corollary*}
+
+\begin{highlight}
+\begin{proposition}
+If $X$ is a smooth manifold without boundary, and $Y$ is a smooth manifold with boundary, then $X\times Y$ is a smooth manifold with boundary, and $\del (X\times Y)= X \times \del Y$. 
+\end{proposition}
+\end{highlight}
+Just considering the charts will hand this right to you. For $\phi$ chart of $X$ on $U\in \R^k$, $\psi$ chart of $Y$ on $V\in\H^\ell$, then $\phi\times\psi$ is a chart of the product on $H^{k+\ell}$. 
+
+\begin{highlight}
+\begin{proposition}
+Let $X^k$ be a manifold. Then $\del X$ is a $(k-1)$-manifold without boundary. 
+\end{proposition}
+\end{highlight}
+\begin{proof}\mbox{}
+
+\textsc{Lemma} If $x\in \phi(\del U)$ for some chart $\phi:U\to X$, then it is in the boundary for \textit{any} chart. 
+
+\textsc{Proof of Lemma}
+Here's the nightmare: that some chart gives $x$ as a boundary point, but some other chart does not:
+\jpg{width=0.99\linewidth}{prop-11-1}
+but fortunately $g=\phi^{-1}\circ \psi$ is a diffeomorphism and in particular a homeomorphism, so it preserves the boundary. %Indeed, $u\in\del U$, so no neighborhood of $u$ is a subset of $U$, and the same goes for $x\in X$. But $w\in \text{int}\;W$, so there exists a neighborhood of $w$ in $W$, and the same goes for $x\in X$, but this is a contradiction. 
+\qedwhite
+
+To see that $\dim (\del X)= (k-1)$, just note that any chart $\phi$ for $X$ near $x\in\del X$ is a chart for $\del X$ where the domain is $\R^{k-1} \times \braces{0}$, so we're done. 
+\end{proof}
+
+\begin{remark*}
+We want to deal with homotopies $M\times I \to Y$ and we want to know, what is a regular value? Now we have that $M\times I$ is a manifold with boundary, and so some subtle weirdness happens there. We would like that if $Z\subset Y$ submanifold with $\del Z = \emptyset$, then $\preimage{f}{Z}$ is a good object. So we want:
+\begin{itemize}
+\item $\preimage{f}{Z}$ a manifold
+\item $\del \preimage{f}{Z} \subset \del (M\times I)$ (Called properly embedded)
+\end{itemize}
+\end{remark*}
+
+\begin{highlight}
+\begin{theorem}
+\vspace*{-12pt}
+Let $f:X\smoothto Y$, with $\del Y = \emptyset$ ($\del X$ may not be empty). Let also $Z\submanifold Y$ with $\del Y = \emptyset$. Suppose 
+	\begin{itemize}
+	\item $f:X\to Y$ has $f\pitchfork Z$. 
+	\item $\del f:\del X\to Y$ has $\del f\pitchfork Z$. 
+	\end{itemize}
+Then 
+	\begin{itemize}
+	\item $\preimage{f}{Z}$ is a manifold with boundary and 
+	\item $\del (\preimage{f}{Z}) = \preimage{f}{Z}\cap \del X$.
+	\end{itemize}
+\end{theorem}
+\end{highlight}
+\begin{proof}
+See the textbook.
+\end{proof}
+
+% Lec 12 0:00
+
+\end{document}

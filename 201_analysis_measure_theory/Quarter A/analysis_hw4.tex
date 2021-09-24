@@ -1,0 +1,178 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Fall 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 4}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $X$ be a nonempty topological space and let $\mu$ be a measure on $X$. Prove that if the functions $f_n:X\to [-\infty,+\infty]$ are \mumeasurable{} for $n\in \N$, then the set 
+$$A=\{x\in X : \lim_{n\to\infty}f_n(x) \text{ exists}\}$$
+is \mumeasurable{}. 
+\begin{proof}
+To simplify notation, denote $f^*(x)=\limsup\limits_{n\to\infty} f_n(x)$ and $f_*(x)=\liminf\limits_{n\to\infty} f_n(x)$. 
+Let $F:\R\to\R$ be 
+$$F(x)=f^*(x)-f_*(x)
+$$
+%\begin{cases}
+%, & \text{when } f_*(x) < \infty\\
+%0, & 
+%\end{cases}$$
+Actually, $F$ is only defined on a subset of $\R$, that when the limsup and the liminf are not both infinite. 
+%We will handle this case separately. 
+Observe that $F$ is \mumeasurable{}, since it is a sum of two \mumeasurable{} functions, and 
+$$\preimage{F}{\{0\}}\cup\{x\in \R:F(x) \text{ is undefined}\}=A,$$
+since $F(x)$ is undefined exactly when $\lim_{n\to\infty} f_n(x)=\pm\infty$ and $F(x)=0$ exactly when $\lim_{n\to\infty} f_n(x)$ exists and is finite. Thus, 
+$$A={F}^{-1}{\{0\}}
+\cup \big(f_*^{-1}{\{+\infty\}} \cap {{f^*}^{-1}}{\{+\infty\}}\big)
+\cup \big({f_*^{-1}}{\{-\infty\}} \cap {{f^*}^{-1}}{\{-\infty\}}\big).
+$$
+Now we show that each of the above sets is \mumeasurable{}, which means that $A$ consists of unions and intersections of \mumeasurable{} sets, and thus $A$ is \mumeasurable{}. 
+\begin{itemize}
+	\item $F$ is always positive since $f^*\geq f_*$ everywhere. So $F^{-1}\{0\}=F^{-1}[-\infty, 0]$ and thus is \mumeasurable{}. 
+	\item For any \mumeasurable{} $f$ (including $f^*$ and $f_*$), we have that 
+	\begin{align*}
+	{f}^{-1}{\{\infty\}}&=\left(\bigcup_{n=1}^\infty	f^{-1}[-\infty,n)\right)^\complement\\
+	{f}^{-1}{\{-\infty\}}&=\left(\bigcup_{n=1}^\infty	f^{-1}[n,\infty]\right)^\complement\\
+	\end{align*}		
+	and thus is measurable.
+\end{itemize}
+\end{proof}
+
+
+
+\pagebreak
+\item Prove that any Lebesgue-measurable function $f:\R\to\R$ that satisfies the relation 
+$$f(x+y)=f(x)+f(y)\quad \text{ for all } \quad x,y\in\R$$
+must be linear. 
+\begin{proof}
+We need to show that for all $\lambda\in \R$, 
+\begin{equation} \tag{$\dagger$}
+f(\lambda x)=\lambda f(x).
+\end{equation}
+First, observe that for any $n\in \N$,
+$$f(nx)=f(\,\overbrace{x+\dots+x}^n\,)=\overbrace{f(x)+\dots+f(x)}^n=nf(x),$$
+so $(\dagger)$ holds for $\lambda\in \N$. Next, observe that 
+$$f(x)=f\bigg(\,\overbrace{\frac{x}{n}+\dots+\frac{x}{n}}^n\,\bigg)=\overbrace{f\left(\frac{x}{n}\right)+\dots+f\left(\frac{x}{n}\right)}^n=nf\left(\frac{x}{n}\right),$$
+so $\frac{1}{n}f\left(x\right)=f\left(\frac{x}{n}\right)$, which together with the previous result means that for every $\frac{p}{q}\in\Q$, 
+$$f\left(\frac{p}{q}x\right)=pf\left(\frac{x}{q}\right)=\frac{p}{q}f\left(x\right),$$
+so $(\dagger)$ holds for $\lambda\in \Q$. To prove the final result, we will need the following lemma.
+	\begin{itemize}
+	\item[\,]\vspace*{-18pt}
+	%\begin{lemma}
+	%$f$ is differentiable, and thus continuous. 
+	%\end{lemma}
+	%\textbf{Proof of Lemma}
+	%For all $x\in \R$,
+	%$$\lim_{h\to0} \frac{f(x+h)-f(x)}{h}= 
+	%\lim_{h\to0} \frac{f(x)+f(h)-f(x)}{h}=
+	%\lim_{h\to0} \frac{f(h)}{h}=
+	%%\lim_{h\to0} \frac{1}{h}f(h)=
+	%\lim_{h\to0} f(1)=
+	%f(1)
+	%$$
+	\begin{lemma*}
+	$f$ is continuous at $x=0$. 
+	\end{lemma*}
+	Let $\varepsilon>0$. Since $\Q$ is dense in $\R$ (thought of as the codomain of $f$), then $\bigcup_{i=1}^\infty B_\frac{\varepsilon}{2}(q_i)=\R$, where $\infcoll{q}$ is an enumeration of the rationals. Since $f$ is measurable, then every $\preimage{f}{B_\frac{\varepsilon}{2}(q_i)}$ is measurable. Since $\preimage{f}{\R}=\R$ and 
+	$$\preimage{f}{\R}=\preimage{f}{\bigcup_{i=1}^\infty B_\frac{\varepsilon}{2}(q_i)}=\bigcup_{i=1}^\infty\preimage{f}{B_\frac{\varepsilon}{2}(q_i)},$$
+	then $\bigcup_{i=1}^\infty\preimage{f}{B_\frac{\varepsilon}{2}(q_i)}$ covers $\R$ so at least one of them has positive measure, by subadditivity. Say $\preimage{f}{B_\frac{\varepsilon}{2}(q_k)}$ does and call it $A$. Since $\measure{A}>0$ then $A-A$ contains a neighborhood of zero, call it $B_\delta(0)$. Any element $x$ of $B_\delta(0)\subset A-A$ can be written in the form $x=a_1-a_2$, so $f(x)=f(a_1-a_2)=f(a_1)-f(a_2)$. That is, 
+	$$f(B_\delta(0))\subseteq f(A)-f(A)\subset B_\frac{\varepsilon}{2}(q_k)-B_\frac{\varepsilon}{2}(q_k)\subset B_\varepsilon(0),$$
+	so $f$ is continuous at 0. 
+	%\indent \textbf{Proof of Lemma}
+	%Suppose for contradiction that $f$ is not continuous at 0. Then there exists some $\varepsilon>0$ such that for every $\delta>0$, there exists some $x$ such that $0<\abs{x-0}=<\delta$ and $\abs{f(x)-f(0)}\geq\varepsilon$. [the rest of this is wrong]
+	%
+	%We can simplify the previous statement since for every $x\in\R$,
+	%$$f(0)+f(x)=f(x+0)=f(x) \text{, then }f(0)=0.$$ 
+	%
+	%Also, observe that assuming that $\abs{x}<\delta$ for any $\delta>0$ places no constraint on $x$\footnote[2]{If this is not apparent, suppose that for every $\delta>0$, if $\abs{x}<\delta$, some proposition $P(x)$ is true. Observe that $P(x)$ is true for all $x\in\R$: Let $x$ be arbitrary, and let $\delta=\abs{x}+1$. Then $\abs{x}<\delta$ for some $\delta$, so $P(x)$ is true.}, so we can say
+	%$$\text{there exists some }\varepsilon>0\text{ such that }\abs{f(x)}\geq \varepsilon\text{ for all }x.$$
+	%
+	%Let $x$ be any real number, and suppose \Wlog{} that $\abs{f(x)}=f(x)$. Then $f(x)\geq \varepsilon$, but there exists some $n\in\N$ such that $\frac{1}{n}f(x)<\varepsilon$, which means that $f\left(\frac{x}{n}\right)<\varepsilon$, contradiction. 
+	\qedwhite
+	\end{itemize}
+	
+We can use this to show that $f$ is continuous everywhere. For any $x\in\R$, 
+\begin{align*}
+\lim_{h\to0}\left[f(x+h)\right]&=\lim_{h\to0}\left[f(x)+f(h)\right]\\
+&=\lim_{h\to0}f(x)+\lim_{h\to0}f(h)\\
+&=f(x)+f(0)\\
+&=f(x)+0
+\end{align*}
+
+%Now we can show that $(\dagger)$ holds over all of $\R$. 
+Let $\lambda\in\R$, and let $\{q_n\}_{n=1}^\infty$ be a sequence of rational numbers that converges to $\lambda$. Then,
+\begin{align*}
+f(\lambda x)&=f\left(\lim_{n\to\infty}q_n x\right) \quad\quad \text{and since $f$ is continuous,}\\
+&=\lim_{n\to\infty}f\left(q_n x\right)\\
+&=\lim_{n\to\infty}q_nf\left( x\right)\\
+&=\lambda f(x)
+\end{align*}
+so $(\dagger)$ holds for $\lambda\in \R$, and we are done. 
+\end{proof}
+
+\pagebreak
+\item Let $f:(0,1)\to\R$ be such that for every $x\in (0,1)$ there exists $\delta_x>0$ and a Borel-measurable function $g_x:\R\to\R$ (both dependent on $x$), such that $f(y)=g_x(y)$ for all $y\in D_x$, where $D_x=B_{\delta_x}(x)\cap (0,1)$. Prove that $f$ is Borel-measurable. 
+\begin{proof}
+Observe that $\{D_x\}_{x\in(0,1)}$ is an open cover of $(0,1)$. Since we know that any open set is a countable union of open balls with rational radii and centers, we can produce a countable subcover. Let $\{B_i\}_{i=1}^\infty$ be an enumeration of the rational balls in $\R$, and let 
+$$\Gamma=\{i\in\N \mid B_i\subset D_x \text{ for some } x\in(0,1)\}.$$
+Then $\{B_i\}_{i\in\Gamma}$ covers $(0,1)$ and for each $i\in\Gamma$, we can choose a corresponding $x_i$ such that $B_i\subset D_{x_i}$. Then 
+$\{D_{x_i}\}_{i\in\Gamma}$
+is a countable subcover of $\{D_x\}_{x\in(0,1)}$. 
+
+Let $I\in\R$ be any open interval. Then 
+\begin{align*}
+\preimage{f}{I}&=\bigcup_{i\in\Gamma}\left(f\big|_{D_{x_i}}\right)^{-1}(I)\\
+&=\bigcup_{i\in\Gamma}\left(g_{x_i}\big|_{D_{x_i}}\right)^{-1}(I)\\
+&=\bigcup_{i\in\Gamma}\left\lbrace y\in \big(B_{\delta_{x_i}}({x_i})\cap (0,1)\big) \mid g_{x_i}(y)\in I\right\rbrace\\
+&=\bigcup_{i\in\Gamma} B_{\delta_{x_i}}({x_i})\cap (0,1) \cap g^{-1}_{x_i}(I)\\
+\end{align*}
+which is a Borel set since $g_x$ is Borel-measurable for all $x$, so it is a countable union of Borel sets. Thus $f$ is Borel-measurable.
+\end{proof}
+
+\item Give an example of a collection of Lebesgue-measurable functions $\{f_\alpha\}_{\alpha\in A}$ where each \linebreak $f_\alpha:\R\to\R$ and the function
+$$g(x)=\sup_{\alpha\in A} f_\alpha(x), \quad \quad x\in\R$$
+is finite for all $x\in\R$ but $g$ is not Lebesgue-measurable. Here $A$ is a nonempty index set. 
+\answer Let $V\subset[0,1]$ be a Vitali set, and for each $\alpha\in V$, let $f_\alpha=\Chi_{\{\alpha\}}$. Then 
+$$g(x)=\sup_{\alpha\in V} f_\alpha(x)=\Chi_V$$
+which is not Lebesgue-measurable, as we know. 
+
+
+\end{enumerate}
+\end{document}

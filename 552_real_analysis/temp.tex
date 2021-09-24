@@ -1,0 +1,54 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{tskpreamble} %located in ~/texmf/tex/latex/
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference.
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+%\newcommand{\extmeasure}[1]{m_*(#1)}
+%\newcommand{\measure}[1]{m(#1)}
+\renewcommand{\mathcal}[1]{\pazocal{#1}}
+
+\newcommand{\pp}{\!\!+\!\!+}
+
+\title{Math 552 \linebreak
+Homework 1}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+Assume that for some $a\in\N$, $(a+b)+c=a+(b+c)$. Then we will show that $((a++)+b)+c=(a++)+(b+c)$. So,
+$$\begin{array}{rcll}
+  ((a\pp)+b)+c &=& ((a+b)\pp)+c &\quad\text{by adding }a\pp \text{ and } b\\
+  &=&((a+b)+c)\pp &\quad\text{by adding }(a+b)\pp \text{ and } c\\
+  &=&(a+(b+c))\pp &\quad\text{by induction hypothesis}\\
+  &=&(a\pp)+(b+c) &\quad\text{by reversing addition with }a\pp \text{ and } (b+c)\\
+\end{array}$$
+
+\end{document}

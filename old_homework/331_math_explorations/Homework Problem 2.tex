@@ -1,0 +1,145 @@
+\documentclass[letterpaper, 12pt]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\textphi}{\Phi}
+
+\title{Math 331 \linebreak
+Theme 2 Problem}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+%DIRECTIONS
+%A. For individual submissions:
+%
+%1. Copy down the six steps to solve the problem and insert your answers to each.
+%2. Copy and paste your three paragraph essay. Give your essay a title and be sure you tie your report to the experiment you performed in part 1 to solve the problem. Include a Works Cited List. Cite the article you consulted, your textbook, and cite MATHWORLD only once, even if you used it several times. Be sure to use correct citation notation (author, page number) for books and articles and see MATHWORLD (bottom of the page) for correct citation notation.
+
+\section*{Part 1}
+Part 1 is based on a problem from the text page 132, \#5 (expanded):
+
+You are asked to collect evidence for the following conjecture linking the Fibonacci sequence to the golden ratio ($φ$):
+
+\begin{conjecture*}
+When $φ$ is raised to a positive integer power, the result can be written as $A + Bφ$ where $A$ and $B$ are Fibonacci numbers.
+\end{conjecture*}
+
+
+You are asked to find $φ^2, φ^3, φ^4$ to gather evidence for the conjecture that each can be expressed in terms of $A$, $B$ and $φ$ as indicated . In other words, you should express each of the powers of $φ$ as $A + Bφ$. Then guess (without calculating) $A$ and $B$ for $φ^5$ and explain the pattern emerging from your calculations.
+
+Next, you are asked to investigate various ways to construct golden rectangles and show a geometric connection between them and Fibonacci numbers.
+
+\begin{enumerate}
+
+\item[Step 1.] (6 points) When you compute $\Phi^2, \Phi^3,$ and $\Phi^4,$ use $\Phi = \sfrac{1}{2}(1 + \sqrt{5})$. You must calculate the powers in terms of this value. In other words calculate the powers in terms of $\Phi$ using its square root representation. Show all your calculations.
+
+\textbf{Answer:}
+\[\begin{array}{rcll}
+\Phi^1 &=&&= \frac{1 + \sqrt{5}}{2}\\
+
+\Phi^2 &=& \left(\frac{1 + \sqrt{5}}{2}\right)^2 = \frac{1+2\sqrt{5}+5}{4} = \frac{6+2\sqrt{5}}{4}&= \frac{3+\sqrt{5}}{2}\\
+
+\Phi^3 &=& \left(\frac{1 + \sqrt{5}}{2}\right)\left(\frac{3+\sqrt{5}}{2}\right) = \frac{3+4\sqrt{5}+5}{4}& = \frac{8+4\sqrt{5}}{4} \\
+
+\Phi^4 &=& \left(\frac{1 + \sqrt{5}}{2}\right)\left(\frac{8+4\sqrt{5}}{4}\right) = \frac{8+12\sqrt{5}+20}{8} = \frac{28+12\sqrt{5}}{8} &= \frac{14+6\sqrt{5}}{4} \\
+
+\end{array}\]
+
+\item [Step 2.] (6 points) To show the evidence for the conjecture, you must write each of $φ^2, φ^3,$ and $φ^4$ in the form $A + Bφ$ where $A$ and $B$ are Fibonacci numbers. Recall that the Fibonacci sequence is $1, 1,2, 3, 5, 8, 13, 21, 34, 55, \ldots$ etc. where each subsequent number is the sum of the previous two numbers. To help with the next step, give each of these numbers in the sequence a name that reflects its position in the sequence. For example: Let
+$$F_1= 1; F_2 = 1; F_3 = 2; F_4 = 3; F_5= 5; F_6 = 8, \text{etc.}$$
+In other words $F_n$= the number “sitting” in the $n$th position of the sequence.
+
+\textbf{Answer:}
+\[\begin{array}{rcll}
+\Phi^1 &=& \frac{1 + \sqrt{5}}{2} & = (0)+ (1)\frac{1 + \sqrt{5}}{2} = F_0 + F_1\Phi\\
+
+\Phi^2 &=& \frac{3+\sqrt{5}}{2} = \frac{2}{2} + \frac{1+\sqrt{5}}{2}&= (1)+ (1)\frac{1+\sqrt{5}}{2} = F_1 + F_2\Phi\\
+
+\Phi^3 &=& \frac{8+4\sqrt{5}}{4} = \frac{4}{4} + \frac{4+4\sqrt{5}}{4} & = (1) + (2)\frac{1+\sqrt{5}}{2} = F_2 + F_3\Phi\\
+
+\Phi^4 &=& \frac{14+6\sqrt{5}}{4} = \frac{8}{4}+\frac{6+6\sqrt{5}}{4}& = (2) + (3)\frac{1+\sqrt{5}}{2} = F_3 + F_4\Phi\\
+
+\end{array}\]
+
+\item [Step 3.] (3 points) Guess (without calculating) $A$ and $B$ for $φ^5$. Then explain how you figured it out. In other words, explain the pattern that connects powers of the golden ratio to the Fibonacci number. You should take into consideration the power you are raising $φ$ to; and its relationship to the $n$ in the $F_n$ name of the number in the Fibonacci sequence.
+
+\textbf{Answer:} I think that
+$$\Phi^5=(3) + (5)\tfrac{1+\sqrt{5}}{2} =F_4+F_5\Phi.$$
+The sequence seems to be following the pattern of $\Phi^n=F_{n-1}+F_n\Phi$. 
+
+
+\item [Step 4.] (4 points) Use Euclid’s construction (see http://mathworld.wolfram.com/GoldenRectangle.html for details) to create a golden rectangle, starting with a square of side length 2 inches. Indicate the lengths of the sides of the golden rectangle and show why it is “golden”.
+
+\textbf{Answer:}
+Start with square $ABDC$ with side length 2 inches.
+\jpg{scale=.05}{331_hw2_1}
+\pagebreak
+Bisect $\overline{AC}$, and call the midpoint $E$. 
+\jpg{scale=.05}{331_hw2_2}
+Construct $\overline{EB}$. Observe that $EF=\sqrt{5}$ by the Pythagorean Theorem, since $AE=1$ and $AB=2$. 
+\jpg{scale=.05}{331_hw2_3}
+
+\pagebreak
+Extend $\overline{EA}$ to construct $\overline{EF}$ with length $\sqrt{5}$. 
+\jpg{scale=.05}{331_hw2_4}
+Extend $\overline{DB}$ to construct $\overline{GB}$ such that $\overline{GB} = \overline{AF}$. Then construct $\overline{FG}$. 
+\jpg{scale=.05}{331_hw2_5}
+
+\pagebreak
+Observe that rectangle $FGDC$ is a Golden Rectangle. To see this, note that $FC=1+\sqrt{5}$, and $CD=2$. Thus, the ratio of side lengths is 
+$$\frac{1+\sqrt{5}}{2}=\Phi.$$
+Also, when $FGDC$ is partitioned into square $ABDC$ and rectangle $FGBA$, we find that rectangle $FGBA$ has side lengths $FA=1+\sqrt{5}-2=\sqrt{5}-1$ and $AB=2$. Thus, the ratio of its sides is 
+$$\frac{2}{\sqrt{5}-1}=\frac{2(\sqrt{5}+1)}{5-1}=\frac{2+2\sqrt{5}}{4}=\frac{1+\sqrt{5}}{2}=\Phi.$$
+\jpg{scale=.05}{331_hw2_6}
+
+\pagebreak
+\item [Step 5.] (6 points) Illustrate a geometric connection between golden rectangles and Fibonacci numbers. Start with a square with side lengths 1 inch and add a square of the same size to form a new rectangle. Continue adding squares whose sides are the length of the longer side of the rectangle. Repeat the process at least five times. Then look at the \st{triangles} rectangles. Answer these questions:
+
+\begin{enumerate}
+	\item What is the pattern that emerges when you evaluate the ratios of the longer side to the smaller side for the rectangles you created?
+
+	\item Show that the longer you continue the process, the larger and larger rectangles that are formed will successively be approximating a golden rectangle.
+
+	\item What pattern emerges in the lengths of the longer sides of successive rectangles ?
+\end{enumerate}
+\textbf{Answer:}
+\jpg{scale=.21}{331_hw2_prob5}
+\end{enumerate}
+
+\section*{Part 2}
+The essay begins on the following page. 
+\pagebreak
+
+\end{document}
+

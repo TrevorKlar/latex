@@ -1,0 +1,486 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{xfrac}
+
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\newcommand{\curl}{\text{curl}}
+
+
+\graphicspath{{/home/trevor/Documents/latex/images/}{/home/trevor/Documents/latex/images/adv_calc/}}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%\begin{comment}
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+%\end{comment}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+
+%================Start of document==============
+
+\title{Differential Equations Math 460 - Rosen, 2018}
+\author{Trevor Klar}
+\makeindex
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\addcontentsline{toc}{section}{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevor.klar.834@my.csun.edu}{trevor.klar.834@my.csun.edu}. If you could include the page number, that would be helpful. 
+
+Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not Professor Fuller's. Bear that in mind when studying. 
+\end{highlight}
+
+\pagebreak
+\section{Introduction}
+
+This will be a course on ring theory and group theory, and we'll start with ring theory.
+
+\section{Rings}
+
+\begin{highlight}
+\begin{definition*}
+A ring $R$ is a set with two binary operations, $+$ and $\cdot$ which satisfy the following axioms $\forall a,b,c\in R $:
+\begin{itemize}
+\item[R1] + commutative
+\item[R2] + associative
+\item[R3] + identity
+\item[R4] + inverse
+\item[R5] $\cdot $ associative
+\item[R6] $\cdot $ left, right distributive
+\item[R5] $\cdot $ identity (we are assuming all rings are rings with unity)
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+If, in addition, the ring has the $\cdot$ commutative property, we say that it is a \textbf{commutative ring}. 
+\end{definition*}
+
+\begin{theorem*}
+every element of a ring has a unique additive inverse:
+\end{theorem*}
+
+\begin{proposition*}
+$a\cdot 0 = 0$
+\end{proposition*}
+
+\begin{proposition*}
+$-a = -1\cdot a$
+\end{proposition*}
+
+\begin{proposition*}
+$(-a)b=a(-b)=-(ab)$
+\end{proposition*}
+
+\begin{definition*}
+$S$ is a \textbf{subring} of $R$ if $s\subseteq R$ and $1_S=1_R$ and 
+
+$S$ with the same $+$ and $\cdot$ is ring.
+\end{definition*}
+To check $S$ is a subring, just check 
+\begin{itemize}
+\item closure under $+, \cdot$, 
+\item $0_R \in S$
+\item $1_R \in S$
+\item $a\in S \implies -a \in S$. 
+\end{itemize}
+
+Here are some examples of rings: 
+
+\begin{enumerate}
+\item $ \Q, \Z, \R, \C$
+\item $ R$ any ring, $R[x]=$ the set of all polynomials with coefficients in $R$. 
+$$R[x]=\{a_0+a_1x+\dots+a_nx^n | a_i\in R, n \text{varies}\}.$$
+\item $R[x,y]=R[x][y]=R[y][x]$
+\end{enumerate}
+
+\begin{definition*}
+we say that $\deg 0 -=\inf$  (or that 0 has no degree), and for some polynmial $P(x)$, $\deg(P(x))$ is what you think. 
+\end{definition*}
+
+\begin{definition*}
+If $R$ is a ring and there exists some $a,b\in R$ such that $a,b\neq0$ and $ab=0$, then we say $a$ and $b$ are \textbf{zero divisors}. 
+\end{definition*}
+
+\begin{definition*}
+A commutative ring with no zero divisors is called an \textbf{integral domain}.
+\end{definition*}
+
+\begin{proposition*}[Cancellation property for integral domains]
+for $R$ an I.D. and $ab=ac$ with $a\neq0$, then $b=c$. 
+\end{proposition*}
+
+[jpg]
+
+\begin{definition*}
+a \textbf{field} is a commutative ring in which every nonzero element has a multiplicative inverse (which is unique, prove it) , ex $\Q, \R, \C$ are fields. 
+\end{definition*}
+
+\begin{proposition*}
+every field is an I.D, because if $ab=0$ and $a\neq0$, then $a^{-1}(ab)=a^{-1}0$ which means $b=0$. 
+\end{proposition*}
+
+\begin{proposition*}
+If $R,S$ rings, then $R\times S$ is a ring (when equipped with componentwise addition and multiplication). By the way, unity is $(1_R, 1_S)$ and the identity is $(0_R, 0_S)$. 
+\end{proposition*}
+
+[jpg]
+
+[jpg]
+
+[jpg]
+
+
+\section{actual lecture starts here}
+
+\begin{highlight}
+\begin{definition*}
+A non-constant polynomial in $F[x]$ is called \textbf{irreducible} when if $f(x)=g(x)h(x)$, then either $g(x)$ or $h(x)$ is constant. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+Let $f(x)\in F[x]$. If $\deg f(x)=$ 2 or 3, then $f(x)$ is irredeucible iff in has no roots in $F$. 
+\end{proposition*}
+\end{highlight}
+
+\begin{example*}
+$f(x)=(x^2+1)^2\in \R[x]$ is reducible, but has no real roots. 
+\end{example*}
+
+\begin{highlight}
+\begin{theorem*}[Rational Root Test]
+Let $f(x)\in \Z[x]$ where $f(x)=a_nx^n + \dots + a_1x + a_0$. \\
+\mbox{}\\
+$\frac{r}{s}$ (in lowest terms) is a rational root iff $r|a_0$ and $s|a_n$. 
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+Let $f(x)\in F[x]$ where $F[x]$ is a PID\footnote{is every field a PID? The notetaker didn't hear.}. $f(x)$ is irreducible iff $\langle f(x) \rangle$ is maximal (and hence $F(x)/ \langle f(x) \rangle$ is a field). 
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}[Binomial Theorem]
+$$(a+b)^n = \sum\limits_{i=0}^n \left({}_i^n\right)a^{n-i}b^i$$
+\end{theorem*}
+\end{highlight}
+
+\begin{lemma}
+For $p$ prime, $p|\left({}_i^p\right)$.
+\end{lemma}
+\begin{proof}
+Let $m=\left({}_i^p\right)=\frac{p!}{i!(p-i)!}$. Then, 
+$$p!=mi!(p-i)!$$
+and since $p$ divides $p!$ but not $i!$ or $(p-i)!$, then $p|m=\left({}_i^p\right)$. 
+\end{proof}
+
+\begin{highlight}
+\begin{theorem*}[Binomial Theorem mod $p$]
+For $a,b\in \Z_p$, where $p$ prime, 
+$$(a+b)^p = \sum\limits_{i=0}^p \left({}_i^p\right)a^{p-i}b^i=a^p+b^p$$
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+Let $R,R'$ be rings. A \textbf{ring homomorphism} between $R$ and $R'$ is a function $\theta:R\to R'$ such that 
+\begin{enumerate}
+\item $\theta(r_1+r_2)=\theta(r_1)+\theta(r_2)$
+\item $\theta(r_1r_2)=\theta(r_1)\theta(r_2)$
+\item $\theta(1_R)=1_{R'}$
+\end{enumerate}
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+Here are some propositions you should prove:
+\begin{enumerate}
+\item $f(0_R)=,0_{R'}$
+\item $f(-a)=-f(a)$
+\item If $a$ is invertible in $R$, then $f(a)$ is invertible in $R'$. and $\inv{f(a)}=f(\inv{a})$. 
+\item $f$ is 1-to-1 iff $\ker f=0_R$. 
+\end{enumerate}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+We say an onto homomorphism is called an \textbf{epimorphism}, and a 1-1 homomorphism is called a \textbf{monomorphism}.
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+The kernel of a homomorphism is the set of all elements in $R$ that map to $0_{R'}$ under $\theta$. 
+\end{definition*}
+
+\begin{highlight}
+\begin{proposition*}
+The kernel of a homomorphism $\theta:R\to R'$ is an ideal of $R$. 
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+A homomorphism $\theta:R\to R'$ is 1-1 iff $\ker\theta = \{0_R\}$.
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+Let $\theta:R\to R'$ a homomorphism. If $\ker \theta = R$, then $\theta$ is the zero map. 
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+If $f$ is onto, then $f(I)\trianglelefteq R'$. 
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+If $\theta:R\to R'$ is a bijective homomorphism, then we say $\theta$ is a \textbf{ring isomorphism} and we write $R\cong R'$. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+If $f:X \to Y$ is any function of set, then for any $B\subset Y$ let 
+$$\preimage{f}{B}=\left\lbrace x \in X | f(x)\in B\right \rbrace,$$
+and we call this the \textbf{preimage} of $B$ under $f$. Note that the preimage of a set is a set, and you should \emph{not} think of a preimage as a function. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+Suppose $f:R\to R'$ is a ring homeomorphism, and let $I'\trianglelefteq R'$. Then $\preimage{f}{I'}\ideal R$. 
+\end{proposition*}
+\end{highlight}
+(Try the proof. Prove that $\preimage{f}{I'}$ is closed, is an ideal, and contains $0_R$.) 
+
+Some properties of preimages:
+\begin{itemize}
+\item $\preimage{f}{A\cap B}=\preimage{f}{A}\cap \preimage{f}{B}$
+\item $\preimage{f}{A\cup B}=\preimage{f}{A}\cup \preimage{f}{B}$
+\item If $A\subset B$, then $\preimage{f}{A}\subset \preimage{f}{B}$
+\end{itemize}
+
+\begin{highlight}
+\begin{corollary*}
+$\ker f = \preimage{f}{\{0_{R'}\}}\subseteq\preimage{f}{I'}$
+\end{corollary*}
+\end{highlight}
+
+\begin{example*}\mbox{}
+\begin{enumerate}
+\item \begin{highlight}
+Suppose $R\subset S$ (Assume $S$ is commutative). For any $s\in S$, define $\mu_s:R[x]\to S$ by 
+$$\mu_s\big(p(x)\big)=p(s).$$
+Then we have that $\mu_s$ is a homomorphism (which we call the \emph{substitution homomorphism}). 
+\end{highlight}
+
+\item $\mu_i:\R[x]\to\C$ defined by 
+$$\mu_i\big(p(x)\big) = p(i)$$
+Then, $(x^2+1)=\ker\mu_i$. (prove it using the division algorithm). 
+
+\item Consider $\mu_{2^{1/3}}:\Q[x]\to \R$. Then $\ker\mu_{2^{1/3}}=(x^3-2)$. (for the proof, use the division algorithm and the fact that $1, 2^{1/3}, 2^{2/3}$ are linearly independent in $\Q$.)
+
+\item \mbox{}
+\jpg{width=0.90\textwidth}{460_ex_i}
+
+\end{enumerate}
+\end{example*}
+
+\begin{remark*}
+When a subring generated by a set, use square brackets. When you know the subring is a field, use round brackets. 
+
+i.e. $\Q[\sqrt{2}]=\Q(\sqrt{2})$ ,but for $\Z[\sqrt{2}$ or $F[\sqrt{2}$ dont use $()$ if it's not a field. 
+\end{remark*}
+
+\begin{highlight}
+\begin{proposition*}
+Let $R$ be any ring, with $I\ideal R$. Define $\pi:R \to R/I$  by $pi(r)=r+I$. Then $\pi$ is a ring homomorphism which is onto and $\ker\pi=I$. \\
+\\
+We call $\pi$ the \textbf{canonical homomorphism}. 
+\end{proposition*}
+\end{highlight}
+
+The next theorem is the converse of the above. 
+
+\begin{highlight}
+\begin{theorem*}[Fundamental Homomorphism Theorem]
+Given a ring homomorphism $\phi:R\to R'$, then $R/\ker \phi \cong \phi(R)$. \\
+\\
+This means that if $\phi:R\to R'$ is onto, then $R/\ker \phi \cong R'$.
+\end{theorem*}
+\end{highlight}
+\begin{proof}\mbox{}
+\jpg{width=0.90\textwidth}{fht_1}
+\jpg{width=0.90\textwidth}{fht_2}
+\jpg{width=0.90\textwidth}{fht_3}
+\end{proof}
+
+\begin{example*}
+\jpg{width=0.90\textwidth}{fht_ex_1}
+\jpg{width=0.90\textwidth}{fht_ex_2}
+\end{example*}
+
+\begin{highlight}
+\begin{proposition*}
+If $R$ be an integral domain such that $R[x]$ is a PID, then $R$ must be a field. 
+\end{proposition*}
+\end{highlight}
+\begin{proof}
+Define $\mu_0:R[x]\to R$ by $x\mapsto 0$. So $\mu_0$ is an onto homomorphism. Also, $p(x)\in \ker \mu_0$ iff $0=\mu_0(p_(x))=p(0)$. Thus, $\ker\mu_0=\langle0\rangle$. 
+\jpg{width=0.5\textwidth}{460_1}
+\end{proof}
+
+\begin{highlight}
+\begin{proposition*}
+Suppose $R$ is a commutative ring and $I\ideal R$. Then $I[x]\ideal R[x]$ and $R[x]/I[x]\cong(R/I)[x]$. 
+\end{proposition*}
+\end{highlight}
+\begin{proof}\mbox{}
+\jpg{width=0.5\textwidth}{460_2}
+\jpg{width=0.5\textwidth}{460_3}
+\end{proof}
+
+\begin{highlight}
+\begin{corollary*}
+If $P$ is a prime ideal of $R$, then $P[x]$ is a prime ideal of $R[x]$.
+\end{corollary*}
+\end{highlight}
+\begin{proof}\mbox{}
+\jpg{width=0.5\textwidth}{460_4}
+\end{proof}
+
+\pagebreak\
+\begin{highlight}
+\textbf{Special Case. (reduction of coefficients mod $P$)}
+$$\phi:\Z[x]\to \Z_p[x], p \text{ prime}$$
+$$\sum a_ix^i \mapsto \sum\bar{a_i}x^i$$
+\end{highlight}
+
+\begin{highlight}
+\begin{remark*}
+let $R\to^\phi S\to^\psi T$ be homomorphisms. Then 
+$$\ker(\psi\circ\phi)=\preimage{\phi}{\ker\psi}$$
+\end{remark*}
+\end{highlight}
+\jpg{width=0.5\textwidth}{460_5}
+
+\begin{example*}\mbox{}
+\jpg{width=0.5\textwidth}{460_6}
+\jpg{width=0.5\textwidth}{460_7}
+\jpg{width=0.5\textwidth}{460_8}
+\jpg{width=0.5\textwidth}{460_9}
+\end{example*}
+
+\begin{highlight}
+\begin{proposition*}
+every ideal of $\Z[x]$ of the form $(p,f(x))$ where $f(x)$ is irreducible mod $p$ is a maximal ideal in $\Z[x]$. 
+\end{proposition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}[Correspondence thm]
+let $\phi:R\to R'$ be an onto homomorphism. Then $I\leftrightarrow \phi(I)$ sets up a 1-to-1 correspondence between all the ideals of $R$ containing $\ker\phi$ and all the ideals of $R'$. 
+\end{theorem*}
+\end{highlight}
+
+\pagebreak
+\noindent \textbf{Application.} $\pi:R\to^\text{onto} R/I$, $\ker\pi=I$. 
+
+\noindent By the correspondence thm, an arb. ideal of $R/I$ is of the form 
+$$\pi(J) = J/I$$ where $I\subseteq J$. 
+
+
+\pagebreak
+\section{Index}
+\printindex
+
+\end{document}
+

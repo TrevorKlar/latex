@@ -1,0 +1,220 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 8}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\newcommand{\Rn}{\R^n}
+\renewcommand{\phi}{\oldphi}
+\renewcommand{\S}{\script{S}}
+
+\begin{enumerate}
+\item Use theorems on the Fourier transform from the textbook and the lectures to execute the following steps:
+	\begin{enumerate}[label=(\alph*)]
+	\item For a Schwartz function $\phi\in\script{S}(\Rn)$ with $n\geq 2$, define $\frac{\del_1}{|\nabla|}\phi$ using the Fourier transform. Prove that the operator $\frac{\del_1}{|\nabla|}:\script{S}\to X$ for, say, $X=\bar{C}_0(\Rn)$ the space of continuous functions limiting to 0 at infinity, is
+defined.
+	\begin{definition*}
+	Define $\frac{\del_1}{|\nabla|}:\script{S}\to \bar{C}_0(\Rn)$ by 
+	$$\frac{\del_1}{|\nabla|}(\phi)=\left(\frac{k_1}{|k|}\hat{\phi}(k)\right)^\vee.$$
+	\end{definition*}
+	\begin{proof}
+	We know that $\S$ is closed under Fourier so $k_1 \hat{\phi}(k)\in \S$. So it suffices to show that we can take Fourier transforms of $\frac{1}{|k|}\phi$ for $\phi\in\S$, since $\left(\frac{1}{|k|}\phi\right)^\vee$ is a particular one. We can simply integrate to compute Fourier for any $L^1$ function, so it suffices to show that $\frac{1}{|k|}\phi\in L^1$. Note that 
+	$$\int_{\Rn}\frac{1}{|k|}\phi = \int_{B_1}\frac{1}{|k|}\phi + \int_{B_1^\complement}\frac{1}{|k|}\phi.$$
+	Now $\int_{B_1}\frac{1}{|k|^\alpha}\phi$ is finite since $1=\alpha<n\leq 2$, and $\int_{B_1^\complement}\frac{1}{|k|}\phi$ is finite since 
+	$$\int_{B_1^\complement}\frac{1}{|k|}\phi\leq \int_{B_1^\complement}\phi<\infty$$
+	because $\phi\in\S$. So $\frac{1}{|k|}\phi\in L^1$ and we're done.
+	\end{proof}
+	
+%	\pagebreak
+	\item Prove that if, for all $\phi\in\S$, we have that 
+	$$\norm{\tfrac{\del_1}{|\nabla|}\phi}_q\leq C\norm{\phi}_p$$
+	for some $p,q\in\N$, then $p=q$.
+	\begin{proof}
+	Fix $\phi\in\S$. Let $\phi_\lambda=\phi(\frac{x}{\lambda})$ which is in $\S$ for all $\lambda>0$. Then by using scaling, we find that 
+	\jpg{width=0.33\linewidth}{hw8-p1-b-lhs}
+	\jpg{width=0.33\linewidth}{hw8-p1-b-rhs}
+	And thus we have, for all $\lambda>0$, 
+	\jpg{width=0.4\linewidth}{hw8-p1-b-3}
+	and so $p$ must be equal to $q$. 
+	\end{proof}
+	
+	\item A fundamental and hard theorem of real variable theory states that
+the converse is true. However, for one particular $p$ it is easy to prove that $\norm{\frac{\del_1}{|\nabla|}\phi}_p\leq C\norm{\phi}_p$ \quad $\forall \phi\in\script{S}$. Find that $p$ and prove the estimate. What is your $C$?
+	\begin{proof}
+	Since Hausdorff-Young gives us that $\norm{\hat{\phi}}_2\leq\norm{\phi}_2$ for all $\phi\in\S,$ then 
+	\begin{align*}
+	\norm{\left(\frac{k_1}{|k|}\hat{\phi}\right)^\vee}_2 
+	& \leq \norm{\left(\frac{k_1}{|k|}\hat{\phi}\right)}_2 \\
+	& \leq \norm{\hat{\phi}}_2 \quad \text{because } \frac{k_1}{|k|}\leq1\\
+	&<\norm{\phi}_2
+	\end{align*}
+	So $C=1$. 
+	\end{proof}
+	\end{enumerate}
+
+\pagebreak	
+\item Assume $f\in C^1_\text{loc}(\R\setminus\braces{a})$	 and $\int_{a-1}^{a+1}|f'|\dx<\infty$. Show that (a) one sided limits $f(a\pm0)$ are finite and (b) use them to compute the \textit{distributional derivative} $f'$ on $\R$.
+\begin{proof}
+To see that the one-sided limits$\lim_{t\to a^\pm}f(t)$ are finite, observe that the Fundamental Theorem of Calculus gives us, for any $t\in B_1(a)$, 
+$$f(t)= f(a+1)- \int_t^{a+1} f'(x) \dx,$$
+and taking limits on both sides we find that 
+$$\lim_{t\to a^+}f(t) = f(a+1)- \int_a^{a+1} f'(x) \dx < \infty$$
+And similarly we have 
+$$\lim_{t\to a^-}f(t) = f(a-1) + \int_{a-1}^{a} f'(x) \dx < \infty$$
+and (a) is proved. For use in part (b), denote $f(a^+):= \lim_{t\to a^+}f(t)$ and $f(a^-):= \lim_{t\to a^-}f(t)$. \qedwhitehere
+\end{proof}
+\begin{proof}
+For any $\phi$, the distributional derivative $Df(\phi)$ is 
+\begin{align*}
+(Df)(\phi) &=- \int_{-\infty}^\infty f\phi' \\
+&= -\int_{-\infty}^{a^-} f\phi'  -\int_{a^+}^\infty f\phi'\\
+&\overtext{=}{IBP}-\left(\big[f\phi\big]_{-\infty}^{a^-} - \int_{-\infty}^{a^-} f'\phi\right) - \left(\big[f\phi\big]_{a^+}^\infty - \int_{a^+}^\infty f'\phi\right) \\
+&= -\big[f(a^-)\phi(a)-f(a^+)\phi(a)\big]+ \left(\int_{-\infty}^{a^-} f'\phi + \int_{a^+}^\infty f'\phi\right) \\
+&= \int_{-\infty}^{a^-} f'\phi + \big[f(a^+)-f(a^-)\big]\phi(a) + \int_{a^+}^\infty f'\phi
+\end{align*}
+where writing $a^-$ or $a^+$ in the bounds denotes an improper integral, that is, $\int_{-\infty}^{a^-}:=\lim_{\substack{\alpha\decreasesto-\infty \\ \beta\increasesto a}}\int_\alpha^\beta$.
+\end{proof}
+	
+\end{enumerate}
+
+
+\pagebreak
+\textbf{Chapter 6}
+
+\renewcommand{\N}{\script{N}}
+\newcommand{\D}{\script{D}}
+\renewcommand{\L}{L}
+
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item Prove that the distributional derivative of a monotone nondecreasing
+function on $\R$ is a Borel measure. [Hint: Use 6.13 and 6.22]
+
+%\renewcommand{\cdot}{\bigcdot}
+\begin{proof}
+Let $f$ be a monotonic function, so that $T_f$ is a distribution in $\D'(\R)$, and %denote $F\in\D'(\R)$ as $F=\int_\R f(y)\phi(y)\dy$. 
+let $j\in C^\infty_c(\R)$ with $\int j=1$, and for each $n\in\N$, let $j_n=2^nj(2^{-n}x)$. Using Theorem 6.13, then %there exists a function $f_n\in C^\infty(\R)$ such that 
+the distributions $j_n*T_f\xto{n}T_f$
+and each $j_n*T_f=T_{j_n*f}$. Note that each $j_n*f$ is itself a monotone function, since if $a<b$ then 
+$$j_n*f(a) = \int_\R j_n(\cdot)f(a-\cdot) < \int_\R j_n(\cdot)f(b-\cdot) = j_n*f(b)$$
+because $f$ is monotone. Now observe that since $f_n$ has a classical derivative, then the distributional derivative $DT_{f_n}={T_{f_n'}}$ and $f_n'$ is nonnegative because $f_n$ is monotonic. Now for all $\phi\geq0$, 
+$${DT_{f_n}(\phi)}={T_{f_n'}(\phi)}=\int_\R f'(x)\phi(x)\dx\geq 0$$
+so every $DT_{f_n}$ is a positive distribution, and since 
+$$DT_{f_n}(\phi)\xto{n} DT_{f}(\phi),$$
+for all $\phi$, then it is a positive distribution as well. Thus by Theorem 6.22, we can conclude that $DT_{f}$ is a Borel measure. 
+\end{proof}
+
+\item Let $\N_T$ be the null-space of a distribution, $T$. Show that there is a function $\phi_0\in \D$ so that every element $\phi\in\D$ can be written as $\phi = \lambda\phi_0+\psi$ with $\psi\in\N_T$ and $\lambda\in\R$. One says that the null-space $\N_T$ has `codimension one'.
+
+[Hint: Recall the proof that the kernel of any linear
+functional in any vector space has the codimension 1]
+
+\begin{proof}
+Let $\tilde{\phi}\in \D$ so that $T\tilde{\phi}\neq0$ (if this doesn't exist then $T=0$ and $\N_T=\D$ so we're done). Denote $\phi_0=\frac{\tilde{\phi}}{{T{\tilde{\phi}}}}$, so that $$T\phi_0=1.$$ Then for any $\phi\in \D$, we can denote $$\lambda=T\phi,$$ and observe that $T\phi=T(\lambda\phi_0)$, so $\phi-\lambda\phi_0\in\N_T$. Denoting $\psi=\phi-\lambda\phi_0$, we find that
+$$\phi = \lambda\phi_0+\psi$$
+and we're done. 
+\end{proof}
+
+\pagebreak
+\item Show that a function $f$ is in $W^{1,\infty}(\Omega)$ if and only if $f=g$ a.e. where $g$ is a function that is bounded and Lipschitz continuous on $\Omega$, i.e., there exists a constant $C$ such that
+$$|g(x)-g(y)|\leq C|x-y| \quad \text{for all } x,y\in\Omega.$$
+%\begin{lemma}
+%If a sequence of functions $g_n$ converges to a function $g \textbf{ as distributions}$, then $g_n$ converges uniformly (almost everywhere) to $g$ as functions. 
+%\end{lemma}
+%\textsc{Proof of Lemma}
+%Suppose $g_n\to g$ as distributions and there exists a set of nonzero measure $A$ such that $ $
+%\qedwhite
+
+\begin{proof}$(\implies)$
+Let $g\in W^{1,\infty}$. By Theorem 6.13, construct $g_n$ to be a sequence of $C^\infty$ functions converging to $g$ as distributions. Since they converge as distributions to $g$, then they converge uniformly almost everywhere to $g$\footnote{This was proved in lecture. I know how to write the proof of this fact, but I'm omitting it since we know this already.}. So there exists $N>0$ such that for all $n>N$ and all $x$, 
+$$\abs{g_n(x)-g(x)}<\epsilon.$$
+Then for any particular $n>N$, 
+\begin{align*}
+g(x+h)-g(x)&\leq g_n(x+h)-g_n(x)+2\epsilon \\
+&= \int_x^{x+h} g'_n \dt + 2\epsilon & \text{ by FTC} \\
+&\leq |h| \; \norm{g'_n}_\infty +2\epsilon 
+\end{align*}\qedwhitehere
+\end{proof}
+
+\begin{proof}$(\impliedby)$
+\jpg{width=0.99\linewidth}{hw8-p8-b-1}
+\jpg{width=0.99\linewidth}{hw8-p8-b-2}
+\end{proof}
+
+
+
+
+
+\setcounter{enumi}{10}
+\item Functions in $W^{1,p}(\Rn)$ can be very rough for $n\geq 2$ and $p\leq n$. 
+	\begin{enumerate}[label=(\alph*)]
+	\item Construct a spherically symmetric function in $W^{1,p}(\Rn)$ that diverges
+to infinity as $x\to 0$. 
+	\answer Let 
+	$$f(x)=\ln\left(|x|^{-a}\right)\Chi_{B_1}$$
+	Where $B_1$ denotes the unit ball, and $a>0$ is to be determined. Note that $f$ is written in terms of $|x|$, so it is spherically symmetric, and as $x\to0$, $f(x)$ clearly approaches $\infty$. \\
+	\textbf{Claim:} With the right choice of $a$, then $f\in W^{1,p}(\R^n)$. \
+	
+		\begin{itemize}
+		\item $f\in\L^p$. On $B_1$, we have 
+		$$\ln\left(|x|^{-a}\right)=\abs{\ln\left(|x|^{-a}\right)}\leq|x|^{-a},$$
+		so if we choose $0<a<\frac{n}{p}$, then 
+		$$\abs{\ln\left(|x|^{-a}\right)}^p\leq|x|^{-ap},$$
+		which is integrable over $B_1$. 
+		
+		\item $\del_i f\in L^p$. Observe that for any $i=1\dots n$, 
+		$$|\del_i f|^p=\left(\frac{ax_i}{|x|^2}\right)^p\leq \frac{a^p}{|x|^p}$$
+		which is integrable over $B_1$ since $p<n$, so the claim is proved. \qed
+		\end{itemize}	  
+
+	\item Use this to construct a function in $W^{1,p}(\Rn)$ that diverges to infinity at every rational point in the unit cube. 
+	
+	[Hint. Write the function in (b) as a sum over the rationals. How do you prove that the sum converges to a $W^{1,p}(\Rn)$ function?]
+	
+	\answer Let $r_j$ be an enumeration of the rationals. Note that the following function clearly diverges to infinity since it's value is at least that of $f(0)$ using the function $f$ from part (b).
+	\jpg{width=0.99\linewidth}{hw8-p11-b-1}
+	\jpg{width=0.99\linewidth}{hw8-p11-b-2}
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

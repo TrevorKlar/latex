@@ -1,0 +1,87 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Pre-Calculus \linebreak
+Test 3}
+\author{Mr. Klar}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent	\textbf{Use the 3 famous points to write a short table of values for the function. Then sketch a graph of the function. Identify any asymptotes and intercepts. (Hint: Choose values of $x$ so that the entire exponent becomes a famous point.)}
+\begin{enumerate}
+	\item $f(x) = -2^{x+3}$ 
+	\item $f(x) = 1+e^{2x}$
+\end{enumerate}
+\noindent	\textbf{Evaluate the expression without a calculator.}
+\begin{enumerate}\setcounter{enumi}{2}
+\item $\log_{1.23}{1.23}^{456}$
+\item $2\ln e^{3.14}$
+\item $5-\log_{10}(1000)$
+\end{enumerate}
+\noindent	\textbf{Use the 3 famous points to sketch the parent function. Then use transformations to sketch the given function. (You can erase the parent function once you're done with it if you want.)}
+\begin{enumerate}\setcounter{enumi}{5}
+\item $f(x) = -\ln(x)+2$
+\item $f(x) = 1+2\log_{3}(x+3)$
+\end{enumerate}
+\noindent	\textbf{Rewrite the log with base 10 by using change-of-base formula.}
+\begin{enumerate}\setcounter{enumi}{7}
+\item $\log_{17} 92$
+\end{enumerate}
+\noindent	\textbf{Use the properties of logarithms to expand the expression as a sum or difference of logs with no exponents or radicals.}
+\begin{enumerate}\setcounter{enumi}{8}
+\item $\log_3 2b^4$
+\item $\ln\dfrac{x\sqrt{x+1}}{3e^4}$
+\end{enumerate}
+\noindent	\textbf{Condense the expression to a single logarithm.}
+\begin{enumerate}\setcounter{enumi}{10}
+\item $3\log_3 x+4\log_3 y^2$
+\item $\ln 3x -\ln(x-3) + \ln(x^2-9)$
+\end{enumerate}
+\noindent	\textbf{Solve for $x$. Use the fact that $\log_5(2)\approx 0.43$. (Hint: Factor large numbers to simplify logs. You can use my "lame calculator" for the decimal arithmetic.)}
+\begin{enumerate}\setcounter{enumi}{12}
+\item $3^x = 81$
+\item $5^{2x}=250$ 
+\item $\log_6 x=3$
+\item $\log_{10}(x+3)=4$
+\end{enumerate}
+\noindent	\textbf{Solve the equation algebraically. Write your answer in terms of logs with no exponents or radicals.}
+\begin{enumerate}\setcounter{enumi}{16}
+\item $\dfrac{1025}{8+e^{4x}}=5$
+\item $-xe^{-x}+e^{-x}=0$ \quad (Hint: use the Zero Product Property)
+\item[Bonus.] $\log_{10}(x)-\log_{10}(8-5x)=2$
+\end{enumerate}
+
+\end{document}

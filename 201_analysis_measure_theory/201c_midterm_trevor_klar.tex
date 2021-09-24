@@ -1,0 +1,171 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Midterm Exam}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+
+\begin{enumerate}
+
+\item Let $\epsilon>0$. Prove that there exists a sequence $(x_n)$ of real numbers such that 
+$$\sum_{n=1}^\infty x_n^2 < \infty \text{ but } n^\epsilon x_n \not \to 0.$$
+
+\begin{proof}
+Consider the sequence $\braces{n^\epsilon}$. For all $k\in\N$, there exists some $n_k\in\N$ such that 
+$$n_k^\epsilon>k^2$$
+so let $\braces{n_k^\epsilon}$ be that subsequence. For the same indeces $n_k$, Let 
+$$x_{n_k}=k^{-1}$$
+and for all other $n$, let 
+$$x_n=n^{-1}.$$
+Then 
+\begin{align*}
+\sum_{n=1}^\infty x_n^2 &= \sum_{k=1}^\infty x_{n_k}^2 + \sum_{n\not\in\{n_k\}} x_n^2 \\
+&<\sum_{k=1}^\infty k^{-2} + \sum_{n\in\N} n^{-2} \\
+&<\infty,
+\end{align*}
+but $n^\epsilon x_n \not\to0$, since the subsequence indexed by $n_k$ is 
+\begin{align*}
+n_k^\epsilon x_{n_k} &= n_k^\epsilon k^{-1}\\
+&> k^2 k^{-1} \\
+&=k
+\end{align*}
+and this goes to infinity as $k\to\infty$. 
+\end{proof}
+
+\pagebreak
+\item 
+	\begin{enumerate}
+	\item Let $X$ be a normed. Assume $X^*$ is separable. Prove that $X$ is separable. 
+	
+	\begin{proof}
+	Since $X^*$ is separable, then so is 
+	$$S(X^*)=\{\phi\in X^* \;:\; \norm{\phi}=1\},$$
+	so let $\braces{\phi_n}$ be a countable dense subset of $S(X^*)$. Since for each $n$ we have that 
+	$$\sup_{\norm{x}=1} \abs{\angles{\phi_n,x}}=\norm{\phi_n}=1,$$
+	then for each $\phi_n$ we can choose some $x_n\in X$ with $\norm{x_n}=1$ such that 
+	\begin{equation}
+	\abs{\angles{\phi_n,x_n}}>\frac{1}{2}.\tag{$\dagger$}
+	\end{equation}
+	Let 
+	\begin{align*}
+	D&=\text{span}\{x_n\}\\
+	&=\braces{\sum_{j=1}^n r_jx_j \;:\; r_j\in\R, n\in\N}\phantom{.}
+	\end{align*}
+	and denote $A$ as the set of all finite linear combinations of $\{x_n\}$ with rational coefficients, that is, 
+	$$A=\braces{\sum_{j=1}^n q_jx_j \;:\; q_j\in\Q, n\in\N}.$$
+	Then $A$ is countable since $\Q\times\N$ is countable, and (as we will show presently) it is dense in $D$. Let $\sum_{j=1}^n r_jx_j\in D$, and let $\epsilon>0$. For each $j$, we can find some $q_j\in\Q$ such that $\abs{r_j-q_j}<\frac{\epsilon}{n\norm{x_j}}$, 
+	$$\norm{r_jx_j-q_jx_j}=\abs{r_j-q_j}\norm{x_j}<\frac{\epsilon}{n},$$
+	so by triangle inequality, 
+	$$\norm{\sum_j^nr_jx_j-\sum_j^nq_jx_j}=\norm{\sum_j^n(r_jx_j-q_jx_j)}\leq \sum_j^n\norm{r_jx_j-q_jx_j} < \epsilon.$$	
+%	 since we can find 
+%	\begin{alignat*}{2}
+%	q_jx&\xto{j}rx  &&\forall rx\in\text{span}\braces{x_n}, \text{ and } \\
+%	\sum_{j=1}^n r_jx&\xto{n}\sum_{j=1}^\infty r_jx \quad &&\forall \sum_{j=1}^\infty r_jx \in \text{span}\braces{x_n}.
+%	\end{alignat*}
+	
+	
+	
+	
+	
+	Now we will show that $D$ is dense in $X$. 
+	
+	Suppose for contradiction that 	$\closure{D}\neq X$. Since $\closure{D}$ is the span of vectors in $X$, then it is a linear subspace of $X$, and so by Hahn-Banach we can find some $\psi\in X^*$ such that $\psi|_{\closure{D}}=0$. Since $\braces{\phi_n}$ is dense in $S(X^*)$, then we can find a particular $\phi_n$ such that 
+	$$\norm{\psi-\phi_n}_*<\frac{1}{4}.$$
+	Now since every $x_n\in\closure{D}$ with $\norm{x_n}=1$, we have that $\angles{\psi,x_n}=0$, so by applying ($\dagger$) and the equation above, 
+	$$\frac{1}{2}< \abs{\angles{\phi_n,x_n}} = \abs{\angles{\phi_n,x_n}-\angles{\psi,x_n}}\leq\norm{\phi_n-\psi}_*\norm{x_n} < \frac{1}{4}$$
+	which is a contradiction. Thus $A$ is a countable set, and $A$ is dense in $D$ which is dense in $X$, so $A$ is dense in $X$, and we're done. 
+	\qedwhitehere
+	\end{proof}
+	
+	\item Give an example of a separable $X_0$ such that $X_0^*$ is not separable. Prove the separability and non-separability of your
+example.
+
+	\answer $\ell_1$ is separable, and $\ell_1^*=\ell_\infty$ is not separable. 
+	\begin{proof}[Proof ($\ell_1$ is separable)]
+	let $A$ be the set of all finite rational sequences, that is, 
+	$$A=\braces{\sum_{j=1}^n q_je_j \;:\; q_j\in\Q, n\in\N}.$$
+	Then $A$ is countable since $\Q\times\N$ is countable, and it is dense in $\ell_1$ since we can use a similar strategy as in the previous problem to find, for any $\epsilon>0$, $q_j\in \Q$ such that 
+%	\begin{alignat*}{2}
+	$$\norm{q_je_j-re_j}<\epsilon2^{-j}   $$
+	for all elements of the form $ re_j$ in $\ell_1$, and so
+	$$\norm{\sum_{j=1}^\infty q_je_j-\sum_{j=1}^\infty r_je_j}<\epsilon.$$
+	 by triangle inequality for all $\sum_{j=1}^\infty r_je_j \in \ell_1$.
+%	\end{alignat*}
+	\qedwhitehere
+	\end{proof}
+	\begin{proof}[Proof ($\ell_\infty$ is not separable)]
+	Thinking of elements of $\ell_\infty$ as functions $\N\to\R$, consider the power set $\script{P}(\N)$. We can define a subset $\script{G}\subset\ell_\infty$ given by 
+	$$\script{G}=\braces{\Chi_G(n) : G\in \script{P}(\N)},$$
+	and we see that this set is uncountable, and no two sequences in $\script{G}$ are closer than 1, since they all differ by 1 at some $n$. Any countable subset of $\ell_\infty$ can only be within distance $1/2$ of at most countable many elements of $\script{G}$, so it cannot be dense. 
+	\end{proof}
+	\end{enumerate}
+	
+	
+\item Let $X,Y$ be normed spaces, $A:X\to Y$ be (algebraically) linear. Assume that for any sequence $(x_n)$ in $X$ such that $x_n\to0$ weakly the corresponding sequence $Ax_n\to 0$ weakly in $Y$. Prove that $A$ is a bounded operator.
+\begin{proof}
+Let $x_n\to 0$ strongly. Then $x_n\xto{w}0$, so $Ax_n\xto{w}0$. We can write the sequence $(x_n)$ as $(\lambda_n u_n)$, where the scalars $|\lambda_n|\to0$ and every vector $\norm{u_n}=1$. Then since $Ax_n\xto{w}0$, then for all $\psi\in Y^*$ we have $\psi(Ax_n)\to 0$, so 
+\begin{align*}
+\psi(Ax_n)
+&= \psi \circ	A(\lambda_nu_n) \\
+&= \lambda_n \psi(Au_n) &\text{by linearity}\\
+&\xto{n}0.
+\end{align*}
+Suppose for contradiction that there is some $(u_n)$ such that $|\psi(Au_n)|\to\infty$. Then $\frac{1}{|\psi(Au_n)|}\to0$, and we know that $\lambda_n \psi(Au_n) \xto{n}0$ for every sequence $(\lambda_n)\to0$. But $\frac{|\psi(Au_n)|}{|\psi(Au_n)|}\equiv1$, which is a contradiction.
+
+Thus ${|\psi(Au_n)|}\to B < \infty$ for any $(u_n)$ with every $\norm{u_n}=1$, so we're done. To see this, note that the sequence ${|\psi(Au_n)|}$ is bounded for any $\psi\in Y^*$ and any sequence in the unit ball $(u_n)\subset \closure{B}(X)$, which means $Au_n$ is also bounded. Therefore $\sup\limits_{\norm{u}=1}\norm{Au}<\infty$. 
+\end{proof}
+
+\pagebreak
+\item Prove that $X^*$ "separates points" of $X$ (a Banach space). That is, prove that for all $x,y\in X$ such that $x\neq y$, there exists $\phi\in X^*$ such that $\phi(x)\neq\phi(y)$. 
+\begin{proof}
+ Fix $x\neq y\in X$, and on the linear subspace 
+$$\text{span}(y-x),$$
+define a linear functional $\phi$ by 
+$$\phi(y-x)=1 \text{ and extending linearly.}$$
+Then by Hahn-Banach, we can extend $\phi$ to a functional on all of $X$. Then $\phi(y)=\phi(x)+1$ and we're done.
+\end{proof}
+
+
+\end{enumerate}
+
+
+
+\end{document}

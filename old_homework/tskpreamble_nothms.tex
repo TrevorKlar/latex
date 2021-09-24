@@ -1,0 +1,125 @@
+%% Useful packages
+\usepackage{amssymb, amsmath, amsthm} 
+%\usepackage{graphicx}  %%this is currently enabled in the default document, so it is commented out here. 
+\usepackage{calrsfs}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usepackage{verbatim}
+%\usepackage{ntheorem}% for theorem-like environments
+\usepackage{mdframed}%can make highlighted boxes of text
+%Use case: https://tex.stackexchange.com/questions/46828/how-to-highlight-important-parts-with-a-gray-background
+\usepackage{wrapfig}
+\usepackage{centernot}
+\usepackage{subcaption}%\begin{subfigure}{0.5\textwidth}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{xfrac}					%to make slanted fractions \sfrac{numerator}{denominator}
+\usepackage{enumitem}            
+    %syntax: \begin{enumerate}[label=(\alph*)]
+    %possible arguments: f \alph*, \Alph*, \arabic*, \roman* and \Roman*
+\usetikzlibrary{arrows,shapes.geometric,fit}
+
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+%% Use \pazocal{letter} to typeset a letter in the other kind 
+%%  of math calligraphic font. 
+
+%% This puts the QED block at the end of each proof, the way I like it. 
+\renewenvironment{proof}{{\bfseries Proof}}{\qed}
+\makeatletter
+\renewenvironment{proof}[1][\bfseries \proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  %\itemindent\normalparindent
+  \item[\hskip\labelsep
+        \scshape
+    #1\@addpunct{}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+%% This adds a \rewnewtheorem command, which enables me to override the settings for theorems contained in this document.
+\makeatletter
+\def\renewtheorem#1{%
+  \expandafter\let\csname#1\endcsname\relax
+  \expandafter\let\csname c@#1\endcsname\relax
+  \gdef\renewtheorem@envname{#1}
+  \renewtheorem@secpar
+}
+\def\renewtheorem@secpar{\@ifnextchar[{\renewtheorem@numberedlike}{\renewtheorem@nonumberedlike}}
+\def\renewtheorem@numberedlike[#1]#2{\newtheorem{\renewtheorem@envname}[#1]{#2}}
+\def\renewtheorem@nonumberedlike#1{  
+\def\renewtheorem@caption{#1}
+\edef\renewtheorem@nowithin{\noexpand\newtheorem{\renewtheorem@envname}{\renewtheorem@caption}}
+\renewtheorem@thirdpar
+}
+\def\renewtheorem@thirdpar{\@ifnextchar[{\renewtheorem@within}{\renewtheorem@nowithin}}
+\def\renewtheorem@within[#1]{\renewtheorem@nowithin[#1]}
+\makeatother
+
+%% This makes theorems and definitions with names show up in bold, the way I like it. 
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+%===============================================
+%==============Shortcut Commands================
+%===============================================
+\newcommand{\ds}{\displaystyle}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\qedwhite}{\hfill\ensuremath{\square}}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand*\closure[1]{\overline{#1}}
+\newcommand*\mean[1]{\overline{#1}}
+%\newcommand{\inner}[1]{\left< #1 \right>}
+\newcommand{\inner}[2]{\left< #1, #2 \right>}
+\newcommand{\powerset}[1]{\pazocal{P}(#1)}
+%% Use \pazocal{letter} to typeset a letter in the other kind 
+%%  of math calligraphic font. 
+\newcommand{\cardinality}[1]{\left| #1 \right|}
+\newcommand{\domain}[1]{\mathcal{D}(#1)}
+\newcommand{\image}{\text{Im}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\preimage}[2]{#1^{-1}\left(#2\right)}
+\newcommand{\script}[1]{\mathcal{#1}}
+
+
+\newenvironment{highlight}{\begin{mdframed}[backgroundcolor=gray!20]}{\end{mdframed}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%===============================================
+%===============My Tikz Commands================
+%===============================================
+\newcommand{\drawsquiggle}[1]{\draw[shift={(#1,0)}] (.005,.05) -- (-.005,.02) -- (.005,-.02) -- (-.005,-.05);}
+\newcommand{\drawpoint}[2]{\draw[*-*] (#1,0.01) node[below, shift={(0,-.2)}] {#2};}
+\newcommand{\drawopoint}[2]{\draw[o-o] (#1,0.01) node[below, shift={(0,-.2)}] {#2};}
+\newcommand{\drawlpoint}[2]{\draw (#1,0.02) -- (#1,-0.02) node[below] {#2};}
+\newcommand{\drawlbrack}[2]{\draw (#1+.01,0.02) --(#1,0.02) -- (#1,-0.02) -- (#1+.01,-0.02) node[below, shift={(-.01,0)}] {#2};}
+\newcommand{\drawrbrack}[2]{\draw (#1-.01,0.02) --(#1,0.02) -- (#1,-0.02) -- (#1-.01,-0.02) node[below, shift={(+.01,0)}] {#2};}
+
+%***********************************************
+%**************Start of Document****************
+%***********************************************

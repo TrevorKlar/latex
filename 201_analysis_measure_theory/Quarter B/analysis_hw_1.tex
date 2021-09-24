@@ -1,0 +1,162 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Winter 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 1}%=================UPDATE THIS=================%
+\end{center}
+
+\jpg{width=\linewidth}{hw1-p1}
+\begin{proof}$(\implies)$
+Suppose $\{f_n\}$ is uniformly integrable, and let $\varepsilon>0$ be given. Then there exists $M$ such that the uniform integrability property holds for $f_n$ for all $n$. Let $\delta=\frac{\varepsilon}{M}$. Then for any \mumeasurable{} set $A$ with $\measure{A}<\delta$, 
+\begin{align*}
+\abs{\int_A f_n \der\mu}
+&= \abs{{\int_{A\cap\{|f_n|>M\}}}\hspace*{-3em}f_n\hspace*{1em}\der\mu 
+ +      {\int_{A\cap\{|f_n|\leq M\}}}\hspace*{-3em}f_n\hspace*{1em}\der\mu} \\
+&\leq \abs{{\int_{A\cap\{|f_n|>M\}}}\hspace*{-3em}f_n\hspace*{1em}\der\mu} 
+ +      \abs{{\int_{A\cap\{|f_n|\leq M\}}}\hspace*{-3em}f_n\hspace*{1em}\der\mu} \\
+&\leq {\int_{A\cap\{|f_n|>M\}}}\hspace*{-3em}|f_n|\hspace*{1em}\der\mu 
+ +      {\int_{A\cap\{|f_n|\leq M\}}}\hspace*{-3em}|f_n|\hspace*{1em}\der\mu \\
+&< \varepsilon + M\mu(A)\\
+&< \varepsilon + M\delta \\
+&= 2\varepsilon
+\end{align*}
+and after rescaling and observing that $n$ was arbitrary, we've shown that $\{f_n\}$ is uniformly absolutely continuous. Now to see that $\ds\sup_n\int_X |f_n| \der\mu < \infty$, choose any $\varepsilon>0$ and let $M>0$ so that the uniform integrability property hold for all $f_n$. Then for all $n$,
+\begin{align*}
+\int_X |f_n|\der\mu 
+&= {\int_{\{|f_n|>M\}}}\hspace*{-2.5em}|f_n|\hspace*{0em}\der\mu 
+ +      {\int_{\{|f_n|\leq M\}}}\hspace*{-2.5em}|f_n|\hspace*{0em}\der\mu 
+< \varepsilon + M\mu(X),\\
+\end{align*}
+which is finite and constant with respect to $n$, so the supremum over $n$ is finite as well. 
+\end{proof}
+
+\begin{proof}$(\impliedby)$
+Let $\varepsilon>0$. Since $\{f_n\}$ is uniformly absolutely continuous, then there exists $\delta>0$ such that for all $A\subset X$ with $\mu(A)<\delta$, we have 
+$$ \abs{\int_{A}f_n \der \mu}<\varepsilon \quad \forall n. $$
+Let $M=\dfrac{1}{\delta}\sup\limits_n \ds\int_X |f_n|\der\mu$. Since 
+$$ \mu\{|f_n|>M\} 
+\leq \frac{1}{M}\int_{\{|f_n|>M\}} \hspace*{-2em}|f_n| \der\mu 
+\leq \frac{1}{M}\sup_n\int_{X} |f_n| \der\mu 
+= \delta,$$
+then $ \abs{\ds\int_{\{|f_n|>M\}} \hspace*{-2em} f_n \der \mu}<\varepsilon $, so 
+\begin{align*}
+\int_{\{|f_n|>M\}} \hspace*{-2em} |f_n| \der \mu 
+&= \int_{\{f_n>M\}} \hspace*{-2em} f_n^+ \der \mu + \int_{\{f_n<-M\}} \hspace*{-2.5em} f_n^- \der \mu \\
+&= \abs{\int_{\{f_n>M\}} \hspace*{-2em} f_n \der \mu} + \abs{\int_{\{f_n<-M\}} \hspace*{-2.5em} f_n \der \mu} \\
+&= \abs{\int_{\{|f_n|>M\}} \hspace*{-2.3em} f_n \der \mu} + \abs{\int_{\{|f_n|>M\}} \hspace*{-2.5em} f_n \der \mu} \\
+&= 2\varepsilon
+\end{align*}
+\end{proof}
+
+\pagebreak
+\jpg{width=\linewidth}{hw1-p2}
+%
+\begin{proof}$(\implies)$
+%Let $\varepsilon>0$. Since $f_n\to f$ \muae{}, then for all $\epsilon>0$, there exists $N\in\N$ such that for all $n>N$, $\abs{f_n-f}<\epsilon$. In particular, we can find $N$ such that $\abs{f_n-f}<\frac{\varepsilon}{\mu(X)}$ \muae{} in $X$ whenever $n>N$. Thus for all $n>N$, 
+%\begin{align*}
+%\int_X \abs{f_n-f}\der\mu &< \int_X \frac{\varepsilon}{\mu(X)}\der\mu \\
+%&= \frac{\varepsilon}{\mu(X)} \mu(X) \\ 
+%&= \varepsilon,
+%\end{align*}
+%so the limit as $n\to\infty$ is 0. 
+%\end{proof}
+Let $\varepsilon>0$. First we establish a few bounds.
+\begin{enumerate}[label=(\roman*)]
+\item Since $f$ is \musummable{}, there exists $\delta_1>0$ such that if $\mu(A)<\delta_1$, then $\abs{ \int_A f\der\mu}<\varepsilon_1$, where $\varepsilon_1=\frac{\varepsilon}{6}$.
+\item Since $\{f_n\}$ is a uniformly integrable sequence, then it is uniformly absolutely continuous, so there exists $\delta_2>0$ such that if $\mu(A)<\delta_2$, then $\abs{\int_A f_n \der\mu}<\epsilon_1$ for all $n$. 
+\item Since $\mu(X)<\infty$, then by Egoroff's Theorem there exists a set $A\subset X$ such that $f_n \to f$ uniformly on $A$, and $\mu(A^\complement)<\min(\delta_1, \delta_2)$. 
+\item Since $f_n\to f$ uniformly on $A$, then there exists $N>0$ such that for all $n>N$, we have $\abs{f_n-f}<\varepsilon_2$, where $\varepsilon_2=\frac{\varepsilon}{3\mu(A)}$. 
+\end{enumerate}
+Now we apply the results above. For all $n>N$, 
+\begin{align*}
+\int_X|f_n-f|\der\mu 
+&= \int_A|f_n-f|\der\mu + \int_{A^\complement}|f_n-f|\der\mu \\
+&\leq \varepsilon_2\mu(A) + \int_{A^\complement}|f_n-f|\der\mu & \text{by (iv)}\\
+&\leq \varepsilon_2\mu(A) + \int_{A^\complement}|f_n|\der\mu + \int_{A^\complement}|f|\der\mu & \Delta \text{ ineq.} \\
+&= \varepsilon_2\mu(A) 
+  + \left( \abs{\int_{A^\complement\cap\{f_n >   0\} }\hspace*{-2.5em}f_n\der\mu} +  \abs{\int_{A^\complement\cap\{f_n\leq 0\} }\hspace*{-2.5em}f_n\der\mu} \right) 
+  + \left( \abs{\int_{A^\complement\cap\{f >   0\} }\hspace*{-2.5em}f\der\mu} +  \abs{\int_{A^\complement\cap\{f\leq 0\} }\hspace*{-2.5em}f\der\mu} \right) \\
+%
+&\leq \varepsilon_2\mu(A) 
+  + \left( \abs{\int_{A^\complement\cap\{f_n >   0\} }\hspace*{-2.5em}f_n\der\mu} +  \abs{\int_{A^\complement\cap\{f_n\leq 0\} }\hspace*{-2.5em}f_n\der\mu} \right) 
+  + 2\varepsilon_1
+  & \text{by (i)} \\
+&\leq \varepsilon_2\mu(A) + 2\varepsilon_1 + 2\varepsilon_1 & \text{by (ii)} \\
+&= \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} \\
+&= \varepsilon
+\end{align*}  
+Thus $\int_X|f_n-f|\der\mu  \to 0$ as $n\to\infty$.
+\end{proof}
+
+\pagebreak
+\begin{proof}$(\impliedby)$
+We will show that (i) $\{f_n\}$ is uniformly absolutely continuous and (ii) ${\sup_n\int_X |f_n| \der\mu <\infty}$. 
+\begin{enumerate}[label=(\roman*)]
+\item Let $\varepsilon>0$. Since $\lim_{n\to\infty}\int_X \abs{f_n-f}\der\mu = 0$, then there exists $N>0$ such that if $n>N$, then ${\int_X\abs{f_n-f}\der\mu < \varepsilon}$. 
+
+\textsc{Case I} ($n>N$): Suppose $n>N$. Since $f$ is \musummable{}, then there exists $\delta_0 >0$ such that for any $A\subset X$ with $\mu(A)<\delta_0 $, then $\int_A|f|\der\mu<\varepsilon$. Thus we find that 
+$$
+\varepsilon
+>
+\int_X\abs{f_n-f}\der\mu 
+\geq
+\int_A\abs{f_n-f}\der\mu 
+\geq
+\int_A|f_n|\der\mu-\int_A|f|\der\mu 
+$$
+and considering the left and right hand sides from above, we see
+$$\abs{\int_A f_n \der \mu} \leq \int_A|f_n|\der\mu < \int_A|f|\der\mu + \varepsilon = 2\varepsilon.$$
+
+\textsc{Case II} ($n\leq N$): For each $n = 1,\, \dots,\, N$ we know that $f_n$ is \musummable{}, so there exists $\delta_n$ such that if $\mu(A)<\delta_n$, then 
+$$\abs{\int_A f_n \der\mu}<\varepsilon.$$ 
+
+Thus we set $\delta = \min(\delta_0, \dots, \delta_N)$ and find that for all $n$, if $\mu(A)<\delta$, then $\abs{\int_A f_n\der\mu }<\varepsilon$. \qedwhite
+
+\item Let $\varepsilon>0$. Since $\lim_{n\to\infty}\int_X\abs{f_n-f}\der\mu=0$, then there exists $N>0$ such that if $n>N$, then 
+$$\varepsilon>\int_X\abs{f_n-f}\der\mu\geq \int_X\abs{f_n}\der\mu - \int_X\abs{f}\der\mu,$$ 
+so $\int_X\abs{f_n}\der\mu < \int_X\abs{f}\der\mu + \epsilon$. Thus 
+$$\sup_n\int_X|f_n|\der\mu \leq \max\left(\int_X\abs{f}\der\mu + \epsilon, \int_X|f_1|\der\mu, \dots, \int_X|f_N|\der\mu \right)<\infty.$$
+\qedhere
+\end{enumerate}
+\end{proof}
+
+\pagebreak
+\jpg{width=\linewidth}{hw1-p3}
+
+
+
+
+
+\end{document}

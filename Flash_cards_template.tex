@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[paperwidth=.5\paperwidth,paperheight=.25\paperheight]{geometry}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\thispagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+\newenvironment{flashcard}[2][]{%
+\noindent  \textsc{#1}
+
+\vfill 
+\centerline{{\Large\emph{#2}}}
+\vfill
+\newpage \vspace*{\stretch{1}}
+}
+{\vspace*{\stretch{1}}\newpage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\begin{document}
+
+
+\begin{flashcard}[Definition]{Method of Frobenius}
+$$w(x,r)=(x-x_{0})\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}$$
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{Pythagorean Theorem}
+$$\sum_{i=1}^\infty \norm{x_i}^2 = \norm{\sum_{i=1}^\infty x_i^2}$$
+\end{flashcard}
+
+\begin{flashcard}[thing]{name}
+answer
+\end{flashcard}
+
+\end{document}

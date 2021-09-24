@@ -1,0 +1,42 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+
+\title{}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+My favorite theorem is the generalized Pythagorean Theorem, stated below. 
+\begin{theorem*}
+Let $v_1, v_2, \ldots, v_n$ be orthogonal vectors in an inner product space. Then 
+$$\sum_{i=1}^n |v_i|^2=\left|\sum_{i=1}^n v_i\right|^2$$
+\end{theorem*}
+
+I love this theorem because it has a succinct statement, a natural intuitive connection to Euclidean space, and an elegant and natural algebraic proof. 
+
+\end{document}

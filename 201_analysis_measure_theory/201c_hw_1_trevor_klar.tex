@@ -1,0 +1,180 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 1}%=================UPDATE THIS=================%
+\end{center}
+
+\jpg{width=\linewidth}{201c_hw1_p1}
+
+\begin{enumerate}
+\item[]
+
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+	\item Let $f^{1}, f^2, \ldots \in c_0\subset\ell^\infty$, with $f^i\xto{i}f$ in the $\ell^\infty$ norm. Let $\epsilon>0$. Then $\exists M$ such that if $i>M$, then $\sup_{n}\abs{f^i_n-f_n}<\epsilon$. 
+	
+	Now fix $i>M$. Since $f^i\in c_0$, then $f^i_n \xto{n} 0$, so $\exists N$ such that if $n>N$, then $\abs{f^i_n}<\epsilon$. Thus $\forall n > N$, 
+		\begin{align*}
+		\abs{f_n} &\leq \abs{f_n-f^i_n} + \abs{f^i_n}\\
+		&< \epsilon + \epsilon \\
+		&=2\epsilon,
+		\end{align*}
+	and we conclude that $f_n\xto{n}0$, and $f\in c_0$. \qedwhite
+	
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+		\item Note that $F_f$ is obviously linear. For all $f\in \ell^1$, $F_f$ is bounded since $\norm{F_f}_*=\sup\limits_{\norm{x}\leq 1}\abs{F_f(x)}$ and for all $x$ with $\norm{x}_{c_0}\leq 1$, 
+		\begin{alignat*}{2}
+		\abs{\sum_n x_nf_n} 
+		&\leq \sum_n \abs{x_nf_n} \\
+		&\leq \sum_n \abs{f_n} & \quad \text{since }\sup |x_n| =1
+		\end{alignat*}
+		thus $\norm{F_f}_*\leq\norm{f}_{\ell^1}$ which is finite since $f\in \ell^1$. 
+		
+		Thus $F_f$ is a bounded linear functional $c_0\to \R$, so $F_f\in c_0^*$. \qedwhite
+		
+		\item We have shown already that $\norm{F_f}_*\leq\norm{f}_{\ell^1}$, so to prove that $\norm{F_f}_*=\norm{f}_{\ell^1}$, it remains to prove the other direction.
+		
+		Let $f\in \ell^1$. For each $f_n\in \C$, let 
+		$u_n=z_ne_n,$
+		where $e_n=(\overbrace{0, 0, \dots, 0, 1,}^n 0, \dots )$ and $z_n$ is the complex number such that $f_nz_n=\abs{f_n}$ (note that $\abs{z_n}=1$). Then $v_j=\sum_{n=1}^j u_n$ has norm 1 for all $j$, and $F_f(v_j)\increasesto\norm{f}$ as $j\to \infty$. Thus $\norm{F_f}$ cannot be less than $\norm{f}$, so $\norm{F_f}_*\geq\norm{f}_{\ell^1}$. \qedwhite
+		\pagebreak
+		\item Let $\phi\in c_0^*$. Let $f$ be the sequence defined by $f_n=\phi(e_n)$ for all $n$.
+		
+		\textsc{Claim:} $\sum_n\abs{f_n}<\infty$. To see this, suppose for contradiction that $\sum_n\abs{f_n}=\infty$. We know that $\norm{\sum\limits_{n=1}^N e_n}_{c_0}=1$ for every $N\in \N$, so 
+		\begin{equation}\tag{$*$}
+		\left\lbrace \sum\limits_{n=1}^N e_n : N\in \N\right\rbrace \subset \left\lbrace	x\in c_0 : \norm{x}\leq 1\right\rbrace.
+		\end{equation}
+		Thus 
+		\begin{align*}
+		\infty &= \sum_{n=1}^\infty\abs{f_n}\\
+		&= \sup_N \sum_{n=1}^N\abs{f_n\cdot 1} \\
+		&= \sup_N \sum_{n=1}^N\abs{\phi(e_n)} \\
+		&\leq \sup_N \abs{\phi\left(\sum_{n=1}^N e_n\right)} & \text{by }\Delta\text{ ineq. and linearity}\\
+		&\leq \sup_{\norm{x}=1}\abs{\phi(x)} &\qquad \text{by }(*)\\\
+		&= \norm{\phi}_* \\
+		&< \infty.
+		\end{align*}
+		Thus we have shown by contradiction that $\sum_n\abs{f_n}<\infty$. \qedhere
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\setcounter{enumi}{1}
+\item Let $X$ be a Banach space with $E\subset X^*$. Suppose for every $x\in X$ the set $\{\phi(x)\}_{\phi\in E}\subset \R$ is bounded. Prove that $E$ is strongly bounded in $X^*$. Explain why your proof collapses if $X$ is not complete. 
+
+\begin{proof}
+This follows immediately from the Uniform Boundedness Principle below, which requires $X$ to be Banach. 
+\end{proof}
+
+\begin{theorem*}\textbf{(Uniform Boundedness Principle)}
+Let $X$ be a Banach space and let $Y$ be a normed linear space. Let $\script{F}$ be a collection of bounded linear operators from $X$ to $Y$. If for every $x\in X$ we have that $\sup\limits_{T\in \script{F}}\norm{T(x)}_Y<\infty$ then $\sup\limits_{T\in\script{F}}\norm{T}_*<\infty$. 
+\end{theorem*}
+
+\pagebreak
+\item (a) Let $X$ be a Banach space and $(\phi_j)$ be a sequence in $X^*$. Suppose that $\angles{\phi_j , x}$ converges for any $x \in X$. Prove that there exists $\phi \in X^*$ such that
+$\phi_j \xto{w*} \phi$. (In fancy terminology "$X^*$ is always $w*$ sequentially complete".)
+
+\begin{proof}
+We can of course define a functional $\phi(x)=\lim_j\angles{\phi_j,x}$ and note that it is linear, but we need to show that this $\phi$ is bounded. Since the sequence $\angles{\phi_j,x}$ is convergent and thus bounded, then by problem 2 the set $\{\phi_j\}_j$ is bounded in $X^*$, call this bound $M$. Thus for all $x$ with $\norm{x}\leq1$,
+\begin{align*}
+|\angles{\phi, x}| &= |\lim_j\langle\phi_j, x\rangle| \\
+&= \lim_j|\langle\phi_j, x\rangle| \\
+\leq M
+\end{align*}
+and we're done. 
+\end{proof}
+
+(b) Formulate the analogous statement for the $w$-convergence for a sequence $(x_n)\in X$. Try to extend your proof to this situation. when does the proof collapse?
+
+\textbf{Question} Let $X$ be a Banach space and $(x_n)$ be a sequence in $X$. Suppose that $\angles{\phi , x_n}$ converges for any $\phi \in X^*$. Does there exist $x \in X$ such that $x_n \xto{w} x$?
+
+\answer We can follow the strategy from (a) and define a \emph{functional} $\hat{x}\in X^{**}$ so that $\angles{\phi , x_n}\to \angles{\phi , \hat{x}}$, but we are only guaranteed that a corresponding $x\in X$ exists exactly when $X$ is reflexive. \qed
+
+%\pagebreak
+\item Let $X$ be Banach. Prove that a sequence $(\phi_j)$ in $X^*$ converges $w*$ if and only if it is strongly bounded and there exists a dense set $E$ with $\closure{E}=X$, such that the number sequence $\angles{\phi_j,u}$ converges for all $u\in E$. 
+
+\begin{proof}
+The forward direction is straightforward; the sequence is strongly bounded by problem 2, and $X$ is of course dense in itself and has the desired property. 
+
+For the converse direction, suppose $\sup_j\norm{\phi_j}=C$ and $E$ exists as above. It suffices to show that $\angles{\phi_j,x}$ also converges if $x\in E^\complement$, since problem 3 completes the proof. Let $x\in X$. Since $x\in \closure{E}$ there exists a sequence $(u_n)\in E$ which converges to $x$. 
+\begin{align*}
+\lim_j\angles{\phi_j,x} &=\lim_j\angles{\phi_j,\lim_n u_n} \\
+&=\lim_j\lim_n\angles{\phi_j, u_n} \\
+&=\lim_n\lim_j\angles{\phi_j, u_n} \\
+\end{align*}
+
+\pagebreak
+\textsc{Claim:} The sequence $\left(\lim_j\angles{\phi_j, u_n})\right)_{n=1}^\infty$ is a real Cauchy sequence, and thus converges. 
+
+\textsc{Proof of claim:} Let $\epsilon >0$. Since $u_n\to x$, then it is also a Cauchy sequence, so there exists $N>0$ such that $\forall n,m>N$, 
+$$\abs{u_n-u_m}<\epsilon$$
+$$\implies \forall j \; \abs{\phi_j(u_n)-\phi_j(u_m)}=\abs{\phi_j(u_n-u_m)}\leq \norm{\phi_j}\epsilon$$
+$$\implies \abs{\lim_j\phi_j(u_n)-\lim_j\phi_j(u_m)}\leq C\epsilon$$
+so $\lim_n\lim_j\angles{\phi_j, u_n}=\lim_j\angles{\phi_j,x}$ converges for all $x\in X$, and we can define $\phi(x)=\lim_j\angles{\phi_j,x}$. Problem 3 assures us that $\phi\in X^*$, and we are done. 
+\end{proof}
+
+\renewcommand{\phi}{\oldphi}
+\item Let $I=[0,1]$. Let $C^1(I)$ denote the space of continuously differentiable functions,\footnote{That is, $g,g'\in C(I)$. For example, a polynomial.} and \linebreak let $\der \phi_n=\cos(\pi nx)\der\lambda^1(x)$. 
+
+(a) Prove that 
+$$\int_Ig\der\phi_n\xto{n}0 \quad\quad\forall g\in C^1(I).$$
+(b) Prove that $\der\phi_n\xto{w*}0$ as measures in $C(I)^*$. 
+
+\begin{proof}(a) 
+Using integration by parts, we find that 
+\begin{align*}
+\int_I g(x)\cos(\pi nx) \dx &= g(x)\frac{1}{\pi n}\sin(\pi nx) - \int_I g'(x)\frac{1}{\pi n}\sin(\pi nx)\dx \\
+&= \frac{1}{\pi n}\left[g(x)\sin(\pi nx) - \int_I g'(x)\sin(\pi nx)\dx\right],
+\end{align*}
+and in the limit as $n\to \infty$, everything goes to 0. \qedwhite
+
+(b) For arbitrary $f\in C(I)$, $f'$ may not so exist, so we can't use integration by parts. However, by the Weierstrauss Approximation Theorem, for every $\epsilon>0$, there exists a polynomial $g$ such that $\sup_I\abs{f-g}\leq\epsilon$. Thus, 
+\begin{align*}
+\int f \der\phi_n &= \int f\der\phi_n - \int g\der\phi_n + \int g\der\phi_n \\
+&= \int (f-g)\der\phi_n + \int g\der\phi_n,
+\end{align*}
+and this integral is bounded above and below by 
+$$\int (\pm \epsilon +g)\der\phi_n$$
+respectively, which integrands are themselves polynomials, so they vanish in the limit. Therefore $\lim_{n\to\infty}\int f\der\phi_n=0$ by the squeeze theorem. 
+\end{proof}
+
+\end{enumerate}
+\end{document}

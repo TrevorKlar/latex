@@ -1,0 +1,138 @@
+\documentclass[letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+
+\author{Trevor Klar}
+\title{}
+
+\input{tskpreamble}
+
+\begin{document}
+\maketitle
+
+\begin{theorem*}
+Let $S$ be a bounded set of real numbers. If $S$ is uncountably infinite, then it has an infinite number of limit points. 
+\end{theorem*}
+
+\begin{proof}
+To prove this theorem, we will prove the contrapositive. That is, we will show that if $S$ has a finite number of limit points, then it is countable. 
+
+Suppose $S$ has a finite number of limit points. Let $L = \{ L_1, L_2, L_3, \, \ldots \, L_N \}$ be the set of limit points of $S$. Since it is given that $S$ is bounded, let $b_0 = \inf(S)$ and let $b_N = \sup(S)$, and place $\{b_n\}_{n=1}^{N-1}$ such that $L_n < b_n < L_{n+1} $ as shown.
+
+\begin{center}
+\begin{tikzpicture}[xscale=16, yscale=8]
+
+\draw [latex-] (0,0) -- (.7-.01,0);
+\draw [-latex] (.7+.01,0) -- (1,0);
+
+\drawsquiggle{.7-.01}
+\drawsquiggle{.7+.01}
+
+\foreach \n in {1,2,3}
+  {\drawpoint{\n/5}{$L_{\n}$}}
+\drawpoint{4/5}{$L_N$}
+
+\drawlpoint{1/10}{$b_0$}
+\drawlpoint{3/10}{$b_1$}
+\drawlpoint{5/10}{$b_2$}
+\drawlpoint{3/5+1/20}{$b_3$}
+\drawlpoint{4/5-1/20}{$b_{N-1}$}
+\drawlpoint{9/10}{$b_N$}
+
+\end{tikzpicture}
+\end{center}
+%
+Consider the region $[b_0, b_1]$. Since $L_1$ is the only limit point of $S$ in this region; then for any $\epsilon>0$ the subset $[b_0,b_1] \setminus [L_1 - \epsilon, L_1 + \epsilon]$ contains finitely many elements of $S$. 
+
+\begin{center}
+\begin{tikzpicture}[xscale=8, yscale=8]
+
+\draw [latex-] (-1,0) -- (1,0);
+\draw [-latex] (-1,0) -- (1,0);
+
+\drawpoint{0}{$L_1$}
+
+\drawlbrack{-.8}{$b_0$}
+\draw [very thick] (-.8,0) -- (-.15,0);
+\drawrbrack{-.15}{$(L_1-\epsilon)$}
+
+\drawlbrack{.15}{$(L_1+\epsilon)$}
+\draw [very thick] (.8,0) -- (.15,0);
+\drawrbrack{.8}{$b_1$}
+
+\end{tikzpicture}
+\end{center}
+%
+This is because if not, then $[b_0,b_1] \setminus [L_1 - \epsilon, L_1 + \epsilon])$ would be bounded and infinite, so it would contain a limit point by the Bolzano-Weierstrauss Theorem. 
+%
+Now, we will proceed to count the elements of $S$ in $[b_0, b_1]$. 
+
+Let $\epsilon_1 = \dfrac{1}{2} \min(|b_0-L|, |b_1-L|)$.
+
+Let $\epsilon_2 = \dfrac{1}{2} \epsilon_1 \quad$
+
+Let $\epsilon_n = \dfrac{1}{2} \epsilon_{n-1} \quad$
+
+\begin{center}
+\begin{tikzpicture}[xscale=8, yscale=8]
+
+\draw [latex-] (-1,0) -- (1,0);
+\draw [-latex] (-1,0) -- (1,0);
+
+\drawpoint{0}{$L_1$}
+
+\drawlbrack{-.8}{$b_0$}
+\draw [very thick] (-.8,0) -- (.8,0);
+\drawrbrack{.8}{$b_1$}
+
+\foreach \n in {1,2}
+  {\drawrbrack{-.8/2^\n}{$L-\epsilon_{\n}$}}
+\foreach \n in {3,4,...,6}
+  {\drawrbrack{-.8/2^\n}{}}
+  
+\foreach \n in {1,2}
+  {\drawlbrack{.8/2^\n}{$L+\epsilon_{\n}$}}
+\foreach \n in {3,4,...,6}
+  {\drawlbrack{.8/2^\n}{}}
+
+%\drawrbrack{-.4}{$(L_1-\epsilon)$}
+
+%\drawlbrack{.15}{$(L_1+\epsilon)$}
+%\draw [very thick] (.8,0) -- (.15,0);
+
+
+\end{tikzpicture}
+\end{center}
+%
+According to the reasoning above, each of the following sets has a finite number of elements:
+
+$A_1 = S \cap ( [b_0,b_1] \setminus [L_1 - \epsilon_1, L_1 + \epsilon_1] )$
+
+$A_2 = S \cap ( [L_1 - \epsilon_1, L_1 + \epsilon_1] \setminus [L_1 - \epsilon_2, L_1 + \epsilon_2] )$
+
+$A_3 = S \cap ( [L_1 - \epsilon_2, L_1 + \epsilon_2] \setminus [L_1 - \epsilon_3, L_1 + \epsilon_3] )$
+
+$\ldots$
+
+$A_n = S \cap ( [L_1 - \epsilon_{n-1}, L_1 + \epsilon_{n-1}] \setminus [L_1 - \epsilon_n, L_1 + \epsilon_n] )$
+
+$\ldots$
+
+\noindent Since this is a countable collection of finite sets, the union of all the sets is countable. 
+%
+Let us name this union $B_1$. So, $B_1 = \cup_{n=1}^{\infty} \{A_n\}$ is countable. We have now determined that the interval $[b_0,b_1]$ contains finitely many elements of $S$, namely $B_1$.
+%
+Now, repeat the process above to obtain the sets $B_2, B_3, \, \ldots B_N$ and determine that they are countable. 
+
+Let $X$ be the set of all limit points of $S$ which are also an element of $S$, that is, $X = \{L_n | L_n \in S\}$.
+%
+Since each of the $B_n$ sets and $X$ are countable, and $\cup\{X, B_1, B_2, \, \ldots B_N\} = S$, then $S$ is countable. 
+
+
+
+\end{proof}
+
+
+
+
+\end{document}

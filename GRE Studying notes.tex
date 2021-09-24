@@ -1,0 +1,105 @@
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a5paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\renewenvironment{proof}{{\bfseries Proof}}{\qed}
+
+\makeatletter
+\renewenvironment{proof}[1][\bfseries \proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  %\itemindent\normalparindent
+  \item[\hskip\labelsep
+        \scshape
+    #1\@addpunct{}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+
+%\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand{\inner}[1]{\left< #1 \right>}
+%\newcommand{\>}{\right>}
+
+
+\title{Linear Algebra: Theorems and Definitions}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+\section{Introduction to the Test}
+
+\begin{itemize}
+\item The test is given in September, October, and April. (For those on quarters, sept is a tough time to take it. 
+\item 66 multiple choice questions, 170 mins (about 2.5 mins per question)
+\item When taking the GRE, \textbf{faster is better}.
+\item This also means that you can expect that there is a reasonably fast solution to each question. 
+\item \textbf{Take it now}. It lasts 5 years, and it can only help you to just take it. 
+%\end{itemize}
+
+
+\item{They say that the test is composed of the following topics in Math:
+\begin{itemize}
+\item 50\% Calc (Single, Multi, and Analysis)
+\item 25\% Algebra / number theory
+\item 25\% Other
+\end{itemize}}
+
+%\begin{itemize}
+\item You can \textbf{expect} to be totally stumped on some problems, and that's fine. 
+\item If you can eliminate \textbf{even one} wrong answer for sure, then you should guess. Otherwise, just leave it blank. 
+\item \textbf{Don't freak out.}
+\end{itemize}
+
+\section{Test-Taking Strategies}
+
+\end{document}

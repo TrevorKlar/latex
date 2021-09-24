@@ -1,0 +1,85 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Properties of $p(n)$ and $\tau(n)$}
+\author{Srinivasa Ramanujan}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+Properties of $p(n)$ and $\tau(n)$ defined by the equations 
+\[\sum_0^\infty p(n)x^n=\frac{1}{(1-x)(1-x^2)(1-x^3)\dots}, \]
+\[\sum_0^\infty \tau(n)x^n=x\{(1-x)(1-x^2)(1-x^3)\dots\}^{24}. \]
+\hrule
+\section{Modulus 5}
+Define 
+\[\begin{array}{rcl}
+P &=& 1-24\left(\frac{x}{1-x}+\frac{2x^2}{1-x^2}+\frac{3x^3}{1-x^3}+\dots\right)\\
+Q &=& 1-240\left(\frac{1^3x}{1-x}+\frac{2^3x^2}{1-x^2}+\frac{3^3x^3}{1-x^3}+\dots\right)\\
+R &=& 1-504\left(\frac{1^5x}{1-x}+\frac{2^5x^2}{1-x^2}+\frac{3^5x^3}{1-x^3}+\dots\right)\\
+\end{array}\]
+so that 
+\begin{equation}
+Q^3-R^2=1728x\left\lbrace(1-x)(1-x^2)(1-x^3)\dots\right\rbrace^{24}. \quad 	\text{※}
+\end{equation}
+※ For an elementary proof\\
+Further let $J$ be any function of $x$ with integral coefficients but not the same function throughout, and also let $\sigma_5(n)$ denote the 5th powers of the divisors of $n$. Then it is easy to see that
+\begin{equation}
+Q = 5J ; R = P+5J, 
+\end{equation}
+hence 
+\begin{equation}
+Q^3-R^2 = Q-P^2+5J,
+\end{equation}
+but 
+\begin{equation}
+Q-P^2 = 288\sum_1^\infty n\, \sigma_1(n)\, x^n ; \quad \text{※}
+\end{equation}
+※ And it is obvious that  
+\begin{equation}
+\left\lbrace(1-x)(1-x^2)(1-x^3)\dots\right\rbrace^{24}=\frac{(1-x^{25})(1-x^{50})(1-x^{75})\dots}{(1-x)(1-x^2)(1-x^3)\dots}+5J.
+\end{equation}
+It follows from (1.1), (1.3)--(1.5) that 
+\begin{equation}
+x\frac{(1-x^{25})(1-x^{50})(1-x^{75})\dots}{(1-x)(1-x^2)(1-x^3)\dots} = \sum_1^\infty n\sigma_1(n)x^n+5J
+\end{equation}
+In other words, 
+
+
+
+
+
+
+\end{document}

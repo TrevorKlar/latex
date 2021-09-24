@@ -1,0 +1,25 @@
+- Wilson Polynomials:
+        The constants a,b,c,d aught to be complex conjugates or real.
+        This ensures that Wn(x) is real for real x.
+
+- Wilson Polynomials contain these polynomials (often via a limit and/or change of variables):
+        Hahn
+        Meixner
+        Krawtchouk
+        Charlier
+        Jacobi
+        Laguerre
+        Hermite
+        Pollaczek
+        The 6-j symbols
+
+- It seems to me that the primary virtue of Wilson Polynomials is demonstrating interconnection between the above polynomials (though I can't appreciate it, being totally unfamiliar with them).
+- If our method is to be numeric, we require specificity.
+        - Perhaps we can try random parameters?
+                let a = rand(z)
+                let b = conj(a)
+                let c = rand(z)
+                let d = conj(c)
+            - We could use many repetitions to give evidence that they behave similarly
+        - Alternately, we should intentionally choose specific values that *contrast* with the already-known polymials.
+            - This method requires understanding of at least one of the above mentioned polymials.

@@ -1,0 +1,149 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221B - Topology} \\ }
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\inv}[1]{\overline{#1}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 8}%===============UPDATE THIS===============%
+\end{center}
+
+\begin{enumerate}
+
+\item For a covering space $p:\tilde{X}\to X$ and a subspace $A\subset X$, let $\tilde{A}=\preimage{p}{A}$. Show that the restriction $p:\tilde{A}\to A$ is a covering space. 
+
+\begin{proof}
+Let $a\in A$. Since $a\in X$, there exists $U\ni a$ open in $X$ which is evenly covered by $p$. So $\preimage{p}{U}=\coprod_\alpha \tilde{U}_\alpha$, with each $\tilde{U}_\alpha$ open in $\tilde{X}$ and homeomorphic to $U$. Intersecting with $\tilde{A}$, we get $\tilde{V}_\alpha=\tilde{U}_\alpha\cap \tilde{A}$  with each $\tilde{V}_\alpha$ open in the subspace topology on $\tilde{A}$ and homeomorphic to $\tilde{A}$, and the collection of sets is disjoint. 
+\end{proof}
+
+
+\item Show that if $p:\tilde{X}\to X$ and $\rho:\tilde{Y}\to Y$ are covering spaces, so is their product $p\times \rho:\tilde{X}\times \tilde{Y}\to X\times Y$. 
+
+\begin{proof} Note that I have renamed the spaces in the statement of the problem to simplify notation. Let $(x, y)\in X\times Y$. Using $p$ and $\rho$, there exist neighborhoods $U\ni x$, $V \ni y$ which are evenly covered by their respective spaces. Observe that the preimage 
+\begin{align*}
+\preimage{(p\times \rho)}{U\times V}&=\preimage{p}{U}\times \preimage{\rho}{V} \\
+&=\coprod_\alpha \tilde{U}_\alpha \times \coprod_\beta \tilde{V}_\beta \\
+&= \coprod_{\alpha, \beta} (\tilde{U}_\alpha \times\tilde{V}_\beta)
+\end{align*}
+is a collection of open rectangles. They are disjoint, since any distinct rectangles differ in either their first coordinate or their second, and $\{\tilde{U}_\alpha\}$ and $\{\tilde{V}_\beta\}$ are disjoint collections. For any particular values of $\alpha, \beta$, $(\tilde{U}_\alpha \times\tilde{V}_\beta)$ is homeomorphic to $(U\times V)$ since $\tilde{U}_\alpha\ \cong U$ and $\tilde{V}_\beta \cong V$. Thus $(U\times V)$ is an open neighborhood of $(x,y)$ which is evenly covered by $(p\times \rho)$. 
+\end{proof}
+
+
+\item Let $p:\tilde{X}\to X$ be a covering space with $\preimage{p}{x}$ finite and nonempty for all $x\in X$. Show that $\tilde{X}$ is compact Hausdorff iff $X$ is compact Hausdorff.
+
+\begin{proof}(Compact $\implies$)
+Suppose $\tilde{X}$ is compact, and let $\{U_\alpha\}$ be any open cover of $X$. Taking preimages we obtain $\{\tilde{U}_\alpha\}$ which is an open cover of $\tilde{X}$, since each $\tilde{U}_\alpha=\preimage{p}{U_\alpha}$ is a disjoint union of open sets in $\tilde{X}$ and is thus itself an open set. Since $\tilde{X}$ is compact, there exists a finite subcover $\{\tilde{U}_i\}$. Since $\preimage{p}{x}$ is nonempty for all $x\in X$, then $p$ is onto, so taking images in our cover yields $\{U_i\}$ which covers $X$. Since each $U_i$ is the image of the preimage of an open set in $\{U_\alpha\}$ that has been reindexed, then each $U_i$ is open. Thus $\{U_i\}$ is a finite subcover of $\{U_\alpha\}$, so $X$ is compact. \qedwhitehere
+\end{proof}
+
+\begin{proof}(Compact $\impliedby$)
+Suppose $X$ is compact Hausdorff, and let $\{\tilde{U}_\alpha\}_{\alpha\in\Gamma}$ be any open cover of $\tilde{X}$. We need evenly-coveredness, so for each $x\in X$, let $V_x$ be a neighborhood of $x$ which is evenly covered. Since $X$ is compact, we can take a finite subcover $\{V_i\}$ of $\{V_x\}$. Since $p$ is finite-sheeted, then for each $i$ then $\preimage{p}{V_i}=\coprod\limits_{j} \tilde{V}_{i,j}$. %Since $\tilde{V}_{i,j}\cong V_i$ for each $j$, then $\tilde{V}_{i,j}$ is compact. This gives us a finite 
+
+Since there are finitely many $\tilde{V}_{i,j}$, if we can show that each a $\tilde{V}_{i,j}$ is covered by a finite subcollection of $\{\tilde{U}_\alpha\}$, then we are done.
+
+Let $\Delta=\{\alpha\in \Gamma \mid \tilde{U}_\alpha\cap\tilde{V}_{i,j}\neq\emptyset\}$, and observe that $\{\tilde{U}_{\delta}\}_{\delta\in\Delta}$ covers the closure $\text{cl}(\tilde{V}_{i,j})$.\footnote{To see this, apply the definition of boundary points and see that for any $b\in\del(\tilde{V}_{i,j})$ any open $\tilde{U}_{\delta}\ni b$ intersects $\tilde{V}_{i,j}$, so $\delta\in \Delta$.} This means that taking images in $p$ yields an open\footnote{Each $U_\delta$ is open because every covering space is an open map, a fact which I choose not to prove here since this problem is insanely long already.} cover $\{U_\delta\}$ of $\closure{V_i}=\text{cl}(p(\tilde{V}_i))$. 
+%Now the boundary $\del(V_i)$ is closed and $X$ is compact, so there exists a finite subcover $\{U_i^1\}$ of $\{U_\delta\}$ which covers $\del(V_i)$. 
+%
+%Next, since $\bigcup_i U_i^1$ is open, $(\bigcup_i U_i^1)^\complement$ is closed. Since $\del V_i \subset \bigcup_i U_i^1$, then $\del V_i$ misses $(\bigcup_i U_i^1)^\complement$. This means that
+%\begin{align*}
+%%\text{int}(V_i) & \subset 
+%V_i \cap \left(\bigcup_i U_i^1\right)^\complement %\\
+%&= (V_i\cup \del V_i) \cap \left(\bigcup_i U_i^1\right)^\complement \\
+%&= \closure{V_i} \cap \left(\bigcup_i U_i^1\right)^\complement 
+%\end{align*}
+%which is closed in $X$, so it also has a finite subcover $\{U_i^2\}$. 
+Since $\closure{V_i}$ is closed and $X$ is compact, then there exists a finite subcover $\{U_i\}$ of $\{U_\delta\}$ which covers $\closure{V_i}$. Thus the corresponding sets $\{\tilde U_i\}$ cover $\tilde{V}_{i,j}$, and we are done. \qedwhitehere
+\end{proof}
+
+\begin{proof}(Hausdorff $\impliedby$) Suppose $X$ is Hausdorff, and let $\tilde{x}\neq \tilde{y} \in \tilde{X}$. Consider $p(\tilde{x})=x$ and $p(\tilde{y})=y$. Since $X$ is Hausdorff, there exist disjoint sets $U\ni x, V\ni y$ which are open in $X$. Then the corresponding preimages $\preimage{p}{U}\ni\tilde{x}$ and $\preimage{p}{V}\ni \tilde{y}$ are disjoint, and they are open because $p$ is a covering space, so $\tilde{X}$ is Hausdorff. \qedwhitehere
+\end{proof}
+
+%\textsc{Lemma.} Every covering space is an open map. 
+%
+%\textsc{Proof of Lemma.} 
+%\qedwhite
+
+\begin{proof}(Hausdorff $\implies$) Suppose $\tilde{X}$ is Hausdorff. Let $x\neq y\in X$, and denote $\preimage{p}{x}=\{\tilde{x}_i\}_{i=1}^N$ and $\preimage{p}{y}=\{\tilde{y}_i\}_{i=1}^N$. Since we can separate any two points in $\tilde{X}$ using the Hausdorff property, we can do it with finitely many points. So let 
+$$\{\tilde{U}_i', \tilde{V}_i'\}_{i=1}^N$$ 
+be a collection of sets open in $\tilde{X}$ such that $\tilde{U}_i'\ni \tilde{x}_i$ and $\tilde{V}_i'\ni \tilde{y}_i$ for all $i=1\dots N$ and every pair of sets in the collection is disjoint. Next let $E$ be an evenly covered neighborhood of $x$, and $F$ an evenly covered neighborhood of $y$. Then 
+$$\{\tilde{E}_i, \tilde{F}_i\}_{i=1}^N$$ 
+is a collection of sets open in $\tilde{X}$ such that $\tilde{E}_i\ni \tilde{x}_i$ and $\tilde{F}_i\ni \tilde{y}_i$ for all $i=1\dots N$ and every $\tilde{E}_i, \tilde{F}_i$ is homeomorphic to $E,F$, respectively. Taking $\tilde{U}_i=\tilde{U}_i'\cap \tilde{E}_i$ and $\tilde{V}_i=\tilde{V}_i'\cap \tilde{F}_i$, we obtain 
+$$\{\tilde{U}_i, \tilde{V}_i\}_{i=1}^N$$ 
+which are open, disjoint, contain $\tilde{x}_i, \tilde{y}_i$ as appropriate, and are homeomorphic to $U_i,V_i$ as appropriate, where we denote 
+\begin{align*}
+U_i&=p(\tilde{U}_i)\cap E\\
+V_i&=p(\tilde{V}_i)\cap F.\\
+\end{align*}
+To finish the proof, we let
+\begin{align*}
+U&=\bigcap_{i=1}^N U_i \\ 
+V&=\bigcap_{i=1}^N V_i
+\end{align*}
+and observe that $x\in U$, $y\in V$ since every $\tilde{U}_i, \tilde{V}_i$ contains a point which maps to $x,y$ respectively. To see that $U,V$ are disjoint, suppose $d\in U\cap V$. Observe that for all $i$, $d\in U \subset U_i \subset p(\tilde{U}_i)$ so the preimage 
+$$p|^{-1}(d)
+%=\{\tilde{d}_i\}_{i=1}^N
+\subset \bigcup_{i=1}^N \tilde{U}_i,$$
+and similarly $d\in V \subset V_i \subset p(\tilde{V}_i)$ so 
+$$p|^{-1}(d)
+%=\{\tilde{d}_i\}_{i=1}^N
+\subset \bigcup_{i=1}^N \tilde{V}_i,$$
+but $\bigcup_{i=1}^N\tilde{U}_i$ and $\bigcup_{i=1}^N\tilde{V}_i$ are disjoint.
+\end{proof} 
+
+
+\item Construct a a simply-connected covering space of the space $X\subset\R^3$ that is the union of a sphere and a diameter. Do the same when $X$ is the union of a sphere and a circle intersecting it in two points.
+
+
+
+
+
+\pagebreak
+
+
+\setcounter{enumi}{7}
+\item Let $\tilde{X}$ and $\tilde{Y}$ be simply-connected covering spaces of the path-connected, locally path-connected spaces $X$ and $Y$. Show that if $X \simeq Y$ then $\tilde{X} \simeq \tilde{Y}$. [Exercise 11 in Chapter 0 may be helpful.]
+
+
+\item Show that if a path-connected, locally path-connected space $X$ has $\pi_1(X)$ finite, then every map $X\to S^1$ is nullhomotopic.  [Use the covering space $R\to S^1$.]
+
+
+\item Find all the connected 2-sheeted and 3-sheeted covering spaces of $S^1\wedgeprod S^1$, up to isomorphism of covering spaces without basepoints.
+
+
+\end{enumerate}
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\item[] None for this homework.
+\end{enumerate}
+\end{document}
+
+
+

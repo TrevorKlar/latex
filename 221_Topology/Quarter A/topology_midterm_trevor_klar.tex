@@ -1,0 +1,177 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\renewcommand{\T}{\pazocal{T}}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+\renewcommand{\dist}[2]{d\!\left(#1,#2\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\} %=================UPDATE THIS=================%
+\rhead{\textsc{Long, Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\thispagestyle{fancy}
+\begin{center}
+{{\Large Midterm} \\Trevor Klar }%=================UPDATE THIS=================%
+\end{center}
+
+\pagebreak
+\begin{enumerate}
+\item Explain how one defines the \emph{product topology} and the \emph{subspace topology}. Using the definitions you have given, show that $Y$ is homeomorphic to $\{x\}\times Y$ when equipped with the subspace topology (considered as a subset of $X\times Y$).
+\begin{definition*}
+Let $(X,\pazocal{T}_X), (Y,\pazocal{T}_Y)$ be topological spaces. We denote the \emph{product topology on} $X\times Y$ by $\pazocal{T}_{X\times Y}$. A set $U\subseteq X\times Y$ is open with respect to $\pazocal{T}_{X\times Y}$ if there exist open sets $U_\alpha\in \pazocal{T}_X$, $V_\alpha\in \pazocal{T}_Y$ such that 
+$$U=\bigcup_\alpha U_\alpha\times V_\alpha.$$
+\end{definition*}
+\begin{definition*}
+Let $(X,\pazocal{T}_X)$ be a topological space, and let $A\subseteq X$. We denote the \emph{subspace topology on} $A$ by $\pazocal{T}_A$. A set $U\subseteq A$ is open with respect to $\pazocal{T}_A$ if there exists a open set $\tilde{U}\in\pazocal{T}_X$ such that 
+$$\tilde{U}\cap A=U.$$ 
+\end{definition*}
+\begin{proof}
+Let $x\in X$. We will show that the inclusion map $\iota:Y\hookrightarrow\{x\}\times Y$ (whose inverse is the projection map $\pi:\{x\}\times Y\to Y$) is a homeomorphism.
+	\begin{itemize}
+	\item $\iota$ is 1-1 and onto, since 
+	$$\iota(y_1)=\iota(y_2)\implies(x,y_1)=(x,y_2)\implies y_1=y_2,$$
+	and for any $(x,y)\in \{x\}\times Y$, there exists $y\in Y$ with $\iota(y)=(x,y)$.
+	
+	\item $\iota$ and $\pi$ are inverses, since for any $y\in Y$,
+	\begin{align*}
+	&\iota\circ\pi(x,y)=\iota(y)=(x,y), \text{ and } \\
+	&\pi\circ\iota(y)=\pi(x,y)=y.
+	\end{align*}
+	
+	\item $\iota$ is an open map, since for any $V\in\pazocal{T}_Y$, 
+	$$\iota(V)=\{x\}\times V,$$
+	and we can choose any $U\in\pazocal{T}_X$ containing $x$ to see that 
+	$$U\times V \cap \{x\}\times Y = \{x\}\times V,$$ 
+	so $\{x\}\times V$ is open in the subspace topology of the product topology. 
+	
+	\item $\pi$ is an open map, since any open set in $\{x\}\times Y$ is of the form $U\times V \cap \{x\}\times Y = \{x\}\times V$, where $U\in\pazocal{T}_X, V\in \pazocal{T}_Y$. Then 
+	$$\pi\left(\{x\}\times V\right)=V,$$
+	Which is open in $Y$. 
+	\end{itemize}
+Thus $\iota$ is a continuous bijection with continuous inverse, and therefore a homeomorphism. 
+\end{proof}
+
+\pagebreak
+\item Suppose that $(X,\pazocal{T})$ is a topological space with two properties: namely $X$ is compact and Hausdorff. 
+
+Prove that one cannot make the topology on on $X$ either coarser (i.e. is a strict subset of $\pazocal{T}$) or finer (i.e. is a strict superset of $\pazocal{T}$) without destroying one of those properties. 
+\begin{proof}We will show that (i) any topology finer than $\T$ is not compact, and (ii) any topology courser than $\T$ is not Hausdorff. If we call a set "open" without reference to $\T$ or $\T'$, then it is open in both topologies.  The same goes for "closed".
+	\begin{enumerate}[label=(\roman*)]
+	\item Suppose $\T'\supsetneq\T$. Then there exists $W\in\T'$ which is not open in $\T$. To see that $(X,\T')$ is not compact, we will produce a covering of $X$ consisting of sets in $\T'$ which has no finite subcovering. 
+	%More specifically, we will use $W$ together with a covering of $W^\complement=X\setminus W$. 
+	Since $W$ is not open in $\T$, then $W^\complement$ is not closed in $\T$, so there exists some $x\in W$ which is also in $\closure{W^\complement}$. Since $(X,\T)$ is Hausdorff, for any $y\in W^\complement$, we can find $U_y\ni x$, $V_y\ni y$ with $U_y, V_y$ open and disjoint. Then 
+	$$W\cup\bigcup_{y\in W^\complement} V_y$$
+	covers $X$. Suppose for contradiction that this covering has a finite subcovering, call it $W\cup\bigcup_{i=1}^NV_{y_i}.$	Then since each $V$ has a corresponding $U$, then $\bigcap_{i=1}^NU_{y_i}$ is an open set containing $x\in\closure{W^\complement}$, so 
+	$$\bigcap_{i=1}^NU_{y_i}\cap W^\complement\neq\emptyset.$$
+	But $\bigcap_{i=1}^NU_{y_i}\subset U_{y_i}$ for all $U_{y_i}$, so
+	$$\bigcap_{i=1}^NU_{y_i}\cap V_{y_i}=\emptyset$$ 
+	for all $V_{y_i}$, so $\bigcap_{i=1}^NU_{y_i}$ and $\bigcup_{i=1}^NV_{y_i}$ are disjoint. This means that $W\cup\bigcup_{i=1}^NV_{y_i}$ doesn't cover $\bigcap_{i=1}^NU_{y_i}\cap W^\complement$, contradiction. 
+	
+	\item Let $\T'\subseteq\T$. We will show that if $(X,\T')$ is Hausdorff, then $\T'\supseteq \T$, so $\T'= \T$. Let $W$ be open in $\T$, and let $x\in W$. Since $(X,\T')$ is Hausdorff, then for every $y\in W^\complement$, there exist sets $U_y'\ni x$, $V_y'\ni y$ which are open in $\T'$ and disjoint. Since $W^\complement$ is closed in $(X,\T)$, and $(X,\T)$ is compact, and $\{V_y'\}_{v\in W^\complement}\subset\T'\subseteq\T$, then we can produce a finite subcover $\{V_{y_i}'\}_{i=1}^N$ of $W^\complement$. Now for each $V'$ we have a corresponding $U'$, so by similar reasoning as in (i) we find that $\bigcap_{i=1}^NU_{y_i}'$ is open in $\T'$, disjoint with $\bigcup_{i=1}^NV_{y_i}'$ so a subset of $W$, and contains $x$ by construction. Thus by the openness criterion, $W$ is open in $\T'$. 
+	\end{enumerate}
+\end{proof}
+
+\pagebreak 
+\item Let $X$ and $Y$ be topological spaces and let $f:X\to Y$ be a function. 
+
+\begin{enumerate}[label=(\roman*)]
+\item Show that $f$ is continuous if and only if $f(\closure{A})\subset \closure{f(A)}$ for all $A\subset X$, where $\closure{A}$ denotes the closure of $A$. 
+\begin{proof}\mbox{} 
+
+($\implies$) %If $A$ is closed, then we're done since $f(\closure{A}=f(A)\subset\closure{f(A)}$. So suppose $A$ is not closed, and let $x\in\closure{A}$, but $x\not\in A$. 
+Let $A\subset X$, let $x\in\closure{A}$, and let $V\in Y$ be any open set containing $f(x)$. Then since $f$ is continuous, $\preimage{f}{V}$ contains $x$ and is open. Since $x\in\closure{A}$, then $\preimage{f}{V}\cap A\neq\emptyset$, so there exists $a\in \preimage{f}{V}\cap A$ such that $f(a)\in V\cap f(A)$. Thus $f(x)\in\closure{f(A)}$, and we are done. \qedwhite
+
+($\impliedby$) Let $D\in Y$ be closed. Then $f\left(\closure{\preimage{f}{D}}\right)\subset\closure{f(\preimage{f}{D})}=\closure{D}=D$, so $\closure{\preimage{f}{D}}\subseteq\preimage{f}{D}$ and it is always true that $\closure{\preimage{f}{D}}\supseteq\preimage{f}{D}$, therefore they are equal and $\preimage{f}{D}$ is closed. 
+\end{proof}
+
+\item Show that if $f$ is continuous and $f(\closure{A})$ is closed, then $f(\closure{A})=\closure{f(A)}$. 
+\begin{proof}
+We know already that $f(\closure{A})\subseteq\closure{f(A)}$ by (i), so we need to show that $\closure{f(A)}\subseteq f(\closure{A})$. 
+
+%So let $y\in \closure{f(A)}$. For any open $V\ni y$, $V\cap f(A)\neq\emptyset$, so there exists $a\in A$ such that $f(a)\in V$. 
+%
+%Then $\preimage{f}{V}$ is open because $f$ is continuous, and contains $\preimage{f}{y}$ and $a$.
+Let $y\in \closure{f(A)}$. %, and let $U\ni\preimage{f}{y}$ be open. If $U,A$ are not disjoint, then $\preimage{f}{y}\in\closure{A}$ and we're done. So consider the case where $U,A$ are disjoint. Then $y\not\in f(A)$. 
+This means that for any open $V\ni y$, we have $V\cap f(A)\neq\emptyset$.
+%This means that ($\dagger$) for any open $V\ni y$, we have $V\cap f(A)\neq\emptyset$, so there exists $a\in A$ such that $f(a)\in V$. 
+
+Now suppose for contradiction that $y\not\in f(\closure{A}).$ Since $f(\closure{A})$ is closed, then $f(\closure{A})^\complement$ is open, and $y\in f(\closure{A})^\complement$. So there exists an open set $V'$ such that $y\in V'\subset f(\closure{A})^\complement$ and furthermore that $V'\subset f(A)^\complement$. But since $y\in \closure{f(A)}$, then $V'\cap f(A)\neq\emptyset$, contradiction. 
+\end{proof}
+\end{enumerate}
+
+\item Let $(X,d)$ be a compact metric space and let $f:X\to X$ be a map with the property that 
+$$\dist{f(x)}{f(y)}<\dist{x}{y}$$
+for every distinct $x,y\in X$. 
+
+Prove that (i) there is a unique point $x_0$ with $f(x_0)=x_0$, and (ii) show that this fails if the inequality is not always strict. 
+	\begin{proof}
+	(i) If such a point exists, it is unique. If not and there exist two invariant points $x_0\neq x_1$, then $\dist{x_0}{x_1}>\dist{f(x_0)}{f(x_1)}=\dist{x_0}{x_1}$, contradiction. 
+	
+	It remains to be shown that there exists an invariant point. 
+	Observe that $f$ is continuous (and in fact, uniformly continuous), since for any $\epsilon>0$, if $\dist{x}{y}<\epsilon$, then $\dist{f(x)}{f(y)}<\epsilon$. %(we will need this fact later). 
+	
+	Let $x_1\in X$, and define $\{x_n\}_{n=1}^\infty$ by $x_{n+1}=f(x_n)$ for all $n>1$. Since $X$ is compact, then it is sequentially compact, so $\{x_n\}$ has a convergent subsequence (and \Wlog{} suppose that subsequence is $\{x_n\}$ itself), and call the limit $x_0$. Then 
+	\begin{align*}
+	f(x_0)&=f\left(\lim_{n\to\infty}(x_n)\right) & \text{and since $f$ is continuous,}\\
+	&=\lim_{n\to\infty}f\left(x_n\right)\\
+	&=\lim_{n\to\infty}(x_{n+1})\\
+	&=x_0.
+	\end{align*}
+		
+	(ii) If we modify the property to be $\dist{f(x)}{f(y)}\leq\dist{x}{y},$	then we do not have uniqueness since the identity $f(x)=x$ satisfies the property. Existence is still guaranteed.
+	\end{proof}
+
+\item Let $A$ and $B$ be disjoint compact subspaces of a Hausdorff topological space $X$. Prove that there are disjoint open sets $U$ and $V$ such that $U\supset A$ and $V\supset B$.
+\begin{proof}
+Let $x\in A$. Since $X$ is Hausdorff, for every $y\in B$ there exist disjoint open sets $U_{x_y}\ni x$ and $V_{x_y}\ni y$. Then $\bigcup_{y\in B}V_{x_y}$ is a covering of the compact set $B$, so it has a finite subcover $\bigcup_{i=1}^NV_{x_{y_i}}$. Using the corresponding $U$ sets, define 
+\begin{align*}
+U_x=\bigcap_{i=1}^NU_{x_{y_i}} \quad\text{and}\quad V_x=\bigcup_{i=1}^NV_{x_{y_i}},
+\end{align*}
+and observe that $U_x$ and $V_x$ are disjoint open sets such that $U_x\ni x$ and $V_x$ covers $B$.\footnote{They are disjoint because $\forall i, U_x\subset U_{x_{y_{i}}}\subset V_{x_{y_{i}}}^\complement$, open because finite unions and intersections of open sets are open, and cover $x$ and $B$ respectively by construction.}
+
+Construct similarly $U_x$ and $V_x$ for every $x\in A$. Then $\bigcup_{x\in A}U_x$ is an open cover of the compact set $A$, so it has finite subcover $\bigcup_{i=1}^NU_{x_i}$. Using the corresponding $V$ sets, define 
+\begin{align*}
+U=\bigcup_{i=1}^NU_{x_i} \quad\text{and}\quad V=\bigcap_{i=1}^NV_{x_i},
+\end{align*}
+and observe that since every $V_{x_i}$ covers $B$ and is disjoint with $U_{x_i}$, then $U\supset A$, $V\supset B$, and $U,V$ are open and disjoint. 
+\end{proof}
+
+\end{enumerate}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

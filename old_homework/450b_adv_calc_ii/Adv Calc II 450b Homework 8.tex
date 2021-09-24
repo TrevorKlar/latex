@@ -1,0 +1,199 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 450b \linebreak
+Homework 8}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Let $f:\R^n\to \R^n$ and suppose there is a constant $M$ such that $\norm{f(\vecb{x})}\leq M\norm{\vecb{x}}^2$ for all $\vecb{x}\in \R^n$. Let $g(\vecb{x})=T(\vecb{x})+f(\vecb{x})$, where $T:\R^n\to \R^n$ is an invertible linear transformation. Prove that $g$ is locally invertible near $\vecb{0} $. 
+\begin{proof}
+To prove that $g$ is locally invertible near $\vecb{0} $, we will show that $\det \left(Dg(\vecb{0})\right)\neq0$. Since
+$$g(\vecb{x})=T(\vecb{x})+f(\vecb{x}),$$
+Then by linearity of derivatives, 
+\[\begin{array}{rcl}
+Dg(\vecb{0})(\vecb{x})&=&DT(\vecb{0})(\vecb{x})+Df(\vecb{0})(\vecb{x})\\
+&=&T(\vecb{x})+Df(\vecb{0})(\vecb{x})
+\end{array}\]
+
+By an earlier homework problem, since $\norm{f(\vecb{x})}\leq M\norm{\vecb{x}}^2$ for all $\vecb{x}\in \R^n$, then $Df(\vecb{0})\equiv\vecb{0}$. Thus, 
+$$Dg(\vecb{0})(\vecb{x})=T(\vecb{x}),$$
+ans since $T$ is invertible, $\det(Dg(\vecb{0}))=\det(T)\neq 0$. 
+\end{proof}
+
+\item Determine whether the system 
+\[\begin{array}{rcl}
+u &=& x+xyz\\
+v &=& y+xy\\
+w &=& z+2x+3z^2\\
+\end{array}\]
+can be solved for $x,y,z$ in terms of $u,v,w$ near $(0,0,0)$. 
+\begin{proof}
+Let $f:\R^3\to \R^3$ be defined as $f(x,y,z)=(u,v,w)$. Note that $f(\vecb{0})=\vecb{0}$. We seek some $\inv{f}(u,v,w)=(x,y,z)$ near $\vecb{0}$. If $\det(Df(\vecb{0}))\neq0$ (We can already can see that $f$ is continuous), then the Inverse Function Theorem guarantees the desired function. 
+\[Df=\left[
+\begin{array}{ccc}
+1+yz & xz & xy\\
+y & 1+x & 0\\
+z & 0 & 1+6z\\
+\end{array}\right]
+\quad
+Df(\vecb{0})=\left[
+\begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+2&0&1\\
+\end{array}\right]
+\]
+$Df(\vecb{0})$ is lower-triangular, so $\det Df(\vecb{0})=(1)(1)(1)\neq0$. Thus, $f$ is locally invertible near $\vecb{0}$ and we are done. 
+\end{proof}
+
+\item Suppose $f:U\subset \R^n\to \R^n$ is $C^1$ and one-to-one, with $Df(\vecb{a})\neq0$ for all $\vecb{a}\in U$. Prove that $f(U)$ is an open set. 
+\begin{proof}
+Let $\vecb{y}\in f(U)$ with $f(\vecb{x})=\vecb{y}$ for some $\vecb{x}\in U$. Since $\det(Df(\vecb{x}))\neq0$ by assumption, the Inverse Function Thm gives open sets $V, W$ such that 
+$$\vecb{x}\in V \subset U, \quad \vecb{y}\in W \subset f(U),$$
+thus $f(U)$ is open by the openness criterion. 
+\end{proof}
+
+\item Determine whether the system 
+\[\begin{array}{rcl}
+3x+2y+z^2+u+v^2 &=& 0\\
+4x+3y+z+u^2+v+w+2 &=& 0\\
+x+z+w+u^2+2 &=& 0\\
+\end{array}\]
+can be solved for $u,v,w$ in terms of $x,y,z$ near $x=y=z=u=v=0, w=-2$.
+\begin{proof}
+Denote the point $$x=y=z=u=v=0, w=-2$$ as $-2\vecb{e}_w$. Let $F:\R^6\to\R^3$ be defined as 
+\[
+F(x,y,z,u,v,w)=\left[
+\begin{array}{c}
+3x+2y+z^2+u+v^2\\
+4x+3y+z+u^2+v+w+2\\
+x+z+w+u^2+2\\
+\end{array}\right]
+\]
+Observe that $F(-2\vecb{e}_w)=\vecb{0}$. If 
+$$\det\left(\left[\frac{\del F_i}{\del j}(-2\vecb{e}_w)\right]_{\substack{i\in\{1,2,3\}\\j\in\{u,v,w\}}}\right)\neq0,$$
+then the Implicit Function Theorem gives open sets $V_1\in \R^3, V_2\in \R^3$ with $\vecb{0}\in V_1$ and $(0,0,-2)\in V_2$, and some $f:V_1\to V_2$ such that $F(x,y,z,f(x,y,z))=\vecb{0}$ for all $(x,y)\in V_1$. Thus, we calculate the above determinant. 
+\[
+\det\left(\left[\frac{\del F_i}{\del j}(-2\vecb{e}_w)\right]_{\substack{i\in\{1,2,3\}\\j\in\{u,v,w\}}}\right)
+=
+\det\left(\left.\left[
+\begin{array}{ccc}
+1 & 2v & 0 \\
+2u & 1 & 1 \\
+2u & 0 & 1 \\
+\end{array}
+\right]\right|_{-2\vecb{e}_w}\right)
+=
+\left|\begin{array}{ccc}
+1 & 0 & 0 \\
+0 & 1 & 1 \\
+0 & 0 & 1 \\
+\end{array}\right|
+=
+1\neq0
+\]
+as desired, and we are done.
+\end{proof}
+
+\item Show that the equations 
+\[\begin{array}{rcl}
+x^2-y^2-u^3+v^2+4 &=& 0\\
+2xy+y^2-2u^2+3v^4+8 &=& 0\\
+\end{array}\]
+determine functions $u(x,y), v(x,y)$ near $x=2, y=-1$ such that $u(2,-1)=2$, $v(2,-1)=1$. Compute $\frac{\del u}{\del x}$. 
+
+\begin{proof}
+Let $F:\R^4\to\R^2$ be defined as 
+\[
+F(x,y,u,v)=\left[
+\begin{array}{c}
+x^2-y^2-u^3+v^2+4\\
+2xy+y^2-2u^2+3v^4+8\\
+\end{array}\right]_.
+\]
+Observe that $F(2,-1,2,1)=\vecb{0}$. If 
+$$\det\left(\left[\frac{\del F_i}{\del j}(2,-1,2,1)\right]_{\substack{i\in\{1,2\}\\j\in\{u,v\}}}\right)\neq0,$$
+then the Implicit Function Theorem gives open sets $V_1\in \R^2, V_2\in \R^2$ with $(2,-1)\in V_1$ and $(2,1)\in V_2$, and some $f:V_1\to V_2$ such that $F(x,y,f(x,y))=F(x,y,u(x,y),v(x,y))=\vecb{0}$ for all $(x,y)\in V_1$. Thus, we calculate the above determinant. 
+\[
+\det\left(\left[\frac{\del F_i}{\del j}(2,-1,2,1)\right]_{\substack{i\in\{1,2\}\\j\in\{u,v\}}}\right)
+=
+\det\left(\left.\left[
+\begin{array}{ccc}
+-3u^2 & 2v \\
+-4u & 12v^3 \\
+\end{array}
+\right]\right|_{(2,-1,2,1)}\right)
+=
+\left|\begin{array}{ccc}
+-12 & 2 \\
+-8 & 12 \\
+\end{array}\right|
+=
+-144+16\neq0
+\]
+as desired, and we are done.
+\end{proof}
+\textbf{Solution} Now we calculate $\frac{\del u}{\del x}$ by differentiating $F(x,y,u,v)=\vecb{0}$ implicitly. 
+\[
+\frac{\del}{\del x}
+\left[\begin{array}{c}
+x^2-y^2-u^3+v^2+4\\
+2xy+y^2-2u^2+3v^4+8\\
+\end{array}\right]
+=
+\frac{\del}{\del x}
+\left[\begin{array}{c}
+0\\
+0\\
+\end{array}\right]
+\]
+This gives the following system of equations, if we consider $u$ and $v$ to be functions of $x$ but $y$ to be constant with respect to $x$:
+\[
+\begin{array}{rrrcl}
+2x&-3u^2\frac{\del u}{\del x}&+2v\frac{\del v}{\del x} &=& 0\\
+2y&-4u\frac{\del u}{\del x}&+12v^3\frac{\del v}{\del x} &=& 0\\
+\end{array}
+\]
+Solving this first equation for $\frac{\del v}{\del x}$ gives 
+$$\frac{\del v}{\del x} = \frac{3u^2}{2v}\frac{\del u}{\del x}-\frac{x}{v},$$
+and we can substitute this into the second equation to find 
+$$\frac{\del u}{\del x}=\frac{6v^2x-y}{9v^2u^2-2u}$$
+and we are done. \qed
+
+\end{enumerate}
+\end{document}

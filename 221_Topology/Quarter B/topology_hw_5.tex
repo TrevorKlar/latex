@@ -1,0 +1,213 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\ }
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 5}%===============UPDATE THIS===============%
+\end{center}
+
+\begin{enumerate}
+\item Show that composition of paths satisfies the following cancellation property: If $f_0\sqcdot g_0\simeq f_1\sqcdot g_1$ and $g_{0}\simeq g_1$, then $f_0\simeq f_1$. 
+\begin{definition*}(Concatenation of Path Homotopies $F\sqcdot G$)
+Given homotopic paths $f_0\overtext{\simeq}{$F$} f_1$ and $g_0\overtext{\simeq}{$G$} g_1$ such that $f_s\sqcdot g_s$ is defined, then 
+$$F\sqcdot G:=\begin{cases}
+F(2s,t) & s\in [0,\frac{1}{2}] \\
+G(2s-1,t) & s\in [\frac{1}{2},1] \\
+\end{cases}$$
+or in words, apply $F$ in the first region, and $G$ in the second. 
+\end{definition*}
+\begin{proof}
+Since $f_0\sqcdot g_0\simeq f_1\sqcdot g_1$, then call the path homotopy relating them $\Phi$, and the homotopy relating $g_0$ and $g_1$ $G$. We can (making a minor abuse of notation) consider $G$ to be a homotopy between the inverses $\bar{g}_0$ and $\bar{g}_1$ as well. Using the waiting homotopy we have discussed in class, we know that $f\simeq f\sqcdot (g\sqcdot\bar{g})$ whenever the concatenation is defined. Then 
+\begin{align*}
+f_0 &\simeq f_0\sqcdot (g_0 \sqcdot \bar{g}_0) &\text{by the waiting homotopy}\\
+&\simeq (f_0\sqcdot g_0) \sqcdot \bar{g}_0 &\text{reparametrizing}\\
+&\simeq (f_1\sqcdot g_1) \sqcdot \bar{g}_1 &\text{by $\Phi \sqcdot G$}  \\
+&\simeq f_1\sqcdot (g_1 \sqcdot \bar{g}_1) &\text{reparametrizing}\\
+&\simeq f_1 &\text{by the waiting homotopy}
+\end{align*}
+and we're done.
+\end{proof}
+
+\item Show that the change-of-basepoint homomorphism $\beta_h$ depends only on the homotopy class of $h$. 
+\begin{proof}
+Suppose $h_0\overtext{\simeq}{$H$} h_1$. Then for any loop $f$, 
+\begin{align*}
+h_0\sqcdot(f\sqcdot\bar{h}_0) &\simeq h_1\sqcdot(f\sqcdot\bar{h}_0) &\text{by } H\sqcdot\id \\
+&\simeq (h_1\sqcdot f) \sqcdot\bar{h}_0 &\text{reparametrizing}\\
+&\simeq (h_1\sqcdot f) \sqcdot\bar{h}_1 &\text{by } \id\sqcdot H	
+\end{align*}
+Thus $\beta_{h_0}[f]=[h_0\sqcdot f\sqcdot\bar{h}_0]=[h_1\sqcdot f\sqcdot\bar{h}_1]=\beta_{h_1}[f]$ and we're done.
+\end{proof}
+
+\vfill
+\pagebreak
+\item For a path-connected space $X$, show that $\pi_1(X)$ is abelian if and only if all basepoint-change homomorphisms $\beta_h$ depend only on the endpoints of the path $h$. 
+\begin{proof}
+For $\pi_1(X)$ to be abelian means that for all loops $f,g$ with the same basepoint, $f\sqcdot g\simeq g\sqcdot f$. For the change-of-basepoint homomorphism $\beta_h$ to depend only on the endpoints of the path $h$ means that if $h, h'$ have the same endpoints, then $h \sqcdot f \sqcdot \bar{h} \simeq h' \sqcdot f \sqcdot \bar{h'}$. We will show that these are equivalent. 
+
+$(\implies)$ Suppose $\pi_1(X)$ is abelian, let $f$ be a loop, and let $h, h'$ have the same endpoints. Then 
+\begin{align*}
+h\sqcdot f \sqcdot \bar{h} & \simeq (h'\sqcdot\bar{h}') \sqcdot h\sqcdot f \sqcdot \bar{h} \sqcdot (h'\sqcdot\bar{h}') & \text{by the waiting homotopy}\\
+& \simeq h'\sqcdot (\bar{h}' \sqcdot h)\sqcdot f \sqcdot (\bar{h} \sqcdot h')\sqcdot\bar{h}' & \text{reparametrizing}\\
+& \simeq h'\sqcdot f \sqcdot (\bar{h}' \sqcdot h)\sqcdot (\bar{h} \sqcdot h')\sqcdot\bar{h}' & \pi_1(X) \text{ is abelian}\\
+&\simeq h'\sqcdot f \sqcdot (\bar{h}'\sqcdot (h\sqcdot\bar{h}) \sqcdot h') \sqcdot h' & \text{reparametrizing}\\
+&\simeq h'\sqcdot f \sqcdot (\bar{h}'\sqcdot h') \sqcdot h' & \text{by the waiting homotopy}\\
+&\simeq h'\sqcdot f \sqcdot h' & \text{by the waiting homotopy}
+\end{align*}
+
+$(\impliedby)$ Let $f,g$ be loops with the same basepoint, and suppose $\beta_h$ depends only on the endpoints of $h$. Then 
+\begin{align*}
+f\sqcdot g&\simeq	f\sqcdot g\sqcdot\bar{f}\sqcdot f & \text{by the waiting homotopy}\\
+&\simeq g\sqcdot g\sqcdot \bar{g}\sqcdot f & f,g \text{ have the same endpoints}\\
+&\simeq g\sqcdot f& \text{by the waiting homotopy} 
+\end{align*}\mbox{}\vspace*{-5ex}\qedhere
+\end{proof}
+\setcounter{enumi}{4}
+\item Show that for a space $X$, the following conditions are equivalent: 
+\begin{enumerate}[label=(\alph*)]
+\item Every map $S^1\to X$ is homotopic to a constant map.
+\item Evey map  $S^1\to X$ extends to a map $D^2\to X$. 
+\item $\pi_1(X)=0$ for all $x_0\in X$. 
+\end{enumerate}
+\begin{proof}$(a\implies b)$
+Let $f:S^1\to X$ be a loop, and let $F:S^1\times I\to X$ be a homotopy with $f_1=f$ and $f_0\equiv x_0$ for some $x_0\in X$. For each point $(\theta, r)\in D^2$, we can consider $\theta$ to be in $S^1$ and $r$ to be in $I$. Then $F$ is a map $D^2\to X$, and it is well defined since if $r=0$ then $(\theta_1,r)\sim(\theta_2,r)$, and $F$ is constant when $r=0$. 
+\end{proof}
+\begin{proof}$(b\implies c)$
+Let $x_0\in X$, and let $f$ be a loop with basepoint $x_0$. Then extend $f$ to $F:D^2\to X$. We know that $D^2$ deformation retracts to any point in $D^2$, so let $G:D^2\times I \to D^2$  be a deformation retraction to $\preimage{f_0}{x_0}$. If we restrict $G$ to $S^1\times I$, then $G$ is a homotopy of loops, and 
+$$F(G|_{S^1\times I}(\theta, t)) \text{ is a path homotopy from $f$ to $x_0$,}$$
+since $g_0=\id$ and $g_1\equiv \preimage{F}{x_0}$. 
+\end{proof}
+\begin{proof}$(c\implies a)$ By definition of trivial fundamental group, any two loops in $X$ are homotopic, including any loop based at $x_0$ and the constant loop $x_0$. 
+\end{proof}
+
+\item We can regard $\pi_1(X,x_0)$ as the set of basepoint-preserving homotopy classes of maps $(S^1,s_0)\to(X,x_0)$. Let $[S^1,X]$ be the set of homotopy classes of maps $S^1\to X$ with no conditions on basepoints. Thus there is a natural map $\Phi:\pi_1(X,x_0)\to [S^1,X]$ obtained by ignoring basepoints. 
+
+Show that 
+\begin{enumerate}
+\item $\Phi$ is onto if $X$ is path-connected, and 
+\item $\Phi([f])=\Phi([g])$ iff $[f]$ and $[g]$ are conjugate in $\pi_1(X,x_0)$.
+\item Hence $\Phi$ induces a one-to-one correspondence between $[S^1,X]$ and the set of conjugacy classes in $\pi_1(X)$, when $X$ is path-connected. 
+\end{enumerate}
+\begin{proof}(i)
+Let $x_0$ be the basepoint of $X$, and let $g$ be a loop with arbitrary start and end point $x_1$. Since $X$ is path-connected, there exists a path $p$ from $x_0$ to $x_1$. Now observe that $p\sqcdot g \sqcdot \bar{p}$ is a loop with basepoint $x_0$, and $\Phi([p\sqcdot g \sqcdot \bar{p}])=\Phi([g])$ since we can produce a homotopy of maps (not of loops) that shows $p\sqcdot g\sqcdot \bar{p} \simeq g\sqcdot \bar{p} \sqcdot p$ as follows: 
+\begin{align*}
+h_0(s)&= p\sqcdot g\sqcdot \bar{p}, &\text{parametrized in 3 equal parts} \\
+h_t(s)&=h_0\left(s+\tfrac{t}{3}\right) &\text{where we identify $s\sim (s-1)$ if $s>1$.}
+\end{align*}
+and of course $g\sqcdot \bar{p} \sqcdot p \simeq g$ by the waiting homotopy. 
+\end{proof}
+\begin{proof}(ii)$(\impliedby)$ Since $[f]$ and $[g]$ are conjugate in $\pi_1(X,x_0)$, then there exists a loop $p$ such that $f\simeq p\sqcdot g\sqcdot \bar{p}$, and $p\sqcdot g\sqcdot \bar{p} \simeq g$ by the same reasoning as in (i). 
+\end{proof}
+\begin{proof}(ii)$(\implies)$
+Since $\Phi([f])=\Phi([g])$, then 
+$$f(s)\overtext{\simeq}{$H(t,s)$}g(s)$$ 
+where $H$ is a homotopy of maps. Thus the common basepoint of $f$ and $g$ (denoted $x_0$), is not fixed over time $t$. Define a path $p$ by $p(t)=H(t,0)$, the image of the basepoint in the homotopy (we will hereafter write $p$ as a function of $s$). Since $f$ and $g$ have the same basepoint, $p$ is a loop with endpoint $x_0$. Define a homotopy of maps $p_t(s):=p(ts)$ so that 
+\begin{align*}
+p_0&\equiv x_0 \\
+p_1&=p \\
+p_t(1)&=H(t,0),
+\end{align*}
+and also define a homotopy $\bar{p}_t$ that gives the inverse path of $p_t$ for each time $t$. Now observe that for all $t$, $p_t(0)=x_0, p_t(1)=H(t,0), H(t,1)=\bar{p}_t(0), \bar{p}_t(1)=x_0$, so we can concatenate 
+$$P\sqcdot H \sqcdot \bar{P}$$
+to obtain an actual homotopy of loops showing $f\simeq p\sqcdot g\sqcdot \bar{p}$. To see that we have done this, observe that for all time the endpoints are fixed at $x_0$, at $t=0$ we have $\{x_0\}\sqcdot f \sqcdot \{x_0\} \simeq f$, and at $t=1$ we have $p\sqcdot g \sqcdot \bar{p}$.
+\end{proof}
+\begin{proof}(iii)
+Consider the map induced by $\Phi$, 
+$$\tilde{\Phi}:\{\text{conjugacy classes of }\pi_1(X)\}\to [S^1,X].$$
+\begin{itemize}
+\item Since $\Phi$ is onto, then $\tilde{\Phi}$ is onto.
+\item Since $\Phi([f])=\Phi([g])$ implies $[f]$ and $[g]$ are conjugate, then $\tilde{\Phi}$ is one-to-one.
+\item Since $[f]$ and $[g]$ are conjugate implies $\Phi([f])=\Phi([g])$, then $\tilde{\Phi}$ is well-defined. \qedhere
+\end{itemize}
+\end{proof}
+
+\setcounter{enumi}{10}
+\item If $X_0$ is the path-component of a space $X$ containing the basepoint $x_0$, show that the inclusion $X_0\hookrightarrow X$ induces an isomorphism $\pi_1(X_0,x_0)\to \pi_1(X,x_0)$. 
+\begin{proof}\mbox{}
+\begin{itemize}
+\item Any loop in $X$ with basepoint $x_0$ must be in the path-component of $x_0$, since the loop itself connects every point in it to $x_0$. Thus the induced map $\pi_1(X_0,x_0)\to \pi_1(X,x_0)$ is onto. 
+\item It is obviously true that $f\simeq g$ iff $f\simeq g$, so the induced map $\pi_1(X_0,x_0)\to \pi_1(X,x_0)$ is one-to-one and well-defined. \qedhere
+\end{itemize}
+\end{proof}
+
+\setcounter{enumi}{12}
+\item Given a space $X$ and a path-connected subspace $A$ containing the basepoint $x_0$, show that the map $\pi_1(A,x_0)\to \pi_1(X,x_0)$ induced by the inclusion $A\hookrightarrow X$ is surjective iff every path in $X$ with endpoints in $A$ is homotopic to a path in $A$. 
+\begin{proof}$(\impliedby)$
+Every loop $f$ in $X$ with basepoint $x_0$ is a path with basepoints in $A$, so it is homotopic to a loop $a$ in $A$. Thus $[a]=[f]$, and the map is surjective. 
+\end{proof}
+\begin{proof}$(\implies)$
+ Suppose the map is onto. Let $f_0$ be a path with endpoints $a_0,a_1\in A$. Since $A$ is path-connected, let $g_0, g_1$ be paths $x_0\to a_0$ and $a_1\to x_0$ respectively. Then $[g_0\sqcdot f_0 \sqcdot g_1]\in \pi_1(X,x_0)$, so there exists 
+ $g_0\sqcdot f_0 \sqcdot g_1 \,\overtext{\simeq}{$H(s,t)$}\,\, \tilde{f}$
+ such that $[\tilde{f}]\in \pi_1(A,x_0)$. Here we are parameterizing $g_0\sqcdot f_0 \sqcdot g_1$ in three equal parts, so $H(\frac{1}{3},0)=a_0$ and $H(\frac{2}{3},0)=a_1$.  Call $a_2=H(\frac{1}{3},1)$ and $a_3=H(\frac{2}{3},1)$, and note that $H(\frac{1}{3},t)$ and $H(\frac{2}{3},t)$ are paths connecting $a_0$ to $a_2$ and $a_1$ to $a_3$ respectively. 
+ \jpg{width=0.6\textwidth}{hw5-p13-1}
+ To finish up, we concatenate three homotopies of maps to form a homotopy of paths, similar to how we did in Problem 6(ii). 
+\begin{align*}
+ \text{Let }P^0(s,t)&=H\left(\tfrac{1}{3},st\right), \\
+ \text{let }P^1(s,t)&=H\left(\tfrac{2}{3},st\right),\text{ and }\\
+ \text{let }\tilde{H}(s,t)&=H\left|_{\left[\frac{1}{3},\frac{2}{3}\right]\times I}\right., \text{ rescaled so that }\tilde{H}:I\times I\to X. 
+\end{align*}
+Then for all $t$,  
+\begin{itemize}
+\item $P^0(0,t)=a_0,$
+\item $P^0(1,t)=H\left(\tfrac{1}{3},t\right)=\tilde{H}(0,t) $
+\item $P^1(1,t)=H\left(\tfrac{2}{3},t\right)=\tilde{H}(1,t) $
+\item $P^1(0,t)=a_1,$
+\end{itemize}
+so we can concatenate $P^0\sqcdot \tilde{H} \sqcdot \bar{P}^1$ to produce a path homotopy between $f_0$ and $p^0_1\sqcdot \tilde{h}_1 \sqcdot \bar{p}^1_1$, the latter which path is completely in $A$. 
+\end{proof}
+
+
+
+\end{enumerate}
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\item Zach Wagner
+
+\item 
+
+\item 
+
+\setcounter{enumi}{4}
+\item Zach Wagner
+
+\item Sandy Schoettler
+
+\setcounter{enumi}{10}
+\item 
+
+\setcounter{enumi}{12}
+\item
+\end{enumerate}
+\end{document}
+
+
+

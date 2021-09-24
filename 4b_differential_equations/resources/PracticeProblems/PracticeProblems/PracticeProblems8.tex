@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Practice Problems 8}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vv}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\vvv}[3]{\begin{bmatrix} #1 \\ #2 \\ #3\end{bmatrix}}
+\newcommand{\vvvv}[4]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4\end{bmatrix}}
+\newcommand{\vvvvv}[5]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4 \\ #5  \end{bmatrix}}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+Practice problems are for your own benefit. You won't turn them in or have them graded, but I have the expectation that you have done these when I write my tests. You can check answers with a TA, in Math Lab, or with the professor.
+
+\begin{enumerate}
+
+\item Consider a simplified Social Accounting Matrix in which we consider the flow of money among three institutional agents of the economy: Households (H), Firms (F), and Government (G). Each of these agents possesses a certain amount of wealth, $h$, $f$, and $g$ respectively.  The agents pay each other at the following yearly rates:
+ 
+ \begin{itemize}
+  \item (H) pays (F) at a rate of 50\% (of $h$) per year (consumer spending).
+  \item (F) pays (H) at a rate of 50\% (of $f$) per year (wages).
+  \item (H) pays (G) at a rate of 5\% (of $h$) per year (taxes).
+  \item (F) pays (G) at a rate of 10\% (of $f$) per year (taxes).
+  \item (G) pays (H) at a rate of 100\% (of $g$) per year (government wages and entitlements).
+  \item (G) pays (F) at a rate of 40\% (of $g$) per year (government contracts).
+ \end{itemize}
+ 
+ Answer the following.
+ \be
+  \item Use the data above to write down a system of differential equations for $h$, $f$, and $g$.
+  \item Find the general solution (you can use a calculator).
+  \item Is/Are there equilibrium solution(s)?
+  \item In the U.S., $h=82$, $f=35$, and $g=8$ (in trillions). How do you predict these numbers will change?
+ \ee
+    
+  
+  \item Find the eigenvectors and generalized eigenvectors of the matrix $\begin{bmatrix} 8 & -5 \\ 5 & -2\end{bmatrix}$.
+ 
+ \item Sketch a phase portrait for $\vec x\,'=\begin{bmatrix} 8 & -5 \\ 5 & -2\end{bmatrix}\vec x$. Make sure your portrait reflects where $x$ and $y$ are increasing or decreasing, and where vectors are pointing radially inward or outward.
+ 
+ \item Find the general solution to the system
+ $$\vvv{x'}{y'}{z'} = \begin{bmatrix} 3&0&-2\\0&5&0\\2&0&3 \end{bmatrix}\vvv xyz$$
+ 
+ \item Solve the system $\vec x\,'=\begin{bmatrix} 3 & 5\\ -1& -1 \end{bmatrix}\vec x$ and sketch a phase portrait. Make sure your portrait reflects where $x$ and $y$ are increasing or decreasing, and where vectors are pointing radially inward or outward.
+ 
+ \item Find the general solution to the system
+  $$\vvv{x'}{y'}{z'} = \begin{bmatrix} 3 & 0 & 0 \\ 0 & 3 & 1 \\ 0 & 0 & 3 \end{bmatrix}\vvv xyz$$
+  
+  \item Here are a few $3\times3$ or $4\times4$ systems to consider. Try finding the general solutions.
+  \be
+   \item $\vec x\,'=\begin{bmatrix}2 & 1 & 0\\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}\vec x$
+   \item $\vec x\,'=\begin{bmatrix} 1 & 2 & 0 & 0\\ -2 & 1 & 0 &0 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & -2 & 1 \end{bmatrix}\vec x$
+   \item $\vec x\,'=\begin{bmatrix} 1 & 2 & 1 & 0\\ -2 & 1 & 0 &1 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & -2 & 1 \end{bmatrix}\vec x$
+   \item $\vec x\,'=\begin{bmatrix} 5 & 1 & 0 & 0 \\ 0 & 5 & 0 & 0 \\ 0 & 0 & 5 & 1 \\ 0 & 0 & 0 & 5 \end{bmatrix}\vec x$
+  \ee
+ 
+ \end{enumerate}
+
+\end{document}

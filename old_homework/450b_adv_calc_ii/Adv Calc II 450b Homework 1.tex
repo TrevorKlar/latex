@@ -1,0 +1,237 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 450b \linebreak
+Homework 1}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+%1
+\item Let $\vecb{x}, \vecb{y} \in \R^n$. Prove that $\abs{\inner{\vecb{x}}{\vecb{y}}}=\norm{\vecb{x}}\norm{\vecb{y}}$ if and only if $\vecb{y}=r\vecb{x}$ for some $r\in\R$. 
+\begin{proof}
+Both directions of this proof will rely on the fact that $\vecb{x}\neq\vec{0}$, so before we begin we will address that possibility. Suppose $\vecb{x} =\vec{0}$. Then, $\abs{\inner{\vecb{x}}{\vecb{y}}} = \abs{\inner{\vecb{0}}{\vecb{y}}} = \abs{\sum_{i=1}^n 0y_i} = 0$ and $\norm{x}\norm{y} = 0\norm{y} = 0$. Thus, $\abs{\inner{\vecb{x}}{\vecb{y}}}=0=\norm{\vecb{x}}\norm{\vecb{y}}$, so the converse direction holds (since the conclusion is always true). However, if $\vecb{x}=\vec{0}$ and $\vecb{y}\neq\vec{0}$, then there is no such $r\in\R$ such that $\vecb{y}=r\vecb{x}$, so the forward direction actually does not hold in this case (the hypothesis is always true, but the conclusion is always false). 
+
+Since the theorem does not always hold when $\vecb{x}=\vec{0}$, we will assume that $\vecb{x}\neq\vec{0}$ in the rest of this proof. 
+\end{proof}
+
+\begin{proof}($\impliedby$) Suppose that $\vecb{y}=r\vecb{x}$ for some $r\in\R$. Then we have the following:
+\[\begin{array}{rcl}
+0&=&\norm{\vecb{y}-r\vecb{x}}^2\\
+0&=&\inner{\vecb{y}-r\vecb{x}}{\vecb{y}-r\vecb{x}}\\
+0&=&\norm{\vecb{y}}^2-2r\inner{\vecb{x}}{\vecb{y}}+r^2\norm{\vecb{x}}^2\\
+\end{array}\]
+Before we proceed further, we can use the fact that $\vecb{y}=r\vecb{x}$ to obtain a value for $r$:
+\[\begin{array}{rcl}
+\inner{\vecb{x}}{r\vecb{x}}&=&\inner{\vecb{x}}{r\vecb{x}}\\
+r\inner{\vecb{x}}{\vecb{x}}&=&\inner{\vecb{x}}{\vecb{y}}\\
+r\norm{\vecb{x}}^2&=&\inner{\vecb{x}}{\vecb{y}}\\
+r&=&\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}\\
+\end{array}\]
+Now we plug this in for $r$ in our previous equation and simplify:
+\[\begin{array}{rcl}
+0&=&\norm{\vecb{y}}^2
+-2\left(\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}\right)\inner{\vecb{x}}{\vecb{y}}
++\left(\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}\right)^2\norm{\vecb{x}}^2\\
+
+0&=&\norm{\vecb{y}}^2
+-2\frac{\inner{\vecb{x}}{\vecb{y}}^2}{\norm{\vecb{x}}^2}
++\frac{\inner{\vecb{x}}{\vecb{y}}^2}{\norm{\vecb{x}}^2}\\
+
+0&=&\norm{\vecb{y}}^2-\frac{\inner{\vecb{x}}{\vecb{y}}^2}{\norm{\vecb{x}}^2}\\
+\end{array}\]
+
+From this, we can rearrange to find that $\inner{\vecb{x}}{\vecb{y}}^2=\norm{\vecb{x}}^2\norm{\vecb{y}}^2$ and take square roots, yielding $\abs{\inner{\vecb{x}}{\vecb{y}}}=\norm{\vecb{x}}\norm{\vecb{y}}$ and we are done. 
+\end{proof}
+
+\begin{proof}($\implies$) Suppose that $\abs{\inner{\vecb{x}}{\vecb{y}}}=\norm{\vecb{x}}\norm{\vecb{y}}$. 
+
+As in the converse direction (with steps reversed), we can square both sides and rearrange to find that 
+$$0=\norm{\vecb{y}}^2
+-2\left(\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}\right)\inner{\vecb{x}}{\vecb{y}}
++\left(\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}\right)^2\norm{\vecb{x}}^2.$$
+Now since we have assumed that $\vecb{x}\neq\vec{0}$, we know that $\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}$ is a real number. So let $r=\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}^2}$ and substitute to obtain 
+$$0=\norm{\vecb{y}}^2-2r\inner{\vecb{x}}{\vecb{y}}+r^2\norm{\vecb{x}}^2.$$
+Again as we did in the converse direction, we can rearrange to find that $0=\norm{\vecb{y}-r\vecb{x}}^2$. This means that $\vecb{y}=r\vecb{x}$, and we are done. 
+\end{proof} 
+
+%2
+\item Let $\vecb{x}, \vecb{y} \in \R$ be nonzero. Prove that $\norm{\vecb{x}+\vecb{y}}^2=\norm{\vecb{x}}^2+\norm{\vecb{y}}^2$ if and only if $\vecb{x}$ and $\vecb{y}$ are orthogonal. 
+
+\begin{proof}($\impliedby$) Suppose $\vecb{x}$ and $\vecb{y}$ are orthogonal. Then 
+\[\begin{array}{rcl}
+\norm{\vecb{x}+\vecb{y}}^2&=&\inner{\vecb{x}+\vecb{y}}{\vecb{x}+\vecb{y}}\\
+&=&\norm{\vecb{x}}^2+2\inner{\vecb{x}}{\vecb{y}}+\norm{\vecb{y}}^2\\
+\end{array}\]
+and, since $\vecb{x}$ and $\vecb{y}$ are orthogonal, $\inner{\vecb{x}}{\vecb{y}}=0$, so 
+\[\begin{array}{rcl}
+\quad \quad \quad \quad &&\norm{\vecb{x}}^2+2\inner{\vecb{x}}{\vecb{y}}+\norm{\vecb{y}}^2 \\
+&=& \norm{\vecb{x}}^2+\norm{\vecb{y}}^2\\
+\end{array}\]
+and we are done. 
+\end{proof}
+
+\begin{proof}($\implies$)
+Suppose that $\norm{\vecb{x}+\vecb{y}}^2=\norm{\vecb{x}}^2+\norm{\vecb{y}}^2$. Then, 
+\[\begin{array}{rcl}
+\norm{\vecb{x}+\vecb{y}}^2&=&\norm{\vecb{x}}^2+\norm{\vecb{y}}^2\\
+\norm{\vecb{x}}^2+2\inner{\vecb{x}}{\vecb{y}}+\norm{\vecb{y}}^2&=&\norm{\vecb{x}}^2+\norm{\vecb{y}}^2\\
+2\inner{\vecb{x}}{\vecb{y}}&=&0\\
+\end{array}\]
+Thus, $\vecb{x}$ and $\vecb{y}$ are orthogonal by definition. 
+\end{proof}
+
+%3
+\item Let $\vecb{x}=(1,1,\ldots, 1)$ and $\vecb{y}=(1,2,\ldots, n)$ in $\R^n$. Let $\theta_n$ be the angle between $\vecb{x}$ and $\vecb{y}$ in $\R^n$. Find $\lim\limits_{n\to\infty}\theta_n$. 
+
+We know that 
+$$\cos\theta_n=\frac{\inner{\vecb{x}}{\vecb{y}}}{\norm{\vecb{x}}\norm{\vecb{y}}}_,$$
+So we will compute each of the parts. 
+$$\inner{\vecb{x}}{\vecb{y}}=\sum_{i=1}^ni=\frac{n(n+1)}{2}$$
+$$\norm{\vecb{x}}=\sqrt{n}$$
+$$\norm{\vecb{y}}=\sqrt{\sum_{i=1}^n i^2}=\sqrt{\frac{n(n+1)(2n+1)}{6}}$$
+Plugging these terms in and canceling, we find that 
+$$\cos\theta_n=\sqrt{\frac{3n+3}{4n+2}}$$
+So, to find $\lim\limits_{n\to\infty}\theta_n$, we find 
+$$\lim\limits_{n\to\infty}\left(\cos^{-1}\sqrt{\frac{3n+3}{4n+2}}\right)=\inv{\cos}\left(\frac{\sqrt{3}}{2}\right)=\frac{\pi}{6}$$
+and we are done. \qed
+
+\pagebreak
+%4
+\item ($\square$) Decide if the following subsets of $R^n$ are open and/or closed. (Draw pictures, and give answers. No proofs necessary.)
+
+	\begin{multicols}{2}	
+	\begin{enumerate}[label=(\alph*)]
+	%a
+	\item $\{(x,y):xy=0\}\subset\R^2$\\
+	\textbf{Answer:} Closed and not open. 
+	\jpg{scale=.07}{450b_hw1_prob4a}
+	\qedwhite
+	
+	%b	
+	\item $\{(x,y):xy\neq0\}\subset\R^2$\\
+	\textbf{Answer:} Open and not closed. 
+	\jpg{scale=.07}{450b_hw1_prob4b}
+	\qedwhite
+	
+	%c
+	\item $\{(x,y,z):x^2+y^2<1 \text{ and } z=0\}\subset\R^3$\\
+	\textbf{Answer:} Not open and not closed. 
+	\jpg{scale=.07}{450b_hw1_prob4c}
+	\qedwhite
+	
+	%d
+	\item $\{(x,y,z):x^2+y^2<1\}\subset\R^3$\\
+	\textbf{Answer:} Open and not closed. 
+	\jpg{scale=.07}{450b_hw1_prob4d}
+	\qedwhite
+	\end{enumerate}
+	\end{multicols}
+	
+	\begin{enumerate}
+	\setcounter{enumi}{4}	
+	%e
+	\item $\{(x_1, \ldots, x_n): \text{each } x_i\in\Q\}\subset \R^n$\\
+	\textbf{Answer:} Not open and not closed. \\
+	This set is impossible to draw. I imagine it something like a dense infinite point grid, like a field of stars in space. Each element has infinitely many other elements surrounding it in every direction, as well as elements not in the set surrounding it in a similar way. \qed
+	\end{enumerate}
+
+
+%5
+\item ($\square$) Let $S$ be an $(n-1)$-dimensional vector subspace of $\R^n$. Prove that $S$ is not an open set. 
+\begin{proof}
+Since every vector space has a basis, let $B=\{\mathbf{v_1}, \mathbf{v_2}, \ldots, \mathbf{v_{n-1}}\}$ be a basis for $S$. Now, since $B$ has only $(n-1)$ elements, it cannot span $\R^n$, and thus can be extended to a spanning set by including another vector, 
+$\vecb{u}$. Now, to see that $S$ is not open, observe that for every $\vecb{x}\in S$, and every $B(\vecb{x},r)$ where $r\in\R^+$, the point $\vecb{x}+\frac{r\vecb{u}}{2\norm{\vecb{u}}}$ is an element of $B(\vecb{x},r)$, but not an element of $S$. The following image illustrates this for $\R^3$ and $S=\{(x,y,z):z=2\}$:
+\jpg{scale=.05}{450b_hw1_prob5}
+\end{proof}
+
+%6
+\item ($\square$) Let $\vecb{x}\in\R^n, r\geq0$, and define $\closure{B}(\vecb{x},r)=\{\vecb{y}\in\R:\norm{\vecb{x}-\vecb{y}}\leq r\}.$ Prove that $\closure{B}(\vecb{x},r)$ is closed. 
+\begin{proof}
+To show that $\closure{B}(\vecb{x},r)$ is closed, we will show that its complement is open. Let $\vecb{p}$ be in $\R^n$ such that $\vecb{p}\not\in\closure{B}(\vecb{x},r)$. Let $\tilde{r}=\frac{\norm{\vecb{p}-\vecb{x}}-r}{2}$. \\
+\textbf{Claim:} $B(\vecb{p},\tilde{r}) \subset (\R^n-\closure{B}(\vecb{x},r))$.
+\jpg{scale=.12}{450b_hw1_prob6}
+To show this, we will prove that $\norm{\vecb{y}-\vecb{x}}>r$.\\
+Let $\vecb{y}\in B(\vecb{p},\tilde{r})$. Then by the triangle inequality, 
+$$\norm{\vecb{p}-\vecb{x}}\leq\norm{\vecb{p}-\vecb{y}}+\norm{\vecb{y}-\vecb{x}}$$
+and subtracting $\norm{\vecb{p}-\vecb{y}}$, we find that 
+$$\norm{\vecb{p}-\vecb{x}}-\norm{\vecb{p}-\vecb{y}}\leq\norm{\vecb{y}-\vecb{x}}.$$
+Now, $\norm{\vecb{p}-\vecb{x}}=r+2\tilde{r}$ by definition, and $-\tilde{r}<-\norm{\vecb{p}-\vecb{y}}$ as well, so 
+$$r+\tilde{r}=(r+2\tilde{r})-\tilde{r}<\norm{\vecb{p}-\vecb{x}}-\norm{\vecb{p}-\vecb{y}}\leq\norm{\vecb{y}-\vecb{x}},$$
+Thus $r<\norm{\vecb{y}-\vecb{x}}$ and we are done. 
+\end{proof}
+
+%7
+\item \mbox{}
+	\begin{enumerate}[label=(\alph*)]
+	%a
+	\item Prove that $\R^n$ is an open set. 
+	\begin{proof}
+	Let $\vecb{x}\in\R^n$, and let $r>0$. Observe that $B(\vecb{x},r)\subset\R^n$, so $R^n$ is open. 
+	\end{proof}
+	
+	%b
+	\item Let $\arbcoll{U}$ be a collection of an arbitrary number of open sets in $\R^n$. Prove that $\arbcup{U}$ is an open set. 
+	\begin{proof}
+	Let $\vecb{x}\in\arbcup{U}$. By definition, $\vecb{x}\in U_\beta$ for some $\beta\in\Gamma$. Since $U_\beta$ is open, there exists some $r>0$ such that $B(\vecb{x},r)\subset U_\beta$. Thus, $B(\vecb{x},r)\subset \arbcup{U}$, so it is open.
+	\end{proof}
+	
+	%c
+	\item Let $U_1$ and $U_2$ be open sets in $\R^n$. Prove that $U_1\cap U_2$ is an open set. 
+	\begin{proof}
+	Let $\vecb{x}\in U_1\cap U_2$. Since $U_1$ and $U_2$ are open sets, there exist $r_1, r_2 >0$ such that $B(\vecb{x},r_1)\subset U_1$ and $B(\vecb{x},r_2)\subset U_2$. Let $r=\min(r_1, r_2)$. Then, $B(\vecb{x},r)\subset B(\vecb{x},r_1)\subset U_1$ and $B(\vecb{x},r)\subset B(\vecb{x},r_2)\subset U_2$; so 
+	$$B(\vecb{x},r)\subset U_1\cap U_2$$
+	and we are done. 
+	\end{proof}
+	\end{enumerate}
+
+\pagebreak
+%8
+\item Let $\arbcoll{C}$ be an arbitrary collection of closed sets in $\R^n$. 
+	\begin{enumerate}
+	%a
+	\item Prove that $\arbcap{C}$ is a closed set.
+	\begin{proof} To prove that $\arbcap{C}$ is closed, we will prove that its complement is open; that is, $\arbcup{C^\complement}$ is open. Since each $C$ is closed, then each $C^\complement$ is open. Then, by problem 7(b), $\arbcup{C^\complement}$ is also open, and we are done. 
+	
+	\end{proof}
+	
+	%b
+	\item Professor Doofus writes that in addition $\arbcup{C}$ is a closed set. Give an example which shows that Doofus is wrong. \\
+	\textbf{Answer:} Let $\{C_n\}_{n=1}^\infty$ be the collection of all $C_n=\closure{B}(\vecb{0},1-\sfrac{1}{n})$. So since $sup\left\lbrace\left(1-\frac{1}{n}\right):n\in\N\right\rbrace=1$, then $\bigcup\limits_{n=1}^\infty C_n=B(\vecb{0},1)$. And we already know that open balls are not closed. 
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

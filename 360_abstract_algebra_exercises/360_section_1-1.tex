@@ -1,0 +1,204 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 360 \linebreak
+Section 1.1 Exercises}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item $b*d=e$
+	\item $c*c=b$
+	\item $[(a*c)*e]*a = [c*e]*a = a*a = a$
+	\end{enumerate}
+\item[7.] $*$ is clearly not commutative, since $1*2\neq 2*1$. Observe the following to see that $*$ is not associative either: $(1*2)*3=-1*3=-4$, whereas $1*(2*3)=1*-1=2$.
+\item[9.] $*$ is commutative, since $\frac{ab}{2}=\frac{ba}{2}$. Also, $*$ is associative, since $(a*b)*c = \frac{ab}{2}*c = \frac{abc}{4} = a*\frac{bc}{2} = a*(b*c)$.
+\item[11.] $*$ is commutative, since ${2}^{ab}={2}^{ba}$. However, $*$ is not associative, since $(3*5)*7=2^{15}*7=2^{(7)(2^{15})}$, but $3*(5*7)=3*2^{35}=2^{(3)(2^{35})}$. 
+\item[13.] For a set of 2 elements, consider the table: 
+\[\begin{array}{c!c|c}
+* & a & b \\
+\thickhline
+a & x_1 & x_2\\
+\hline
+b & x_2 & x_3\\
+\end{array}\]
+There are three unique outputs, $x_1, x_2, x_3$, and each one can map to one of two possible values, so there are $2^3=8$ possible commutative binary operations on a set of 2 elements. 
+
+For 3 elements, the table gives 
+\[\begin{array}{c!c|c|c}
+* & a & b & c\\ \thickhline
+a & x_1 & x_2 & x_4 \\ \hline
+b & x_2 & x_3 & x_5 \\ \hline
+c & x_4 & x_5 & x_6
+\end{array}\]
+Thus, there are 6 unique outputs, which can each take 3 possible values. Therefore there are $3^6$ possible commutative binary operations on a set of 3 elements. 
+
+As we increase the number of elements from $n-1$ to $n$, we see that the number of unique outputs increases by $n$. Thus, the number of unique outputs for a set of $n$ elements is given by the $n$-th triangle number. Thus, the number of possible commutative binary operations on a set of $n$ elements is given by 
+$$ n^{T_n}, $$
+where $T_n=\frac{(n)(n+1)}{2}$ is the $n$-th triangle number.
+\item[14.] A binary operation $*$ on a set $S$ is \emph{commutative} if and only if, for all $a,b\in S$, we have $a*b=b*a$. 
+\item[15.] A binary operation $*$ on a set $S$ is \emph{associative} if and only if, for all $a,b,c\in S$, we have $(a*b)*c=a*(b*c)$. 
+\item[16.] A subset $H$ of a set $S$ is \emph{closed} under $*$ if and only if, for all $a,b\in H$, we have $(a*b)\in H$. 
+
+\textbf{For Exercises 17-22, determine if $*$ is a binary operation on $S$. If not, state whether Condition 1, Condition 2, or both are violated. }
+\item[17.] On $\Z^+$, define $*$ by $a*b=a-b$. 
+\textbf{Answer: } No. Condition 2 is violated since $1,2\in \Z^+$, but $1*2=-1\not\in\Z^+$. 
+\item[19.] On $\R$, define $*$ by $a*b=a-b$. This is of course a binary operation. For every subtraction problem, there is exactly one answer, and every difference of real numbers is a real number. 
+\item[21.] On $\Z^+$, define $a*b=c$, where $c$ is at least 5 more than $a+b$. \textbf{Answer: } No. Condition 1 is violated, since there are infinitely many real numbers $c$ such that $c\geq a+b+5$. 
+\item[23.] Let $H$ be the subset of $M_2(\R)$ consisting of all matrices of the form 
+$\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a & -b \\
+b & a \\
+\end{array} \right]$ 
+for $a,b\in \R$. Is $H$ closed under
+\begin{enumerate}
+	\item[a.] matrix addition?
+	\item[b.] matrix multiplication?
+\end{enumerate}
+
+\textbf{Answer to a:} Yes. Adding two arbitrary elements of $H$, we find  
+$\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a & -b \\
+b & a \\
+\end{array} \right]
++
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+c & -d \\
+d & c \\
+\end{array} \right] 
+=
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a+c & \, \, -(b+d) \\
+b+d & a+c\phantom{)} \\
+\end{array} \right],$
+which is an element of $H$.  
+
+\textbf{Answer to b:} Yes. Multiplying two arbitrary elements of $H$, we find  
+$\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a & -b \\
+b & a \\
+\end{array} \right]
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+c & -d \\
+d & c \\
+\end{array} \right] 
+=
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+ac-bd & \, \, \, -(ad+bc) \\
+ad+bc & ac-bd\phantom{)} \\
+\end{array} \right],$
+which is an element of $H$.  
+
+\item[24.] 
+	\begin{enumerate}[label=\alph*.]
+	\item F
+	\item T
+	\item F
+	\item F
+	\item F
+	\item T
+	\item F
+	\item F
+	\item T
+	\item F
+	\end{enumerate}
+
+\item[26.] Prove that if $*$ is and associative and commutative binary operation on a set $S$, then 
+$$(a*b)*(c*d)=[(d*c)*a]*b$$
+for all $a,b,c,d\in S$. 
+\begin{proof}
+\[\begin{array}{rcll}
+(a*b)*(c*d) &=& (c*d)*(a*b) & \text{commutative property}\\
+&=& (d*c)*(a*b) & \text{commutative property}\\
+&=& [(d*c)*a]*b & \text{associative property}\\
+\end{array}\]
+\end{proof}
+
+\textbf{In 27 and 28, prove or give a counterexample.}
+\item[27.] Every binary operation on a set consisting of a single element is both commutative and associative.
+\begin{proof}
+Denote our singleton set as $S=\{e\}$, and let $*$ be a binary operation on $S$. Applying the definition of commutativity, we can see that $*$ is commutative: for all $a,b\in S$, we have that $a*b=b*a$. To see this, observe that since $a\in S, a=e$. Also, since $b\in S, b=e$. Thus, $a*b=e*e=b*a$. 
+
+We can apply the definition of associativity similarly if we observe that $e*e$ can only have one possible result: $e*e=e$. Thus, for all $a,b,c\in S$, 
+\[\begin{array}{rcl}
+(a*b)*c&=&(e*e)*e\\
+&=&e*e\\
+&=&e*(e*e)\\
+&=&a*(b*c)\\
+\end{array}\]
+and we are done. \end{proof}
+
+\item[28.] Every commutative binary operation on a set having just two elements is associative. 
+
+\textbf{Counterexample:} Consider the set $S=\{\blacksquare, \square\}$, with $*$ defined by the following table:
+\[\begin{array}{c!c|c}
+* & \blacksquare & \square \\
+\thickhline
+\blacksquare & \square & \blacksquare\\
+\hline
+\square & \blacksquare & \blacksquare\\
+\end{array}\]
+We will show that $(\square*\blacksquare)*\blacksquare \neq \square*(\blacksquare*\blacksquare)$, and thus the associative property does not hold. 
+$$(\square*\blacksquare)*\blacksquare = \blacksquare*\blacksquare = \square,$$
+however, 
+$$\square*(\blacksquare*\blacksquare)=\square*\square=\blacksquare.$$
+Thus $*$ on $S$ is not commutative (observe that the table is symmetric), but not associative. \qed
+
+\item[41.] This is the state diagram for a machine which determines if the input string has at least two $c$'s. If the final state is $s_2$, then the input string has at least two $c$'s.
+
+\jpg{scale=.5}{360_hw1-1_prob_41}
+
+\item[42.] This is the state diagram for a machine which determines if the input string has exactly 3 $c$'s. If the final state is $s_3$, then the input string has exactly 3 $c$'s. Note that if the final state is $s_f$, then the input string has greater than 3 $c$'s, and if the final state is $s_0, s_1,$ or $s_2$, then the input string has less than 3 $c$'s. 
+
+\jpg{scale=.5}{360_hw1-1_prob_42}
+
+\item[43.] This is the state diagram for a machine which determines if the number of 1's in the input string is congruent to 0, 1, or 2 modulo 3. $s_0$ is the initial state, and corresponds to $0\equiv 0$ mod 3. The subscript of the final state gives the result. 
+
+\jpg{scale=.5}{360_hw1-1_prob_43}
+
+
+
+\end{enumerate}
+\end{document}

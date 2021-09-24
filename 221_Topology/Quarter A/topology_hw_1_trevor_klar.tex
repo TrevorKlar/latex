@@ -1,0 +1,141 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\} %=================UPDATE THIS=================%
+\rhead{\textsc{Long, Fall 2019}\\Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\thispagestyle{fancy}
+\begin{center}
+{\Large Homework 1 \\ }%=================UPDATE THIS=================%
+\end{center}
+
+\begin{definition*}
+Let $\Sigma$ be a subset of $(X,d)$. We say $\Sigma$ is \textbf{bounded} if there exists $x_0\in X$ and $0<r<\infty$ such that $\Sigma\subset B_r(x_0)$. 
+\end{definition*}
+
+\begin{enumerate}
+\item Prove that $\Sigma$ is bounded if and only if there exists $L>0$ such that
+$$d(x,x')\leq L$$
+for any $x, x'\in\Sigma$.
+\begin{proof}($\implies$) Suppose $\Sigma$ is bounded by $B_r(x_0)$. Then for any $x,x'\in\Sigma$, we know $d(x,x_0)<r$ and $d(x',x_0)<r$ since $\Sigma\subset B_r(x_0)$. Thus, by triangle inequality, $d(x,x')<2r$, so we let $L=2r$ and we are done. \qedwhite
+
+($\impliedby$) Suppose there exists $L>0$ such that $d(x,x')\leq L$ for any $x, x'\in\Sigma$. Then fix any $x_0\in\Sigma$, and $\Sigma$ is bounded by $B_L(x_0)$, since for any $x\in\Sigma,$ we have $d(x,x_0)\leq L$. 
+\end{proof}
+
+\item Suppose $\Sigma$ is bounded and $A\subset\Sigma$. 
+\begin{enumerate}
+\item Prove that $A$ is bounded. 
+\begin{proof}
+Obvious.\footnote{I can't write "obvious" on a homework problem? All right. Observe that $A\subset\Sigma\subset B_r(x_0)$, so $A\subset B_r(x_0)$.}
+\end{proof}
+\end{enumerate}
+\begin{definition*}
+Define $\diam{\Sigma} = \sup\limits_{\delta, \delta'\in\Sigma} d(\delta, \delta')$.
+\end{definition*}
+\begin{enumerate}[resume]
+\item Prove that $\diam{A}\leq\diam{\Sigma}$. 
+\begin{proof}
+For any $x,x'\in A$, we also know $x,x'\in\Sigma$, so $d(x,x')\leq\diam{\Sigma}$. Since $\diam{\Sigma}$ is an upper bound for $d|_{A\times A}$, then $\diam{A}=\sup\limits_{\delta, \delta'\in A} d(\delta, \delta') \leq \diam{\Sigma}$. 
+\end{proof}
+\end{enumerate}
+
+\item Let $(X,d)$ be a metric space, and let 
+$$d_p\big((x,y),(x',y')\big)=d(x,x')+d(y,y').$$
+\begin{enumerate}
+\item Show that $d_p$ is a metric on $X^2$. 
+\begin{proof}\mbox{}
+\begin{itemize}
+\item Since $(x,y)=(x',y')$ iff both $x=x'$ and $y=y'$, and since $d$ is a metric, then 
+\begin{align*}
+d_p\big((x,y),(x',y')\big)=0 &\iff d(x,x')=0 \text{ and } d(y,y')=0 \\
+&\iff x=x' \text{ and } y=y',
+\end{align*}
+so $d_p$ is positive-definite.
+\item To see that $d_p$ is symmetric, observe that $d$ is symmetric, so 
+\begin{align*}
+d_p\big((x,y),(x',y')\big)&=d(x,x')+d(y,y') \\
+&=d(x',x)+d(y',y) \\
+&=d_p\big((x',y'),(x,y)\big).
+\end{align*}
+\item Now we show that the triangle inequality holds. 
+\begin{align*}
+d_p\big((x_1,x_2),(y_1,y_2)\big)+d_p\big((y_1,y_2),(z_1,z_2)\big)&=d(x_1,y_1)+d(x_2,y_2)+d(y_1,z_1)+d(y_2,z_2)\\
+&=d(x_1,y_1)+d(y_1,z_1)+d(x_2,y_2)+d(y_2,z_2)\\
+&\geq d(x_1,z_1)+d(x_2,z_2)
+\end{align*}
+\end{itemize}
+Thus $d_p$ is positive-definite, symmetric, and has the triangle inequality, so it is a metric on $X^2$. \qedhere
+\end{proof}
+\item Prove that $d:X\times X \to (\R, \text{MKM})$ is continuous. 
+\begin{proof}
+Let $r\in\R$, be given. Then choose $x,y \in X$ such that $d(x,y)\leq r$. Let $\epsilon>0$.
+
+Observe that for any $(x', y')\in B_{\frac{\epsilon}{2}}\big((x,y)\big)$,  
+\begin{align*}
+d(x,x')+d(y,y') = d_p\big((x',y'),(x,y)\big) < \frac{\epsilon}{2},
+\end{align*}
+so $d(x,x')<\frac{\epsilon}{2}$ and $d(y,y')<\frac{\epsilon}{2}$. Now by the triangle inequality, 
+$$d(x',y')\leq d(x', x) + d(x,y)+ d(y,y') = r+\epsilon\phantom{,}$$
+and 
+$$d(x',y') \geq d(x,y) - d(x', x) - d(y,y') = r-\epsilon,$$
+\jpg{width=0.4\textwidth}{hw1-3b}
+so $d(x', y')\in B_\epsilon(r)$, which means that $d$ is continuous by the $\delta$-$\epsilon$ definition.
+\end{proof}
+%\begin{proof}
+%We have shown that $d_p$ is a metric, so it suffices to show that any metric is continuous. Let $(X,d)$ be a metric space. Let $B_r(c)$ be any ball in $(\R, \text{MKM})$\footnote{WLOG, assume that $c>0$ and $r\leq c$, since metrics can only map to balls of this form. If you chose a ball not according to these restrictions, you could intersect it with $[0,\infty)$ to fix the proof.}. Choose $x,y\in X$ such that $d(x,y)=c$. Then let 
+%\begin{align*}
+%U&=B_{r/2}(x)\subset(X,d)\\
+%V&=B_{r/2}(y)\subset(X,d).
+%\end{align*}
+%Now $(U\times V)$ is open in the product topology (are we supposed to know this yet?), and $D(U\times V) \subset d^{-1}\left(B_r(c)\right)$\footnote{If this is not obvious, observe that any $\hat{y}\in V$ can be no closer that $c-r/2$ to $x$, so any $\hat{x}\in U$ can be no closer than $c-r$ to $\hat{y}$. Similarly, any $\tilde{x}$ and $\tilde{y}$ in $U,V$ respectively can be no further than $c+r$.}, so $d^{-1}\left(B_r(c)\right)$ is open and $d$ is continuous. 
+%\footnotetext{WLOG, assume that $c>0$ and $r\leq c$, since metrics can only map to balls of this form. If you chose a ball not according to these restrictions, you could intersect it with $[0,\infty)$ to fix the proof.}
+%\footnotetext{If this is not obvious, observe that any $\hat{y}\in V$ can be no closer that $c-r/2$ to $x$, so any $\hat{x}\in U$ can be no closer than $c-r$ to $\hat{y}$. Similarly, any $\tilde{x}$ and $\tilde{y}$ in $U,V$ respectively can be no further than $c+r$.}
+%\end{proof}
+\end{enumerate}
+
+\item Give examples to show that if $B_r(x)=B_s(y)$, it need not be true that $r=s$ or $x=y$. 
+\begin{proof}
+Consider $(\R, d_\epsilon)$, where 
+$d_\epsilon(x,y)=\min(|x-y|, 1)$. Then $B_0(100)=B_1(50)=\R$. 
+\end{proof}
+\end{enumerate}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

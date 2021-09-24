@@ -1,0 +1,169 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 3}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\begin{enumerate}
+%1
+\item %show that $x_n\xto{d}0 \iff \x_n\xto{w^*}0$. 
+Think of $\ell^1$ as a linear space and $\ell^{\infty}$ as its dual. Let $\B$ be the closed unit ball with respect to the metric $\norm{f-g}_{\ell^\infty}$. For every $f,g\in \B$ define another metric 
+$$d(f,g)=\sum_{n=1}^\infty 2^{-n}\abs{f_n-g_n}.$$
+Prove that $\sigma(\B,\ell^1)$\footnote{the weak* topology of $\ell^\infty$ restricted to $\B$} coincides with the topology of the metric $d$. 
+
+\newcommand{\dballzero}[1]{\tensor[_d]{B}{_{#1}}(0)}
+\newcommand{\dballf}[1]{\tensor[_d]{B}{_{#1}}(f)}
+\begin{proof}
+Since the two topologies are both translation invariant, it suffices to show that $W(0;p)$ is open in the $d$-topology and that the $d$-ball $\dballzero{r}$ is open in $\sigma(\B,\ell^1)$. 
+
+\textsc{Part I}: We show that $\sigma(\B,\ell^1)\subset\script{T}_d(\B)$. 
+	Let $W(0,p)$ be an arbitrary subbasic weak* neighborhood in $\sigma(\B,\ell^1)$ centered at 0. 
+	Fix $f\in W(0,p)$. This means that 
+		\begin{align*}
+		\sup_n |f_n|&\leq 1 \\
+		\abs{\sum_n f_np_n} &<1
+		\end{align*}				
+	Since $p\in\ell^1$, then $\sum_n|p_n|$ converges, so there exists $N$ such that 
+	\begin{equation}
+	\sum_{n=N}^\infty |p_n| < \frac{1}{4}.
+	\end{equation}
+	
+	Let $r>0$ such that for all $n\leq N$,
+	\begin{equation}
+	|p_n|\leq\frac{2^{-n}}{4r},
+	\end{equation}
+	and consider $\dballf{r}$. 
+		
+		\textsc{Claim:} $\dballf{r}\subset W(0,p)$. %since $\forall\, g\in \dballf{r},$		 \quad 		$g\in W(0,p)\cap \B$.
+		
+		\textsc{Proof} Let $g\in \dballf{r}$. Then 
+		\begin{align}
+		\sum_n 2^{-n}|f_n-g_n|&< r, \text{ and} \\
+		\sup_n|f_n-g_n|&=2.
+		\end{align}		
+		So 
+		\begin{align*}
+		\abs{\angles{(f-g),p}} &= \abs{\sum_{n=1}^\infty (f_n-g_n)(p_n)} \\
+		&\leq \sum_{n=1}^\infty |f_n-g_n||p_n| \\
+		&= \sum_{1}^N |f_n-g_n||p_n| + \sum_{N}^\infty |f_n-g_n||p_n|\\
+		&\leq \sum_{1}^N \frac{2^{-n}}{4r}|f_n-g_n| + \sum_{N}^\infty 2|p_n| &\text{applying (2) and (4)}\\
+		&< \frac{1}{2}+\frac{1}{2} &\text{applying (3) and (1)} \\
+		&=1
+		\end{align*}
+Thus every $f\in W(0,p)$ has a $d$-ball containing $f$ which is a subset of $W(0,p)$, so Part I is proved. \qedwhite
+
+\textsc{Part II:} First note that 
+$$\norm{f}_d\leq\norm{f}_{\ell^\infty}$$
+since, if $f_n$ is an absolutely decreasing sequence, then
+$$\sum_n 2^{-n}|f_n|\leq\sup_n|f_n| \quad\text{ (with equality if $f_n$ is constant)},$$
+and swapping any coordinates of $f_n$ will cause $\norm{f}_d$ to decrease while $\norm{f}_{\ell^\infty}$ remains constant.
+
+\newcommand{\dball}{\tensor[_d]{B}{_{r}}(f)}
+\newcommand{\lball}{\tensor[_{\ell^\infty}]{B}{_{r}}(f)}
+Thus the balls $\lball\subset\dball$ whenever they have the same radius and center. This means that for any ball $\dball$ with $g\in\dball$, there is of course some 
+$$\tensor[_d]{B}{_{r'}}(g)\subset\dball,$$ 
+and 
+$$\tensor[_{\ell^\infty}]{B}{_{r'}}(g)\subset \tensor[_d]{B}{_{r'}}(g)$$
+so we're done. 
+\end{proof}
+
+\pagebreak
+\renewcommand{\phi}{\oldphi}
+%2
+\item Let $u_n\xto{w}u$ in a Banach space $X$, and let $\phi_n\xto{w*}\phi$ in $X^*$. Give an example in $X=\ell^2$ to show that $\angles{\phi_n,u_n}$ need not be convergent. 
+
+Prove that if either  $u_n\xto{}u$ or $\phi_n\xto{}\phi$ strongly, then $\angles{\phi_n,u_n}\to\angles{\phi,u}$.
+
+\begin{example*}
+Recall that $\ell^{2*}=\ell^2$. Let $u_j=(-1)^j e_j$ and let $\phi_n=e_n$. Then $u_j\xto{w}0$ and $\phi_n\xto{w*}0$, but $\angles{\phi_k,u_k}$ alternates between 1 and $-1$, and doesn't converge.
+\qedwhite
+
+\begin{remark*}
+Wait, why doesn't it work that $\angles{\phi_n,u_j}\xto{j}\angles{\phi_n,u}\xto{n}\angles{\phi,u}$; using weak convergence followed by weak* convergence?
+
+It does. However $\angles{\phi_k,u_k}\xto{k}\angles{\phi,u}$ requires that we can get $\angles{\phi_k,u_k}$ arbitrarily close to $\angles{\phi,u}$ without taking \textit{either one }of the limits.
+\end{remark*}
+\end{example*}
+\begin{proof} \textsc{Case I:}
+Suppose $\norm{x_n}\to\norm{x}$. Then there exists $N>0$ such that $n>N \implies \norm{x_n-x}<\epsilon$ for all $\epsilon>0$. Since $\phi_j\xto{w*}\phi$, then by the Uniform Boundedness Principle $\norm{\phi_j}\leq C$. Thus
+\begin{align*}
+\abs{(\phi_n-\phi)(x_n-x)}&\leq \phi_n(x_n-x) + \phi(x_n-x)\\
+&\leq C\epsilon + C\epsilon
+=2C\epsilon,
+\end{align*}
+and after rescaling, we're done. \qedwhite
+
+\textsc{Case II:}
+If on the other hand $\norm{\phi_n\to\phi}$, then $\hat{x}_n\xto{w**}\hat{x}$, and we can use the same proof as above. 
+\end{proof}
+
+\item Let $\Omega\subset\R^n$ such that $\abs{\Omega}<\infty$, and let $(f_n)$ be a sequence in $L^p(\Omega)$. Suppose $f_n\to 0$ \muae{} in $\Omega$, and $f_n\xto{w}0$.\footnote{$\abs{\omega}$ denotes the Lebesgue measure of $\Omega$, and $p < 1$.}
+
+Prove that for $p=2$ and $q=1$\footnote{This actually holds for any $1\leq q <p$.} one has $\norm{f_n}_{L^q(\Omega)}\to0$.
+
+\begin{proof}
+%Hint: use Egorov’s theorem about the uniform convergence away of
+%a small set. To handle the small set use Holder inequality.
+Let $\epsilon>0$. Since $f_n\xto{w}0$, then by the Uniform Boundedness Principle $\norm{f_n}_2<B$. By Egoroff's Theorem, $\exists\, N>0$ such that $\forall\, n>N\; \int_U\abs{f_n}<\epsilon$ where $\mu(U^\complement)<\epsilon$. So $\forall\, n>N$, 
+\begin{align*}
+\int_\Omega |f_n|&=\int_U|f_n| + \int_{U^\complement}|f_n|\\
+&\leq \epsilon + \int_{U^\complement}|f_n (1)|\\
+&\leq \epsilon + \norm{f_n}_2\left(\mu\big(U^\complement\big)\right)^{\sfrac{1}{2}}\\
+&\leq \epsilon + B\sqrt{\epsilon}
+\end{align*}
+and after rescaling, we're done. 
+\end{proof}
+
+%\item %don't do number 4
+\pagebreak
+\renewcommand{\phi}{\varphi}
+\setcounter{enumi}{4}
+\item Let $X$ be reflexive. Prove that any closed subspace $W$ of $X$ is also reflexive. 
+
+\renewcommand{\B}{\bar{B}}
+\begin{proof}
+We know that $X$ is reflexive iff $\B(X)$ is weakly compact, and in the subspace topology $\B(W)$ is exactly $W\cap \B(X)$, so it suffices to show that $W\cap \B(X)$ is weakly compact. %Let $(x_n)$ be a sequence in $W\cap \B(X)$. 
+Since $W$ is closed and convex, then by Hahn-Banach there exists a functional $\phi$ separating $p\in W^\complement$ from $W$, so $W(p,\phi)\subset W^\complement$ and $W$ is weakly closed. Thus $\B(W)$ is a weak closed subset of the weak compact set $\B(X)$, so $\B(W)$ is weak compact. Therefore $W$ is reflexive. 
+\end{proof}
+
+
+\end{enumerate}
+\end{document}

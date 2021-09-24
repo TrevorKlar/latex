@@ -1,0 +1,410 @@
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{tskpreamble}
+
+\newcommand{\im}{\text{im }}
+
+\title{Advanced Linear Algebra - Valenza, 2017}
+\author{Trevor Klar}
+
+\begin{document}
+\maketitle
+
+\section{Functions}
+
+\begin{theorem*}\emph{\textbf{(1.4)}}
+a function $f:S \to T$ is invertible iff it is bijective.
+\end{theorem*}
+
+\section{Groups and group homomorphisms}
+
+For a  nonempty set $S$, a \emph{binary operation} on $S$ is a function
+$$ S \times S \to S $$
+$$ (s,t) \mapsto s\star t\text{ , where }s,t \in S$$
+
+\noindent Basically, you take two numbers, and do something to them to get a third number, acccording to a rule. 
+
+\begin{definition*}
+We say that the binary operation $\star$ is \emph{associative} if:
+$$(s\star t)\star u = s\star (t\star u)$$
+For any $s,t,u \in S$.
+\end{definition*}
+
+\begin{definition*}
+We say that the binary operation $\star$ is \emph{commutative} if:
+$$s\star t= t\star s$$
+For any $s,t \in S$.
+\end{definition*}
+
+\begin{definition*}
+We say that an element $e \in S$ is an \emph{identity} for $\star$ if $e\star s = s = s\star e \quad \forall s \in S$. 
+\end{definition*}
+
+\clearpage
+
+\begin{definition*}
+A group $(G,\star)$ is a pair where $G$ is a nonempty set and $\star$ is a binary operator on $G$ such that 
+\begin{enumerate}
+\item $\star$ is associative (associative axiom). 
+\item $\exists e \in G$ that is an identity under $\star$ (identity axiom).
+\item $\forall s \in G$, $\exists t \in G$ such that $s\star t = e = t \star s$ (inverse axiom).
+\end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+A group is called \emph{commutative} or \emph{abelian} if $$s\star t = t \star s \quad \forall s,t \in G.$$
+\end{definition*}
+
+\subsection{General Properties of Groups}
+
+\begin{definition*}\textbf{(Cancellation Property)}
+
+Suppose $(G,\star)$ is a group and $s,t,u \in G$. Then 
+$$st = su \implies t = u$$
+$$st = ut \implies s = u$$
+(note: $st$ means $s\star t$.)
+\end{definition*}
+
+\begin{proposition*}
+Suppose $(G,\star)$ is a group. Then,
+\begin{enumerate}
+\item The identity element $e$ in $G$ is unique. 
+\begin{proof}$e = ee' = e'$, so $e= e'$\end{proof}
+\item For any $s\in G$, the inverse of $s$ is unique. (And we denote it $s^{-1}$.)
+\begin{proof}Suppose $t,u \in G$ such that $ts = e$ and $us = e$. Then $ts = us$, so $t = u$ by cancellation. \end{proof}
+\item If $st = e$, then $s$ is the inverse of $t$ (and $t$ is the inverse of $s$). 
+\begin{proof}
+$$st=e$$
+$$tst=te=t$$
+$$tst=(ts)t$$
+so, 
+$$(ts)t=t$$
+$$ts=e \text{, by cancellation.}$$
+\end{proof}
+\item $\forall s \in G, (s^{-1})^{-1}=s$. 
+\item $\forall s,t \in G, (st)^{-1}=t^{-1}s^{-1}$
+\begin{proof}
+$$(st)^{-1}(st)=e$$
+$$(st)^{-1}(st)t^{-1}=et^{-1}$$
+$$(st)^{-1}(ss^{-1}=t^{-1}s^{-1}$$
+$$(st)^{-1}=t^{-1}s^{-1}$$
+\end{proof}
+\item If $s \in G$, then $ss=s \iff s=e$. 
+\end{enumerate}
+\end{proposition*}
+
+\begin{definition*}
+Suppose $(G,\star)$ is a group, and $H$ is a subset of $G$. We say $H$ is a \emph{subgroup} of $G$ if $(H,\star)$ is a group.
+\end{definition*}
+
+This means:
+\begin{itemize}
+\item $\star$ is a binary operator on $H$, that is, $H$ is closed under $\star$
+\item $\star$ is associative for elements in $H$. (Clearly, since this also hold for all of $G$)
+\item There is an identity $e'$ in $H$ such that $e'h = h = he'$ for any $h \in H$.
+\item Every element $s \in H$ has an inverse in $H$, i.e. there should be an element $t \in H$ such that $s \star t = e = t \star s$. 
+\begin{remark}
+$t$ is the same as the inverse of $s$ taken in $G$. (We leave the proof as an excercise.)
+\end{remark}
+\end{itemize}
+
+\begin{proposition*}\textbf{(Subgroup criterion)}
+Suppse $(G, \star)$ is a group, and $H$ is a \emph{nonempty} subset of $G$. Then
+\begin{center}H is a subgroup of $G \iff$ for any $s,t \in H, \quad s \star t^{-1} \in H$. \end{center}
+\begin{example*}
+Consider the group $(\Z, +). \quad$ For any $n \in \Z^+$,
+
+$n\Z = \{nz:z \in \Z\} = \{\text{all integer multiples of }n\}.$
+
+$1n \in n\Z,$ so $n\Z \neq \emptyset$. 
+
+Now, apply the subgroup criterion: 
+
+Take any two elements $s,t \in \Z$. 
+
+then $s = na$ and $t=nb$, where $a,b \in \Z$
+
+so $s + (-t) = na - nb = n(a-b) \in n\Z$. 
+
+Therefore, $n\Z$ is a subgroup of $\Z$.
+\end{example*}
+\end{proposition*}
+
+\begin{exercise}
+Prove that $I' := \{f\in \mathcal{C}^0(\R):f(0)=1\}$ is \emph{not} a subgroup of $\mathcal{C}^0(\R)$.
+\end{exercise}
+
+\subsection{Group homomorphisms}
+
+\begin{definition*}
+Suppose $(G_1, \star_1), (G_2, \star_2)$ are groups. A funcion $f:G_1 \to G_2$ is called a \emph{group homomorphism} if:
+
+$$\forall s,t \in G_1, \quad f(s \star_1 t)=f(s)\star_2 f(t)$$
+\end{definition*}
+
+\begin{example*}
+Consider the group $(\Z, +)$. The function $f:\Z \to \Z$ where $n \mapsto 3n$ is a group homomorphism. 
+\begin{proof}
+Take any $s,t \in \Z$. We want $f(s+t) = f(s)+f(t)$. 
+$$f(s+t) = 3(s+t) = 3s+3t = f(s)+f(t)$$
+This completes the proof. \end{proof}
+\end{example*}
+
+Properties of group homomorphisms:
+\begin{proposition*}
+Suppose $f:G_1 \to G_2$ is a group homomorphism. Then, 
+\begin{enumerate}[label=(\roman*)]
+\item $f(e_1)=e_2$
+\begin{proof}
+$f(e_1) = f(e_1e_1) = f(e_1)f(e_1).$\\
+Then, by cancellation, $e_2=f(e_1)$. 
+\end{proof}
+\item For any $s \in G$, $\quad f(s^{-1})=(f(s))^{-1}$
+\begin{proof}
+We need to prove that $f(s^{-1})$ is the inverse of $f(s)$. It suffices to prove that $f(s^{-1})f(s)=e_2$. 
+
+$f(s^{-1})f(s)=f(s^{-1}s)=f(e_1)=e_2$. 
+\end{proof}
+\end{enumerate}
+\end{proposition*}
+
+\begin{definition*}
+If $\phi:H \to G$ is a bijective function from the group $H$ to the group $G$, then we say it is a \emph{group isomorphism} and write $G \cong H$. 
+\end{definition*}
+
+\begin{lemma}
+If $\phi: G \to H$ is a group isomorphism, then $\phi^{-1}:H \to G$  is also a group isomorphism. 
+\end{lemma}
+
+\begin{proposition*}
+Given group homomorphisms $\phi: G \to H$, $\psi:  H \to I$, the composition $\psi \phi : G \to I$ is also a group homomorphism. 
+\end{proposition*}
+
+\begin{corollary}
+If $\psi, \phi$ above are both isomorphisms, then $\psi \phi$ is also a group isomorphism. 
+\end{corollary}
+
+\begin{definition*} Suppose we have a function $f:S \to T$.\\
+\begin{itemize}
+\item For any $t \in T$, the \emph{inverse image} (or the \emph{preimage}) of $t$, denoted $f^{-1}(t)$, is the set 
+$$f^{-1}(t) \equiv	\{x \in S: f(x) = t\}$$
+\item For any subset $W \subset T$, the \emph{inverse image} (or the \emph{preimage}) of $t$, denoted $f^{-1}(W)$, is the set 
+$$f^{-1}(W) \equiv	\{x \in S: f(x) \in W\}$$
+\end{itemize}
+\end{definition*}
+
+\begin{definition*}
+Given a group homomorphism $\phi:G \to H$, 
+\begin{itemize}
+\item the \emph{kernel} o f$\phi$ is 
+$$\ker{\phi} := \{x \in G: \phi(x) = e_H\} = \phi^{-1}(e_H)$$
+\item the \emph{image} of $\phi$ is 
+$$\im{\phi} := \{\phi(x):x \in G\}$$
+\end{itemize}
+\end{definition*}
+
+\begin{proposition*}
+For a group homomorphism $\phi:G \to H$,
+\begin{center}
+$\ker{\phi}$ is a subgroup of $G$, \\
+$\im{\phi}$ is a subgroup of $H$.
+\end{center}
+\end{proposition*}
+
+\begin{lemma}
+For a group homomorphism $\phi:G \to H$, then 
+$$\phi \text{ is injective} \iff \ker{\phi} = \{e_G\}$$
+\end{lemma}
+
+\begin{definition*}
+Let $G_0, G_1$ be groups. The \emph{direct product} of $G_0$ and $G_1$ is the set 
+$$G_0\times G_1 = \{(s_0,s_1):s_0 \in G_0, s_1 \in G_1\}$$
+equipped with an operation on $G_0\times G_1$ as follows:
+$$(s_0,s_1)(t_0,t_1) = (s_0t_0,s_1t_1) \quad \forall s_0,t_0\in G_0, s_1,t_1 \in G_1$$
+
+This is just the Cartesian product of the two sets $G_0$ and $G_1$, equipped with the same operations, applied componentwise.
+\end{definition*}
+
+\begin{definition*}
+Let $G_0, G_1$ be groups. A \emph{projection map} is a function 
+\[
+\begin{array}{rcl}
+\rho_0:G_0\times G_1 &\to& G_0\\
+(s_0,s_1) &\mapsto& s_0\\
+\end{array}
+\]
+\end{definition*}
+
+\begin{definition*}
+Consider the special case of the direct product $G\times G$ of a group $G$ with itself. Define a subset $D$ of $G\times G$ by 
+$$D=\{(s,s):s\in G\}$$
+That is, $D$ consists of all elements with both coordinates equal. This is called the \emph{diagonal subgroup}.
+\end{definition*}
+
+\subsection{Rings and Fields}
+
+\begin{definition*}
+A \emph{ring} is a triple $(A, +_A, \bullet_A)$, where $A$ is a nonempty set, $+_A$ is some 'addition' operation, and $\bullet$ is some 'multiplication' operation such that:
+\begin{itemize}
+\item $(A, +_A)$ is an abelian group. (We use additive notation for the inverse and identity of this operation)
+\item $(A, \bullet_A)$ is a "monoid", that is, $\bullet_A$ has the associative and identity properties, but not necessarily the inverse property or the commutative property. 
+\item $\bullet_A$ distributes over $+_A$ from the right and the left (distributive property).
+\end{itemize}
+\end{definition*}
+
+\begin{definition*}
+If $\bullet_A$ is also commutative, then we say $A$ is a \emph{commutative ring}. We often write $ab$ to denote $a\bullet_A b$.
+\end{definition*}
+
+If $k$ is a commutative ring, $k* := k-\{0_k\}$.
+
+\begin{definition*}
+A commutative ring $k$ where $(k*, \bullet_k)$ is a group is called a field.  (That is, it is a ring where $\bullet$ has commutativity and an inverse)
+\end{definition*}
+
+\begin{proposition*}
+Suppose $(A, +, \bullet)$ is a ring. Then, $\forall a,b \in A,$
+\begin{enumerate}
+\item $0a = 0 = a0$
+\item a(-b)=-(ab)=(-a)b
+\item (-a)(-b)=ab
+\item (-1)a=-a
+\item (-1)(-1)=1
+\end{enumerate}
+\end{proposition*}
+
+\pagebreak
+
+\section{Vector Spaces and Linear Transformations}
+
+\subsection{Vector Spaces and Subspaces}
+
+Fix a field $k$ (e.g. $\R, \C, \Q etc.)$
+
+\begin{definition*}
+A \emph{vector space over $k$} (or a \emph{$k$-vector space}) is a set $V$, together with a binary opeation $+$ on $V$, and a \emph{scalar multiplication}. 
+\end{definition*}
+
+Vector fields have the following properties:\\
+$\forall \lambda, \mu \in k, \forall v,w \in V$,
+
+\begin{enumerate}[label=(\roman*)]
+\item $(V,+)$ is an abelian group. 
+\item $(\lambda\mu)\vec{v}=\lambda(\mu)\vec{v}$\\
+That is, scalar multiplication is associative. 
+\item $(\lambda+\mu)\vec{v}=\lambda \vec{v}+ \mu \vec{v}$\\
+That is, vectors distribute over scalars.  
+\item $\lambda(\vec{v}+\vec{w})=\lambda \vec{v}+ \lambda \vec{w}$\\
+That is, scalars distribute over vectors. 
+\item $1_k \vec{v} = \vec{v}$\\
+That is, the identity of the field is also the identity of the vector space. 
+\end{enumerate}
+
+\begin{proposition}
+Let $V$ be a vector space over a field $k$. Then the following assertions hold:
+\begin{enumerate}[label=(\roman*)]
+\item $\lambda\vec{0}=\vec{0} \quad \forall \lambda \in k$
+\item $0\vec{v}=\vec{0} \quad \forall \vec{v} \in V$
+\item $(-\lambda)\vec{v}=-(\lambda\vec{v}) \quad \forall \lambda \in k, \vec{v} \in V$
+\item $\lambda\vec{v}=\vec{0} \iff (\lambda=0 \text{ or } v=\vec{0}) \quad \forall \lambda \in k, \vec{v} \in V$
+\end{enumerate}
+\end{proposition}
+
+\begin{definition*}
+A subset $W$ of a vector space $V$ over a field $k$ is called a \emph{subspace of $V$} if it constitutes a vector space over $k$ in its own right with respect to the additive and scalar operations defined on $V$. 
+\end{definition*}
+
+\begin{proposition} \textbf{(Subspace Criterion)} Let $W$ be a \underline{nonempty} subset of the vector space $V$. Then $W$ is a subspace of $V$ if and only if it is closed under addition and scalar multiplication. 
+\end{proposition}
+
+\begin{definition*}
+Let $v_1 \ldots, v_n$ be a family of vectors in the vector space $V$ defined over a field $k$. Then an expression of the form 
+$$\lambda_1\vec{v_1} + \lambda_2\vec{v_2} + \ldots + \lambda_n\vec{v_n} \quad (\lambda_1, \lambda_2, \ldots \lambda_n \in k)$$
+is called a \emph{linear combination} of the vectors $v_1 \ldots, v_n$. The set of all such linear
+combinations is called the \emph{span} of $v_1 \ldots, v_n$ and denoted Span($v_1 \ldots, v_n$). 
+\end{definition*}
+
+\begin{proposition}
+Let $v_1 \ldots, v_n$ be a family of vectors in the vector space $V$ defined over a field $k$. Then $W = $Span($v_1 \ldots, v_n$) is a subspace of $V$. 
+\end{proposition}
+
+\subsection{Linear Transformations}
+
+\begin{definition*}
+Let $V$ and $V'$ be vector space over a common field $k$. Then a function $V\to V'$ is called a \emph{linear transformation} if it satisfies the following conditions:
+
+\begin{enumerate}[label=(\roman*)]
+\item $T(v+w)=T(v)+T(w) \quad \forall v,w \in V$
+\item $T(\lambda v)=\lambda T(v) \quad \forall v \in V, \lambda \in k$
+\end{enumerate}
+
+One also says that $T$ is \emph{$k$-linear} or a \emph{vector space homomorphism}. 
+\end{definition*}
+
+Note that the first condition states that T is a homomorphism of additive groups, and therefore all of our previous theory of group homomorphisms applies. In particular, we have the following derived properties: 
+
+\begin{enumerate}[label=(\roman*)]
+\setcounter{enumi}{2}
+\item $T(\vec{0})=\vec{0}$
+\item $T(-\vec{v})=-T(\vec{v})\quad \forall v \in V$
+\end{enumerate}
+
+\begin{proposition}
+The composition of linear transformations is a linear transformation.
+\end{proposition}
+
+\begin{proposition}
+The kernel and image of a linear transformation are subspaces of their ambient vector spaces. 
+\end{proposition}
+
+\begin{definition*}
+A bijective linear transformation $T: V \to V'$ is called an \emph{isomorphism} of vector spaces. 
+\end{definition*}
+
+\section{•}
+
+
+\begin{theorem}
+In any vector space, 
+\begin{itemize}
+	\item Every linearly independent set of vectors can be extended to a basis. 
+	\item Every spanning set can be contracted to a basis. 
+	\item Every vector space has a basis
+\end{itemize}
+\end{theorem}
+
+\begin{corollary}
+Suppose $V$ is a finite-dimensional $k$-vector space with $\dim(V)=n$. Then, 
+\begin{itemize}
+	\item No subset of $V$ with more than $n$ vectors can be linearly independent. 
+	\item No subset of $V$ with less than $n$ vectors can span $V$. 
+	\begin{proof}(i)
+	Suppose $\B$ is a collection of $\ell$ vectors in $V$, and suppose $\ell>n$. Suppose also that $\B$ is linearly independent. By part (i) of the Thm, $\B$ can be extended to a basis $\B'$ for $V$. 
+	$$\ell = |\B| \leq |\B'|=n $$
+	which is a contradiction. 
+	\end{proof}	 
+\end{itemize}
+\end{corollary}
+
+\begin{corollary}
+Suppose $V$ has dimension $n$ and $S$ is a collection of $n$ vectors in $V$. The following are equivalent:
+\begin{itemize}
+	\item $S$ is linearly independent.
+	\item $S$ spans $V$.
+	\item $S$ is a basis for $V$.
+\end{itemize}
+\end{corollary}
+
+
+
+\end{document}

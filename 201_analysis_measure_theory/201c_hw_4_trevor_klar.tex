@@ -1,0 +1,232 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 4}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\textbf{Chapter 2}
+
+\begin{enumerate}
+%1
+\setcounter{enumi}{1}
+\item
+	\begin{enumerate}[label=(\alph*)]
+	\item Prove 2.1(6): When $f\in L^\infty(\Omega)\cap L^q(\Omega)$ for some $q$, then $f\in L^p(\Omega)$ for all $p>q$ and 
+$$\norm{f}_\infty = \lim_{p\to\infty}\norm{f}_p.$$
+	
+	\item Prove that when $\infty\geq r\geq q\geq 1$, 
+	$$f\in L^r(\Omega)\cap L^q(\Omega) \implies f \in L^p(\Omega)$$ 
+	for all $r\geq p\geq q$.
+	\end{enumerate} 
+	
+\begin{proof}(a)
+Let $f\in L^q$, and $p>q$ with $\norm{f}_\infty<\infty$. We need to show that $\abs{f}^p$ is summable, that is, $\int |f|^p <\infty$.\footnote{To suppress notation, we will omit the region of integration to denote that the region is all of $\Omega$. We will also omit the measure unless it is needed.}
+\begin{align*}
+\int |f|^p &= \int \abs{f}^q\abs{f}^{p-q} \\
+&\leq \int \abs{f}^q \cdot\norm{f}_\infty^{p-q} \\
+&=\norm{f}_\infty^{p-q} \int \abs{f}^q \\
+&<\infty.
+\end{align*}
+Thus $f\in L^p(\Omega)$. 
+
+Now observe that for all $p>q$, $\norm{f}_p\leq\norm{f}_\infty$. 
+\begin{align*}
+\norm{f}_p&=\left(\int |f|^p \right)^{\frac{1}{p}} \\
+&\leq\left(\int \norm{f}_\infty^p \right)^{\frac{1}{p}} \\
+&=\big(\norm{f}_\infty^p \mu(\Omega) \big)^{\frac{1}{p}} \\
+&=\norm{f}_\infty \cdot \big(\mu(\Omega) \big)^{\frac{1}{p}} \\
+\end{align*}
+and since $\mu(\Omega)$ is finite, then 
+$$\lim_{p\to\infty}\left(\norm{f}_\infty \cdot \big(\mu(\Omega) \big)^{\frac{1}{p}}\right) = \norm{f}_\infty.$$
+Thus part (a) is proved. \qedwhite
+
+\pagebreak
+(b) Let $p$ such that $\infty\geq r\geq p \geq q \geq 1$, and $f\in L^r(\Omega)\cap L^q(\Omega)$. Denote 
+\begin{align*}
+\{|f|\leq1\} &= \{x\in \Omega : |f(x)|\leq 1\},\text{ and }\\
+\{|f|>1\} &= \{x\in \Omega : |f(x)|> 1\}.
+\end{align*}
+then observe that $|f|^p$ is summable:
+\begin{align*}
+\int |f|^p &= \int_{\{|f|\leq1\}} |f|^p + \int_{\{|f|>1\}} |f|^p \\
+&= \int_{\{|f|\leq1\}} |f|^q + \int_{\{|f|>1\}} |f|^r \\
+&= \int |f|^q + \int |f|^r \\
+&<\infty. \qedhere
+\end{align*}
+\end{proof}	
+
+%\pagebreak	
+\setcounter{enumi}{8}
+\item In Sect. 2.9 three ways are shown for which an $L^p(\R^n)$ sequence $f^k$ can
+converge weakly to zero but $f^k$ does not converge to anything strongly.
+Verify this for the three examples given in 2.9 (page 56):
+	\begin{enumerate}
+	\item $f_k$ `oscillates to death': An example is $f_k(x) = \sin kx$ for $0 \leq x \leq 1$ and zero otherwise.
+	\begin{proof} As we did in HW1 Problem 5, we use integration by parts and find that $\forall\,g\in C(\R)$, 
+\begin{align*}
+\int_0^1 g(x)\sin(kx) \dx &= -g(x)\frac{1}{k}\cos(kx) - \int_0^1 g'(x)\frac{1}{k}\cos(kx)\dx \\
+&= \frac{1}{k}\left[-g(x)\cos(kx) - \int_0^1 g'(x)\cos(kx)\dx\right],
+\end{align*}
+and in the limit as $n\to \infty$, everything goes to 0. 
+
+For arbitrary $g\in L^2(\R)$, $g'$ may not so exist, so we use Weierstrauss Approximation Theorem, for every $\epsilon>0$, there exists a polynomial $h$ such that $\sup_I\abs{g-h}\leq\epsilon$. Thus, 
+\begin{align*}
+\int g(x) \sin(kx)\dx &= \int g(x)\sin(kx)\dx - \int h(x)\sin(kx)\dx + \int h(x)\sin(kx)\dx \\
+&= \int (g(x)-h(x))\sin(kx)\dx + \int g(x)\sin(kx)\dx,
+\end{align*}
+and this integral is bounded above and below by 
+$$\int (\pm \epsilon +h(x))\sin(kx)\dx$$
+respectively, which integrands are themselves polynomials, so they vanish in the limit. Therefore $\lim_{n\to\infty}\int g(x)\sin(kx)\dx=0$ by the squeeze theorem, and we conclude that $f_k\xto{w}0$. 
+
+Finally, note that if we fix $x$ and let $k\to\infty$, then $\sin(x)$ takes values all over $[0,1]$, so it doesn't converge pointwise. Therefore, $f_k$ doesn't converge strongly to anything. \qedwhitehere
+\end{proof}
+	\item $f_k$ `goes up the spout': An example is $f_k(x) = k^{\sfrac{1}{p}}	g(kx)$ where $g$ is any fixed function in $L^p(\R^1)$. This sequence becomes very large near $x = 0$.
+	\begin{proof}
+	$f_k\xto{w}0$ because for any $h\in L^{p'}(\R)$, 
+	\begin{align*}
+	\int f_k(x)h(x)\dx&=k^{\sfrac{1}{p}}\int g(kx)h(x)\dx\\	
+	&=k^{\sfrac{1}{p}}\int g(kx)h(x)\dx\\	
+	&\leq k^{\sfrac{1}{p}} \left(\int |g(kx)|^p\right)^{\frac{1}{p}} \norm{h}_{p'} \\
+	&\leq \frac{k^{\sfrac{1}{p}}}{k^p} \norm{g}_p \norm{h}_{p'} &\text{by change in variables}\\
+	\end{align*}
+	and as $k\to\infty$, this all goes to zero. 
+	
+	Observe that $f_k$ converges pointwise to zero, so if it does converge strongly, it must converge to 0: Indeed, since $\Chi_{B_1(x_0)}$ is an $L^{p'}(\R)$ function for any fixed $x_0$, and since $f_k\xto{w}0$, then 
+	$$\int f_k\cdot \Chi_{B_1(x_0)}\to 0,$$
+	so $f_k(x)\xto{k}0$. 	However, $\norm{f_k}_p$ is constant and nonzero:
+	\begin{align*}
+	\norm{f_k}_p &= \left(\int \abs{k^{\sfrac{1}{p}}g(kx)}^p\right)^{\frac{1}{p}} \\
+	&= k^{\sfrac{1}{p}}\left(\int \abs{g(kx)}^p\right)^{\frac{1}{p}} \\
+	&= k^{\sfrac{1}{p}}\left(\frac{1}{k}\int \abs{g(t)}^p\right)^{\frac{1}{p}}&\text{by change in variables} \\
+	&= \frac{k^{\sfrac{1}{p}}}{k^{\sfrac{1}{p}}}\left(\int \abs{g(t)}^p\right)^{\frac{1}{p}}\\
+	&= \norm{g}_p
+	\end{align*}
+	Thus $f_k$ cannot converge strongly to zero, and it cannot converge strongly to anything else. \qedwhitehere
+	\end{proof}
+	
+	\pagebreak
+	\item $f_k$ `wanders off to infinity': An example is $f_k(x) = g(x + k)$ for some fixed function $g$ in $L^p(\R^1)$.
+	\begin{proof}
+	Assuming we can prove that $f_k\xto{w}0$, then $f_k$ converges pointwise to zero as well for the same reasons as in (ii). Thus if the sequence converges strongly, then it converges to zero. However $f_k$ clearly cannot converge strongly to zero, since Lebesgue measure is translation-invariant, so $\norm{f_k}_p=\norm{g}_p$ for all $k$. 
+	
+	As regards weak convergence, I think we can approximate with compact supported functions and use Dominated Convergence to yield the result. Intuitively, $g(x+k)$ aught to get small as $k\to\infty$, and multiplying by the fixed number $h(x)$ won't stop the small-enizing. As to the details, I ran out of time. This homework was too long. 
+	\end{proof}
+	\end{enumerate}
+
+\setcounter{enumi}{10}
+\item With the usual $j_\epsilon \in C^\infty_c$, show that if $f$ is continuous on $\R$, then $j_\epsilon*f(x)$ converges to $f(x)$ for all $x$, and it does so uniformly on each compact subset of $\R^n$. 
+\begin{proof}
+Let 
+$$j_\epsilon = \epsilon\Chi_{[0,1/\epsilon]}.$$
+Then 
+\begin{align*}
+j_\epsilon*f(x)&=\int f(x-t)\epsilon\Chi_{[0,1/\epsilon]}(t)\dt \\
+&=\epsilon\int_0^{1/\epsilon} f(x-t)\dt \\
+&=\text{average value of }f(t)\text{ on }[x-1/\epsilon,x]
+\end{align*}
+and since $f$ is continuous, taking $\lim_{\epsilon\to\infty}$\footnote{I'm \emph{very} uncomfortable with sending a variable called $\epsilon$ to $\infty$. Maybe what I'm doing is fine, but it's late, my brain hurts, and this homework was way too long.}, we obtain $\lim_{t\to x^-}f(x)=f(x)$.  
+\end{proof}
+
+\setcounter{enumi}{17} 
+\item Prove that every convex function $f$ has a support plane at every $x$ in the interior of its domain $D\subset\R$, as claimed in Sect. 2.1. See also Exercise 3.1.
+
+\begin{proof}
+We know that every convex function is continuous on an open set (such as $\text{int} D$), but and if $f$ is also differentiable, then clearly it has a tangent plane which is in fact a support plane. 
+
+In this spirit, we can find a support plane for a general convex function by using right derivatives, which always exist. %Let $G_f:\R^n\to\R^{n+1}$ denote the graph: $G_f(x)=(x,f(x))$. Then 
+The support plane is 
+$$\text{span}(1,f'_+(x)),$$
+%the span of the right directional derivative of $G_f$ in the direction of each basis vector $e_1, \dots, e_n$. 
+
+To see this, observe that since $f$ is convex, then 
+$$\frac{f(x+t)-f(x)}{t}$$
+decreases as $t\to0^+$, so since
+$$f'_+(x)=\lim_{t\to0^+}\frac{f(x+t)-f(x)}{t},$$
+%where $f_i$ is the $i$-th coordinate function of $f$ and $x_i$ is the $i$-th coordinate. 
+then $f(x)+tf'_+(x)\leq f(x+t)$ for all nonnegative $t$. 
+
+Now considering negative values of $t$; since $f$ is convex, then 
+$$f'_-\leq f'_+, $$
+and $f'_-$ increases as $t\to 0^-$, so $f(x)+tf'_+(x)\leq f(x)+tf'_-(x)\leq f(x+t)$ for $t<0$, so 
+$$f(x)+tf'_+(x)\leq f(x+t)$$
+always, and we're done.
+\end{proof}
+
+\setcounter{enumi}{22}
+\item Find a sequence of functions with the property that 
+	\begin{enumerate}
+	\item $f_n\xto{w}0$ in $L^2(\Omega)$, and
+	\item $f_n\to0$ strongly in $L^\frac{3}{2}(\Omega)$, but 
+	\item $f_n\not\to0$ strongly in $L^2(\Omega)$.
+	\end{enumerate}
+	
+	\answer	Let $f_n$ be the following sequence in $g\in L^2(\R)$ which "goes up the spout": 
+	$$f_n=\sqrt{n} \;\Chi_{\left[0,{1/n}\right]}$$
+	\begin{proof}
+	(i) For any $g\in L^2(\R)$, 
+	\begin{align*}
+	\abs{\int f_ng \der\mu} %& \leq \left(\int_0^{1/n} \sqrt{n}^2\right)^\frac{1}{2} \norm{g}_2 \\
+	&=\abs{\int_0^{1/n} \sqrt{n}g } \\
+	&\leq \sqrt{n}\int_0^{1/n}\abs{g } & \text{by Holder}\\
+	&\leq \sqrt{n}\int_0^{1/n}\abs{g }^2 &\text{since }x>x^2\text{ in }[0,1/n]\\
+	\end{align*}
+	And since $\int_\R\abs{g}^2$ is finite, then $\lim_{n\to\infty} \int_0^{1/n} \abs{g}^2=0$. 	Thus $f_n\xto{w}0$. \qedwhite
+
+	(ii) Observe, 
+	\begin{align*}
+	\norm{f_n}_{\frac{3}{2}} &= \abs{\int_0^{1/n} \sqrt{n}^\frac{3}{2} }^{\frac{2}{3}}\\
+	&=n^{{-5}/{6}} \\
+	&\xto{n}0.
+	\end{align*}
+	Thus $f_n\to0$ strongly in $L^\frac{3}{2}(\R)$. \qedwhite
+	
+	\pagebreak
+	(iii) However, $\norm{f_n}_2$ is constantly 1, since 
+	\begin{align*}
+	\norm{f_n}_2 &= \left(\int_0^n \sqrt{n}^2\right)^\frac{1}{2} \\
+	&=\sqrt{1} \\
+	&=1,
+	\end{align*}
+	so $f_n\not\to0$ in $L^2(\R)$. 
+	\end{proof}
+
+\end{enumerate}
+\end{document}

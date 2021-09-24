@@ -1,0 +1,237 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Trevor Klar\\
+Math 320 - Foundations of Higher Mathematics}
+\title{Chapter 3 Exercises}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+\maketitle
+
+\section*{Assigned Problems}
+
+\begin{problem}{3.22}
+For $n \in \N$, prove that $\lvert\sum_{i=1}^{n} a_i \rvert \leq \sum_{i=1}^{n} \lvert a_i \rvert$
+\end{problem}
+
+\begin{proof}
+We will prove that for $n \in \N$, $\lvert\sum_{i=1}^{n} a_i \rvert \leq \sum_{i=1}^{n} \lvert a_i \rvert$ by induction on n. 
+
+Basis step: When $n=1$, observe the unsurprising result that $a_1 \leq a_1$. For $n=2$, $|a_1+a_2| \leq |a_1| + |a_2|$ by the Triangle Inequality, so the formula holds for $n=1$ and $n=2$. 
+
+Induction step: Suppose that $\lvert\sum_{i=1}^{k} a_i \rvert \leq \sum_{i=1}^{k} \lvert a_i \rvert$ for $k<n$. This means that 
+$$\left| \sum_{i=1}^{n-1} a_i \right| \leq \sum_{i=1}^{n-1} \left| a_i \right| \, .$$
+Adding $|a_n|$ to boths sides gives
+$$\left| \sum_{i=1}^{n-1} a_i \right| + \left|a_n\right| \leq \sum_{i=1}^{n} \left| a_i \right| \, ,$$
+and since the left side is itself a sum described by the Triangle Inequality, we find that 
+$$\left| \sum_{i=1}^{n} a_i \right| \leq \left| \sum_{i=1}^{n-1} a_i \right| + \left|a_n\right| \leq \sum_{i=1}^{n} \left| a_i \right| \, .$$
+Therefore, we have proven that $\lvert\sum_{i=1}^{n} a_i \rvert \leq \sum_{i=1}^{n} \lvert a_i \rvert$ for all $n \in \N$ by induction. 
+\end{proof}
+
+\begin{problem}{3.64}
+Derive the principle of induction from the Well-Ordering Property for $\N$. 
+
+Given: Every set $S \subseteq \N$ has a least element; and $P(n)$ is some logical statement $P$ which depends on $n \in \N$.
+
+Prove: If $P(1)$ is true, and if $P(n)$ implies $P(n+1)$, then $P$ is true for all $n \in \N$. 
+\end{problem}
+
+\begin{proof}
+The least element of $\N$ is 1, and $P(1)$ is true by assumption. Let $S_k$ be the set $\{n \mid n \leq k, n \in \N\}$. So far, we know that $P(n)$ is true for all elements of $S_1$. Since $P(1)$ is true and $P(n)$ implies $P(n+1)$ by assumption, then $P(2)$ is true. By the Well-Ordering Property for $\N$, $(S_1)^c$ has a least element, and since 1 is the least element in $\N$, $1+1$ must be the least element in $(S_1)^c$. We now know that $P(n)$ is true for all elements of $S_2$. This line of reasoning can be extended infinitely, and we can be confident that we have not left out any elements of $\N$, because at each $k$th step, there is exactly one least element of $\N$ for which $P(n)$ has yet to be proven, and it is always shown to be true by the $(k-1)$th step (except $P(1)$, which is assumed). Therefore, If $P(1)$ is true, and if $P(n)$ implies $P(n+1)$, then $P$ must be true for all $n \in \N$. \end{proof}
+
+\pagebreak
+
+\section*{Homework Problems}
+
+\begin{problem}{3.5}
+Prove that for $n \in \N$, $\sum_{i=1}^{n} (2i+1) = n^2 + 2n$.
+\end{problem}
+
+\begin{proof}
+We will prove that this formula holds for all $n$ by induction. 
+
+Basis step: For $n=1$, the sum is 3, and the right side is $1+2=3$, so the formula holds.
+
+Induction step: Suppose that the formula holds for $n=k$. 
+\\ \text{By the induction hypothesis,}
+$$ \sum_{i=1}^{k} (2i+1) = k^2 + 2k \period$$
+\text{Therefore, }
+$$ \sum_{i=1}^{k+1} (2i+1) = k^2 + 2k + 2(k+1)+1$$
+and
+$$\sum_{i=1}^{k+1} (2i+1) = (k^2 + 2k + 1) + 2(k+1) \text{.}$$
+So,
+$$\sum_{i=1}^{k+1} (2i+1) = (k+1)^2 + 2(k+1) \text{,}$$
+which is the formula given in the induction hypothesis when $n=k+1$. Therefore, $\sum_{i=1}^{n} (2i+1) = n^2 + 2n$  for all $n \in \N$. 
+\end{proof}
+
+\begin{problem}{3.7}
+Prove or disprove that for $n \in \N$, $2n-8<n^2 -8n+17$.
+\end{problem}
+
+\begin{proof}
+For $n=5$, $2n-8=2$ and $n^2 -8n+17=2$, so the given statement is false. 
+\end{proof}
+
+\begin{problem}{3.16}
+For $n \in \N$, prove that $\sum_{i=1}^{n} i^3 = (\frac{n(n+1)}{2})^2$. 
+\end{problem}
+
+\begin{proof}
+We will prove that this formula holds for all $n$ by induction. 
+
+Basis step: For $n=1$, the sum is 1, and the right side is $(\frac{2}{2})^2=1$, so the formula holds.
+
+Induction step: Suppose that the formula holds for $n=k$. 
+\\ By the induction hypothesis, 
+$$\sum_{i=1}^{k} i^3 = \left( \frac{k(k+1)}{2} \right)^2 \, .$$
+Adding an $i=k+1$ term to both sides gives
+$$\sum_{i=1}^{k+1} i^3 = \left( \frac{k(k+1)}{2} \right)^2 + (k+1)^3 \, ,$$
+after which we expand the multiplication, then combine into one fraction:
+$$\sum_{i=1}^{k+1} i^3 = \frac{k^2(k+1)^2}{4} + \frac{4(k^3+3k^2+3k+1)}{4}$$
+%$$\sum_{i=1}^{k+1} i^3 = \frac{k^2(k+1)^2 + 4(k^3+3k^2+3k+1)}{4} $$
+%$$\sum_{i=1}^{k+1} i^3 = \frac{(k^4+2k^3+k^2) + (4k^3+12k^2+12k+4)}{4} $$
+$$\sum_{i=1}^{k+1} i^3 = \frac{k^4+6k^3+13k^2+12k+4}{4} \, .$$
+This can be factored to give
+$$\sum_{i=1}^{k+1} i^3 = \frac{(k+1)^2(k+2)^2}{4} \, ,$$
+and hence
+$$\sum_{i=1}^{k+1} i^3 = \left( \frac{(k+1)(k+2)}{2} \right) ^2 \, .$$
+Since this formula is identical to the induction hypothesis when $n=k+1$, we have proved that 
+$$\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right) ^2$$
+for all $n \in \N$. 
+\end{proof}
+
+\begin{problem}{3.41}
+Let $f: \R \rightarrow \R$ be a function such that $f(x+y)=f(x)+f(y)$ for $x, y \in \R$. \\
+$\indent$ a) Prove that $f(0) = 0$\\
+$\indent$ b) Prove that $f(n) = nf(1)$ for all $n \in \N$. 
+\end{problem}
+
+\begin{proof}{a)}
+By assumption, $f(x+y)=f(x)+f(y)$ for all $x, y \in \R$. Therefore, when $y=0$, $f(x+0)=f(x)+f(0)$. This means that $f(x)=f(x)+f(0)$, which can only be true if $f(0)=0$.
+\end{proof}
+
+\begin{proof}{b)}
+By assumption, $f(x+y)=f(x)+f(y)$ for all $x, y \in \R$. Therefore, when $y=x$, $f(x+x)=f(x)+f(x)$. This means that $f(2x)=2f(x)$. By this same reasoning, $$f(\underbrace{x+\ldots+x)}_n = \underbrace{f(x)+\ldots+f(x)}_n \, ,$$therefore $f(nx)=nf(x)$. When $x=1$, $f(n) = nf(1)$ for all $n \in \N$. 
+\end{proof}
+
+\begin{problem}{3.42}
+Addition is defined as a function from $\R \times \R$ to $\R$; it sums pairs of numbers. Use induction on $n$ to prove that the sum of $n$ numbers is independent of the order in which the numbers are added into the total. This justifies the use of summation notation for a sum of $n$ numbers.
+\end{problem}
+
+\begin{proof}{(by induction)}
+
+Basis step: Addition of $n$ numbers is undefined for $n \leq 1$, so we will begin by mentioning that a sum of $n=2$ numbers is independent of order, by the commutative property of addition. 
+
+Induction step: Assume that the sum of $n$ numbers is independent of order for $n=k$. This means that, for a sequence $\langle a \rangle$ of length $k$, there exists some $s \in \R$ such that $a_1+a_2+ \ldots + a_k = s$, regardless of the order of summation. If 
+$$a_1+a_2+ \ldots + a_k = s$$
+by assumption, then it must also be true that 
+$$a_1+a_2+ \ldots + a_k +a_{k+1} = s+a_{k+1}$$
+is true. Since $s+a_{k+1}$ is a sum of 2 numbers, then the value of the sum $\tilde{s}=s+a_{k+1}$ is independent of order, so 
+$$a_1+a_2+ \ldots + a_k +a_{k+1} = \tilde{s} \, ,$$
+regardless of the order of summation. Since this equation is equivalent to the induction hypothesis when $n=k+1$ and $s=\tilde{s}$, it follows that the sum of $n$ numbers is independent of order for all $n \in \R$.
+\end{proof}
+
+\begin{problem}{3.47}
+Prove that $5^n + 5 < 5^{n+1}$ for all $n \in \N$. 
+\end{problem}
+
+\begin{proof}
+We will prove that $5^n + 5 < 5^{n+1}$ for all $n \in \N$ by induction on $n$. 
+
+Basis step: For $n=1$, the left side is $5+5=10$, and the right side is $5^2=25$, so the formula holds. 
+
+Induction step: Assume that $5^n + 5 < 5^{n+1}$ when $n=k$. This means that $5^k+5<5^{k+1}$. If we multiply both sides by 5, we find that $5^{k+1}+5^2<5^{k+2}$. We can relate the left side to a more familiar expression as follows; $5^{k+1}+5<5^{k+1}+5^2$. This means that $5^{k+1}+5<5^{k+1}+5^2<5^{k+2}$, and therefore $5^{k+1}+5<5^{k+2}$. Since $5^{k+1}+5<5^{k+2}$ is the induction hypothesis for $n=k+1$, so it follows that $5^n + 5 < 5^{n+1}$ for all $n \in \N$.
+\end{proof}
+
+\begin{problem}{3.49.c}
+For each of the following inequalties, determine the set of natural numbers $n$ for which it holds.\\
+c) $3^{n+1}>n^4$. 
+\end{problem}
+
+\begin{proof}
+We will prove that $3^{n+1}>n^4$, for all $n \in \N$ except $n=3$ and $n=4$, by induction on $n$. For $1 \leq n \leq 5$, we summarize the values of $3^{n+1}$ and $n^4$ in the table below, which the reader may choose to verify with a calculator:
+
+\begin{center}
+\begin{tabular}{c|cc}	
+% \hline
+ $n$ & $3^{n+1}$ & $n^4$ \\
+ \hline
+ 1 & 9 & 1\\
+ 2 & 27 & 16 \\
+ 3 & 81 & 81 \\
+ 4 & 243 & 256 \\ 
+ 5 & 729 & 625 \\
+% \hline
+\end{tabular}
+\end{center}
+This shows that the formula is invalid when $n \in \{3,4\}$, and valid for $n \in \{1,2,5\}$. To complete the proof, we will further show that $3^{n+1}>n^4$ for all $n \geq 5$ by induction. 
+
+Basis step: As shown in the table above, when $n=5$, $3^{n+1}=729$ and $n^4=625$, so the formula holds.
+
+Induction step: Suppose that the formula holds when $n$ is equal to some $k \in \N$, and $k \geq 5$. This means that $3^{k+1}>k^4$. Multiplying by 3 gives the following formula:
+\begin{equation}
+3^{k+2}>3k^4\, .
+\end{equation}
+To prove that $3^{k+2}>(k+1)^4$, we will first prove that 
+\begin{equation}
+3k^4>(k+1)^4 \, ,
+\end{equation}
+and combine (1) with (2). Consider the polynomial $f(k) = 2k^4-4k^3-6k^2-4k-1$ (for now, suppose that $k \in \R$). By Descartes' Rule of Signs, this polynomial can have at most 1 positive real root. Since $f(3) = -13$ and $f(5) = 579$, the only positive root of $f$ must be between $k=3$ and $k=5$. This means that $f(k)$ is positive for all real numbers $k \geq 5$. Therefore, when $k \in \N$, as is the case in (2),
+$$2k^4-4k^3-6k^2-4k-1>0 \, , \quad \forall k \geq 5 \, .$$
+A bit of algebra yields the following equivalent statements:
+$$2k^4>4k^3+6k^2+4k+1$$
+$$3k^4>k^4+4k^3+6k^2+4k+1$$
+$$3k^4>(k+1)^4$$
+So, we have proven that (2) holds for all $k \geq 5$. Combining (1) and (2), we find that 
+$$3^{k+2}>3k^4>(k+1)^4 \, ,$$
+so 
+$$3^{k+2}>(k+1)^4 \, , \quad \forall k \geq 5 \, .$$
+Since this is the induction hypothesis for $n=k+1$, we have proven that $3^{n+1}>n^4$ for all $n \in \N$, except $n=3$ and $n=4$. 
+\end{proof}
+\pagebreak
+
+\begin{problem}{3.57}
+Let $\langle a \rangle$ be a sequence satisfying $a_1 = a_2 = 1$ and $a_n=\frac{1}{2}(a_{n-1}+2/a_{n-2})$ for $n \geq 2$. Prove that $1 \leq a_n \leq 2$ for $n \in \N$. 
+
+$$a_1=1$$
+$$a_2=1$$
+$$a_n= \frac{1}{2} \left( a_{n-1}+ \frac{2}{a_{n-2}} \right) $$
+\end{problem}
+
+\begin{proof}
+We will prove that $1 \leq a_n \leq 2$ for $n \in \N$ by induction on $n$. 
+
+Basis step: For $n=1$ and $n=2$, $a_n$ is 1, so the formula holds. %For $n=3$, $a_n$ is $\frac{1+2}{2\cdot1}=\frac{3}{2}$, so the formula also holds in that case. 
+
+Induction step: Suppose that for $n \geq 3$, it it true that $1 \leq a_k \leq 2$ for all $k<n$. This means that 
+\begin{equation}
+1 \leq a_{n-1} \leq 2
+\end{equation}
+and since $1 \leq a_{n-2} \leq 2$, this means that $1 \geq \frac{1}{a_{n-2}} \geq \frac{1}{2}$, so $2 \geq \frac{2}{a_{n-2}} \geq 1$, therefore 
+\begin{equation}
+1 \leq \frac{2}{a_{n-2}} \leq 2 \, .
+\end{equation}
+Since $a_n=\frac{1}{2}(a_{n-1}+2/a_{n-2})$ is the arithmetic mean of the center expressions in (3) and (4), it also must be true that 
+$$1 \leq \frac{1}{2} \left( a_{n-1}+ \frac{2}{a_{n-2}} \right) \leq 2\, .$$
+Therefore, we have proven that $1 \leq a_n \leq 2$ for $n \in \N$ by strong induction.
+
+
+\end{proof}
+
+\end{document}

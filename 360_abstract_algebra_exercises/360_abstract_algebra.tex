@@ -1,0 +1,566 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{xfrac}
+
+
+\input{../tskpreamble_nothms}
+\newcommand{\curl}{\text{curl}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+
+
+\graphicspath{{/home/trevor/Documents/latex/images/}{/home/trevor/Documents/latex/images/adv_calc/}}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%\begin{comment}
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+%\end{comment}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+
+%================Start of document==============
+
+\title{Abstract Algebra - Fraleigh text, 2018}
+\author{Trevor Klar}
+\makeindex
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevor.klar.834@my.csun.edu}{trevor.klar.834@my.csun.edu}. If you could include the page number, that would be helpful. 
+
+%Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not Professor Fuller's. Bear that in mind when studying. 
+\end{highlight}
+
+\pagebreak
+\section{Groups and Subgroups}
+
+\subsection{Binary Operations}
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{binary operation} is a function $*:S\times S\to S$. For any $(a,b)\in S\times S$, we notate $*(a,b)$ as 
+$$a*b.$$
+Note that since $*$ is a function, these two properties must hold:
+\begin{itemize}
+\item $*$ is well-defined on all $S$
+\item $S$ is closed under $*$. 
+\end{itemize} 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+Let $S$ be a set equipped with the operation $*$, and let $H\subseteq S$. We say $H$ is \textbf{closed under $*$} if
+$$\text{for all } a,b\in H, \text{we also have } a*b\in H.$$
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+Let $S$ be a set equipped with the operation $*$. If $H\subseteq S$ is closed under $*$, then 
+$$*|_H:H\times H\to H$$
+is the \textbf{induced operation} of $*$ on $H$. Usually we suppress the notation for the induced operation. 
+\end{definition*}
+
+
+\begin{definition*}
+A binary operation $*$ on a set $S$ is \textbf{commutative} iff for all $a,b\in S$, we have
+$$a*b=b*a.$$
+\end{definition*}
+
+\begin{definition*}
+A binary operation $*$ on a set $S$ is \textbf{associative} iff for all $a,b,c\in S$, we have
+$$(a*b)*c=a*(b*c).$$
+\end{definition*}
+
+%\pagebreak
+\subsection{Isomorphic Binary Structures}
+\begin{definition*}
+A \textbf{binary algebraic structure} is a set $S$ equipped with a binary operation $*$, notated $\inner{S}{*}$. 
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+Let $\inner{S}{*}$, $\inner{S'}{*'}$ be binary algebraic structures. An \textbf{isomorphism} of $S$ with $S'$ is a bijection $\phi:S\to S'$ such that for all $x,y,\in S$, 
+$$\phi(x*y)=\phi(x)*'\phi(y).$$
+If such a map exists, then we say $S$ and $S'$ are \textbf{isomorphic} binary structures, and denote this as $S\cong S'$. 
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+A \textbf{structural property} of a binary structure is one that must be shared by any isomorphic structure. An \textbf{algebraic property} is a structural property that is characterized in terms of the operation, i.e. associativity. 
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+Let $\inner{S}{*}$ be a binary structure. An element $e\in S$ is an \textbf{identity} of * if, for all $s\in S$, 
+$$e*s=s*e=s.$$
+\end{definition*}
+\end{highlight}
+
+\subsection{Groups}
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{group} $\inner{G}{*}$ is a binary structure (and thus is closed under *) such that:
+	\begin{enumerate}
+	\item[$\script{G}_1$:] (Associativity) $*$ is associative, 
+	\item[$\script{G}_2$:] (Identity) There exists $e$ an identity for $*$,
+	\item[$\script{G}_3$:] (Inverse) For each $a\in G$, there exists $a'\in G$ which is an inverse of $a$, that is, $a*a'=e$, where $e$ is the identity under $*$. 
+	\end{enumerate}
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+A group $\inner{G}{*}$ is an \textbf{abelian} group if $*$ is commutative. 
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem*}[Left and right cancellation laws]
+Let $\inner{G}{*}$ be a group. Then for any $a,b,c\in G$, 
+\[\begin{array}{lrcl}
+\text{If} & a*b&=&a*c,\\
+\text{then} & b&=&c,\\
+\end{array}\]
+and 
+\[\begin{array}{lrcl}
+\text{If} & b*a&=&c*a,\\
+\text{then} & b&=&c.\\
+\end{array}\]
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+Let $\inner{G}{*}$ be a group. For all $a,b\in G$, there exist unique $x,y\in G$ such that
+$$a*x=b$$
+and 
+$$y*a=b.$$
+That is, all linear equations have unique solutions in $G$. 
+\end{theorem*}
+\end{highlight}
+
+\begin{theorem*}
+The identity and inverse of a group are unique.
+\end{theorem*}
+
+\begin{corollary}
+Let $\inner{G}{*}$ be a group. For all $a,b\in G$, we have 
+$$(a*b)'=b'*a'.$$
+\end{corollary}
+
+\begin{highlight}
+\begin{definition*}
+The \textbf{general linear group} of degree $n$ is the following set of matrices equipped with matrix multiplication:
+$$GL(n,\R)=\{A\in M_{n\times n}(\R)\,|\,A \text{ is invertible}\}$$
+
+\noindent There is a similar group consisting of invertible linear transformations equipped with function composition:
+$$GL(\R^n)=\{T\in\script{L}(\R^n,\R^n)\,|\,T \text{ is invertible}\}$$
+\end{definition*}
+\end{highlight}
+
+
+\subsection{Subgroups}
+
+We will now dispense with the $\inner{S}{*}$ notation unless necessary, and use the symbol $+$ along with juxtaposition to denote abstract "addition" and "multiplication" operations, respectively. Thus, $-a$ and $\inv{a}$ mean exactly what you'd think: inverses of a additive and multiplicative group, respectively.
+
+\begin{definition*}
+If $G$ is a finite group, then the \textbf{order} $|G|$ of $G$ is the number of elements in $G$. 
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+Let $\inner{G}{*}$ be a group. 
+
+If $H\subset G$ is closed under $*$, and $\inner{H}{*}$ is itself a group, then $H$ is a \textbf{subgroup} of $G$. 
+
+We write $H\leq G$ and $H<G$ to mean subgroup and proper subgroup, respectively. 
+\end{definition*}
+\end{highlight}
+
+\pagebreak
+\subsection{Cyclic Groups and Generators}
+
+\begin{highlight}
+\begin{theorem*}[Characterization of a subgroup]
+Let $\inner{G}{*}$ be a group. $H\subset G$ is a subgroup of $G$ iff:
+	\begin{itemize}
+	\item (Closure) $H$ is closed under $*$,
+	\item (Identity) The identity $e$ of $G$ is in $H$, 
+	\item (Inverse) For all $a\in H$, we have $\inv{a}\in H$.	
+	\end{itemize}
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+Let $G$ be a group, and let $a\in G$. Then 
+$$H=\{a^n|n\in \Z\}$$
+is called the \textbf{cyclic subgroup} of $G$ \textbf{generated by }$a$, and it is denoted as $\langle a\rangle$.
+
+\mbox{}
+
+\noindent Observe, this includes $\inv{a}$ ($a$'s inverse) as well as $a^0=e$ (the identity). 
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*}
+Let $G$ be a group, and let $a\in G$. Then,
+	\begin{itemize}
+	\item $\langle a\rangle$ is a subgroup of $G$, and 
+	\item every subgroup that contains $a$ also contains $\langle a\rangle$. 
+	\end{itemize}
+\end{theorem*}
+
+\begin{highlight}
+\begin{definition*}
+Let $\cyclic{a}$ be a cyclic subgroup of a group $G$. 
+
+\noindent If $\cyclic{a}$ is finite, then the \textbf{order of} $a$ is the order $|\cyclic{a}|$ of this cyclic subgroup. 
+
+\mbox{}
+
+\noindent If $\cyclic{a}$ is infinite, then we says that $a$ is of \textbf{infinite order}. 
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*}
+Every cyclic group is abelian. 
+\end{theorem*}
+\begin{proof}
+Let $G$ be a cyclic group such that $a$ is a generator of $G$. We will show that for any two $g_1, g_2\in G$, we have that $g_1g_2=g_2g_1$. Let $g_1, g_2\in G$. Since $a$ is a generator of $G$, there exists some $n,k\in \Z$ such that $a^n=g_1$ and $a^k=g_2$. Then, 
+\[\begin{array}{rcll}
+g_1g_2 &=& a^na^k & \text{since }a\text{ is a generator}\\
+&=& \underbrace{(a)(a) \cdots (a)}_{n}\underbrace{(a)(a) \cdots (a)}_{k} & \text{by definition}\\
+&=& \underbrace{(a)(a) \cdots (a)(a)}_{k}\underbrace{(a) \cdots (a)}_{n} & \text{associative property}\\
+&=&a^ka^n\\
+&=&g_2g_1
+\end{array}\]
+and we are done.
+\end{proof}
+
+\begin{highlight}
+\textbf{Division Algorithm for $\Z$}\, Given a number $n\in\Z$ and divisor $m\in\Z^+$, there exists a unique quotient $q\in\Z$ and remainder $r\in\Z^+$ such that 
+$$n=mq+r\quad\quad\text{and}\quad\quad 0\leq r<m.$$
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+Any subgroup of a cyclic group is cyclic. 
+\end{theorem*}
+\end{highlight}
+
+\begin{corollary*}
+The subgroups of $\Z$ under addition are precisely the groups $n\Z$ for all $n\in\Z$.
+\end{corollary*}
+
+\begin{highlight}
+\begin{definition*}
+Let $r, s\in \Z^+$. The generator $d$ of the cyclic group 
+$$H=\{nr+ms:n,m\in\Z\}$$
+under addition is the \textbf{greatest common divisor} (gcd) of $r$ and $s$. 
+\end{definition*}
+\end{highlight}
+
+Note: This means that if gcd$(r,s)=d$, then there exist $n,m\in\Z$ such that 
+$$d=nr+ms.$$
+
+\begin{definition*}
+Two positive integers are \textbf{relatively prime} if their gcd is 1.
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem*}
+If $r$ and $s$ are relatively prime and $r$ divides $sm$, then $r$ divides $m$.
+\end{theorem*}
+\end{highlight}
+\begin{proof}
+Since $r$ and $s$ are relatively prime, then there exist $a,b\in\Z$ such that 
+$$1=ar+bs.$$
+Multiplying by $m$, 
+$$m=arm+bsm.$$
+Since $r$ divides $sm,$ there exists some $k\in\Z$ such that $kr=sm$.So, 
+$$m=arm+bkr=(am+bk)r.$$
+Thus, $r$ divides $m$.
+\end{proof}
+
+\begin{definition*}
+\textbf{Addition Modulo n} It's what you think. 
+$$h+k\mod n = \text{remainder}\big((h+k)/n\big)$$
+\end{definition*}
+
+\begin{theorem*}
+$\Z_n$ under addition mod $n$ is a cyclic group. 
+\end{theorem*}
+
+\begin{highlight}
+Let $G$ be a cyclic group with $n$ elements generated by $a$.  
+\end{highlight}
+
+$$f(x)=\sum_{n=0}^\infty 
+\proj*{\sin(nx)}{f}=\sum_{n=0}^\infty \inner{f(x)}{\sin(nx)}\sin(nx)$$
+
+\section{More Groups and Cosets}
+
+\subsection{Groups of Permutations}
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{permutation} of a set $A$ is a bijection $\phi:A\to A$. 
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*}
+Let $A$ be a nonempty set, and let $S_A$ be the collection of all permutations of $A$. 
+
+Then $S_A$ is a group under permutation multiplication.
+\end{theorem*}
+\begin{proof}\mbox{}
+
+\begin{itemize}
+\item (Closure) True by definition. 
+\item (Associative) Composition of functions is associative. 
+\item (Identity) The identity function is a permutation. 
+\item (Inverse) Permutations are bijections, and bijections are invertible. 
+\end{itemize}
+\end{proof}
+
+\begin{highlight}
+\begin{definition*}
+Let $A$ be a finite group of $n$ elements. The group of all permutations on $A$ is the \textbf{symmetric group on $n$ letters}, denoted $S_n$. 
+\end{definition*}
+\end{highlight}
+Note that $S_n$ has $n!$ elements. 
+
+\begin{highlight}
+\begin{theorem*}[Cayley's Theorem]
+Every group is isomorphic to a group of permutations. 
+\end{theorem*}
+\end{highlight}
+\begin{proof}
+Consider a group 
+\[\begin{array}{c!c|c|c|c}
+	  & e & a & b & \cdots \\ \thickhline
+	e & e & a & b & \cdots \\ \hline
+	a & a & b & c & \cdots \\ \hline
+	b & b & c & d & \cdots \\ \hline
+	\vdots & \vdots & \vdots & \vdots & \ddots 
+\end{array}\]
+Consider $\phi$ such that $\phi(x)\mapsto$ (the row corresponding to $x$). Informally, one can see the row is the image of the image of the set in a permutation. 
+\end{proof}
+
+\begin{highlight}
+\begin{definition*}[Regular representations]
+The function $\phi$ mapping each element of a group to the permutation corresponding to multiplication by that element is called the \textbf{left regular representation} and \textbf{right regular representation} (for left and right multiplication, respectively). i.e. for the group 
+\[\begin{array}{c!c|c|c}
+	  & e & a & b \\ \thickhline
+	e & e & a & b \\ \hline
+	a & a & b & e \\ \hline
+	b & b & e & a \\ 
+\end{array}\]
+the left representation is given as follows:
+\[\lambda_e = 
+\left(\begin{array}{ccc}
+	e & a & b \\
+	e & e & a \\
+\end{array}\right)
+\quad 
+\lambda_a=
+\left(\begin{array}{ccc}
+	e & a & b \\
+	a & b & e \\
+\end{array}\right)
+\quad 
+\lambda_b=
+\left(\begin{array}{ccc}
+	e & a & b \\
+	b & e & a \\
+\end{array}\right)
+\]
+\end{definition*}
+\end{highlight}
+
+\subsection{Orbits, Cycles, and the Alternating Groups}
+
+\begin{highlight}
+\begin{definition*}
+Let $\sigma$ be a permutation of a sat $A$. The \textbf{orbits} of $\sigma$ are the equivalence classes given by 
+\[a\sim b \text{ iff } b = \sigma^n(a) \text{ for some } n\in\Z.\]
+An orbit is called \textbf{nontrivial} if it has more than one element. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+A permutation $\sigma\in S_n$ is a \textbf{cycle} if it has at most one nontrivial orbit. The \textbf{length} of a cycle is the number of elements in its nontrivial orbit.
+\end{definition*}
+\end{highlight}
+
+\begin{example*}
+Consider the permutation 
+\[\mu = 
+\left(\begin{array}{ccccc}
+	1 & 2 & 3 & 4 & 5 \\
+	3 & 2 & 5 & 1 & 4 \\
+\end{array}\right)
+=
+(1,3,5,4).
+\]
+This is a cycle of length 4, since it has only one nontrivial orbit. 
+\end{example*}
+
+\begin{example*}
+Consider the permutation 
+\[\sigma = 
+\left(\begin{array}{cccccccc}
+	1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+	3 & 8 & 6 & 7 & 4 & 1 & 5 & 2 \\
+\end{array}\right)
+=
+(1,3,6)(2,8)(4,7,5).
+\]
+This is a not a cycle, since it has 3 nontrivial orbits.
+\end{example*}
+
+\begin{example*}
+Consider the permutation 
+\[\gamma = 
+\left(\begin{array}{cccccc}
+	1 & 2 & 3 & 4 & 5 & 6 \\
+	6 & 3 & 4 & 5 & 2 & 1 \\
+\end{array}\right)
+=
+(1,3,6)(1,3,2)(3,4,5)
+=
+(1,6)(2,3,4,5)
+\]
+Note that the product of multiple cycles sometimes simplifies to a product of a smaller number of cycles, perhaps even becoming a cycle in the product. In this case, the product of 3 cycles produced a permutation with 2 nontrivial orbits, so it is not a cycle. 
+\end{example*}
+
+\begin{highlight}
+\begin{theorem*}
+Every permutation $\sigma$ of a finite set is a product of a unique set of disjoint cycles (assuming the identity is not in the set). 
+\end{theorem*}
+\end{highlight}
+\begin{proof}
+Let $\sigma$ be a permutation of a finite set $S$. Let $B_1, B_2, \dots, B_n$ be the orbits of $\sigma$ (we know this set exists uniquely by construction, and is finite since $S$ is finite). Then, consider the cycles 
+\[\mu_i(x)=
+\begin{cases}
+\sigma(x) & x\in B_i\\
+x & \text{ otherwise }.\\
+\end{cases}\]
+Then, since all the orbits $B_i$ are disjoint, then all the cycles $\mu_i$ are disjoint. Thus, $$\prod_{i=1}^n\mu_i=\sigma,$$ and we are done. 
+\end{proof}
+
+\begin{highlight}
+\begin{definition*}
+A cycle of length 2 is a \textbf{transposition}.
+\end{definition*}
+\end{highlight}
+\begin{highlight}
+\begin{corollary*}
+Any permutation of a finite set (with at least two elements) is a product of transpositions. 
+\end{corollary*}
+\end{highlight}
+\begin{proof}
+Since any permutation is a product of disjoint cycles, it suffices to show that any cycle is a product of transpositions. Let 
+$$(a_1, a_2, \dots, a_n)$$
+be an arbitrary cycle. To see that it is a product of transpositions, compute 
+$$(a_1,a_n)(a_1,a_{n-1})\cdots(a_1,a_3)(a_1,a_2)=(a_1, a_2, \dots, a_n)$$
+and we are done. 
+\end{proof}
+
+\begin{highlight}
+\begin{theorem*}
+No permutation in $S_n$ can be expressed as a product of both an even and an odd number of transpositions. 
+\end{theorem*}
+\end{highlight}
+\begin{proof}
+First, note that we can multiply any permutation by the identity $\iota =(1,2)(1,2)$ to change the number of permutations, but this doesn't change the parity (evenness or oddness). Now, consider some permutation $\mu$ written as a product of disjoint nontrivial cycles, $\mu=B_1B_2\dots B_n$; and let $\tau = (i,j)$ be some transposition. 
+
+\textbf{Claim:} The $\sigma$ and 
+\end{proof}
+
+\pagebreak
+\section{Index}
+\printindex
+
+\end{document}
+

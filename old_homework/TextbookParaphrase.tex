@@ -1,0 +1,60 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Trevor Klar\\
+Math 320 - Foundations of Higher Mathematics}
+\title{Test 1 Review Problems}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\newenvironment{remark}[2][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\newenvironment{example}[2][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+\maketitle
+
+\begin{remark}{2.12}
+Once you have written a statement with the quantifiers in order, negating the statement is easy. To say  that "$P(x)$ is true for every value of $x$" is false, you can say "there must be some value of $x$ such that $P(x)$ is false". Similarly, To say  that "there is some value of $x$ such that $P(x)$ is true" is false, you can say that "$P(x)$ is false for every value of $x$". Here's what that looks like in symbols:
+$$ \neg[(\forall x)P(x)] \text{ simplifies to } (\exists x)(\neg P(x)).$$
+$$ \neg[(\exists x)P(x)] \text{ simplifies to } (\forall x)(\neg P(x)).$$
+Notice how we use parenthesis and brackets to seperate each "for all" statement and "there exists" statement from other statements. 
+\end{remark}
+
+This pattern can be followed to negate any quantified statement, no matter how complicated it is. Just change the quantifier, and negate the following statement. Understanding this process is critical in order to understand the mathematics in this book. 
+
+When negating quantified statements with specified universes, be sure not to change the universe inadvertently. 
+
+\begin{example}{2.13}
+\textit{Negation involving universes.} When you negate a statement like "Every Good Boy Does Fine", you should get "some good boy does not do fine". Remember, the statement you're working with does say anything about bad boys, so your negation of it shouldn't either. If you did, you'd be changing the universe, which is a mistake. Another example: The negation of "Every chair in this room is broken" is "Some chair in this room is not broken". Notice how we didn't say anything about chairs outside this room. 
+
+Let's try a symbolic example. The negation of $(\forall n \in \N)(\exists x \in A)(nx < 1)$ is $(\exists n \in \N)(\forall x \in A)(nx \geq 1)$. Notice how, in each part, we just change the quantifier and then proceed to negate the following part. We leave the universes $\N$ and $A$ alone. 
+\end{example}
+
+\begin{example}{2.14}
+Let's try this negation: "It is false that every classroom has a chair that is not broken." First, notice the quantifiers: "It is false that \textbf{every} (universal quantifier) classroom \textbf{has a} (existential quantifier) chair that is not broken." To simplify this negation, we first change the quantifiers, then negate the final part. "\textbf{There exists} a classroom such that \textbf{every} chair \textit{is} broken." Notice how we negate the last part by changing "is not" to "is".
+\end{example}
+
+
+\end{document}

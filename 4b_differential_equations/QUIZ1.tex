@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block of commands.  If you're proficient at LaTeX, you may include additional packages, create macros, etc. immediately below this block of commands, but make sure to NOT alter the header, margin, and comment settings here. 
+\documentclass[12pt]{article}
+\usepackage[margin=1.15in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, tikz-cd, mathtools,stmaryrd,verbatim}
+\pagestyle{fancy}
+\setlength{\headheight}{42pt}
+\newenvironment{problem}[1]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\lhead{Fabio Ricci and Trevor Klar \\ UC Santa Barbara}  %replace with your name
+\rhead{Quiz 1 - Pandemic Edition \\ Math 4B Summer `20} 
+\allowdisplaybreaks
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chr}{char}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\qf}{qf}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Ind}{Ind}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\F}{\mathbb{F}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Do not alter this block.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Copy the following block of text for each problem in the assignment.
+\begin{problem}{Problem 1.}
+ \item I will use for today this model for disease spread, here $S$ is the number of susceptible, $I$ the number of infected and $R$ is the number of recovered/resistant, note that this are functions of time so it is legit to consider:
+$$\begin{array}{rcl}
+S'&=&-10^{-5} S I\\
+I'&=&10^{-5}SI -\frac{1}{14}I\\
+R'&=&\frac{1}{14}I
+\end{array}$$
+\begin{enumerate}
+	\item (10 points) With the initial data $S(0)=45400$, $I(0)=2100$, $R(0)=2500$, use a computer program like Excel, Google Sheets, or Python to implement Euler's method and predict how many people are susceptible, infected, and resistant after 30 days. Create a graphic showing what happens over the course of these 50 days.
+	\item (10 points)Even though $S$ and $R$ are functions of time, is still makes sense to think about how these two quanities relate to one another. Using chain rule from Calc 1, we know $\frac{dS}{dR}\frac{dR}{dt}=\frac{dS}{dt}$. Assuming $I\neq0$, solve for $\frac{dS}{dR}$ and then find $S$ as a function of $R$.
+	\item (5 points) Does everyone on the island eventually get sick? Or do some susceptible people remain? Explain your answer both numerically (using the data from part a) and analytically (using your equation from part b).
+\end{enumerate}
+\end{problem}
+\begin{sol}
+aaa.
+\end{sol}
+
+\newpage
+
+\begin{problem}{Problem 2.}
+	We now consider a NEW model for disease spread with \emph{immunity loss}. We use the same model as before, with transmission coefficient $4\times 10^{-5}$ and recovery coefficient $0.2$, but with additional provision that on any particular day, a Resistant person has a $3\%$ chance of becoming Susceptible.
+	
+	\begin{enumerate}
+		\item (10 points) Adapt the previous model to include the effect of immunity loss. 
+		\item (10 points)Under what circumstances will the number of recovered individuals decrease?
+		\item (5 points)Is there a set of initial data (with 50,000 people total) for which the numbers of Susceptible, Infected, and Resistant people stay constant (i.e. an \emph{equilibrium} or \emph{steady state})?
+	\end{enumerate}
+	
+	\item Create a system of differential equations that would model a zombie outbreak. You can use the S-I-R model as a starting point, but the rules will probably be different (e.g. there may be an ``undead'' category). Write a few sentences explaining your model. Which rates of change are affected by which variables? What is the long-term behavior of your system?
+	
+
+\end{problem}
+
+\end{document}

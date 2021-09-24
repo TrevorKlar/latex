@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Practice Problems 7}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\everymath{\displaystyle}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vv}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\vvv}[3]{\begin{bmatrix} #1 \\ #2 \\ #3\end{bmatrix}}
+\newcommand{\vvvv}[4]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4\end{bmatrix}}
+\newcommand{\vvvvv}[5]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4 \\ #5  \end{bmatrix}}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+Practice problems are for your own benefit. You won't turn them in or have them graded, but I have the expectation that you have done these when I write my tests. You can check answers with a TA, in Math Lab, or with the professor.
+
+\begin{enumerate}
+
+ \item Consider the following system:
+ $$\frac{dx}{dt}=(y-x)(1-x-y),\quad \frac{dy}{dt}=x(2+y)$$
+ \be
+  \item Find the critical points of the system
+  \item Under what circumstances is $x$ increasing? Shade this region in the phase plane.
+  \item Under what circumstances is $y$ increasing? Shade this region in the phase plane.
+  \item Give a rough sketch of the vector field in the phase plane, and sketch some solution curves.
+ \ee
+ 
+\item Consider the system
+  $$\vec x\,'(t)=\begin{bmatrix}1 & 1 \\ -2 & 4 \end{bmatrix}\vec x(t)$$
+  \be
+   \item Find the general solution.
+   \item Solve the initial value problem with $x(0)=2$, $y(0)=4$.
+  \ee
+  
+\item Do the following for the system
+ $$\vec x\,'=\begin{bmatrix}2&3\\4&1\end{bmatrix}\vec x$$
+ \be 
+  \item Characterize the circumstances where $x$ is increasing/decreasing, and where $y$ is increasing/decreasing.
+  \item At which points in the phase plane will the vectors be pointing directly towards the origin? Directly away from the origin?
+  \item Sketch a phase portrait.
+ \ee
+ 
+ \item Find the general solutions for the following systems.
+ \be
+  \item $x'=x+y,\quad y'=-2x+4y$.
+  \item $\vec x\,'=\begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}\vec x$
+  \item $\vvv{x'}{y'}{z'}=\begin{bmatrix} -2 & 1 & 1 \\ 1 & -2 & 1 \\ 1 & 1 & -2\end{bmatrix}\vvv xyz$
+ \ee
+
+\item Which of the systems from the previous problem models a closed system with two water tanks exchanging water?\\
+ 
+ \setlength{\unitlength}{1cm}
+ \begin{picture}(6,5)
+  \thicklines
+  \put(0,0){\line(0,1){5}}
+  \put(0,0){\line(1,0){2}}
+  \put(0,5){\line(1,0){2}}
+  \put(2,0){\line(0,1){1}}
+  \put(2,1){\line(1,0){2}}
+  \put(4,1){\line(0,-1){1}}
+  \put(4,0){\line(1,0){2}}
+  \put(6,0){\line(0,1){5}}
+  \put(6,5){\line(-1,0){2}}
+  \put(4,5){\line(0,-1){1}}
+  \put(4,4){\line(-1,0){2}}
+  \put(2,5){\line(0,-1){1}}
+  \put(2,1.5){\line(1,0){2}}
+  \put(2,3.5){\line(1,0){2}}
+  \put(2,1.5){\line(0,1){2}}
+  \put(4,1.5){\line(0,1){2}}
+  \put(1,2.5){A}
+  \put(5,2.5){B}
+  \put(2.25,1.25){\vector(1,0){1.5}}
+  \put(3.75,3.75){\vector(-1,0){1.5}}
+ \end{picture}
+ 
+ Sketch its phase portrait and write a few sentences interpreting the ``real-world'' implications of the solutions.
+
+  
+ \end{enumerate}
+
+\end{document}

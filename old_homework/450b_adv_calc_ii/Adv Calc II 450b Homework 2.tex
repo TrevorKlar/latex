@@ -1,0 +1,167 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 450b \linebreak
+Homework 2}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+%1
+\item Let $U$ be an open set in $\R^n$ and $C$ be a closed set in $\R^n$, with $C\subset U$. Prove that $U-C$ is open. 
+
+\begin{proof}
+By definition of set subtraction, $U-C=U\cap C^\complement$, with $U$ and $C^\complement$ open. Thus, $U-C$ is open. 
+\end{proof}
+
+%2
+\item ($\square$) Give the interior, exterior, and boundary for the following subsets of $\R^n$. No proofs, just give answers.
+
+	\begin{multicols}{2}	
+	\begin{enumerate}[label=(\alph*)]
+	%a
+	\item $S = \{(x,y):xy=0\}\subset\R^2$\\
+	\textbf{Answer:} int$(S) = \emptyset$, \\bdy$(S) = S$, \\ext$(S) = S^\complement$ 
+	\jpg{scale=.07}{450b_hw1_prob4a}
+	\qedwhite
+	
+	%b	
+	\item $S = \{(x,y):xy\neq0\}\subset\R^2$\\
+	\textbf{Answer:} int$(S) = S$, \\bdy$(S) = S^\complement$, \\ext$(S) = \emptyset$ 
+	\jpg{scale=.07}{450b_hw1_prob4b}
+	\qedwhite
+	
+	%c
+	\item $S = \{(x,y,z):x^2+y^2<1 \text{ and } z=0\}\subset\R^3$\\
+	\textbf{Answer:} int$(S) = \emptyset$, \\bdy$(S) = \{(x,y,z):x^2+y^2\leq1 \text{ and } z=0\}$, \\ext$(S) = \{(x,y,z):x^2+y^2>1 \text{ or } z\neq0\}$ 
+	\jpg{scale=.07}{450b_hw1_prob4c}
+	\qedwhite
+	
+	%d
+	\item $S = \{(x,y,z):x^2+y^2<1\}\subset\R^3$\\
+	\textbf{Answer:} int$(S) = S$, \\bdy$(S) = \{(x,y,z):x^2+y^2=1\}$, \\ext$(S) = \{(x,y,z):x^2+y^2>1\}$ 
+	\jpg{scale=.07}{450b_hw1_prob4d}
+	\qedwhite
+	\end{enumerate}
+	\end{multicols}
+	
+	\begin{enumerate}[label=(\alph*), start=5]
+	%e
+	\item $\{(x_1, \ldots, x_n): \text{each } x_i\in\Q\}\subset \R^n$\\
+	\textbf{Answer:} int$(S) = \emptyset$, \\bdy$(S) = \R^n$, \\ext$(S) = \emptyset$\\
+	This set is impossible to draw. I imagine it something like a dense infinite point grid, like a field of stars in space. Each element has infinitely many other elements surrounding it in every direction, as well as elements not in the set surrounding it in a similar way. \qed
+	\end{enumerate}
+
+%3
+\item  Decide if the following subsets of $R^n$ are closed, bounded, and compact.
+	\begin{enumerate}[label=(\alph*)]
+	%a
+	\item A finite set of points in $\R^n$.
+	
+	\textbf{Answer:} Let $S$ be such a set. $S$ is bounded. To see this, let $r=\max\{\norm{\vecb{y}}:\vecb{y}\in S\}$. Since $S\subset \closure{B}(\vecb{0},r)$, we are done. $S$ is also closed. To see this, let $\vecb{x}\in S^\complement$, and let $r=\min(\norm{\vecb{x}-\vecb{y}}:\vecb{y}\in S)$. Since $B(\vecb{x},r)\subset S^\complement$, we are done. Since $S$ is closed and bounded, then it is compact by Heine-Borel.
+	
+	%b
+	\item $\closure{B}(\vecb{0},2)-B(\vecb{0},1)$
+	
+	\textbf{Answer:} $\closure{B}(\vecb{0},2)-B(\vecb{0},1) = \closure{B}(\vecb{0},2)\cap B(\vecb{0},1)^\complement$ and so is closed. Also, $\closure{B}(\vecb{0},2)-B(\vecb{0},1)\subset\closure{B}(\vecb{0},2)$, and so is bounded. Thus, the set is closed and bounded, and so it is compact by Heine-Borel. 
+	
+	%c
+	\item $\{(x_1, \ldots, x_n)\in\closure{B}(\vecb{0},1):x_n = 0\}$
+	
+	\textbf{Answer:} This is the $n$-dimensional version of problem 2(c). This set is closed, and is bounded by $\closure{B}(\vecb{0},1)$. Thus, it is compact by Heine-Borel.
+	
+	%d
+	\item $\{(x_1, \ldots, x_n)\in\closure{B}(\vecb{0},10): \text{each }x_i\in \Z\}\subset \R^n$ 
+	
+	\textbf{Answer:} This is a finite set, so it is closed, bounded, and compact by 3(a).
+	
+	%e
+	\item $\{(x_1, \ldots, x_n)\in\closure{B}(\vecb{0},10): \text{each }x_i\in \Q\}\subset \R^n$
+	
+	\textbf{Answer:} This set is bounded but not closed, and since Heine-Borel is a biconditional, the set is not compact. 
+	\end{enumerate}
+%4
+\item 
+	\begin{enumerate}[label=(\alph*)]
+	%a	
+	\item $(\square)$ Suppose $A$ is a closed subset of $\R^n$, and $\vecb{x}\not\in A$. Prove that there is a $\delta>0$ such that $\norm{\vecb{x}-\vecb{y}}\geq\delta$ for all $y\in A$. 
+	
+	\begin{proof}\mbox{}
+	Let $\vecb{y}\in A$. Since $A^\complement$ is open and $\vecb{x}\in A^\complement$, there is some $\delta>0$ such that $B(\vecb{x},r)\subset A^\complement$. 
+	\jpg{scale=.1}{450b_hw2_prob4a}
+	Let $\delta=r$. Since $\vecb{y}\in A=(A^\complement)^\complement$, then $\vecb{y}\not\in B(\vecb{x},\delta)=\{\vecb{z}\in\R^n:\norm{\vecb{z}-\vecb{x}}<\delta\}$, so $\vecb{y}\in\{\vecb{z}\in\R^n:\norm{\vecb{z}-\vecb{x}}\geq\delta\}$, and we are done. 
+	\end{proof}
+	
+	\pagebreak
+	%b
+	\item Suppose that $A$ and $C$ are closed subsets of $\R^n$, with $C$ compact, and $A\cap C=\emptyset$. Prove that there exists $\delta>0$ such that $\norm{\vecb{x}-\vecb{y}}\geq\delta$ for all $\vecb{y}\in A$ and $\vecb{x}\in C$. (Hint: For each $\vecb{w} \in C$, find an open ball such that this inequality holds for all $\vecb{x} \in B(\vecb{w},r(\vecb{w}))$.)
+	\jpg{scale=.12}{450b_hw2_prob4b}
+	\begin{proof}
+	Since $A$ is closed, then by 4(a), for each $\vecb{w}\in C\subset A^\complement$, we can find some ${r}_\vecb{w}>0$ such that 
+	$$\norm{\vecb{y}-\vecb{w}}\geq{{r}_\vecb{w}}$$
+	for any $\vecb{y}\in A$. Thus, 
+	%
+	$$B\left(\vecb{w}, \frac{{r}_\vecb{w}}{2}\right) \subset	B(\vecb{w}, {r}_\vecb{w}) \subset A^\complement.$$
+	Now, the collection $\{B\left(\vecb{w}, \frac{{r}_\vecb{w}}{2}\right):\vecb{w}\in C\}$ is an open cover of $C$, and since $C$ is compact, there exists some finite subcollection $\{B\left(\vecb{w}_i, \frac{{r}_{\vecb{w}_i}}{2}\right)\}_{i=1}^N$ which also covers $C$. Consider $B\left(\vecb{w}_k, \frac{{r}_{\vecb{w}_k}}{2}\right)$ for some $k\in \{1, \ldots, N\}$. Now, for any $x\in B\left(\vecb{w}_k, \frac{{r}_{\vecb{w}_k}}{2}\right)$, and any $y\in A$,
+	$$\norm{\vecb{w}_k-\vecb{x}}<\frac{{r}_{\vecb{w}_k}}{2}.$$
+	And, by the Triangle Inequality, 
+	\[\begin{array}{rcl}
+	\norm{\vecb{y}-\vecb{x}} &\geq& \underbrace{\norm{\vecb{y}-\vecb{w}_k}}_{>r_{w_k}}-\underbrace{\norm{\vecb{w}_k-\vecb{x}}}_{<\frac{{r}_{\vecb{w}_k}}{2}}\\
+	&>&\frac{{r}_{\vecb{w}_k}}{2}_.
+	\end{array}\]
+	Now, to obtain a lower bound that applies to any $\vecb{x}\in C$, let 
+	$$\delta=\min\left\lbrace\frac{{r}_{\vecb{w}_i}}{2}:i\in \{1, \ldots, N\}\right\rbrace_.$$
+	Since every $\vecb{x}\in C$ is an element of some $B\left(\vecb{w}_i, \frac{{r}_{\vecb{w}_i}}{2}\right)$, then for any $\vecb{y}\in A, \vecb{x}\in C$, 
+	$$\norm{\vecb{y}-\vecb{x}}\geq \delta > 0$$
+	and we are done. 	
+	%$$\norm{\vecb{x}-\vecb{y}_0} \geq \norm{\vecb{y}_0-\vecb{w}_k} - \norm{\vecb{w}_k-\vecb{x}},$$
+	%And since $-\norm{\vecb{w}_k-\vecb{x}}>-r_{\vecb{w}_k}$, then 
+	%$$\norm{\vecb{x}-\vecb{y}_0} > \norm{\vecb{y}_0-\vecb{w}_k} - r_{\vecb{w}_k}.$$
+	%Now, let $d_{y_0}=\norm{\vecb{y}_0-\vecb{w}_k} - r_{\vecb{w}_k}.$ We now have a lower bound on $\norm{\vecb{x}-\vecb{y}_0}$ for any $x\in C$, and some $y_0\in A$. Observe that $d_{y_0}\geq0$. To see this, note that if not, $\norm{\vecb{y}_0-\vecb{w}_k} - r< 0$, so $\norm{\vecb{y}_0-\vecb{w}_k} < r$ which means that $\vecb{y}_0\in C$, contradicting our construction of $\vecb{y}_0$. Now, we wish to find a lower bound on this distance for any $\vecb{y}$, so allow $\vecb{y}$ be any element of $A$. Now, the set 
+	%$$\{d_\vecb{y}:\vecb{y}\in A\}$$
+	%is bounded below by 0, so it has an infimum. Let $\delta_{\vecb{w}_k}=\inf\{d_\vecb{y}:\vecb{y}\in A\}.$
+	%Let $d_{\vecb{w}_k}=\norm{\vecb{y}-\vecb{w}}-r$. Now, For any $\vecb{x}\in B(\vecb{w}_k,r_{\vecb{w}_k})$, 
+	\end{proof}
+	
+	%c
+	\item $(\square)$ Give a counterexample in $\R^2$ to part (b) when both $A$ and $B$ are closed, but neither is compact. 
+	\textbf{Answer:} Let $A=\{(x,y):y=\sinh(x)\}$, and let $B=\{(x,y):y=\cosh(x)\}$. 
+	\jpg{scale=.315}{450b_hw2_prob4c}
+	
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

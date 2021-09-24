@@ -1,0 +1,186 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 450b \linebreak
+Homework 11}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Show that the volume of a parallelepiped spanned by the vectors $v_1, \dots, v_n$ in $\R^n$ is given by $\abs{\det M}^{\frac{1}{2}}$, where $M= [\inner{v_i}{v_j}]$.
+\begin{proof}
+Let $P$ denote the parallelepiped in question. Observe that 
+\[M= [\inner{v_i}{v_j}] = 
+\left[
+\begin{array}{c}
+v_1\\
+v_2\\
+v_3\\
+\vdots\\
+v_n\\
+\end{array}
+\right]
+\left[v_1\,\, v_2\,\, v_3\,\, \cdots\,\, v_n\right]
+=T^T T,\]
+Where $T$ is the matrix representing the linear transformation which maps the unit cube to $P$. So,
+$$\vol(P)^2=|\det T|^2=|\det T^T||\det T|=\abs{\det M},$$
+and taking square roots, we find that $\vol(P)=\abs{\det M}^\frac{1}{2}$, as desired. 
+\end{proof} 
+
+\item Use a change of variables to calculate $\int_A f$, where 
+$$f(x,y,z) = (x^2+y^2)z^2,$$
+$$A=\{(x,y,z):x^2+y^2<1, \,\, \abs{z}<1\}.$$
+
+\textbf{Answer:} Let $g:B\subset\R^3\to\R^3$ be a function, and $B$ be a set such that 
+$$g(r,\theta, z)=(r\cos\theta, r\sin\theta, z),$$
+$$B=\{(r,\theta, z):r<1, \,\,0<\theta<2\pi, \,\,\abs{z}<1\}.$$ Observe that $g(B)=A$ with $g$ being one-to-one and $C^1$ with $\det Dg\neq0$ for all $(r,\theta, z)$ in $B$ (we claim these facts without proof since this is a common change of variables). Then by the Change of Variables Thm, 
+$$\int_A f=\int_B f\circ g \abs{\det Dg}
+=\int_{-1}^1 \int_0^{2\pi} \int_0^1 r^2 z^2 \abs{r} dr \, d\theta \, dz =\int_{-1}^1 \int_0^{2\pi} \tfrac{z^2}{4} d\theta \, dz=2\pi(2)\frac{1}{12}=\frac{\pi}{3}.$$\qed
+
+\pagebreak
+\item Use a change of variables to calculate $\int_A f$, where 
+$$f(x,y)=xy\sin (x^2-y^2),$$ 
+$$A=\{(x,y):0<y<1, y<x, x^2-y^2<1\}.$$
+
+\textbf{Answer:} Let $g:B\subset\R^2\to\R^2$ be a function, and $B$ be a set such that 
+$$g(u,v)=(\sqrt{u+v^2},v),$$
+$$B=\{(u,v):0<u<1, 0<v<1\}.$$ 
+Observe that $x^2-y^2=u$, so $u<1$, and $v=y<x=\sqrt{u+v^2}$, so $u>0$. Thus $g(B)=A$ with $g$ being one-to-one and $C^1$ for all $(r,\theta, z)$ in $B$. Now we compute $\abs{\det Dg}$. 
+\[\abs{\det Dg}=
+\left|\det\left[\def\arraystretch{1.618}
+\begin{array}{cc}
+\frac{1}{2\sqrt{u+v^2}} & \frac{v}{\sqrt{u+v^2}}\\
+0&1\\
+\end{array}
+\right]\right|
+= \abs{\frac{1}{2\sqrt{u+v^2}}} = \frac{1}{2\sqrt{u+v^2}}
+\]
+Then by the Change of Variables Thm, 
+$$\int_A f=\int_B f\circ g \abs{\det Dg}=\int_0^1 \int_0^1 \frac{v\sqrt{u+v^2}\sin{u}}{2\sqrt{u+v^2}} du\, dv=\int_0^1 \int_0^1 \frac{v}{2}\sin u \, du \, dv = \frac{1-\cos(1)}{4}.$$\qed
+
+
+\item Give a counterexample to show that the change of variable formula does not hold if $g$ is not one-to-one, even if $\det Dg\neq0$ for all $x\in\Omega$. (Hint: Take $f=1$ and $g(x,y) = (e^x\cos y, e^x\sin y)$ for a suitable region $\Omega$.)
+
+\textbf{Answer:} Let $f:\R^2\to\R$ and $g:\Omega\subset\R^2\to\R^2$ be defined by 
+\[\begin{array}{rcl}
+f&\equiv&1\\
+g(x,y) &=& (e^x\cos y, e^x\sin y)\\
+\end{array}\]
+and consider the regions 
+\[\begin{array}{rcl}
+A&=&B(\vec{0},1)-B(\vec{0},\frac{1}{e})\\
+\Omega&=&\{(x,y):-1<x<0, \, 0<y<4\pi\}.\\
+\end{array}\]
+Observe that $g(\Omega)=A$, although $g$ is not one-to-one. Now we compute $\abs{\det Dg}$. 
+\[\abs{\det Dg}=
+\left|\det\left[
+\begin{array}{cc}
+e^x\cos y &  -e^x\sin y \\
+e^x\sin y &  e^x\cos y \\
+\end{array}
+\right]\right|
+= \abs{e^{2x}} = e^{2x}
+\]
+Note that $\det Dg\neq0$ for all $x\in\Omega$. Now we compare the two halves of the change of variables formula: 
+$$\int_A f\stackrel{?}{=}\int_B f\circ g \abs{\det Dg}.$$
+$$\int_A f = \vol(A) = \pi(1)^2-\pi(\tfrac{1}{e})^2 = \pi-\frac{\pi}{e^2}$$
+$$\int_B f\circ g \abs{\det Dg} = \int_{-1}^0 \int_0^{4\pi} (1)e^{2x}\, dy\, dx = 2\left(\pi-\frac{\pi}{e^2}\right)$$
+Thus, the RHS$\neq$LHS, so the formula does not hold. \qed
+
+\pagebreak
+\item \begin{enumerate}
+\item Calculate $\int_{B_r} e^{-x^2-y^2} dx \, dy$, where $B_r=\{(x,y): x^2+y^2\leq r\}$. \\
+\textbf{Answer:} Using a change of variables to polar coordinates, we find that 
+$$\int_{B_r} e^{-x^2-y^2} dx \, dy = \int_0^{2\pi}\int_0^{\sqrt{r}}u e^{-u^2}\, du\, d\theta = -\frac{1}{2} \int_0^{2\pi}\int_0^{\sqrt{r}}-2u e^{-u^2}\, du\, d\theta= -\frac{1}{2} \int_0^{2\pi} e^{-r}-1\, d\theta$$
+$$=\pi-\pi e^{-r}$$
+\item Show that $\int_{C_r} e^{-x^2-y^2} dx \, dy = (\int_{-r}^r e^{-x^2} dx)^2$, where $C_r=[-r,r]\times[-r,r]$. 
+\begin{proof}
+$$\int_{C_r} e^{-x^2-y^2} dx \, dy = \int_{-r}^r\int_{-r}^r e^{-x^2}e^{-y^2} dx \, dy= \int_{-r}^r e^{-x^2} dx\, \int_{-r}^r e^{-y^2} dy=\left(\int_{-r}^r e^{-x^2} dx\right)^2$$
+\end{proof}
+\item Show that 
+$$\lim_{r\to\infty} \int_{B_r} e^{-x^2-y^2} dx \, dy = \lim_{r\to\infty} \int_{C_r} e^{-x^2-y^2} dx \, dy$$
+\begin{proof} First, observe that the LHS converges to $\pi$:
+$$\lim_{r\to\infty} \int_{B_r} e^{-x^2-y^2} dx \, dy = \lim_{r\to\infty} \left(\pi-\pi e^{-r}\right) = \pi.$$
+Now, since $B_r\subset C_r\subset B_{r\sqrt{2}}$ for any $r>0$, and $e^{-x^2-y^2}>0$ for all $(x,y)\in\R^2$, then 
+$$\int_{B_r} e^{-x^2-y^2} dx \, dy \leq \int_{C_r} e^{-x^2-y^2} dx \, dy \leq \int_{B_{r\sqrt{2}}} e^{-x^2-y^2} dx \, dy.$$
+Thus, by the squeeze theorem, since 
+$$\pi = \lim_{r\to\infty} \int_{B_r} e^{-x^2-y^2} dx \, dy =\lim_{r\to\infty} \int_{B_{r\sqrt{2}}} e^{-x^2-y^2} dx \, dy,$$
+Then the RHS also converges to $\pi$. 
+\end{proof}
+\item Show that $\int_{-\infty}^\infty e^{-x^2} dx = \sqrt{\pi}$. 
+\begin{proof} Using parts (a) thorugh (c):
+$$\int_{-\infty}^\infty e^{-x^2} dx = \sqrt{\left(\int_{-\infty}^\infty e^{-x^2} dx\right)^2}=\sqrt{\left(\lim_{r\to\infty}\int_{-r}^r e^{-x^2} dx\right)^2}=$$
+$$\sqrt{\lim_{r\to\infty}\left(\int_{-r}^r e^{-x^2} dx\right)^2}=\sqrt{\lim_{r\to\infty}\int_{C_r} e^{-x^2-y^2} dx \, dy}= \sqrt{\pi}$$
+\end{proof}
+\end{enumerate}
+
+\item Let $E$  be the ellipsoid $\{(x,y,z)\in\R^3: (x^2/a^2)+(y^2/b^2)+(z^2/c^2)\leq 1\}$, where $a,b,$ and $c$ are positive constants. Compute the volume of $E$ using a change of variables. 
+
+\textbf{Answer:} Perform a change of variables using $T(u,v,w)=(au, bv, cw)$. Thus, $T(B(\vec{0},1))=E$, so 
+$$\vol(E)=\int_E 1 = \int\limits_{B(\vec{0},1)} \abs{\det T} = \vol(B(\vec{0},1))\abs{\det T}=\tfrac{4}{3}\pi abc.$$
+To see that $\det T=abc$, observe that $a, b,$ and $c$ are the eigenvalues of $T$, so the determinant is equal to their product. \qed
+
+
+\item Let $\langle e_1, \dots, e_n \rangle$ denote the standard basis for $\R^n$, and let $T$ denote the linear operator on $\R^n$ defined by $T(e_1)=(1,1,1,1,\dots,1), T(e_2)=(1,2,1,1,\dots,1), T(e_3)=(1,2,3,1,\dots,1), \dots, T(e_n)=(1,2,3,4,\dots,n).$ Suppose that $f:\Omega\to \R$ is integrable, and $\int_\Omega f=1$. Compute $\int_{\preimage{T}{\Omega}}f\circ T$. 
+
+\textbf{Answer:} First, observe that $\int_\Omega f=\int_{\preimage{T}{\Omega}}f\circ T\abs{\det T}=1$. Thus, $\int_{\preimage{T}{\Omega}}f\circ T=\frac{1}{\abs{\det T}}$. So, we need to compute $\abs{\det T}$. Let $A$ denote the matrix representation of $T$ with respect to the standard basis. Thus:
+\[|\det A|=
+\abs{\det \left[
+\begin{array}{ccccc}
+1 & 1 & 1 & \cdots & 1\\
+1 & 2 & 2 & \cdots & 2\\
+1 & 1 & 3 & \cdots & 3\\
+&\vdots&&\ddots&\vdots\\
+1 & 1 & 1 & \cdots & n\\
+\end{array}
+\right]}
+\]
+To compute the determinant, we apply row operations to reduce $A$ to triangular form, adding $-R1+Ri$ for every row except the first. This will affect the determinant by a sign if $n-1$ is odd, but we are taking absolute value, so it doesn't matter. 
+\[|\det A|=
+\abs{\det \left[
+\begin{array}{ccccc}
+1 & 1 & 1 & \cdots & 1\\
+0 & 1 & 1 & \cdots & 1\\
+0 & 0 & 2 & \cdots & 2\\
+&\vdots&&\ddots&\vdots\\
+0 & 0 & 0 & \cdots & (n-1)\\
+\end{array}
+\right]}
+=(n-1)!
+\]
+Therefore, $$\int_{\preimage{T}{\Omega}}f\circ T=\frac{1}{(n-1)!}$$ and we are done. \qed
+\end{enumerate}
+\end{document}

@@ -1,0 +1,83 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\Rbad}{\R_\text{bad}}
+
+\title{Math 501 \linebreak
+Homework 8}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Prove that $[0,1)\times[0,1)$ is homeomorphic to $[0,1]\times[0,1)$, but not to $[0,1]\times[0,1]$. (Assume that all factors
+are topologized as subspaces of R with the usual topology.)
+
+\begin{proof}
+Let $S$ be the unit circle minus the set $\{(x,y)\in\R^2: x^2+y^2=1, y\geq0\}$, as pictured. Consider a function $f$ which maps points in $S$ to points in $[0,1)\times[0,1)$ as follows:
+$$f(x,y)=\left(rd,\theta-\tfrac{\pi}{4}\right),$$
+where $(r, \theta)$ are the usual polar coordinates for  $(x,y)$ and $d$ is the distance from $\left(\frac{1}{2}, \frac{1}{2}\right)$ in the direction of $\theta-\frac{\pi}{4}$ to the boundary of $[0,1)\times[0,1)$. Also, $f(0,0)=(\frac{1}{2},\frac{1}{2})$. 
+
+\mbox{} \linebreak
+\mbox{} \linebreak
+\mbox{} \linebreak
+\mbox{} \linebreak
+\mbox{} \linebreak
+\mbox{} \linebreak
+
+Now, $f$ is a homeomorphism because conversion to polar coordinates is a homeomorphism, and the final mapping is a composition of homeomorphisms (multiplying and adding). Note, $d$ actually depends on $x$ and $y$, but comes from trig functions which are all continuous. In case you're not convinced that this is a bijection, note that every point is $S$ has exactly 1 corresponding point in the target set, and vice-versa. 
+\end{proof}
+
+\item Given $f : X \to Y$ between spaces, we define the graph of $f$ as
+$$G_f = \{(x, y) \in X \times Y : y = f(x)\}.$$
+\begin{enumerate}
+\item Suppose that $X$ and $Y$ are Hausdorff. Prove that if $f$ is continuous, then $G_f$ is closed.
+\begin{proof}
+First, note that since $X$ and $Y$ are Hausdorff, then $X\times Y$ is Hausdorff. Suppose that $f : X \to Y$ is continuous. To show that $G_f$ is closed, we will show that $(X\times Y)-G_f$ is open. Let $(x,y)\in (X\times Y)-G_f$, that is, $f(x)\neq y$. Since $Y$ is Hausdorff, there exists disjoint open subsets of $Y$, $V_y$ and $V_{f(x)}$, which contain $y$ and $f(x)$ respectively. Since $f$ is continuous, the preimage $U=\preimage{f}{V_{f(x)}}$ is open, and $x\in U$. Now, since $f(U)\subset V_{f(x)}$, and $V_y\cap V_{f(x)}=\emptyset$, then $V_y\cap f(U)=\emptyset$. Thus, $U\times V_y \cap G_f=\emptyset$, so $U\times V_y \subset ((X\times Y)-G_f)$. Therefore, by the openness criterion, $((X\times Y)-G_f)$ is open and $G_f$ is closed. 
+\end{proof}
+
+\item Suppose that $X$ and $Y$ are compact and Hausdorff. Prove that if $G_f$ is closed, then $f$ is continuous. (Hint: If $C$ is any subset of $Y$, then $\preimage{f}{C}$ can be expressed in terms of $\pi_X$.) 
+\begin{proof}
+Suppose $G_f$ is closed. Let $B, C$ be open sets such that $B\times C \subset X\times Y$. %such that $B\times C \cap G_f\neq\emptyset$.
+Now, $$\preimage{f}{C}=\pi_x(G_f\cap B\times C)\subset\pi_x(B\times C)=B.$$
+I can't figure out what to do next.
+\end{proof}
+
+\item Show by example that the statement in part (b) is false if X and Y are not compact.
+Consider $f:\R\to\R$ where 
+$$f(x)=
+\begin{cases}
+0 & x\in \{\frac{\pi}{2}, \frac{3\pi}{2}, \ldots\}\\
+\tan(x) & \text{otherwise}\\
+\end{cases}
+$$
+Now, $G_f$ is closed, but the function is clearly not continuous at any multiple of $\frac{\pi}{2}$. 
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}

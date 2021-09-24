@@ -1,0 +1,255 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Fall 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{{\LARGE Final Exam}}%=================UPDATE THIS=================%
+\end{center}
+
+\pagebreak
+\begin{enumerate}
+\item Let $X$ be a nonempty topological space and let $\{\mu_n\}_{n=1}^\infty$ be a sequence of Borel regular measures on $X$. Assume for any $A \subset X$ the sequence $\mu_n(A)$ decreases and define
+$\mu(A) = \lim_{n\to\infty} \mu_n(A)$. Prove that if $\mu_1(X) < \infty$, then $\mu$ is a measure on $X$. 
+
+\textbf{Lemma (MCT$\mathbf{\searrow}$)} The Monotone Convergence Theorem holds for nonnegative \mumeasurable{} functions $f_n\decreasesto f$\footnote{$f_n\decreasesto f$ means that $f_n\geq f_{n+1}$ for all $n$ and $\lim_{n\to\infty}f_n=f$.}, if $f_1$ is \musummable{}. \textbf{Proof}  $\{(f_1-f_n)\}_{n=1}^\infty$ is a nonnegative sequence of functions with $(f_1-f_n)\increasesto(f_1-f)$, so by the ordinary MCT
+$$\lim_{n\to\infty}\int(f_1-f_n)=\int(f_1-f)$$
+and so 
+$$\lim_{n\to\infty}\int f_1-\lim_{n\to\infty}\int f_n=\int f_1-\int f$$ 
+Thus $\lim_{n\to\infty}\int f_n = \int f$ and MCT$\searrow$ is proved. \qedwhite
+
+\begin{proof}
+We are given that 
+	\begin{itemize}
+	\item each $\mu_n$ is Borel regular,
+	\item $\mu_1(X)<\infty$, and %which means that $\mu_n(A)<\infty$ for any $A\subset X$, $n\in\N$.
+	\item $\mu_n(A)\decreasesto\mu(A)$ for any $A\subset X$.
+	\end{itemize}
+
+First, observe that $\mu_n(\emptyset)=0$ for all $n$, so $\mu(\emptyset)=0$. Now let $A\subset\bigcup_{i=1}^\infty A_i$, with $A,A_i\in X$ for all $i\in\N$. We need to show that 
+$$\measure{A}\leq\sum_{i=1}^\infty\measure{A_i}.$$
+
+Since each $\mu_n$ is a measure,
+\begin{equation}
+\mu_n(A)\leq\sum_{i=1}^\infty\mu_n(A_i)
+\end{equation}
+for all $n$. Now since for any $A$, $\mu_n(A)$ is a decreasing real sequence bounded below by 0, then it always converges, so taking limits in both sides of (1), 
+\begin{equation}
+\mu(A)\leq\lim_{n\to\infty}\sum_{i=1}^\infty \mu_n(A_i).
+\end{equation}
+%for all $n$. Now since $\mu_n(A)$ is a decreasing real sequence bounded below by 0, then it converges and  
+%$$\mu(A)=\lim_{n\to\infty}\mu_n(A)=\liminf_{n\to\infty}\mu_n(A).$$
+%So taking $\liminf$ of both sides of (1), 
+%\begin{equation}
+%\mu(A)\leq\liminf_{n\to\infty}\sum_{i=1}^\infty \mu_n(A_i).
+%\end{equation}
+Now we will view this sum as an integral. Let $f_n(x)=
+\begin{cases}
+\mu_n(A_i) \text{ where } i=\floor{x}, &\text{if } x\geq1\\
+0 &\text{if } x<1
+\end{cases}$.
+Then each $f_n$ is simple and nonnegative, and the Lebesgue integral of $f_n$ is
+$$\int_\R f_n(x)=\sum_{i=1}^\infty f_n(i)=\sum_{i=1}^\infty \mu_n(A_i),$$
+and we can substitute into (2) to find 
+\begin{equation}
+\mu(A)\leq \lim_{n\to\infty}\int_\R f_n(x).
+%\mu(A)\leq \liminf_{n\to\infty}\int_\R f_n(x).
+\end{equation}
+
+Observe that $\mu_1(A)\leq\mu_1(X)<\infty$ and $\mu_n\decreasesto\mu$, so $\mu(A)<\infty$ always. Considering the $A_i$ sets, for any $n\in\N$ either $\sum_{i=1}^\infty\mu_n(A_i)$ is finite or it is infinite. 
+
+Case I: Suppose there exists some $K$ such that  $\sum_{i=1}^\infty\mu_K(A_i)$ is finite. 
+
+Following are a few facts about the functions $f_n(x)=\mu_n(A_i)$:
+	\begin{enumerate}[label=(\roman*)]
+	\item Since $\mu_n\decreasesto\mu$, then $\sum_{i=1}^\infty\mu_k(A_i)<\infty$ for all $k>K$.
+	\item Each $f_n$ is a nonnegative simple function, and thus measurable.  
+	\item $f_k$ is $\mu$-summable for every $k>K$, since $\int_\R f_k(x)=\sum_{i=1}^\infty\mu_k(A_i)<\infty$. 
+	\item $f_n\decreasesto f$, since $\mu_n\decreasesto\mu$. 
+	\item $f_1$ is bounded above by $\mu_1(X)$, since every $A_i\subset X$ and $\mu_1$ has the monotonicity property. 
+	\item $f$ is measurable by (i) and (iii) above. 
+	\item We can assume $f$ is \musummable{}, since if not then $\sum_{i=1}^\infty\mu(A_i)=\int_\R f=\infty>\mu(A)$ and we're done. 
+	\end{enumerate}
+Let $g_n=f_{n+K}$. Now we can check that the hypotheses of MCT$\searrow$ are satisfied:
+	\begin{itemize}
+	\item $g_n$ are \mumeasurable{}
+	\item $g_1$ is \musummable{}. 
+	\item $g_n\decreasesto f$
+	\end{itemize}
+So we can apply MCT$\searrow$ and conclude that 
+$$\lim_{n\to\infty}\int_\R f_n = \lim_{n\to\infty}\int_\R g_n = \int_\R f$$ 
+so substituting into equation (3), we find that 
+$$\mu(A)\leq\int_\R f(x)= \sum_{i=1}^\infty\mu(A_i)$$
+and we are done.
+
+%Case II: Suppose $\sum_{i=1}^\infty\mu_n(A_i)$ is infinite for every $n$, and let $B\in\R$ be any large number. Then for each $n$, there exists a smallest $I_n\in\N$ such that 
+%$$\sum_{i=1}^{I_n}\mu_n(A_i)>B.$$ 
+%Since $\mu_n(A_i)\to\mu(A_i)$, then for any $\varepsilon>0$, there exists $N$ such that $|\mu_n(A_i)-\mu(A_i)|<\varepsilon$ for every $n>N$. 
+
+Case II: Suppose $\sum_{i=1}^\infty\mu_n(A_i)$ is infinite for every $n$.
+
+Since each $\mu_n$ is a Borel regular measure and $\mu_1$ is in particular, for each $A_i$ there exists a respective Borel set $B_i$ such that $B_i\subset A_i$\footnote{The textbook gives the set containment the other way, but if we find Borel set $\tilde{B}_i$ with $A^\complement_i\subset\tilde{B}_i$, then $\tilde{B}_i^\complement$ is our desired $B_i$.} and $\mu_1(A_i)=\mu_1(B_i)$, so
+$$\mu_1(A)\leq\sum_{i=1}^\infty\mu_1(B_i)=\sum_{i=1}^\infty\mu_1(A_i)$$
+Let $D_1=B_1$, and $D_n=B_n\setminus\bigcup_{i=1}^{n-1} B_i$. Then $\{D_i\}_{i=1}^\infty$ is a disjoint collection of Borel (and thus measurable) sets with $\bigcup_{i=1}^\infty D_i = \bigcup_{i=1}^\infty B_i$. Observe that 
+$$\sum_{i=1}^\infty \mu_1(D_i) = \mu_1 \left(\bigcup_{i=1}^\infty D_i\right)<\infty,$$
+and for any $n$, since $\mu_n$ is Borel, 
+$$\sum_{i=1}^\infty \mu_n(D_i) = \sum_{i=1}^\infty \left(\mu_n(B_i) - \mu_n\left(\bigcap\nolimits_{j=1}^i B_j\right)\right)\leq \sum_{i=1}^\infty \mu_n(B_i),$$
+so we can apply Case I to $A\subset\bigcup_{i=1}^\infty  D_i$ to conclude that $\mu(A)\leq\sum_{i=1}^\infty \mu(D_i)$, and since $\mu$ has the monotonicity property\footnote{This is because $\mu_n$ is a measure, so $\mu_n(A)\leq\mu_n(B)$ for all $n$, and taking limits, $\mu(A)\leq\mu(B)$.} and $D_i\subset B_i \subset A_i$, 
+$$\mu(A)\leq\sum_{i=1}^\infty \mu(D_i)\leq\sum_{i=1}^\infty \mu(B_i)\leq\sum_{i=1}^\infty \mu(A_i)$$
+and we are done. 
+\end{proof}
+
+\pagebreak
+\item Let $f:\R\to\R$ be Lebesgue-measurable. Prove that there exists a Borel-measurable function $g:\R\to\R$ such that $f(x)=g(x)$ \muae{} in $\R$. 
+\begin{proof}
+We will show that (i) every Lebesgue-measurable simple function has the desired property, and show that (ii) this implies nonnegative Lebesgue-measurable functions have the property, and thus (iii) all Lebesgue-measurable functions have the property. 
+	\begin{enumerate}[label=(\roman*)]
+	\item Let $\sigma	= \sum_{i=1}^\infty a_i \Chi_{A_i}$ be a nonnegative Lebesgue-measurable simple function with all $A_i$ sets pairwise disjoint and of finite measure\footnote{Such a disjoint collection of sets partitions $\R$, and if there are any with infinite measure, we can refine the partition by dividing the sets at every integer, i.e. if $A_i=(10,\infty)$, replace $A_i$ with $A_{i_1}=(10, 11], A_{i_2}=(12, 12],$ etc.}. 
+%Then for any open set $U$, 
+%$$\preimage{\sigma}{U}=\bigcup_{i\in\Gamma} A_i \text{, \quad where } \Gamma = \{i\in\N : a_i\in U\}$$
+We know that for every Lebesgue-measurable set $L$ with finite measure, there exists a compact (and thus Borel) set $K$ such that $K\subset L$ and $\measure{L\setminus K}<\varepsilon$ for every $\varepsilon$. So for each $A_i$, we find a collection of compact sets $\{K_i^n\}_{n=1}^\infty$ such that $K_i^n\subset A_i$ and $\measure{A_i\setminus K_i^n}<\frac{1}{k}$. Then call $K_i=\bigcup_{n=1}^\infty K_i^n$, and $K_i\subset A_i$, $K_i$ is Borel, and $\measure{K_i}=\measure{A_i}$. 
+%(In fact this is how the measure is defined\footnote{It's times like this that I \emph{really} wish we used the term \emph{outer measure.}}), so for each $A_i$, we find a Borel set $\tilde{B}_i$ such that $A_i^\complement\subset \tilde{B}_i$, and call $B_i=\tilde{B}^\complement_i$. Then
+
+Thus we can define $\beta=\sum_{i=1}^\infty a_i \Chi_{K_i}$, and note that $\beta=\sigma$ \muae{}, and if $\beta(x)\neq\sigma(x)$, then $\beta(x)=0$\footnote{In case you were concerned, $\preimage{\beta}{\{0\}}$ is Borel even if no $a_i=0$, since it is $\left(\bigcup_{i-1}^\infty K_i\right)^\complement$ in that case.}. 
+
+	\item Next, let $f$ be any nonnegative Lebesgue-measurable function, and let $\sigma_n$ be a sequence of nonnegative Lebesgue-measurable simple functions with $\sigma_n\,\increasesto f$. By (i), produce Borel measurable functions $\beta_n$ with $\beta_n=\sigma_n$ \muae{}. Since $\sigma_n\to f$ and $\beta_n=0$ whenever $\beta_n\neq\sigma_n$, then $\beta_n$ converges to a function we can call $g=\lim_{n\to\infty} \beta_n$. To see that $g$ is Borel measurable, we show that $\liminf \beta_n$ and $\limsup \beta_n$ are Borel measurable.
+	\begin{align*}
+	\preimage{(\limsup_{n\to\infty} \beta_n)}{-\infty,b} &= \{x\in\R: \limsup_{n\to\infty} \beta_n(x)<b\}\\
+	&= \{x\in\R: \forall k>0, \exists n>k \text{ s.t. } \beta_n(x)<b\}\\
+	&= \bigcap_{k=1}^\infty\bigcup_{n>k}\preimage{\beta_n}{\infty,b}
+	\end{align*}
+which is Borel. A similar argument shows that $\liminf \beta_n$ is Borel measurable, so $g=\liminf \beta_n=\limsup \beta_n$ is as well. 
+%	$$\preimage{g}{U}=\preimage{\left(\lim_{n\to\infty}\beta_n\right)}{U}=\left\lbrace x\in\R : \lim_{n\to\infty}\beta_n(x) \in U\right\rbrace$$
+%	and let $x\in\preimage{g}{U}$. Since $U$ is open, there exists $\varepsilon>0$ such that the ball $B_\varepsilon(g(x))\subset U$, so there are infinitely many $n$ such that $\beta_n(x)\in U$, which means $x\in\limsup_{n\to\infty} \preimage{\beta_n}{U}$, which is a Borel set. Conversely if $x\in\limsup_{n\to\infty} \preimage{\beta_n}{U}$, then 
+	
+	\item Finally, we observe that if $f$ is any Lebesgue-measurable function, it can be written as $f=f^+-f^-$ where 
+	\begin{align*}
+	f^+(x)&=\begin{cases}
+	f(x), & f(x)\geq0\\
+	0, & \text{otherwise}\\
+	\end{cases} &
+	f^-(x)&=\begin{cases}
+	f(x), & -f(x)\leq0\\
+	0, & \text{otherwise}\\
+	\end{cases} \\
+	\end{align*}
+	and we can use (ii) to produce Borel measurable functions $g^+$ and $g^-$ such that $g^+=f^+$ \muae{} and $g^-=f^-$ \muae{}, so letting $g=g^+-g^-$, we find that $g=f$ \muae{}, and all that remains is to show that $g$ is Borel measurable: 
+	
+	\hspace{.55in}$\preimage{g}{-\infty, b} = \{x\in\R : g^+(x)-g^-(x)<b\}
+	= \begin{cases}
+	\preimage{(g^-)}{b,\infty}, & \text{if }b\leq0\\
+	%\preimage{(g^-)}{0}\cap\preimage{(g^+)}{0}, & \text{if }b=0\\
+	\preimage{(g^+)}{0,b}, & \text{if }b>0\\
+	\end{cases}$
+	%
+	%\begin{align*}
+	%\preimage{g}{-\infty, b} &= \{x\in\R : g^+(x)-g^-(x)<b\}\\
+	%&= \begin{cases}
+	%\preimage{(g^-)}{b,\infty}, & \text{if }b\leq0\\
+	%%\preimage{(g^-)}{0}\cap\preimage{(g^+)}{0}, & \text{if }b=0\\
+	%\preimage{(g^+)}{0,b}, & \text{if }b>0\\
+	%\end{cases}
+	%\end{align*}
+	
+	which is a Borel set in either case. \qedhere
+	\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+\pagebreak
+\item Let $X$ be nonempty and let $\mu$ be a measure on $X$. Assume $A_n \subset X$ are \mumeasurable{} for $n = 1, 2, \dots$ and assume the sequence $\Chi_{A_n}$ converges in measure to some function $f : X \to \R$. Prove that there exists a \mumeasurable{} set $A \subset X$ such that $f = \Chi_A$ \muae{} in $X$.
+\begin{proof}
+Since $\Chi_{A_n} \xrightarrow{\mu} f$, then there exists a subsequence $\Chi_{A_{n_k}} \to f$ \muae{}. Thus we can let 
+$$A=\{x\in X : \lim_{k\to\infty} \Chi_{A_{n_k}}(x) = 1\}$$
+That is, $A^\complement$ contains all $x\in X$ where $\lim_{k\to\infty} \Chi_{A_{n_k}}(x) = 0$ or DNE. Now observe that 
+$$\Chi_A=f \text{ \muae{},}$$
+Since $\Chi_A=\lim_{k\to\infty} \Chi_{A_{n_k}}$ except when the limit DNE, and the limit certainly does not agree with $f$ when it DNE, so 
+$$\mu(\{x\in X : \lim_{k\to\infty} \Chi_{A_{n_k}}(x) \text{ DNE}\})=0.$$
+Thus $\Chi_A = \lim_{k\to\infty} \Chi_{A_{n_k}}$ \muae{} and $\lim_{k\to\infty} \Chi_{A_{n_k}} = f$ \muae{}, so $\Chi_A = f$ \muae{}
+
+To see that $A$ is measurable, observe that $\Chi_A = \lim_{k\to\infty} \Chi_{A_{n_k}}$ \muae	{} and each $\Chi_{A_{n_k}}$ is a measurable function, so their limit is measurable. Thus 
+$$\{x\in X : \tfrac{1}{2} < \Chi_A(x) < \tfrac{3}{2} \}=A$$
+is measurable, and we're done. 
+\end{proof}
+
+\pagebreak
+\item Let $X$ be nonempty and let $\mu$ be a measure on $X$. Assume $f_n, f : X \to \R$ are \mumeasurable{}	functions such that for each $\varepsilon > 0$ one has
+$$\sum_{n=1}^\infty \mu\big(\{x: |f_n(x)- f(x)|>\varepsilon\}\big)<\infty.$$
+Prove that $f_n\to f$ \muae{} in $X$. 
+\begin{proof}
+Let $\varepsilon>0$.	Since the sum is finite, then the tail of the sum goes to zero, so the terms go to zero. That is, since 
+\begin{align*}
+\sum_{n=1}^\infty \mu\big(\{x: |f_n(x)- f(x)|>\varepsilon\}\big)&<\infty, \quad \text{then}\\
+\lim_{k\to\infty} \sum_{n=k}^\infty \mu\big(\{x: |f_n(x)- f(x)|>\varepsilon\}\big)&=0, \quad \text{so}\\
+\lim_{n\to\infty} \mu\big(\{x: |f_n(x)- f(x)|>\varepsilon\}\big)&=0, \quad \text{so}\\
+\end{align*}
+\vspace{-32pt}
+$$f_n\xrightarrow{\mu}f. $$
+Since $f_n\xrightarrow{\mu}f$, then there exists a subsequence $f_{n_k}\to f$ \muae{} 
+
+To see that the more general case of $f_n\to f$ \muae{} holds, suppose not. Denote
+$$A_\delta = \{x\in X : \lim_{k\to\infty} f_{n_k}(x) \neq f(x)\}.$$
+We know that 
+\begin{align*}
+\sum_{n=1}^\infty \mu (B^\varepsilon_n )&<\infty \text{, where}\\
+B^\varepsilon_n &= \{x: |f_n(x)- f(x)|>\varepsilon\}\\
+\end{align*}
+For any $x\in X$, if $\lim_{n\to\infty}|f_n(x)-f(x)|$ exists and nonzero, then $x\in A_\delta$. So we can observe the following about "the bad set" of $f_n$:
+\begin{align*}
+\measure{A} &> 0 \text{, where }  \\
+A &= \left\lbrace x\in X : \lim_{n\to\infty}|f_n(x)-f(x)| \text{ DNE}\right\rbrace.
+\end{align*}
+Let $x\in A\setminus A_\delta$, so $f_{n_k}(x)\to f(x)$, but $f_{n}(x)\not\to f(x)$. Then there exists a subsequence $f_{n_j}(x)$ such that $f_{n_j}(x)\to L\neq f(x)$, where $L\in[-\infty,\infty]$. Then 
+$$\lim_{j\to\infty}|f_{n_j}(x)-f(x)|=|L-f(x)|$$
+so for small $\varepsilon$, there exists $J\in\N$ such that $|f_{n_j}(x)-f(x)|>\varepsilon$ for every $j>J$. This means $x$ is in infinitely many $B^\varepsilon_n$, so $(A\setminus A_\delta)\subset \limsup_{n\to\infty} B^\varepsilon_n$ and by the Borel-Cantelli Lemma, they both have measure zero. This contradicts that $A$ has positive measure, 
+%since $A_\delta$ has measure zero thus is measurable, 
+since $A\subset (A\setminus A_\delta) \cup A_\delta$. \qedhere
+%Let $\varepsilon=\frac{1}{k}$. Let 
+%\begin{align*}
+%A_k&=\{x: |f_k(x)- f(x)|>\tfrac{1}{k}\}\\
+%B_m&=\bigcup_{k=m}^\infty A_k\\
+%\end{align*}
+
+
+\end{proof}
+
+
+
+\end{enumerate}
+
+\end{document}

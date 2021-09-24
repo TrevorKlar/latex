@@ -1,0 +1,214 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\let\wideclosure\closure
+\renewcommand{\closure}{\bar}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 2}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Prove that both weak and weak* topologies are Hausdorff. 
+
+\begin{proof}
+Let $x\neq y\in X$. Define $f(y-x)=1$ and extend linearly on the subspace spanned by $y-x$. By Hahn-Banach, we can extend $f$ to $\phi:X\to\R$ and find that $W_\frac{1}{2}(x;\phi)$ and $W_\frac{1}{2}(y;\phi)$ are disjoint weak neighborhoods which separate $x$ and $y$. Thus the weak topology is Hausdorff. \qedwhite
+
+Let $\phi\neq\psi\in X^*$. Since they are not equal as functions, there is some $x\in X$ with $\phi(x)\neq\psi(x)$. Denoting $r=\phi(x)-\psi(x)$, then $W_\frac{1}{2}(\phi;x)$ and $W_\frac{1}{2}(\psi;x)$ are disjoint weak* neighborhoods which separate $\psi$ and $\phi$. Thus the weak* topology is Hausdorff.
+\end{proof}
+
+\renewcommand{\B}{\closure{B}(X)}
+\item Let $X$ be Banach, and let $S$ be the unit sphere in $X$. Find the weak closure $\closure{S}^w$ of $S$. 
+
+\answer $\closure{S}^w=\B$, the closed unit ball in $X$.
+
+%\renewcommand{\B}{\closure{B}^X}
+\renewcommand{\S}{\closure{S}^w}
+\begin{proof}
+Let $x\in \B$. Since any weak neighborhood $W$ of $x$ contains an infinite-dimensional hyperplane in $X$, then $W$ also contains a point $y$ of any magnitude greater than that of $x$, in particular there exists $y\in W$ with $\norm{y}=1$, so $y\in S$. Thus $x\in \S$. 
+
+Next, let $x\not \in \B$. By Hahn-Banach there exist a functional $\phi$ which separates\footnote{That is, maps $x$ into $(1,\infty)$ and maps $\B$ into $(0,1)$. } the convex compact set $\{x\}$ from the convex closed set $\B$, so letting $r=\phi(x)-1$, we have $W_r(x;\phi)$ contains $x$ and is disjoint with $\B$, so $x\not\in \S$. 
+\end{proof}
+
+\item (i) Show that the set of all weak* neighborhoods
+$$W(\phi;x_1, \dots, x_n)$$
+forms a basis for a topology on $X^*$. 
+
+(ii) Show that convergence of a sequence $(\phi_n)_{n=1}^\infty$ in this topology is equivalent to weak* convergence. 
+
+\begin{proof}
+(i) Denote the set of all weak* neighborhoods by $\script{B}$. Note that $\script{B}$ covers $X^*$ since $W(\phi;0)$ is the whole space for any $\phi\in X^*$. 
+
+Let $W(\phi_1,x), W(\phi_2,y) \in \script{B}$. 
+
+\jpg{width=0.3\textwidth}{hw2-p3-2}
+
+For any $\psi$ in the intersection of these two weak* neighborhoods, 
+\begin{align*}
+\abs{\angles{\psi,x}-\angles{\phi_1,x}}&<1 \text{ and} \\
+\abs{\angles{\psi,y}-\angles{\phi_2,y}}&<1,
+\end{align*}
+so if we denote $r$ as the smaller of the two quantities above, then 
+$$\psi \in W_r(\psi;x,y) \subset W(\phi_1;x) \cap W(\phi_2;y).$$
+Since this holds for two arbitrary weak* neighborhoods, then it holds for finitely many. Therefore $\script{B}$ is a basis for a topology. \qedwhite 
+
+
+%\pagebreak
+(ii) Denote convergence in the topology by $\phi_n\xto{T}\phi$. 
+
+Suppose $\phi_n\xto{T}\phi$. Then by definition, for every $\epsilon>0$ and $x\in X$, there exists $N>0$ such that for all $n>N$, 
+$$\phi_n\in W_\epsilon(\phi;x),$$
+which is to say 
+$$\abs{\angles{\phi_n,x}-\angles{\phi,x}}<\epsilon,$$
+which statement is exactly the definition of 
+$$\phi_n\xto{w^*}\phi.$$ 
+This proof also works in reverse, so we are done.
+\end{proof}
+
+\item Let $(x_n)$ be a sequence in $\ell^1$ such that $x_n\xto{w}y$ and $\norm{x_n}_{\ell^1}\to\norm{y}_{\ell^1}$. Prove that $x_n\xto{\ell^1} y$. 
+
+
+\begin{proof}
+Let $\epsilon>0$. Since $\norm{x_n}\to\norm{y}$, there exists $N_1$ such that for all $n>N_1$, 
+$$\left|\sum_{j=1}^\infty\abs{x_{nj}}-\sum_{j=1}^\infty\abs{y_j}\right|<\epsilon.$$
+Since $\norm{y}<\infty$, then there exists $J$ such that 
+$$\sum_{j=J}^\infty\abs{y_j}<\epsilon,$$ 
+which means that for all $n>N_1$ we have $\sum_{j=J}^\infty\abs{x_{nj}}<2\epsilon$, so 
+\begin{align}
+\sum_{j=J}^\infty \abs{x_{nj}-y_j} &\leq \sum_{j=J}^\infty \abs{x_{nj}}+\abs{y_j} \nonumber \\
+&< 3\epsilon.
+\end{align}
+
+Now observe that since $x_n\xto{w}y$, then in particular $\angles{x_n,e_j}\xto{n}\angles{y,e_j}$ where $e_j$ is the functional which simply returns the $j$-th coordinate. This means that	for all $j$ we have $ x_{nj}\xto{n}y_j$, so there exists some $M_j$ such that if $n>M_j$, we have $\abs{x_{nj}-y_j}<\epsilon$. Let $N_2=\max_{j\leq J} M_j$, then for all $n>N_2$,
+\begin{equation}
+\sum_{j=1}^J \abs{x_{nj}-y_j}<J\epsilon.
+\end{equation}
+Combining (1) and (2) yields 
+$\sum_{j=1}^\infty \abs{x_{nj}-y_j}<(J+3)\epsilon,$
+and after rescaling, we're done.
+\end{proof}
+
+
+\renewcommand{\B}{\closure{B}}
+\item Prove that the closed unit ball $\B(X)$ in a Banach space $X$ is weakly closed. Prove that $\B(X^*)$ is weak* closed. 
+
+\begin{proof}
+%Use p2 and B-A.
+We showed in problem 2 that the weak closure of $S(X)$ is $\B(X)$, so it is weakly closed. 
+
+\renewcommand{\B}{\closure{B}(X^*)}
+Now we show that $\B$ is weak* closed. Observe:
+	\begin{itemize}
+	\item $\B$ is weak* compact by Banach-Alaoglu.
+	\item $\B$ is weak* Hausdorff. \\
+	\textit{Proof} Let $\phi\neq\psi\in\B$. Since $\phi\neq\psi$ as functions on $X$, there exists $x\in X$ with $\angles{x,\phi}\neq\angles{x,\psi}$. Letting $a=\text{avg}(\angles{x,\phi},\angles{x,\psi})$ we have $\hat{x}\in X\subset X^{**}$ a linear functional on $X^*$ such that $\angles{x,\phi}<a$ and $\angles{x,\psi}>a$. Since $\hat{x}$ is weak* continuous by definition of the weak* topology, then $\preimage{\hat{x}}{-\infty,a}$ and $\preimage{\hat{x}}{a,\infty}$ are open sets which separate $\phi$ and $\psi$, so $\B$ is weak* Hausdorff. \qedwhite
+	\item $\B$ is weak* closed. \\
+	\textit{Proof} In this proof, all topological terms refer to the weak* topology. We will show that $\B^\complement=X^*\setminus\B$ is open. Let $\psi\not\in\B$. Since $\B$ is Hausdorff, for every $\phi_\alpha\in\B$, there exist open sets $U_\alpha, V_\alpha$ which separate $\phi_\alpha$ and $\psi$, respectively. Since $\{U_\alpha\}$ is an open cover of $\B$, it has a finite subcover $\{U_i\}$ with a corresponding finite collection of sets $\{V_i\}$. Since $\bigcap_i V_i\subset V_i$ for all $i$, then the intersection is disjoint with $\bigcup_i U_i$ which covers $\B$. Thus $\bigcap_{i=1}^N V_i\subset V_i$ is an open subset of $\B^\complement$ containing $\psi$, so we're done. \qedhere
+	\end{itemize}
+\end{proof}
+
+
+\renewcommand{\B}{\closure{B}(X^*)}
+\renewcommand{\phi}{\oldphi}
+\newcommand{\dball}{\tensor[_d]{B}{_{r}}(0)}
+\item Prove the statement from the lectures: Let $X$ be a separable Banach space with a dense set $U=\{u_n\}_{n\in\N}$.
+%, and let $\B$ be the closed unit ball in $X^*$
+Then the weak* topology restricted to $\B$ denoted $\sigma(\B,X)$, 
+coincides with the topology of the metric
+$$d(\phi,\psi)=\sum_{n=1}^\infty 2^{-n} \frac{\abs{(\phi-\psi)(u_n)}}{1+\abs{(\phi-\psi)(u_n)}}.$$
+
+\begin{proof}
+Since we are working in $\B$, then every functional has norm at most 1. Since the two topologies are both translation invariant, it suffices to show that $W(0;p)$ is open in the $d$-topology and that the $d$-ball $\tensor[_d]{B}{_{r}}(0)$ is open in the weak* topology. 
+
+\pagebreak
+
+Let $W(0,p)$ be an arbitrary subbasic weak* neighborhood in $\sigma(\B,X)$, centered at 0. Let 
+$$\phi\in W(0,p).$$
+
+We will produce a $d$-ball $\dball \subset W(0,p)$. 
+Since $U$ is dense in $X$, then there exists some $u_N$ such that 
+$$\norm{u_N-p}<\tfrac{1}{3}.$$
+Let
+$$r=\frac{1}{(3)(2^{N+1})}_.$$
+Then if $\psi \in \dball$, then
+$$\sum_{n=1}^\infty 2^{-n} \frac{\abs{(\psi)(u_n)}}{1+\abs{(\psi)(u_n)}} < r,$$
+and since the whole sum is bounded by $r$, then in particular so is each term since they are all positive. Thus
+\begin{alignat*}{3}
+&&2^{-N} \frac{\abs{\psi(u_N)}}{1+\abs{\psi(u_N)}} & < \frac{1}{(3)(2^{N+1})} \\
+&\implies &2{\abs{\psi(u_N)}} &< \frac{1+\abs{\psi(u_N)}}{3} \\
+&\implies &{\abs{\psi(u_N)}} &< \frac{1}{5}.
+\end{alignat*}
+Now we observe that $\psi\in W(0,p)$:
+\begin{align*}
+|\psi(p)|&\leq |\psi(p-u_N)| + |\psi(u_N)| \\
+&< \norm{\psi}\norm{u_N-p} + \frac{1}{5} \\
+&< \frac{1}{3} + \frac{1}{5}\\
+&< 1
+\end{align*}
+Thus the weak* topology is a subset of the $d$-topology. \qedwhite
+
+Let $\dball$ be an arbitrary $d$-ball centered at 0. Then fix $\phi\in \dball$, and observe that
+$$\norm{\phi}_d=\sum_{n=1}^\infty 2^{-n}\frac{\abs{\phi(u_n)}}{1+\abs{\phi(u_n)}}<r$$
+and since this sum converges, there exists $N>0$ such that $\sum_{n=1}^\infty 2^{-n}\frac{\abs{\phi(u_n)}}{1+\abs{\phi(u_n)}}<\epsilon$ for all $\epsilon>0$. Let 
+$$\delta=\min_{n\leq N}\left(\frac{r}{(N)2^{-n+1}-r}\right),$$
+so that for all $n<N$, 
+$$2^{-n}\frac{\delta}{1+\delta}<\frac{r}{2N}.$$
+Consider $W_\delta(0;u_1, u_2, \dots, u_N).$ For any $\phi$ in this weak neighborhood, $\abs{\phi(u_n)}<\delta$ for all $n<N$, so 
+\begin{align*}
+\sum_{n=1}^\infty 2^{-n}\frac{\abs{\phi(u_n)}}{1+\abs{\phi(u_n)}}
+&=\sum_{n=1}^N 2^{-n}\frac{\abs{\phi(u_n)}}{1+\abs{\phi(u_n)}}
+  + \sum_{n=N}^\infty 2^{-n}\frac{\abs{\phi(u_n)}}{1+\abs{\phi(u_n)}}\\
+&\leq \sum_{n=1}^N \frac{r}{2N}
+  + \epsilon\\
+&=\frac{r}{2}+\epsilon\\
+&<r.
+\end{align*}
+Thus the $d$-topology is a subset of the weak* topology.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+\end{document}

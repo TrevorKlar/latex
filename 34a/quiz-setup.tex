@@ -1,0 +1,127 @@
+%%
+%% Packages:
+%%
+\usepackage{amsmath,amstext}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{xparse} % For multiple optional arguments
+
+
+\setlist[enumerate,1]{leftmargin=*}
+\setlist[enumerate,2]{leftmargin=*,labelindent=-\labelwidth}
+% \setlist[itemize]{\leftmargin=*}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{8in}
+\setlength{\oddsidemargin}{-0.7in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\topmargin}{-1in}
+\setlength{\textheight}{10.5in}
+\setlength{\headheight}{0in}
+
+
+
+% \setlength{\VerticalBar}{{\leaders\vline width 1pt}}
+
+\newcommand{\faintcolor}{gray!50}
+
+
+
+%%
+%% Common commands:         CHANGE QUARTER, CLASS, TAs HERE
+%%
+
+\newcommand{\Quarter}{Spring 2021}
+\newcommand{\CourseName}{Math 34A}
+\newcommand{\TAOne}{Trevor}
+\newcommand{\TATwo}{Nick}
+%\newcommand{\TAThree}{Trevor}
+
+\newcommand{\Points}[1]{[\ \ \ \ \ \ /#1]}
+
+\newcommand{\checkbox}{\framebox[4mm]{\rule{0mm}{2mm}}}
+
+\newcommand{\antilog}{\operatorname{antilog}}
+
+\newcommand{\answerbox}[1]{%
+	\begin{tikzpicture}[x=10mm,y=10mm,baseline=6mm] %
+	\draw[thick,black] (0,0) rectangle (#1,1.5);%
+	\end{tikzpicture}%
+}
+
+\NewDocumentCommand{\questionbox}{O{0mm}O{}O{0}mmm}{%
+  %%
+  %% Arguments:
+  %%    #1: length (positive or negative) to shift answer box up/down
+  %%    #2: extra command in tikzpicture box
+  %%    #3: extra height (positive only?) -- multiple of 12mm.
+  %%    #4: width of parbox
+  %%    #5: width of answer box rectangle (height = 12mm)
+  %%    #6: actual question
+  %%
+  \parbox[t]{#4}{#6}{
+      \hfill
+      \begin{tikzpicture}[x=#5,y=12mm,baseline={#1+8mm}]
+        \draw[thick,black] (0,{0-#3}) rectangle (2,{1+#3});
+        {#2};
+      \end{tikzpicture}
+    }
+  }
+
+\NewDocumentCommand{\shortquestionbox}{O{0mm}O{}O{0}mmm}{%
+  %%
+  %% Arguments:
+  %%    #1: length (positive or negative) to shift answer box up/down
+  %%    #2: extra command in tikzpicture box
+  %%    #3: extra height (positive only?) -- multiple of 12mm.
+  %%    #4: width of parbox
+  %%    #5: width of answer box rectangle (height = 12mm)
+  %%    #6: actual question
+  %%
+  \parbox[t]{#4}{#6}{
+    \ 
+    \begin{tikzpicture}[x=#5,y=12mm,baseline={#1+8mm}]
+      \draw[thick,black] (0,{0-#3}) rectangle (2,{1+#3});
+      {#2};
+    \end{tikzpicture}
+    \hfill
+    \ 
+    }
+  }
+
+%%
+%% Problem & Part (etc)
+%%    
+\newcounter{problemnumber}
+\newcounter{partnumber}
+\newcounter{subpartnumber}
+\newcommand{\Problem}{%
+  \refstepcounter{problemnumber}%
+  \setcounter{partnumber}{0}%
+  \setcounter{subpartnumber}{0}%
+  \item[\makebox{\hfil\textbf{\theproblemnumber.}\hfil}]%
+  }
+%%  Part:
+\newcommand{\Part}{%
+  \renewcommand{\thepartnumber}{(\alph{partnumber})}%
+  \refstepcounter{partnumber}
+  \setcounter{subpartnumber}{0}%
+  \item[(\alph{partnumber})]%
+}
+\newcommand{\NoPart}{%
+  \refstepcounter{partnumber}
+  \renewcommand{\thepartnumber}{(\alph{partnumber})}%
+  \setcounter{subpartnumber}{0}%
+  (\alph{partnumber})%
+}
+%% SubPart:
+\newcommand{\SubPart}{%
+  \refstepcounter{subpartnumber}%
+  \item[(\roman{subpartnumber})]%
+  }
+
+
+
+

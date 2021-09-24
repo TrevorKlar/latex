@@ -1,0 +1,209 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\title{Math 462 - Advanced Linear Algebra \linebreak
+	Homework 2}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercises:}
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item Let $G_0$ and $G_1$ be groups. Consider the set 
+$$G_0\times G_1 = \{(s_0,s_1):s_0 \in G_0, s_1 \in G_1\}$$
+This is just the Cartesian product of the two sets $G_0$ and $G_1$. Define an operation on $G_0\times G_1$ as follows:
+$$(s_0,s_1)(t_0,t_1) = (s_0t_0,s_1t_1) \quad \forall s_0,t_0\in G_0, s_1,t_1 \in G_1$$
+Show that $G_0\times G_1$ is a group with respect to this operation. 
+\begin{proof}
+To show that $G_0\times G_1$ is a group with respect to this operation, it suffices to show that the associative, identity, and inverse properties hold.
+
+Associative property: Consider the product $(s_0,s_1)(t_0,t_1)(u_0,u_1)$. 
+\[
+\begin{array}{rcl}
+((s_0,s_1)(t_0,t_1))(u_0,u_1) &=& (s_0t_0,s_1t_1)(u_0,u_1) \\
+&=& ((s_0t_0)u_0,(s_1t_1)u_1)\\
+&=& (s_0(t_0u_0),(s_1(t_1u_1))\\
+&=& (s_0,s_1)(t_0u_0,t_1u_1)\\
+&=& (s_0,s_1)((t_0,t_1)(u_0,u_1))\\
+\end{array}
+\]
+
+Identity property: If $e_0$ and $e_1$ are the identities of $G_0$ and $G_1$, respectively, then $(e_0,e_1)$ is the identity of $G_0\times G_1$ as shown below:
+\[
+\begin{array}{rcl}
+(s_0,s_1)(e_0,e_1) &=& (s_0e_0,s_1e_1)\\
+&=& (s_0,s_1)\\
+\end{array}
+\]
+
+Inverse property: Since $G_0$ and $G_1$ are groups, then the inverse of any $(s_0,s_1)$ can be found using the inverses of its components; that is, $(s_0^{-1},s_1^{-1})$. Proof follows:
+\[
+\begin{array}{rcl}
+(s_0,s_1)(s_0^{-1},s_1^{-1}) &=& (s_0s_0^{-1},s_1s_1^{-1})\\
+&=& (e_0,e_1)\\
+\end{array}
+\]
+\end{proof}
+
+\item Show that $G_0\times G_1 \cong G_1\times G_0$. (Explicitly construct the isomorphism. This is easy.)
+\begin{example*}
+Let $f(s_0,s_1)=(s_1,s_0)$. First we will show that $f$ is a homomorphism:
+\[
+\begin{array}{rcl}
+f((s_0,s_1)(t_0,t_1)) &=& f(s_0t_0,s_1t_1)\\
+&=& (s_1t_1,s_0t_0)\\
+&=& (s_1,s_0)(t_1,t_0)\\
+&=& f(s_0,s_1)f(t_0,t_1)\\
+\end{array}
+\]
+
+Next, we mention that $f$ is clearly bejective. $(s_0,s_1)$ can clearly be the only element which maps to $(s_1,s_0)$, so $f$ is 1-1. Similarly, given any $(s_1,s_0)$, there is always a corresponding $(s_0,s_1)$ such that $f(s_0,s_1) = (s_1,s_0)$. \qed
+\end{example*}
+
+\item Continuing in this same context, consider the functions 
+\[
+\begin{array}{rcl}
+\rho_0:G_0\times G_1 &\to& G_0\\
+(s_0,s_1) &\mapsto& s_0\\
+\\
+\rho_1:G_0\times G_1 &\to& G_1\\
+(s_0,s_1) &\mapsto& s_1\\
+\end{array}
+\]
+These are called \emph{projection maps}. Show that both maps are surjective homomorphisms and compute the kernel of each. 
+
+\begin{proof}\mbox{}\\
+\begin{itemize}
+\item $\rho_0$ is surjective because given any $s_0 \in G_0$, we can choose an arbitrary $s_1 \in G_1$ and find that $\rho_0(s_0,s_1)=s_0$. 
+
+\item $\rho_0$ is a homomorphism because 
+\[
+\begin{array}{rcl}
+\rho_0((s_0,s_1)(t_0,t_1)) &=& \rho_0(s_0t_0,s_1t_1)\\
+&=& s_0t_0\\
+&=& (s_0)(t_0)\\
+&=& \rho_0(s_0,s_1)\rho_0(t_0,t_1)\\
+\end{array}
+\]
+
+\item $\ker(\rho_0)=\{(e_0,s_1): \forall s_1 \in G_1\}$, where $e_0$ is the identity of $G_0$.
+
+\item $\rho_1$ is surjective because given any $s_1 \in G_1$, we can choose an arbitrary $s_0 \in G_0$ and find that $\rho_1(s_0,s_1)=s_1$. 
+
+\item $\rho_0$ is a homomorphism because 
+\[
+\begin{array}{rcl}
+\rho_1((s_0,s_1)(t_0,t_1)) &=& \rho_1(s_0t_0,s_1t_1)\\
+&=& s_1t_1\\
+&=& (s_1)(t_1)\\
+&=& \rho_1(s_0,s_1)\rho_1(t_0,t_1)\\
+\end{array}
+\]
+
+\item $\ker(\rho_1)=\{(s_0,e_1): \forall s_0 \in G_0\}$, where $e_1$ is the identity of $G_1$.
+\end{itemize}
+\end{proof}
+
+\item Consider the special case of the direct product $G\times G$ of a group $G$ with itself. Define a subset $D$ of $G\times G$ by 
+$$D=\{(s,s):s\in G\}$$
+That is, $D$ consists of all elements with both coordinates equal. Show that $D$ is a subgroup of $G\times G$. This is called the \emph{diagonal subgroup}. Do you see why? 
+
+\begin{proof}
+To show that $D$ is a subgoup of $G\times G$, it suffices to show that $D\subset G\times G$ and $D$ is closed under the operation. It is given that $D\subset G\times G$. 
+
+Let $s,t \in G$ such that $st = u$. Then, $(s,s),(t,t) \in D$. 
+\[
+\begin{array}{rcl}
+(s,s)(t,t)&=&(st,st)\\
+&=&(u,u)\\
+&\in&D
+\end{array}
+\]
+\end{proof}
+
+I can see that this is called the diagonal subgroup because a table or graph of $G\times G$ will list the elements of $D$ on its main diagonal. 
+
+\item Consider the direct product $\R\times\R$ of the additive group of real numbers with itself and the function $j:\R\times\R\to\R$ defined by $j(x,y)=2x-y$. Show that $j$ is a homomorphism of groups; describe its kernel and image. 
+
+\[
+\begin{array}{rcl}
+j:(\R^2,+) &\to& (\R,+)\\
+(x,y) &\mapsto& 2x+y
+\end{array}
+\]
+
+\textbf{Claim: }$j$ is a homomorphism.
+\begin{proof}
+\[
+\begin{array}{rcl}
+j:((x_1,y_1)+(x_2,y_2)) &=& j:(x_1+x_2,y_1+y_2)\\
+&=& 2(x_1+x_2)-(y_1+y_2)\\
+&=& 2x_1+2x_2-y_1-y_2\\
+&=& (2x_1-y_1)+(2x_2-y_2)\\
+&=& j:(x_1,y_1)+j(x_2,y_2)\\
+\end{array}
+\]
+\end{proof}
+\textbf{Kernel:} $\ker(j)=\{(x,y):y=2x\}$\\
+\textbf{Image:} $\image(j)=\R$. 
+
+\setcounter{enumi}{2}
+\item (From the Problem Set) Given any ring $R$, the set of all two by two matrices with entries in $R$, denoted $M_2(R)$, forms a ring under matrix addition and matrix multiplication (when adding and multiplying these matrices together, you would be using the addition and multiplication in $R$). 
+
+Suppose $R=\R[x]$, the polynomial ring in $x$ over $R$.  Write down the identity under addition in $M_2(R)$, the identity under multiplication in $M_2(R)$, and write down an element (which would be a two by two matrix) in $M_2(R)$ that has an inverse under multiplication, such that at least one of the entries is a non-constant polynomial in $x$. Such matrices are important in studying the stability of systems in control theory, a branch of systems engineering.
+
+\begin{example*}
+\[
+0_{M_2(R)}= 
+\left[ \begin{array}{cc}
+f(x)=0 & f(x)=0 \\
+f(x)=0 & f(x)=0 \\
+\end{array} \right]
+\]
+
+\[
+1_{M_2(R)}= 
+\left[ \begin{array}{cc}
+f(x)=1 & f(x)=0 \\
+f(x)=0 & f(x)=1 \\
+\end{array} \right]
+\]
+
+???????????????????????????????????????????
+
+\[
+A= 
+\left[ \begin{array}{cc}
+x & 2x \\
+-x & 2x \\
+\end{array} \right]
+\]
+
+\[
+A^{-1}= 
+\left[ \begin{array}{cc}
+\frac{1}{2}x & -\frac{1}{2}	x \\
+\frac{1}{4}x & \frac{1}{4}x \\
+\end{array} \right]
+\]
+\end{example*}
+
+\end{enumerate}
+
+\end{document}

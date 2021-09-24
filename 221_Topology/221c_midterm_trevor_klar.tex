@@ -1,0 +1,191 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221c - Differential Topology} \\Quarter of COVID-19} 
+\rhead{\textsc{Long, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\oldphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\H}{\mathbb{H}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Midterm Exam}%=================UPDATE THIS=================%
+\end{center}
+
+
+\begin{enumerate}
+
+
+\setcounter{enumi}{-1}
+\item 
+	\begin{enumerate}[label=(\alph*)]
+	\item \mbox{}	\vspace*{-1.33\baselineskip}
+	\begin{definition*}
+	Let $S\subset \R^k$. We says that a map $\phi:S\to \R^q$ is \emph{smooth} if all partial derivatives (of all orders) of $\phi$ exist.
+	\end{definition*}
+	
+	\item \mbox{}	\vspace*{-1.33\baselineskip}
+	\begin{definition*}
+	Let $X\subset\R^n$, and $x\in X$. A \emph{chart of $X$ near $x$} is a diffeomorphism $\phi$ between open sets $U\ni \preimage{\phi}{x}$ and $V\ni x$ where $U \subset \R^k$ (or $	\H^k$ in the case of manifolds with boundary), and $V\subset X$. 
+	\end{definition*}		
+	\begin{remark*}
+	We generally assume $\phi(0)=x$, unless we have reason to do otherwise. 
+	\end{remark*}
+	\begin{definition*}
+	Let $X\subset\R^n$. We say that $X$ is a \emph{smooth $k$-manifold with boundary} if every $x\in X$ has a chart $\phi:U\subset \H^k \to V\subset X$. 
+	\end{definition*}
+	
+	\begin{remark*}
+	Since any point $x$ with a chart from $\R^k$ also has a chart from the interior of $\H^k$ (just shift the domain up enough), then if we just say \emph{smooth manifold}, we mean a smooth manifold with boundary (whose boundary may or may not empty).
+	\end{remark*}
+	
+	\item \mbox{}	\vspace*{-1.33\baselineskip}
+	\begin{definition*}
+	From calculus, the \emph{derivative of $f$ at $x$ in the direction of $v$} is 
+	$$\lim_{t\to0}\frac{f(\vec x+t\vec v)-f(\vec x)}{t}$$
+	\end{definition*}
+	\begin{definition*}
+	Let $X$ be a smooth $k$-manifold with $x\in X$, and assume that a chart $\phi$ has $\phi(0)=x$. We define \emph{the tangent space of $X$ at $x$} as 
+	$$T_x(X)=\der\phi_0(\R^k),$$
+	that is, the tangent space is the image of the derivative of the chart.
+	\end{definition*}
+	
+	\item \mbox{}	\vspace*{-1.5\baselineskip}
+	\begin{definition*}
+	Let $f:X\xto{smooth}Y$ and let $y\in Y$. We say $y$ is a \emph{regular value} if, for every $x\in \preimage{f}{y}$, we have that $\der f_x$ is surjective. \qed
+	\end{definition*}
+	
+	\end{enumerate}
+
+\pagebreak
+\item Suppose that $M^m\subset\R^n$ is a smooth manifold without boundary and that $h :
+M \to \R$ is a smooth map for which $0$ is a regular value. Prove that
+$\preimage{h}{[0,\infty)}$ is a manifold with boundary.
+\begin{proof}
+Let $y\geq 0$ and let $x=\preimage{h}{y}$. 
+
+\jpg{width=0.5\linewidth}{221-midterm-p1-1}
+
+\textsc{Case I:} If $y$ is strictly positive, then $h\in \preimage{h}{(0,\infty)}$, which is open in $M$, and $M$ is a manifold so it is locally diffeomorphic to $\R^m$.
+
+This means there exists open sets $U,U'$ such that $x\in U\subset \preimage{h}{(0,\infty)}$ and $U'\subset \R^m$, and a chart $\phi:U'\to U$. As long as we choose $U$ so that $\diam{U'}<\infty$,\footnote{We can always do this, just restrict $\phi$ to the unit ball centered at $\preimage{\phi}{x}$.} we can choose $k$ large enough that $\phi'(\vec x)=\phi(\vec x-k \vec{e}_m)$ is a chart from $\tilde U\subset \H^k\to U'$. \qedwhite
+
+\textsc{Case II:} If $y=0$, then $y$ is a regular value, so $\der h_x$ has rank 1, and $\ker \der h_x$ has dimension $(m-1)$. Let $T$ be an invertible linear transformation from $\ker \der h_x\to \R^{m-1}$, and extend it to one on all $\R^n$.\footnote{Recall that $M\subset \R^n$.} Then define 
+\begin{align*}
+H:M&\to \R^{m-1}\times \R \\
+H(\xi) &= (T\xi, h(\xi)). 
+\end{align*}
+
+Now we can see that 
+\begin{align*}
+\der H_x(v) &= (Tv, \der h_x(v))
+\end{align*}
+which has rank $(m-1)+1=m$. Thus $\der h_x$ is an isomorphism, so by the Inverse Function Theorem there exist neighborhoods 
+$$U\ni x, \quad V\ni (Tx, 0)$$
+where $h$ is a diffeomorphism. 
+\jpg{width=0.8\linewidth}{221-midterm-p1-2}
+By intersecting $U\cap \preimage{f}{[0,\infty)}$ and $V\cap \H^m$ and observing that the two sets correspond under $H$, we obtain an open neighborhood of $x$ (with the subspace topology) which is diffeomorphic via $H$ to an open neighborhood in $\H^m$. \qedwhite
+
+Thus in either case, we can produce a neighborhood of $x$ in $\preimage{f}{[0,\infty)}$ diffeomorphic to an open set in $\H^k$, so $\preimage{f}{[0,\infty)}$ is a $k$-manifold with boundary. 
+\end{proof}
+
+
+
+\pagebreak
+\item Suppose that $f : X \to Y$ is a smooth map between compact manifolds
+without boundary of the same dimension. Suppose that $y\in Y$ is a regular
+value.
+
+Show that $\preimage{f}{y}$ is a finite set $\braces{x_1, \dots x_n}$. Show further that there is an open neighborhood $V$ of $y$ so that $\preimage{f}{V}$ is a finite disjoint of open sets $\braces{U_1, \dots, U_n}$, so that each $U_i$ is a neighborhood of $x_i$ and each $U_i$ is mapped
+diffeomorphically onto $V$ by $f$.
+\begin{proof}
+
+[Note that I have reversed the notation for $U$ and $V$.] Suppose that $\preimage{f}{y}$ is infinite, then there exists a sequence $\braces{x_n}_{n=1}^\infty\subset \preimage{f}{y}$. Since $X$ is compact, then it is sequentially compact so $x_n$ has a convergent subsequence $x_{n_k}\to \tilde{x}$. Since $f$ is continuous, then $\preimage{f}{\braces{y}}$ is closed, so $\tilde{x}\in \preimage{f}{y}$. 
+\vspace*{-\baselineskip}
+\jpg{width=0.5\linewidth}{221-midterm-p2-1}
+\vspace*{-\baselineskip}
+Now since $y$ is a regular point of $f$, then for all $x\in \preimage{f}{y}$, we have $\der f_x$ is surjective, and since 
+\begin{align*}
+\dim \ker \der f_x &= \dim Y - \dim \image{\der f_x}\\
+&= 0,
+\end{align*}
+then $\der f_x$ is an isomorphism so by the Inverse Function Theorem, $f$ is a local diffeomorphism at each $x\in \preimage{f}{y}$. In particular $f$ is injective on some neighborhood $W$ of $\tilde{x}$, but since $x_{n_k}\to \tilde{x}$ then every neighborhood of $\tilde{x}$ contains some $x_{n_k}$ and $f(x_{n_k})=f(\tilde{x}) = y$, which contradicts that $f$ is injective on $W$. Thus $\preimage{f}{y}$ is finite, and from now on denote $\preimage{f}{y}=\braces{x_i}_{i=1}^n$. 
+
+Next, since $f$ is a local diffeomorphism at each $x\in \preimage{f}{y}$, 
+\vspace*{-0.5\baselineskip}
+\jpg{width=0.5\linewidth}{221-midterm-p2-2}
+\vspace*{-\baselineskip}
+there exist $U'_i \ni x_i$ such that $f$ is a diffeomorphism on $U'_i$. Since every manifold is Hausdorff\footnote{Since it is locally diffeomorphic to $\R^n$ or $\H^n$}, then we can separate the finite set of points $\braces{x_i}$ by disjoint open sets $U''_i$, and $\braces{U'_i\cap U''_i}_{i=1}^n$ are disjoint open sets where $f$ is a diffeomorphism onto its image, but they may not all have the same image. So let 
+$$V=\bigcap_{i=1}^n f\left(U'_i\cap U''_i\right)$$
+and then $\preimage{f}{V}=\coprod_{i=1}^n U_i$ is a disjoint collection of open neighborhoods, one for each $x_i$, where each $U_i$ is diffeomorphic to $V$, as desired. 
+\end{proof}
+
+\pagebreak
+\item Prove (a) that $O(n)=\braces{A\in M(n,\R) \mid A^\top\!A = I}$ is a manifold. (b) Compute its dimension and identify $T_I(O(n))$. 
+
+	\begin{proof}\textbf{(a)} Let $f:M_n(\R)\to \Sigma_n(\R)$ be the map given by 
+$$f(A)=A^\top A.$$
+	We will show that (i) $M_n(\R)$\footnote{Where $M_n(\R)$ denotes the set of all real $n\times n$ matrices.} and $\Sigma_n(\R)$\footnote{Where $\Sigma_n(\R)$ denotes the set of symmetric $n\times n$ real matrices.} are both smooth manifolds, (ii) $f$ is a smooth map, and (iii) $O(n)=f^{-1}(I)$ with $I$ a regular value of $f$, and then we're done since the preimage of a regular point is a smooth manifold.
+
+(i) As vector spaces, $M_n(\R)\cong \R^{n^2}$ and $\Sigma_n(\R)\cong\R^{t(n)}$ where $t(n)$ is the $n$th triangle number, so they are definitely smooth manifolds. 
+
+(ii) Since the computations of $A^\top A$ just consist of multiplying and adding different elements of $A$, then the function $f$ is just a polynomial in $n^2$ variables, so it is smooth. 
+
+(iii) We can see by inspection that $O(n)=f^{-1}(I)$, so let us show that $I$ is a regular value of $f$. Fix $A\in M_n(\R)$, and let's compute the derivative $\der f_A:T_A(M_n)\to T_{A^\top A}(\Sigma_n)$, and check that it is surjective whenever $A\in f^{-1}(I)$. 
+\begin{align*}
+\der f_A(B)&= \lim_{t\to0}\frac{f(A+tB)-f(A)}{t} \\
+&= \lim_{t\to0}\frac{(A+tB)^\top (A+tB)-A^\top A}{t}\\
+&= \lim_{t\to0}\tfrac{1}{t}\left(tB^\top A+tA^\top B+t^2B^\top B\right)\\
+&= B^\top A+A^\top B
+\end{align*}
+For any $C\in \Sigma_n(\R)$\footnote{The tangent space to a vector space at any point is itself.} and $A\in\preimage{f}{I}$, if we can find $B$ such that $B^\top A+A^\top B=C$, then we're done. Observe that, since $A^\top =A^{-1}$, then if $B=\frac{1}{2}AC$, then 
+$$B^\top A+A^\top B=C.$$
+Thus $\der f_A$ is surjective for all $A\in\preimage{f}{I}$, so (a) is proved. 
+	\qedwhitehere
+	\end{proof}
+	\newcommand{\antiSigma}{\reflectbox{$\Sigma$}}
+	\begin{proof}\textbf{(b)}
+	The kernel of $\der f_I$ gives us the desired information here, so let's compute it. For any $B\in M_n(\R)$, 
+	$$\der f_I(B)=B^\top + B,$$
+	so the kernel is the set of all antisymmetric matrices, the matrices such that 
+	$$B=-B^\top$$
+	which I denote $\antiSigma_n$. Observe that this is a vector space since $\antiSigma_n \subset M_n$ and for all $\lambda\in \R$, and $B,C\in \antiSigma_n$, 
+	$$(B+C)^\top + (B+C) =  B^\top + B + C^\top + C = 0, \text{ and }$$
+	$$(\lambda B)^\top	+ (\lambda B) = \lambda (B^\top	 + B) = \lambda (0) = 0.$$
+	Since the diagonal entries are all zero, and each entry $b_{ij}$ for $i>j$ is determined by $b_{ji}$, then $\antiSigma_n$ is isomorphic to $\R^{t(n-1)}$, so $\dim\left(\antiSigma_n\right)=t(n-1)$ and $T_I(O(n))=\ker \der f_I=\antiSigma_n$.
+	\end{proof}
+\end{enumerate}
+
+
+
+\end{document}

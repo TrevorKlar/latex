@@ -1,0 +1,81 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference.
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 460 \linebreak
+Homework 4}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item Show	$f(x) = x^4 + x^3 + 1$ is irreducible over $\Q$, then answer the following:
+	\begin{proof}
+		$f(x)$ is irreducible by the Rational Root Theorem, since the only possible roots in $\Q$ are $\pm1$, and neither is a root of $f(x)$. 
+	\end{proof}
+		\begin{enumerate}[label=(\roman*)]
+			\item If $u$ is a root of $f(x)$ in an extension field of $\Q$, determine $[\Q(u):\Q]$ and give a $\Q$-basis for $\Q(u)$. \\
+			\textbf{Answer} Since $\deg f(x)=4$, then $[\Q(u):\Q]=4$ and $1, u, u^{2}, u^{3}$ is a $\Q$-basis for $\Q(u)$. 
+			\item Express each of the following elements in terms of a basis (You should not have to solve for the scalars for these): $\inv{u}, \inv{(u^2)}, \inv{(u^3)}$. \\
+			\textbf{Answer} $\inv{u}=-u^{3}-u^{2}, \quad \inv{(u^2)}=-u^{2}-u, \quad \inv{(u^3)}=-u-1$. 
+			\item Express $\inv{(1-u)}$ as a linear combination of the basis elements (You will have to solve for the scalars for this).\\
+			\textbf{Answer} Let's solve. 
+				\[\begin{array}{rcl}
+					1&=&(1-u)(a+bu+cu^2+du^3)\\
+					&=&a+(b-a)u+(c-b)u^2+(d-c)u^3-du^4\\
+					&=&a+(b-a)u+(c-b)u^2+(d-c)u^3+d(u^3+1)\\
+					&=&(a+d)+(b-a)u+(c-b)u^2+(2d-c)u^3,\\
+				\end{array}\]
+				so $a=b=c$, thus $a+d=1$ and $2d=a$, which gives $a=b=c=\sfrac{2}{3}, d=\sfrac{1}{3}$. Thus, $\inv{(1-u)}=\frac{2}{3}+\frac{2}{3}u+\frac{2}{3}u^2+\frac{1}{3}u^3$.
+		\end{enumerate}
+	\item Determine whether the following polynomials are irreducible over the indicated fields. If irreducible, give a reason. If reducible, factor it into irreducible factors.
+		\begin{enumerate}[label=(\roman*)]
+			\item $x^{10}+2x+6, \Q$ \\
+				\textbf{Answer} Irreducible by Eisenstein's Criterion, since $2$ divides 2 and 6 but not 1, and $2^2$ does not divide 6. 
+			\item $x^4+2, \Z_3$ \\
+				\textbf{Answer} Reducible. Since 1 is a root and $\Z_3$ is a field, then by the Division Algorithm $x^{4}+2=(x-1)q(x)+r(x)$, so $r(1)=0$ and $x-1=x+2$ is a factor. Synthetic division $\mod 3$ will find the following factorization: $x^{4}+2=(x+2)(x+1)(x^2+1)$
+			\item $x^{4}+3x^{2}+1, \Q$ \\ 
+				\textbf{Answer} Irreducible since it is positive for all real $x$, so it has no roots. Further, the Rational Root test gives $\pm 1$ as the only possible rational roots, and computation eliminates $(x\pm1)$ as factors.
+			\item $x^{5}+5x^{3}+4$ \\ 
+			 \textbf{Answer} Using the linear substitution $\phi\big(p(x)\big)=p(x+1)$, we find that $$\phi\big(x^{5}+5x^{3}+4\big)=x^{5}+5x^{4}+15x^{3}+25x^{2}+20x+10,$$
+			 and since 5 divides all but the leading coefficient and 25 does not divide the constant term, we have that $x^{5}+5x^{3}+4$ is irreducible by Eisenstein's Criterion. 
+			\item $x^{4}+x^{2}+1$ \\
+				\textbf{Answer} Irreducible. It has no roots, so it has no linear or 3rd degree factors. It is quadratic in form, and the quadratic formula shows that it factors as $$\left (x^2+\frac{1}{3}+\frac{\sqrt{3}}{2}i\right )\left (x^2+\frac{1}{3}-\frac{\sqrt{3}}{2}i\right )$$ which can be further factored in the complex numbers, but the non-real complex numbers are closed under square roots. Thus, $x^{4}+x^{2}+1$ can be factored as $(x-z_1)(x-z_2)(x-z_3)(x-z_4)$, where all $z_i$ are non-real complex numbers. 
+			\item $x^{4}+2x^2+3, \Z_5$ \\
+				\textbf{Answer} Computation checks that 1 and 2 are not roots, and since the function is even, neither are 3 and 4. Though the polynomial is quadratic in form, it does not factor as $(ax^2+b)(cx^2+d)$, since no two elements of $\Z_5$ add to 2 and multiply to 3. If this polynomial does reduce, its factors as the product of two general quadratics, but I don't know how to calculate that other than a brutal system of equations which yielded nothing but pain, and after a bit of work, the attempt was abandoned. 
+				
+				One thing worth pointing out is that if we apply the linear substitution $x=x+1$, we find that the polynomial becomes $x^{4}+4x^3+8x^2+8x+6$, which is irreducible over $\Q$ by Eisenstein's Criterion. I think that this implies that it is irreducible over $\Z_5$ as well, but I'm not sure. 
+ 		\end{enumerate}
+\end{enumerate}
+\end{document}

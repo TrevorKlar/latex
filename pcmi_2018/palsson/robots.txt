@@ -1,0 +1,8 @@
+User-Agent: *
+Disallow: /people/changer/
+Disallow: /people/karoines/
+Disallow: /emergency/
+Disallow: /people/aelgart/tenure/
+Disallow: /people/aelgart/promotion/
+Disallow: /people/gugercin/Publications/
+Disallow: /people/gugercin/ReviewerPackage/

@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage[paperwidth=.5\paperwidth,paperheight=.25\paperheight]{geometry}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\thispagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+\newenvironment{flashcard}[2][]{%
+\noindent  \textsc{#1}
+
+\vfill 
+\centerline{{\Large{#2}}}
+\vfill
+\newpage \vspace*{\stretch{1}} \noindent
+}
+{\vspace*{\stretch{1}}\newpage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+
+\begin{document}
+
+
+\begin{flashcard}[Definition]{CW-complex}
+Anything that can be constructed with the following type of construction: 
+\begin{itemize}
+\item Start with any set of points $X^0$ with the discrete topology. 
+\item Form $X^n= D^n_\alpha \sqcup_{\varphi_\alpha} X^{n-1}$ by attaching $n$-cells to the $(n-1)$-skeleton. 
+\item If you go infinitely, use the weak topology; where $A{\undertext{\subset}{open}}{X}$ if $A{\undertext{\subset}{open}}{X^n}$ for all $n$. 
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Definition]{$g$ Homotopic to $h$ rel $A$}
+$g\simeq h \rel A$ if $\exists$ a homotopy $F$ s.t. 
+\begin{itemize}
+\item $f_0 = g$
+\item $f_1 = h$ 
+\item $f_{t_1}(a)=f_{t_2}(a) \quad \forall a\in A$
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Homotopy Equivalent $\rel A$}
+$\exists f:X\to Y, g:Y\to X$ such that 
+\begin{itemize}
+\item $gf\simeq\id \rel A$
+\item $fg\simeq\id \rel A$
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Homotopy Extension Property}
+The following are equivalent:
+\begin{itemize}
+\item \mbox{} \vspace*{-5ex}\begin{align*}
+\forall F&:A\times I \to Y \text{ and }\\
+f&: X \to Y \text{ s.t. } f \text{ extends } F_0,\\
+\exists \bar{F}&: X\times I \text{ which extends } F \text{ and }f.
+\end{align*}
+
+\item $X\times \{0\} \cup A\times I$ is a retract of $X\times I$. 
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Smash Product}
+$$X \smashprod Y = \quotient{X\times Y}{X\wedgeprod Y},$$
+where we wedge $X$ and $Y$ at their respective base points $x_0$, $y_0$, usually given. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{
+\begin{tabular}{c}
+Concatenation of Paths $f\sqcdot g$ \\ {\small (Product Path)}
+\end{tabular}
+}
+Given two paths $f,g:I\to X$ such that $f(1)=g(0)$, then 
+$$f\sqcdot g(s)=\begin{cases}
+f(2s) & s\in [0,\frac{1}{2}] \\
+g(2s-1) & s\in [\frac{1}{2},1] \\
+\end{cases}$$
+or in words, do $f$ then do $g$, but go twice as fast.
+\end{flashcard}
+
+\begin{flashcard}[Definition]{
+\begin{tabular}{c}
+Concatenation of Path Homotopies $F\sqcdot G$ \\ {\small (Not defined in Hatcher)}
+\end{tabular}
+}
+Given homotopic paths $f_0\overtext{\simeq}{$F$} f_1$ and $g_0\overtext{\simeq}{$G$} g_1$ such that $f_s\sqcdot g_s$ is defined, then 
+$$F\sqcdot G:=\begin{cases}
+F(2s,t) & s\in [0,\frac{1}{2}] \\
+G(2s-1,t) & s\in [\frac{1}{2},1] \\
+\end{cases}$$
+or in words, apply $F$ in the first region, and $G$ in the second. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{
+\begin{tabular}{c}
+Composition of Path Homotopies $F\sqcdotwhite F'$ \\ {\small (Not defined in Hatcher)}
+\end{tabular}
+}
+Given homotopic paths $f_0\overtext{\simeq}{$F$} f_1 \overtext{\simeq}{$F'$} f_2$, we can compose the homotopies by 
+$$F\sqcdot F'(s,t)=\begin{cases}
+F(s,2t) & t\in [0,\frac{1}{2}] \\
+F'(s,2t-1) & t\in [\frac{1}{2},1] \\
+\end{cases}$$
+That is, smoothly change $f_1$ into $f_2$ via $F'$, then change $f_2$ into $f_3$ via $F'$. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Simply Connected Space}
+\begin{itemize}
+\item $X$ is path-connected
+\item $\pi_1(X)=0$, that is, the fundamental group is the trivial group. 
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{If $X$ is path-connected, then $\pi_1(X)$...}
+is independent of basepoint, since the change-of-basepoint homomorphism is an isomorphism. 
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{
+\begin{tabular}{c}
+If $\phi:X\to Y$ is a homotopy equivalence map, \\
+what can we say about $\pi_1$?
+\end{tabular}
+}
+$\phi_*$ is an isomorphism, so $\pi_1(X)\cong\pi_1(Y)$. 
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{
+\begin{tabular}{c}
+If $X$ retracts to $A$, 
+what can we say about $\pi_1$? \\
+What if it deformation retracts?
+\end{tabular}
+}
+$\iota_*$ is injective, so $\pi_1(A)\undertext{\subset}{group}\pi_1(X)$ up to isomorphism.\\
+$X\simeq A$, so  $\pi_1(X)\cong\pi_1(A)$. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Covering Space}
+
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Evenly Covered}
+
+\end{flashcard}
+
+\end{document}

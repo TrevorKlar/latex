@@ -1,0 +1,85 @@
+\documentclass[addpoints,12pt]{exam}
+\pagestyle{empty}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage[dvips]{graphicx}
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\newcommand{\nl} {\newline}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\homo}{\simeq}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ov}{\overline}
+\newcommand{\E}{\varepsilon}
+\newcommand{\F}{\varphi}
+\newcommand{\MF}{\mathbb{F}}
+\newcommand{\s}{\sqrt}
+
+\newcommand{\vv}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\vvv}[3]{\begin{bmatrix} #1 \\ #2 \\ #3\end{bmatrix}}
+\newcommand{\vvvv}[4]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4\end{bmatrix}}
+\newcommand{\vvvvv}[5]{\begin{bmatrix} #1 \\ #2 \\ #3 \\ #4 \\ #5  \end{bmatrix}}
+
+\everymath{\displaystyle}
+\input{../../../AxesFunction}
+
+%\def\arraystretch{2}
+%\setlength\arraycolsep{20pt}
+%\renewcommand{\baselinestretch}{1.3}
+
+\begin{document}
+
+\begin{questions}
+ 
+ \question[3] The real $2\times2$ matrix $A$  has eigenvector $\vec v_1=\vv{2}{-1+i}$ for eigenvalue $\lambda_1=1+3i$; and $A$ has eigenvector  $\vec v_2=\vv{2}{-1-i}$ for eigenvalue $\lambda_2=1-3i$. Given this information, write down the general solution to the system of ODEs
+ 
+ $$\vec x\,'=A\vec x$$
+ 
+\hrule
+~\\
+
+\textbf{Solution:}
+
+From the first given complex eigenpair, the following is a \emph{complex} solution to the system:
+$$\vec z=e^{(1+3i)t}\vv{2}{-1+i}$$
+ Simplifying,
+ $$\vec z=e^{t+3ti}\vv{2}{-1+i}$$
+ Using Euler's Formula, we get
+ $$\vec z=e^t(\cos 3t+i\sin3t)\vv{2}{-1+i}$$
+ Next, we simplify in such a way that the real and imaginary parts of $\vec z$ are separated.
+ \begin{align*}
+ \vec z=&e^t\vv{2\cos3t+2i\sin 3t}{(\cos 3t+i\sin3t)(-1+i)}\\
+ =&e^t\vv{2\cos3t+2i\sin t}{-\cos3t+i\cos3t-i\sin3t-\sin3t}\\
+ =&e^t\vv{2\cos3t}{-\cos3t-\sin3t}+ie^t\vv{2\sin3t}{\cos3t-\sin3t}
+ \end{align*}
+ Notice that we used the fact that $i^2=-1$.
+ 
+ In class, we learned that the real and imaginary parts of a complex solution are each real solutions. Therefore
+ $$\vec x_1(t)=\mathrm{Re}[\vec z(t)]=e^t\vv{2\cos3t}{-\cos3t-\sin3t}$$
+ and 
+ $$\vec x_2(t)=\mathrm{Im}[\vec z(t)]=e^t\vv{2\sin3t}{\cos3t-\sin3t}$$
+ are two real solutions. Notice that $\vec x_1$ and $\vec x_2$ are linearly independent and \emph{are both real} (we want real solutions to a real system unless otherwise specified). Thus the general solution is
+ $$\vec x(t)=C_1e^t\vv{2\cos3t}{-\cos3t-\sin3t}+C_2e^t\vv{2\sin3t}{\cos3t-\sin3t}$$
+ 
+ \textbf{Why does this work?}
+ 
+ In the above calculations, we only worked with the first eigenpair $\lambda_1$ and $\vec v_1$, and got the complex solution $\vec z(t)$. Let's rename it $\vec z_1(t)$.
+ 
+ If we found the complex solution for the second eigenpair, $\lambda_2$ and $\vec v_2$, we would get another solution $\vec z_2(t)$. But since $\lambda_2$ is the conjugate of $\lambda_1$ and $\vec v_2$ is the conjugate of $\vec v_1$, it follows that $\vec z_2$ is the conjugate of $\vec z_1$. That is
+ $$\vec z_2(t)=e^t\vv{2\cos3t}{-\cos3t-\sin3t}-ie^t\vv{2\sin3t}{\cos3t-\sin3t}$$
+ 
+ Now we have a \emph{complex basis} for the solution space $\{\vec z_1(t),\vec z_2(t)\}$. However, we want a \emph{real} basis. Now, the trick is that even though $\vec z_1$ and $\vec z_2$ are complex, certain linear combinations of them are real. Since the general solution is a vector space, these linear combinations are also solutions. In particular, adding $\vec z_1+\vec z_2$ will cancel out the imaginary parts since they are conjugates. Thus the following is a solution to the system:
+ $$\frac{1}{2}(\vec z_1+\vec z_2)=e^t\vv{2\cos3t}{-\cos3t-\sin3t}$$
+ Similarly, subtracting $\vec z_1-\vec z_2$ will cancel out the real parts, leaving only the imaginary part. Thus the following is also a solution to the system:
+ $$\frac{1}{2i}(\vec z_1-\vec z_2)=e^t\vv{2\sin3t}{\cos3t-\sin3t}$$
+ These are of course the real and imaginary parts of $\vec z_1$. Now, notice that each of these two is a real solution, notice that there are two of them, and notice that they are linearly independent. Thus, they must be a basis for the general solution. We can think of this as a change of basis---changing from our original complex basis to a different complex basis that happens to be real.
+\end{questions}
+
+
+
+\end{document}

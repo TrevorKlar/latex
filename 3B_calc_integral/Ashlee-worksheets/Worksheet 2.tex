@@ -1,0 +1,199 @@
+\documentclass[12pt]{report}
+\makeindex
+
+\usepackage{amsmath, amsfonts, amssymb, amstext, amscd, amsthm, makeidx, graphicx, hyperref, url, enumerate, mathabx, bbm}
+\allowdisplaybreaks
+
+\setcounter{chapter}{0}
+\topmargin -.75in
+\textheight 9.25in
+\oddsidemargin 0.0in
+\textwidth 6.5in
+
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\ov}{\overline}
+\newcommand{\ep}{\epsilon}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\da}{\lambda}
+\newcommand{\I}{\mathbb I}
+\newcommand{\sP}{\mathcal P}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\id}{\mathbbm{1}}
+\newcommand{\inc}{\hookrightarrow}
+\newcommand{\homm}{\simeq}
+\newcommand{\til}{\widetilde}
+\newcommand{\om}{\omega}
+\newcommand{\defn}{\noindent\textbf{Defn:}}
+\newcommand{\sA}{\mathcal A}
+\newcommand{\sE}{\mathcal E}
+\newcommand{\thm}{\noindent\textbf{Theorem:}}
+
+
+\begin{document}
+\begin{center}
+\textbf{{\LARGE MATH 3B}  \hfill} Discussion Worksheet - Thursday, April 12\\
+
+\end{center}
+
+
+\noindent\textbf{Fundamental Theorem of Calculus}
+
+\begin{itemize}
+
+\item Fundamental Theorem of Calculus Part 1: If $g(x) = \ds \int_{a}^x f(t) \, dt$ then \hrulefill %$g'(x) = f(x)$. 
+
+\item BE CAREFUL: If $\ds h(x) = \int^{\sin(x)}_1 4x \, dx $ then $h'(x) = $ \underline{\hspace{3cm}}
+
+\item Fundamental Theorem of Calculus Part 2: If $F$ is an antiderivative of $f$, then $$\hspace{-1in}\ds \int_a^b f(x) \, dx = \text{\underline{\hspace{3cm}}}$$% F(a) - F(b)
+
+\item What's the difference between definite and indefinite integrals? \hrulefill 
+\\ \mbox{} \hrulefill
+\\ \mbox{} \hrulefill
+
+\item You Try!
+
+(1) $\ds \int_0^2 x(2 + x^2) \, dx$ \hspace{1.5in} (2) Find $h'(x)$ if $h(x) = \ds \int_0^{x^2} \sqrt{1+r^3} \, dr$
+
+\vspace{1in}
+
+(3) $\ds\int \sqrt[3]{x} \, dx$
+
+\end{itemize}
+
+
+\noindent\textbf{$U$-Substitutions:}
+
+\begin{itemize}
+
+\item Strategy: (1) Choose $u$ to be \hrulefill \\
+(2) Substitute. You might need to \hrulefill \\
+(3) Evaluate the integral.
+
+\item Example: $\ds \int \sec^2(10x)\tan^7(10x) \, dx$
+
+\bigskip\bigskip\bigskip
+
+\item You Try!
+
+(1) $\ds \int \dfrac{x}{x^2 + 1} \, dx$ \hspace{2in} (2) $\ds\int \tan(x) \, dx$
+
+\bigskip\bigskip\bigskip
+
+
+\end{itemize}
+
+
+
+% Net Change Theorem: The integral of a rate of change is the net change $\ds \int_a^b F'(x) \, dx = F(b) - F(a)$
+
+
+
+
+
+
+
+
+\newpage
+
+
+\noindent\textbf{Definite Integrals W/ U-Substitutions:}
+
+
+\begin{itemize}
+
+\item Strategy: %choose the appropriate U using strategy above, when you do the u-sub, substitute limits into U as well for new limits
+
+\bigskip\bigskip
+
+\item Example: $\ds \int_{-\pi/4}^{\pi/4} \sec^2(10x)\tan^7(10x) \, dx$
+
+\vspace{1in}
+
+\item You Try!
+
+(1) $\ds \int_0^{\pi} \sec^2(t/4) \, dt$ \hspace{2in} (2) $\ds \int_0^2 (x-1)^{25} \, dx$
+
+\vspace{1.5in}
+
+\end{itemize}
+
+
+\noindent\textbf{Integrals of Piecewise Functions and the Absolute Value Function:}
+
+\begin{itemize}
+
+\item Absolute value: $\ds |x| = \left\{ \begin{array}{cl} -x & x< 0 \\ x & x \geq 0 \end{array} \right. \text{   so   } \int_{-5}^5 |x| \, dx = $
+
+\bigskip
+
+\item Piecewise Functions (example): If $\ds f(x) = \left\{ \begin{array}{cl} -x+3 & x \leq -1 \\ x^2 + 3 & x > -1 \end{array} \right. \text{ then }$ 
+
+\medskip
+
+$\ds \int_{-2}^2 f(x) \, dx= $
+
+\vspace{1in}
+
+\item You Try! $\ds \int_{-3}^4 |x^2 - 4| \, dx$
+
+\vspace{1.25in}
+
+
+\end{itemize}
+
+
+
+
+%\noindent\textbf{Problem 1: }
+%
+%\medskip
+%
+%(a) Use the right endpoint Riemann sum approximation with $3$ subintervals to approximate the area under the curve $f(x) = x^2$ between $x = 1$ and $x = 3$. Do you expect your answer to be an over or underestimate of the area?
+%
+%\medskip
+%
+%(b) Find the area under the curve $f(x) = x^2$ between $x = 1$ and $x=3$ using the definition of the integral as the limit of a Riemann sum. Was your guess in (a) correct? Why?\
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 2:} Compute each of the following integrals:
+%
+%\medskip
+%
+%(a) $\ds \int \sec(x)\tan(x) + x^{\sqrt2} - \sqrt[3]{x} + \ln(2) \, dx$\\
+%
+%(b) $\ds \int \sec^2(x)e^{\tan(x)} \, dx$\\
+%
+%(c) $\ds \int_1^2 \dfrac{x}{\sqrt{x+3}} \, dx$\\
+%
+%(d) $\ds \int_{-6}^{6} x^4\tan(x) \, dx$\\
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 3:} The sum $\ds \sum_{i = 1}^n \left(\dfrac6n\right) \sqrt{9 + \dfrac{6i}{n}}$ approximates what area (Hint: there is more than one correct answer; be sure to give both the integral and limits of integration)?
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 4:} Find $\dfrac{d}{dx}\ds \int_{ax+b}^2 \dfrac{\sqrt{t^3}}{4\cos(t) + 3} \, dt$.
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 5:} The velocity function for a particle moving along a line is given by $v(t) = -t^2 + 5t - 6$. Find both the (i) displacement and (ii) the total distance traveled by the particle on the time interval $[-1,5]$.
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 6:} Sketch the region enclosed by the curves $x = 24-3y$ and $x = y^2 - 4$ and find the area of the region.
+%
+
+
+
+
+\end{document}

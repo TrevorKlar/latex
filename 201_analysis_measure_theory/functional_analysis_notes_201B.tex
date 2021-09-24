@@ -1,0 +1,1518 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[nobottomtitles*]{titlesec}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{/home/trevor/texmf/tex/latex/tskpreamble_nothms.tex} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\subsetopen}{\undertext{\subset}{open}}
+\newcommand{\diffeo}{\cong}
+
+\let\oldepsilon\epsilon
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\L}{L}
+
+%================Start of document==============
+
+\title{Functional Analysis}
+\author{Davit Harutyunyan, UC Santa Barbara}
+\date{Winter 2020}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+Notes prepared by Trevor Klar
+\end{center}
+\tableofcontents
+
+%\addcontentsline{toc}{section}{Introduction}
+%\section*{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevorklar@math.ucsb.edu}{trevorklar@math.ucsb.edu}. If you could include the page number, that would be helpful. 
+
+Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine. Bear that in mind when studying. 
+
+I give my heartfelt thanks to Melody Molander who provided me with her handwritten notes to reference when writing this document.
+\end{highlight}
+
+\renewcommand{\emph}{\textbf}
+\setcounter{section}{-1}
+\section{Basic Definitions}
+
+\begin{definition*}
+A \emph{metric} is: 
+\begin{enumerate}
+	\item positive definite
+	\item symmetric
+	\item triangle inequality
+\end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+Some more definitions worth knowing: 
+\begin{itemize}
+	\item open ball
+	\item closed ball
+	\item closure of open ball (not necessarily the same)
+	\item open cover
+	\item $x_n\to x$
+\end{itemize}
+\end{definition*}
+
+\begin{definition*}\textbf{(Compact)} Every open cover has a finite subcover.
+\end{definition*}
+
+\begin{definition*}
+\textbf{(Sequentially compact)} Every sequence has a convergent subsequence. 
+\end{definition*}
+
+\begin{proposition*}
+In a metric space, sequentially compact $\iff$ compact. 
+\end{proposition*}
+\begin{highlight}
+\begin{proof}
+Exercise.
+\end{proof}
+\end{highlight}
+
+\begin{definition*}
+\textbf{(Cauchy sequence)} $\lim_{mn,\to \infty} d(x_n, x_m)=0$
+\end{definition*}
+
+\begin{definition*}
+\textbf{(Complete)} Every Cauchy sequence converges (to a point in the space).
+\end{definition*}
+
+%\section{Chapter 2}
+
+\begin{definition*}
+If $\{K_n\}$ is a \emph{decreasing sequence of sets}, then $K_{n}\subseteq K_{n+1}$ for all $n$, and we can write $K_n\decreasesto$\;. If $K=\bigcap_n K_n$, then $K_n\decreasesto K$. 
+
+Increasing sets are defined similarly. 
+\end{definition*}
+
+\begin{definition*}
+The \emph{diameter} of a set is $\diam{A}=\sup \{d(x,y) \mid x,y\in A\}$. 
+\end{definition*}
+
+\begin{theorem*}
+Let $(X,d)$ be a complete metric space. If $K_n\decreasesto K$, each $K_n$ is closed and nonempty, 
+and $\diam{K_n}\xrightarrow{n}0$,  
+then $K$ is a singleton.
+\end{theorem*}
+\begin{proof}
+For each $n$, choose $x_n\in K_n$. Since $\diam{K_n}\to 0$, then for sufficiently large $N$ we have $\diam{K_N}<\epsilon$, so for all $n,m>N$ we have $d(x_n,x_m)<\diam{K_N}<\epsilon$. Thus ${x_n}$ is a Cauchy sequence in $X$ which is complete, so ${x_n}$ converges to $x$. 
+
+To see that $x\in K$, consider any $K_N$. Since $x_n$ is eventually in $K_N$ and $K_N$ is closed in $X$, then it is complete so the limit $x\in K_N$. 
+
+To see that $x$ is the only point in $K$, let $x,y\in K$. Then $x,y\in K_n$ for all $n$, and since $\diam{K_n}\to0$ then $d(x,y)\leq \diam{K_n}$ means that $d(x,y)=0$ so $x=y$. 
+\end{proof}
+
+%\section{Start of Winter}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\section{Duality}
+%\subsection{Week 1 Lecture 1}
+\begin{definition*}
+Let $X$ be a normed space. The \emph{dual} of $X$, denoted $X^*$, is the space of all bounded continuous functionals from $X$ to $\R$ (or $\C$).
+\end{definition*}
+
+\begin{definition*}
+Let $\phi:X\to\C$ be a linear functional. The operator norm $\norm{\;\cdot\;}_*$ can be defined in any of the following equivalent ways:
+	\begin{itemize}
+	\item $\norm{\phi}_*=\sup\limits_{\norm{x}=1}\abs{\phi(x)}$
+	\item $\norm{\phi}_*=\inf$ of all $M$ s.t. (for all $x$) $\abs{\phi(x)}\leq M\norm{x}$
+	\end{itemize}
+\end{definition*}
+
+\begin{proposition*}
+Let $\phi:X\to\C$ be a linear functional. Then TFAE:
+	\begin{itemize}
+	\item $\phi$ is continuous at a point.
+	\item $\phi$ is continuous everywhere.
+	\item $\phi$ is bounded.
+	\end{itemize}
+\end{proposition*}
+
+\begin{theorem*}
+Since $\C$ is complete, then $X^*$ is complete for all normed spaces $X$.
+\end{theorem*}
+
+%\pagebreak
+\begin{highlight}
+Here begins the lead-up to Hahn-Banach Theorem.
+\end{highlight}
+
+\let\oldvec\vec 
+\renewcommand{\vec}{\vecb}
+
+\begin{definition*}
+A \emph{Linear Functional} is $\mathbb{F}$-valued and
+
+	\begin{tabular}{lll}
+	$\bullet$ &Additive: $\quad\quad\quad\quad\quad\quad$& $p(\vec{u}+\vec{v})= p(\vec{u})+p(\vec{v})$ \\
+	$\bullet$ &Homogeneous: &$p(a\vec{v})=ap(\vec{v})$ \\
+	\end{tabular}
+	
+\end{definition*}
+
+\begin{definition*}
+A \emph{Sublinear Functional} is $\mathbb{R}$-valued and
+
+	\begin{tabular}{lll}
+	$\bullet$ &Subadditive: $\quad\quad\quad\quad\quad	$& $p(\vec{u}+\vec{v})\leq p(\vec{u})+p(\vec{v})$ \\
+	$\bullet$ &Nonnegatively homogeneous: &$p(a\vec{v})=ap(\vec{v})$ if $a$ is nonnegative \\
+	\end{tabular}
+	
+\end{definition*}
+
+\begin{definition*}
+A \emph{Norm }is
+
+	\begin{tabular}{lll}
+	$\bullet$ &Subadditive: & $p(\vec{u}+\vec{v})\leq p(\vec{u})+p(\vec{v})$ \\
+	$\bullet$ &Absolutely homogeneous: &$p(a\vec{v})=\abs{a}p(\vec{v})$ \\
+	$\bullet$ &Positive definite: &If $p(\vec{v})=0$ then $\vec{v}=\vec{0}$. 		
+	\end{tabular}
+\end{definition*}
+
+\begin{definition*}
+A \emph{Seminorm }is
+
+	\begin{tabular}{lll}
+	$\bullet$ &Subadditive \\
+	$\bullet$ &Absolutely homogeneous
+	\end{tabular}
+\end{definition*}
+
+\begin{highlight}
+\begin{theorem*}\textbf{(Hahn-Banach, Real Version)}
+Let $X$ be a vector space, with $Y\subset X$ a subspace. Let $p:X\to \R$ be a sublinear functional. If $\phi:Y\to\R$ is a linear functional dominated by $p$\footnote{That is, $\phi(y)\leq p(y)$ for all $y\in Y$}, then it can be extended to a linear functional $\Phi:X\to \R$ which is also dominated by $p$.
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{corollary*}\textbf{(Hahn-Banach, Baby Version)}
+Let $X$ be a vector space, with $Y\subset X$ a subspace. Any bounded linear functional $\phi:Y\to\R$ can be extended to a linear functional $\Phi:X\to \R$ with $\norm{\Phi}_*=\norm{\phi}_*$. 
+\end{corollary*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+For all $x\in X$, $\phi\in X^*$, 
+$$\abs{\angles{\phi,x}}\leq\norm{x}_X\norm{\phi}_*$$
+\end{theorem*}
+\end{highlight}
+
+\subsection{Weak Convergence}
+
+\begin{definition*}(Weak convergence)
+$x_n\xrightarrow{w}x$ means 
+
+$$\phi(x_n)\to \phi	(x) \; \forall\phi\in X^*$$
+\end{definition*}
+
+\begin{definition*}
+$x_n\xrightarrow{w}x \iff \angles{\phi,x_n} \to \angles{\phi,x,} \;\forall \phi$
+\end{definition*}
+
+\subsection{Weak* Convergence}
+
+\begin{definition*}(Weak* convergence)
+$x_n\xrightarrow{w*}x$ means 
+
+$$\phi_j(x)\to \phi	(x) \; \forall x\in X$$
+\end{definition*}
+
+\begin{definition*}
+$\phi_j\xrightarrow{w*}\phi \iff \angles{x,\phi_j} \to \angles{x,\phi} \;\forall x$
+\end{definition*}
+
+\section{Weak Topology}
+
+given $\script{F}$ collection of functions $S\to \C$, there exists the weakest topology such that all $f\in\script{F}$ are continuous. 
+
+recall that a basis is closed under finite intersection. 
+
+Use $\script{F}$ as a subbasis  (all finite intersections of $\script F$ are the basis) of the desired topology. 
+
+\begin{itemize}
+\item Let $X$ be a normed space, with $X^*$ the dual. Take the weakest topology on $X$ such that all $\phi\in X^*$ are continuous. The basis for $\sigma (X, X^*)$ is 
+$$W_\epsilon(x,\phi_1, \dots, \phi_N)\subset X, \epsilon>0, x\in X, \phi_j\in X^*, N<\infty$$
+where 
+$$W_\epsilon(x,\phi_1, \dots, \phi_N):= \{z\in X: \abs{\phi_j(x)-\phi_j(z)}<\epsilon, j=1\dots N\}.$$
+Note that since every $\phi_j$ is continuous, then $W_\epsilon$ is open. This means that $\sigma (X,X^*)\subset\,$(strong topology on $X$).
+
+\item We need to understand $W_\epsilon(x,\phi)$. 
+\begin{align*}
+W_\epsilon(x,\phi) & = \{z: \abs{\phi(x)-\phi(z)}<\epsilon\} \\
+%&=\preimage{\phi}{B_\epsilon(\phi(x))}
+\end{align*}
+
+\item It actually doesn't matter what the value of epsilon is, since 
+\begin{align*}
+\{W_\epsilon(x,\phi)\}_{\phi\in X^*} &= \{W_1(x,\phi)\}_{\phi\in X^*} \\
+&= \{W(x,\phi)\}_{\phi\in X^*}
+\end{align*}
+because you can scale your linear functionals however you like. 
+
+\item For $W(x, \phi_1, \dots, \phi_N)$, basic open sets are always infinite-dimensional hyperplanes with thickness, but we're intersecting finitely many of them, so this topology is weaker than the strong topology. 
+
+\item \textbf{In practice:} $O\subset X$ is \emph{weakly open} $\iff $   for all $p\in O$, there exists $W(p,\phi_1, \dots, \phi_N)\subset O$, where 
+\begin{align*}
+W(p,\phi_1, \dots, \phi_N) &= \bigcap_{j=1}^N W(p,\phi_j)\\
+&= \bigcap_{j=1}^N \big\lbrace u\in X: \abs{\phi_j(p)-\phi_j(u)}<1\big\rbrace
+\end{align*}
+
+\begin{highlight}
+\begin{definition*}
+An \emph{weak open slab} is a subbasic open set in the weak topology, given by 
+$$W(p,\phi)$$
+which is all points whose $\phi$-value is within a certain quantity of $\phi(p)$.
+\end{definition*}
+\end{highlight}
+Note you can equivalently scale either the radius or the functional. For convenience, if no radius is specified, then it is 1. 
+
+\begin{highlight}
+\begin{definition*}
+A \emph{weak neighborhood} is a basic open set in the weak topology, given by 
+$$W(p,\phi_1, \dots, \phi_N)$$
+which is all points whose $\phi_j$-value is within a certain quantity of $\phi_j(p)$ for all $j$.  
+\end{definition*}
+\end{highlight}
+Note you can independently scale the radius and any of the functionals, so this will be some convex set, but otherwise is pretty general.
+
+\begin{highlight}
+\begin{definition*}
+We denote the set $X$ with the \emph{weak topology} (whose basic open sets are above) by 
+$$\sigma(X,X^*).$$
+\end{definition*}
+\end{highlight}
+
+\item So what is the intuition? 
+$$W(p,\phi_1, \dots, \phi_N) = p + \bigcap_{j=1}^N \ker\phi_j$$
+
+and in infinite dimensional space, that intersection will still contain an infinite-dimensional subspace of $X$. 
+
+\item Example: Consider $B_1 = \{x : \norm{x}<1\}$. For all weakly open $O\ni p\in B_1$, then $O$ must intersect $S=\{x: \norm{x}=1\}$. 
+
+\item lemma (from hw)
+
+\begin{highlight}
+\begin{example*}
+Consider the sequence $(e_n)_{n=1}^\infty$ in $\ell^p$:
+\begin{align*}
+e_1 &= (1,0,0,\dots) \\
+e_2 &= (0,1,0,\dots) \\
+e_3 &= (0,0,1,\dots)
+\end{align*}
+This sequence actually does not converge to 0, because $\norm{e_n-0}_p=1$ (it's not even Cauchy!), but it is true that $e_n\xrightarrow{w}0$. 
+\end{example*}
+\end{highlight}
+
+\begin{highlight}
+\begin{example*}
+For finite-dimensional $X$, the weak topology $\sigma(X,X^*)$ is the same as the strong topology $\norm{\;\cdot\;}$. 
+
+This means where the weak topology and weak convergence are concerned, we must be thinking of infinite-dimensional vector spaces!
+\end{example*}
+\end{highlight}
+
+\item \textbf{Important example:} Recall that we are trying to reformulate everything we know about weak convergence in terms of open sets, instead of in terms of sequences. This is because topology with open sets is actually \emph{stronger} than topology with sequences when you're in the Weak Convergence world (though it is harder to conceptualize). 
+
+Let $A=\{e_m+m e_n : 1\leq m\leq n\}$ in $\ell^2$. So 
+\[A=
+\left\lbrace
+\begin{array}{llll}
+e_1 + e_2 \\
+e_1 + e_3, & e_2 + 2e_3, \\
+e_1 + e_4, & e_2 + 2e_4, & e_3 + 3e_4\\
+\vdots & \vdots & \vdots & \ddots
+\end{array}
+\right.
+\]
+
+Now the weird thing is that $\closure{A}^{\sigma(\ell^2,\ell^{2*})}$ contains 0, but there is no sequence in $A$ which converges weakly to $0$. 
+
+\begin{proof}
+Consider $f_k=e_{m_k}+{m_k} e_{n_k}$. Note that $\norm{f_k}_{\ell^2}=\sqrt{1+{m_k}^2}$. Now if $f_k\xto{w}0$, then $m_k$ must be bounded, but it isn't.\footnote{This is a terrible proof. I didn't write it. The conclusion follows from HW1-deleted, listed later in these notes.}
+\end{proof}
+
+\end{itemize}
+
+\pagebreak
+\subsection{Weak* Topology}
+
+%\begin{itemize}
+
+We know we have a canonical map $i:X\to X^{**}$, which is an isometry, that is, $$\norm{u}_{i_\text{can}}=\norm{u}.$$ We know that $X\subset X^{**}$, but they are not always equal. 
+
+We already know that the usual weak topology on $X^*$ is 
+$$\sigma(X^*, X^{**})$$
+An even weaker topology is $\sigma(X^*,i_\text{can})$, the topology where all functionals $\hat x \in i_\text{can}$ of the form $x\in X$ are continuous. 
+
+\begin{highlight}
+\begin{definition*}
+An \emph{weak* open slab} is a subbasic open set in the weak* topology, given by 
+$$W(\phi, p)$$
+which is all functionals whose value at $p$ is within a certain quantity of $\phi(p)$.
+\end{definition*}
+\end{highlight}
+Note that while $p$ is a functional which acts on $\phi$, it is not just any functional; it is also a point in $X$. 
+
+\begin{highlight}
+\begin{definition*}
+A \emph{weak* neighborhood} is a basic open set in the weak* topology, given by 
+$$W(\phi,p_1, \dots, p_N)$$
+which is all functionals whose value at $p_j$ is within a certain quantity of $\phi(p_j)$ for all $j$.  
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition*}
+$O\subset X^*$ is weak* open if there exists $W(\phi,p_1, \dots, p_n)\subset O$. 
+\end{proposition*}
+\end{highlight}
+This is just the openness criterion in general topology. Note that greek letters denote functionals and latin letters denote points. 
+
+\begin{highlight}
+\begin{definition*}
+We can denote the \emph{weak* topology} on $X^*$ by 
+$$\sigma(X^*, i_{\text{can}}(X)),$$
+where $i_{\text{can}}$ is the canonical map $X\to X^{**}$, though words are a bit easier to wield. 
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}
+When you have a functional relationship between two sets of objects, say $U,X$ with some functional definition 
+$$\angles{u,x}$$
+and it's not clear which are the "points" and which are the "functionals", how do you tell the difference between weak convergence and weak* convergence?
+
+Answer: In the definitions, once of them is defined independently of the other. Those are the "points", call them $X$. The other are functionals $U=X^*$, and they require the data of a particular $x\in X$ in order to be evaluated, they cannot stand alone. Those are the functionals. 
+\end{remark*}
+
+%\end{itemize}
+
+\subsection{Reflexivity}
+
+\begin{remark*}
+We can always think of an element $x\in X$ as being a functional on $X^*$ by $\angles{x,\phi}$, so in that sense, $X\subset X^{**}$. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+We says a space $X$ is \emph{reflexive} if 
+$$X=X^{**},$$ 
+which is to say that $X$ completely comprises $X^{**}$; nothing is left out.
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}\mbox{}
+$$X\text{ is reflexive iff }\sigma(X^*,X)=\sigma(X^*,X^{**}).$$
+
+That is, if $X^{**}=X$, then the weak* topology on $X^*$ is the same as the weak topology on $X^*$. 
+\end{theorem*}
+\end{highlight}
+
+\begin{remark*}
+A few remarks on why the topological perspective is important:
+	\begin{itemize}
+	\item In $\ell^2$ (whose dual is itself), we can find a set $S$ whose weak sequential closure is strictly smaller than the weak closure $\closure{S}^w$. 
+	\item We know that $\ell^1$ is a Banach space and the strong topology $\script{T}_{\text{strong}}\neq\sigma(\ell^1,\ell^{1*})$, but $x_n\xto{w}x_0 \iff x_n\to x_0$. 
+	\end{itemize}
+\end{remark*}
+
+\subsection{Weak* Convergence of Measures}
+
+\begin{remark*}
+It's not clear if this will be relevant to the class, but there's some stuff about weak* convergence of measures in Week 2 April 9 lecture at about the 1:00:00 mark. 
+\end{remark*}
+
+%
+%\begin{itemize}
+%\item shit. 
+%
+%\item Suppose we have $\mu_k$ 
+%
+
+\pagebreak
+\subsection{Useful Homework Problems}
+
+\begin{highlight}
+\begin{theorem}\textbf{(Uniform Boundedness Principle)}
+Let $X$ be a Banach space and let $Y$ be a normed linear space. Let $\script{F}$ be a collection of bounded linear operators from $X$ to $Y$. If for every $x\in X$ we have that 
+$$\sup\limits_{T\in \script{F}}\norm{T(x)}_Y<\infty,$$ 
+then 
+$$\sup\limits_{T\in\script{F}}\norm{T}_*<\infty.$$ 
+\end{theorem}
+\end{highlight}
+
+\begin{highlight}
+\begin{corollary}(HW1-P2)
+Let $X$ be a Banach space with $F\subset X^*$. If for all $x\in X$ there exists $M_x$ such that $|\angles{\phi,x}|\leq M_x$ for every $\phi\in F$, then $F$ is strongly bounded in $X^*$. 
+\end{corollary}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}(HW1-deleted)
+Let $X$ be a Banach space with $E\subset X$. If for every $\phi\in X^*$ the set $\{\phi(x)\}_{x\in E}\subset \R$ is bounded, then $E$ is strongly bounded in $X$. 
+\end{proposition}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}(HW1-P3)
+Let $X$ be a Banach space. If for every $x\in X$ the sequence $\angles{\phi_j,x}$ converges, then $\phi_j\xto{w*}\phi$ for some $\phi\in X^*$. 
+\end{proposition}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}(HW1-P4)
+Let $X$ be a Banach space with $\phi_j\in X^*$. TFAE:
+	\begin{itemize}
+	\item $\norm{\phi_j}_*<\infty$ and $\exists$ dense $E\subset X$ such that for all $u\in E$, the sequence $\angles{\phi_j,u}$ converges.	
+	\item There exists $\phi\in X^*$ such that $\phi_j\xto{w*}\phi$,
+	\end{itemize}
+\end{proposition}
+\end{highlight}
+
+\subsection{Banach-Alaoglu}
+
+\begin{remark*}
+We will be simultaneously working with multiple topologies on the same set, so for $S\subset X$, $F\in X^*$,
+	\begin{itemize}
+	\item $\closure{S}^{X}$ denotes the strong closure of $S$. If the metric on $X$ has a name we will use that, i.e. $\closure{S}^{\ell^2}$
+	\item $\closure{S}^{w}$ denotes the closure of $S$ in the weak topology. 
+	\item $\closure{F}^*$ denotes strong closure of $F$, that is, in the operator norm. 
+	\item $\closure{F}^{w*}$ denotes the closure of $F$ in the weak* topology.
+	\end{itemize}
+	
+Unless specified otherwise, assume $X$ is a normed space, and $X^*$ is its dual. 
+\end{remark*}
+
+\begin{definition*}
+We will use "weak" and "weak*" as adjectives for topological properties to mean, "having the property in the weak(*) topology".
+
+For example, "weak compact" means that every cover of weak neighborhoods has a finite subcover. 
+\end{definition*}
+
+\renewcommand{\B}{\closure{B}}
+\begin{highlight}
+\begin{theorem}\textbf{(Banach-Alaoglu Theorem)}
+The closed unit ball $\B(X^*)$ is weak* compact. 
+\end{theorem}
+\end{highlight}
+
+\begin{highlight}
+\begin{corollary}
+Any $F\subset X^*$ which is closed and bounded in $\norm{\cdot}_*$ is weak* compact.
+\end{corollary}
+\end{highlight}
+
+\begin{remark*}
+Recall that any compact space is sequentially compact. (That is, every sequence has a convergent subsequence). 
+\end{remark*}
+
+\begin{highlight}
+\begin{corollary}
+For any sequence $(\phi_n)\subset X^*$ with $\norm{\phi_n}_*\leq1$ for all $n$,  the sequence contains a subsequence $\phi_{n_k}$ such that 
+$$\phi_{n_k}\xto{w*}\phi$$
+\end{corollary}
+\end{highlight}
+
+\begin{example*}
+Let $X=C(K)$, the set of continuous functions on a compact set $K$. If $(\mu_n)\subset C(K)^*$ is a sequence such that $\mu_n(K)\leq 1$ (that is, $\norm{\mu_k}_*\leq1$), then there exists a subsequence such that $\mu_{n_k}\xto{w*}\mu$. 
+\end{example*}
+
+\begin{highlight}
+\begin{theorem}\textbf{(Reisz Representation Theorem)}
+Let $K\subset\R$ compact, and consider $C(K)$. For any $\psi\in C(K)^*$, there exists a unique Borel-regular measure $\mu$ such that 
+$$\psi(f)=\int_K f \der\mu$$
+for all $f\in C(K)$.\footnote{The real statement of this requires fewer assumptions, and adds a minor restriction on $\psi$. Look it up on Wikipedia if you're interested.}
+\end{theorem}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+A topological space is \emph{separable} if it has a countable dense subset. 
+\end{definition*}
+\end{highlight}
+
+\begin{example*}
+$\R^n$ is separable, since $\Q^n$ is countable and dense in $\R^n$. This is also the motivation behind the term \textit{separable}, since any two points in $\R$ can be "separated" by a point in $\Q$. 
+
+Unfortunately this intuition doesn't generalize, since the "separating" idea depends on the ordering of the reals, which the definition doesn't mention. 
+\end{example*}
+
+A few useful results about separable spaces:
+
+\begin{proposition}
+Any second-countable space is separable. (Just choose an element from each of the countable basic sets.)
+\end{proposition}
+
+\begin{proposition}
+A metrizable space is \textit{separable} if and only if it is \textit{second countable}, which is the case if and only if it is \textit{Lindel\"of}.
+\end{proposition}
+
+\begin{highlight}
+\begin{proposition}
+The following spaces are separable:
+	\begin{itemize}
+	\item Any second-countable space is separable.
+	\item Any compact metric space.
+	\item $C(K)$
+	\item $L^p$
+	\end{itemize}
+\end{proposition}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}
+The following spaces are \textbf{not} separable:
+	\begin{itemize}
+	\item $\ell^\infty$
+	\item $L^\infty$
+	\item The set of functions of bounded variation.
+	\end{itemize}
+\end{proposition}
+\end{highlight}
+
+And now we prove Banach-Alaoglu:
+
+\pagebreak
+
+\setcounter{theorem}{7}
+\begin{highlight}
+\begin{theorem}[Banach-Alaoglu Theorem]
+For every normed space $X$, the closed unit ball $\B(X^*)$ is weak* compact. 
+\end{theorem}
+\end{highlight}
+\setcounter{theorem}{13}
+
+\begin{proof}
+\textsc{\textbf{sketch.}} Recall we are proving that $\closure{B}^*_1$ is weak* compact. 
+
+\noindent Assume $X$ is separable, and call $U$ the countable dense set in $X$. Then 
+$$\sigma(\closure{B}^*_1,X),$$ 
+the weak* topology retricted to $\closure{B}^*_1$, is metrizable by the metric
+\begin{align*}
+d(\phi,\psi)&=\sum_{i=1}^\infty \frac{1}{g^i}\abs{(\phi-\psi)(u_i)} \\
+&=\sum_{i=1}^\infty \frac{1}{g^i}\abs{\angles{\phi-\psi,u_i}},
+\end{align*}
+where $u_n$ is an enumeration of $U$. 
+
+\renewcommand{\B}{\closure{B}^*_1}
+Having this is great, because once we have a metric that gives the same topology\footnote{The fact that these two topologies are the same is highly non-obvious, there's a proof in Labutin's notes.}, we can just show that $\closure{B}^*_1$ is compact in the metric $d$, which is much easier since sequential compactness \textit{is} compactness in a metric topology. 
+
+Let $(\phi_n)$ be an arbitrary sequence in $\B$, so $\norm{\phi_n}_*\leq1$. We seek $\phi_{n_k}\xto{d} \omega$ for some $\omega\in \B$. 
+
+\noindent \textbf{Step 1} Show that for all $u_i\in U$, 
+$$\angles{\phi_n-\omega,u_i}\xto{n}0\iff\angles{\phi_n,u_i}\xto{n}\angles{\omega,u_i}$$
+
+\noindent \textbf{Step 2} We use Step 1 and apply a Cantor diagonalization argument. $\angles{\phi_n,u_1}\xto{n}\angles{\omega,u_1}$, so 
+\begin{align*}
+|\angles{\phi_n,u_1}|&\leq \norm{\phi_n}_*\norm{u_1}\\
+&\leq \norm{u_1},
+\end{align*}
+So since $\angles{\phi_n,u_1}$ is a sequence in the compact set of real numbers $\closure{B}_{\norm{u_1}}$, it has a convergent subsequence $\angles{\phi_{n_k},u_1}$. For the same reason, $\angles{\phi_{n_k},u_2}$ has a convergent subsequence which we call $\angles{\phi_{m_k},u_2}$, and the same goes for all $u_m$. Thus 
+\[\begin{array}{cccccl}
+\angles{\phi_{n_1},u_1} & \angles{\phi_{n_2},u_1} & \dots & \angles{\phi_{n_k},u_1} & \dots & \text{converges} \\
+\angles{\phi_{m_1},u_2} & \angles{\phi_{m_2},u_2} & \dots & \angles{\phi_{m_k},u_2} & \dots & \text{converges} \\
+\vdots & \vdots &&\vdots&\ddots
+\end{array}\]
+and taking the diagonal elements, we find that $\angles{\phi_{n_{kk}},u_k}$ converges.
+\end{proof}
+
+\section{Separation Theorems and Weak Compactness}
+\begin{remark*}
+We know that using the Geometric Version of Hahn-Banach\footnote{Did I ever type that up? if $A,B$ are convex, $A$ compact, $B$ closed, then $\exists \phi$ functional with $\phi(a)<1 1, \phi(b) >1$ for all $a\in A$, $b\in B$.}, then we can separate sets in $X$. 
+
+We also want to prove something like this for 
+\begin{itemize}
+	\item $X$ with the strong topology, 
+	\item $X$ with the weak topology $\sigma(X,X^*)$, and 
+	\item $X^*$ with the weak* topology $\sigma(X^*,X).$
+\end{itemize}
+\end{remark*}
+
+\begin{highlight}
+\begin{theorem}[Separation Theorem]
+Let $M,N\subset X$ be disjoint and convex. 
+	\begin{enumerate}
+	\item If $M$ is open, then $\exists\, \phi\in X\footnotemark$ with 
+	$$\phi(m)<C<\phi(n)$$
+	%where $m\in M$, $n\inN$, $C\in \R$.
+	\item If $M$ compact, $N$ closed, then $\exists\, \phi\in X^\ddagger$ with 
+	$$\sup_{m\in M} \phi(m) < \inf_{n\in N} \phi(n)$$
+	\end{enumerate}
+And open, closed, and compact above can be in any of the topologies:
+
+\hfill $\bullet$ strong \hfill $\bullet$ weak \hfill $\bullet$ weak* \hfill \mbox{}
+\end{theorem}
+\footnotetext{Here $X^\ddagger$ means the "dual" of whichever space we're in, so $\phi$ is a continuous linear functional, or a point which acts on functionals.}
+\end{highlight}
+
+\begin{remark*}
+Recall that we always know that for $S\subset X$, 
+$$\closure{S}\subseteq\closure{S}^w.$$
+\end{remark*}
+
+\begin{highlight}
+\begin{theorem}[Mazur]
+Let $S\subset X$ be convex. Then the strong closure $\closure{S}$ is exactly the weak closure $\closure{S}^w$.
+$$\closure{S}=\closure{S}^w.$$
+\end{theorem}
+\end{highlight}
+\begin{proof}\textbf{\textsc{Sketch}} Let $p\not\in\closure{S}$ Since $\{p\}$ is strongly compact and $\closure{S}$ is strongly closed, apply Separation Theorem 14 to see that $\closure{S}^\complement$ is weakly open. 
+\end{proof}
+
+\vfill
+\pagebreak
+\newcommand{\convexHull}[1]{\text{conv}\left(#1\right)}
+\begin{definition*}
+Let $E=\{x_1, \dots x_n\} \in X$. A \emph{convex combination} is a linear combination with all nonnegative coefficients which sum to at most 1, and the \emph{convex hull} $\convexHull{E}$ is the set of all such vectors. 
+\jpg{width=0.2\textwidth}{convex_hull}
+The picture above illustrates $\convexHull{E}$, if we be sure to include the "interior".\footnote{It's possible, though not obvious to me, that the interior is not necessary.} 
+\end{definition*}
+\begin{highlight}
+\begin{corollary}
+If $E=\{x_n\}\subset X$ such that $x_n\xto{w}x$, then there exists a sequence $u_n$ in $\convexHull{E}$ such that $u_n\to x$. 
+\end{corollary}
+\end{highlight}
+\begin{proof}
+$\convexHull{E}$ is convex, so apply Mazur. Then since $x_n\xto{w}x$, $x$ is in the weak closure of $\convexHull{E}$, so it is also in the strong closure. 
+\end{proof}
+
+
+% Thorough watchthrough @ Week 3 April 16 29:20
+
+\begin{highlight}
+\begin{theorem}
+For any normed space $X$, 
+$$\B(X)\text{ is weakly compact } \iff X\text{ is reflexive. }$$
+\end{theorem}
+\end{highlight}
+
+\begin{remark*}
+The main statement for the proof of the Theorem 17
+is the following theorem which is of independent interest.
+\end{remark*}
+
+\begin{remark*}
+denote the canonical map $X\to X^{**}$ which Denis denotes $i_{can}$ as 
+$$\iota:X\to X^{**}.$$
+\end{remark*}
+
+\begin{highlight}
+\begin{theorem}[Goldstine]
+For any normed space $X$, $\iota(\B(X))$ is weak* dense in $X^{**}$. That is, 
+$$\closure{\iota(\B(X))}^{w*}=\B(X^{**}).$$
+\end{theorem}
+\end{highlight}
+\begin{proof}
+This proof is long and terrible and likely not worth the effort. 
+\end{proof}
+
+\begin{highlight}
+\begin{theorem}[Eberlein-Smulian]
+Let $X$ be a Banach space with $A\subset X$. Then 
+$$\closure{A}^w\text{ is weak compact }\iff A\text{ is weak sequentially compact. }$$
+\end{theorem}
+\end{highlight}
+
+\begin{remark*}
+A few results from finite-dimensions: 
+\end{remark*}
+
+\begin{theorem}
+If $X$ is a finite-dimensional normed space with two norms $\norm{\cdot}_1, \norm{\cdot}_2$ on $X$. Then $\exists c_1, c_2>0$ such that 
+$$c_1 \norm{u}_1 \leq \norm{u}_2 \leq c_2\norm{u}_1.$$
+\end{theorem}
+\begin{remark*}
+This just means for any two norms, if $\norm{x}_1$ is finite non-zero iff $\norm{x}_2$ is finite non-zero.
+\end{remark*}
+
+\begin{remark*}
+Recall that if $M$ a closed subspace of $X$, with $e$ orthonormal\footnote{That is, $e\perp M$ and $\norm{e}=1$} to $M$, then 
+$$\dist{e}{M}=\inf_{m\in M} \norm{e-m} = 1$$
+\end{remark*}
+
+\begin{definition*}
+
+\end{definition*}
+
+\begin{lemma}[Riesz's "Almost $\perp$" Lemma]
+Let $X$ be a normed space, and let $M$ be any closed (strict) subspace of $X$. Then for any $\epsilon>0$, there exists a unit vector $e\in X$ such that 
+$$1-\epsilon\leq \dist{e}{M}=\inf_{m\in M}\norm{e-m} \leq 1.$$
+\jpg{width=0.4\textwidth}{almost_perp}
+\end{lemma}
+\begin{proof}
+Bollobas has a proof of this. Alternate proof: If $M\subsetneq X$, then $\exists	u\in M^\complement$ with $\dist{u}{M}>0$ (since $M$ is closed). Then find some $m_\epsilon\in M$ which is almost closest in distance to $u$:
+\jpg{width=0.2\textwidth}{almost_perp_lemma-1}
+$$\dist{u}{M}\leq\norm{u-m_\epsilon}\leq\dist{u}{M}+\epsilon$$
+
+Then your almost $\perp$ is given by $u-m_\epsilon$, and a straightforward computation shows this to be true. \qedhere
+\jpg{width=0.15\textwidth}{almost_perp_lemma-2}
+\end{proof}
+
+\begin{theorem}
+For any normed space $X$, $\B(X)$ is compact $\iff$ $X$ is finite-dimensional. 
+\end{theorem}
+
+\begin{proof}[Sketch]
+$\implies$ Suppose $X$ infinite-dimensional. Choose some vector for $e_1$, and use Almost $\perp$ Lemma inductively to produce infinitely many vectors in $\B(X)$, but the sequence is not Cauchy, since the distance is greater than $1-\epsilon$ (or 1/2 or whatever). 
+
+
+\end{proof}
+
+\section{$L^p$ Spaces and Inequalities for them}
+\begin{definition*}
+We define $L^p(\Omega, \der\mu)$ so be functions on $\Omega$ such that all $f$ are \mumeasurable{} and $|f|^p$ are \musummable{}.
+\end{definition*}
+
+
+\subsection{Limits Theorems for the Lebesgue Integral}
+Let $f_n$ be a sequence of nonnegative functions, with $f_n\to f$ \muae{} in $\Omega$. Then when does
+$$\int f_n \der\mu \to \int f\der \mu?$$
+
+\begin{theorem}[Fatou's Lemma]
+If $f_n$ be a sequence of nonnegative functions, with $\int |f_n|\leq C$ for all $n$, then
+$$\lim_{n\to\infty}\int |f_n|\der\mu \geq \int |f|\der\mu >0$$
+\end{theorem}
+
+\begin{itemize}
+\item Dominated Convergence
+\item Monotone Convergence
+\item $\int|f_n-f|\der\mu\to0 \iff\footnotemark \begin{cases}
+\int | f_n|\der\mu\leq C\quad \forall\, n\\
+\forall \epsilon, \exists	 \delta$ s.t. $\forall E\subset\Omega, \quad \mu(E)\leq\delta\implies\int_E f_n\der\mu\leq\epsilon\; \forall\, n. 
+\end{cases}$
+\end{itemize}
+\footnotetext{As long as $\mu$ is a finite measure.}
+
+\begin{theorem}[Jensen's Inequality (2.2)]If $\mu(\Omega)$ is finite, then 
+$$\angles{J\circ f}\geq J(\angles{f}),$$ 
+with equality when $J$ is strictly convex at $\angles{f}$ and $f$ is constant. 
+\end{theorem}
+
+So locally, $L^p$ is better than $L^q$ if $p>q$. 
+
+\begin{itemize}
+\item 2.3
+\item 2.4
+\item 2.5 
+\item 2.6
+\item 2.14
+\end{itemize}
+
+\subsection{Convolutions and Density in $L^p$}
+
+\newcommand{\supp}{\text{supp}}
+\begin{definition*}
+Let $f:\Omega\to\C$. We define the \emph{support of $f$} to be 
+$$\supp f = \closure{\{f>0\}}$$
+\end{definition*}
+
+\begin{definition*}
+We denote the set of all "test functions", that is smooth functions of compact support on an open set $\Omega$, by 
+\begin{align*}
+C^\infty_c(\Omega), &\text{ or } &\text{[Lieb-Loss notation]} \\
+C^\infty_0(\Omega), & &\text{[standard notation]} \\
+\end{align*}
+\jpg{width=0.3\textwidth}{C-infty_c-omega}
+\end{definition*}
+
+\begin{remark*}
+We consider these because they belong to "any reasonable" space of functions on $\Omega$. 
+\end{remark*}
+
+\begin{example*}
+A bump function. The formula is 
+$$\eta(x)=
+\begin{cases}
+e^{-\frac{1}{x^2-1}}, & \abs{x}<1 \\
+0, & \abs{x}\geq1 
+\end{cases}
+$$
+\end{example*}
+
+	These three basic facts we take to be "axiomatic":
+\begin{highlight}
+	\textbf{Fact I} If $f$ is summable, then $\forall\,\epsilon>0$ there exists a "really simple function" on finitely many disjoint rectangles $R_j$ such that 
+	$$\norm{f-\sum_{j=1}^N C_j\Chi_{R_j}}\leq\epsilon$$
+	where $c_j$ are constant coefficients. 
+\end{highlight}
+\begin{highlight}
+
+	\textbf{Fact II} Let $\Omega\subsetopen\R^n$, and let $M$ be the linear space of all bounded functions supported on compact strict subset of $\Omega$, that is, 
+	$$M=\left\lbrace f\in L^\infty(\Omega) : \supp f=K_f\subsetneq\Omega, K\text{ compact}.\right\rbrace$$
+	Then for all $p<\infty$, $M$ is dense in $L^p(\Omega)$.\footnotemark
+	\footnotetext{Jensen's inequality gives us that $M\subset L^p(\Omega)$, so we knew that already}
+\end{highlight}
+\begin{highlight}
+	
+	\textbf{Fact III} (Change of Variables)\footnotemark 
+		\begin{itemize}
+		\item $\int_E f(x+a)\dx = \int_{a+E} f(y)\dy$
+		\item $\int_E f\left(\frac{x}{p}\right)\dx = p^n\int_{\frac{E}{p}} f(y)\dy$, where $n$ is the dimension. 
+		\end{itemize}
+
+\footnotetext{This holds in quite a bit more generality, but here we just state what we plan to need.}		
+\end{highlight}
+
+\begin{theorem}[1.19]
+$C_0^\infty$ is dense in $L^1(\R)$. 
+\end{theorem}
+\begin{proof}
+We know that we can approximate $f$ with a really simple function, so it suffices to show that we can approximate any $\Chi_R$ with a $C^\infty_0$ function. 
+
+For any $\epsilon>0$, we construct an open rectangle $R'\supset R$ whose area exceeds that of $R$ by less than $\epsilon$. 
+\jpg{width=0.3\textwidth}{thm-25} 
+Then use bump functions to define $\phi\in C^\infty_0(\R^n)$ with $\phi|_R=1$ and $\phi|_{{R'}^\complement}=0$. 
+\end{proof}
+
+\begin{remark*}
+How about $L^p$, not just $L^1$? We need convolutions. 
+\end{remark*}
+
+\begin{highlight}
+\begin{definition*}
+Let $f,g\in C_0^\infty(\R^n).$ We define the \emph{convolution of $f$ and $g$} to be
+$$(f*g)(x) = \int_{\R^n} f(x-t)g(t)\dt.$$
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}\mbox{}
+	\begin{itemize}
+	\item By Change of Variables, $f*g=g*f$.
+	\item $\supp (f*g) \subset \closure{\{\supp f\} + \{\supp g\}}$
+	\item Convolution will only be discussed in $\R^n$. 
+	\item Denote a dummy variable by $\bigcdot$, the variable which integrates out. For example, we could write $\norm{f}$ as $\norm{f(\bigcdot)}$. 
+	\end{itemize}
+\end{remark*}
+
+
+\pagebreak
+\begin{highlight}
+\begin{theorem}
+If $f\in L^p$, $g\in L^{p'}$, then $f*g\in L^\infty$. 
+\end{theorem}
+\end{highlight}
+\begin{proof}
+Given $f(x-\bigcdot), g(\bigcdot) \in L^p, L^{p'}$, then for every $x$, 
+\begin{align*}
+\abs{f*g(x)}&\leq \abs{\int_{\R^n}f(x-y)g(y)\dy} \\
+&\leq \norm{f(x-\bigcdot)}_{p} \, \norm{g}_{p'}& \text{By H\"older} \\
+&= \norm{f}_{p} \, \norm{g}_{p'}& \text{By Change of Variables} 
+\end{align*}
+so $\sup_x(f*g)(x)$ is bounded.
+\end{proof}
+
+\begin{remark*}
+The super generalized Minkowski inequality in the book holds for not only sums of integrals, but even integrals of integrals, and includes $p=\infty$. 
+\end{remark*}
+
+\renewcommand{\dot}{\bigcdot}
+\begin{highlight}
+\begin{theorem}
+If $f\in L^p(\R^n)$ and $g\in L^{1}(\R^n)$, with $p\in\N$ or $p=\infty$, then 
+\begin{itemize}
+	\item $f*g\in L^p$, and 
+	\item $\norm{f*g}_p\leq\norm{f}_p\norm{g}_1$
+\end{itemize}
+\end{theorem}
+\end{highlight}
+\begin{proof}
+Observe:
+	\begin{align*}
+	\norm{f*g}_p
+	&= \norm{\int_{\R^n}f(x-y)g(y)\dy}_p \\
+	&\leq \int_{\R^n} \norm{f(x-y)g(y)}_{L^p_x} \dy &\text{by Minkowski}\\
+	&=    \int_{\R^n} \norm{f(\dot-y)}|g(y)| \dy \\
+	&= \norm{f}_p \int_{\R^n} |g(y)|\dy \\
+	&= \norm{f}_p \norm{g}_1 &&\qedhere
+	\end{align*}
+\end{proof}
+
+\renewcommand{\phi}{\oldphi}
+\newcommand{\Lploc}{L^p_{\text{loc}}}
+\begin{highlight}
+\begin{definition*}
+We say that $f$ is $\Lploc(\R^n)$ if for any compact set $K\subset \R^n$, 
+$$\left(\int_K |f|^p\right)^{\frac{1}{p}} <\infty.$$
+\end{definition*}
+\end{highlight}
+
+\begin{example*}
+$\frac{1}{x}\in\Lploc(\R^1\setminus0)$
+\end{example*}
+
+\newcommand{\Rn}{\R^n}
+\begin{highlight}
+\begin{theorem}[Smoothing Property of Convolutions]\mbox{}\\
+If $\phi\in C^\infty_0(\R^n)$\footnotemark and $f\in \Lploc$, then $\phi*f(x)$ is defined for all $x\in\Rn$, and $(\phi*f)\in \C^\infty(\Rn)$ with 
+\begin{align*}
+	\del^\alpha(\phi*f)(x)&=\int_{\R^n} \del^\alpha \phi(x-y)f(y)\dy \\
+	&=(\del^\alpha\phi)*f(x).
+\end{align*}
+\end{theorem}
+\footnotetext{that is, $\phi$ is a test function}
+\end{highlight}
+\begin{remark*}
+Use the limit definition of the derivative, and $f(y)$ just factors out since it is constant wrt $x$, to get pointwise convergence. Then use dominated convergence to bring the integral out of the limit. 
+\end{remark*}
+
+\setcounter{footnote}{0}
+
+\begin{highlight}
+\begin{theorem}[$L^p$-continuity of the shift]
+Let $f\in L^p$, $p$ finite. Then 
+$$\lim_{h\to0} \norm{f(\dot-h)-f}_p=0.$$
+\end{theorem}
+\end{highlight}
+\begin{remark*}
+The proof is \textit{very} tedious. See Week 5 April 28 if you need to reference it. Roughly:
+\begin{itemize}
+	\item Use Fact II to approximate with $L^\infty_0$, compactly supported $L^\infty$ functions. 
+	\item Then use Holder to reduce it to $L^1$, since $p=(p-1)+1$.
+	\item Then use Fact I to approximate with really simple functions. 
+	\item Then reduce it to just $\Chi_R$ for one rectangle.	
+	\item Then draw a picture and you're done. 
+\end{itemize}
+\end{remark*}
+
+%\pagebreak
+\begin{highlight}
+\begin{theorem}[Approximation by $C^\infty$ Functions]\footnotemark
+Let $j$ be a function with $\int_{\Rn} j = 1$.\footnotemark{} We can define 
+$$j_\rho(x)=\frac{1}{\rho^n}\;j\left(\frac{x}{\rho}\right)\quad \forall\, \rho>0,$$
+so that every $j_\rho$ still has integral 1, but they're horizontally squished by a factor of $\rho$. Then for all $f\in\L^p(\Rn)$ (for finite $p$), 
+$$f_\rho(x) = (f*j_\rho)(x)$$
+is a sequence of functions (which are smooth if $j$ is) such that 
+$$f_\rho\to f\text{ strongly in }L^p\text{ as }\rho\to0^+.$$
+\end{theorem}
+\footnotetext{Theorem 2.16 in Lieb Loss}
+\footnotetext{In particular, $j$ can be $C^\infty_0$.}
+\end{highlight}
+
+
+
+\section{Fourier Transform}
+
+\let\oldhat\hat
+\renewcommand{\hat}{\widehat}
+
+\subsection{DEFINITION OF THE $\mathbf{L^1}$ FOURIER
+TRANSFORM}
+\begin{highlight}
+\begin{definition*}
+Let $f\in L^1(\R^n)$. The \textbf{Fourier transform of $f$}, denoted $\hat{f}:\R^n\to \R$, is given by 
+\begin{equation}
+\hat{f}(\vec k):=\int_{\R^n} e^{-2\pi i \angles{\vec k,\vec x}} f(\vec x)\der \vec x\tag{$1$}
+\end{equation}
+where $\angles{\vec k, \vec x}$ denotes the dot product $\sum_{j=1}^n k_j x_j$. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}
+The following algebraic properties are the main motivation for studying
+the Fourier transform. They are very easy to prove.
+\begin{enumerate}[label=(\arabic*)]
+	\setcounter{enumi}{1}
+	\item (Linearity) $\reallywidehat{\lambda f+\lambda g}=\lambda\hat{f}+\lambda\hat{g}$
+	\item (Shift) $\widehat{\tau_h f}(\vec{k})=e^{-2\pi i\angles{\vec{k}, \vec{h}}} \hat{f} (\vec{k}) \quad$ where \quad${\tau_h f}(\vec{k})=f(\vec{k}-\vec{h})$
+	\item (Scaling) $\widehat{\delta_\lambda f}(\vec{k}) = \lambda^n \hat{f}(\lambda \vec{k}) $\quad where \quad $\delta_\lambda f(\vec{k}) = f(\vec{k}/\lambda)$ and $\lambda>0$.
+	\item $\hat{f} \in L^\infty(\R^n)$\quad and \quad $ ||{\hat{f}}||_\infty\leq\norm{f}_1$ with equality when $f$ nonnegative, since 
+	$$||{\hat{f}}||_\infty = \hat{f}(0) = \textstyle\int f = \norm{f}_1$$
+	\item $\hat{f}$ is a continuous (and hence measurable) function.
+\end{enumerate}
+\end{proposition}
+\end{highlight}
+
+\begin{corollary}
+By the fourth conclusion in the previous proposition, we can think of the map $f\mapsto\hat{f}$ as a map from $L^1\to L^\infty$, and this is a continuous map. 
+\end{corollary}
+
+\begin{highlight}
+\begin{proposition}
+If $f,g\in L^1$, then recall that 
+\begin{equation}
+f*g(x)=\textstyle \int_{\R^n}f(x-y)g(y)\tag{$7$}
+\end{equation} and by using Fubini's theorem and the transformation properties above we find that 
+\begin{equation}
+\widehat{(f*g)}(\vec{k})=\widehat{f}(\vec{k}) \widehat{g}(\vec{k}).\tag{$8$}
+\end{equation}
+\end{proposition}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}
+A couple more properties of Fourier:
+\begin{itemize}
+	\item $\lim_{\vec{k}\to\infty}\hat{f}(\vec{k})=0.$
+	\item (Moving $\hat{\bigcdot}$ property) $\int \hat{f}(\vec{k})g(\vec{k})\der\vec{k}=\int {f}(\vec{k})\hat{g}(\vec{k})\der\vec{k}$.
+\end{itemize}
+\end{proposition}
+\end{highlight}
+\begin{proof}(Moving $\hat{\bigcdot}$ property)
+Let $f,g\in\L^1$. 
+\begin{align*}
+\int_{\Rn} \hat{f}(\vec{k})g(\vec{k})\der\vec{k}
+&= \int_{\Rn\times\Rn} e^{-2\pi i\angles{\vec{x},\vec{k}}}{f}(\vec{x})g(\vec{k})\der\vec{k}\der\vec{x}\\
+&=\int_{\Rn} {f}(\vec{k})\hat{g}(\vec{k})\der\vec{k} \qedhere
+\end{align*}
+\end{proof}
+
+
+
+\subsection{THEOREM (Fourier transform of a Gaussian)}
+\begin{definition*}
+Suppose $\lambda>0$. Denote by $g_\lambda$ the Gaussian function on $\R^n$ given by
+\begin{equation}
+g_\lambda\vec x) = e^{-\pi\lambda|\vec x|^2} \tag{$1$}
+\end{equation}
+for $\vec x\in \R^n$. 
+\end{definition*}
+
+\begin{remark*}
+Recall that $|\vec{x}|^2=\angles{\vec{x},\vec{x}}$. 
+\end{remark*}
+
+\begin{theorem}
+Let $g_\lambda$ be a Gaussian function. Then the Fourier transform $\hat{g}_\lambda(x)$ is given by 
+$$\hat{g}_\lambda(\vec{k}) = \lambda^{\frac{-n}{2}}e^{\frac{-\pi|\vec{k}|^2}{\lambda}}
+$$
+
+\begin{highlight}
+\begin{definition*}[Labutin version of Gaussian]
+Denote $G(x)$ the Gaussian function 
+$$G(\vec x)=e^{-\pi|\vec{x}|^2},$$
+and it's scaled version 
+$$G_\lambda(\vec{x}=G\left(\tfrac{\vec x}{\lambda}\right).$$
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem}
+The Gaussian is it's own Fourier Transform: 
+$$\hat{G}(\vec{k})=G(\vec{k})$$
+and by scaling rules, 
+$$\hat{G}_\lambda(\vec{k})=\lambda^{-n}G\left(\tfrac{\vec k}{\lambda}\right).$$
+\end{theorem}
+\end{highlight}
+\begin{proof}
+This is not as obvious as it looks. See page 125 in Lieb Loss. 
+\end{proof}
+\end{theorem}
+
+\subsection{THEOREM (Plancherel's theorem)}
+\begin{highlight}
+\begin{theorem}[Plancherel's theorem]
+If $f\in L^1(\R^n)\cap L^2(\R^n)$, then $\hat{f}\in L^2(\R^n)$ and 
+\begin{equation}
+||\hat{f}||_2=\norm{f}_2. \tag{$1$}
+\end{equation}
+Since $L^1\cap L^2$ is dense in $L^2$, then the map $f\mapsto\hat{f}$ has a unique extension to a continuous, linear map from $L^2\to L^2$ which is an isometry (i.e. Plancherel's theorem holds). 
+\end{theorem}
+\end{highlight}
+\begin{highlight}
+\begin{definition*}
+If $f\in L^2$ but $f\not\in \L^1$, we use the extension above to define 
+$$\hat{f}:=\lim_n \hat{f}_n$$
+where $f_n\xto{L^2}f$ and every $f_n\in L^1\cap L^2$. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem}[Parseval's formula]
+If $f,g\in \L^2$, then 
+\begin{equation}
+\angles{f,g}=\langle{\hat{f},\hat{g}}\rangle.\tag{$2$}
+\end{equation}
+\end{theorem}
+\end{highlight}
+\begin{proof}
+$$\angles{f,g}:=\int_{\R^n}\bar{f}(x)g(x)\dx = \int_{\R^n} \overline{\reallywidehat{f}}(k)\hat{g}(k)\der k = \langle{\hat{f},\hat{g}}\rangle.$$
+\end{proof}
+
+\setcounter{subsection}{4}
+\subsection{THEOREM (Inversion formula)}
+
+\begin{highlight}
+\begin{definition*}
+Let $f\in L^1$ and $\hat{f}\in L^1$. Then define 
+\begin{equation}
+f^{\vee}(\vec{k}) := \hat{f}(-\vec k)= \int_{\R^n} e^{2\pi i \angles{\vec k,\vec x}} f(\vec x)\der \vec x.
+\end{equation}
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}
+Applying the definition, 
+$$f^\vee(\vec k):=\int_{\R^n} e^{-2\pi i \angles{-\vec k,\vec x}} f(\vec x)\der \vec x = \int_{\R^n} e^{2\pi i \angles{\vec k,\vec x}} f(\vec x)\der \vec x.$$
+\end{remark*}
+
+\begin{highlight}
+\begin{proposition}
+Then whenever $f\in L^1$ and $\hat{f}\in L^1$, we have 
+\begin{equation}
+f=(\reallywidehat{f})^\vee
+\end{equation}
+\end{proposition}
+\end{highlight}
+
+However, even if $f\in L^1$, sometimes $\hat{f}\not\in L^1$. 
+
+\begin{highlight}
+\begin{definition*}
+Let $f\in L^2$, then define 
+\begin{equation}
+f^{\vee}(\vec{x}) := \hat{f}(-\vec x)\tag{$1$}
+\end{equation}
+By the extension in the previous section. 
+\end{definition*}
+\end{highlight}
+
+\section*{Schwartz Space}
+
+
+\begin{highlight}
+\begin{definition*}
+The \textbf{Schwartz space} or \textbf{space of rapidly decreasing functions} on ${\displaystyle \mathbb {R} ^{n}}$ is the function space
+
+$${\displaystyle S\left(\mathbb {R} ^{n}\right):=\left\{\phi\in C_{\text{loc}}^{\infty }(\mathbb {R} ^{n})\middle| \forall \alpha ,\beta \in \mathbb {N} ^{n}, \;|\!\sup_{x\in \Rn}x^\alpha\del^\beta \phi(x)|<\infty \right\},}$$
+\end{definition*}
+\end{highlight}
+\begin{remark*}
+To put common language to this definition, one could consider a rapidly decreasing function as essentially a function $\phi(x)$ such that $\phi(x), \phi'(x), \phi''(x), \ldots$ all exist everywhere on $\R$ and go to zero as $x \to \infty$ faster than any inverse power of $x$.
+\end{remark*}
+
+\begin{highlight}
+\begin{proposition}
+(Properties of Schwartz functions) 
+
+For all $\phi\in S(\Rn)$,
+\begin{itemize}
+\item $\norm{\del^\alpha \phi}_\infty<\infty \; \forall \alpha\in\N^n$ (Any derivative is bounded)
+\item $\abs{\del^\alpha \phi(x)}\leq \frac{C_{N,\alpha}}{1+\abs{x}^N} \; \forall N\in \N, \alpha\in \N^n.$
+\item Any polynomial times any derivative of $\phi$ is in $S$.
+\item $\hat{(\del^\alpha\phi)}(k)=(2\pi i k)^\alpha \hat{\phi}(k)$ for $\alpha\in\N^n$\footnote{For $k\in\R^n, \alpha\in\N^n$ we write $x^\alpha$ to mean $(x_1^{\alpha_1}, \dots x_n^{\alpha_n})$}.
+\item $\del^\alpha\hat{(\phi)}(k)=\big((-2\pi i x)^\alpha {\phi}(x)\big)^\wedge(k)$ for $\alpha\in\N^n$
+\end{itemize}
+\end{proposition}
+\end{highlight}
+
+\renewcommand{\hat}{\reallywidehat}
+\begin{highlight}
+\begin{theorem}[Main Theorem on $S(\R^n)$]
+
+$$\hat{\bigcdot}:S\to S$$ 
+is a linear bijection, and the inverse is $\bigcdot^\vee,$ 
+with 
+$$(\hat{\bigcdot})^\vee=(\bigcdot^\vee)^\wedge$$
+\end{theorem}
+\end{highlight}
+
+\newcommand{\D}{\script{D}}
+\begin{highlight}
+\begin{theorem}[Density theorem]
+Let $X$ normed,\footnote{Probably $X$ is Banach, in particular. In practice, "all spaces are Banach".} $Y$ Banach. Given a linear operator $A$ defined only from $\script{D_A}\to Y$ where $\script{D_A}\densesubset X$, if 
+$$\exists M<\infty \suchthat \forall u\in \D_a \text{ we have } \norm{Au}_Y\leq M\norm{u}_X,$$
+then $A$ has a unique extension to all of $X$ which is a bounded linear operator. 
+
+\end{theorem}
+\end{highlight}
+
+\renewcommand{\S}{\script{S}}
+\section*{Advanced Properties of Fourier on $\S$}
+
+\begin{highlight}
+\begin{proposition} For all $\phi\in \S$, 
+\begin{itemize}
+\item $||{\hat{\phi}}||_\infty\leq\norm{\phi}_1$
+\item $||{\hat{\phi}}||_2 = \norm{\phi}_2$
+\end{itemize}
+\end{proposition}
+\end{highlight}
+
+\setcounter{subsection}{6}
+\subsection{THEOREM (The sharp Hausdorff-Young inequality)}
+
+\renewcommand{\norm}[1]{||#1||}
+\begin{highlight}
+Let $1<p<2$ with $p,p'$ conjugate exponents, and let $\phi\in\S$.\footnote{This is also true if $\phi\in L^p\cap L^1$, which is what the book states.} Then 
+\begin{equation}
+\norm{\hat{\phi}}_{p'}\leq C\norm{\phi}_p \tag{$1$}
+\end{equation}
+\end{highlight}
+\begin{remark*}
+This means we can extend the Fourier map to all of $L^p$ for any $1<p<2$. 
+\end{remark*}
+
+\subsection{THEOREM (Convolutions)}
+\setcounter{equation}{0}
+\begin{highlight}
+Let $f\in \L^p, g\in L^q$, with $p,q\geq1$, and suppose that $r\leq2$ where $1/r:=1/p+1/q-1$. Then 
+\begin{equation}
+\hat{f*g}(k)=\hat{f}(k)\hat{g}(k).
+\end{equation}
+\end{highlight}
+
+\pagebreak
+\begin{remark*}
+Some examples of conditions that work for above:
+	\begin{itemize}
+	\item $f,g\in L^1$
+	\item $f\in L^1, g\in L^2$ (note that order doesn't matter)
+	\end{itemize}
+\end{remark*}
+
+
+\subsection*{Motivation for 5.9, 5.10 and Potentials}
+
+Let $\phi\in\S$. Then we know that $\del_{x_j}\phi\in\S$, and Fourier is a bijection between $\S$ and itself. Now 
+\setcounter{equation}{0}
+\begin{equation}
+(\del_{x_j}\phi)^\wedge \overtext{=}{IBP} \;2\pi i k_j \;\hat{\phi}(k)
+\end{equation}
+We define 
+\begin{equation}
+\D_j = \frac{1}{2\pi i} \del_{x_j},
+\end{equation}
+so that the Fourier is 
+\begin{equation}
+(\D_j\phi)^\wedge (k) = k_j \hat{\phi}(k).
+\end{equation}
+And this is really nice because $\S$ is closed under Fourier and multiplication by polynomials, so $k_j \hat{\phi}(k)\in\S$, and we can take the inverse Fourier and find that $\D_j$ has this nice form:
+\begin{equation}
+\D_j\phi (x) = \big(\hat{\phi}(k) k_j\big)^\vee (x).
+\end{equation}
+
+
+
+\textsc{Proof of (1)}
+\quad $(\del_{x_j}\phi)^\wedge = \int_{\Rn} \del_{x_j}\phi(x) e^{2\pi i \angles{k,x}}\dx  
+\overtext{=}{IBP} \;2\pi i k_j \;\hat{\phi}(k) $
+\qed
+
+\begin{highlight}
+In short, we are defining $\D_j:\S\to\S$ by 
+\begin{equation}
+\D_j = \frac{1}{2\pi i} \del_{x_j},\tag{$2$}
+\end{equation}
+and noting that we can equivalently write 
+\begin{equation}
+\D_j\phi (x) = \big(k_j\hat{\phi}(k) \big)^\vee (x).\tag{$4$}
+\end{equation}
+\end{highlight}
+
+We can define all kinds of operators in a similar form to that of (4): Take Fourier, multiply by something, take inverse Fourier. 
+
+\begin{highlight}
+\begin{definition*}
+Let $|\D|:\S\to L^p$ be defined as
+\begin{equation}
+|\D|=\frac{1}{2\pi i}\sqrt{\del_1^2+\dots+\del_n^2}.
+\end{equation}
+[originally he wrote $\frac{1}{4\pi^2}$ above, but he must have meant this.]
+\end{definition*}
+
+\begin{proposition}
+We can also write $|\D|$ as 
+\begin{equation}
+|\D|(\phi)= (|k|\hat{\phi}(k))^\vee(x).
+\end{equation}
+Equivalently we can write 
+\begin{equation}
+|\D|= (|\bigcdot|\hat{\phi})^\vee\tag{$6$}
+\end{equation}
+where $\bigcdot$ is a dummy variable. 
+\end{proposition}
+\end{highlight}
+It's not immediately obvious that we can actually take the inverse Fourier here since $|k|\hat{\phi}(k)$ is not smooth at 0, but note that $\phi$ decays faster than any polynomial so we have 
+$$\abs{|k|\hat{\phi}(k)}\leq \frac{C_N}{1+|k|^N} \quad \forall N, \forall k$$
+so $|k|\hat{\phi}(k)$ is in every $L^p$, so in particular it is $L^1$. Thus we can take inverse Fourier after all. 
+
+\begin{highlight}
+\begin{remark*}
+Note that we have only defined $|\D|$ on $\S$. Fortunately, $\S$ is dense in any reasonable space, so if you can prove 
+$$\norm{(|\bigcdot|\hat{\phi})^\vee}_q\leq C \norm{\phi}_p,$$
+then $|\D|$ is a bounded linear operator so you can extend it to a map $|\D|:L^p\to\L^q$. 
+\end{remark*}
+\end{highlight}
+
+\begin{highlight}
+\begin{proposition}
+Let $\frac{1}{|\D|}:\S\to C^0$ be
+\begin{equation}
+\frac{1}{|\D|}=\left(\tfrac{1}{|k|}\hat{\phi}(k)\right)^\vee(x).
+\end{equation}
+Equivalently we can write 
+\begin{equation}
+\frac{1}{|\D|}=\left(\tfrac{1}{|\bigcdot|}\hat{\phi}\right)^\vee(x)\tag{$7$}
+\end{equation}
+where $C^0$ is the functions limiting to 0 at $\infty$. We need to show that $\frac{1}{|\D|}$ is defined for all $\phi\in\S$, and all $k\in\R^n$. 
+\end{proposition}
+\end{highlight}
+\begin{proof}
+The issue here is whether we can take the inverse Fourier of $\tfrac{1}{|k|}\hat{\phi}(k)$, that is, if it is integrable. If $p<n$, then $\tfrac{1}{|k|}\hat{\phi}(k)\in\L^p$, so it's at least $L^1$ (assume $n\geq 2$). By Riemann-Lebesgue lemma, it's also in $C^0$, which is nice since $C^0$ is dense in any reasonable space. 
+\end{proof}
+
+\pagebreak
+\newcommand{\laplacian}{\Delta}
+\begin{highlight}
+\begin{definition*}
+Recall that the Laplacian $\laplacian$ is given by 
+$$\laplacian=\nabla\cdot \nabla=\del_1^2+\dots+\del_n^2,$$
+the dot product of the gradient with itself. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+We define $\D:\S\to\S$ by 
+\begin{equation}
+\D=\frac{1}{2\pi i}\nabla=\frac{1}{2\pi i}(\del_1, \dots, \del_n)
+\end{equation}
+so 
+\begin{equation}
+\D\cdot\D=-\frac{1}{4\pi^2}\laplacian
+\end{equation}
+which gives 
+\begin{equation}
+-\laplacian=4\pi^2|\D|^2
+\end{equation}
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+Define, for $0<\alpha<n$, the operator $(-\laplacian)^{-\alpha/2}:\S\to C^0$ (or to $L^\infty$) by 
+\begin{equation}
+(-\laplacian)^{-\alpha/2}(\phi)=\frac{1}{(2\pi)^\alpha}\left(\frac{1}{|k|^\alpha} \hat{\phi}(k)\right)^\vee
+\end{equation}
+\end{definition*}
+\end{highlight}
+
+\subsection{THEOREM (Fourier transform of $|x|^{\alpha-n}$)}
+
+\begin{remark*}
+The function $|x|^{2-n}$ on $Rn$ with $n\geq3$ is very important in potential theory (Chapter 9) and as the Green's function in Sect. 6.20. Hence, it is useful to know its 'Fourier transform', even though this function is not in any $L^p(\Rn)$ for any $p$. However, its action in convolution or as a multiplier on nice functions can be expressed easily in terms of Fourier transforms.
+\end{remark*}
+
+\let\oldcdot\cdot
+\renewcommand{\cdot}{\bigcdot}
+
+\begin{highlight}
+\begin{theorem}
+$${\abs{\cdot}^{\alpha-n}}*\phi$$
+\end{theorem}
+\end{highlight}
+
+\pagebreak
+\section{Distributions in $\R^n$}
+
+\renewcommand{\phi}{\oldphi}
+\renewcommand{\S}{\script{S}}
+
+\subsection*{The Big Ideas}
+
+\begin{definition*} \mbox{}
+	\begin{itemize}
+	\item In general we consider $\D(\Omega)$ and $\D'(\Omega)$. 
+	\item $\phi\in \D$ are test functions
+	\item $\S\undertext{\subset}{dense}\D$
+	\item $\D=\C^\infty_{\text{loc}}$ and limits of those. ($\phi_n\xto{\D}\phi$ means for any $\alpha\in\N^n$, then $\del^\alpha \phi_n \xto{n} \del^\alpha \phi$ uniformly on $K$ which is a compact support $\phi, \phi_1, \phi_2, \dots$)
+	\item $T\in \D'$ are distributions, and sometimes $T=f\in\L^1_{\text{loc}}$
+	\item $\angles{\phi,T}=T(\phi)$, and $\angles{\phi,f}=\int_\Omega\phi f\dx$ if $f\in\L^1_{\text{loc}}$
+	\end{itemize}
+	\begin{definition*}
+	The distributional derivative $\del^\alpha T$ with multi-index $\alpha$ is given by 
+	$$\angles{\del^\alpha T, \phi} = \pm\angles{T, \del^\alpha \phi},$$
+	with positive when $\sum \alpha_i$ is even and negative when it is odd.
+	\end{definition*}
+\end{definition*}
+
+
+% quick: Week 4 - April 21 - 6:19
+
+\end{document}

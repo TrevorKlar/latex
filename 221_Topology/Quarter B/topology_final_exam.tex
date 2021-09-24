@@ -1,0 +1,323 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221B - Topology} \\ }
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RP}{\mathbb{RP}}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\inv}[1]{\overline{#1}}
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\image}[1]{\operatorname{im}\left(#1\right)}
+\renewcommand{\S}{\mathbb{S}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Final Exam}%===============UPDATE THIS===============%
+\end{center}
+
+\begin{enumerate}
+
+\item \mbox{}\vspace*{-24pt}
+\begin{definition*}
+Let $X$ be a topological space, with $x\in X$. A \emph{loop} $f$ in $X$ is a map $f:I\to X$ with $f(0)=f(1)=x$. We call $x$ the \emph{basepoint} of $f$. 
+\end{definition*}
+
+\begin{definition*}
+Let $f$ and $g$ be two loops in $X$, both with basepoint $x_0$. A \emph{loop homotopy} between $f$ and $g$ is a homotopy $\phi_t$ such that $\phi_0=f, \phi_1=g,$ and $\phi_t(0)=\phi_t(1)=x_0$ for all $t$. 
+\end{definition*}
+
+\begin{definition*}
+Let $(X,x_0)$ be a based topological space. The \textbf{fundamental group} $\pi_1(X,x_0)$\footnote{When the basepoint is irrelevant or it is clear what the basepoint is, we will suppress notation and write $\pi_1(X)$. If not specified, one can assume $x_0$ is the basepoint of $X$, $a_0$ is the basepoint of $A$, etc.} is the set of all loop homotopy classes $[f]$ of loops in $X$ based at $x_0$, equipped with the product $[f][g]:=[f\sqcdot g]$.\footnote{Here $\sqcdot$ denotes concatenation, and sometimes we will denote concatenation by juxtaposition when the meaning is clear.}
+\end{definition*}
+
+\begin{definition*}
+Let $p:C\to X$ be a map, and let $U$ be open in $X$. We say $U$ is \emph{evenly covered} by $p$ if 
+	\begin{itemize}
+	\item $\preimage{p}{U}=\coprod_\alpha \tilde{U}_\alpha$, where each $\tilde{U}_\alpha$ open in $C$, and 
+	\item each $\tilde{U}_\alpha$ is homeomorphic to $U$, denoted $\tilde{U}_\alpha \cong U$. 
+	\end{itemize}
+\end{definition*}
+
+\begin{definition*}
+Let $(X,x_0)$ be a based topological space. A \textbf{covering space} of $X$ is a based topological space $(C,c_0)$ together with a basepoint preserving map $p:C\to X$ such that 
+\begin{itemize}
+\item for every $x\in X$, there exists a neighborhood $U\ni x$ which is evenly covered by $p$. \footnote{We often suppress notation by calling $p:C\to X$ a covering space, inferring that $C$ is the accompanying topological space, and assuming the basepoints are named whatever makes sense.}
+\end{itemize} 
+\end{definition*}
+
+\begin{remark*}
+ We show in Hatcher that a covering map $p:C\to X$ induces an injective homomorphism $p_*:\pi_1(C)\to\pi_1(X)$, and that the image $\image{p_*}$ is a subgroup of $\pi_1(X)$. 
+\end{remark*}
+
+\begin{definition*}
+Let $p:(C,c_0)\to(X,x_0)$ and $r:(D,d_0)\to(X,x_0)$ be covering spaces. We say that \textbf{$p$ and $r$ are isomorphic} if 
+$$\image{p_*}\cong\image{r_*}$$
+\end{definition*}
+
+\item \mbox{}\vspace*{-24pt}
+\begin{definition*}
+Let $p:\tilde{X}\to X$ be a covering space, and let $f:Y\to X$ be a map. A \emph{lift} of $f$ is a map $\tilde{f}:Y \to \tilde{X}$ such that $p\circ \tilde{f}=f$. 
+\end{definition*}
+
+\begin{theorem*}(Homotopy Lifting Property)\\
+Given a homotopy $f_t:Y\to X$ and a map $\tilde{f}_0:Y\to X$ lifting $f_0$, there is a unique homotopy $\tilde{f}_t$ lifting $f_t$ which extends $\tilde{f}_0$. 
+\end{theorem*}
+\begin{remark*}
+We proved this in Hatcher. Also note that we can apply this to map homotopies, path homotopies, loop homotopies, and even paths themselves which can be thought of as point homotopies. 
+\end{remark*}
+
+\pagebreak
+\begin{theorem*}
+$\pi_1(\mathbb{S}^1)=\Z$. 
+\end{theorem*}
+\begin{proof}
+Let $p:\R\to\mathbb{S}^1$ be 
+$$p(s)=\big(\cos(2\pi s), \sin(2\pi s)\big).$$
+\textsc{Claim.} $p:(\R, 0)\to \big(\mathbb{S}^1, (1,0)\big)$ is a covering space. 
+
+\textsc{Proof of claim.} Observe that $p$ is a basepoint preserving map since it is continuous and $p(0)=(1,0)$. To see that every neighborhood of a point in $S$ is evenly covered, observe that it can be factored as $p=\text{proj}_{xy}\circ h$, where $h:\R\to\R^3$ and $\text{proj}_{xy}:\image{h}\to\R^2$ are given by 
+\begin{align*}
+h(s)&=\big(\cos(2\pi s), \sin(2\pi s), s\big) \\
+\text{proj}_{xy} (x,y,z) &= (x,y).
+\end{align*}
+Geometrically it is clear that for every $s\in\mathbb{S}^1$ with sufficiently small $U\ni s$ open in $\mathbb{S}^1$, the preimage $\preimage{\text{proj}_{xy}}{U}$ is a collection of disjoint stacked arcs in the helix, and $\preimage{h}{\preimage{\text{proj}_{xy}}{U}}$ is a collection of disjoint open intervals, each of length less than $1$. 
+
+To see that each of these disjoint open intervals is homeomorphic to its image in $p$, observe that $h$ is a homeomorphism since it is continuous with continuous inverse $h^{-1}(x,y,z)=z$, and $\text{proj}_{xy}$ is continuous because it is a projection. To see that $\text{proj}_{xy}$ has continuous inverse on one of these small helix arcs, let $(x_1,y_1), (x_2,y_2)$ be two points in $\mathbb{S}^1$ such that the angle between them $\theta$ is less than $2\pi$. For any $(x,y)$ in the arc between $(x_1,y_1)$ and $(x_2,y_2)$ in $\mathbb S^1$, let $\theta(x,y)$ be the angle between $(x_1,y_1)$ and $(x,y)$. Denote $s_0$ the lower bound of the small interval whose image in $h$ gives us the helix arc from $(x_1,y_1)$ to $(x_2,y_2)$. Then
+$$\preimage{\text{proj}_{xy}}{(x,y)}=\left(x,y,s_0+\tfrac{1}{2\pi} \theta(x,y)\right)$$
+is the inverse of $\text{proj}_{xy}$ and it is continuous. Thus the claim is proved. \qedwhite
+
+Now that we have established that $p$ is a covering map of $\mathbb{S}^1$, we classify the loops in $\pi_1(\mathbb{S}^1)$. 
+Let $f$ be a loop in $\mathbb{S}^1$ based at $(1,0)$. If we choose $\tilde{f}(0)=0$, then by the Homotopy Lifting Property,  $f$ lifts uniquely to $\tilde{f}$ with $\tilde{f}(1)\in\preimage{p}{1,0}=\Z$. 
+
+\textsc{Claim. } $\Theta:\pi_1(\mathbb{S}^1)\to\Z$ is a group isomorphism given by 
+$$\Theta[f]=\tilde{f}(1) \text{ where } \tilde{f}(0)=0.$$
+
+\textsc{Proof of claim. }
+	\begin{itemize}
+	\item To see that $\Theta$ is well-defined, let $f\overset{\phi}{\simeq} g$, with $\tilde{f}$ such that $\tilde{f}(0)=0$. Then applying the Homotopy Lifting Property to $\phi$ we obtain $\tilde{\phi}$ with $\tilde{\phi}_0=\tilde{f}$, and since $\phi_t(1)$ is fixed for all time then so is $\tilde{\phi}_t(1)$, so $\tilde{\phi}_1(1)=\tilde{g}(1)=\tilde{f}(1)$. Thus $\Theta[f]=\Theta[g]$. 
+	
+	\item To see that $\Theta$ is onto, for all $n\in \Z$ let 
+	$$\omega_n(s)=(\cos 2\pi ns, \sin 2\pi ns).$$
+	If we choose $\tilde{\omega}_n(0)=0$, then by the Homotopy Lifting Property $\tilde{\omega}_n(s)=ns$, so $\tilde{\omega}_n(1)=n$ and $\Theta[\omega_n]=n$. 
+	
+	\item To see that $\Theta$ is a homomorphism, note that since 
+	$\omega_1\sqcdot\omega_1$ reparametrizes to $\omega_2$, then $[\omega]^n=[\omega_n]$. Thus 
+	$$\Theta\big([\omega_n][\omega_m]\big)=\Theta[\omega_{n+m}]=n+m.$$
+	Also, if $f$ is a loop with $\tilde{f}(1)=n$, then $\tilde{f}$ and $\tilde{\omega}_n$ are both paths from 0 to $n$, and they are homotopic by the straight-line homotopy $\Phi(t,s)=(1-t)\tilde{f}-t\tilde{\omega}_n$. Thus $p\circ\Phi:I\times I \to \mathbb{S}^1$ is a map with $\phi_0=f$, $\phi_1=\omega_n$. This is a homotopy exhibiting $f\simeq \omega_n$. 
+	
+	\item To see that $\Theta$ is injective, observe that $[f]\in\ker(\Theta)$ means that $f\simeq\omega_0$ which is a constant loop, so $\Theta$ has trivial kernel. 
+	\end{itemize}
+Thus we have shown that $\pi_1(\mathbb{S}^1)$ is exactly $\Z$, and we are done.
+\end{proof}
+
+\item \mbox{}\vspace*{-25pt}
+%\begin{lemma*}
+%Let $(X,x_0)$ be a based topological space. If $\phi_t:X\to Y$ is a homotopy and we denote $h(t)=\phi_t(x_0)$ as $t$ varies, then $\phi_{0*}=\beta_h\circ	\phi_{1*}$ and the following diagram commutes:
+%\jpg{width=0.33\textwidth}{final_w20_p3-1}
+%\end{lemma*}
+%\vspace*{-18pt}
+%\begin{proof}
+%Let $h_t$ be the homotopy which traverses $h$ up to point $t$. Explicitly, $h_t(s)=h(ts)$. Let $f$ be a loop in $X$ based at $x_0$ and consider the composition $\phi_t\circ f(s)$. Since for all $t$  
+%$$h_t(1)=h(t)=\phi_t(x_0)=\phi_t\circ f(0) = \phi_t\circ f(1),$$
+%we can concatenate to form a homotopy
+%$$h_t\sqcdot\phi_t\circ f \sqcdot \inv{h}_t$$
+%which is actually a loop homotopy exhibiting $\phi_0\circ f \simeq h\sqcdot\phi_1\circ f \sqcdot \inv{h}$. By applying the definitions, we find that $\phi_{0*}[f]=\beta_h\circ\phi_{1*}[f]$ which means $\phi_{0*}=\beta_h\circ	\phi_{1*}$.
+%\qedwhitehere
+%\end{proof}
+%
+%\begin{corollary*}
+%For any two homotopic maps $f,g:X\to Y$, the induced maps satisfy 
+%$$f_*=\beta_h \circ g_*,$$
+%where $\beta_h$ is a change-of-basepoint homomorphism.
+%\end{corollary*}
+
+\begin{definition*}
+Let $(X,x_0)$ and $(Y,y_0)$ be based topological spaces. We say that these spaces are \emph{homotopic} and write $(X,x_0) \simeq  (Y,y_0)$ if there are basepoint-preserving maps 
+$$f:(X,x_0)\to (Y,y_0)\text{ and }g:(Y,y_0)\to(X,x_0)$$ 
+such that 
+$$f\circ g\simeq \id\text{ and }g\circ f\simeq 1.$$
+Such $f,g$ are called \emph{homotopy equivalences}. 
+\end{definition*}
+
+\begin{theorem*}
+If $f:(X,x_0)\to (Y,y_0)$ is a homotopy equivalence, then $f_*:\pi_1(X,x_0)\to\pi_1(Y,y_0)$ is a group isomorphism. 
+\end{theorem*}
+\begin{proof}
+Let $g$ be the homotopy inverse for $f$, so $f\circ g\simeq	\id$ and $g\circ f\simeq \id$. We will show that the induced maps are inverse homomorphisms. Observe that $f_*g_*=(fg)_*$ since for any loop $\gamma$ in $(Y,y_0)$
+$$[\gamma]\xmapsto{\quad\;\,\,(fg)_*\quad\;\,\,} [fg(\gamma)]$$
+$$[\gamma]\overset{g_*}{\mapsto}[g(\gamma)]\overset{f_*}{\mapsto}[fg(\gamma)]$$
+and since both $f,g$ preserve basepoints, then $fg$ and $\id$ both fix their basepoint. Since $fg\simeq\id$, so there is a homotopy $\phi_t$ exhibiting $fg\simeq\id$ which fixes the basepoint for all time. Thus composing with $\gamma$ yields $\phi_t(\gamma)$ which is a loop homotopy exhibiting $fg(\gamma)\simeq \gamma$. Thus
+$$[fg(\gamma)]=[\gamma],$$
+and so $f_*g_*[\gamma]=[\gamma]$, so $f_*g_*=\id$. 
+
+The same argument shows that $g_*f_*=\id$, and so $f_*$ and $g_*$ are group isomorphisms. 
+\end{proof}
+
+\pagebreak
+\item Let $X=\RP^2\wedgeprod\RP^2$.
+	\begin{enumerate}[label=(\alph*)]
+	\item Find $\pi_1(X)$. 
+	
+	\answer	We know already that $\pi_1(\RP^2)=\Z_2$, so applying Van Kampen's Theorem, $\pi_1(\RP^2\wedgeprod\RP^2)=\Z_2*\Z_2$. 
+	
+	\item Find the universal cover of $X$. 
+	
+	\answer The following cover, where each $S^2$ maps to the same color $\RP^2$ by the real projection map. 
+	
+	\jpg{width=0.8\textwidth}{final_w20_p4-1}
+	
+	\item Find all of its connected 2-sheeted covers.
+	
+	\answer The following 4 covers with points at the end identified (thus all points in pink are identified). Each part maps to the same color part in $X$ with either the real projection map or the identity map, as appropriate. 
+	
+	\jpg{width=0.8\textwidth}{final-w20-p4-2}
+	\end{enumerate}
+
+\pagebreak
+\item Let $X=\RP^2\times\RP^2$.
+	\begin{enumerate}[label=(\alph*)]
+	\item Find $\pi_1(X)$. 
+	
+	\answer	$\Z_2\times\Z_2$. 
+	
+	\item Find the universal cover of $X$. 
+	
+	\answer $\S^2\times \S^2$, with the product of real projection maps. 
+	
+	\jpg{width=0.33\textwidth}{final-w20-p5-1}
+	
+	\item Find all of its connected 2-sheeted covers.
+	
+	\answer A multi-sheeted cover of $\RP^2\times\RP^2$ with $n$ sheets in the first coordinate and $m$ sheets in the second coordinate will necessarily have $nm$ sheets, so any two-sheeted cover with have 2 sheets in one coordinate and 1 sheet in the other. This leaves two choices for product space covers: 
+	\jpg{width=0.8\textwidth}{final-w20-p5-2}
+	%However, there is one more subgroup of $\Z_2\times\Z_2$, namely $\{(0,0), (1,1)\}$ which we can present as $\angles{ab \mid aba^{-1}b^{-1}}$. 
+	\end{enumerate}
+
+\pagebreak 
+
+\begin{theorem*}(Van Kampen's Theorem [two-set version])
+
+If 
+	\begin{itemize}
+	\item $X=A\cup B$, 
+	\item each of $A,B$ is open, path-connected, and contains the basepoint, 
+	\item $A\cap B$ is path-connected,
+	\end{itemize}
+then $\pi_1(X)$ is given by  $$\quotient{\pi_1(A)*\pi_1(B)}{N},$$
+where $N$ is the normal subgroup generated by all elements of the form 
+$$i_{A*}[\gamma]i_{B*}[\gamma]^{-1}$$ 
+for all $[\gamma]\in\pi_1(A\cap B)$. 
+\end{theorem*}
+
+\item Calculate the fundamental group of $S(K^2\wedgeprod T^2)$  where $S$ denotes suspension, $K^2$ is the Klein bottle, and $T^2$ is the torus. 
+
+\answer	Let $X=K^2\wedgeprod T^2$. We can write $SX$ as $CX\cup CX$, where the two cones overlap a bit, say $t\in [0,0.6)$ in the first cone and $t\in(0.4,1]$ in the second cone. Applying Van Kampen's theorem, we find that $\pi_1(SX)$ is 
+$$\quotient{\pi_1(CX)*\pi_1(CX)}{N}$$
+but every cone is contractible, so $\pi_1(SX)$ is trivial. \qed
+
+\newcommand{\D}{\mathbb{D}}
+\item Let $X_n$ be the space obtained by attaching $\D^2$ to $\S^1$ along $\del\D^2$ by wrapping the boundary $n$ times around $\S^1$. 
+	\begin{enumerate}[label=(\alph*)]
+	\item Use the Van Kampen theorem to calculate $\pi_1(X_n)$. 
+	
+	\answer Write $X_n=A\cup B$, where $B$ is the interior of $\D^2$, and $A$ is constructed as follows. Take $\left(\bigwedgeprod_{k=1}^n [0,0.1)\right) \times I$ to yield an $n$-pointed asterisk noodle, then twist $\frac{1}{n}$th of a turn and identify the ends as shown below for $n=3$:
+	\jpg{width=0.33\textwidth}{final-w20-p7-1}
+	$A$ deformation retracts to $\S^1$ and $B$ is contractible, so $\pi_1(X_n)$ is 
+	$$\quotient{\Z(a)*0}{N},\footnote{Here $\Z(a)$ denotes the free group generated by $a$.}$$
+	so all that remains is to determine $N$. Since $A\cap B$ deformation retracts to the boundary circle of $A$, then $\pi_1(A\cap B)$ has one generator, call it $[\gamma]$. Then $i_{B*}[\gamma]$ is trivial, and $i_{A*}[\gamma]=[a^n]$, so $N=\langle a^n \rangle$ and 
+	$$\pi_1(X_n)=\langle a \mid a^n \rangle = \Z_n.$$
+	
+	\item Find all subgroups of $\pi_1(X_{18})$ and all of the corresponding connected based covering spaces. The covers will be hard to draw but you should be able to describe them fairly
+precisely.
+
+	\answer To construct the universal cover $\tilde X$ of $X_{18}$, we build the Cayley complex: $\pi_1(X_{18})=\angles{a\mid a^{18}}=\Z_{18}$, so we begin with 18 discrete points $0, a, a^2, \dots, a^17$. Then we add an edge connecting each point to its image under the action of the generator $a$, forming an 18-sided polygon. Finally there is a loop $a^{18}$ starting at each point, so we add 18 2-cells attached along the polygon. Thus we obtain the an 18-gon with 18 2-cells attached inside. 
+	
+	Motivated by this picture, we can reimagine $X_{18}$ as the same edge $a$ repeated 18 times in a loop, with one $e^2$ attached along $a^{18}$. That is, an 18-gon with all edges identified. (In the figures, pretend that each polygon has 18 sides.)
+	\vspace*{-6pt}
+	\jpg{width=0.3\textwidth}{final-w20-p7-2}
+	\vspace*{-12pt}
+	Note that $p:\tilde{X}\to X$ is the map which is suggested by the images; a point in any of the edges of $\tilde X$ is mapped to the corresponding point in the only edge of $X_{18}$, and a point in any of the $e^2$ cells of $\tilde{X}$ maps to the corresponding point in the only $e^2$ of $X_{18}$. 
+		
+	The subgroups of $\angles{a\mid a^{18}}$ are
+	
+	$\hfill \angles{a\mid a^{18}} \hfill \angles{a^2\mid a^{18}} \hfill \angles{a^3\mid a^{18}} \hfill \angles{a^6\mid a^{18}} \hfill \angles{a^9\mid a^{18}} \hfill \angles{a^{18}\mid a^{18}} \hfill$
+	
+	and for each $\angles{a^n\mid a^{18}}$ we will construct a cover $C_n$ of $X_{18}$. 
+	
+	Clearly $C_1=X_{18}$ and $C_{18}=\tilde{X}$. For all other $C_n$, we start with $\tilde{X}$ and identify every pair of points $\tilde{x}, \tilde{y}\in \tilde{X}$ such that for any path $\tilde{\gamma}$ between them, $\tilde{\gamma}\xmapsto{p_*}\gamma\in \angles{a^n\mid a^{18}}$. For the edges, only powers of $a^n$ are loops, so we identify corresponding points in $\frac{18}{n}$ pieces of the perimeter. 
+	\vspace*{-6pt}
+	\jpg{width=0.15\textwidth}{final-w20-p7-3}
+	\vspace*{-6pt}
+	For the faces, let $\tilde{x}_n$ be 18 corresponding points on each side of $\tilde{X}$, and let $\tilde{y}_n$ be 18 corresponding points on each $e^2$, and connect them all with paths. Concatenating any pair of them give a path which maps to  a loop in $X_18$, but there are $n$ distinct groups such that any pair in the group maps to a loop in $\angles{a^n\mid a^{18}}$. 
+	\jpg{width=0.48\textwidth}{final-w20-p7-4}
+	Thus we find that $C_n$ is an $\frac{18}{n}$-gon with edges identified, and $n$ $e^2$ cells attached inside. \qed
+	
+	\item Draw the subgroup lattice (i.e. illustrate all of the inclusion relations between subgroups in a diagram).
+	\jpg{width=0.5\textwidth}{final-w20-p7-5}
+	\vspace*{-34pt} \qed
+	\end{enumerate}
+
+\item 
+%\mbox{}\vspace*{-24pt}
+%\begin{definition*}
+%A \emph{symmetry} of a cover of a 1-dimensional cell complex is an automorphism which relabels the vertices of the graph and after relabeling, the two graphs remain the same.
+%\end{definition*}
+%
+%\begin{definition*}
+%We say a graph has \emph{maximal symmetry} if for every pair of vertices $a,b$ in the graph, there exists a symmetry which maps $a$ to $b$. 
+%\end{definition*}
+%
+%\begin{proposition*}
+%Let $X$ be a 1-dimensional cell complex. A subgroup $G$ of $\pi_1(X)$ is normal iff the graph of the cover generated by $G$ has maximal symmetry. 
+%\end{proposition*}
+
+Consider the cover of $\S^1\wedgeprod\S^1$ drawn below based at its bottom vertex. Is the image of its fundamental group in $ \pi_1(\S^1\wedgeprod\S^1)$ a normal subgroup? Why or why not?
+\jpg{width=0.15\textwidth}{final-w20-p8-1}
+
+
+\answer 
+No, because the graph does not have maximal symmetry. Observe that if we label the vertices $1, 2, 3, 4$ from top to bottom, then no deck transformation maps $1\mapsto4$, since 1 has a $b$ arrow from itself to itself, and 4 does not. 
+\qed
+
+\item (Extra credit) Use the 2-dimensional Brouwer fixed point theorem to prove that every $3\times3$ matrix with positive real entries
+has a positive real eigenvalue. [Hint: focus on how the matrix
+acts on rays through the origin in $\R^3$, particularly those that point into the first octant.]
+
+\begin{proof}
+Let $A$ be a $3\times3$ matrix, $\vec{x}\in\R^3$, and define $\phi(\vec{x})$ to be the linear transformation $A\vec{x}$ restricted to $\S^2\cap O_1$, where $O_1$ is the first octant. Composing with projection back to $\S^2$ we obtain $p\circ \phi(\vec{x})$, a continuous function. Since $A\vec{x}$ gives a vector with all positive coordinates, $p\circ \phi:\S^2\cap O_1\to\S^2\cap O_1$. Observe that $\S^2\cap O_1\cong \D^2$, so by the Brouwer fixed point theorem, $p\circ \phi$ has a fixed point $\vec{x}_0$. Since $\phi(\vec{x})=A\vec{x}$ maps to a point in $O_1$ which projects to itself, then $\phi(\vec{x})=\lambda\vec{x}$ with $\lambda>0$ and $\vec{x}$ is an eigenvector of $A$. 
+\end{proof}
+
+
+
+
+
+\end{enumerate}
+\end{document}
+
+
+

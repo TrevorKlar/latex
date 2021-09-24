@@ -1,0 +1,206 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{\large \textbf{3B - More ${u}$-sub, volumes, areas}}} %=================UPDATE THIS=================%
+\rhead{\textsc{Week 3, Fall 2019}} %=================UPDATE THIS=================%
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{1pt}
+%
+\renewcommand{\footrulewidth}{1pt}
+\lfoot{
+%\begin{tabular}{rll}
+Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+Math Lab: \, W 12-2 \, SH 1607
+%\end{tabular}
+}
+\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+%\begin{center}
+%3B - Integral Calculus \\
+%
+%\end{center}
+
+%\hrule
+
+\begin{comment}
+\begin{center}
+\begin{tabular}{|rl|}
+\hline
+\multicolumn{2}{|c|}{Contact Information} \\
+\hline
+\bf{TA's name:} & Trevor Klar \\
+\bf{Email:} & trevorklar@math.ucsb.edu \\
+\bf{Office hours:} & Mondays 2:00-3:00 \\
+\bf{Math Lab hours:} & Wednesdays 12:00-2:00 \\
+\bf{Office:} & South Hall 6431x \\
+\hline
+\end{tabular}
+\end{center}
+\end{comment}
+
+ %=================START OF WORKSHEET=================%
+
+\noindent\textbf{More U-Subs:}
+
+\begin{itemize}
+
+\item Practice: For each of the following integrals, determine if (1) it is a $u$-sub problem and if so, (2) find $u$ and (3) compute $du$. Be careful, some are tricky!
+
+%6 u-sub problems (and non u-sub problems)
+
+(1) $\ds \int \dfrac{e^x}{1+e^{2x}} \, dx$ \hspace{1.75in} (2) $\ds \int \dfrac{3 + \sqrt{x}}{x^3} \, dx$
+
+\vspace{1in}
+
+(3) $\ds \int_0^{\pi/3} \dfrac{\sin\theta + \sin\theta\tan^2\theta}{\sec^2\theta} \, d\theta$ \hspace{0.82in} (4) $\ds \int_{-1}^2 (t-2|t|) \, dt$
+
+\vspace{1in}
+
+(5) $\ds \int \dfrac{x}{1+x^4} \, dx$ \hspace{1.8in} (6) $\ds \int_0^1 x \sqrt{1-x^4} \, dx$
+
+\vspace{0.75in}
+
+
+\end{itemize}
+
+
+\noindent\textbf{Area Between Curves:}
+
+\begin{itemize}
+
+\item The area between the curves $y = f(x)$ and $y = g(x)$ and between $x = a$ and $x=b$ is given by %A = int_a^b |f(x) - g(x)| dx (you can drop the absolute values providing the thing on the inside is positive, when is it positive? if we arrange for f(x) to be the function that sits "on top" of g(x) upon graphing
+
+\bigskip
+
+\item Strategy: 
+
+%when possible, graph your functions/curves (yes, you should familiarize yourself with the graphs of functions)
+%if you aren't given a region (an x = a and x = b) find points of intersection (as these will be your limits of integration
+%use the definition to find the area and integrate the difference of the two functions making sure that the first function lies above the other within your region of integration
+
+\bigskip\bigskip\bigskip
+
+\item Example: Find the area between the curves given by $y = x^2 - 2x$ and $y = x+4$.
+
+\newpage
+
+\item Sometimes, curves are more easily described as functions of $x$ in terms of $y$. For example, when finding the area between the curves $4x+y^2 = 12$ and $x = y$. %Let's set up the integral that describes this area.
+
+\vspace{2in}
+
+
+
+\end{itemize}
+
+
+
+% Net Change Theorem: The integral of a rate of change is the net change $\ds \int_a^b F'(x) \, dx = F(b) - F(a)$
+
+
+
+
+
+
+
+
+\noindent\textbf{Volumes of Solids:}
+
+
+\begin{itemize}
+
+\item Given a solid, we like to first think about a \emph{cross section} of the surface which is %the intersection of your solid and a plane (a very particular plane that is usually orthogonal to the x or y axis).
+
+%Typically, we can compute the areas of these cross sections using either high school geometry (area of a circle pir^2
+
+\bigskip\bigskip
+
+\item Disk Method: %used when the cross sections of your solid is a disk
+
+%15(B)
+
+
+\vspace{2.5in}
+
+
+
+\item Washer Method: %used when the cross sections of your solid is a washer (hole in the middle somewhere)
+
+
+%15(A)
+
+
+\end{itemize}
+
+
+
+
+
+
+%\noindent\textbf{Problem 1: }
+%
+%\medskip
+%
+%(a) Use the right endpoint Riemann sum approximation with $3$ subintervals to approximate the area under the curve $f(x) = x^2$ between $x = 1$ and $x = 3$. Do you expect your answer to be an over or underestimate of the area?
+%
+%\medskip
+%
+%(b) Find the area under the curve $f(x) = x^2$ between $x = 1$ and $x=3$ using the definition of the integral as the limit of a Riemann sum. Was your guess in (a) correct? Why?\
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 2:} Compute each of the following integrals:
+%
+%\medskip
+%
+%(a) $\ds \int \sec(x)\tan(x) + x^{\sqrt2} - \sqrt[3]{x} + \ln(2) \, dx$\\
+%
+%(b) $\ds \int \sec^2(x)e^{\tan(x)} \, dx$\\
+%
+%(c) $\ds \int_1^2 \dfrac{x}{\sqrt{x+3}} \, dx$\\
+%
+%(d) $\ds \int_{-6}^{6} x^4\tan(x) \, dx$\\
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 3:} The sum $\ds \sum_{i = 1}^n \left(\dfrac6n\right) \sqrt{9 + \dfrac{6i}{n}}$ approximates what area (Hint: there is more than one correct answer; be sure to give both the integral and limits of integration)?
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 4:} Find $\dfrac{d}{dx}\ds \int_{ax+b}^2 \dfrac{\sqrt{t^3}}{4\cos(t) + 3} \, dt$.
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 5:} The velocity function for a particle moving along a line is given by $v(t) = -t^2 + 5t - 6$. Find both the (i) displacement and (ii) the total distance traveled by the particle on the time interval $[-1,5]$.
+%
+%\bigskip\bigskip
+%
+%\noindent\textbf{Problem 6:} Sketch the region enclosed by the curves $x = 24-3y$ and $x = y^2 - 4$ and find the area of the region.
+%
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

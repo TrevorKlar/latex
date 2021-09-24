@@ -1,0 +1,50 @@
+\documentclass[epsf]{article}
+\usepackage{amsmath,amsthm,amsfonts,latexsym,amscd, framed}
+\usepackage{graphicx}
+
+
+\textwidth=6.0truein\hoffset=-.5truein
+\textheight=8.5truein\voffset=-.5truein
+
+\begin{document}
+%\maketitle
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\noi}{\noindent}
+\newcommand{\bs}{\bigskip}
+
+%%%%
+
+
+\begin{center}
+{\Large Project \#3: First Order Linear Systems of DEs.\\
+\vskip 2mm
+TA Guide Part 1}
+\end{center}
+
+\noi{\bf 1.} Print half as many pre-worksheets as their are students to promote collaboration.  Have them get started on PW 1.  If a quick group gets PW 1 well before the others, tell them to think about PW 2.  Once about 2/3 of the room has (a) figured out, you can bring the class together and talk about the answer to that part.  Give them a few more minutes with (b) and (c), then discuss those parts as a class before moving on to PW 2.\\
+
+\noi{\bf 2. } Once you've established what the matrix $A$ is for part (b), ask them if they recall eigenvalues/vectors from 4A.  The answer will be ``no'', so now you can go into an eigenvalue/vector refresher...maybe compute them for some other example matrix $B$, say something about what they mean for the mapping etc.  Then have them compute the eigenstuff for part (b).\\
+
+\noi{\bf 3. } NOTE that this will be the first time they've seen a system of first order equations in this class.  You can let them know that we'll start talking about these problems in lecture next Tuesday.  For now, this is just warm-up.\\
+
+\noi{\bf PW 1}  Let $\ddot{x} + 3\dot{x} + 2x = 0$ be the equation of a damped vibrating spring with a unit mass, damping coefficient $b=3$ and spring constant $k=2$.  We can convert this second order DE into a system of two first order DEs.  
+\vskip 2mm
+\noi (a) If we make the substitution $y=\dot{x}$ we can find a system of two first order equations that describe the motion of the spring-block set-up.  What two equations do you get?  
+\vskip 2mm
+
+\noi (b) Find the general solution to the linear homogeneous DE $\ddot{x} + 3\dot{x} + 2x = 0$.
+\vskip 2mm
+\noi (c) Now express your solution from part (a) in vector form, i.e. find an expression for the vector-valued function whose first entry is the position of the block and second entry is velocity of the block:
+$$\begin{bmatrix}x(t) \cr y(t) \end{bmatrix} = \begin{bmatrix} ? \cr ? \end{bmatrix}$$\\
+
+
+\noi{\bf PW 2}\noi (a) Now convert your system into matrix form.  You should get something like
+$$ \begin{bmatrix}\dot{x}(t) \cr \dot{y}(t) \end{bmatrix} = A  \begin{bmatrix}x(t) \cr y(t) \end{bmatrix}.$$ What are the entries in your coefficient matrix $A$?
+\vskip 2mm
+\noi (b) Find the eigenvalues and eigenvectors of $A$.
+\vskip 2mm
+ \noi (c) Can you express your vector-valued solution from part (b) in terms of the eigenvalues and eigenvectors you found in PW 1 part (c)?  
+\vskip 2mm
+\noi (d) Will you always be able to do this for any second order linear DE with constant coefficients?
+
+\end{document}

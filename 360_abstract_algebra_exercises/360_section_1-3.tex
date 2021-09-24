@@ -1,0 +1,140 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 360 \linebreak
+Section 1.3 Exercises}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item[\phantom{1.}]
+
+\hspace*{-0.6cm}\textbf{In 1 through 6, determine whether the binary operation $*$ gives a group structure on the given set. If no group results, give the first axiom $\script{G}_1, \script{G}_2, \script{G}_3 $ from Definition 1.3.1 that does not hold.}
+
+\item[1.] Let $*$ be defined on $\Z$ by $a*b=ab$. 
+
+\answer $\script{G}_3 $ does not hold; the element 0 has no inverse. 
+
+\item[3.] Let $*$ be defined on $\R^+$ by $a*b=\sqrt{ab}$. 
+
+\answer	$\script{G}_1 $ does not hold; $\sqrt{2\sqrt{(3)(5)}}\neq\sqrt{\sqrt{(2)(3)}(5)}$. 
+
+\item[5.] Let $*$ be defined on $\R^*$ by $a*b=a/b$. 
+
+\answer	$\script{G}_1 $ does not hold; $\frac{2/3}{5}=\frac{2}{15}\neq\frac{10}{3}=\frac{2}{3/5}$
+
+\item[7.] Give an example of an abelian group $G$ with exactly 1000 elements. 
+
+\answer $\inner{\{0, \dots 999\}}{+_{1000}}$, that is, the first 1000 natural numbers equipped with addition mod 1000. 
+
+\item[8.] Show that the set $U$ of all complex numbers of norm 1 with the operation of multiplication is a group. 
+
+\begin{proof}
+We give $U$ an explicit definition as follows, $U=\{e^{i\theta}:\theta\in[0,2\pi)\}$. Thus to multiply two elements $e^{i\phi}, e^{i\psi}\in U$, we find that $e^{i\phi}\cdot e^{i\psi}=e^{i[(\phi+\psi)\mod2\pi]}$. Therefore, $U$ is closed under multiplication. Now we verify the group axioms:
+	\begin{enumerate}
+	\item[$\script{G}_1$.] For any $a,b,c\in [0,2\pi)$, we have that $e^{ia}(e^{ib}e^{ic})=(e^{ia}e^{ib})e^{ic}$ since addition of exponents is also associative. 
+	\item[$\script{G}_2$.] The set has an identity, $1=e^{i0}$. 
+	\item[$\script{G}_3$.] For any $a\in [0,2\pi)$, the inverse of $e^{ia}$ is $e^{i(2\pi-a)}$. To see this, observe that $e^{ia}e^{i(2\pi-a)}=e^{i(2\pi-a+a)}=e^{i2\pi}=e^0=1$. 
+	\end{enumerate}
+\end{proof}
+
+\item[23.] The following "definitions" of a group are taken verbatim, including spelling and punctuation, from papers of students who wrote a little too quickly and carelessly. Criticize them. \textcolor{BlueViolet}{My remarks in blue.}
+	\begin{enumerate}[label=\alph*.]
+	\item A group \sout{G} \textcolor{BlueViolet}{($G$ is the set, not the group)} is a set of elements \textcolor{BlueViolet}{$G$} together with a binary operation $*$ such that the following conditions are satisfied\textcolor{BlueViolet}{(:) Needs colon here. }
+	
+	$*$ is associative \textcolor{BlueViolet}{Unless the word "associative" has been defined earlier in the paper, you must define it here. Also, use complete sentences.}
+	
+	There exists $e\in G$ such that \textcolor{BlueViolet}{for any $x\in G$,}
+	$$e*x=x*e=x= \text{identity.}$$
+	\textcolor{BlueViolet}{The symbols "= identity" have no meaning. You should write "The element $e$ is called the identity" if you really want to include the name.}
+	
+	For every $a\in G$ there exists an $a'$ (inverse) such that 
+	$$a\cdot a' = a'\cdot a= e$$
+	\textcolor{BlueViolet}{where $e$ is the identity element. (The symbol $\cdot$ has no meaning in this context. You must have meant $*$.)}
+	\end{enumerate}
+
+\item[\phantom{25.}] 
+	\jpg{width=0.9	\textwidth}{1-3_prob_25}
+	\textbf{a.} False. The identity of a group is unique. 
+	\textbf{b.} True. There is only one group of three elements, up to isomorphism. 
+	\textbf{c.} True. This is the first theorem we proved about groups, and arguably the main motivation for studying groups in the first place. 
+	\textbf{d.} False. While a properly learned definition often is rewritten in exactly the same words as those in which it was presented, the proper attitude toward a definition is to understand every word and its purpose in the statement. If the concept has been learned with depth, a correct definition will emerge. 
+	\textbf{e.} False. See part f. 
+	\textbf{f.} True. A definition must serve its purpose as a proof-writing tool, and so it must refer to exactly the same mathematical objects as those to which the text's definition refers. The words need not be the same, but the same object must be discussed. Occasionally a completely different definition will characterize the exact same mathematical objects, and in this case it is said that the two definitions are equivalent, and a given text will present one statement as the definition, and the other as a theorem. 
+	\textbf{g.} True. There are only three such groups, the tables for all three are given in the text, and they are symmetric. 
+	\textbf{h.} True. By the group axioms, the solution is $a'*c*b'$, and is unique. This can also be proved using the uniqueness of solutions theorem (Theorem 1.3.15). 
+	\textbf{i.} False. $\script{G}_2$ requires that there exist an identity element, but $\emptyset$ has no elements. 
+	\textbf{j.} True. The definition of a group begins with "A group is a set equipped with a binary operation..." and thus it is a binary structure. 
+
+\hspace*{-0.6cm}\textbf{Theory} (Note: some proofs may be given as sketches, for the sake of time.)
+
+\item[28.] Let $\R^*$ be the set of all real numbers except 0. Define $*$ on $\R^*$ by $a*b=|a|b$. 
+	\begin{enumerate}[label=\alph*.]
+	\item Show that $*$ gives an associative binary operation on $\R^*$. 
+	\begin{proof}(sketch)
+	\[\begin{array}{rcl}
+	(a*b)*c&=&(\abs{a}b)*c\\
+	&=&\abs{ab}c\\
+	&=&\abs{a}\abs{b}c\\
+	&=&\abs{a}(b*c)\\
+	&=&a*(b*c)\\
+	\end{array}\]
+	\end{proof}
+	
+	\item Show that there is a left identity and a right inverse for each element in $\R^*$. 
+	\begin{proof}(sketch)
+	The left identity is 1. For any $x$, 
+	$$1*x=\abs{1}x=x.$$
+	However, there is no right identity. For negative $x$, we have $-1$ able to act as an identity. However it does not work for positive $x$. Conversely, $1$ works for positive numbers, but not negative. 
+	
+	The term "right inverse" requires a definition, since we have no right identity, and the usual definition uses the right identity. We will assume the author meant the right inverse property to be "For all $x\in \R^*$, there exists a real number $x'$ such that we have $x*x'=1$". 
+	
+	Given $x\in \R^*$, the right inverse of $x$ is $\abs{1/x}$.  
+	$$x*\abs{1/x}=\abs{x}\cdot\abs{1/x}=1.$$
+	
+	The binary structure does not have a left inverse property, because the negative real numbers are not invertible. 
+	\end{proof}
+	
+	\item This is not a group, because it does not fit the left-sided axioms, right-sided axioms, or two-sided axioms. It also does not have the properties of groups, such as the uniqueness of solutions theorem. 
+	
+	\item This is significant because while one-sided axioms are equivalent to the two-sided axioms, this equivalence only holds in reference to all left-sided or all right-sided properties; one cannot mix and match. 
+	\end{enumerate}
+	
+	\item 
+\end{enumerate}
+
+\end{document}

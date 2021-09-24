@@ -1,0 +1,174 @@
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper, oneside]{book}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{tskpreamble} %located in ~/texmf/tex/latex/
+
+\numberwithin{theorem}{chapter}
+\renewcommand{\script}[1]{\pazocal{#1}}
+\newcommand{\extmeasure}[1]{m_*(#1)}
+\newcommand{\measure}[1]{m(#1)}
+
+\pgfplotsset{compat=1.13}
+
+%title
+
+\title{Real Analysis - Horn, 2019}
+\author{Trevor Klar}
+\makeindex
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\chapter{Measure Theory}
+\section{Preliminaries}
+
+\begin{highlight}
+\begin{definition*}
+We say $\alpha=\inf S$ iff:
+\begin{itemize}
+	\item $\alpha\leq s$ for all $s\in S$ and 
+	\item for any $\epsilon>0$, there exists $ s\in S$ such that $s<\alpha+\epsilon$. 
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+A (closed) \textbf{rectangle} $R$ in $\R^d$ is given by the product of $d$ one-dimensional closed and bounded intervals
+$$R = [a_1 , b_1 ] \times [a_2 , b_2 ] \times \cdots \times [a_d , b_d ],$$
+where $a_j\leq b_j$ are real numbers. 
+\end{definition*}
+
+\begin{highlight}
+\begin{definition*}
+The \textbf{measure} of a rectangle $R$ is defined to be 
+$$\abs{R}=\prod_{i=1}^d(b_i-a_i)=(b_1-a_1)(b_2-a_2)\cdots(b_d-a_d).$$
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+A union of rectangles is said to be \textbf{almost disjoint} if the interiors of the rectangles are disjoint. (We pretty much only use closed rectangles when we say they are almost disjoint). 
+\end{definition*}
+
+\begin{lemma}
+Let $R$ be a rectangle which is the almost disjoint union of finitely many other rectangles, that is, $R=\bigcup\limits_{k=1}^N R_k$. Then, 
+$$\abs{R}=\sum_{k=1}^N \abs{R_k}.$$
+\end{lemma}
+
+\begin{lemma}
+Let $R, R_1, \dots , R_N$ be rectangles, with $R\subseteq	\bigcup\limits_{k=1}^N R_k$. Then,
+$$\abs{R}\leq\sum_{k=1}^N \abs{R_k}.$$
+\end{lemma}
+
+\begin{theorem}
+Every open subset $O\subseteq\R^1$ can be written uniquely as a countable union of disjoint open intervals.\footnote{I have deliberately changed the notation slightly here. I will continue to use script letters i.e. $\script{ABCQO}$ to denote collections of sets, and ordinary capitals i.e. $ABCQO$ to denote sets.}
+\end{theorem}
+
+\begin{theorem}
+Every open subset $O\subseteq\R^d$ can be written as a countable union of almost disjoint closed cubes.
+\end{theorem}
+\begin{proof}
+Basically, do this: 
+\jpg{width=0.5\textwidth}{thm_1_4}
+\end{proof}
+\pagebreak
+\section{The exterior measure}
+
+\begin{highlight}
+\begin{definition*}
+Let $E\subseteq \R^d$. Let $\script{Q}=\{Q_j\}_1^\infty$ denote a countable collection of \emph{closed} cubes which cover $E$, and let $\Gamma$ denote the collection of all possible countable covers of $E$. That is, for all $\script{Q}\in\Gamma$, $E\subset\bigcup_1^\infty Q_j$ where each $Q_j\in \script{Q}$. \\
+\\
+The \textbf{exterior measure} of $E$ is defined as 
+$$m_*(E)=\inf_{\script{Q}\in\Gamma} \sum_{j=1}^\infty \abs{Q_j}$$
+\end{definition*}
+\end{highlight}
+
+\begin{remark*}
+Since the exterior measure is defined with an infimum, then $m_*(E)\leq \sum\abs{Q_i}$ for any cover $\{Q_i\}$ of $E$.
+\end{remark*}
+\begin{remark*}
+Note that $\abs{\,\cdot\,}$ is only defined for rectangles. For any other sets, we have only the exterior measure, $m_*$. 
+\end{remark*}
+
+\begin{highlight}
+\textbf{Observations about exterior measure.} 
+\begin{enumerate}[label=\textbf{\arabic*.}]
+	\item \textbf{(Monotonicity)} \\
+	If $E_1\subseteq E_2$, then $m_*(E_1)\subseteq m_*(E_1)$.
+	\item \textbf{(Countable sub-additivity)} \\
+	If $E=\bigcup\limits_{j=1}^\infty E_j$, then $\extmeasure{E}\leq\sum\limits_{j=1}^\infty \extmeasure{E_j}$. 
+	\item Let $E\subseteq\R^d$, and let $\script{O}=\{\text{open sets }O:E\subseteq O\}$. \\Then $\extmeasure{E}=\inf\limits_{O\in\script{O}}\extmeasure{O}$.
+	\item[] (\textbf{Corollary to 3.)} If $\extmeasure{E}<\infty$, then $\exists$ open $O\supset E$ such that $\extmeasure{O}<\extmeasure{E}+\epsilon$ for any $\epsilon>0$. 
+	\item If $E=E_1\cup E_2$, and $d(E_1, E_2)>0$, \\
+	then $\extmeasure{E}=\extmeasure{E_1}+\extmeasure{E_2}$. 
+	\item If a set $E$ is the countable union of almost disjoint  closed cubes \\$E=\bigcup\limits_{j=1}^\infty Q_j$, then $\extmeasure{E}=\sum_{j=1}^\infty\abs{Q_j}$. 
+	
+\end{enumerate}
+\end{highlight}
+
+\pagebreak
+\section{Measurable sets and the Lebesgue measure}
+
+\begin{highlight}
+\begin{definition*}
+We say that $E \subseteq R^d$ is \textbf{measurable} if 
+$$\text{for any } \epsilon > 0 \text{, there exists an open set } O \supseteq E \text{ with } m_*(O-E)<\epsilon.$$
+%$$\forall \epsilon > 0, \quad \exists (\text{open } O \supset E \,|\, m_*(O-E)<\epsilon).$$
+\end{definition*}
+\end{highlight}
+If the distinction is important, we can be more specific and say the set is \textbf{Lebesgue measurable}.
+\begin{highlight}
+\begin{definition*}
+We define the Lebesgue \textbf{measure} of a measurable set $E$ by its exterior measure, 
+$$m(E)=m_*(E).$$
+\end{definition*}
+\end{highlight}
+
+Now we give some propositions about the Lebesgue Measure. 
+
+\begin{highlight}
+\textbf{Property 1.} Every open set in $R^d$ is measurable.
+\end{highlight}
+\begin{proof}
+Let $E\subseteq\R^d$ be open. Then $E$ is an open set containing $E$ where $m_*(E-E)=0<\epsilon$ for any $\epsilon>0$, so $E$ is measurable. 
+\end{proof}
+
+\begin{highlight}
+\textbf{Property 2.} If $m_{∗}(E)=0$, then $E$ is measurable. In particular, if $F\subseteq E$ and $m_∗(E) = 0$, then F is measurable.
+\end{highlight}
+\begin{proof}
+Let $F\subset E\subseteq\R^d$ with $m_{∗}(E)=0$, and let $\epsilon>0$ be given. By Observation 3 about exterior measure, there exists on open set $O\supset E$ such that $m_*(O)<\epsilon$. Thus by monotonicity, $m_*(O-E)<m_*(O-F)<m_*(O)<\epsilon$ and we are done. 
+\end{proof}
+
+\begin{highlight}
+\textbf{Property 3.} A countable union of measurable sets is measurable.
+\end{highlight}
+\begin{proof}
+\textbf{(idea)} Choose open sets so that each one is $\frac{1}{\epsilon^j}$, and they all sum to $<\epsilon$. 
+\end{proof}
+
+\begin{highlight}
+\textbf{Property 4.} Closed sets are measurable. 
+\end{highlight}
+
+
+
+
+
+
+
+\end{document}

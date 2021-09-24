@@ -1,0 +1,47 @@
+\documentclass[epsf]{article}
+\usepackage{amsmath,amsthm,amsfonts,latexsym,amscd, framed}
+\usepackage{graphicx}
+
+\textwidth=6.0truein\hoffset=-.5truein
+\textheight=8.5truein\voffset=-.5truein
+
+\begin{document}
+%\maketitle
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\noi}{\noindent}
+\newcommand{\bs}{\bigskip}
+
+%%%%
+
+
+
+\begin{center}
+{\Large Project \#3: First Order Linear Systems of DEs.\\
+\vskip 2mm
+TA Guide Part 2}
+\end{center}
+
+\noi{\bf 1} Ask the students to group up (pairs or groups of 3) and let them compare solutions for both problems.  Get a group to write up their solution to part 1 and while those students are working, tell the rest of them they can take this time to edit their own solutions.  Once the group up front has finished writing up their solution to \#1, have them share it with the class -- then ask the class, do we need to change anything about this solution, or is it good how it is?  I'm hoping some good discussion will come out of this.  It's been my experience that they want to express everything in component form and this only obfuscates the connection between $\lambda$, $\vec{\bf v}$ and $A$.  Once the class is satisfied, move on.\\
+
+\noi{\bf 2.} Briefly discuss the answers for \#2 -- really you can ask them ``what are the eigenvalues/vectors for the matrix?" and ``how do we use this to make soltuions" and you'll probably get all the answer you need for (a).  Then you can ask them, ``what do we do to check that \textit{all} linear combinations of these solutions are also solutions?"  They will probably tell you what to do for part (b).  Hopefully this part will go relatively quickly so you have time to hand out the exams and talk about the solutions to those problems.\\
+
+\noi{\bf 3.} Collect the DPs and hand back the midterms, then ask them if they want to go over solutions to any of the midterm problems.  You should have time to go through a couple of them before class ends.\\
+
+\noi{\bf 4.} When you are grading DP\#3, just grade problem \#2 -- the first one will be too painful.\\
+
+\noindent{\bf Problem 1} Let $A$ be a $2 \times 2$ matrix with real entries.  You may have conjectured from your pre-work that solutions to a linear system $\vec{\mathbf{ x}}' = A\vec{\mathbf{ x}}$ should be of the form $$ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t},$$ where $\vec{\bf v}\in \mathbb{R}^2$ is a constant vector and $\lambda$ is a scalar.  
+\vskip 2mm
+Show that if the solution takes the form $ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t}$, then $\lambda$ must be an eigenvalue of $A$ corresponding to the eigenvector $\vec{\bf v}$.  In other words, suppose your solution is of the form $ \vec{\bf x}(t) = \vec{\bf v}e^{\lambda t}$ where $\vec{\bf v}\in \mathbb{R}^2$ is a constant vector and $\lambda$ is a scalar, plug it into the DE and show that this will only be a solution if $\lambda$ is an eigenvalue of $A$ corresponding to the eigenvector $\vec{\bf v}$.
+\vskip 4mm
+
+\noindent{\bf Problem 2} (a) Use the claim from Problem 1 to find two solutions, $\vec{\bf x}_1(t)$ and $\vec{\bf x}_2(t)$, to the system
+$$\dot{\vec{\mathbf{ x}}} = \begin{bmatrix}\ \ 1 & 1 \cr -2 & 4  \end{bmatrix}\vec{\mathbf{x}}.$$ 
+
+
+\noi (b) Show that \textit{any} linear combination of your two solutions, $\vec{\bf x}_1(t)$ and $\vec{\bf x}_2(t)$, will also be a solution to the system of equations.
+
+
+
+
+\end{document}
+

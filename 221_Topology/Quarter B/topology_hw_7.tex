@@ -1,0 +1,118 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\ }
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\renewcommand{\inv}[1]{\overline{#1}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 7}%===============UPDATE THIS===============%
+\end{center}
+
+\begin{enumerate}
+
+
+\item Show that (i) the free product $G*H$ of nontrivial groups $G$ and $H$ has trivial center, and (ii) the only elements of $G*H$ of finite order are conjugates of finite-order elements of $G$ and $H$. 
+\begin{proof}(i)
+Let $g\in G$, $h\in H$. If $z$ is in the center of $G*H$, then $zg=gz$ which means that $z$ is either $g, g^{-1},$ or the empty word $[e]$. Similarly, $zh=hz$ which means that $z$ is either $h, h^{-1},$ or $[e]$. Thus if $G,H$ are nontrivial then for nontrivial $g,h$ we have $g\neq g^{-1}\neq h\neq h^{-1}$, so $z$ must be $[e]$. 
+\end{proof}
+\begin{proof}(ii)
+Let $x\in G*H$ with $x^n=[e]$. By simplifying, we can write $x$ as a word of alternating letters in $G$ and $H$, so $x=(g_1h_1g_2\dots g_{k-1}h_kg_k)$. Then for as many letters as possible (potentially none), we group the letters on the ends of the word which are inverses; i.e. 
+\begin{align*}
+x&=(g_1h_1)(g_2\dots g_{k-1})(h_kg_k)\\
+x&=(g_1h_1)(g_2\dots g_{k-1})(h_1^{-1}g_1^{-1}).\\
+x&=(g_1h_1)(z)(h_1^{-1}g_1^{-1}),\\
+\end{align*}
+where we let $z$ be the alternating word $(g_2\dots g_{k-1})$. Now we consider $x^n$. We know that everything must cancel, and the ends of course cancel, which means 
+\begin{align*}
+[e]&=x^n \\
+&=(g_1h_1)(z)(h_1^{-1}g_1^{-1}) \, \, 
+(g_1h_1)(z)(h_1^{-1}g_1^{-1}) \cdots
+(g_1h_1)(z)(h_1^{-1}g_1^{-1})\\
+&=(g_1h_1)(z)^n(h_1^{-1}g_1^{-1})\\
+\end{align*}
+which means that $z$ must be of order $n$. However, no  alternating word of $g$'s and $h$'s with length at least 2 is of finite order, since self-multiplying would just concatenate the same word with itself. Therefore $z$ must be a single letter of order $n$ in either $G$ or $H$, and $x$ is a conjugate of $z$. 
+\end{proof}
+
+\setcounter{enumi}{2}
+\item Show that the complement of a finite set of points in $\R^n$ is simply connected if $n\geq3$. 
+\begin{proof}
+\WLOG{} Let $X=\R^n - \{\vec{x}_i\}_{i=1}^{k}$, with basepoint the origin. 
+
+(i) To see that $X$ is path-connected, let $x\in X$. If $x $ is not a multiple of $ x_i$ for any $i$, then there is a straight-line path from $x$ to the origin. Otherwise suppose $x \parallel x_i$ for some $i$. Then choose a point $x'$ near $x$ such that $x $ is not a multiple of $ x_i$ for any $i$ (we know we can do this since there are infinitely many directions orthogonal to $x$ in which to find $x'$, and only infinitely many $x_i$), and there is a straight-line path from $x$ to $x$ to $0$. Thus for every $x\in X$ we have a path $\rho_x:I\to X$ connecting $x$ to $0$, so $X$ is path-connected.
+
+(ii) To see that $\pi_1(X)=0$, observe that for any loop $\gamma$ in $X$, we can find a homotopy from $\gamma$ to the constant loop $0$ by using $\rho_x$. Let $R:X\times I \to X$ be given by $R(x,t)=\rho_x(t)$. Then $R(\gamma(s),t)$ is the desired homotopy. 
+\end{proof}
+
+\item Let $X\subset \R^3$ be the union of $n$ lines through the origin. Compute $\pi_1(\R^3 - X)$. We can deformation retract $X$ to a ball with $n$ lines missing, and since the origin is missing, we can deformation retract to a sphere with $2n$ antipodal points missing. 
+\jpg{width=0.8\textwidth}{hw7-p4-1}
+This sphere is diffeomorphic via spherical projection to a disk with $2n-1$ points missing, which deformation retracts to a wedge of $2n-1$ circles. Thus $\pi_1(\R^3-X)$ is the free group on $2n-1$ generators. \qed 
+
+\setcounter{enumi}{6}
+\item Let $X$ be the quotient space of $S^2$ obtained by identifying the north and south poles to a single point. Put a cell complex structure on $X$ and use it to compute $\pi_1(X)$. 
+
+\answer First observe that $X$ the following shapes have the same homotopy type:
+\jpg{width=0.8\textwidth}{hw7-p7-1}
+The last figure is the same because the center disc is contractible, and modding it out yields the middle figure. It is on the last figure that we put a cell structure. $X$ has one 0-cell, two 1-cells and a 2-cell to form a torus, with one additional 2-cell attached spanning the center. We know that a torus has fundamental group $\Z\times	\Z$, and if we attach the additional 2-cell along the loop $(1,0)$, then 
+$$\pi_1(X)=\quotient{\Z\times\Z}{\langle(1,0)\rangle}=\quotient{\Z\times\Z}{\Z}=\Z.$$
+\qed 
+
+\pagebreak
+\item Compute the fundamental group of the space obtained from two tori $S^1\times S^1$ by identifying a circle $S^1\times \{x_0\}$ with the corresponding circle in the other torus. 
+
+\answer We can put a cell structure on this space as a wedge of 3 circles $a,b,c$, with 2-cells attached along $ab\inv{a}\inv{b}$ and $ac\inv{a}\inv{c}$, respectively. 
+\jpg{width=0.8\textwidth}{hw7-p8-1}
+Thus $\pi_1(X)=\quotient{\bigop{*}\limits_{i=1}^3\Z_i}{\begin{array}{l}
+aba^{-1}b^{-1} \\ aca^{-1}c^{-1}
+\end{array} }$.
+\qed 
+
+Remark: Is the above notation equivalent to $\pi_1(X)=\langle a,b,c \mid ab=ba, ac=ca \rangle$? I'm not totally clear on how that notation works.
+
+\setcounter{enumi}{16}
+\item Show that $\pi_1(\R^2-\Q^2)$ is uncountable. 
+\begin{proof}
+Let $(\pi,0)$ be the basepoint. For every irrational number $\alpha$, let $\gamma_\alpha$ be the straight line path from $(\pi,0)$ to $(\pi,\pi)$ to $(\alpha,\pi)$ to $(\alpha, -\pi)$ to  $(\pi, -\pi)$ to $(\pi,0)$. 
+\jpg{width=0.6\textwidth}{hw7-p17-1}
+Clearly $\gamma_\alpha\not\simeq\gamma_\beta$ for $\alpha\neq\beta$, since any homotopy between the corresponding third segments of the paths would have to pass through points in $\Q^2$ as the $x$-coordinates moved from $\alpha$ to $\beta$. Thus we have an injective function from irrational numbers to loops in $\pi_1(X)$, so we're done. 
+\end{proof}
+
+
+
+\end{enumerate}
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\item[] None for this homework.
+\end{enumerate}
+\end{document}
+
+
+

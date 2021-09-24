@@ -1,0 +1,117 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Fall 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 3}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $\mu$ be a Lebesgue measure and let $\{A_n\}_{n=1}^\infty$ be a sequence of Lebesgue measurable subsets of $[0, 1]$. Assume the set $B$ consists of those points $x \in [0, 1]$ that belong
+to infinitely many of the $A_n$.
+	\begin{enumerate}[label=(\roman*)]
+	\item Prove that $B$ is Lebesgue-measurable.
+		\begin{proof}
+		Let $x\in B$. Then $x$ is in infinitely many of the $A_n$; so for every $k \geq 1$, $x\in A_n$ for some $n\geq k$. That is, $x\in\bigcap_{k=1}^\infty\bigcup_{n=k}^\infty A_n$ and in fact, $B=\bigcap_{k=1}^\infty\bigcup_{n=k}^\infty A_n$. This is a Borel set, so it is Lebesgue-measurable. 
+		\end{proof}
+	\item Prove that if $\measure{A_n} > \delta > 0$ for every $n \in N$, then $\mu(B) \geq \delta$.
+		\begin{proof}
+		Let $B_k=\bigcup_{n=k}^\infty A_n$. Since $A_k\subseteq B_k$, then $\delta<\measure{A_k}\leq\measure{B_k}$, for all $k$. Now consider $\bigcap_{k=1}^M B_k$. Since 
+		\begin{align*}
+		B_j\cap B_k&= \left(\bigcup_{n\geq k}A_n\right)\cap\left(\bigcup_{n\geq j}A_n\right)\\
+		&= \bigcup_{n\geq \max(j,k)}A_n\\
+		&= B_{\max(j,k)},
+		\end{align*}		 
+		then $\bigcap_{k=1}^M B_k=B_M$. Then $B_k \searrow B$ and $\measure{B_1}<1$, so $\lim_{n\to\infty} \measure{B_n} = \measure{B} \geq \delta$. 
+		\end{proof}
+	\item Prove that if $\sum_{n=1}^\infty \mu(A_n) < \infty$, then $\mu(B) = 0$.
+		\begin{proof}
+		Let $B_k=\bigcup_{n=k}^\infty A_n$. Now
+		$$\measure{B_k}=\measure{\bigcup_{n=k}^\infty A_n} \leq \sum_{n=k}^\infty \mu(A_n).$$
+		Since $\sum_{n=1}^\infty \mu(A_n) < \infty$, then $\mu(A_n)\to0$, which means the tail of the sum also goes to $0$ as $k\to\infty$. Thus $\measure{B_k}\to0$, and $B_k \searrow B$ and $\measure{B_1}>1$, so 
+		$$\lim_{n\to\infty} \measure{B_n} = \measure{B} =0.$$ 
+		\end{proof}
+	\item Give an example where $\sum_{n=1}^\infty \mu(A_n) = \infty$, but $\mu(B) = 0$. 
+		\answer Let $A_n=[0,1/n]$. Then $\sum_{n=1}^\infty \mu(A_n) = \sum_{n=1}^\infty 1/n = \infty$, but $B=\{0\}$ and $\mu(B) = 0$. 
+	\end{enumerate}
+	
+\pagebreak
+\item Prove that if $A\subset\R$ is Lebesgue-measurable with $\measure{A}>0$, then there is a subset of $A$ that is not Lebesgue-measurable. 
+\begin{lemma*}
+	If $A\subset\R$ is Lebesgue-measurable with $\measure{A}>0$, then there exists a subset $\tilde{A}\subset A$ with $\tilde{A}$ bounded and $\measure{\tilde{A}}>0$. \textbf{Proof:} Suppose not. Then for every $\tilde{A}\subset A$, either $\tilde{A}$ unbounded or $\measure{\tilde{A}}=0$. If we consider the sets 
+	$$A_n=\big\lbrace[n,n+1)\cap A\big\rbrace_{n\in\Z},$$
+	then each $A_n$ is bounded, thus it has measure zero. Since each $A-n$ is measurable and $A=\coprod\limits_{n\in Z}A_n$, then $0=\sum\limits_{n\in\Z}\measure{A_n}=\measure{A}>0$, contradiction. \qedwhite
+\end{lemma*}
+\begin{proof}
+By the lemma, \Wlog{} we can assume that $A$ is bounded, so let $[-a,a]\supset A$. Define an equivalence relation on $A$ as follows. For all $x,y\in A$, 
+\begin{align*}
+x\sim y \text{ if } \exists\, q\in(\Q\cap[-a,a]) \text{ such that } x-y=q
+\end{align*}
+A little thought will show that $\sim$ is reflexive, symmetric, and transitive. Thus the collection of all equivalence classes $\{[x]|x\in A\}$ is a partition of $A$. Define $V$ by choosing exactly one representative of each equivalence class. Then for each $x\in A$, there exists a unique $y\in V$ such that $x\sim y$, and $V\subset A$. Now all the remains is to show that $V$ is not Lebesgue-measurable. 
+
+Suppose for contradiction that $V$ is measurable, and consider 
+$$\{V+q\,|\,q\in(\Q\cap[-a,a])\}.$$ 
+(From now on in this proof, we assume $q\in(\Q\cap[-a,a])$.) Since every $a\in A$ has a $y\in V$ such that $x\sim y$, then $A\subseteq\bigcup_q (V+q)$. And since $A\subseteq [-a,a]$ and every $q\in[-a,a]$, then $\bigcup_q (V+q)\subseteq [-2a,2a]$. Thus by monotonicity, 
+$$0<\measure{A}\leq\measure{\bigcup_{q}(V+q)}\leq4a<\infty.$$
+Since $V+q_1$ and $V+q_2$ are disjoint and measurable for all $q_1\neq q_2$, then $\measure{\coprod_{q}(V+q)}=\sum_q\measure{V+q}=\sum_q\measure{V}$ since Lebesgue measure is translation-invariant. Now on one hand, if $\measure{V}>0$ then $\sum_q\measure{V}=\infty$, but $\sum_q\measure{V}<\infty$. On the other hand, if $\measure{V}=0$ then $\sum_q\measure{V}=0$, but $\sum_q\measure{V}>0$. Thus $0<\measure{V}=0$, contradiction. Therefore $V$ cannot be measurable. 
+\end{proof}
+
+\pagebreak
+\item Let $\mu$ be the Lebesgue measure on $\R$. Construct a Borel set $A\subset \R$ such that $\measure{A}>0$ and $\measure{A\cap I}<\measure{I}$ for every non-degenerate interval $I\subset\R$. 
+\begin{proof}
+Let $r_k$ be an enumeration of the rationals, and let 
+$$A=(-100,-100)\setminus\bigcup_{k=1}^\infty B(r_k,1/2^k).$$
+Let $I$ be any non-degenerate interval, let $a=\inf I$, and let $b=\sup I$. Then $(a,b)\subseteq I$, where $a<b$. In the case that $a=-\infty$ or $b=\infty$, then $\measure{I}=\infty$, and $\measure{A\cap I}\leq\measure{A}\leq200$, so we're done. So consider the case where $a,b\in\R$. Since $\measure{I}=b-a$ and $(a,b)\subseteq I$, we will show that $\measure{(a,b)\cap A}<b-a$. Choose some $r_k\in(a,b)$. Then $B(r_k,1/2^k)\cap (a,b)$ is open, so there exists some $\epsilon>0$ such that $B(r_k,\epsilon)\subset B(r_k,1/2^k)\cap (a,b)$. Now, since $B(r_k,\epsilon)\subset B(r_k,1/2^k)\subset A^\complement$ but $B(r_k,\epsilon)\subset(a,b)$, then 
+$$I\cap A \subseteq I\setminus B(r_k,\epsilon) \subset I,$$ 
+so since all these sets are measurable, 
+$$\measure{I\cap A}\leq \measure{I}-\measure{B(r_k,\epsilon)} < \measure{I}.$$
+\end{proof}
+
+\item Let $A\subset\R$ be a Lebesgue-measurable set. Prove that the set 
+$$B=\bigcup\nolimits_{x\in A}[x-1, x+1]$$
+is Lebesgue-measurable. 
+\begin{proof}
+Observe that $B=\bigcup_{x\in A} B_1(x) \cup A-1 \cup A+1$. The union of balls is Borel, and translation invariance of Lebesgue measure tells us that the other two sets are measurable as well. Thus $B$ is a union of 3 measurable sets, and thus measurable. 
+\end{proof}
+
+
+
+
+\end{enumerate}
+
+\end{document}

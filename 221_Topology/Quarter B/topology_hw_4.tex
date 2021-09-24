@@ -1,0 +1,214 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\ } %=================UPDATE THIS=================%
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 4}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\setcounter{enumi}{20}
+\item  If $X$ is a connected Hausdorff space that is a union of a finite number of 2-spheres, any two of which intersect in at most one point, show that $X$ is homotopy equivalent to a wedge sum of $S^1$'s and $S^2$'s.
+\begin{proof}
+Consider the homotopy equivalent space $Y$ such that for every pair of spheres in $X$ which intersect, there are a corresponding pair of spheres in $Y$ which are connected by a 1-cell. Since $X$ is connected, then we can view $Y$ as a connected graph, where we think of the spheres as nodes and the connecting 1-cells as edges. 
+\jpg{width=0.7\textwidth}{hw4-p21-1}
+We know by Zorn's Lemma that every connected graph has a spanning tree (shown in green), thus by changing the attaching maps to homotopic ones, we can move all the edges not in the spanning tree to have both of their endpoints at the same node. 
+\jpg{width=0.7\textwidth}{hw4-p21-2}
+Then we contract the edge connecting each leaf to its branch, and using the same technique as in the "necklace of spheres" example, make them all attached together at the same point.
+\jpg{width=0.6\textwidth}{hw4-p21-3}
+\vspace*{-5ex}
+\end{proof}
+
+\pagebreak
+\setcounter{enumi}{22}
+\item Show that a CW complex is contractible if it is the union of two contractible
+subcomplexes whose intersection is also contractible.
+\begin{proof}
+Let $X=A \cup B$, where $A,B$ subcomplexes of $X$. Any point in $A\cap B$ lies in some cell $e^n$, and subcomplexes contain only entire cells, so $e^n\subset A\cap B$. Since $A,B$ are closed in $X$, then their intersection is closed as well, so all of the cells in the $n-1$ skeleton to which $e^n$ is attached are also in $A\cap B$. Thus for each point in $x\in X$, we have that $x$ is in $e^n$, and $e^n$ is attached to cells in $X^{n-1}$, those cells are attached to cells in $X^{n-2}$, etc down to $X^0$. All these cells lie in $A\cap B$, and every point in $A\cap B$ lies one of these cells, so $A \cap B$ is a cell complex. 
+
+Thus $(A,A\cap B), (B,A\cap B)$ are both CW-pairs with $A\cap B$ contractible, so we can mod out by $A\cap B$ to find 
+$$X=\quotient{A\cup B}{(A\cap B)}\simeq A\wedgeprod B\simeq A \simeq \bullet$$
+\vspace*{-2ex}\phantom{.}
+\end{proof}
+
+\vfill
+(There was no way to break the pages that I liked. Problem 24 begins on the next page.)
+\vfill
+
+\pagebreak
+\item Let $X$ and $Y$ be CW complexes with 0-cells $x_0$ and $y_0$. Show that the quotient spaces $\quotient{X*Y}{(X*\{y_0\}\cup \{x_0\}*Y)}$ and $\quotient{S(X\smashprod Y)}{S(\{x_0\}\smashprod\{y_0\})}$ are homeomorphic, and deduce that $X*Y\simeq S(X\smashprod Y)$. 
+
+\begin{proof}
+Observe that both $\quotient{X*Y}{(X*\{y_0\}\cup \{x_0\}*Y)}$ and $S(X\smashprod Y)$ are quotients of $X\times Y\times I$, and in fact they are the same. In the following figure, pink lines are meant to suggest the spaces which are being modded out.
+\jpg{width=0.7\textwidth}{hw4-p24-1}
+On the left, we can represent any point as $(x,y,t)$, where we mod out by the following sets:
+ \begin{enumerate}
+ \item $X*\{y_0\}=\{(x,y,t): x\in X, y=y_0, t\in I\}$
+ \item $\{x_0\}*Y=\{(x,y,t): x=x_0, y\in Y, t\in I\}$
+ \item $(x_1,y,1)\sim(x_2,y,1)$ and $(x,y_1,0)\sim(x,y_2,0)$
+ \end{enumerate}
+and combining these, we find that $(x,y,1)\overtext{\sim}{(iii)}(x_0,y,1)\overtext{\sim}{(ii)}(x_0,y_0,1)$ and $(x,y,0)\overtext{\sim}{(iii)}(x,y_0,0)\overtext{\sim}{(i)}(x_0,y_0,0)$, so we have identified all of the points $(x,y,t)$ such that any of ${x=x_0}$, ${y=y_0}$, ${t=0}$, ${t=1}$ hold. Thus 
+$$
+\quotient{X*Y}{(X*\{y_0\}\cup \{x_0\}*Y)} = 
+\quotient{X\times Y\times I}{\scalebox{1.2}{$\bigcup$}
+	%\left\lbrace
+	\begin{array}{cc}
+	\{x=x_0\}, &\{t=0\}\\
+	\{y=y_0\}, &\{t=1\}
+	\end{array}
+	%\right\rbrace
+}
+$$
+
+%\pagebreak
+%\jpg{width=0.8\textwidth}{hw4-p24-1}
+On the right, consider the dividend space. $\{x_0\}\smashprod \{y_0\}=\quotient{\{x_0\}\times \{y_0\}}{\{x_0\}\wedgeprod \{y_0\}}$, which is $\{(x_0,y_0)\}$ modded out by its only point, so $\{x_0\}\smashprod \{y_0\}=\{(x_0,y_0)\}$. %The suspension of this is $\{(x_0,y_0,t : t\in I)$, so 
+So 
+\begin{align*}
+\quotient{S(X\smashprod Y)}{S(\{x_0\}\smashprod \{y_0\})}
+&= \quotient{S(X\smashprod Y)}{S(\{(x_0,y_0)\})} \\
+&= \quotient{S\left (\quotient{X\times Y}{X\wedgeprod Y} \right )}{S(\{(x_0,y_0)\})} \\
+\end{align*}
+which is $X\times Y\times I$ quotiented according to three rules: 
+\pagebreak
+	\begin{enumerate}
+	\item (everything is suspended)	 All points with $t=1$ are identified, as are all points with $t=0$.
+	\item $(X\smashprod Y)$ For fixed $t_0$, points of the form $(x_0, y, t_0)$ and $(x, y_0, t_0)$ are all identified.
+	\item (mod $S(\{(x_0,y_0)\})$) For any $t$, points of the form $(x_0,y_0,t)$ are all identified.
+	\end{enumerate}
+The union of the sets described in these rules is connected, since both parts of (i) are connected to (iii) and (iii) is connected to every part of (ii), so together they describe one set of points which are all identified, namely when any of ${x=x_0}$, ${y=y_0}$, ${t=0}$, ${t=1}$ hold.
+
+Thus 
+\begin{align*}
+\quotient{S(X\smashprod Y)}{S(\{x_0\}\smashprod \{y_0\})}
+&= 
+\quotient{X\times Y\times I}{\scalebox{1.2}{$\bigcup$}
+	%\left\lbrace
+	\begin{array}{cc}
+	\{x=x_0\}, &\{t=0\}\\
+	\{y=y_0\}, &\{t=1\}
+	\end{array}
+	%\right\rbrace
+} \\
+&= \quotient{X*Y}{(X*\{y_0\}\cup \{x_0\}*Y)}
+\end{align*}
+
+Now observe that the divisor spaces are both contractible, so quotienting by them preserves homotopy type. It is obvious that $S(\{x_0\}\smashprod\{y_0\})$ is contractible, being the suspension of a point. To see that ${(X*\{y_0\}\cup \{x_0\}*Y)}$ is contractible, observe that since $x_0$ and $y_0$ are 0-cells, then $X*\{y_0\}$ and $\{x_0\}*Y$ are subcomplexes of ${(X*\{y_0\}\cup \{x_0\}*Y)}$, they are cones and thus contractible, and their intersection is the 1-disk $\{(x_0,y_0)\}\times I$ which is also contractible. Thus by the previous homework problem, ${(X*\{y_0\}\cup \{x_0\}*Y)}$ is contractible. 
+
+Therefore 
+$$\left ({X*Y}\right )
+\simeq
+\left (\quotient{X*Y}{(X*\{y_0\}\cup \{x_0\}*Y)}\right )
+\simeq
+\left (\quotient{S(X\smashprod Y)}{S(\{x_0\}\smashprod\{y_0\})}\right )
+\simeq
+{S(X\smashprod Y)}
+$$
+and we are done.
+\end{proof}
+
+\item If $X$ is a CW complex with components $X_\alpha$, show that the suspension $SX$ is homotopy equivalent to $Y\bigwedgeprod_\alpha SX_\alpha$ for some graph $Y$. In the case that $X$ is a finite
+graph, show that $SX$ is homotopy equivalent to a wedge sum of circles and 2-spheres.
+\begin{proof}
+Choose one component of $X$ and call it $X_0$. $S(X)$ is homotopy equivalent to $\bigwedgeprod_\alpha SX_\alpha$, with all of their top points connected to $X_0$ by 1-cells, as shown below. Then since the top of each $SX_\alpha$ is path connected to its bottom (just vary $t$ from 1 to 0), we can homotopically move the attaching maps so that they are all connected to the bottom point at both ends. 
+\jpg{width=0.55\textwidth}{hw4-p25-1}
+For every component besides $X_0$ we have an $S^1$, and all of these are wedged together to form a graph $Y$. 
+
+\pagebreak
+In the case where every $X_\alpha$ is a finite graph, every $X_\alpha$ is homotopy equivalent to a wedge of $S^1$, since (as we did in problem 21) we can find a spanning tree which is contractible and mod it out. Thus $SX_\alpha$ is a wedge of 2-spheres, so $Y\bigwedgeprod_\alpha X_\alpha$ is a wedge of $S^1$'s and $S^2$'s. 
+\end{proof}
+
+\begin{corollary*}[0.20]
+If $(X,A)$ satisfy the homotopy extension property and the inclusion ${A\hookrightarrow X}$ is a homotopy equivalence, then $A$ is a deformation retract of $X$. 
+\end{corollary*}
+
+\begin{proposition*}[0.18]
+If $(X_1,A)$ is a CW pair and we have attaching maps $f,g:A\to X_0$ that are homotopic, then $X_0\sqcup_fX_1\simeq X_0\sqcup_g X_1 \rel X_0$. 
+\end{proposition*}
+
+\item Use Corollary 0.20 to show that (i) if $(X, A)$ has the homotopy extension property, then $X\times I$ deformation retracts to $X\times\{0\} \cup A\times I$. Deduce from this that (ii) Proposition 0.18 holds more generally for any pair $(X_1, A)$ satisfying the homotopy extension property.
+\begin{enumerate}
+\item 
+\begin{proof}
+We will show that $(X\times I,\,\, X\times \{0\} \cup A \times I)$ has the homotopy extension property and the inclusion map is a homotopy equivalence. We will produce a retraction from 
+\begin{align*}
+(X\times I) \times I &\to (X\times I)\times \{0\} \cup (X\times \{0\} \cup A \times I)\times I\\
+&\simeq X\times \{0\}\times I \cup X\times \{0\}\times I \cup A\times I \times I\\
+&=X\times \{0\}\times I \cup A\times I \times I\\
+&= (X\times \{0\} \cup A\times I)\times I.
+\end{align*}
+Since $(X,A)$ has the homotopy extension property, there is a retraction 
+$$r^*(x,t):(X\times I) \to (X\times \{0\} \cup A\times I),$$ 
+so we define $r(x,t,s)=(r^*(x,t)s)$, which means that 
+$$({X\times I},\,\, {X\times \{0\} \cup A \times I})$$ 
+has the homotopy extension property. 
+
+To see that the inclusion map is a homotopy equivalence, observe that $ri= \id$, and we will show that $ir\simeq \id$. To see this, observe that $X\times I$ deformation retracts to $X\times\{0\}$, and $X\times {0} \cup A\times I$ also deformation retracts to $X\times\{0\}$, so $X\times I\simeq X\times {0} \cup A\times I$. 
+
+Thus we conclude that $X\times I$ deformation retracts to $X\times\{0\} \cup A\times I$.
+\end{proof}
+\item 
+\begin{proof}
+Suppose $(X_1,A)$ has the homotopy extension property, and let $f,g:A\to X_0$ be attaching maps that are homotopic. Call $F:A\times I \to X_0$ the homotopy between $f$ and $g$, and attach $X_0 \sqcup_F X_1\times I$.
+\jpg{width=0.3\textwidth}{hw4-p26-1}
+\pagebreak 
+By part (i), $X_1\times I$ deformation retracts to $X_1\times \{0\} \cup A\times	I$. 
+\jpg{width=0.3\textwidth}{hw4-p26-2}
+Composing this deformation retraction with the attaching map $F$ gives a deformation retraction of $X_0 \sqcup_F X_1\times I$ to $X_0\sqcup_f X_1$. We can similarly obtain a deformation retraction $X_0 \sqcup_F X_1\times I$ to $X_0\sqcup_g X_1$, and observe that every point in $X_0$ was fixed for all time in both deformation retractions. Thus $X_0\sqcup_fX_1\simeq X_0\sqcup_g X_1 \rel X_0$. 
+\end{proof}
+
+\end{enumerate}
+
+\end{enumerate}
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\setcounter{enumi}{20}
+\item 
+\setcounter{enumi}{22}
+\item 
+
+\item 
+
+\item 
+
+\item Kyle Hansen, Zach Wagner, Justin Rogers
+\end{enumerate}
+\end{document}
+
+
+

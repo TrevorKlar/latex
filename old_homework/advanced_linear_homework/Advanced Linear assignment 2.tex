@@ -1,0 +1,61 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\title{Math 462 - Advanced Linear Algebra \linebreak
+	Assignment 2}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercises:}
+\begin{enumerate}
+\item Let $T: V \to V'$ be a surjective linear transformation of finite-dimensional vector spaces. Show that there exists a subspace $W$ of $V$ such that
+$$V = \text{Ker}(T) \oplus W \text{ with } W\cong V'.$$
+
+\begin{proof}
+Let $\{v_1, \ldots, v_n\}$ be a basis for $\text{Ker}(T)$. Now extend this basis so that it spans $V$, as follows: $\{v_1, \ldots, v_n, w_1, \ldots, w_k\}$. Now, $\{v_1, \ldots, v_n\} \subset \text{Ker}(T)$, so $T(\{v_1, \ldots, v_n\})=0$. This means that, since $\{v_1, \ldots, v_n, w_1, \ldots, w_k\}$ spans $V$ and $T$ is surjective, then $T(\{v_1, \ldots, v_n, w_1, \ldots, w_k\})=T(\{w_1, \ldots, w_k\})\cup\{0\}$ spans $V'$. Thus, $\{w_1, \ldots, w_k\}$ spans some $W\subset V$ and $T(\{w_1, \ldots, w_k\})\cup\{0\}$ spans $V'$, so $w\cong V'$. 
+\end{proof}
+
+\item Let $k$ be a field. Let $\{0\}$ denote the zero vector space over $k$. A sequence of vector spaces of the form 
+$$\{0\}\xrightarrow{\alpha_0}V_1\xrightarrow{\alpha_1}V_2\xrightarrow{\alpha_2}\ldots\xrightarrow{\alpha_{n-1}}V_n\xrightarrow{\alpha_n}\{0\}$$
+where each $\alpha_i$ is a $k$-linear transformation with im$(a_i)=\ker(a_{i+1})$ is called an \emph{exact sequence}. 
+
+Show that $\sum\limits_{i=0}^n(-1)^i\dim V_i=0$. 
+
+\begin{proof}
+\[
+\begin{array}{rcl}
+\sum\limits_{i=0}^n(-1)^i\dim V_i&=&\sum\limits_{i=0}^n(-1)^i\dim (\text{im}\alpha_i)+\sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i) \quad \text{(By Rank-Nullity Thm)}\\ 
+
+&=&\sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_{i+1})+\sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i)\quad \text{(Substitution)}\\ 
+
+&=&\sum\limits_{i=1}^{n+1}(-1)^{i-1}\dim (\text{ker}\alpha_{i})+\sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i)\quad \text{(Change of index)}\\ 
+
+&=&(-1)^{n}\dim (\text{ker}\alpha_{n+1}) + \sum\limits_{i=1}^{n}(-1)^{i-1}\dim (\text{ker}\alpha_{i})+ \sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i) + \dim (\text{ker}\alpha_{0})\\ 
+
+&=&(-1)^{n}\dim (\text{im}\alpha_{n}) + \sum\limits_{i=1}^{n}(-1)^{i-1}\dim (\text{ker}\alpha_{i})+ \sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i) + \dim (\text{ker}\alpha_{0})\\
+
+&=&0 + \left(\sum\limits_{i=1}^{n}(-1)^{i-1}\dim (\text{ker}\alpha_{i})+ \sum\limits_{i=0}^n(-1)^i\dim (\text{ker}\alpha_i)\right) + 0\\
+
+&=&0
+\end{array}
+\]
+\end{proof}
+
+\end{enumerate}
+\end{document}

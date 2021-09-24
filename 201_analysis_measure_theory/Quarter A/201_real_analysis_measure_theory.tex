@@ -1,0 +1,411 @@
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{bm}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{xfrac}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+\renewcommand*{\mathbf}[1]{\ifmmode\bm{#1}\else\textbf{#1}\fi}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%\begin{comment}
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+%\end{comment}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\renewcommand{\measure}[1]{\mu\left(#1\right)}
+\newcommand{\mumeasurable}{$\mu$-measurable}
+\setlist[enumerate,1]{label={(\roman*)}}% default the enumerate to (i), (ii), etc
+\renewcommand{\script}[1]{\pazocal{#1}}
+
+
+
+
+%% This puts the QED block at the end of each proof, the way I like it. 
+%% I've modified this from my usual, to obtain non-bold proofs. 
+\renewenvironment{proof}{{Proof.}}{\qed}
+\makeatletter
+\renewenvironment{proof}[1][\proofname.]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  %\itemindent\normalparindent
+  \item[\hskip\labelsep
+        \scshape
+    #1\@addpunct{}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+
+%================Start of document==============
+
+\title{Real Analysis - Evans/Gariepy}
+\author{Math 201, UCSB \\ Trevor Klar}
+%\makeindex
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+%\addcontentsline{toc}{section}{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevorklar@math.ucsb.edu}{trevorklar@math.ucsb.edu}. If you could include the page number, that would be helpful. 
+
+%Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not the book's. Bear that in mind when studying. 
+\end{highlight}
+
+\pagebreak
+\section{General Measure Theory}
+\subsection{Measures and Measurable Functions}
+\subsubsection{Measures}
+
+\textbf{Notation.}
+\begin{itemize}
+\item Let $X$ denote a nonempty set, the whole space.
+\item Let $2^X$ denote the collection of all subsets of $X$, that is, the power set of $X$.
+\item Whenever we take $\mu(A)$ for some set $A$, it is implied that $A\subseteq X$. 
+\item Let $A^\complement$ denote $X-A$. For the complement of $A$ in a set $B$ (not the whole space), we will use $B-A$.
+\item Since $\subset$ is ambiguous, I will exclusively use $\subseteq$ and $\subsetneq$ unless I don't know (or don't care) which I aught to use.
+\end{itemize}
+
+\noindent \textbf{Remark.}
+In the statements of theorems and definitions, I have sometimes included what I call "slogans"; verbal statements of the fact which have been designed to be primarily evocative and memorable, though they are also written to be as rigorous as possible while first prioritizing intuition and ease of reading. 
+
+\begin{highlight}
+\begin{definition*}
+	Let $\mu:2^X\to [0,\infty]$ be a function. We say $\mu$ is a \textbf{measure on $X$} if
+	\begin{enumerate}[label=(\roman*)]
+		\item $\mu (\emptyset)=0$
+		
+		\textit{"The empty set has measure zero"}
+		\item \mbox{} \vspace{-16pt} 
+		\[\begin{array}{lc}
+		\text{If } & A \subseteq \ds\bigcup_{n=1}^\infty A_n, \\
+		\text{then } & \mu(A) \leq \ds\sum_{n=1}^\infty\mu(A_n).
+		\end{array}\]
+		
+		\textit{"The measure of a set is bounded by the sum of measures for any cover of the set"}
+	\end{enumerate}
+\end{definition*}
+\end{highlight}
+
+\pagebreak
+\begin{highlight}
+\textbf{Remark.} The above implies two properties of measures which are usually just listed explicitly in the definition of a measure:
+\begin{itemize}
+	\item \textbf{(Monotonicity)} If $A\subseteq B$, then $\mu(A)\leq\measure{B}$. 
+	\item \textbf{(Subadditivity)} $\ds\measure{\bigcup_{n=1}^\infty A_n} \leq \sum_{n=1}^\infty	\measure{A_n}$
+\end{itemize}
+\end{highlight}
+
+\begin{definition*}
+Let $\mu$ be a measure on $X$ and $C\subseteq X$. Then \emph{$\mu$ restricted to $C$}, written $\mu|_C, \footnotemark$ is the measure defined by 
+$$\mu|_C(A):=\measure{A\cap C}.$$
+\end{definition*}
+\footnotetext{The author uses a notation that looks like $\mu \, |\_ \, C$, but (a) I don't like it and it's nonstandard, and (b) I can't figure out how to typeset it (DeTeXify didn't help). If anyone knows, let me know.}
+%
+\begin{highlight}
+\begin{definition*}\textbf{(Caratheodory criterion)} 
+Let $A\subseteq X$. We say that $A$ is \textbf{$\mu$-measurable} if 
+$$\forall B \subseteq X, \quad \measure{B}=\measure{B\cap A} + \measure{B - A}.$$
+\jpg{width=0.4\textwidth}{caratheodory.png}
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*} \mbox{}
+\begin{enumerate}[label=(\roman*)]
+\item A set $A$ is \mumeasurable{} iff $A^\complement$ is \mumeasurable{}. 
+\item If $\measure{A}=0$, then $A$ is \mumeasurable{}. 
+\item For any $C\subseteq X$, every \mumeasurable{} set is also $\mu|_C$-measurable. 
+\end{enumerate}
+\end{theorem*}
+\end{highlight}
+
+\begin{proof} (i) We can prove both directions at once. Suppose $A$ is \mumeasurable{}. Then for any $B\subseteq X$, 
+\[ \begin{array}{rl}
+\measure{B}&= \measure{B\cap A} + \measure{B-A}\\
+&= \measure{B-A^\complement} + \measure{B\cap A^\complement}
+\end{array}\]
+\qedwhite
+
+(ii) Suppose $\measure{A}=0$. By subadditivity it is always true that $$\measure{B}\leq\measure{B\cap A} + \measure{B-A},$$ so it suffices to prove the opposite inequality. For any $B\subseteq X$, $(B\cap A) \subseteq A$ so $\measure{B\cap A}=0$, and $B\supseteq (B-A)$  so 
+\[\begin{array}{rl}
+\measure{B} &\geq \measure{B-A}\\
+&= \measure{B-A} + \measure{B\cap A}
+\end{array}\]
+and we're done. \qedwhite
+
+(iii) Let $A$ be \mumeasurable{} and let $B\subseteq X$. Then
+\[\begin{array}{rl}
+\mu|_C(B) &= \measure{B\cap C} \\ 
+&= \measure{(B\cap C) \cap A} + \measure{(B\cap C)-A} \\
+&= \measure{(B\cap A) \cap C} + \measure{(B-A)\cap C} \\
+&= \mu|_C(B\cap A) + \mu|_C(B-A) \\
+
+\end{array}\]
+\end{proof}
+
+\begin{corollary*}
+The sets $\emptyset$ and $X$ are \mumeasurable{}. 
+\end{corollary*}
+\begin{proof}
+The empty set always has measure zero, so it is \mumeasurable{}, and $X = \emptyset^\complement$, so it is also \mumeasurable{}. 
+\end{proof}
+
+\noindent\textbf{Exercise.} Prove or disprove: For any $C\subseteq X$, if $A$ is $\mu|_C$-measurable, then $A\cap C$ is \mumeasurable{}. (If false, does it help if we also assume $A$ is \mumeasurable{}?)
+\begin{proof}
+False. Suppose $C$ is not \mumeasurable{} and let $A=X$. Then $X$ is \mumeasurable{} and $\mu|_C$-measurable, but $X\cap C= C$ is not \mumeasurable{}. To see this, observe that for any $B$, 
+$$\measure{(B\cap X)\cap C} + \measure{(B-X)\cap C} = \measure{(B\cap X)\cap C} = \measure{B\cap C},$$
+so $X$ is \mumeasurable{} and the rest follows.
+\end{proof}
+
+\begin{definition*}
+Let $\infcoll{A}$ be a collection  of sets. We say that $\infcoll{A}$ is \emph{monotonically increasing} (or simply \emph{increasing})if% for all $i\in\N$,
+$$A_1 \subseteq \dots \subseteq	 A_i \subseteq A_{i+1} \subseteq \cdots$$
+and we define \textit{monotonically decreasing} and \emph{decreasing} similarly. We may use \emph{monotonic} to refer to a sequence which could be either one. 
+\end{definition*}
+
+\begin{proposition*}
+If $A_1, A_2$ are \mumeasurable{}, then
+\begin{enumerate}[label=(\roman*)]
+\item $A_1\cup A_2$ is \mumeasurable{}
+\item $A_1\cap A_2$ is \mumeasurable{}
+\item $A_1- A_2$ is \mumeasurable{}
+\end{enumerate}
+\end{proposition*}
+\begin{proof}(i) Let $B\subseteq X$. Then 
+\[\begin{array}{rcl}
+\measure{B}&=&\measure{B\cap A_1}+\measure{B-A_1}\\
+&=&\measure{B\cap A_1}+\measure{(B-A_1)\cap A_2}+\measure{(B-A_1)- A_2}\\
+&=&\big[\measure{B\cap A_1}+\measure{(B-A_1)\cap A_2}\big]+\measure{B-(A_1\cap A_2)}\\
+&=&\measure{B\cup (A_1\cap A_2)}+\measure{B-(A_1\cap A_2)}
+\end{array}\]
+so $(A_1\cup A_2)$ is \mumeasurable{}. \qedwhite
+
+(ii) To see that $(A_1\cap A_2)$ is \mumeasurable{}, observe that $(A_1\cap A_2)^\complement=A_1^\complement\cup A_2^\complement$, and we know this is \mumeasurable{} by (i). \qedwhite
+
+(iii) To see that $(A_1-A_2)$ is \mumeasurable{}, observe that $(A_1-A_2)=(A_1\cap A_2^\complement)$, and we know this is \mumeasurable{} by (ii).
+\end{proof}
+
+\begin{highlight}
+\begin{theorem*}[Sequences of \mumeasurable{} sets] 
+Let $\infcoll{A}$ be a sequence of sets which are all \mumeasurable{}. Then
+\begin{enumerate}[label=(\roman*)]
+
+\item The sets $\infcap{A}$ and $\infcup{A}$ are \mumeasurable{}. \\
+\textit{"Countable unions and intersections of \mumeasurable{} sets are \\ \mumeasurable{}."}
+
+\item If the sets $\infcoll{A}$ are disjoint, then $\measure{\infcup{A}}=\infsum*{\bigg(\measure{A_i}\bigg)}$. \\
+\textit{"Subadditivity gives equality for disjoint \mumeasurable{} sets."}
+
+\item If $\infcoll{A}$ is an increasing sequence, then $
+\lim_{i\to\infty}\measure{A_i}=\measure{\infcup{A}}$. %\\ \emph{"Bounded monotonic sequences of sets converge in measure."}
+\bigskip
+
+\item If $\infcoll{A}$ is decreasing sequence and $\measure{A_1}$ is finite, then \\ $
+\lim_{i\to\infty}\measure{A_i}=\measure{\infcap{A}}$. 
+
+\item[$\left.{}^{\text{(iii)}}_{\text{(iv)}}\right\rbrace$] \emph{"Bounded monotonic sequences of sets converge in measure."}
+\end{enumerate}
+\end{theorem*}
+\end{highlight}
+
+\noindent \textbf{Remark.} The slogan for (iii) and (iv) above has the advantage of being easy to quote, but strictly speaking, an upper bound is not necessary for increasing sequences, since we're fine with the measure being infinity. 
+
+\begin{proof}
+We will show that (ii)$\implies$(iii)$\implies$(iv)$\implies$(i). 
+
+(ii) Suppose $\infcoll{A}$ are \mumeasurable{} and disjoint. Then let 
+\[\begin{array}{rcl}
+B_1&=&A_1,\\
+B_2&=&A_1\cup A_2, \\
+&\vdots & \\
+B_j&=&\ds\bigcup_{i-1}^j A_j.
+\end{array}\]
+Then since each $A_i$ is \mumeasurable{}, 
+\[\begin{array}{rcl}
+\measure{B_i}&=&\measure{B_i\cap A_i} + \measure{B_i-A_i} \\
+&=&\measure{A_i} + \measure{B_{i-1}} \\
+\end{array}\]
+and inductively, $\measure{B_i}=\measure{A_1}+\dots+\measure{A_i}$. Thus using the definition of $B_i$ we can write
+$$\measure{\bigcup_{j=1}^i A_j}=\sum_{k=1}^i\measure{A_k}$$
+for each $k$. Since $\bigcup\limits_{j=1}^i A_j \subset \bigcup\limits_{j=1}^\infty A_j$, then 
+$$\sum_{k=1}^i\measure{A_k}=\measure{\bigcup_{j=1}^i A_j}\leq\measure{\bigcup_{j=1}^\infty A_j}$$
+by monotonicity, and since the above sum is bounded by the infinite union for all $i$, then so is its limit 
+$\lim_{i\to\infty}\sum\limits_{k=1}^i\measure{A_k}$, and 
+$$\sum_{k=1}^\infty\measure{A_k}\leq\measure{\bigcup_{j=1}^\infty A_j}.$$
+Since the reverse inequality follows from subadditivity, then (ii) is proved. \qedwhite
+
+(iii) Let $\infcoll{A}$ be an increasing sequence of \mumeasurable{} sets. Let 
+$$B_1=A_1, \quad B_i=A_i-A_{i-1}.$$
+Then $\infcoll{B}$ is a disjoint \mumeasurable{} collection. So by (ii),
+$$\lim_{i\to\infty}\measure{A_i} = \infsum*{\bigg(\measure{B_i}\bigg)} = \measure{\infcup{B}} = \measure{\infcup{A}}$$
+and (iii) is proved. \qedwhite
+
+(iv) Let $\infcoll{A}$ be a decreasing sequence of \mumeasurable{} sets, with $\measure{A_1}$ finite. Let 
+$$B_i=A_1-A_i.$$
+Then $\infcoll{B}$ is an increasing collection of \mumeasurable{} sets, So by (iii), 
+$$ \lim_{i\to\infty}A_i = A_1-\lim_{i\to\infty}B_i = A_1 - \infcup{B} = \infcap{A}$$
+and (iv) is proved. \qedwhite
+
+(i) Let $\infcoll{A}$ be a collection of \mumeasurable{} sets, and let $C$ be any set in $X$. Now define $B_i=\cup_{j=1}^i A_j$. Next we check that $\infcup{A}$ is \mumeasurable{}:
+\begin{align*}
+\measure{C\cap\infcup{A}}&+\measure{C-\infcup{A}}\\
+&=\mu|_C\left(\infcup{A}\right)+\mu|_C\left(\infcap{A^\complement}\right) \\
+&=\mu|_C\left(\infcup{B}\right)+\mu|_C\left(\infcap{B^\complement}\right) \\
+&=\lim_{i\to\infty}\mu|_C(B_k) + \lim_{i\to\infty}\mu|_C(B_k^\complement) \\
+&=\lim_{i\to\infty}\left[\mu|_C(B_k) + \mu|_C(B_k^\complement)\right] &&(*)\\
+&=\lim_{i\to\infty}\mu|_C(X) && (\dagger)\\
+&=\lim_{i\to\infty}\measure{C} \\
+&=\measure{C}
+\end{align*}
+($*$) We can do this since each of the limits converge, so the sum of the limits is the limit of the sum. To see that the limits converge, observe that $B_k$ is an increasing sequence of sets, and $B_k^\complement$ is a decreasing sequence restricted to $C$ which has finite measure. ($\dagger$) We can do this because $B_k$ and $B_k^\complement$ are $\mu|_C$-measurable disjoint sets whose sum is $X$. Thus $\bigcup_{i=1}^\infty A_i$ is \mumeasurable{}. 
+
+To see that intersections are also \mumeasurable{}, observe that $\bigcap_{i=1}^\infty A_i=\left(\bigcup_{i=1}^\infty A_i^\complement\right)^\complement.$ Thus (i) is proved, so we are done.
+\end{proof}
+
+\pagebreak
+\subsubsection{Systems of Sets}
+
+\begin{highlight}
+\begin{definition*}
+We say a collection of subsets $\script{A}\subset2^X$ is a \textbf{$\sigma$-algebra} when \linebreak \textit{"$\script{A}$ contains $\emptyset$ and $X$ and is closed under complements, countable unions, and countable intersections."} That is, 
+\begin{itemize}
+\item $\emptyset, X \in \script{A}$
+\item If $A\in\script{A}$, then $A^\complement\in\script{A}$. 
+\item If $\infcoll{A}\subset\script{A}$, then $\infcup{A}\in\script{A}$. 
+\item If $\infcoll{A}\subset\script{A}$, then $\infcap{A}\in\script{A}$. 
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*}
+Let $\mu$ be  measure on $X$. The collection of all \mumeasurable{} subsets of $X$ is a $\sigma$-algebra. 
+\end{theorem*}
+\begin{proof} We have already proved the following properties:
+\begin{itemize}
+\item $\emptyset, X$ are \mumeasurable{} by definition of a measure. 
+\item The complement of a measurable set is \mumeasurable{}.
+\item Countable unions and complements of \mumeasurable{} sets are \mumeasurable{}. 
+\end{itemize}
+\end{proof}
+
+\begin{highlight}
+\begin{definition*}
+Let $\script{C}\subset2^X$ be a nonempty collection. Then the \textbf{$\sigma$-algebra generated by $\script{C}$}, denoted 
+$$\sigma(\script{C}),$$
+is the closure of $\script{C}$ under all the operations of a $\sigma$-algebra.
+\end{definition*}
+\end{highlight}
+
+Following is the most important $\sigma$-algabra in $\R^n$, and probably the one you are thinking of. 
+
+\begin{highlight}
+\begin{definition*}
+Let $\script{U}=\{U\subset\R : U \text{ is open}\}$. Then we call $\sigma(\script{U})$ \textbf{the Borel $\sigma$-algebra of $\R^n$}. 
+
+More often, we simply refer to sets in the Borel algebra as \textbf{Borel sets}. 
+\end{definition*}
+\end{highlight}
+
+Another way to think of the Borel algebra is that it is the $\sigma$-algebra generated by the topology on the space.
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{Borel set} is a set formed by countably many intersections, unions, and/or complements of open and/or closed sets in $X$.
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+We say that $\mu$ is a \textbf{Borel measure} is every Borel set is \mumeasurable{}.
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+A \textbf{$\bm\pi$-system}
+\end{definition*}
+
+%\pagebreak
+%\section{Index}
+%\printindex
+
+\end{document}
+

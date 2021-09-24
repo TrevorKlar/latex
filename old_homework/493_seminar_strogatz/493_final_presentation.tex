@@ -1,0 +1,442 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+%\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools} 
+%\usepackage{graphicx} 
+%\usepackage{xcolor}
+%\usepackage{float}
+\usepackage{mdframed}
+%\usepackage{hyperref}
+\usepackage{comment}
+
+%\newcommand{\F}{{\mathbb F}}
+%\newcommand{\Z}{{\mathbb Z}}
+%\newcommand{\N}{{\mathbb N}}
+%\newcommand{\R}{{\mathbb R}}
+
+%\definecolor{dblue}{rgb}{0.2,0.2,0.7}
+%\newcommand{\redtext}[1]{{\textcolor{red}{#1}}}
+%\newcommand{\greentext}[1]{{\textcolor{dgreen}{#1}}}
+%\newcommand{\bluetext}[1]{{\textcolor{dblue}{#1}}}
+%\newcommand{\blacktext}[1]{{\textcolor{black}{#1}}}
+%\newcommand{\remph}[1]{\redtext{\textit{#1}}}
+%\newcommand{\blemph}[1]{\bluetext{\textit{#1}}}
+%\newcommand\floor[1]{\lfloor#1\rfloor}
+%\newcommand\ceil[1]{\lceil#1\rceil}
+
+%===============================================
+%==============Shortcut Commands================
+%===============================================
+\newcommand{\ds}{\displaystyle}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\qedwhite}{\hfill\ensuremath{\square}}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand*\closure[1]{\overline{#1}}
+\newcommand*\mean[1]{\overline{#1}}
+%\newcommand{\inner}[1]{\left< #1 \right>}
+\newcommand{\inner}[2]{\left< #1, #2 \right>}
+\newcommand{\powerset}[1]{\pazocal{P}(#1)}
+%% Use \pazocal{letter} to typeset a letter in the other kind 
+%%  of math calligraphic font. 
+\newcommand{\cardinality}[1]{\left| #1 \right|}
+\newcommand{\domain}[1]{\mathcal{D}(#1)}
+\newcommand{\image}{\text{Im}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\preimage}[2]{#1^{-1}\left(#2\right)}
+\newcommand{\script}[1]{\mathcal{#1}}
+\newcommand{\jpg}[2]{\begin{center}\includegraphics[#1]{#2}\end{center}}
+\newcommand{\vecb}[1]{\mathbf{#1}}
+\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+%\newcommand{\emphindex}{1}{\emph{#1}\index{#1}}
+\newcommand{\del}{\partial}
+\newcommand{\vol}{\text{vol}}
+
+\newenvironment{highlight}{\begin{mdframed}[backgroundcolor=gray!20]}{\end{mdframed}}
+
+%\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\def\mathunderline#1#2{\color{#1}\underline{{\color{black}#2}}\color{black}}
+\usetheme{Berlin}
+
+\renewcommand*{\slideentry}[6]{}%gets rid of the obnoxious mini frame navigation icons in the very top.
+
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill%
+  \insertframenumber\,/\,\inserttotalframenumber}
+  
+%\setbeamertemplate{navigation symbols}{}
+
+\title{Modeling the fear effect in predator–prey interactions}
+%\subtitle{}
+\author{Trevor Klar\\ California State University, Northridge}
+\date{May 18th, 2018}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \titlepage
+\end{frame}
+\section{Motivation}
+\begin{frame}{Motivation}
+The longstanding view is that predators only effect prey via predation. However, recent research shows that fear alone can reduce prey reproduction rates.
+
+\mbox{}
+
+Fear can effect:
+\begin{itemize}
+\item Habitat Usage
+\item Foraging behaviors
+\item Vigilance
+\item Physiological changes
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Recent experiment on songbirds
+\begin{itemize}
+\item sounds of predators
+\item protection from actual predation
+\item 40\% birth rate reduction
+\end{itemize}
+\end{frame}
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%NEED A FRAME ABOUT MOTIVATION AND BACKGROUND
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Introduction}
+
+First, we begin with a basic logistic model. 
+$$\dot{x}=bx-dx-c_1x^2$$
+
+\begin{center}
+\begin{tabular}{rl}
+$x$& population of prey\\
+$b$& birth rate of prey (natural)\\
+$d$& death rate of prey (natural)\\
+$c_1$& competition-related death rate of prey\\
+\end{tabular} 
+\end{center}
+Note, all parameters and variables are positive numbers. 
+  
+%    \begin{columns}
+%        \begin{column}{.33\textwidth}
+%			
+%        \end{column}        
+%        \begin{column}{.66\textwidth}
+%           
+%        \end{column}
+%    \end{columns}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Next, we multiply by a factor which reduces the birth rate due to fear effects. 
+$$\dot{x}=[f(k,y)b]x-dx-c_1x^2$$
+Here, $k$ is a parameter which reflects the strength of the fear effect, and $y$ is the population of the predator.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+$$\dot{x}=[f(k,y)b]x-dx-c_1x^2$$
+
+\mbox{}
+
+So, what sort of a function is $f(k,y)$? We'd like to think of it generally for now, but there are some things we can say for sure about it:
+
+\mbox{}
+
+\begin{highlight}
+\begin{tabular}{rl}
+$f(0,y)=f(k,0)=1$ & No fear/predators, full birth.\\
+\\
+$\frac{\del f}{\del k}<0, \frac{\del f}{\del y}<0$& More fear/pred, less birth.\\
+\\
+$\lim\limits_{y\to\infty}f(k,y)=\lim\limits_{k\to\infty}f(k,y)=0$& Maximum effect is 0 birth.\\
+\end{tabular}
+\end{highlight}
+
+\mbox{}
+
+In short, $f:\R^+\times\R^+\to[0,1]$ is monotonically decreasing when thought of as a function of either $k$ or $y$. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Next, we'll add in a predation function, $g(x)$, and include the predator population dynamics into our system. 
+
+\[\begin{array}{rcl}
+\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-g(x)y\\
+\dot{y}&=&[g(x)c_2]y-my
+\end{array}\]
+
+Here, $m$ is the mortality rate of predators, and $c_2$ is the conversion rate of prey's biomass to predator's biomass. That is, we are assuming that the predators' birth rate is directly proportional to predation. 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}%{About $g(x)$}
+Typically, the predation $g(x)$ is modeled in one of two ways:
+
+\begin{itemize}
+\item In a linear functional response, $$g(x)=px,$$ which assumes that predation is directly proportional to prey population.
+\item In a Holling Type II functional response, $$g(x)=\frac{px}{1+qx},$$ which assumes that predation increases quickly as prey population increases, and then tapers off to approach $\frac{p}{q}$ asymptotically. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear Functional Response}
+\begin{frame}{Linear Functional response}
+
+Let's explore the model, assuming a linear functional response for predation. So, $g(x)=px$, where $p$ is a parameter that represents the predation rate. 
+
+\[\begin{array}{rcl}
+\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+\dot{y}&=&pc_2xy-my
+\end{array}\]
+
+Where are the fixed points? \footnote{Presenter: Write this system on the board.} 
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Finding Fixed Points}
+\begin{frame}[t]{Finding Fixed Points}
+%\[\begin{array}{rcl}
+%\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+%\dot{y}&=&pc_2xy-my
+%\end{array}\]
+
+%\mbox{}
+
+There are (at most) 3 fixed points:
+\begin{itemize}
+\item $E_0=(0,0)$. This is a fixed point because
+\[\arraycolsep=1.4pt\def\arraystretch{1.5}
+\begin{array}{rcll}
+\dot{x}&=&[f(k,0)b](0)-d(0)-c_1(0)^2-p(0)&=0\\
+\dot{y}&=&pc_2(0)-m(0)&=0
+\end{array}\]
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%\[\begin{array}{rcl}
+%\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+%\dot{y}&=&pc_2xy-my
+%\end{array}\]
+
+%\mbox{}
+
+\begin{itemize}
+\item $E_1=\left(\frac{(b-d)}{c_1},0\right)$, when $b>d$. To see that this is a fixed point, 
+\[\arraycolsep=1.4pt\def\arraystretch{1.5}
+\begin{array}{rcll}
+\dot{y}&=&pc_2(0)-m(0)\\
+&=&0 \\
+\dot{x}&=&[f(k,0)b]\left(\frac{(b-d)}{c_1}\right)-d\left(\frac{(b-d)}{c_1}\right)-c_1\left(\frac{(b-d)}{c_1}\right)^2-p(0)\\
+&=&\frac{1}{c_1}\left[(1)b(b-d)-d(b-d)-(b-d)^2\right]\\
+&=&\frac{1}{c_1}\left[b^2-2bd+d^2-(b-d)^2\right]\\
+&=&0.
+\end{array}\]
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%\[\begin{array}{rcl}
+%\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+%\dot{y}&=&pc_2xy-my
+%\end{array}\]
+
+%\mbox{}
+
+\begin{itemize}
+\item $E_2$: If  $\frac{(b-d)}{c_1}>\frac{m}{c_2p}$, then $E_2=\left(\frac{m}{c_2p}, y^*\right)$, where $y^*$ satisfies 
+$$b\, f(k,y^*)-d-c_1x^*-py^*=0.$$
+(This is $\frac{\dot{x}}{x}=0$). To see that such a $y^*$ exists, observe that this is equivalent to
+$$\underbrace{b\, f(k,y^*)-py^*}_{\text{decreasing}}=\underbrace{d+c_1x^*}_{\text{increasing}},$$
+and the LHS is $b$ at $y=0$, RHS is $d$ at $x=0$, and $b>d$. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{itemize}
+\item $E_2$ (continued): 
+
+\mbox{}
+
+To see that $E_2$ is a fixed point: 
+\[\begin{array}{rcl}
+\dot{x}&=&[f(k,y^*)b]x^*-dx^*-c_1(x^*)^2-px^*y^*\\
+&=&([b\,f(k,y^*)]-d-c_1x^*-py^*)x^*\\
+&=&0\\
+\\
+\dot{y}&=&pc_2x^*y^*-my^*\\
+&=&pc_2\left(\frac{m}{c_2p}\right)y^*-my^*\\
+&=&my^*-my^*\\
+&=&0
+\end{array}\]
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Analyzing Stability}
+\begin{frame}{Analyzing Stability}
+Thus, we have found 3 fixed points (or equilibria), $E_0, E_1,$ and $E_2$.
+
+Let's analyze their stability. 
+\begin{theorem}[3.1]
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item $E_0$ is stable if $(b-d)$ is negative, and unstable if positive.
+\item $E_1$ is stable if $\frac{(b-d)}{c_1}<\frac{m}{c_2p}$ (i.e. if $E_2$ does not exist) and is unstable if reversed.
+\item $E_2$ is stable as long as it exists (when $\frac{(b-d)}{c_1}>\frac{m}{c_2p}$). 
+\end{enumerate}
+\end{theorem}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+It should be intuitively obvious that if $(b-d)<0$, then neither prey nor predator can survive. Observe:
+\[\begin{array}{rcl}
+\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+&=&(f(k,y)b-d)x-c_1x^2-pxy\\
+&\leq&(b-d)x-c_1x^2-pxy\\
+&<&0\\
+\\
+\dot{y}&=&pc_2xy-my\\
+&\to&0
+\end{array}\]
+
+Thus, $E_0$ is stable if $(b-d)<0$. 
+
+The author omits the proof for stability of $E_1$, because the proof for $E_2$ is similar:
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\textbf{Claim:} $E_2$ is stable. Recall that $E_2$ exists if  $\frac{(b-d)}{c_1}>\frac{m}{c_2p}$, and $E_2=\left(\frac{m}{c_2p}, y^*\right)$, where $y^*$ satisfies 
+$$[f(k,y^*)b]-d-c_1x^*-py^*=0.$$
+\begin{proof}
+We use the Jacobian:
+\[
+\arraycolsep=1.4pt\def\arraystretch{1.5}
+\begin{array}{rcl}
+	\left.\left[\arraycolsep=1.4pt\def\arraystretch{1.5}
+	\begin{array}{cc}
+		\frac{\del \dot{x}}{\del x} & \frac{\del \dot{x}}{\del y}\\
+		\frac{\del \dot{y}}{\del x} & \frac{\del \dot{y}}{\del y}\\
+	\end{array}\right]\right|_{\scalebox{.5}{$(x^*,y^*)$}}
+	&=&
+	\left[\arraycolsep=1.4pt\def\arraystretch{1.5}
+	\begin{array}{cc}
+		[f(k,y^*)b]-d-2c_1x^*-py^* & \quad bx^*\frac{\del f}{\del y}-px^*\\
+		pc_2y^* & \quad pc_2x^*-m\\
+	\end{array}\right]
+	\\
+	%
+	&=&	
+	\left[\arraycolsep=1.4pt\def\arraystretch{1.2}
+	\begin{array}{cc}
+		-c_1x^* &  \quad bx^*\frac{\del f}{\del y}-px^*\\
+		pc_2y^* & \quad m-m\\
+	\end{array}\right]
+	=
+	\left[\arraycolsep=1.4pt\def\arraystretch{1.2}
+	\begin{array}{cc}
+		- & \,\,-\\
+		+ & \,\,0\\
+	\end{array}\right]		
+\end{array}	
+\]
+So since det $>0$ and trace $<0$, $E_2$ is stable. 
+%\dot{x}&=&[f(k,y)b]x-dx-c_1x^2-pxy\\
+%\dot{y}&=&pc_2xy-my
+\end{proof}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Holling Type II Functional Response}
+\begin{frame}{Holling Type II Functional Response}
+Now we've explored the dynamics assuming that the predation function $g(x)$ is a linear function, but it should agree with your intuition that in nature, predation levels with be roughly the same if the prey population is above a certain level. So in this section, we explore the dynamics when $g(x)$ is the following:
+%\begin{columns}
+%	\begin{column}{0.33\textwidth}
+%		$$g(x)=\frac{px}{1+qx}.$$
+%	\end{column}
+%	\begin{column}{0.66\textwidth}
+%		\jpg{width=\textwidth}{holling_type_ii}
+%	\end{column}
+%\end{columns}
+\jpg{width=.618\textwidth}{holling_type_ii}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+We also choose a particular form for $f(k,y)$, namely 
+%\begin{columns}
+%	\begin{column}{0.33\textwidth}
+%		$$f(k,y)=\frac{1}{1+ky}.$$
+%	\end{column}
+%	\begin{column}{0.66\textwidth}
+%		\jpg{width=\textwidth}{f_k_y}
+%	\end{column}
+%\end{columns}
+\jpg{width=.618\textwidth}{f_k_y}
+Note that $f$ still has the same general properties we've assumed so far. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+So our model now takes this form:
+\[\arraycolsep=1.4pt\def\arraystretch{2}
+\begin{array}{rcl}
+\dot{x}&=&\dfrac{bx}{1+ky}-dx-c_1x^2-\dfrac{pxy}{1+qx}\\
+\dot{y}&=&\dfrac{pc_2xy}{1+qx}-my
+\end{array}\]
+Next, we find the fixed points. \footnote{Presenter: Write this system on the board.} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Analyzing fixed points}
+\begin{frame}
+There are two fixed points which are the same as we saw with the linear functional response:
+\begin{itemize}
+\item $E_0 = (0,0),$
+\item $E_1 = \left(\frac{b-d}{c_1}, 0\right)$ if $(b-d)>0.$
+\end{itemize}
+The following can be confirmed as before using linearization: 
+\begin{itemize}
+\item $E_0$ is unstable if $E_1$ exists. 
+\item $E_1$ is stable if $(b-d)(c_2p-mq)<c_1m,$
+\item $E_1$ is unstable if $(b-d)(c_2p-mq)>c_1m.$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+If $E_1$ is unstable, it turns out that there is another fixed point, $E_2$. The authors do not state its coordinates in closed-form, only that it exists when $E_1$ is unstable, and the give the following condition upon which $E_2$ is stable:
+\[\left\lbrace\begin{array}{rcl}
+b&>&d+\dfrac{c_1(c_2p+mq)}{q(c_2p-mq)}\\
+k&>&\dfrac{q(c_2p-mq)^2((b-d)q(c_2p-mq)-a(c_2p+mq))}{c_2^2pc_1(qd(c_2p-mq)+c_1(c_2p+mq))}\\
+\end{array}\right.\]
+\begin{center}
+ Gnarly. 
+\end{center}
+The point here is that to maintain nonzero prey population, $b>d$. To maintain a stable predator population as well, the birth rate $b$ needs to be high enough above the death rate $d$. In addition, the level of fear $k$ must be above a certain amount as well.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hopf Bifurcation}
+\begin{frame}{Hopf Bifurcation}
+It turns out that under the right condition\footnote{That condition is $y^*<\frac{a_2-2a_5}{a_4+2a_5}$, where $a_2=\frac{(b-d)q-c_1}{c_2p-mq}, a_4=\frac{dq+c_1}{c_2p-mq}, a_5=\frac{c_1mq}{(c_2p-mq)^2}$.}, $E_2$ is unstable and a stable limit cycle appears. Numerical exploration shows that this only happens if $b$ is high enough above $d$. 
+\jpg{width=0.66\textwidth}{hopf_graph_1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\begin{frame}{Conclusion}
+So we can see that when accounting for the cost of fear, assuming that the fear function is linear basically results in an effect which is the same as lowering the birth rate of the prey. But, if the parameters are right, the system can bifurcate, and where there was once a stable equilibrium between populations of prey and predator, now there exist oscillations. They can be supercritical or subcritical Hopf bifurcations as well, causing the population to either stabilize, or oscillate wildly until one of species is driven extinct. 
+\end{frame}
+\end{document}

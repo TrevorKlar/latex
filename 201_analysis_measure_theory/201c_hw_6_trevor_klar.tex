@@ -1,0 +1,160 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 6}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\textbf{Chapter 5}
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item Prove the Reimann-Lebesgue lemma mentioned in Section 5.1., i.e., for $f\in L^1(\R^n)$, 
+$$\hat{f}(k)\to 0\text{ as }k\to \infty.$$
+[\textit{Hint}. 5.3(1) is useful. 
+\jpg{width=0.9\textwidth}{plancharel-thm-5-3-1}
+\begin{proof}
+I didn't have time to do all of these problems, since this week we have a midterm in this class and another class, in addition to the regular work which I can barely keep up with. 
+\end{proof}
+
+\setcounter{enumi}{4}
+\item Complete the proof of Theorem 5.8, i.e., work out the approximation
+argument mentioned at the end of Sect. 5.8:
+\jpg{width=.9\textwidth}{theorem-5-8}
+
+\begin{proof}
+Let $h,u\in C^\infty_0(\R^n)$. In particular, $h,u\in L^1(\R^n)$, so $\widehat{h*u}=\hat h \hat u$ by (1). Now consider the operators 
+\begin{align*}
+T:L^p(\R^n)\times L^q(\R^n) &\to L^\infty(\R^n) \text{ given by}\\
+ (f,g)&\mapsto f*g\\
+ \\
+S:L^p(\R^n)\times L^q(\R^n) &\to L^{r'}(\R^n) \text{ given by}\\
+ (f,g)&\mapsto \hat f \hat g\\
+ \\
+\hat \bigcdot : L^{r'}&\to C_0 \text{, the Fourier Transform,}
+\end{align*}
+all of which are clearly continuous operators. Observe that $\hat \bigcdot \circ T = S$ on $C^\infty_0\times C^\infty_0$, and thus we have two continuous maps which agree on a dense subset of their domains, so they agree everywhere. 
+\end{proof}
+
+\item %For $f\in C^\infty_c(\R^n)$ show that its Fourier transform $\hat{f}$ is also in $C^\infty$. Show also that 
+%$$g_a(k):=$$
+\mbox{}\vspace*{-28pt}
+\jpg{width=0.99\linewidth}{hw6-ch5-p6}
+\begin{proof}
+I didn't have time to do all of these problems, since this week we have a midterm in this class and another class, in addition to the regular work which I can barely keep up with. 
+\end{proof}
+
+\setcounter{enumi}{8}
+\item Verify that 5.6(1) cannot hold when $\rho > 2$ by considering Gaussian 
+functions, as in 5.2(1), with $\lambda=a+ib$ and with $a>0$. 
+
+\jpg{width=0.99\linewidth}{5-6(1)-title}
+\jpg{width=0.99\linewidth}{5-6(1)}
+\jpg{width=0.99\linewidth}{theorem-5-2(1)}
+\begin{proof}
+I didn't have time to do all of these problems, since this week we have a midterm in this class and another class, in addition to the regular work which I can barely keep up with. 
+\end{proof}
+
+
+\end{enumerate}
+
+%\pagebreak
+\textbf{Problems from the PDF}
+
+\textbf{Assignment 6}
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item This problem is based on the scaling. 
+	\begin{enumerate}[label=(\alph*)]
+	\item Let for some $1\leq p\leq \infty$ the inequality (Sobolev inequality)
+	$$\norm{u}_p\leq C(n,p)\norm{\nabla u}_1
+	$$
+	hold for all $u\in C_0^\infty(\R^n), n\geq2$, with the constant $C$ independent of $u$. What are the possible values (the \textit{necessary} conditions) of $p$?
+	\begin{proof}
+	For all $\lambda> 0$, let $u_\lambda:= u\left(\frac{x}{\lambda}\right)$. Now $u_\lambda\in C^\infty_0$, so the Sobolev inequality holds for $u_\lambda$. Consider the right hand side, 
+	\begin{align*}
+	\norm{\nabla u}_1 
+	&= \int \abs{\nabla\left[u\left(\tfrac{x}{\lambda}\right)\right]}\dx \\
+	&= \int \frac{1}{\lambda}\abs{\left(\nabla u\right)\left(\tfrac{x}{\lambda}\right)}\dx &&\text{ by the chain rule}\\
+	&= \lambda^{n-1}\int \abs{\left(\nabla u\right)\left(x\right)}\dx &&\text{ by change of variables}\\
+	&= \lambda^{n-1}\norm{\nabla u}_1.
+	\end{align*}
+	Now consider the left hand side,
+	\begin{align*}
+	\norm{u_\lambda}_p &= \left(\int_{R^n}\abs{u\left(\tfrac{x}{\lambda}\right)}^p\dx\right)^{1/p} \\
+	&= \left(\lambda^{n}\int_{R^n}\abs{u\left(x\right)}^p\dx\right)^{1/p} &&\text{ by change of variables}\\
+	&= \lambda^{\sfrac{n}{p}}\left(\int_{R^n}\abs{u\left(x\right)}^p\dx\right)^{1/p}\\
+	&= \lambda^{\sfrac{n}{p}} \norm{u}_p.
+	\end{align*}
+	Substituting and collecting $\lambda$ on the left side gives 
+	$$\lambda^{\frac{n}{p}-n+1}\norm{u}_p \leq C\norm{\nabla u}_1,
+	$$
+	and this is true for all $\lambda>0$, even while the right hand side is finite and constant with respect to $\lambda$. Thus 
+	$$\tfrac{n}{p}-n+1\leq 0,	$$
+	otherwise $\lambda^{\frac{n}{p}-n+1}\norm{u}_p\to\infty$ as $\lambda\to\infty$. However we also have that 
+	$$\tfrac{n}{p}-n+1\geq 0,	$$
+	otherwise $\lambda^{\frac{n}{p}-n+1}\norm{u}_p\to\infty$ as $\lambda\to0$.
+	Thus $\tfrac{n}{p}-n+1= 0,	$ so $p=\frac{n}{n-1}=n'$. \qedwhitehere
+	\end{proof}
+	
+%	\pagebreak
+	\item \mbox{}\vspace*{-22pt}
+	\jpg{width=0.99\linewidth}{hw6-pdf2-b}
+	\begin{proof}
+	Suppose that $u\in C^1(B_r)$ for $r>0$, and let $\rho:\R^n\to\R^n$ be the function which scales by $r$, that is $r(x)=rx$. Notice that $u\circ \rho \in C^1(B_1)$. Thus 
+	\begin{align*}
+	\sup_{x,y\in B_{r/2}}\abs{u(x)-u(y)}
+	&=\sup_{x,y\in B_{1/2}}\abs{u(rx)-u(ry)} \\
+	&=\sup_{x,y\in B_{1/2}}\abs{(u\circ\rho)(x)-(u\circ \rho)(y)} \\
+	&\leq C(n,p)\left(\int_{B_1}\big|\nabla (u\circ\rho)(x)\big|^p \dx \right)^{1/p} &&\text{by Morrey's inequality} \\
+	&\leq C(n,p)\left(\int_{B_1}r^p\big|(\nabla u)(rx)\big|^p \dx \right)^{1/p} &&\text{by chain rule} \\
+	&= C(n,p)r\left(\int_{B_1}\big|(\nabla u)(rx)\big|^p \dx \right)^{1/p}\\
+	&= C(n,p)r^{1-n}\left(\int_{B_1}\abs{\nabla u(x)}^p \dx \right)^{1/p} && \text{by change of variables} 
+	\end{align*}
+	Thus $C(p,n,r)=C(n,p)r^{1-n}$. 
+	\end{proof}
+	\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

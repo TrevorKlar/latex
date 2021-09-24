@@ -1,0 +1,627 @@
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{xfrac}
+
+
+\input{../tskpreamble_nothms}
+\newcommand{\curl}{\text{curl}}
+\newcommand{\real}[1]{\text{Re}(#1)}
+\newcommand{\imaginary}[1]{\text{Im}(#1)}
+
+
+\graphicspath{{/home/trevor/Documents/latex/images/}{/home/trevor/Documents/latex/images/adv_calc/}}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%\begin{comment}
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+%\end{comment}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+
+%================Start of document==============
+
+\title{Harmonic Analysis - PCMI, 2018}
+\author{Trevor Klar}
+\makeindex
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevor.klar.834@my.csun.edu}{trevor.klar.834@my.csun.edu}. If you could include the page number, that would be helpful. 
+
+These notes were taken during the lectures of the Park City Mathematics Institute, Undergraduate Summer School 2018. Lectures given by Eyvindur Palsson at The Prospector in Park City, Utah.
+
+%Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not Professor Fuller's. Bear that in mind when studying. 
+\end{highlight}
+
+\pagebreak
+\section{Introduction (Palsson)}
+
+\subsection{Combinatorics}
+\textbf{1. The Erd\"os distinct distance problem}
+
+Question (Erd\"os, 1947): What is the least number of distinct distances determined by $n$ points in a plane?
+
+\begin{example*}[1.1]
+asdfgasdf
+\end{example*}
+
+There is clearly an upper bound here, $\left({}^N_2\right)=\frac{N(N-1)}{2}\sim N^2$, where $\sim $ denotes "is of the order". 
+
+\begin{example*}[1.2]
+sdamsdf
+\end{example*}
+The problem here, is that there are some elements of this list that are not possible. i.e., there are no integers such that $a^2+b^2=3$. So Ramanujan showed that 
+$$\lim_{N\to\infty}(\text{Number of distinct distances})\sim \frac{N}{\sqrt{log(N)}}$$
+
+Erd\"os conjectured that even for random placements of points, 
+$$\lim_{N\to\infty}(\text{Number of distinct distances})\sim \frac{N}{\sqrt{log(N)}}.$$
+He was only able to prove in 1946 that 
+$$\lim_{N\to\infty}(\text{Number of distinct distances})\sim \text{at least }\sqrt{N}$$
+In 2015, Guth and Katz showed that it holds for 
+$$\sim\frac{N}{\log(N)}.$$
+
+\subsection{Crescent Configurations}
+
+Consider $N$ points in the plane. Suppose some distance $d_1$ appears once, $d_2$ appears 2 times, $\ldots, d_{N-1}$ appears $N-1$ times. 
+
+What does this look like? 
+
+\textbf{Answer} Equidistant points on a line. 
+
+Okay, so suppose you require \emph{general position.} This means no more than 2 points are collinear, and no more than 3 points are concyclic. Call this a \emph{crescent configuration}. 
+
+\textbf{Do these exist?}
+
+\begin{example*}[Palasti, 1989]
+asdsokmoim
+\end{example*}
+
+\textbf{Conjecture (Erd\"os):} Eventually they don't exist. 
+
+\textbf{Question:} Find many (all) crescent configurations for some $N$. 
+\begin{itemize}
+\item $N=4$, all are known. (add image)
+\item $N=5$, many but not all are known. 
+\end{itemize}
+
+\section{Introduction (Saenz)}
+
+Motivation: Diffusion
+\begin{itemize}
+\item $u(x,y,t)=$ temperature at time $t$. 
+
+\item $H(t)=\int\int_S u(x,y,t) dx\, dy$
+
+\item $\frac{dH}{dt}(t)=\int\int_S \frac{\del u}{\del t}(x,y,t) dx\, dy$
+
+\item heat equation
+\[
+\sigma\frac{\del u}{\del t}=k\left(\frac{\del^2 u}{\del x^2}+\frac{\del^2 u}{\del y^2}\right)
+\]
+
+\item at equilibrium: $\frac{\del u}{\del t}=0$:
+
+Laplace Equation
+\[\frac{\del^2 u}{\del x^2}+\frac{\del^2 v}{\del y^2}=0\]
+
+that is $\Delta u=0$. We say $\Delta u$ is the Laplacian of $u$.
+
+
+\item Dirichlet problem
+
+\[\begin{cases}
+\Delta u = 0 & \text{in } \Omega\\
+u|_{\del \Omega} = f & \text{given } f
+\end{cases}\]
+
+\end{itemize}
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{harmonic function} is a function such that 
+%$f:\R\times\R\to\R$
+$$\frac{\del^2 u}{\del x^2}+\frac{\del^2 u}{\del y^2}=0$$
+\end{definition*}
+\end{highlight}
+
+\section{Day 2 (Palsson)}
+
+\textbf{Today's Perspective: Linear Algebra}
+
+\begin{itemize}
+\item Let $V$ be a set of vectors, $F$ scalars
+\item you know how $+$ scalar $\cdot$
+\item the usual axioms of a v. space. 
+\end{itemize}
+
+\begin{example*}
+$C[a,b]$ is the space of continuous functions defined on $[a,b]$ (this is a vector space.)
+\end{example*}
+
+\textbf{Complex Numbers sidebar}
+\begin{itemize}
+\item $\real{x+iy}=x$
+\item $\imaginary{x+iy}=y$
+\item $\conj{x+iy}=x-iy$
+\item $z\conj{z}=\abs{z^2}$
+\item Euler's Formula: $e^{i\theta}=\cos(\theta)+i\sin(\theta)$
+\end{itemize}
+
+From now on, think of $V$ as a function space, and $F$ as either $\R$ or $\C$. 
+
+\begin{highlight}
+\begin{definition*}
+An \textbf{inner product} is a map 
+$$\inner{\,\cdot\,}{\,\cdot\,}:V\times V\to F$$
+such that for all $f,g,h\in V$ and $\alpha, \beta\in F$, 
+\begin{itemize}
+\item \textbf{(Positive definite)} $\inner{f}{f}\geq0$ and \\
+		if $\inner{f}{f}=0$, then $f=0$. 
+\item \textbf{Conjugate commutation} $\inner{f}{g}=\conj{\inner{g}{f}}$ 
+\item \textbf{Left distribution} $\inner{\alpha f+\beta g}{h}=\alpha\inner{f}{h}+\beta\inner{g}{h}$
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{example*}\mbox{}
+\begin{enumerate}
+\item[$\R^n)$] $\quad \inner{\vec{x}}{\vec{y}}=\vec{x}\cdot \vec{y}$
+\item[$\C^n)$] $\quad \inner{\vec{x}}{\vec{y}}=\vec{x}\cdot \vec{\conj{y}}$
+\item[$\pazocal{C}\text{[}a,b\text{]})$] $\quad \inner{f}{g}=\frac{1}{b-a} \int_a^b f(x)\conj{g(x)}dx$
+\end{enumerate}
+\end{example*}
+
+\begin{highlight}
+\begin{definition*}
+A \textbf{norm} is a function $\norm{\,\cdot\,}:V\to\R$ such that for all $f,g\in V$ and $\alpha\in F$, 
+\begin{itemize}
+\item \textbf{(Positive definite)} $\norm{f}\geq0$
+\item \textbf{(Scaling)} $\norm{\alpha f}=\abs{\alpha}\norm{f}$
+\item \textbf{(Triangle inequality)} $\norm{f+g}\leq\norm{f}+\norm{g}$
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\textbf{Note:} In a vector space with inner product $\inner{\,\cdot\,}{\,\cdot\,}$, then 
+$$\norm{f}:=\sqrt{\inner{f}{f}}$$
+is a norm. 
+\end{highlight}
+
+\begin{theorem*}[Cauchy-Schwartz Inequality]
+$$\abs{\inner{f}{g}}\leq\norm{f}\norm{g}$$
+\end{theorem*}
+
+\begin{theorem*}
+One can use the CS inequality to prove the triangle inequality:
+\end{theorem*}
+\begin{proof}
+\[\begin{array}{rcl}
+\norm{f+g}^2&=&\inner{f+g}{f+g}\\
+&=&\norm{f}^2+\inner{f}{g}+\conj{\inner{f}{g}}+\norm{g}^2\\
+\text{(CS)}&\leq&\norm{f}^2+2\norm{f\norm{g}}+\norm{g}^2\\
+&=&\big(\norm{f}+\norm{g}\big)^2\\
+\end{array}\]
+\end{proof}
+
+\begin{example*}[of a norm]
+On $\pazocal{C}[a,b]$, 
+$$\norm{f}_2=\left(\frac{1}{b-a}\int_a^b \abs{f(x)}^2 dx \right)^{\sfrac{1}{2}}$$
+\end{example*}
+
+\begin{highlight}
+\begin{definition*}
+We say that $f,g\in V$ are \textbf{orthogonal} if iff 
+$$\inner{f}{g}=0.$$
+We say that $\phi_1, \dots, \phi_n$ are \textbf{orthogonal} iff
+$$\inner{\phi_j}{\phi_k}=0 \text{ if } j\neq k$$
+$$\text{and } \phi_i\neq0 \, \, \forall i.$$
+If $\phi_1, \dots, \phi_n$ are orthogonal and of unit length, then we say they are \textbf{orthonormal}. 
+\end{definition*}
+\end{highlight}
+
+\begin{corollary*}{Pythagorean Theorem}
+If $\phi_1, \dots, \phi_n$ are orthogonal, then 
+$$\norm{\sum \phi_i}^2=\sum\norm{\phi_i}^2$$
+\end{corollary*}
+
+\begin{highlight}
+\begin{definition*}[Projection] let $\phi\in V$ with $\norm{\phi}=1$. 
+$$\proj{\phi}{f}=\inner{f}{phi}\phi.$$
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+Let $W_n$ be a subspace of $V$ with an orthonormal basis $\{\phi_1, \dots, \phi_n\}$. The \textbf{projection of $f$ onto $W_n$} is
+$$\proj{W_n}{f}=\inner{f}{\phi_1}\phi_1+\dots+\inner{f}{\phi_n}\phi_n=\sum_{j=1}^n\inner{f}{\phi_j}\phi_j.$$
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*} $\proj{W_n}{f}=f$ if and only if $f\in W_n$. 
+\end{theorem*}
+
+\begin{theorem*} $f-\proj{W_n}{f}$ is orthogonal to every $g\in W_n$. 
+\end{theorem*}
+
+\section{Day 3 (Palsson)}
+
+\begin{theorem*}
+Let $f\in V$, and let $W_n$ be a subspace of $V$ with an orthonormal basis $\{\phi_1, \dots,\phi_n\}$. Then $w\in W_n$ that minimizes $\norm{f-w}$ is 
+$$w=\proj{W_n}{f}.$$
+\end{theorem*}
+
+\begin{proof}
+Since $w\in W_n$, we can write it as $w=\sum_{i=1}^{n} \beta_i\phi_i$. Let $\alpha_i=\inner{f}{\phi_i}$. Now, 
+	\[\begin{array}{rcl}
+	\norm{f-w}^2&=&\inner{f-w}{f-w}\\
+	&=&\norm{f}^2-\inner{f}{\sum \beta_i\phi_i}-\conj{\inner{f}{\sum \beta_i\phi_i}}+\inner{\sum \beta_i\phi_i}{\sum \beta_j\phi_j}\\
+	&=&\norm{f}^2-\sum\conj{\beta_i}\alpha_i-\sum\beta_i\conj{\alpha_i}+\sum\norm{\beta_i}^2\\
+	&=&\norm{f}^2+\left(\sum\norm{\alpha_i}^2-\sum\conj{\beta_i}\alpha_i-\sum\beta_i\conj{\alpha_i}+\sum\norm{\beta_i}^2\right) - \sum\norm{\alpha_i}^2\\
+	&=&\norm{f}^2+\left(\sum(\beta_i-\alpha_i)\conj{(\beta_i-\alpha_i)}\right) - \sum\norm{\alpha_i}^2\\
+	&=&\norm{f}^2+\sum\abs{\beta_i-\alpha_i}^2 - \sum\abs{\inner{f}{\phi_i}}^2\\
+	\end{array}\]
+Now, since $f,\phi_i, \alpha_i$ are all given, we can see that the above expression is minimized when we choose $\beta_i=\alpha_i$.
+\end{proof}
+
+\begin{corollary*}
+$$\sum_{i=1}^n\abs{\inner{f}{\phi_i}}^2\leq\norm{f}^2$$
+\end{corollary*}
+
+\begin{theorem*}[Bessel's Inequality] The above holds for infinite sums, as long as $\norm{f}$ is finite. 
+\end{theorem*}
+
+\begin{theorem*}[Riemann-Lebesgue Lemma] As long as the above hold, 
+$$\lim_{i\to\infty}\inner{f}{\phi_i}=0.$$
+\end{theorem*}
+
+\pagebreak
+\textbf{Motivation.} 
+\[\begin{array}{l}
+\frac{1}{2\pi} \int_0^{2\pi} \cos(nx)\cos(mx)dx=
+\begin{cases}
+0				&n\neq m\\
+\tfrac{1}{2}	&n=m\neq0\\
+1				&n=m=0\\
+\end{cases}
+\\
+\\
+\frac{1}{2\pi} \int_0^{2\pi} \sin(nx)\sin(mx)dx=
+\begin{cases}
+\tfrac{1}{2}	&n=m\neq0\\
+0				&\text{otherwise}\\
+\end{cases}
+\\
+\\
+\frac{1}{2\pi} \int_0^{2\pi} \sin(nx)\cos(mx)dx=
+\begin{cases}
+0				&\text{always}\\
+\end{cases}
+\\
+\\
+\end{array}\]
+So, these vectors must be scaled to be ortho\textbf{normal}. 
+$$\left\lbrace 1, \sqrt{2}\cos(nx), \sqrt{2}\sin(mx) : n,m\in\Z\right\rbrace \text{ is orthonormal.}$$
+Now we have the best approximation for a function on $[0,2\pi)$ is 
+$$a_0+a_1\sqrt{2}\cos(x)+b_1\sqrt{2}\sin(x)+\dots$$
+where
+\[\begin{array}{rcl}
+a_0 &=& \frac{1}{2\pi}\int_{0}^{2\pi} \inner{f(x)}{1}dx\\
+a_j &=& \frac{1}{2\pi}\int_{0}^{2\pi} \inner{f(x)}{\sqrt{2}\cos(jx)}dx\\
+b_k &=& \frac{1}{2\pi}\int_{0}^{2\pi} \inner{f(x)}{\sqrt{2}\sin(kx)}dx\\
+\end{array}\]
+
+\textbf{Fourier Trigonometric Series.} 
+$$\frac{1}{2}A_0+\sum_{n=1}^\infty\bigg(A_n\cos(nx)+B_n\sin(nx)\bigg)$$
+where
+\[\begin{array}{rcl}
+A_n &=& \frac{1}{\pi}\int_{0}^{2\pi} {f(x)}{\cos(nx)}dx \quad\text{(including n=0)}\\
+B_n &=& \frac{1}{\pi}\int_{0}^{2\pi} {f(x)}{\sin(nx)}dx\\
+\end{array}\]
+
+\textbf{Simplification (?).} We could have started with the orthonormal sequence.
+$$e^{inx}, \quad n\in \Z \, \text{ on } [0,2\pi)$$
+Let's verify normality.
+\[\begin{array}{rcl}
+\inner{e^{inx}}{e^{imx}}&=&\frac{1}{2\pi}\int_0^{2\pi} e^{inx}\conj{e^{imx}}dx\\
+&=&\frac{1}{2\pi}\int_0^{2\pi} e^{i(n-m)x}dx\\
+&=&\frac{1}{2\pi} \left[\frac{1}{i(n-m)} e^{i(n-m)x}\right]_0^{2\pi}\\
+&=&
+	\begin{cases}
+	0& n\neq m\\
+	1& n=m\\
+	\end{cases}
+\end{array} \]
+
+\begin{highlight}
+\textbf{Fourier Exponential Series.}
+This gives us the series
+$$\sum_{n\in\Z}C_ne^{inx}$$
+where
+$$C_n=\frac{1}{2\pi}\int_0^{2\pi}f(x)\conj{e^{inx}}dx$$
+$$\phantom{-C_n}=\frac{1}{2\pi}\int_0^{2\pi}f(x){e^{-inx}}dx$$
+\end{highlight}
+
+\textbf{Note.} 
+\[\begin{array}{rcl}
+C_n &=& \frac{1}{2\pi} \int_0^{2\pi} f(x) [\cos(nx)-i\sin(nx)] dx\\
+&& \text{(Note that the - has vanished and moved, since cos and sin are }\\
+&&\text{even and odd, respectively.)}\\
+&=&
+\begin{cases}
+\frac{1}{2}(A_n-iB_n) & n>0\\
+\frac{1}{2} A_0 & n=0\\
+\frac{1}{2}(A_{\abs{n}}+iB_{\abs{n}}) & n<0\\
+\end{cases}
+\end{array} \]
+So, for all $n>0$, 
+$$C_ne^{inx}+C_{(-n)}e^{i(-n)x}=A_n\cos(nx)+B_n\sin(nx)$$
+
+\textbf{Intervals.}
+\begin{itemize}
+\item $e^{inx}$ works on any interval of length $2\pi$. 
+\item $e^{2\pi inx/L}$ works on any interval of length $L$. 
+\end{itemize}
+
+\begin{highlight}
+\textbf{Fourier Series.} If $f$ is integrable on the interval $[a,b]$ of length $L$, then the $n$th \textbf{Fourier coefficient} of $f$ is 
+$$\hat{f}(n)=\frac{1}{L} \int_a^b f(x) e^{-2\pi inx/L} dx, \quad n\in \Z$$
+and the \textbf{Fourier series} of $f$ is given by 
+$$\sum_{n\in\Z} \hat{f}(n)e^{2\pi inx/L}$$
+\end{highlight}
+
+\section{Day 4 (Palsson)}
+
+\textbf{Question:} Does 
+$\sum_{n\in\Z} \hat{f}(n)e^{2\pi inx/L}$
+converge to $f(x)$? 
+
+\begin{example*}
+$f(x)=x on [0,2\pi)$
+
+$$\hat{f}(x)=\frac{1}{2\pi}\int_0^2\pi x e^{-inx}dx = \text{int. by parts} = \frac{i}{n}, n\neq 0$$
+\end{example*}
+
+\textbf{Uniqueness.}
+\begin{highlight}
+\begin{theorem*}
+Suppose $f$ is integrable, and bounded on an interval with $\hat{f}(n)=0$ for all $n\in\Z$.
+
+Then $f(x_0)=0$ whenever $f$ is continuous at $x_0$. 
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{theorem*}
+Suppose $f$ is continuous on the circle and the Fourier series of $f$ is absolutely convergent 
+$$\sum_{n=-\infty}^\infty\abs{\hat{f}(n)}<\infty.$$
+Then, 
+$$\lim_{N\to\infty}S_n(f)(x)=f(x) \text{uniformly in }x.$$
+\end{theorem*}
+\end{highlight}
+\begin{proof}
+Since $\sum_{n=-\infty}^\infty\abs{\hat{f}(n)}<\infty$, then $\sum_{n=-\infty}^\infty{\hat{f}(n)e^{inx}}$ converges absolutely and in fact, uniformly. If $g(x)=\sum_{n=-\infty}^\infty{\hat{f}(n)e^{inx}}$, then $g$ must be continuous. 
+
+Since $f-g$ is continuous and $\hat{f-g}(n)=0$ for all $n\in\Z$ then we conclude by uniqueness theorem that $f=g$. 
+\[\begin{array}{rcl}
+\hat{g}(n)&=&\frac{1}{2\pi}\int_{n=0}^{2\pi}g(x){e^{-inx}}dx\\
+&=&\frac{1}{2\pi}\int_{n=0}^{2\pi}(\sum_{k=-\infty}^\infty{\hat{f}(k)e^{ikx}}){e^{-inx}}dx\\
+\end{array}\]
+
+(more proof in picture)
+\end{proof}
+
+%\hrule
+
+%$$f(x)=\sum_{n=0}^\infty 
+%\proj*{\sin(nx)}{f}=\sum_{n=0}^\infty \inner{f(x)}{\sin(nx)}\sin(nx)$$
+
+\section*{Morse's Lemma and more}
+
+\begin{theorem*} Let $G_T(x)=e^{-\pi i \inner{Tx}{x}}$ where $T$ is an invertible, real symmetric matrix with signature $\sigma=k_+-k_-$ where the $k$s are the numbers of positive and negative eigenvalues of the matrix (counting multiplicity). 
+
+Then, 
+$$\hat{G}_T=e^{-\pi i \frac{\sigma}{4}}\abs{\det T}^{1/2}G_{-T^{-1}}.$$
+
+\end{theorem*}
+
+\begin{theorem*}
+Let $T$ be a invertible, real symmetric matrix with signature $\sigma$, $a\in C^\infty_c$ and define 
+$$I(\lambda)= \int e^{-\pi i \lambda \inner{Tx}{x}} a(x) dx.$$
+Then for any $N$, 
+$$I(\lambda)= e^{-\pi i \frac{\sigma}{4}} \abs{\det T}^{1/2} \lambda^\frac{-n}{2} \left(a(0)+\sum_{j=1}^N \lambda^{-j}D_ja(0)+O(\lambda^{-(N+1)})\right).$$
+Where $D_j$ are explicit homogeneous constant coefficient differential operators of order $2j$. 
+\end{theorem*}
+
+\begin{lemma}
+Suppose $\phi$ is smooth with $\nabla \phi(p)=0$ and $G$ is a smooth diffeomorphism $G(0)=p$. Then, 
+$$H_{\phi\circ G}(0)=DG(0)^TH_\phi(p)DG(0).$$
+Thus $H_\phi(p)$ and $H_{\phi\circ G}(0)$ have the same signature and 
+$$\det(H_{\phi\circ G}(0))=\det(DG(0))^2\det(H_\phi(p)).$$
+\end{lemma}
+
+
+\pagebreak
+\section{measure theory}
+\begin{highlight}
+\begin{definition*}
+A \textbf{measure} of a set $E$ is a function $\phi:\script{P}(E)\to\R$ with these properties:
+\begin{itemize}
+	\item Non-negativity
+	\item Null empty set
+	\item Countable additivity
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{theorem*}
+For an elementary function 
+$$f=\sum_{i=1}^n \alpha_i\chi_{A_i}$$
+with disjoint sets $A_i$ define
+$$\int f d\mu = \int f(x)d\mu(x):=\sum_{i=1}^n \alpha_i\mu({A_i}),$$
+and we can extend this to more general functions by 
+$$\int f d\mu = \sup\left\lbrace\int g(x)d\mu(x): g\leq f, g \text{ is elementary}\right\rbrace.$$
+In particular, 
+$$\mu(A)=\int_A d\mu.$$
+\end{theorem*}
+
+\begin{example*}
+Fourier transform of a measure:
+$$\hat{\mu}(\xi)=\int_{\R^d}e^{-2\pi i x \xi}d\mu(x)$$
+\end{example*}
+
+\begin{highlight}
+\begin{definition*}[Hausdorff Dimension]
+Let $E\subseteq\R^d$. for $\alpha, \epsilon>0$ define 
+$$H_\alpha^\epsilon(E)=\inf\left(\sum_{j=1}^\infty r_j^\alpha\right)$$
+where $E$ is covered by balls of radius $r_j<\epsilon$. We also define the Hausdorff measure as 
+\[H_\alpha(E)=\lim_{\epsilon\to0^+}H_\alpha^\epsilon(E).\]
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+We say $\dim_H(E)=\alpha_0$ if 
+\begin{itemize}
+\item $H_\alpha(E)=\infty$ for $\alpha<\alpha_0$ and 
+\item $H_\alpha(E)=0$ for $\alpha\>\alpha_0$.
+\end{itemize}
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{lemma}[Frostman's Lemma]
+for $A\subseteq D$ compact, $H_s(A)>0$ if and only if there is a probability measure $\mu$ supported on $A$ and a constant $C>0$ such that 
+\begin{equation}
+\mu(B(x,r))\leq C r^s \text{ for all } x\in \R^d, r>0
+\tag{$*$}
+\end{equation}
+In particular, 
+\[\dim_H(A)=\sup\{s: \text{there is a measure } \mu \text{ such that } (*) \text{ holds.}\}\]
+Such a measure which satisfies $(*)$ is often called a Frostman measure. 
+\end{lemma}
+\end{highlight}
+
+Idea: if you have $\mu$ satisfying $(*)$ and $B_j$ are balls covering $A$ of radius $r_j$, 
+\[ \sum_j r_j^s \geq \frac{1}{C} \sum_j\mu(B_j) \geq \frac{1}{C} \mu(A)= \frac{1}{C} >0\]
+whhich implies the forward direction. the other way is \emph{hard.}
+
+\begin{definition*}[Energy integrals]
+the $s$-energy, $s>0$ of a measure $\mu$ 
+\[I_s(\mu)=\int_{\R^{2d}}\int\abs{x-y}^{-s}d\mu(x)\, d\mu(y)  \]
+\end{definition*}
+
+Idea:
+\[\begin{array}{rcl}
+I_s(\mu)&=&\int\int\abs{x-y}^{-s}d\mu(x)\, d\mu(y)\\
+	&=& \int\int \reallywidehat{\abs{x-y}^{-s}}(\xi) e^{2\pi i (x-y)\cdot\xi} d\xi\, d\mu(x)\, d\mu(y)\\
+	&=& \int \gamma(s,d)\abs{\xi}^{s-d} \int e^{2\pi i x\xi}d\mu(x)\int e^{-2\pi i y\xi}d\mu(y)d\xi\\
+	&=& \gamma(s,d)\int \abs{\reallywidehat{\mu}(\xi)}^2\abs{\xi}^{s-d}d\xi\\
+\end{array}\]
+
+\begin{highlight}
+\begin{theorem*}
+For $A\subseteq\R^d$ compact, 
+\[\dim_H(A)=\sup\{s: \exists \text{ a measure } \mu \text{ supported on } A \text{ such that } I_s(\mu)<\infty\} \]
+\end{theorem*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}[Erd\"os disctict distance problem]
+let 
+\begin{itemize}
+\item $E=\arbcoll{x}\in \R^2$
+\item $\Delta(E)=\{\abs{x_i-x_j}:1\leq i<j\leq N\}$
+\item $\#(\Delta(E))\geq ?$
+\item Guth-katz $\#(\Delta(E))\gtrsim\frac{N}{\log(N)}$ as $N\to\infty$
+\end{itemize}
+
+\end{definition*}
+\end{highlight}
+
+
+\pagebreak
+\section{Index}
+\printindex
+
+\end{document}
+

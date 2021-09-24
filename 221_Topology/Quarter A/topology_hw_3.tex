@@ -1,0 +1,74 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology}} %=================UPDATE THIS=================%
+\rhead{\textsc{Long, Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 3}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Suppose $W\subset X\times Y$ is closed, and $Y$ is compact. 
+	\begin{enumerate}[label=(\roman*)]
+	\item Prove that $\pi_X(W)$ is closed in $X$. 
+	\item Show this fails if $Y$ is not compact. 
+	\end{enumerate}
+	
+\item Let $X$ be compact, a let $V_1\supset V_2\supset \dots$ be a sequence of closed nonempty sets in $X$. Prove that $\bigcap\limits_{i\geq 1} V_i \neq \emptyset$. 
+
+\item Suppose $f:(X,d_X)\to (Y,d_Y)$ is continuous, and suppose $X$ is sequentially compact. Prove that $f(X)$ is bounded. 
+
+\end{enumerate}
+
+\begin{definition*}
+For any set $A$, we define the \emph{frontier of $A$} (also called the \emph{boundary of $A$}) to be 
+$$\del A=\closure{A}\cap\closure{A^\complement}.$$
+That is, if $x\in\del A$, then for every open set $U\ni x$, we have $U\cap A\neq\emptyset$ and $U\cap A^\complement\neq\emptyset$. 
+\end{definition*}
+
+\begin{enumerate}[resume]
+\item Prove that 
+	\begin{enumerate}[label=(\roman*)]
+	\item $A$ is closed in $X \iff \del A\subset A$. 
+	\item $\del A = \emptyset \iff A$ is both open and closed in $X$.
+	\item $X$ is connected $\iff$ every nonempty proper subset has nonempty frontier. 
+	\end{enumerate}
+	
+\item Let $A,B\subset X$ be connected, with $A\cap \closure{B}\neq\emptyset$. Prove that $A\cup B$ is connected. 
+\end{enumerate}
+
+\end{document}
+
+
+

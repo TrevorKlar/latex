@@ -1,0 +1,1342 @@
+
+%\batchmode
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsfonts,amssymb,multicol}
+\usepackage{booktabs,tabularx,colortbl,caption,xcolor}
+\usepackage{path}
+%  \discretionaries |~!@$%^&*()_+`-=#{"}[]:;'<>,.?\/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789|
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}  % allows use of eps files with pdftex
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\pagestyle{plain}
+\textheight 9in
+\oddsidemargin = -0.42in
+\evensidemargin = -0.42in
+\textwidth= 7.28in
+\columnsep = .25in
+\columnseprule = .4pt
+\def\endline{\bigskip\hrule width \hsize height 0.8pt }
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\less}{<}
+\newcommand{\grt}{>}
+
+% BEGIN capa tex macros
+
+\newcommand{\capa}{{\sl C\kern-.10em\raise-.00ex\hbox{\rm A}\kern-.22em%
+{\sl P}\kern-.14em\kern-.01em{\rm A}}}
+  
+\newenvironment{choicelist}
+{\begin{list}{}
+	{\setlength{\rightmargin}{0in}\setlength{\leftmargin}{0.13in}
+	\setlength{\topsep}{0.05in}\setlength{\itemsep}{0.022in}
+	\setlength{\parsep}{0in}\setlength{\belowdisplayskip}{0.04in}
+	\setlength{\abovedisplayskip}{0.05in}
+	\setlength{\abovedisplayshortskip}{-0.04in}
+	\setlength{\belowdisplayshortskip}{0.04in}}
+	}
+{\end{list}}
+
+% END capa tex macros 
+
+\begin{document}
+\voffset=-0.8in
+\newpage
+\setcounter{page}{1}
+\begin{multicols}{2}
+\columnwidth=\linewidth
+%% decoded old answers, saved. (keys = 
+\ifdefined\nocolumns\else \end{multicols}\fi
+
+\noindent {\large \bf Trevor Klar}
+\hfill
+{\large \bf {math34a-02-w20-garfield}}
+% Uncomment the line below if this course has sections. Note that this is a comment in TeX mode since this is only processed by LaTeX
+   {\large \bf { Section:  } }
+\par
+\noindent{\large \bf {Assignment HW05  due 01/17/2020 at 08:00am PST}}
+\par\noindent \bigskip
+% Uncomment and edit the line below if this course has a web page. Note that this is a comment in TeX mode.
+%See the course web page for information http://yoururl/yourcourse
+
+
+
+
+ \ifdefined\nocolumns\else \begin{multicols}{2}
+\columnwidth=\linewidth \fi
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 1. {\footnotesize (1 point) \path|local/Cooper01/Cooper_1_5_22.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 1.5 {\ttfamily\char35}22
+\vskip\baselineskip
+ Solve
+\(\displaystyle{-x + \frac {x^2-2}{x+1} = 3. }\)
+\vskip\baselineskip
+{\bfseries{}Hint}: Put over a common denominator.
+\vskip\baselineskip
+\(x =\) \mbox{\parbox[t]{10ex}{\hrulefill}}
+\vskip\baselineskip
+Need help? Links to the Online Math Lab:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{OML links for High School Math Review}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}-(3+2)/(3+1)\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 2. {\footnotesize (1 point) \path|local/Cooper01/Cooper_1_5_36.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 1.5 {\ttfamily\char35}36
+\vskip\baselineskip
+Make the substitution \(x=a+a^{-1}\) into \(x+2x^{-1}.\) Put your answer over a common denominator and simplify. Please write the numerator and denominator separately:
+\vskip\baselineskip
+Numberator: \mbox{\parbox[t]{10ex}{\hrulefill}}
+\vskip\baselineskip
+Denominator: \mbox{\parbox[t]{10ex}{\hrulefill}} 
+\vskip\baselineskip
+Need help? Links to the Online Math Lab:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{OML links for High School Math Review}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}a^4+4a^2+1\end{verbatim}
+\item\begin{verbatim}a^3+a\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 3. {\footnotesize (1 point) \path|local/Cooper02/Cooper_2_2_1.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 2.2 {\ttfamily\char35}1
+\vskip\baselineskip
+Tear out a page of graph paper from the end of the book. On the graph paper, draw the graph of \(y=x^2\) for \(-2\leq x\leq 2\).  Use the table of values below and the fact that the graph is symmetric across the y-axis.  Mathematically this means \((-x)^2=x^2\).  What this means when you look at the graph is that parts of the graph on either side of the \(y\)-axis look the same, except that one is the mirror image of the other.  This graph will often be used later in the course.  So keep it safe.
+\vskip\baselineskip
+\[\small
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|} \hline
+    x & 0 & 0.25 & 0.5 & 0.75 & 1 & 1.25 & 1.5 & 1.75 & 2 \\ \hline
+    y & 0 & 0.0625 & 0.25 & 0.5625 & 1 & 1.5625 & 2.25 & 3.0625 & 4 \\ \hline
+    \end{array}\]
+\vskip\baselineskip
+Which of the graphs below best matches the one you drew?
+\vskip\baselineskip
+
+\begin{itemize}
+\item{A. \includegraphics[width=0.8\linewidth]{/opt/webwork/courses/math34a-02-w20-garfield/templates//local/Cooper02/Cooper_2_2_1-image-E.png}
+}
+\item{B. \includegraphics[width=0.8\linewidth]{/opt/webwork/courses/math34a-02-w20-garfield/templates//local/Cooper02/Cooper_2_2_1-image-D.png}
+}
+\item{C. \includegraphics[width=0.8\linewidth]{/opt/webwork/courses/math34a-02-w20-garfield/templates//local/Cooper02/Cooper_2_2_1-image-A.png}
+}
+\item{D. \includegraphics[width=0.8\linewidth]{/opt/webwork/courses/math34a-02-w20-garfield/templates//local/Cooper02/Cooper_2_2_1-image-B.png}
+}
+\item{E. \includegraphics[width=0.8\linewidth]{/opt/webwork/courses/math34a-02-w20-garfield/templates//local/Cooper02/Cooper_2_2_1-image-C.png}
+}
+
+\end{itemize}
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{Graphs}}
+\pgmlItem{}{\bf \underline{Word Problems}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}B\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 4. {\footnotesize (2 points) \path|local/Cooper03/Cooper_3_1_8.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 3.1 {\ttfamily\char35}8
+\vskip\baselineskip
+Oil is leaking from an oil tanker at the rate of 9000 liters per hour. 8 liters of oil spread out over 10 square meters of ocean surface. A circular oil slick forms. 
+\vskip\baselineskip
+{\pgmlIndent\let\pgmlItem=\pgmlalphaItem
+\pgmlItem{}Express the radius \(R\) of the oil slick as a function of the time \(t\) (in hours) the tank has been leaking. If your answer involves \(\pi\), type pi not 3.14.
+\vskip\baselineskip
+\(R(t)=\) \mbox{\parbox[t]{10ex}{\hrulefill}} meters 
+\vskip\baselineskip
+\pgmlItem{}After how many hours will the oil slick have radius 1 kilometer? 
+\vskip\baselineskip
+After \mbox{\parbox[t]{10ex}{\hrulefill}} hours
+\vskip\baselineskip
+{\bfseries{}Hint}: You will find a {\bfseries{}{\itshape{}cunning plan}} at the bottom of page 47.
+\par}%
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{Word Problems}}
+\pgmlItem{}{\bf \underline{OML links for High School Math Review}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}sqrt(9000*10/8*t/pi)\end{verbatim}
+\item\begin{verbatim}279.253\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 5. {\footnotesize (1 point) \path|local/Cooper03/Cooper_3_2_1.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 3.2 {\ttfamily\char35}1
+\vskip\baselineskip
+A rectangular field is to have an area of \(25\ \text{m}^2\) and is to be surrounded by a fence. The cost, \(C\), of the fence is 2 dollars per meter of length. Express the total cost of the fence in terms of the width of the field (use the variable `\(w\)' for width).
+\vskip\baselineskip
+\(C(w) =\) \$\mbox{\parbox[t]{15ex}{\hrulefill}}
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{Word Problems}}
+\pgmlItem{}{\bf \underline{OML links for High School Math Review}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}2*(2(25/w)+2*w)\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 6. {\footnotesize (1 point) \path|local/Cooper03/Cooper_3_2_2.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 3.2 {\ttfamily\char35}2
+\vskip\baselineskip
+I have three numbers. The biggest one is twice the middle one, and the biggest one plus the middle one is four times the smallest one. The smallest one plus the middle one is two less than the biggest one. What are the numbers?
+\vskip\baselineskip
+\(\text{smallest number} =\) \mbox{\parbox[t]{5ex}{\hrulefill}}
+\vskip\baselineskip
+\(\text{middle number} =\) \mbox{\parbox[t]{5ex}{\hrulefill}}
+\vskip\baselineskip
+\(\text{biggest number} =\) \mbox{\parbox[t]{5ex}{\hrulefill}}
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{Word Problems}}
+\pgmlItem{}{\bf \underline{OML links for High School Math Review}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}6\end{verbatim}
+\item\begin{verbatim}8\end{verbatim}
+\item\begin{verbatim}16\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 7. {\footnotesize (1 point) \path|local/Cooper04/Cooper_4_1_1.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 4.1 {\ttfamily\char35}1
+\vskip\baselineskip
+A car travels at constant speed for \(9\ \text{days}\) and covers \(1900\ \text{miles}\).  What is the speed of the car in centimeters/minute? Use the conversion factors on page 55 (that is, use \(1\ \text{mile}\approx 8/5\ \text{km}\)).
+\vskip\baselineskip
+\mbox{\parbox[t]{20ex}{\hrulefill}} \(\text{cm}/\text{min}\)
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+8 {\bf \underline{OML links for Units}}
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{Word Problems}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}1000*1900/(9*9)\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 8. {\footnotesize (1 point) \path|local/Cooper04/Cooper_4_1_2.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 4.1 {\ttfamily\char35}2
+\vskip\baselineskip
+If a car travels \(35\) miles per gallon of fuel (in other words, the car does \(35\) mpg), how many kilometers does it travel per liter of fuel? Use the conversion factors on page 55 (that is, use \(1\ \text{mile}\approx 8/5\ \text{km}\) and \(1\ \text{gallon} = 8\ \text{pints}\) and \(1\ \text{liter} \approx 2\ \text{pints}\)).
+\vskip\baselineskip
+The car travels about \mbox{\parbox[t]{10ex}{\hrulefill}} km on one liter of fuel
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{OML links for Units}}
+\pgmlItem{}{\bf \underline{Word Problems}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}0.4*35\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 9. {\footnotesize (2 points) \path|local/Cooper04/Cooper_4_1_3.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 4.1 {\ttfamily\char35}3
+\vskip\baselineskip
+The Earth travels in a circle around the sun once every year.  The radius of the circle is \(98\) million miles.
+\vskip\baselineskip
+{\pgmlIndent\let\pgmlItem=\pgmlalphaItem
+\pgmlItem{}What is the speed of the Earth in miles per hour?
+\vskip\baselineskip
+\mbox{\parbox[t]{20ex}{\hrulefill}} \(\text{mi}/\text{hr}\)
+\vskip\baselineskip
+\pgmlItem{}What is the speed of the Earth in centimeters per day? Use the conversion factors on page 55.
+\vskip\baselineskip
+\mbox{\parbox[t]{20ex}{\hrulefill}} \(\text{cm}/\text{day}\)
+\par}%
+\vskip\baselineskip
+Online Math Lab resources for this problem:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{OML links for Units}}
+\pgmlItem{}{\bf \underline{Word Problems}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}70000\end{verbatim}
+\item\begin{verbatim}2.67*10^11\end{verbatim}
+\end{itemize}}\par
+
+\medskip
+\goodbreak
+\hrule
+\nobreak
+\smallskip
+%% decoded old answers, saved. (keys = 
+
+    \ifx\pgmlMarker\undefined
+      \newdimen\pgmlMarker \pgmlMarker=0.00314159pt  % hack to tell if \newline was used
+    \fi
+    \ifx\oldnewline\undefined \let\oldnewline=\newline \fi
+    \def\newline{\oldnewline\hskip-\pgmlMarker\hskip\pgmlMarker\relax}%
+    \parindent=0pt
+    \catcode`\^^M=\active
+    \def^^M{\ifmmode\else\fi\ignorespaces}%  skip paragraph breaks in the preamble
+    \def\par{\ifmmode\else\endgraf\fi\ignorespaces}%
+  
+%%% BEGIN PROBLEM PREAMBLE
+{\bf 10. {\footnotesize (1 point) \path|local/Cooper01/Cooper_1_6_11.pgml|}}\newline \ifdim\lastskip=\pgmlMarker
+  \let\pgmlPar=\relax
+ \else
+  \let\pgmlPar=\par
+  \vadjust{\kern3pt}%
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    definitions for PGML
+%
+
+\ifx\pgmlCount\undefined  % do not redefine if multiple files load PGML.pl
+  \newcount\pgmlCount
+  \newdimen\pgmlPercent
+  \newdimen\pgmlPixels  \pgmlPixels=.5pt
+\fi
+\pgmlPercent=.01\hsize
+
+\def\pgmlSetup{%
+  \parskip=0pt \parindent=0pt
+%  \ifdim\lastskip=\pgmlMarker\else\par\fi
+  \pgmlPar
+}%
+
+\def\pgmlIndent{\par\advance\leftskip by 2em \advance\pgmlPercent by .02em \pgmlCount=0}%
+\def\pgmlbulletItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmldiscItem{\par\indent\llap{$\bullet$ }\ignorespaces}%
+\def\pgmlcircleItem{\par\indent\llap{$\circ$ }\ignorespaces}%
+\def\pgmlsquareItem{\par\indent\llap{\vrule height 1ex width .75ex depth -.25ex\ }\ignorespaces}%
+\def\pgmlnumericItem{\par\indent\advance\pgmlCount by 1 \llap{\the\pgmlCount. }\ignorespaces}%
+\def\pgmlalphaItem{\par\indent{\advance\pgmlCount by `\a \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlAlphaItem{\par\indent{\advance\pgmlCount by `\A \llap{\char\pgmlCount. }}\advance\pgmlCount by 1\ignorespaces}%
+\def\pgmlromanItem{\par\indent\advance\pgmlCount by 1 \llap{\romannumeral\pgmlCount. }\ignorespaces}%
+\def\pgmlRomanItem{\par\indent\advance\pgmlCount by 1 \llap{\uppercase\expandafter{\romannumeral\pgmlCount}. }\ignorespaces}%
+
+\def\pgmlCenter{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus .5\hsize
+  \advance\rightskip by 0pt plus .5\hsize
+  \def\pgmlBreak{\break}%
+}%
+\def\pgmlRight{%
+  \par \parfillskip=0pt
+  \advance\leftskip by 0pt plus \hsize
+  \def\pgmlBreak{\break}%
+}%
+
+\def\pgmlBreak{\\}%
+
+\def\pgmlHeading#1{%
+  \par\bfseries
+  \ifcase#1 \or\huge \or\LARGE \or\large \or\normalsize \or\footnotesize \or\scriptsize \fi
+}%
+
+\def\pgmlRule#1#2{%
+  \par\noindent
+  \hbox{%
+    \strut%
+    \dimen1=\ht\strutbox%
+    \advance\dimen1 by -#2%
+    \divide\dimen1 by 2%
+    \advance\dimen2 by -\dp\strutbox%
+    \raise\dimen1\hbox{\vrule width #1 height #2 depth 0pt}%
+  }%
+  \par
+}%
+
+\def\pgmlIC#1{\futurelet\pgmlNext\pgmlCheckIC}%
+\def\pgmlCheckIC{\ifx\pgmlNext\pgmlSpace \/\fi}%
+{\def\getSpace#1{\global\let\pgmlSpace= }\getSpace{} }%
+
+{\catcode`\ =12\global\let\pgmlSpaceChar= }%
+{\obeylines\gdef\pgmlPreformatted{\par\small\ttfamily\hsize=10\hsize\obeyspaces\obeylines\let^^M=\pgmlNL\pgmlNL}}%
+\def\pgmlNL{\par\bgroup\catcode`\ =12\pgmlTestSpace}%
+\def\pgmlTestSpace{\futurelet\next\pgmlTestChar}%
+\def\pgmlTestChar{\ifx\next\pgmlSpaceChar\ \pgmlTestNext\fi\egroup}%
+\def\pgmlTestNext\fi\egroup#1{\fi\pgmlTestSpace}%
+
+\def^^M{\ifmmode\else\space\fi\ignorespaces}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% END PROBLEM PREAMBLE
+{\pgmlSetup
+{\bfseries{}Cooper} Section 1.6 {\ttfamily\char35}11
+\vskip\baselineskip
+Use the tax table on page 27 to answer the following questions.
+\vskip\baselineskip
+{\pgmlIndent\let\pgmlItem=\pgmlalphaItem
+\pgmlItem{}Find \(f^{-1}(1860)\). 
+\vskip\baselineskip
+ \mbox{\parbox[t]{5ex}{\hrulefill}} (lower limit)
+\vskip\baselineskip
+\pgmlItem{}If someone paid \(3000\) in taxes, what was their income? 
+\vskip\baselineskip
+ \mbox{\parbox[t]{5ex}{\hrulefill}} (lower limit)
+\par}%
+\vskip\baselineskip
+Need help? Links to the Online Math Lab:
+{\pgmlIndent\let\pgmlItem=\pgmldiscItem
+\pgmlItem{}{\bf \underline{OML links for Functions}}
+\par}%
+\vskip\baselineskip
+\par}%
+\par{\small{\it Correct Answers:}
+\vspace{-\parskip}\begin{itemize}
+\item\begin{verbatim}23000\end{verbatim}
+\item\begin{verbatim}32500\end{verbatim}
+\end{itemize}}\par
+%% decoded old answers, saved. (keys = 
+\ifdefined\nocolumns\else \end{multicols}\fi
+
+
+\noindent {\tiny Generated by \copyright WeBWorK, http://webwork.maa.org, Mathematical Association of America}
+
+ \ifdefined\nocolumns\else \begin{multicols}{2}
+\columnwidth=\linewidth \fi
+
+
+
+\end{multicols}
+\vfill
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Problem Set \#1 \linebreak
+Palsson}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item \mbox{}
+	\begin{enumerate}
+	\item How many different such matrices exist for a graph with 4 vertices?
+	\answer	$6\cdot \left({}^5_2\right) = 60$
+	
+	\item How many different such matrices exist for a graph with 5 vertices?
+	\answer	${10 \choose 1} \left({}^5_2\right) = 20160$
+	
+	\item Can you write out a general formula for how many such matrices are for a graph with $N$
+vertices?
+
+	\answer $$\prod\limits_{i=1}^{N-2} {{T_{N-1}-(i-1)} \choose {i}}$$
+	Where $T_n$ is the $n$-th triangle number. 
+	\end{enumerate}
+
+\item let $\phi:\{1,2,3,4\}\to\{1,2,3,4\}$ be a remapping as follows:
+\[\begin{array}{rcl}
+1 &\mapsto& 1\\
+2 &\mapsto& 4\\
+3 &\mapsto& 3\\
+4 &\mapsto& 2\\
+\end{array}\]
+That is, switch labels for (2) and (4). 
+\end{enumerate}
+
+\end{document}

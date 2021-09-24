@@ -1,0 +1,118 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 9}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\newcommand{\Rn}{\R^n}
+\renewcommand{\phi}{\oldphi}
+\renewcommand{\S}{\script{S}}
+\newcommand{\D}{\script{D}}
+
+\begin{enumerate}
+\item Find \textit{all} distributional solutions $y$ to the following equations:
+	\begin{enumerate}[label=(\alph*)]
+	\item $xy=0$ in $\D'(\R)$ 
+	
+	[Hint: Represent any $\phi\in\D$ as $\phi(x)\equiv \phi(0)\eta(x)+x\psi(x)$ with $\eta$ independent of $\phi$. 
+	
+	\begin{proof}
+	We can write 
+	$$\phi=\phi_0\eta + x\psi,$$
+	where $\eta\in\D$ is any test function with $\eta(0)=1$ and $\psi:=\frac{1}{x}(\phi-\phi_0\eta)$. Suppose $T$ is a solution, so $xT$ is the zero distribution. Then 
+	\begin{align*}
+	T\phi&=T(\phi_0\eta+x\psi) \\
+	&= \phi_0T\eta + T(x\psi) & \text{by linearity} \\
+	&= \phi_0T\eta + xT(\psi) & \text{by def. of mult. by $C^\infty$ f'ns} \\
+	&= \phi_0T\eta & \text{by assumption} \\
+	&= (T\eta)\delta_0(\phi)
+	\end{align*}
+	and since $T\eta$ is an arbitrary constant with respect to $\phi$, then any multiple of the Dirac delta $\delta_0$ is a solution to (a). 
+	\end{proof}
+	\item $y'=0$ in $\D'((a,b))$
+	
+	\begin{proof}
+	Suppose $T$ is a solution, so the distributional derivative $DT=0$. Since 
+	$$DT=0\in C^0(a,b),$$ 
+	then by Theorem 6.10 
+	$$T=f\in C^1(a,b)$$ 
+	for some $f$, and $0=DT$ is the classical derivative $f'$. Since $f'=0$, then it is a constant, so $T=C$. Thus the solutions to (b) are constant distributions. 
+	\end{proof}
+	\end{enumerate}
+	
+\item Consider the function $f(x)=|x|^{-1}$ on $\R$. Although this function is not in $L^1_{\text{loc}}$, it is defined as a distribution for test functions on $\R$ that vanish at the origin, by 
+$$T_f(\phi) = \int_\R |x|^{-1}\phi(x)\dx.$$
+	\begin{enumerate}[label=(\alph*)]
+	\item Show that there is a distribution $T\in\D'(\R)$ that agrees with $T_f$ for functions that vanish at the origin. Give an explicit formula for one such $T$. 
+	\begin{proof}
+	Note that for all $\phi\in\D$, $(\phi-\phi_0)\in\D$ and vanishes at zero, so $T_f(\phi-\phi_0)$ is a distribution. If $\phi$ vanishes at 0, then 
+	$$T_f(\phi-\phi_0) = T_f(\phi-0) = T_f(\phi).$$
+	\end{proof}
+	\item Characterize all such $T$'s. Theorem 6.14 may be helpful here. 
+	\end{enumerate}
+
+\item Compute the following limit in $\D'(\R)$. 
+$$\lim_{\epsilon\to 0}\frac{\epsilon}{\pi x^2}\sin^2 \left(\frac{x}{\epsilon}\right)$$
+
+\answer
+The answer is the Dirac delta $\delta_0$. To see this, observe that $\int_\R\frac{1}{\pi x^2}\sin^2 (x) \dx = 1$, so
+\begin{align*}
+&\lim_{\epsilon\to 0}\left(\int_\R\frac{\epsilon}{\pi x^2}\sin^2 \left(\tfrac{x}{\epsilon}\right)\phi(x)\dx     -    \phi(0)\right) \\
+= &\lim_{\epsilon\to 0}\left(\int_\R\frac{1}{\pi u^2}\sin^2 (u)\phi(\epsilon u)\der u      -      \phi(0)\right) \\
+= &\lim_{\epsilon\to 0}\left(\int_\R\frac{1}{\pi u^2}\sin^2 (u)\phi(\epsilon u)\der u      -      \phi(0)\int_\R\frac{1}{\pi u^2}\sin^2 (u)\der u\right) \\
+= &\lim_{\epsilon\to 0}\int_\R\frac{1}{\pi u^2}\sin^2 (u) \bigg(\phi(\epsilon u) - \phi(0)\bigg)\der u  \\
+\end{align*}
+and note that $\phi\in\D$ and in particular, $\phi$ is continuous with compact support, so $\norm{\phi(\epsilon u) - \phi(0)}_\infty\leq C< \infty$, so the sequence of integrands above is dominated by 
+$\frac{C}{\pi u^2}\sin^2 (u),$
+so by the dominated convergence theorem we can move the limit inside the integral and find that 
+\begin{align*}
+&\lim_{\epsilon\to 0}\int_\R\frac{1}{\pi u^2}\sin^2 (u) \bigg(\phi(\epsilon u) - \phi(0)\bigg)\der u  \\
+=&\int_\R\frac{1}{\pi u^2}\sin^2 (u) \bigg(\phi(0) - \phi(0)\bigg)\der u  \\
+=&0.
+\end{align*}
+Therefore the action of the limit is exactly that of $\delta_0$. 
+\qed
+
+\end{enumerate}
+
+
+
+\end{document}

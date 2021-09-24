@@ -1,0 +1,106 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Problem Set \#3 \linebreak
+Palsson}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[label=P\arabic*)]
+\item Consider the vector space $\ell^p(\Z)$ of integer valued sequences $(a_n)_{k=1}^\infty$ with $\sum\limits_{k=1}^\infty \abs{a_n}^p<\infty$. 
+\begin{enumerate}
+\item
+NTS: 
+	\begin{enumerate}
+	\item positive definite
+	\item scaling
+	\item triangle inequality
+	\end{enumerate}
+\begin{proof}\textbf{(Positive definite)}
+Since 
+$$\norm{\vecb{a}}_p=\left(\sum_{k=1}^\infty \abs{a_k}^p\right)^{1/p}$$
+is a sum of nonnegative numbers being raised to a power, $\norm{\vecb{a}}_p$ is never negative. Furthermore, $\norm{\vecb{a}}_p=0$ if and only if $a_k=0$ for all $k$. Thus, $\norm{\vecb{a}}_p=0\iff{\vecb{a}}_p=0$.
+\end{proof}
+\begin{proof}\textbf{(Scaling)}
+Let $\lambda\in\R$. Then, 
+\[\begin{array}{rcl}
+\norm{\vecb{\lambda a}}_p&=&\left(\sum_{k=1}^\infty \abs{\lambda a_k}^p\right)^{1/p}\\
+&=&\left(\sum_{k=1}^\infty \abs{\lambda}^p \abs{a_k}^p\right)^{1/p}\\
+&=&\left(\abs{\lambda}^p \sum_{k=1}^\infty \abs{a_k}^p\right)^{1/p}\\
+&=&\abs{\lambda} \left(\sum_{k=1}^\infty \abs{a_k}^p\right)^{1/p}\\
+&=&\abs{\lambda}\norm{\vecb{ a}}_p
+\end{array} \]
+\end{proof}
+The third property, the Triangle Inequality, follows immediately by Minkowski's Inequality for Sums (When $p>1$):
+\begin{theorem*}[Minkowski's Inequality for Sums]
+Let $a_1, \dots, a_n$ and $b_1, \dots, b_n$ be sequences of non-negative real numbers, and let $p>1$ be a real number. Then, 
+$$\left(\sum_{k=1}^\infty (a_k+b_k)^p\right)^{1/p}\leq \left(\sum_{k=1}^\infty (a_k)^p\right)^{1/p}+\left(\sum_{k=1}^\infty (b_k)^p\right)^{1/p}_.$$\qed
+\end{theorem*}
+
+Now we examine when $p=1$. First observe that since $\sum\limits_{k=1}^\infty \abs{a_n}^1<\infty \text{ for all } \vecb{a}\in\ell^1(\Z)$, then all such sequences are finite. Now we can use this to find that 
+\[\def\arraystretch{1.25}\begin{array}{rcl}
+\left(\sum_{k=1}^\infty (a_k+b_k)^1\right)^{1/1}&=&\sum_{k=1}^\infty (a_k+b_k)\\
+&=&\sum_{k=1}^\infty (a_k)+\sum_{k=1}^\infty (b_k)\\
+&=& \left(\sum_{k=1}^\infty (a_k)^1\right)^{1/1}+\left(\sum_{k=1}^\infty (b_k)^1\right)^{1/1	}
+\end{array}\]
+
+
+
+\item ehh i skipped this one. 
+\end{enumerate}
+
+\item Let $H_n$ denote the linear class of functions spanned by 
+$$\{1, \cos(kx), \sin(kx) : k=1, 2, \dots, n\}.$$
+	\begin{enumerate}
+	\item What is the dimension of $H_n$? 
+	
+	\answer	$2n+1$
+	
+	\item Is $H_n$ a subspace of $H_{n+1}$?
+	
+	\answer Yes, since $H_n\subset H_{n+1}$, $\vec{0}\in H_n$, and $H_n$ is closed under addition and scalar multiplication by definition. Thus, $H_n$ is a subspace of $H_{n+1}$ by the subspace criterion. 
+	
+	\item For what values of $n$ is $\sin^2(x)$ an element of $H_n$? 
+	
+	\answer $n=2$, since $\sin^2(x)=\frac{1}{2}-\frac{1}{2}\cos(2x)$.
+
+	\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}

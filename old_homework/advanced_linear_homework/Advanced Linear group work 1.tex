@@ -1,0 +1,59 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\title{Math 462 - Advanced Linear Algebra \linebreak
+	Group Homework 1}
+\author{Kirk Benvenuto\\Jennifer Kampe\\Trevor Klar\\Eli Moore}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Exercises:}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item Give an example of a group $G$ and a nonempty subset $H$ of $G$ which is closed under the operation defined on $G$, but is not a subgroup of $G$. (Hint:
+$G$ must be infinite for this to occur.) 
+\begin{example*}
+Consider $G=(\Z,+)$ and $H=(\Z_1^\infty,+)$, where $+$ is the usual addition of integers, and $\Z_1^\infty$ denotes $\{n \in \Z: 1 \leq n\}$. Note that $G$ is clearly a group as it has the appropriate properties:
+\begin{itemize}
+\item Closure: $\Z$ is closed under addition
+\item Identity: For any integer $n$, $0+n=n$. 
+\item Inverse: For any integer $n$, the integer $-n$ is its inverse, since $n+(-n)=0$. 
+\item Associative: Addition of integers is associative, since $(a+b)+c=a+(b+c)$ for any integers $a,b,c$. 
+\end{itemize}
+
+Now consider the subset $\Z_1^\infty \subset \Z$. The magma $H=(\Z_1^\infty,+)$ is closed under $+$, as the sum of two positive integers is a positive integer. However, since there is no identity in $H$, it is not a group. Thus, $H$ is not a subgroup of $G$. \qed
+\end{example*}
+
+\setcounter{enumi}{21}
+\item Show that a field $F$ can never have zero-divisors, i.e. $$\forall a,b \in F, \quad ab=0 \implies a=0\text{ or }b=0.$$
+\begin{proof}\textbf{by contradiction.} Suppose $a \neq 0$ and $b\neq0$. Note that that for any ring (and thus, any field) we have already shown that $x0=0$ for any element $x$ of the ring. 
+
+Since $F$ is a field and $a\neq 0$, there exists $\inv{a} \in F$. Now, 
+$$ab=0 \implies \inv{a}ab=\inv{a}0 \implies b = 0,$$
+which contradicts our assumption that $b \neq 0$.
+
+We can also observe that, since $F$ is a field and $b\neq 0$, there exists $\inv{b} \in F$. In this case, 
+$$ab=0 \implies ab\inv{b}=0\inv{b} \implies a = 0,$$
+which contradicts our assumption that $a \neq 0$.
+
+Therefore, $ab=0 \implies a=0\text{ or }b=0$.
+\end{proof}
+
+\end{enumerate}
+
+\end{document}

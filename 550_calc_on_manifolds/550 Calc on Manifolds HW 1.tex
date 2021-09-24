@@ -1,0 +1,85 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 550 \linebreak
+Homework 1}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item The set $\Lambda^n(\R^n)$ of all alternating, multilinear functions on $(\R^n)^n$ forms a vector space. (You do not have to prove this.) What is its dimension? Find a basis for this vector space. 
+ 
+\textbf{Answer: }
+We know by Thm 1 that there exists only one alternating multilinear function $D$ on $(\R^n)^n$ such that $D(I_n)=1$ (where $I_n$ denotes the standard basis of $\R^n, \{\vec{e}_1, \ldots, \vec{e}_n\}$). Thus, $D$ is completely and uniquely determined by its behavior on $I_n$.
+
+\textbf{Claim:} $\{D\}$ is a basis for $\Lambda^n(\R^n)$, and therefore, the space has dimension 1. 
+
+\begin{proof}
+Let $F$ be some element of $\Lambda^n(\R^n)$, and let $k=F(I_n)$. Also let $A$ be an arbitrary element of $(\R^n)^n$ written as $A=\{\sum_{i}a_{ij}e_i\}_{j=1}^n$. Then, 
+\[\def\arraystretch{1.5}
+\begin{array}{rcl}
+F(A)&=&F\left(\sum\limits_{i_1}a_{i_11}e_{i_1}, \, \, \sum\limits_{i_2}a_{i_22}e_{i_2}, \, \, \dots , \, \, \sum\limits_{i_n}a_{i_nn}e_{i_n}\right)\\
+&=&\sum\limits_{i_n} \dots \sum\limits_{i_1} (a_{{i_1}1})(\cdots)(a_{{i_n}n}) F(e_{{i_1}}, \ldots, e_{{i_n}})  \\
+&=& \sum\limits_\sigma (a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n}) F(e_{\sigma(1)}, \dots, e_{\sigma(n)}) \\
+&=& \sum\limits_\sigma (a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n}) (\pm k) \\
+&=& k\sum\limits_\sigma (\text{sign}\,\sigma)(a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n})\\
+&=& kD(A)\\
+\end{array}\]
+Thus, $F=kD$ since they agree at any arbitrary point, and so $\{D\}$ spans the space. 
+\end{proof}
+
+\item Let $V$ be an $n$-dimensional vector space with an inner product $\inner{\,\,}{\,\,}$. Suppose $S\in \Lambda^n(V)$ is an alternating multilinear function on $V$. 
+	\begin{enumerate}
+	\item Let $\ntuple{\vec{u}}$ be a basis for $V$. Suppose $\ntuple{\vec{v}}$ is a collection of vectors in $V$ with $\vec{v}_j=\sum_i a_{ij}\vec{u}_i$. Prove that $S\ntuple{\vec{v}} = \det[a_{ij}] S\ntuple{\vec{u}}$. 
+	
+	\begin{proof}
+	\[\def\arraystretch{1.5}
+	\begin{array}{rcl}
+	S\ntuple{\vec{v}}&=&S\left(\sum\limits_{i_1}a_{i_11}u_{i_1}, \, \, \sum\limits_{i_2}a_{i_22}u_{i_2}, \, \, \dots , \, \, \sum\limits_{i_n}a_{i_nn}u_{i_n}\right)\\
+	&=&\sum\limits_{i_n} \dots \sum\limits_{i_1} (a_{{i_1}1})(\cdots)(a_{{i_n}n}) S(u_{{i_1}}, \ldots, u_{{i_n}})  \\
+	&=& \sum\limits_\sigma (a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n}) S(u_{\sigma(1)}, \dots, u_{\sigma(n)}) \\
+	&=& \sum\limits_\sigma (\text{sign}\,\sigma)(a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n}) S\ntuple{u}\\
+	&=& \left(\sum\limits_\sigma (\text{sign}\,\sigma)(a_{{\sigma(1)}1})(\cdots)(a_{{\sigma(n)}n})\right) S\ntuple{u}\\
+	&=& \det[a_{ij}] S\ntuple{\vec{u}}\\
+	\end{array}\]
+	\end{proof}		
+	
+	\item Suppose that $\ntuple{\vec{u}}$ and $\ntuple{\vec{v}}$ are two orthonormal bases for $V$, with  $\vec{v}_j=\sum_i a_{ij}\vec{u}_i$. Let $A=[a_{ij}]$. Prove that $AA^T=I$. (Hint: start by considering $\inner{\vec{v}_i}{\vec{v}_j}$.)
+	\item Prove that $\abs{S\ntuple{\vec{u}}}=\abs{S\ntuple{\vec{v}}}$ for any two orthonormal bases of $V$. 
+	\end{enumerate}
+
+\end{enumerate}
+\end{document}

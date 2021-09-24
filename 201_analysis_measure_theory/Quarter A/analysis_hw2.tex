@@ -1,0 +1,159 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis}} 
+\rhead{\textsc{Harutyunyan, Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 2}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $x\in\R^n$ and let $K\subset\R^n$ be compact. Denote $U=\R^n-K$ and define for each fixed $s\in K$ the function 
+$$u_s(x)=\max\left(2-\frac{\abs{x-s}}{\text{dist}(x,K)},0\right), \quad x\in U.$$
+Let $s_i$ be a countable dense subset of $K$ and define 
+$$\sigma(x)=\sum_{i=1}^\infty2^{-i}u_{s_i}(x), \quad x\in U.$$
+It is not difficult to prove that then $0<\sigma(x)\leq1$ for all $x\in U$, thus we can define 
+$$v_i(x)=\frac{2^{-i}u_{s_i}(x)}{\sigma(x)}, \quad x\in U.$$
+Assume next $f:K\to\R$ is continuous and define 
+$$\bar{f}(x)=\sum_{i=1}^\infty	v_i(x)f(s_i), \quad x\in U.$$
+Prove that $\bar{f}(x)$ is continuous in $U$. 
+\begin{proof}
+We will show that $u_s$ is continuous and 
+\begin{center}
+$u_s$ continuous $\implies \sigma$ continuous $\implies v_i$ continuous $\implies \bar{f}$ continuous. 
+\end{center}
+\begin{itemize}
+\item ($u_s$) We already know that max and euclidean distance functions are continuous, so if dist$(x,K)$ is continuous, then $u_s$ is comprised of compositions, sums, and products of continuous functions, so is continuous. So all that remains is to show that $\dist{x}{K}$ is continuous. Let $x\in U = K^\complement$, $\epsilon>0$ and $y\in\R^n$ such that $|x-y|<\frac{\epsilon}{2}$. Then for any $k\in K$, 
+$$|x-k|-\frac{\epsilon}{2}\leq|y-k|\leq|x-k|+\frac{\epsilon}{2}$$
+by triangle inequality, so taking infs and using $\epsilon$ instead of $\frac{\epsilon}{2}$ to obtain strict inequalities, we find that 
+$$\dist{x}{K}-\epsilon<\dist{y}{K}<\dist{x}{K}+\epsilon$$
+so dist$(x,K)$ is continuous. 
+\item ($\sigma$) First, observe that for all $s\in K, x\in U$, $\frac{|x-s|}{\dist{x}{K}}$ is always $\geq 1$ and approaches 1 as $x$ gets very far from $K$. This tells us that $0 \leq u_{s_i} \leq 1$ for every $s_i$. Then we can use the Weierstrauss M-test. For $x\in U$, 
+$$\sigma(x)=\sum_{i=1}^\infty2^{-i}u_{s_i}(x)=\sum_{i=1}^\infty|2^{-i}u_{s_i}(x)|\leq \sum_{i=1}^\infty2^{-i}=1,$$
+so since $2^{-i}u_{s_i}$ are continuous functions, then so is $\sigma$. 
+\item ($v_i$) $v_i$ is a product of continuous functions, so it is continuous whenever $\sigma(x)\neq0$, so let's check that $\sigma$ is always positive. Suppose for contradiction that there exists $x\in U$ such that $\sigma	(x)=0$\footnote{$\sigma$ is certainly never negative because it is a sum of nonnegative numbers.}. Each term of $\sigma$ is the product of a nonzero number with $u_{s_i}$, so $\sigma(x)=0$ iff all $u_{s_i}(x)=0$. This means that $|x-s_i|\geq2\,\dist{x}{K}$ for all $s_i$, which is impossible since $\{s_i\}$ is dense in $K$. To see the contradiction, observe that for any $k\in K$, there is a sequence $\{s_i\}_{i\in I\subset \N}$ which converges to $k$, so 
+$$\inf_{i\in N}|x-s_i|=\inf_{k\in K}|x-k|=\dist{x}{K},$$ 
+thus there exists some $s_i$ such that $|x-s_i|<2\,\dist{x}{K}$. Therefore $\sigma$ never vanishes, and $v_i$ is continuous. 
+\item ($\bar{f}$) Since $f$ is a continuous function on a compact domain, then it is bounded. Denote the bound $B\geq f(x)$ for all $x\in K$. Then 
+\begin{align*}
+\bar{f}(x)&=\sum_{i=1}^\infty v_i(x)f(s_i)\\
+&=\sum_{i=1}^\infty \frac{2^{-i}u_{s_i}(x)}{\sigma(x)}f(s_i)\\
+&=\frac{1}{\sigma(x)}\sum_{i=1}^\infty 2^{-i}u_{s_i}(x)f(s_i)\\
+&\leq\frac{1}{\sigma(x)}\sum_{i=1}^\infty 2^{-i}(1)(B)\\
+&=\leq\frac{1}{\sigma(x)},
+\end{align*}
+So since the functions used above are continuous, then by the Weierstrauss M-test, $\bar{f}$ is continuous. \qedhere
+\end{itemize}
+\end{proof}
+\end{enumerate}
+
+\pagebreak
+\begin{definition*}
+A function $f:\R^n\to\R$ is called \textbf{lower semi-continuous at the point} $x\in\R^n$ if, for any sequence $x_k\in\R^n$ with $x_k\to x$ one has 
+$$\liminf_{k\to\infty	}f(x_k)\geq f(x).$$
+\end{definition*}
+
+\begin{enumerate}[resume]
+\item Prove that any lower semi-continuous function is Borel measurable. 
+\begin{proof}
+Consider ${f}^{-1}(-\infty,a]$. If ${f}^{-1}(-\infty,a]$ is closed, then $f$ is Borel measurable. Let $x_n$ be any convergent sequence in ${f}^{-1}(-\infty,a]$, and say that $x_n\to\gamma$, then $\gamma$ is an arbitrary limit point of ${f}^{-1}(-\infty,a]$. Since $f$ is lower semi-continuous, then 
+$$\liminf_{n\to\infty} f(x_n) \geq f(\gamma).$$
+Since $a\geq f(x_n)$ for all $n$, then 
+$$a\geq\liminf_{n\to\infty} f(x_n) \geq f(\gamma),$$
+so ${f}^{-1}(-\infty,a]$ contains all its limit points and thus is closed. 
+\end{proof}
+
+\item Prove the following statements:
+	\begin{enumerate}[label=(\roman*)]
+	\item Let $a<b$ and $a_k<b_k$ for $k\in\N$. If
+	$$[a,b)\subseteq\bigcup_{k=1}^\infty[a_k,b_k),$$
+	then 
+	$$b-a\leq\sum_{k=1}^\infty(b_k-a_k).$$
+	\begin{proof}
+	\WLOG{} suppose that there are no extraneous intervals, that is,  for all $i, j$ we have $[a,b)\cap[{a}_i,{b}_i)\neq\emptyset$ and $[a_i,b_i)\not\subseteq[a_j,b_j)$. Let $\epsilon>0$. Then 	$[a,b-\epsilon]\subseteq\bigcup_{k=1}^\infty[a_k,b_k),$ and $[a,b-\epsilon]$ is compact, so there exists a finite subcover\footnote{It's very late. I just realized that this doesn't work, because this isn't an open cover. I think that it can be fixed by using $(a_k-\frac{\epsilon}{2^k},b_k)$, but I can't fix it tonight.}
+	$$[a,b-\epsilon]\subseteq\bigcup_{i=1}^n[a_{k_i},b_{k_i}).$$
+	
+	For any $i,j$ such that $[a_i,b_i)\cap[a_j,b_j)\neq\emptyset$, we can write 
+	$$[a_i,b_i)\cup[a_j,b_j)=[a_i,a_j)\cup[a_j,b_i)\cup[b_i,b_j),$$
+	and note that 
+	\begin{align*}
+	(b_i-a_i)+(b_j-a_j)&=(a_j-a_i)+2(b_i-a_j)+(b_j-b_i)\\
+	&>(a_j-a_i)+(b_i-a_j)+(b_j-b_i).
+	\end{align*}
+	So any finite nondisjoint union of intervals $[a_i,b_i)$ can be rewritten as a finite disjoint union with smaller length. Thus we can renumber and write 
+	$$[a,b-\epsilon]\subseteq\coprod_{i=1}^n[\hat{a}_i,\hat{b}_i)=\bigcup_{i=1}^n[a_{k_i},b_{k_i}).$$
+	Since there are no extraneous intervals, then $\hat{a}_1\leq a$, and $b-\epsilon < \hat{b}_n$, and $\hat{b}_i=\hat{a}_{i+1} $ for all $i$. Thus 
+	$$(b-a)-\epsilon\leq (\hat{b}_n-\hat{a}_1) = \sum_{i=1}^n(\hat{b}_i-\hat{a}_i) < \sum_{i=1}^n(b_{k_i}-a_{k_i}) < \sum_{k=1}^\infty(b_{k}-a_{k}),$$
+	Since this holds for all $\epsilon>0$, we can let $\epsilon\to0$ and find that 
+		$$b-a\leq\sum_{k=1}^\infty(b_k-a_k),$$
+		as desired. 
+	\end{proof}
+	\item Let $[a_k,b_k)$ be disjoint intervals and $c_k<d_k$ for all $k$. If 
+	$$\bigcup_{k=1}^\infty[a_k,b_k)\subseteq\bigcup_{k=1}^\infty[c_k,d_k),$$
+	then 
+	$$\sum_{k=1}^\infty(b_k-a_k)\leq\sum_{k=1}^\infty(d_k-c_k).$$
+	\begin{proof}
+	For every $k,i\in\N$, if $[a_k,b_k)\cap[c_i,d_i)\neq\emptyset$ and   $[a_{k+1},b_{k+1})\cap[c_i,d_i)\neq\emptyset$, then split $[c_i,d_i)$ at $\frac{b_k+a_{k+1}}{2}$, that is, remove $[c_i,d_i)$ from the collection and replace it with $[c_i,\frac{b_k+a_{k+1}}{2})$ and $[\frac{b_k+a_{k+1}}{2},d_i)$. Then after renumbering, we have that 
+	$$\bigcup_{k=1}^\infty[a_k,b_k)\subseteq\bigcup_{1\leq i,k < \infty}[\hat{c}_{k_i},\hat{d}_{k_i})=\bigcup_{k=1}^\infty[c_k,d_k),$$
+	where $[a_k,b_k)\subseteq\bigcup_{i=1}^\infty[\hat{c}_{k_i},\hat{d}_{k_i})$ for all $k$. We know from the previous problem that 
+	$$(b_k-a_k)\leq\sum_{i=1}^\infty(\hat{d}_{k_i}- \hat{c}_{k_i})$$
+	for all $k$, so
+	\begin{align*}
+	\sum_{k=1}^\infty(b_k-a_k)&\leq\sum_{k=1}^\infty\left(\sum_{i=1}^\infty(\hat{d}_{k_i}- \hat{c}_{k_i})\right)\\	
+	&=\sum_{1\leq i,k < \infty}(\hat{d}_{k_i}- \hat{c}_{k_i})\\
+	&=\sum_{k=1}^\infty(d_k-c_k),
+	\end{align*}
+	and we're done.
+	\end{proof}
+	\end{enumerate}
+
+\item Prove that if a Lebesgue measurable set $A\subset\R$ has positive Lebesgue measure, then the set 
+$$A-A=\{a-b:a,b\in A\}$$
+contains a neighborhood of the origin. Is the statement true if one only assumes $\measure{A} > 0$ (i.e., $A$ is not Lebesgue measurable)?
+\begin{proof}
+Since $A$ is Lebesgue measurable, then we can approximate $A$ with a compact set $K\subseteq A$ and an open set $U\supseteq A$ such that $\measure{U}-\measure{K}<\epsilon$, for any $\epsilon>0$. Since $K$ compact and $U^\complement$ closed with $K, U^\complement$ disjoint, then $\dist{K}{U^\complement}>0$. If we let $0<\delta<\dist{K}{U^\complement}$, then 
+$$K+(-\delta,\delta)\subset U$$
+because $\dist{k}{U^\complement}>\delta$ for all $k\in K$. Now we will show that for any $r$ with $\abs{r}<\delta$, that $K\cap K+r\neq\emptyset$ and $B_\delta(0)\subset K-K \subset A-A$. Suppose for contradiction that $\abs{r}<\delta$ and $K\cap K+r=\emptyset$. Since $K,K+r$ are measurable and disjoint, and Lebesgue measure is translation invariant, then 
+$$\measure{K\cup(K+r)}=2\measure{K}.$$
+Since $K\cup(K+r)\subseteq U$, then 
+$$\measure{K\cup(K+r)}\leq\measure{K}+\epsilon,$$
+But for $\epsilon<\measure{K}$, this is a contradiction. 
+\end{proof}
+\answer If one does not assume that $A$ is measurable, the result does not hold. For example, let $A=\script{V}$, a Vitali set in $[0,1]$ constructed in the usual way. Then $\measure{\script{V}}=1>0$,  but $\script{V}-\script{V}$ contains no rational numbers except 0 by the construction of $\script{V}$. 
+\end{enumerate}
+
+\end{document}

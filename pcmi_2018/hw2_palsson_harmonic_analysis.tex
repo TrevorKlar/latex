@@ -1,0 +1,96 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Problem Set \#2 \linebreak
+Palsson}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[label=P\arabic*)]
+\item Show that given $N$ points in the plane there exists a point that determines at least ∼$\sqrt{N}$ distinct distances as $N \to \infty$.
+
+\mbox{}
+
+[Hint: Out of the $N$ points pick two, call them $p$ and $q$. Draw $s$ number of circles around $p$ and $t$ number of circles around $q$. Note that the number of distinct circles around $p$ corresponds to the distinct distances from $p$. Now note that all the other points are on the intersection of circles.
+How many intersections could you possibly have?]
+
+\item Show from the definition of an inner product that
+$$\inner{\alpha_1f_1+\beta_1g_1}{\, \, \alpha_2f_2+\beta_2g_2}=\alpha_1\conj{\alpha_2}\inner{f_1}{f_2}+\alpha_1\conj{\beta_2}\inner{f_1}{g_2}+\beta_1\conj{\alpha_2}\inner{g_1}{f_2}+\beta_1\conj{\beta_2}\inner{g_1}{g_2}.$$
+\begin{proof} The properties we have in our definition are (1) positive definiteness, (2) Commutativity with conjugate, and (3) linearity in the first argument. 
+	\[\begin{array}{rcl}
+	\inner{(\alpha_1f_1+\beta_1g_1)}{\, \, (\alpha_2f_2+\beta_2g_2)} &=& \inner{\alpha_1f_1}{(\alpha_2f_2+\beta_2g_2)}+\inner{\beta_1g_1}{(\alpha_2f_2+\beta_2g_2)}\\
+	&=& \alpha_1\inner{f_1}{(\alpha_2f_2+\beta_2g_2)}+\beta_1\inner{g_1}{(\alpha_2f_2+\beta_2g_2)}\\
+	&=& \alpha_1\conj{\inner{(\alpha_2f_2+\beta_2g_2)}{f_1}}+\beta_1\conj{\inner{(\alpha_2f_2+\beta_2g_2)}{g_1}}\\
+	&=& \alpha_1\conj{\inner{\alpha_2f_2}{f_1}+\inner{\beta_2g_2}{f_1}}	+	\beta_1\conj{\inner{\alpha_2f_2}{g_1}+\inner{\beta_2g_2}{g_1}}\\
+	&=& \alpha_1\conj{\inner{\alpha_2f_2}{f_1}}+\alpha_1\conj{\inner{\beta_2g_2}{f_1}}	+	\beta_1\conj{\inner{\alpha_2f_2}{g_1}}+\beta_1\conj{\inner{\beta_2g_2}{g_1}}\\
+	&=& \alpha_1\conj{\alpha_2\inner{f_2}{f_1}}+\alpha_1\conj{\beta_2\inner{g_2}{f_1}}	+	\beta_1\conj{\alpha_2\inner{f_2}{g_1}}+\beta_1\conj{\beta_2\inner{g_2}{g_1}}\\
+	&=& \alpha_1\conj{\alpha_2}\inner{f_1}{f_2}+\alpha_1\conj{\beta_2}\inner{f_1}{g_2}	+	\beta_1\conj{\alpha_2}\inner{g_1}{f_2}+\beta_1\conj{\beta_2}\inner{g_1}{g_2}\\
+	\end{array}\]
+\end{proof}
+
+\item Prove the parallelogram equality
+$$\norm{f+g}^2+\norm{f-g}^2=2\norm{f}^2+2\norm{g}^2$$
+\begin{proof}
+	\[\begin{array}{rcl}
+	\norm{f+g}^2+\norm{f-g}^2&=&\inner{f+g}{f+g}+\inner{f-g}{f-g}\\
+	&=&\inner{f}{f+g}+\inner{g}{f+g}+\inner{f}{f-g}+\inner{-g}{f-g}\\
+	&=&\conj{\inner{f+g}{f}}+\conj{\inner{f+g}{g}}+\conj{\inner{f-g}{f}}+\conj{\inner{f-g}{-g}}\\
+	&=&\conj{\inner{f}{f}+\inner{g}{f}}+\conj{\inner{f}{g}+\inner{g}{g}}+\conj{\inner{f}{f}+\inner{-g}{f}}+\conj{\inner{f}{-g}+\inner{-g}{-g}}\\
+	&=&\inner{f}{f}+\inner{f}{g}+\inner{g}{f}+\inner{g}{g}+\inner{f}{f}+\conj{-\inner{g}{f}}+\inner{-g}{f}+\conj{-\inner{g}{-g}}\\
+	&=&\inner{f}{f}+\inner{f}{g}+\inner{g}{f}+\inner{g}{g}+\inner{f}{f}-\inner{f}{g}-\inner{g}{f}+-\inner{-g}{g}\\
+	&=&\inner{f}{f}+\inner{f}{g}+\inner{g}{f}+\inner{g}{g}+\inner{f}{f}-\inner{f}{g}-\inner{g}{f}+\inner{g}{g}\\
+	&=&\inner{f}{f}+\inner{f}{f}+\inner{g}{g}+\inner{g}{g}+\inner{f}{g}-\inner{f}{g}+\inner{g}{f}-\inner{g}{f}\\
+	&=&\norm{f}^2+\norm{f}^2+\norm{g}^2+\norm{g}^2+0+0\\
+	&=&2\norm{f}^2+2\norm{g}^2\\
+	\end{array}\]
+\end{proof}
+
+\setcounter{enumi}{4}
+\item Let $f$ and $g$ be elements of $C[0, 1]$ defined by $f(x) = 1$ and $g(x) = x$. Find the projection of $f$
+in the direction of $g$.
+
+\answer 
+\[\begin{array}{rcl}
+\proj{g}{f}&=&\inner{f}{g}g\\
+&=&\left(\frac{1}{1-0}\int_0^1 f(x)\conj{g(x)}dx\right)g(x)\\
+&=&\left(\int_0^1 x\right)x\\
+&=&x\left[\frac{1}{2}x^2\right]_0^1\\
+&=&\frac{1}{2}x
+\end{array}\]
+
+\end{enumerate}
+
+\end{document}

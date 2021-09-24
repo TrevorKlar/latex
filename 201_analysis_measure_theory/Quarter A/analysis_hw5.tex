@@ -1,0 +1,151 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201 - Real Analysis \\}} 
+\rhead{\textsc{Harutyunyan, Fall 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 5}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $X$ be a nonempty set and let $\mu$ be a measure on $X$. Prove that any nonnegative \mumeasurable{} function $f : X \to [0, \infty]$ is \muintegrable{} on $X,$ i.e., the lower integral equals the upper integral:
+$${\int_*}_X f \der \mu = \int^*_X f \der \mu .$$
+\begin{proof}
+Let $f$ be nonnegative and \mumeasurable{}, and let $A_1\subset A_2\subset\dots$ be any sequence of measurable sets in $X$ such that $0<\measure{A_i}<\infty$ for every $i$, and $\bigcup_{m=1}^\infty A_m=X$\footnotemark. Now fix $M\in\N$, let $f^M$ be 
+\[
+f^M(x) = \begin{cases}
+	\min\big(f(x),M\big), & \text{if } x\in A_M\\
+	0 & \text{otherwise.}
+\end{cases}
+\]
+\footnotetext{We can assume \Wlog{} that it is possible to produce this sequence of sets since if we cannot, then for every increasing sequence of sets whose union is $X$, $\measure{A_M}=\infty$ for some $M$, which means every function which is strictly positive $\mu$-a.e. has infinite upper and lower integral, which also gives us what we want.}
+Thus $f^M$ is supported on $A_M$ and bounded above by $M$. Now for each $n\in\N$, define simple functions $\underline{g}^M_n$ and $\overline{g}^M_n$ by dividing the codomain $\R^+$ into intervals of length $\frac{1}{n}$. So for each $i= 1, 2, \dots$ we have 
+\begin{align*}
+\underline{g}^M_n&=\sum_{i=1}^\infty \left(\tfrac{i-1}{n}\right) \Chi_{\preimage{(f^M)}{\left[\tfrac{i-1}{n},\tfrac{i}{n}\right]}} \\
+\overline{g}^M_n&=\sum_{i=1}^\infty \left(\tfrac{i}{n}\right) \Chi_{\preimage{(f^M)}{\left[\tfrac{i-1}{n},\tfrac{i}{n}\right]}}
+\end{align*}
+\jpg{width=0.7\textwidth}{201hw5p1}
+Now we can observe that for every $n$, $\underline{g}^M_n<f<\overline{g}^M_n \, \mu-$a.e. and $$\int\underline{g}^M_n \der\mu - \int\overline{g}^M_n\der\mu=\tfrac{1}{n}\mu(A_M),$$
+so we can choose $n$ large enough that $\tfrac{1}{n}\mu(A_M)<\varepsilon$ for any $\varepsilon$. Thus 
+$${\int_*}_X f^M \der \mu = \int^*_X f^M \der \mu .$$
+To finish the proof, we let $m$ vary over $\N$ and note that every $f^m$ is \muintegrable{}, and $\{f^m\}_{m=1}^\infty$ is an increasing sequence of functions which converges to $f$, so $f$ is integrable by MCT and 
+$$\int_X f\der \mu = \lim_{m \to\infty} \int_X f^m \der\mu.$$
+\end{proof}
+
+\item Let $X$ be a nonempty set and let $\mu$ be a measure on $X$. Prove that if \mumeasurable{} functions $f, g : X \to [−\infty,\infty]$ are such that $f$ is $\mu$-summable on $X$, and $g$ is bounded on $X$ ($|g(x)| \leq M$ for all $x \in X$), then the product $fg$ is $\mu$-summable and
+$$\int_X |fg|\der\mu \leq M\int_X |f|\der\mu.$$
+\begin{proof}
+By problem 1, we know that $|f|$ and $|g|$ are integrable. So 
+\begin{align*}
+	\int_X |fg|\der\mu &= \int_X |f||g|\der\mu\\
+	&\leq \int_X (|f|M)\der\mu\\
+	&= \int_X |Mf|\der\mu\\
+\end{align*}
+and, since for any $\mu$-summable simple function $\varphi$ we know that 
+	\begin{align*}
+	\int M\varphi \der\mu&= \int \left(M\sum_{i=1}^\infty (a_i) \Chi_{A_i} \right)\der\mu \\
+	&= \sum_{i=1}^\infty M(a_i) \measure{A_i}\\
+	&= M\sum_{i=1}^\infty (a_i) \measure{A_i}\\
+	&= M\int \varphi \der\mu,\\
+	\end{align*}
+then ${\int_*}_X |Mf| \der \mu = \int^*_X |Mf| \der \mu = M{\int_*}_X |f| \der \mu = M\int^*_X |f| \der \mu $ so 
+$$\int_X |Mf|\der\mu = M\int_X |f|\der\mu < \infty.$$
+\end{proof}
+
+\pagebreak
+\item Let $\mu$ be a Radon measure and let $f:\R^n\to\R$ be $\mu$-summable. Prove that for any $\varepsilon>0$, there exists $\delta>0$ such that for every \mumeasurable{} set $A\subset\R^n$ with $\measure{A}<\delta$ one has 
+$$ \int_A |f|\der\mu < \varepsilon.$$
+\begin{proof}
+Let $f_b=|f|\Chi_{\{|f|>b\}}$. Since $f$ is \musummable{}, then $|f|<\infty$ \muae{}, so $f_b\to0$ \muae{}\,. Then the sequence $f_b$ is dominated by $|f|$, so by the Dominated Convergence Theorem, 
+$$\lim_{b\to\infty} \int_{\R^n} f_b \der\mu = \int_{\R^n} \lim_{b\to\infty}f_b \der\mu = 0.$$
+So for any $\varepsilon>0$, there exists some $b\in\N$ such that $\frac{\varepsilon}{2}>\int_{\R^n} f_b \der\mu = \int_{\Chi_{\{|f|>b\}}} |f| \der\mu $. Now let $\delta=\frac{\varepsilon}{2b}$ and let $A\subset\R^n$ with $\measure{A}<\delta$. Then 
+\begin{align*}
+	\int_A |f| \der\mu &= \int_{A\cap{\{|f|>b\}}} |f| \der\mu + \int_{A\cap{\{|f|\leq b\}}} |f| \der\mu\\
+%&	\hspace{-2.25in} \text{and since } b\geq|f|, \quad {A\cap{\{|f|>b\}}}\subset{\{|f|>b\}}, \quad {A\cap{\{|f|>b\}}}\subset A,\\
+	&\leq \int_{{\{|f|>b\}}} |f| \der\mu + \int_{A} b \der\mu\\
+	&= \int_{\R^n} f_b \der\mu + b\measure{A}\\
+	&\leq \tfrac{\varepsilon}{2	} + \tfrac{\varepsilon}{2}\\
+\end{align*}
+and we are done.
+\end{proof}
+
+\pagebreak
+\item Let $X$ be a nonempty set and let $\mu$ be a measure on $X$. Assume \musummable{} functions $f,f_n:X\to[-\infty,\infty]$ are such that 
+$$f_n\to f \quad \text{\muae{} in } X,$$
+and 
+$$\int_X |f_n| \der\mu \to \int_X |f| \der\mu .$$
+Prove that 
+$$\int_X |f_n-f|\der\mu \to 0.$$
+\begin{proof}
+Since 
+\begin{itemize}
+	\item $f,f_n$ are \mumeasurable{} and $|f|,|f_n|$ are \musummable{},  
+	\item $f_n\to f$ \muae{},
+	\item $|f_n|\leq |f_n|$,
+	\item $|f_n|\to |f|$ \muae{},
+	\item $\int_X |f_n| \der\mu \to \int_X |f| \der\mu$, 	
+\end{itemize}
+Then all the conditions of the Variant of Dominated Convergence Theorem from the text are satisfied, and we are done. 
+\end{proof}
+
+\pagebreak
+\item Compute the limit 
+$$\lim_{n\to\infty} \int_0^n \left(1-\frac{x}{n}\right)^n \ln\left(2+\cos\left(\frac{x}{n}\right)\right)\dx . $$
+\answer	$\ln3$. 
+\begin{proof}
+Let 
+\begin{align*}
+f_n&=\Chi_{[0,n]} \left(1-\frac{x}{n}\right)^n, \quad\text{and} \\
+g_n&=\Chi_{[0,n]} \ln\left(2+\cos\left(\frac{x}{n}\right)\right), \quad\text{so that} \\
+F_n&=f_ng_n=\Chi_{[0,n]} \left(1-\frac{x}{n}\right)^n \ln\left(2+\cos\left(\frac{x}{n}\right)\right).
+\end{align*}
+Now the desired limit is $ \lim_{n\to\infty} \int_\R F_n \der\mu.$ Taking derivatives, we find that 
+\begin{align*}
+\frac{\der}{\der n}f_n &= \left(1-\frac{x}{n}\right)^n\left(\frac{x}{\left(1-\frac{x}{n}\right)n}+\ln\left(1-\frac{x}{n}\right)\right)\\
+\frac{\der}{\der n}g_n &= \frac{x\sin\left(\frac{x}{n}\right)}{\left(\cos\left(\frac{x}{n}\right)+2\right)n^2}
+\end{align*}
+%and since we are only concerned with $x,n$ values such that $0<x<n$\footnote{For any $n$, the set where $x\in\{0,n\}$ has measure zero, so doesn't affect the integral; and if $x>n$, then $F_n(x)=0$ and $F_{n+1}(x)\geq0$.} then $0<\frac{x}{n}<1$ and so both derivatives above are positive. Thus we can conclude that $F_n$ is an increasing sequence of functions
+and since we are only concerned with $x,n$ values such that $0<x<n$\footnote{For any $n$, the set where $x\in\{0,n\}$ has measure zero, so doesn't affect the integral; and if $x>n$, then $F_n(x)=0$ and $F_{n+1}(x)\geq0$.} then $0<\frac{x}{n}<1$ and so all the quantities above are positive, except the $\ln$ term. Thus we can conclude that $F_n$ is an increasing sequence of functions if we can show that $h_n=\frac{x}{\left(1-\frac{x}{n}\right)n}+\ln\left(1-\frac{x}{n}\right)>0$. For any fixed $n$ and $0\leq x<n$, $h_n(0)=0$, and $h_n(x)$ is continuous and increasing, since $h_n'= \frac{x}{(x-n)^2}$, which is positive. Thus $h_n$ is positive, and therefore $F_n$ is an increasing sequence of measurable nonnegative functions. 
+
+By the Monotone Convergence Theorem, 
+$$\lim_{n\to\infty}\int_\R F_n \dx = \int_\R \lim_{n\to\infty} F_n \dx = \int_0^\infty e^{-x}\ln\left(2+\cos(0)\right)\dx = \ln3 $$
+%\begin{align*}
+%I can't figure out how to show this.
+%\end{align*}
+
+\end{proof}
+
+\end{enumerate}
+
+\end{document}

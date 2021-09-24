@@ -1,0 +1,5 @@
+\item Make up a degree 3 DE, give them 2 sol'ns. Assk why isn't this a fundamental sol'n set?
+
+\item What do we mean when we say that a fundamental solution set "spans" the set of all solutions?
+
+\item Write 3 true/false questions that illustrate a variety of ideas from this course that you might put on this exam if you were teaching the class. Give a key, explain the answers, then explain why you chose these particular questions and what you hope they will assess. 

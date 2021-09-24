@@ -1,0 +1,63 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+\DeclareMathOperator{\diameter}{diam}
+\newcommand{\diam}[1]{\diameter\left(#1\right)}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology}} %=================UPDATE THIS=================%
+\rhead{\textsc{Long, Fall 2019}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 2}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\item Let $f:X\to Y$ be a continuous function, and consider the space
+$$G_f=\{(x,f(x)) \mid x\in X\}$$
+equipped with the subspace topology. Prove that the map $X\to G_f$ given by $x\mapsto (x,f(x))$ is a homeomorphism. 
+
+\item Prove that a map $F:X\to Y$ between metric spaces is continuous $\iff f\left(\closure{A}\right)\subset\closure{f(A)}$ for all $A\subset X$. [Does your proof use the metric?]
+
+\item Prove that if $\arbcoll{A}$ are subsets of $X$, then $\closure{\arbcap{A}}\subseteq\arbcap{\closure{A}}$. Show equality need not hold. 
+
+\item Prove that $W\subset X\times Y$ is open with the product topology $\iff$ $\forall (x,y)\in W, \exists$ open subsets $U\subset X$, $V\subset Y$ such that $(x,y)\in U\times V\subset W$. 
+
+\item Prove that the topology on $X$ is discrete $\iff$ the diagonal $\Delta = \{(x,y) \mid x\in X\}$ is open in $X\times X$. 
+
+
+\end{enumerate}
+
+\end{document}
+
+
+

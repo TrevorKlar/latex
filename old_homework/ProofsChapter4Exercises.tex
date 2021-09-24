@@ -1,0 +1,164 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Trevor Klar\\
+Math 320 - Foundations of Higher Mathematics}
+\title{Chapter 4 Exercises}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+\maketitle
+
+\section*{Assigned Problems}
+
+\begin{problem}{4.22}
+Verify that $f(x)=\frac{2x-1}{2x(1-x)}$ defines a bijection from the interval $(0, 1)$ to $\R$.
+\end{problem}
+
+\begin{proof}
+We must prove that $f(x)$ is surjective and injective from the interval $(0, 1)$ to $\R$.
+
+Step 1: To prove that $f(x)$ is surjective, we will show that for all $b \in \R$, there exists some $x \in (0,1)$ such that $f(x) = b$.  To prove this, consider what $f(x) = b$ means:
+$$\frac{2x-1}{2x(1-x)}=b$$
+We can rearrange this equation to make it easier to work with:
+\begin{alignat*}{2}
+%\frac{2x-1}{2x(1-x)}	&=b				&\quad &f(x)=b\\
+2x-1 					&=b(2x)(1-x) 	&\quad &\text{Multiply by 2x(1-x)}\\
+2x-1 					&=2bx-2bx^2 	&\quad &\text{Distribute}\\
+2bx^2 + 2x-2bx - 1 		&=0 			&\quad &\text{Collect all terms on the left}\\
+(2b)x^2 + (2-2b)x - 1 	&=0 			&\quad &\text{Factor to produce a polynomial}\\
+\end{alignat*} 
+What we find is that $f(x)=b$ is equivalent to the following quadratic equation:
+\begin{equation}
+(2b)x^2 + (2-2b)x - 1 = 0
+\end{equation}
+Since equation (1) is equivalent to $f(x)=b$, we can use (1) to show that some $x$ can be found such that $f(x)=b$ for any $b \in \R$. Using the Quadratic Equation, we can solve equation (1) for $x$ as follows:
+$$x=\frac{-(2-2b)\pm\sqrt{(2-2b)^2-4(2b)(-1)}}{2(2b)}$$
+This simplifies to 
+\begin{equation}
+x=\frac{-1+b\pm\sqrt{b^2+1}}{2b}\,.
+\end{equation}
+Although equation (2) is undefined for $b=0$, we can subsitute 0 for $b$ in equation (1) to find that $2x-1=0$, and therefore $x=\frac{1}{2}$ in that case. For $b\neq0$, we can use equation (2) to find some $x$ that satisfies equation (1) given any $b \in \R$ (except $b=0$). If we choose to always use the positive square root when applying equation (2), we will always find an $x$ which is in the interval $(0,1)$, which we prove in Substeps $i$ and $ii$ below. 
+
+Substep $i$: To show that $0<x<1$, we first prove that 
+$$x=\frac{-1+b+\sqrt{b^2+1}}{2b}>0\,,\quad\forall b \in \R\,.$$
+If $b$ is positive, then there exists some positive number $k$ such that $b=k$, so 
+$$x=\frac{-1+k+\sqrt{k^2+1}}{2k}\,.$$
+Since $\sqrt{k^2+1}>1$, then $\sqrt{k^2+1}-1>0$ as well. So since $\frac{k}{2k}$ is positive (because $k>0$), it must be true that 
+$$\frac{k+(\sqrt{k^2+1}-1)}{2k}=\frac{-1+k+\sqrt{k^2+1}}{2k}>0\,.$$
+If $b$ is negative, then there exists some positive number $k$ such that $b=-k$, so 
+$$x=\frac{-1-k+\sqrt{k^2+1}}{-2k}\,.$$
+Since $k>0$, then it must be true that $\sqrt{k^2+1}<\sqrt{k^2+2k+1}=|k+1|=k+1$. Since $\sqrt{k^2+1}<k+1$, then $\sqrt{k^2+1}-(k+1)<0$, which means that $-1-k+\sqrt{k^2+1}<0$ as well. So, since
+$$\frac{-1-k+\sqrt{k^2+1}}{-2k}$$
+has a negative numerator and negative denominator, it must be positive. Therefore, 
+$$x=\frac{-1+b+\sqrt{b^2+1}}{2b}>0\text{ for all }b \in \R\,,$$
+and Substep $i$ is completed.  
+
+Substep $ii$: To finish showing that $0<x<1$, we next prove that 
+$$x=\frac{-1+b+\sqrt{b^2+1}}{2b}<1\,,\quad\forall b \in \R\,.$$
+In order for this to be true, the following two statements must be true:
+$$-1+b+\sqrt{b^2+1}<2b\,,\quad \text{for } 0<b$$
+$$-1+b+\sqrt{b^2+1}>2b\,,\quad \text{for } b<0$$
+In the case that $b$ is positive, there exists some positive number $k$ such that $b=k$. As shown in Substep $i$ above, if $k>0$ then $\sqrt{k^2+1}<k+1$. Adding $-1+k$ to both sides, we find that 
+$-1+k+\sqrt{k^2+1}<2k\,,$
+which is equivalent to 
+$$-1+b+\sqrt{b^2+1}<2b\,,\quad \text{for } 0<b\,.$$
+In the case that $b$ is negative, there exists some positive number $k$ such that $b=-k$. Since $\sqrt{k^2+1}>1$ and $1>1-k$ for all $k>0$, it must be true that $\sqrt{k^2+1}>1-k$ as well. Adding $-1-k$ to both sides, we find that 
+$-1-k+\sqrt{k^2+1}>-2k\,,$
+which is equivalent to 
+$$-1+b+\sqrt{b^2+1}>2b\,,\quad \text{for } b<0\,.$$
+So, $\frac{-1+b+\sqrt{b^2+1}}{2b}<1$ for all $b \in \R$, and Substep $ii$ is completed.  
+
+We have shown that 
+$$0<x=\frac{-1+b+\sqrt{b^2+1}}{2b}<1$$
+unless $b=0$, in which case $0<x=\frac{1}{2}<1$. Therefore, we have shown that $\exists x \in (0,1)$ s.t. $f(x)=b$, $ \forall b \in \R$, therefore $f(x)$ is surjective and Step 1 is completed.
+
+\pagebreak
+Step 2: To prove that $f(x)$ is injective, we must show that $f(a)=f(b)$ implies that $a=b$. We will prove this using the fact that a function defined from an interval to $\R$ which is continuous and monotone on that interval is also injective. Since 
+$$f(x)=\frac{2x-1}{2x(1-x)}$$ 
+is a rational function, it is continuous everywhere that the denominator is nonzero, so it is continuous on the open interval $(0,1)$. We will show that $f(x)$ is increasing everywhere in $(0,1)$, so it must be injective. Since $f(x)$ is only defined for nonzero values of $x$, we can multiply by $$\frac{\,\,\frac{1}{2x}\,\,}{\frac{1}{2x}}$$ to find that $f(x)$ is equivalent to 
+$$\frac{1-\frac{1}{2x}}{1-x}$$
+since the numerator $1-\frac{1}{2x}$ increases as $x$ increases, and the denominator $1-x$ decreases as $x$ increases, then $f(x)$ is increasing for all $x$. Therefore, 
+$$f(x)=\frac{2x-1}{2x(1-x)}$$ 
+is continuous and monotonic on the interval $(0,1)$, so it is an injection, and Step 2 is complete.
+
+We have shown that 
+$$f:(0,1)\rightarrow\R \text{ such that } f(x)=\frac{2x-1}{2x(1-x)}$$
+is both a surjection and an injection, therefore it defines a bijection from the interval $(0,1)$ to $\R$.
+\end{proof}
+
+\begin{problem}{4.49}
+Let $A_1, A_2, \ldots$ be a sequence of sets, each of which is countable. Prove that the union of all the sets is a  countable set. 
+\end{problem}
+
+\begin{proof}
+Let $A_1, A_2, \ldots \equiv \A$. Because of the notation $A_1, A_2, \ldots$, we take it to be given that $\A$ is a countably infinite sequence of sets. Suppose that each element of $\A$ is countably infinite. Suppose further that no two sets in the sequence have any elements in common. In this case, the union of all sets in $\A$ is as large as it can be, while conforming to the given conditions. 
+
+Let $U$ be the union of all sets in $\A$. We will show that there exists a bijection from $U$ to $\N \times \N$, and since $\N \times \N$ is countable, then so is $U$.
+
+Let $A_{ij}$ be the $j\ts{th}$ element of set $A_i$. This means that $U = \{A_{ij} \, |\,  i,\, j \in \N\}$. Also, let $f$ be a function from $U$ to $\N \times \N$ such that $f(A_{ij}) = (i,j)$.  
+
+$f$ is injective: We will show that if $f(A_{kl})=f(A_{mn})$, then $A_{kl}=A_{mn}$ for all elements of $U$. Since $f(A_{kl})=f(A_{mn})$ by assumption, then $(k,l)=(m,n)$, which means that $k=m$ and $l=n$. This means that $A_{kl}$ and $A_{mn}$ are both referring to the $l\ts{th}$ element of the $k\ts{th}$ set in $\A$, so $A_{kl}=A_{mn}$.
+
+$f$ is surjective: We will show that for every $(i,j) \in \N \times \N$, there exists an $A_{ij} \in U$ such that $f(A_{ij})=(i,j)$. Since $\A$ is a countably infinite sequence of sets, there must be some $i\ts{th}$ element $A_i$ for any $i \in \N$ which could be given by $(i,j)$.  Since every $A_i$ is a countably infinite set, there must exist some $j\ts{th}$ element $A_{ij}$ for any $j \in \N$ which could be given by $(i,j)$.
+
+We have shown that $f$ is injective and surjective from $U$ to $\N \times \N$, therefore $f$ is a bijection, and $U$ and $\N \times \N$ are both countably infinite. 
+
+In the proof that $U$ is countable, we assumed that each set $A_i \in \A$ is infinite and that no two sets in the sequence have any elements in common. Let $\tA$ be some sequence of sets $A_1, A_2, \ldots$ such that either (or both) of these assumptions is false, and let $\tilde{U}$ be the union of those sets. If some of the sets $\tilde{A_i} \in \tA$ have some elements in common, then for some $\tilde{A_j},\,\tilde{A_k}  \in \tA$, $$|\tilde{A_j} \cup \tilde{A_k}| \leq |\tilde{A_j}| + |\tilde{A_k}|\,.$$ Since all elements of $\tA$ are countable, $|\tilde{A_j}| + |\tilde{A_k}| \leq |\N|$ for all $\tilde{A_j},\,\tilde{A_k}  \in \tA$, which means that $$|\tilde{A_j} \cup \tilde{A_k}| \leq |\N|$$ for all $\tilde{A_j},\,\tilde{A_k}  \in \tA$. Therefore, for the union of all such sets, $|\tilde{U}| \leq |\N|$, so $\tilde{U}$ is countable. To address the other assumption, if some of the elements of $\tA$ are finite sets, then for some $n \in \N$ and some $\tilde{A_i} \in \tA$, $$|\tilde{A_i}| = |[n]| < |\N|\,.$$
+Where $[n]$ denotes the set $\{1,\, 2,\, \ldots \, n\}$. Therefore, for the union of all such sets, $|\tilde{U}| \leq |\N|$, so $\tilde{U}$ is countable.
+ 
+ 
+ 
+
+ We have shown that given certain assumptions, the union $U$ of countable  sets $A_1, A_2, \ldots$ is countable; and we have also shown that if those assumtions do not hold, the union $\tilde{U}$ of countable sets $A_1, A_2, \ldots$ has a cardinality which is not greater than that of $U$. Therefore, the union of all the sets in any countable sequence of countable sets must itself be a countable set.
+
+
+
+
+\end{proof}
+
+\pagebreak
+
+\section*{Homework Problems}
+
+\begin{problem}{4.1}
+
+\end{problem}
+
+\begin{proof}
+We will prove that $1 \leq a_n \leq 2$ for $n \in \N$ by induction on $n$. 
+
+Basis step: For $n=1$ and $n=2$, $a_n$ is 1, so the formula holds. %For $n=3$, $a_n$ is $\frac{1+2}{2\cdot1}=\frac{3}{2}$, so the formula also holds in that case. 
+
+Induction step: Suppose that for $n \geq 3$, it it true that $1 \leq a_k \leq 2$ for all $k<n$. This means that 
+\begin{equation}
+1 \leq a_{n-1} \leq 2
+\end{equation}
+and since $1 \leq a_{n-2} \leq 2$, this means that $1 \geq \frac{1}{a_{n-2}} \geq \frac{1}{2}$, so $2 \geq \frac{2}{a_{n-2}} \geq 1$, therefore 
+\begin{equation}
+1 \leq \frac{2}{a_{n-2}} \leq 2 \, .
+\end{equation}
+Since $a_n=\frac{1}{2}(a_{n-1}+2/a_{n-2})$ is the arithmetic mean of the center expressions in (3) and (4), it also must be true that 
+$$1 \leq \frac{1}{2} \left( a_{n-1}+ \frac{2}{a_{n-2}} \right) \leq 2\, .$$
+Therefore, we have proven that $1 \leq a_n \leq 2$ for $n \in \N$ by strong induction.
+\end{proof}
+
+\end{document}

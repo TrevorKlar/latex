@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Graded Problem 4}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+\begin{enumerate}
+
+ \item Suppose you drop a 1 kg squirrel out of a helicopter 500m above the ground (sorry squirrel). We want to model its descent taking into account both the forces of gravity and air resistance. The most popular model for air resistance is that it is proportional to the velocity squared. Assume that the acceleration due to gravity is a constant -9.8m/s$^2$ If the constant of proportionality for our squirrel is $k=0.4$ N/(m/s)$^2$, how long does it take the squirrel to reach the ground?
+ 
+ \item Ignoring other forces, and assuming that an objects' motion is in a straight line directly towards/away from the Earth, Newton's Law of Gravity says that if $y(t)$ is the distance of an object from the center of the Earth,
+ $$y''=-\frac{k}{y^2}$$
+ Our brave squirrel is sitting in a coil-gun powered rocket, which is launched from the International Space Station (6{,}400 km from the center of the Earth), directly away from the Earth at a velocity of $9$ km/s. The rocket's mass is such that in the equation above $k=300{,}000$ km$^3$/s$^2$.
+ \be
+  \item Use the substitution $v=y'$, $v\frac{dv}{dy}=y''$ to reduce this to a first-order ODE.
+  \item What is the farthest away from the center of the Earth that the squirrel ever gets?
+  \item (Bonus) How long does it take for the rocket to get to its highest point?
+ \ee
+  
+\end{enumerate}
+
+
+
+\end{document}

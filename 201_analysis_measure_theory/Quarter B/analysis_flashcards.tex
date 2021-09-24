@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[paperwidth=.5\paperwidth,paperheight=.25\paperheight]{geometry}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\thispagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+
+\newenvironment{flashcard}[2][]{%
+\noindent  \textsc{#1}
+
+\vfill 
+\centerline{{\Large{#2}}}
+\vfill
+\newpage \vspace*{\stretch{1}} \noindent
+}
+{\vspace*{\stretch{1}}\newpage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{flashcard}[Theorem]{Fatou's Lemma}
+If $f_n$ are all \mumeasurable{}, then 
+$$\int\liminf_n f_n \der\mu \leq \liminf_n \int f_n \der\mu.$$
+\end{flashcard}
+
+\begin{flashcard}[Definition]{A measure}
+\begin{itemize}
+\item $\mu(\emptyset)=0$, positive
+\item monotonicity
+\item subadditivity
+\end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Borel measure}
+Borel sets are measurable. (The measure splits)
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Regular measure}
+"Every set is $\mu$-almost a measurable set."
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Borel-regular measure}
+"Every set is $\mu$-almost a Borel set, and $\mu$ is Borel."
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Radon measure}
+"Compact sets have finite $\mu$-measure, and $\mu$ is Borel-regular."
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{Radon-Nikodym Theorem}
+Let $\mu, \nu$ be Radon measures on $\R^n$, with $\nu<<\mu$. Then 
+$$\nu(A)=\int_A D_\mu \nu \der\mu$$
+for all \mumeasurable{} $A\subseteq\R^n$. 
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{Young's Inequality}
+If $a,b\geq0$ and $p,q>1$ such that $\frac{1}{p}+\frac{1}{q}=1$, then 
+$$ab\leq \frac{a^p}{p}+\frac{b^q}{q}.$$
+\end{flashcard}
+
+\begin{flashcard}[Theorem]{Holder Inequality}
+If $f\in L^p(\Omega)$ and $g\in L^q(\Omega)$ where $p,q$ conjugate exponents, then 
+\begin{align*}
+\norm{fg}_{L^1}&\leq \norm{f}_{L^p} \norm{g}_{L^q}, \quad \text{ that is, } \\
+\int_\Omega \abs{f(x)g(x)}\dx &\leq \left(\int_\Omega \abs{f(x)}^p\dx\right)^{\frac{1}{p}} \left(\int_\Omega \abs{g(x)}^q\dx\right)^{\frac{1}{q}}
+\end{align*}
+This can be thought of a "sort of" a Cauchy-Schwarz for Banach Spaces.
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Lipschitz Continuity}
+A function $f:X\to Y$ is \emph{Lipschitz continuous} if there exists $M>0$ such that for all $x_1, x_2\in X$, 
+$$\norm{f(x_1)-f(x_2)}_Y \leq M\norm{x_1-x_2}_X.$$
+If $f:X\to X$ and $M<1$, then $f$ is in particular a \emph{contraction}. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Baire First Category}
+A set $A$ is \_\_\_\_\_\_\_\_\_\_\_ if it is a countable union of nowhere dense sets.
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Nowhere dense set}
+A set $A$ is \_\_\_\_\_\_\_\_\_\_\_ if $\closure{A}$ has empty interior. 
+\end{flashcard}
+
+\begin{flashcard}[Definition]{Sequentially compact space}
+A topological space $X$ is \_\_\_\_\_\_\_\_\_\_\_ if every sequence in $X$ has a convergent subsequence (to a point in $X$). 
+\end{flashcard}
+
+\end{document}

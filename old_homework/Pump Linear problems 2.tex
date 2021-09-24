@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}													
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{epstopdf}				%converts to pdf file
+\usepackage{mathrsfs}				%something for fonts
+\usepackage{xfrac}					%to make slanted fractions \sfrac{numerator}{denominator}
+%\usepackage{tabu}					%to make tables in math mode $ \begin{tabular}{cccc} stuff \end{tabular} $
+%\usepackage{color}					%to change font color and background color
+%\usepackage[usenames,dvipsnames]{xcolor}   %to change font color to nonstandard colors
+%\usepackage{colortbl}				%to add color to tables
+%\usepackage{multicol}				%to add multiple columns to your document
+%\usepackage{bbm}					%use \mathbbm{letter} to get letters/# that look like Naturals, etc. 
+%\usepackage{hyperref} 				%to insert url's
+%\usepackage{setspace}				%for spacing \doublespacing in preamble
+%\usepackage{mathtools}				%to have stacked limits in sums, limits, products
+									%	\sum_{\mathclap{\substack{top \\ bottom \\ another}}}
+%\usepackage{caption}               %use in conjuction with subfig package
+%\usepackage{subcaption}	
+%\usepackage{subfig}                %mult figures with one caption, thesis file has examples
+%\usepackage{enumitem}              %remove space before/after items: \begin{enumerate}[nolistsep,noitemsep]
+\usepackage{tikz}                  %inline graphic \newcommand{\command}{\includegraphics[scale=0.09]{44pxtall.pdf}} 
+                                    %works in and out of math mode
+%\usepackage{comment}                %\begin{comment} stuff 
+%\usepackage{nopageno}              %remove page number on bottom
+\usepackage{fancyhdr}              %add a header
+%\usepackage{showframe}             %show messed up margins
+%\usepackage[margin=0.5in]{geometry} %note margins
+%\usepackage[margin=1in]{geometry}   %hw margins
+%\usepackage{listings}              %to display code \begin{lstlisting} code \end{lstlisting}
+
+\renewenvironment{proof}{{\bfseries Proof}}{\qed}
+
+\makeatletter
+\renewenvironment{proof}[1][\bfseries \proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  %\itemindent\normalparindent
+  \item[\hskip\labelsep
+        \scshape
+    #1\@addpunct{}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+
+%\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+
+\newtheorem{theorem}{Theorem}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tA}{\tilde{\langle A \rangle}}
+\newcommand{\A}{\langle A \rangle}
+\newcommand{\comma}{\text{,}}
+\newcommand{\period}{\text{.}}
+\newcommand{\ts}{\textsuperscript}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newcommand{\glambda}{\{G_\lambda\}_{\lambda \in A}}
+
+%note header
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[R]{\textcolor{white}{Q}\\ \textcolor{TealBlue}{date $\circ$ Page \thepage}}
+%\renewcommand{\headrulewidth}{0pt}
+
+
+% set space between paragraphs & indent if not predefined
+%\parskip = 0.1in
+%\parindent = 0.0in
+
+\pagestyle{fancy}
+\lhead{Trevor Klar}
+\chead{July 25, 2017} 
+\rhead{PUMP 2017}
+
+\begin{document}
+
+\section{First Worksheet}
+
+\begin{problem}\textbf{(1.16)}
+Suppose that $U$ and $W$ are subspaces of $\R^6$ of dimension 5. Show that $U \cap W \neq \{0\}.$
+
+\begin{proof}
+Since $U$ and $W$ are subspaces of $\R^6$, then 
+
+\begin{tabular}{rcl}
+9 	&$\geq$ 	& $dim(U + W)$ \\
+	& =			& $dim(U) + dim(W) - dim(U \cap W)$ \\
+	& = 		& $5 + 5 - dim(U \cap W)$. \\
+\end{tabular}
+
+\noindent So, $dim(U \cap W) \geq 1$, which means $U \cap W \neq \{0\}.$
+\end{proof}
+\end{problem}
+
+\section{Second Worksheet}
+
+\begin{problem}
+[I didn't finish this one]
+Let $V$ be a vector space and $T: V \to V$ a linear transformation. Show that $T^2 \equiv \vec{0}$ iff $Im(T) \subset N(T)$. 
+
+\begin{proof}\textbf{(converse direction)}
+Let $\vec{v} \in V$. By definition, $T^2 = T(T(\vec{v}))$. Since $Im(T) \subset N(T)$, $T(\vec{v}) \subset N(T)$; which means that $T(T(\vec{v})) = \vec{0}$ by definition of nullspace.
+\end{proof}
+\end{problem}
+
+\end{document}
+
+
+%\begin{equation*}
+%	y =  \left\{
+%		\begin{aligned}
+%			line 1 \\
+%			line 2
+%		\end{aligned}
+%	\right.
+%\end{equation*}
+
+%\begin{center} \includegraphics[width=0.4\linewidth]{prob1.jpg} \end{center}
+

@@ -1,0 +1,88 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor,pdfpages}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{Algebra Qualbook}} 
+\rhead{\textsc{Fall 2019 Exam}}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\newcommand{\Rn}{\R^n}
+\renewcommand{\phi}{\oldphi}
+\renewcommand{\S}{\script{S}}
+
+\includepdf[pages=-,pagecommand={},width=\textwidth]{AlgebraQual_Fall2019_III.pdf}
+
+\begin{center}
+1. GROUP THEORY
+\end{center}
+
+\begin{enumerate}
+\item[G1.] 
+\begin{enumerate}[label=(\alph*)]
+\item Suppose that G is a group with exactly two subgroups. Prove that G is finite of prime order.
+\begin{theorem*}[Cauchy's Theorem]
+If a prime $p$ divides the order of a finite group $G$, then there exists an element $g\in G$ of order $p$. 
+\end{theorem*}
+\begin{theorem*}[Lagrange's Theorem]
+If $H\leq G$ then $|G|=[G:H] \cdot |H|$. For finite groups, the order of a subgroup divides the order of the group. 
+\end{theorem*}
+
+\begin{proof}
+$0\leq G$ and $G\leq G$ for any group $G$, so if $G$ has exactly two subgroups then these are the only two.\footnote{I denote proper subgroups by $<$ and subgroups by $\leq$.} For any $g\in G$ note that $0<\angles{g}\leq G$, so $\angles{g}= G$ and $G$ is cyclic. 
+
+Now observe that $G$ cannot be infinite. If it were, then $G$ is an infinite cyclic group, and every such group is isomorphic to $\Z$. However $0<2\Z<Z$, while $G$ cannot have a subgroup isomorphic to $2\Z$, since it has exactly two subgroups, $0$ and $G$.  
+
+If $G$ is finite then $|G|$ is prime, since otherwise Cauchy's theorem provides an element $g\in G$ such that the order of $g$ divides $|G|$, which means $0<\angles{g}< G$, a contradiction. 
+\end{proof}
+
+
+\item Is the converse of part (a) true? Give a reason.
+\begin{proof}
+Yes, by Lagrange's theorem. If $|G|=p$ prime, any subgroup either has order $p$ or is trivial. 
+\end{proof}
+\end{enumerate} 
+\item[G2.] Let p be a prime number and let $1 \leq n < p^2$ be an integer. Show that every Sylow $p$-subgroup of the symmetric group $S_n$ is abelian.
+\begin{definition*}
+A Sylow $p$-subgroup is a subgroup whose order is the highest power of $p$ which divides the order of the group. 
+\end{definition*}
+\begin{proof}
+Note that $|S_n|=n!$ and since $n<p^2$, then $p$ appears exactly once in the multiplicands of $n!=\prod_{i=1}^n (i)$. Also $p\!\not|\, i$ for $1\leq i \leq n$ unless $i=p$, so the highest power of $p$ which divides $n!$ is $p$. Thus any Sylow-$p$ subgroup of $S_n$ has order $p$. Any finite group of prime order is cyclic and thus abelian, so we're done. 
+\end{proof}
+\end{enumerate} 
+	
+
+
+\end{document}

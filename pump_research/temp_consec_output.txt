@@ -1,0 +1,278 @@
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	79,	18
+3,	79,	51
+5,	79,	41
+7,	79,	24
+11,	79,	22
+13,	79,	18
+17,	79,	17
+19,	79,	30
+23,	79,	18
+29,	79,	20
+31,	79,	34
+37,	79,	19
+41,	79,	34
+43,	79,	20
+47,	79,	19
+53,	79,	32
+59,	79,	47
+61,	79,	31
+67,	79,	40
+71,	79,	54
+73,	79,	63
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	73,	19
+3,	73,	21
+5,	73,	129
+7,	73,	20
+11,	73,	23
+13,	73,	32
+17,	73,	34
+19,	73,	30
+23,	73,	45
+29,	73,	19
+31,	73,	111
+37,	73,	19
+41,	73,	21
+43,	73,	23
+47,	73,	24
+53,	73,	31
+59,	73,	30
+61,	73,	36
+67,	73,	69
+71,	73,	158
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	71,	22
+3,	71,	23
+5,	71,	20
+7,	71,	32
+11,	71,	69
+13,	71,	31
+17,	71,	61
+19,	71,	17
+23,	71,	16
+29,	71,	18
+31,	71,	32
+37,	71,	19
+41,	71,	19
+43,	71,	68
+47,	71,	44
+53,	71,	24
+59,	71,	66
+61,	71,	42
+67,	71,	81
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	67,	29
+3,	67,	18
+5,	67,	16
+7,	67,	19
+11,	67,	26
+13,	67,	16
+17,	67,	27
+19,	67,	43
+23,	67,	25
+29,	67,	56
+31,	67,	21
+37,	67,	25
+41,	67,	19
+43,	67,	26
+47,	67,	27
+53,	67,	36
+59,	67,	49
+61,	67,	52
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	61,	25
+3,	61,	21
+5,	61,	21
+7,	61,	22
+11,	61,	88
+13,	61,	26
+17,	61,	24
+19,	61,	20
+23,	61,	25
+29,	61,	20
+31,	61,	25
+37,	61,	27
+41,	61,	23
+43,	61,	26
+47,	61,	25
+53,	61,	41
+59,	61,	128
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	59,	24
+3,	59,	19
+5,	59,	35
+7,	59,	26
+11,	59,	29
+13,	59,	25
+17,	59,	16
+19,	59,	35
+23,	59,	32
+29,	59,	20
+31,	59,	50
+37,	59,	20
+41,	59,	29
+43,	59,	29
+47,	59,	34
+53,	59,	64
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	53,	24
+3,	53,	16
+5,	53,	32
+7,	53,	34
+11,	53,	24
+13,	53,	17
+17,	53,	37
+19,	53,	18
+23,	53,	23
+29,	53,	19
+31,	53,	25
+37,	53,	35
+41,	53,	27
+43,	53,	70
+47,	53,	55
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	47,	24
+3,	47,	61
+5,	47,	17
+7,	47,	53
+11,	47,	21
+13,	47,	238
+17,	47,	26
+19,	47,	66
+23,	47,	16
+29,	47,	48
+31,	47,	39
+37,	47,	30
+41,	47,	38
+43,	47,	50
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	43,	20
+3,	43,	16
+5,	43,	38
+7,	43,	27
+11,	43,	18
+13,	43,	26
+17,	43,	30
+19,	43,	19
+23,	43,	96
+29,	43,	20
+31,	43,	56
+37,	43,	62
+41,	43,	90
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	41,	24
+3,	41,	16
+5,	41,	27
+7,	41,	26
+11,	41,	17
+13,	41,	17
+17,	41,	17
+19,	41,	18
+23,	41,	18
+29,	41,	20
+31,	41,	24
+37,	41,	45
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	37,	19
+3,	37,	28
+5,	37,	22
+7,	37,	25
+11,	37,	52
+13,	37,	17
+17,	37,	26
+19,	37,	18
+23,	37,	21
+29,	37,	24
+31,	37,	30
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	31,	31
+3,	31,	31
+5,	31,	26
+7,	31,	41
+11,	31,	21
+13,	31,	28
+17,	31,	23
+19,	31,	77
+23,	31,	55
+29,	31,	62
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	29,	36
+3,	29,	25
+5,	29,	22
+7,	29,	17
+11,	29,	28
+13,	29,	24
+17,	29,	18
+19,	29,	38
+23,	29,	27
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py ^C
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	23,	26
+3,	23,	19
+5,	23,	28
+7,	23,	23
+11,	23,	66
+13,	23,	64
+17,	23,	22
+19,	23,	26
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ 
+trevor@trevor-HP-EliteBook-8440p ~ $ cd Documents/Latex/research/
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	19,	38
+3,	19,	24
+5,	19,	18
+7,	19,	31
+11,	19,	17
+13,	19,	21
+17,	19,	38
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	17,	22
+3,	17,	29
+5,	17,	18
+7,	17,	19
+11,	17,	39
+13,	17,	20
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	13,	32
+3,	13,	85
+5,	13,	28
+7,	13,	44
+11,	13,	26
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	11,	20
+3,	11,	21
+5,	11,	34
+7,	11,	17
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	7,	19
+3,	7,	17
+5,	7,	17
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	5,	20
+3,	5,	19
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ python temp_consec.py 
+p, 	q, 	consecutive primes count
+2,	3,	17
+trevor@trevor-HP-EliteBook-8440p ~/Documents/Latex/research $ 
+

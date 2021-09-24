@@ -1,0 +1,390 @@
+ \documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox,tensor}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{201c - Functional Analysis} \\Quarter of COVID-19} 
+\rhead{\textsc{Labutin, Spring 2020} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\let\oldphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 5}%=================UPDATE THIS=================%
+\end{center}
+
+\renewcommand{\B}{\bar{B}(\ell^\infty)}
+\textbf{Chapter 1}
+
+\begin{enumerate}
+
+%\setcounter{enumi}{1}
+\item[] \vspace*{-24pt} 
+	\begin{theorem*}[Bathtub Principle]
+	Let $(\Omega, \Sigma, \mu)$ be a measure space and let $f:\Omega\to\R$ be measurable with $\mu\{f<t\}$ finite for all $t\in\R$. Fix $G>0$, and define a class of measurable functions on $\Omega$ by 
+	$$\script{C}=\left\lbrace g \; \middle| \; 0\leq g\leq 1 \quad\text{and}\quad \int_\Omega g \der\mu = G\right\rbrace.$$
+	Then the minimization problem 
+	\setcounter{equation}{0}
+	\begin{equation}
+	I=\inf_{g\in\script{C}} \int_\Omega fg\der\mu 
+	\end{equation}
+	is solved by 
+	\setcounter{equation}{1}
+	\begin{equation}
+	g=\Chi_{\{f<s\}} + c\Chi_{\{f=s\}}
+	\end{equation}
+	and
+	\setcounter{equation}{2}
+	\begin{equation}
+	I=\int_{\{f<s\}} f\der\mu + cs\mu\{f=s\}
+	\end{equation}
+	where $s$ is the supremum of all $t$ such that 
+	\setcounter{equation}{3}
+	\begin{equation}
+	\mu\{f<t\}\leq G,
+	\end{equation}
+	and $c$ is a scalar such that 
+	\setcounter{equation}{4}
+	\begin{equation}
+	\mu\{f<s\} + c\mu\{f=s\} = G.
+	\end{equation}
+	\end{theorem*}
+	\begin{proof}
+	We know that $\mu\braces{f<t}$ is finite for all $t$, and since $\braces{f<a}\subseteq\braces{f<b}$ for $a<b$, then $\mu\braces{f<t}$ increases as $t$ increases. We would like to bound this measure, so let $s$ be the supremum of all $t$ such that 
+	\setcounter{equation}{3}
+	\begin{equation}
+	\mu\{f<t\}\leq G.
+	\end{equation}
+	\textsc{Case} $(s=\infty)$ We assume that since $g$ is thought to be a density, then $\mu(\Omega)\geq G$. This means that if $s=\infty$, then since $\{f<\infty\}=\preimage{f}{\R}=\Omega$, we have that $\mu(\Omega)\leq G$. Thus in (5) $c=0$, and so equation (2) is given by 
+	$$g=\Chi_{\braces{f<\infty}}=\Chi_\Omega=1.$$
+	Now $g$ has integral $G$ and it is the \emph{only} function in $\script{C}$, since any other function in $\script{C}$ is equal almost everywhere or has strictly smaller integral. Thus (2) trivially solves (1), and equations (1) and (3) are both $I=\int_\Omega f$. 
+	
+	\textsc{Case} ($s<\infty$) Suppose $s$ is finite. Then either $\mu\{f=s\}=0$ or $\mu\{f=s\}>0$.
+	\begin{itemize}
+	\item[] 
+	\textsc{Claim} Either $\mu\{f<s\}=G$, or $\mu\{f<s\}+\mu\{f=s\}>G$. 
+	
+	\textsc{Proof of Claim} Suppose that $\mu\{f<s\}\neq G$.
+	Then clearly $\mu\{f<s\}\not> G$, so $\mu\{f<s\}< G$. Since $s$ is the least upper bound of the set, then $\mu\braces{f<s+\epsilon}>G$ for all $\epsilon$. Thus 
+	\begin{align*}
+	\mu\{f<s\}+\mu\{f=s\}&>G.
+	\end{align*}
+	\end{itemize}
+	Justified by the claim above, let $0\leq c <1$ so that 
+	\setcounter{equation}{4}
+	\begin{equation}
+	\mu\{f<s\} + c\mu\{f=s\} = G.
+	\end{equation}
+	
+	Now define 	
+	\setcounter{equation}{1}
+	\begin{equation}
+	g=\Chi_{\{f<s\}} + c\Chi_{\{f=s\}},
+	\end{equation}
+	and let's compute the integral in (3).
+	\begin{align*}
+	\int_\Omega fg\der\mu &= \int_\Omega f \left( \Chi_{\{f<s\}} + c\Chi_{\{f=s\}}\right) \der\mu \\
+	&=\int_{\{f<s\}} f\der\mu + \int_{\{f=s\}} c\der\mu \\
+	&=\int_{\{f<s\}} f\der\mu + cs\mu\{f=s\}.
+	\end{align*}
+	Now all that remains is to show that (2) solves the minimization problem
+	\setcounter{equation}{0}
+	\begin{equation}
+	I=\inf_{g\in\script{C}} \int_\Omega fg\der\mu. 
+	\end{equation}
+	
+	For now, suppose that $\mu\{f=s\}=0$. Let $h$ be any element of $\script{C}$ which is distinct from $g$, so they differ on a set of positive measure. If $h=g$ on $\{f<s\}$ then they are the equal almost everywhere since $\int_{\{f<s\}} g\der\mu=G$, so call 
+	$$A=\{x\in\{f<s\} : h(x)\neq g(x)\}$$
+	and note that $\mu(A)>0$ and in fact $h<g$ on $A$. Since this means $\int_{\{f<s\}} h \der\mu<G$, then $h$ and $g$ also differ on $\{f>s\}$ on a set of positive measure. So call this set
+	$$A'=\{x\in\{f>s\} : h(x)\neq g(x)\}$$
+	and note that $\mu(A')=\mu(A)$ and $h>g$ on $A'$.
+	\jpg{width=0.7\textwidth}{hw5-bathtub-principle-1}
+	Now we we show that $\int_\Omega fg\der\mu \leq \int_\Omega fh\der\mu$. First, since $\int_A (g-h)=\int_{A'}h$, then
+	\begin{equation}
+	\int_A f(g-h) \leq \int_A s  (g-h) = \int_{A'} sh \leq \int_{A'}f(g-h).\tag{$\dagger$}
+	\end{equation}
+	Thus 
+	\begin{align*}
+	\int_\Omega fg &= \int_{\{f<s\}} fg + \int_{\{f\geq s\}} fg \\
+	&=\left( \int_{\{f<s\}} fh + \int_{A} f(g-h) \right) + \left( \int_{\{f\geq s\}} fh - \int_{A'} fh \right)\\ 
+	&\leq \int_{\{f<s\}} fh + \int_{A'} fh + \int_{\{f\geq s\}} fh - \int_{A'} fh & \text{by }(\dagger)\\ 
+	&= \int_{\{f<s\}} fh + \int_{\{f\geq s\}} fh + \int_{A'} fh - \int_{A'} fh \\
+	&= \int_\Omega fh
+	\end{align*}
+	So since $\int_\Omega fg \der\mu$ is an element of the set $\braces{\int_\Omega fh \middle| h\in\script{C}}$ in equation (1) and it is a lower bound of that set, then it is the infimum. 
+	
+	Earlier we supposed that $\mu\{f=s\}=0$. If instead $\mu\{f=s\}>0$, then $g=c$ (between 1 and 0) on $\{f=s\}$, so $h$ can have three behaviors there: $h=g$ on $\{f=s\}$, there exists $B\subset \{f=s\}$ such that $h<g$ on $B$, or there exists $B\subset \{f=s\}$ such that $h>g$ on $B$.
+	
+	\textsc{Case I} If $h=g$ on $\{f=s\}$, we can apply ($\dagger$) and use the same proof as when we assumed $\mu\{f=s\}=0$. 
+	
+	\textsc{Case II} Suppose there exists $B\subset \{f=s\}$ such that $h<g$ on $B$. Then since $g=1$ on $\{f<s\}$, there must exist $B'\subset \{f>s\}$ such that $\int_B (g-h)=\int_{B'} h$, so 
+	\begin{equation}
+	\int_B f(g-h) = \int_B s  (g-h) = \int_{B'} sh < \int_{B'}f(g-h).\tag{$\ddagger$}
+	\end{equation}
+	\jpg{width=0.4\textwidth}{hw5-bathtub-principle-2}
+	Following the same strategy of proof as when we assumed $\mu\{f=s\}=0$, we can find that 
+	$$\int_{\{f\geq s\}}fg < \int_{\{f\geq s\}}fh.$$
+	%If in addition $h<g$ on $\{f< s\}$, we can apply ($\dagger$) and we're done. 
+	
+	\textsc{Case III} Suppose there exists $B\subset \{f=s\}$ such that $h>g$ on $B$. Since $g=0$ on $\{f>s\}$, there must exist $B'\subset \{f<s\}$ such that $\int_{B'} (g-h)=\int_{B} (h-g)$, so 
+	\begin{equation}
+	\int_{B'} f(g-h) < \int_{B'} s  (g-h) = \int_{B} s(h-g) = \int_{B} f(h-g).\tag{$\dagger\dagger$}
+	\end{equation}
+	
+	\jpg{width=0.7\textwidth}{hw5-bathtub-principle-3}
+	Thus 
+	\begin{align*}
+	\int_\Omega fg &= \int_{\{f<s\}} fg + \int_{\{f= s\}} fg + \int_{\{f> s\}} fg\\
+	&= \left( \int_{\{f<s\}} fh + \int_{B'} f(g-h) \right) + \left( \int_{\{f=s\}} fh - \int_{B} f(h-g) \right) + \int_{\{f>s\}} fg\\ 
+	&< \int_{\{f<s\}} fh + \int_{B} f(h-g) + \int_{\{f=s\}} fh - \int_{B} f(h-g)  + \int_{\{f>s\}} fg & \text{by }(\dagger\dagger)\\ 
+	&= \int_{\{f<s\}} fh  + \int_{\{f=s\}} fh  + \int_{\{f>s\}} fg \\
+	&= \int_{\{f<s\}} fh  + \int_{\{f=s\}} fh  + \int_{\{f>s\}} fh &\hspace*{-.75in} \text{Since }g=0\text{ on } \{f>s\}\\
+	&= \int_\Omega fh
+	\end{align*}
+	Therefore in any case, 
+	\setcounter{equation}{0}
+	\begin{equation}
+	\inf_{h\in\script{C}} \int_\Omega fh\der\mu=\int_\Omega fg\der\mu
+	\end{equation}	
+	and we're done. 
+	\end{proof}
+	
+	
+
+\end{enumerate}
+
+\pagebreak
+\textbf{Chapter 4}
+
+\textbf{4.3}
+The \textbf{weak $L^p$-space}, denoted $L^p_w(\R^n)$, is defined as the set of all measurable functions such that
+\setcounter{equation}{2}
+\begin{equation}
+\angles{f}_{p,w}=\sup_{\alpha>0}\;\alpha\,\big(\mu\braces{|f|>\alpha}\big)^{1/p}<\infty
+\end{equation}
+%why even write q here if the value of q has no bearing on the finiteness of LHS?
+
+The expression given by (3) does not define a norm. For $p > 1$ there is an
+alternative expression, equivalent\footnote{Equivalent in the sense that convergence in $\angles{f}$ is equivalent to convergence in $\norm{f}$.} to (3), that is indeed a norm. It is given
+by
+\setcounter{equation}{4}
+\begin{equation}
+\norm{f}_{p,w}=\sup_A |A|^{-1/p'} \int_A |f| \dx,
+\end{equation}
+where $A$ is any set of finite measure. Using Theorem 1.14 (bathtub principle) it is not hard to see that
+(3) and (5) are equivalent.
+
+%\begin{definition*}
+%The weak $L^q$-norm
+%\end{definition*}
+
+\begin{enumerate}
+%\setcounter{enumi}{1}
+\item Prove that (5) above actually defines a norm--the weak $L^p$-norm.
+\begin{proof}
+\begin{enumerate}
+\item $\norm{\bigcdot}_{p,w}$ is absolutely homogeneous:
+	\begin{align*}
+	\norm{\lambda f}_{p,w}
+	&=\sup_A |A|^{-1/p'} \int_A |\lambda f| \dx \\
+	&=|\lambda|\sup_A |A|^{-1/p'} \int_A |f| \dx \\
+	&=|\lambda|\norm{ f}_{p,w}
+	\end{align*}
+	
+\item $\norm{\bigcdot}_{p,w}$ is positive definite:
+
+If $\norm{f}_{p,w}=0$, then $\int_A|f|\dx=0$ for all $A$, which means $f=0$ almost everywhere. 
+
+\item $\norm{\bigcdot}_{p,w}$ has the triangle inequality:
+	\begin{align*}
+	\norm{f+g}_{p,w}
+	&=\sup_A |A|^{-1/p'} \int_A | f + g| \dx \\
+	&\leq \sup_A |A|^{-1/p'} \left(\int_A | f | \dx + \int_A |  g| \dx \right)\\
+	&\leq \sup_A \left(|A|^{-1/p'} \int_A |f| \dx + |A|^{-1/p'} \int_A |g| \dx\right) \\
+	&\leq \left(\sup_A |A|^{-1/p'} \int_A |f| \dx\right) + \left(\sup_A |A|^{-1/p'} \int_A |g| \dx\right) \\
+	&\norm{f}_{p,w}+\norm{g}_{p,w}\qedhere
+	\end{align*}
+\end{enumerate}
+\end{proof}
+
+\item Prove the equivalence of the two definitions of weak $L^p$ given in Sect. 4.3. That is, %if $\angles{f}_{p,w}$ denotes the LHS of 4.3(3), then 
+prove that 
+$$C_1\angles{f}_{p,w}\leq \norm{f}_{p,w}\leq C_2\angles{f}_{p,w},$$
+where $C_1$ and $C_2$ are universal constants independent of $f$. Find explicit values for these constants.
+
+\begin{proof}
+First we will show that $\norm{f}_{p,w}\geq C_1\angles{f}_{p,w}$. 
+
+For any $\alpha>0$, let $A_\alpha=\{|f|>\alpha\}$. Then 
+\begin{align*}
+|A_\alpha|^{-1/p'}\int_{A_\alpha} |f|\dx & \geq |A_\alpha|^{-1/p'} \int_{A_\alpha}\alpha\dx \\
+&= |A_\alpha|^{-1/p'} \alpha |A_\alpha| \\
+&= \alpha|A_\alpha|^{-1/p} \\
+&= \alpha\,\big(\mu\braces{|f|>\alpha}\big)^{1/p}.
+\end{align*}
+
+Thus taking supremum of both sides, 
+\begin{align*}
+\norm{f}_{p,w}&=\sup_A |A|^{-1/p'} \int_A |f| \dx\\
+&\geq \sup_{\alpha>0} |A_\alpha|^{-1/p'} \int_{A_\alpha} |f| \dx\\
+&\geq \sup_{\alpha>0} \alpha\,\big(\mu\braces{|f|>\alpha}\big)^{1/p}\\
+&= \angles{f}_{p,w}
+\end{align*}
+so $C_1=1$. \qedwhite
+
+Next we show that $\norm{f}_{p,w}\leq C_2\angles{f}_{p,w}$. Before we start, observe that equation (3) gives us that 
+\begin{equation*}
+\angles{f}^p=\sup_{t>0}t^p\abs{\braces{|f|>t}},
+\end{equation*}
+where we suppress the notation and write $\angles{f}^p$ to mean $(\angles{f}_{p,w})^p$. Thus for any particular $t>0$, we have 
+\begin{equation}
+\frac{\angles{f}^p}{t^p}\geq\abs{\braces{|f|>t}}. \tag{$\dagger$}
+\end{equation}
+
+Now we begin the proof. Equation (5) gives us that 
+\setcounter{equation}{4}
+\begin{equation}
+\norm{f}_{p,w}=\sup_A |A|^{-1/p'} \int_A |f| \dx,
+\end{equation}
+And to bound the integral in (5) we rewrite it and split the integral at a level $T$ (to be determined later):
+\begin{align*}
+\int_A |f| \dx
+&=\int_0^\infty \abs{\braces{|f|>t}\cap A} \dt \\
+&=\int_0^T \abs{\braces{|f|>t}\cap A} \dt + \int_T^\infty \abs{\braces{|f|>t}\cap A} \dt\\
+&\leq T|A| + \int_T^\infty \abs{\braces{|f|>t}\cap A} \dt\\
+&\leq T|A| + \int_T^\infty \abs{\braces{|f|>t}} \dt\\
+&\leq T|A| + \int_T^\infty \frac{\angles{f}^p}{t^p} \dt & \text{by }(\dagger)\\
+&= T|A| + \frac{\angles{f}^p}{(p-1)\left(T^{p-1}\right)} \\
+\end{align*}
+Next, we will find a value of $T$ to minimize the right hand side above, when everything else is held constant. Write $T|A| + \frac{\angles{f}^p}{(p-1)\left(T^{p-1}\right)}$ as a function of $T$ with $\beta=p-1$ and constants $B_1, B_2$:
+\begin{align*}
+\phi(T) %&= T|A| + \frac{\angles{f}^p}{(q-1)\left(T^{q-1}\right)} \\
+&= TB_1 + \frac{B_2}{T^{\beta}}
+\end{align*}
+Since $\phi'(T)=B_1-\beta B_2 T^{-\beta-1}$ and $-\beta B_2 T^{-\beta-1}$ is an increasing function with limit 0 as $T\to\infty$, then as long as $B_1>0$ (it is), then $\phi$ has exactly one minimum. Solving for $T$ in $\phi'=0$ will show that we should fix 
+\begin{align*}
+T&=\left(\frac{\beta B_2}{B_1}\right)^{\frac{1}{\beta+1}}\\
+&=\left(\frac{(p-1) \angles{f}^p}{|A|(p-1)}\right)^{\frac{1}{p}}\\
+&=\left(\frac{ \angles{f}^p}{|A|}\right)^{\frac{1}{p}}\\
+&={|A|^{-1/p}}{ \angles{f}}\\
+\end{align*}
+Thus 
+\begin{align*}
+\int_A |f| \dx
+&\leq T|A| + \frac{\angles{f}^p}{(p-1)\left(T^{p-1}\right)} \\
+&=|A|^{1/p'}\angles{f} + \frac{|A|^{1/p'}\angles{f}}{(p-1)} \\
+&=|A|^{1/p'}\angles{f} \left(1 + \frac{1}{(p-1)} \right), \\
+&=|A|^{1/p'}\angles{f} (p'), 
+\end{align*}
+
+and finally we can conclude that 
+\begin{align*}
+\norm{f}_{p,w}
+&=\sup_A |A|^{-1/p'} \int_A |f| \dx \\
+&\leq \angles{f} (p'),
+\end{align*}
+so $C_2=p'$, and we're done. 
+% C_1 should be easy. For C_2, see Week 6 May 6 office hours 52:18.
+\end{proof}
+
+\setcounter{enumi}{3}
+\item Gaussian integrals appear frequently and it is important to know how to
+compute them.
+	\begin{enumerate}[label=(\alph*)]
+	\item Show that 
+	$$\int_{-\infty}^{\infty}\exp{(-\lambda x^2)}\dx = \sqrt{\pi/\lambda}$$
+	by evaluating the square of the integral by means of polar coordinates.
+	\begin{proof}
+	We will show that $\left(\int_{-\infty}^{\infty}\exp{(-\lambda x^2)}\dx\right)^{2} = \pi/\lambda$. First, observe that 
+	\begin{align*}
+	\left(\int_{-\infty}^{\infty}\exp{(-\lambda x^2)}\dx\right)^{2}
+	&= \left(\int_{-\infty}^{\infty}\exp{(-\lambda x^2)}\dx\right)\left(\int_{-\infty}^{\infty}\exp{(-\lambda y^2)}\dy\right) \\
+	&= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \exp{(-\lambda x^2)} \exp{(-\lambda y^2)}\dy\dx
+	\end{align*}
+	and by changing to polar coordinates, 
+	\begin{align*}
+	\phantom{\left(\int_{-\infty}^{\infty}\exp{(-\lambda x^2)}\dx\right)^{2}}
+	&= \int_0^\infty \int_0^{2\pi} \exp{(-\lambda r^2)} r\der r\der\theta \\
+	&= \left(\int_0^\infty \exp{(-\lambda r^2)} r\der r \right)\left( \int_0^{2\pi} \der\theta\right)\\
+	&= \bigg[ -\frac{1}{2\lambda} e^{-\lambda r^2}\bigg]_{r=0}^\infty \bigg( 2\pi \bigg) \\
+	&= 	\left(0+\frac{1}{2\lambda}\right)(2\pi)\\
+	&= \frac{\pi}{\lambda}.
+	\end{align*}
+	and we're done, since taking square roots yields the desired integral. 
+	\end{proof}		
+	
+	\item For $A$ a symmetric $n\times	n$ matrix whose real part is positive definite, show that
+	$$\int_{\R^n} \exp{(-x^\top Ax)}\dx = {\pi^{n/2}}/{\sqrt{\det A}}.$$
+	In the real, symmetric case this can be done by a simple change of variables.
+	
+	\begin{proof}
+	Since $A$ is positive definite, then $A$ is unitarily diagonalizable with positive determinant. So we can write $A=UDU^*$, and make a change of variables $x\mapsto Ux$. Then the Jacobian is $\det U=1$, so 
+	\begin{align*}
+	\int_{\R^n} \exp{(-x^\top Ax)}\dx 
+	&= \int_{\R^n} \exp{(-(Ux)^\top (UDU^*)(Ux))}\dx \\
+	&= \int_{\R^n} \exp{(-x^\top(U^*U)D(U^*U)x)}\dx \\
+		&= \int_{\R^n} \exp{(-x^\top Dx)}\dx \\
+		&= \int_{\R^n} \exp{\left(\sum_{i=1}^n \lambda_i x_i^2\right)}\dx &\text{where }\lambda_i\text{ are eigenvalues}\\
+		&= \prod_{i=1}^n \int_{-\infty}^\infty \exp{(\lambda_i x_i^2)}\der x_i \\
+		&= \prod_{i=1}^n \sqrt{\pi/\lambda_i} \\
+		&= \sqrt{\frac{\pi^n}{\det D}} \\
+		&= \sqrt{\frac{\pi^n}{\det A}} &&\qedhere
+	\end{align*}
+	\end{proof}		
+	
+	\item For a vector $v$ in $\mathbb{C}^n$ show, by "completing the square", that 
+	$$\int_{\R^n} \exp(-\angles{x,Ax}+2\angles{v,x})\dx=\left(\pi^{n/2}/\sqrt{\det A}\right) \exp\left(\angles{v,A^{-1}v}\right).$$
+	
+	\begin{proof}
+	The expression $-\angles{x,Ax}+2\angles{v,x}$ sort of looks like $(x+v)^2$, in an inner-producty sort of way. If we play with the numbers, we find that 
+	$$\angles{-x+vA^{-1},\; Ax-v} \;=\; -\angles{x,Ax} + 2\angles{v,x} - \angles{vA^{-1},v},$$
+	so since $\exp(- \angles{vA^{-1},v})$ is constant with respect to $x$, we find that 
+	\begin{align*}
+	&\int_{\R^n} \exp\left(-\angles{x,Ax}+2\angles{v,x}\right)\dx \\
+	&\qquad = \exp\left(\angles{vA^{-1},v}\right) \exp\left(- \angles{vA^{-1},v}\right) \int_{\R^n} \exp\left(-\angles{x,Ax}+2\angles{v,x}\right)\dx \\
+	&\qquad = \exp\left(\angles{vA^{-1},v}\right) \int_{\R^n} \exp\left(-\angles{x,Ax}+2\angles{v,x} - \angles{vA^{-1},v}\right)\dx \\
+	&\qquad = \exp\left(\angles{vA^{-1},v}\right) \int_{\R^n} \exp\left(\angles{-x+vA^{-1},\; Ax-v}\right)\dx \\
+	\end{align*}
+	\begin{align*}		
+	&\qquad = \exp\left(\angles{vA^{-1},v}\right) \int_{\R^n} \exp\left(\angles{-(x-vA^{-1}),\; A(x-vA^{-1})}\right)\dx &\text{(i)}\\
+	&\qquad = \exp\left(\angles{vA^{-1},v}\right) \int_{\R^n} \exp\left(\angles{-x,\; Ax}\right)\dx &\text{(ii)}\\
+	&\qquad =  \exp\left(\angles{v,A^{-1}v}\right) \left(\pi^{n/2}/\sqrt{\det A}\right).
+	\end{align*}
+	Step (i) is justified by the fact that since $A$ is symmetric, then $vA^{-1}=A^{-1}v$ (letting any vector be a row or column vector as is convenient). In step (ii), we are making a change of variables, which comes for free since adding the constant $-vA^{-1}$ gives the same Jacobian as adding zero. 
+	\end{proof}
+	
+	\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

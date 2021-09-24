@@ -1,0 +1,123 @@
+%\RequirePackage{snapshot}
+
+\documentclass[letterpaper, 12pt]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{../tskpreamble_nothms}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+
+%================Start of document==============
+
+\title{Advanced Calculus II - Fuller, 2018}
+\author{Trevor Klar}
+
+\begin{document}
+%\maketitle
+
+%\tableofcontents
+
+%\addcontentsline{toc}{section}{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+To Whom it May Concern;
+
+\mbox{}
+
+My name is Trevor Klar. I am 27 years old, and I am a high school geometry teacher in Lancaster, California. In 2011, I dropped out of community college after three years of abysmal grades, due to my immaturity and lack of effort, and exacerbated by my severe ADHD. But in 2013, after two years of 60 hour work weeks including manual labor and restaurant work, I had an epiphany: I absolutely am in love with math, and if I went back to college and applied myself, I could learn about it to my heart's content. With hard work and perseverance, I plan to earn a PhD in Mathematics. 
+
+It has been immensely challenging to return to college. I am now married, commute over 600 miles a week, take 9-12 college units per semester, and work full-time as a high school math teacher. Despite these challenges, I have had great success in my studies. Since my return to college in 2013, I have earned an A in every class I have taken (except a single A-), spanning over 60 semester units of General Ed and Mathematics courses, and through those years of hard work, I improved my GPA from 1.6 to 3.34. I am now a first-generation college graduate, having earned an AST in Mathematics from College of the Canyons; I am a Geometry teacher at The Gorman Learning Center in Lancaster; and I am currently working to earn my bachelor's degree at CSUN, with plans to apply to PhD programs in Fall 2019. 
+
+I think the two experiences that most prepared me for research work were the PUMP-URG and my Topology course last semester. CSUN’s Preparing Undergraduates through Mentoring towards PhDs is a summer program where we work through the entire material of Advanced Linear Algebra and Advanced Calculus I in the space of four weeks. I was doing math from 9 to 5, six days a week. This gave me some experience with doing math all day in a professional setting, and I learned that I genuinely enjoy that experience. As part of the program, I was selected to participate in a PUMP Undergraduate Research Grant. My project during the 17-18 school year is to work with one partner and a professor to prove an open conjecture of Erdös, regarding prime numbers and whether a certain pattern with them happens infinitely often. We were successful in proving in the conjecture for a simpler case, and we are now working to prove it in the originally stated form. This project has been invaluable to me in gaining experience with thinking critically and creatively, solving a problem independently, working with \LaTeX\ and Python, as well as collaborating with a small team. 
+My Topology course in Fall ‘17 was my first graduate level math course, and it has grown me immensely. Earning an A required me to become much better at thinking and having intuition about abstract concepts, as well as writing detailed proofs about objects that are impossible to draw. Since the class did not use a textbook, I took it upon myself to \TeX\ all the theorems, definitions, and proofs we covered in class, culminating in a 42-page pseudotextbook which my classmates and I used extensively to study. 
+
+When I graduate in Spring 2019, I plan to pursue a PhD in mathematics. I am applying for REUs this summer because I love mathematics, and I cannot imagine anything else I would rather be paid to do over the summer. The GVSU summer mathematics REU particularly appeals to me, because I have a great passion for higher dimensional, hyperbolic, and spherical geometries. I teach geometry in high school, and I especially love to drop hints to them about the fourth dimension and 4-dimensional shapes.
+\pagebreak
+
+Choosing favorites has always been difficult for me, but one of my favorite theorems is Urysohn's Lemma, which states: In a normal topological space, for any two disjoint closed sets $A$ and $B$ there exists a function $f$ such that; $f(a)=0$ for all $a\in A$, $f(b)=1$ for all $b\in B$, and $f$ is continuous. This theorem appeals to me because its intuition is very obvious: it is possible to write a function $f$ which assigns a numeric value to every point in the space, continuously transitioning from $0$ values anywhere in $A$ to $1$ values anywhere in $B$. This is exactly the sort of thing a child is picturing when he draws a circle and a square, coloring the circle blue and the square red, and shading a gradient which transitions from blue to red elsewhere on the page. Despite the simple intuition, to write a proof for this theorem is nontrivial indeed, and its proof involves countably many nested sets and an infimum of rational numbers; quite a pleasure to study. Roughly, the proof follows this reasoning: For each rational number $q_n$, let there be an open set $A \subset U_{q_n} \subset B^\complement$, and additionally, if $q_\alpha<q_n<q_\beta$, then $U_{q_\alpha}\subset U_{q_n} \subset U_{q_\beta}$. This gives us countably many nested open sets, with the same ordering as the rational numbers. Now, for any point $x$ in the space, we define $f(x)$ to be the infimum of $\{f(U_q) : q\in\Q \text{ and } x\in U_q \}$. 
+
+\mbox{}
+
+Thank you for considering me to be a part of your program, and I look forward to hearing from you. 
+
+\mbox{}
+
+Trevor Klar
+
+
+\end{document}
+

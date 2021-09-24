@@ -1,0 +1,273 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 360 \linebreak
+Section 1.2 Exercises}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item The three things we must check in order to confirm that a function $\phi:{S}\to{S'}$ is an isomorphism are the following:
+	\begin{itemize}
+	\item $\phi$ is one-to-one
+	\item $\phi$ is onto
+	\item For all $a,b\in S$, we have $\phi(a*b)=\phi(a)*'\phi(b)$. 
+	\end{itemize}
+
+\hspace*{-0.74cm}\textbf{Determine whether the given map $\phi$ is an isomorphism of the first binary structure with the second. If not, why not?}
+
+\item[2.] $\inner{\Z}{+}$ with $\inner{\Z}{+}$ where $\phi(n)=-n$ for $n\in\Z$
+
+\textbf{Answer: }Yes, because $\phi$ is a bijection, and for all $a,b\in\Z$, $-(a+b)=-(a)+-(b)$. 
+
+\item[3.] $\inner{\Z}{+}$ with $\inner{\Z}{+}$ where $\phi(n)=2n$ for $n\in\Z$
+
+\answer No, because $\phi$ is not onto; there is no $n\in\Z$ such that $2n=3$, for example. 
+
+\item[5.] $\inner{\Q}{\cdot}$ with $\inner{\Q}{\cdot}$ where $\phi(x)=\frac{x}{2}$ for $x\in\Q$
+
+\answer No, because for any nonzero $a,b\in\Q$, we have $\frac{a\cdot b}{2}\neq\frac{a}{2}\cdot\frac{b}{2}$
+
+\item[7.] $\inner{\R}{\cdot}$ with $\inner{\R}{\cdot}$ where $\phi(x)=x^3$ for $x\in\R$. 
+
+\answer Yes. It is clear from its graph that $\phi$ is a bijection. Also, for all $a,b\in\R$, we have $(a\cdot b)^3=a^3\cdot b^3$. 
+
+\item[8.] $\inner{M_2(\R)}{\cdot}$ with $\inner{\R}{\cdot}$ where $\phi(A)$ is the determinant of matrix $A$. 
+
+\answer No, since $\phi$ is not one-to-one. To see this, observe that for 
+$A = 
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+1 & 0 \\
+1 & 0 \\
+\end{array} \right]$ and 
+$B = 
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+2 & 0 \\
+2 & 0 \\
+\end{array} \right]$, we have $A\neq B$ but $\phi(A)=0=\phi(B)$.
+
+\item[9.] $\inner{M_1(\R)}{\cdot}$ with $\inner{\R}{\cdot}$ where $\phi(A)$ is the determinant of matrix $A$. 
+
+\answer Yes. Since any $A\in M_1(\R)$ is a matrix of the form $A=\left[a\right]$ where $a\in\R$, then $\det(A)=a$. So clearly, $\phi$ is a bijection. Now we apply the definition of matrix multipliaction. For any $A,B\in M_1(\R)$, we have $$\det(AB)=\det([a][b])=\det[ab]=a\cdot b=\det([a])\cdot\det([b])=\det(A)\cdot\det(B)$$ and we are done. 
+
+\hspace*{-0.74cm}
+\textbf{Same instructions. Let $F=\{f:\R\to\R \, \, | \, \, f(0)=0, f\in C^\infty\}$.}
+
+\item[11.] $\inner{F}{+}$ with $\inner{F}{+}$ where $\phi(f)=f'$. 
+
+\answer Yes, though verifying this does require a  bit of thought. For any $f, g\in F$, we have that $(f+g)'=f'+g'$ by linearity. We can also see that $\phi$ is onto, since every element of $F$ is smooth and therefore integrable. Thus, for any $g\in F$, we have that $f(x)=\int_0^x g(t)dt$ is an element of $F$ such that $\phi(f)=g$. Now to see that $\phi$ is one-to-one, we point out that $f(x)=\int_0^x g(t)dt$ is the \emph{only} element of $F$ which maps to $g$ under $\phi$. Let $h:\R\to\R$ be a function such that $\phi(h)=g$. Then, since $f$ and $h$ have the same derivative, they differ only by a constant. Thus, if $h(0)=0$, then $h=f$; and otherwise, $h\not\in F$; and we are done. 
+
+\item[12.] $\inner{F}{+}$ with $\inner{\R}{+}$ where $\phi(f)=f'(0)$. 
+
+\answer Let $f,g\in F$. We can see that $\phi$ commutes with the operations, since $$\phi(f+g)=(f+g)'(0)=f'(0)+g'(0)=\phi(f)+\phi(g).$$ However, $\phi$ is not one-to-one, since given some $x\in\R$, there are many functions in $F$ whose derivative at zero is $x$. For example, consider $x=0$. The identically zero function and $x^2$ are both in $F$, and $\phi(0)=\phi(x^2)=0$. 
+
+\item[16.] The map $\phi:\Z\to\Z$ defined by $\phi(n)=n+1$ is a bijection. Give the definition of a binary operation $*$ on $\Z$ such that $\phi$ is an isomorphism of 
+	\begin{enumerate}[label=\alph*.]
+	\item $\inner{\Z}{+}$ with $\inner{\Z}{*}$
+	\item $\inner{\Z}{*}$ with $\inner{\Z}{+}$
+	\end{enumerate}
+In each case, give the identity for $*$ on $\Z$. 
+
+\answer \textbf{(a)} Let $*:(\Z\times\Z)\to\Z$ be defined as $$a*b=a+b-1$$ for all $a,b\in\Z$. To see that $\phi$ commutes with $+$ and $*$, let $n,m\in\Z.$ Now, 
+$$\phi(n+m)=n+m+1=(n+1)+(m+1)-1=\phi(n)*\phi(m).$$
+Note that the identity of $*$ is 1, since $n*1=1*n=n+1-1=n$. 
+
+\answer \textbf{(b)} Let $*:(\Z\times\Z)\to\Z$ be defined as $$a*b=a+b+1$$ for all $a,b\in\Z$. To see that $\phi$ commutes with $*$ and $+$, let $n,m\in\Z.$ Now, 
+$$\phi(n*m)=(n*m)+1=(n+m+1)+1=(n+1)+(m+1)=\phi(n)+\phi(m).$$
+Note that the identity of $*$ is $-1$, since $n*(-1)=(-1)*n=n+(-1)+1=n$. 
+
+\item[20.] The displayed condition for an isomorphism $\phi$ in Definition 1.2.7 is sometimes summarized by saying "$\phi$ must commute with the binary operation(s)".\footnote{I have been saying this in answers to previous problems, having already noticed this question.} Explain how that condition can be viewed in this manner. 
+
+\answer If we think of $*$ and $*'$ as functions and use function notation (as opposed to binary operation notation), this commutative relationship is more clear. Suppose $\inner{A}{*}$ and $\inner{B}{*'}$ are two isomorphic binary structures, and $\phi:A\to B$ is an isomorphism relating them. We would usually write that for all $a_1, a_2 \in A$, 
+$\phi(a_1*a_2)=\phi(a_1)*'\phi(a_2).$ However using function notation, we see the two functions commuting:
+$$\phi(*(a_1,a_2))=*'(\phi(a_1),\phi(a_2))$$
+
+\item[23.] An identity for a binary operation $*$ as described by Definition 1.2.12 is sometimes referred to as "a two-sided identity." Give analogous definitions for 
+
+\textbf{a.} a \emph{left identity} $e_L$ for $*$, \quad\quad and \quad\quad \textbf{b.} a \emph{right identity} $e_R$ for $*$. 
+
+\answer Let $*:(S\times S)\to S$ be binary operation on a set $S$. A \emph{left identity} for $*$ is some $e_L\in S$ such that for any $x\in S$, we have $e_L*x=x$. Similarly, a \emph{right identity} for $*$ is some $e_R\in S$ such that for any $x\in S$, we have $x*e_R=x$. \qedwhite
+
+(Problem continued) Theorem 1.2.13 shows that if a two-sided identity for $*$ exists, then it is unique. Is the same true for a one-sided identity you just defined? Prove or give a counterexample $\inner{S}{*}$ for a finite set $S$ and find the first place where the proof of Theorem 1.2.13 breaks down. 
+
+\answer The proof of Theorem 1.2.13 uses one identity as a left identity, and the other as a right identity. We can't do this here, and given two (WLOG) left identities $e$ and $e'$, we have no reason to believe that $e*e'=e'*e$, so while $e*e'=e'$ and $e'*e=e$, we cannot conclude that $e=e'$. Following is a table that give a counterexample: 
+\[\begin{array}{c!c|c|c|c}
+* & e & e'& a & b \\ \thickhline
+e & e & e'& a & b \\ \hline
+e'& e & e'& a & b \\ \hline
+a & e'& a & b & e \\ \hline
+b & a & b & e & e'\\ 
+\end{array}\]
+Note that $a*e=e'$ while $a*e'=a$, so since we cannot violate the substitution property of equality, we can see that $e\neq e'$. \qed
+
+\item[24.] Can a binary structure have a left identity and a right identity which are distinct from each other?
+
+\answer This is impossible. If there exist left and right identities $e$ and $e'$ respectively, we can apply the proof of Theorem 1.2.13: $e*e'=e$ (right identity), and $e*e'=e'$ (left identity). Thus $e=e'$ and there is one identity which is two-sided. \qed
+
+\item[25.] Prove that if $\phi:S\to S'$ is an isomorphism of $\inner{S}{*}$ with $\inner{S'}{*'}$, then the inverse $\inv{\phi}$ is an isomorphism of $\inner{S'}{*'}$ with $\inner{S}{*}$. 
+
+\begin{proof}
+Since $\phi$ is a bijection, then so is $\inv{\phi}$, so all that remains is to show that $\inv{\phi}$ commutes with $*'$ and $*$. For any $a',b'\in S'$, there exists $a,b\in S$ such that $\phi(a)=a'$ and $\phi(b)=b'$. Since $\phi$ is an isomorphism, we know that 
+$$\phi(a*b)=\phi(a)*'\phi(b)=a'*'b'.$$
+Now, 
+\[\begin{array}{rcl}
+\inv{\phi}(a'*'b')&=& \inv{\phi}(\phi(a*b))\\
+
+&=&a*b\\
+&=&\inv{\phi}(\phi(a))*\inv{\phi}(\phi(b))\\
+&=&\inv{\phi}(a')*\inv{\phi}(b')\\
+\end{array}\]
+and we are done.
+\end{proof}
+
+\hspace*{-0.74cm}
+\textbf{For 28 through 31, prove that the indicated property of the binary structure $\inner{S}{*}$ is indeed a structural property.}
+
+\item[28.] The operation $*$ is commutative. 
+\begin{proof}
+To prove that commutativity is a structural property of $\inner{S}{*}$, we will show that any binary structure which is isometric to $\inner{S}{*}$ must also have that property. Let $\phi$ be an isomorphism of $\inner{S}{*}$ with $\inner{S'}{*'}$, where $\inner{S'}{*'}$ is another structure. Since $*$ is commutative, we know that for all $a,b\in S$, $a*b=b*a$. Now we show that $*'$ is commutative as well. Let $c', d'\in S'$ be given. Then there exist unique $c,d\in S$ such that $\phi(c)=c', \phi(d)=d'$. Now, 
+\[\begin{array}{rcl}
+c'*'d'&=&\phi(c)*'\phi(d)\\
+&=&\phi(c*d)\\
+&=&\phi(d*c)\\
+&=&\phi(d)*'\phi(c)\\
+&=&d'*'c'\\
+\end{array}\]
+and we are done.
+\end{proof}
+
+\pagebreak
+\item[29.] The operation $*$ is associative. 
+\begin{proof}
+Suppose $*$ is asociative, and define $a,b,c\in S$ and $*$ and $a',b',c'\in S'$ and $\phi$ similarly as above. Then, 
+\[\begin{array}{rcl}
+(a'*'b')*'c'&=&(\phi(a)*'\phi(b))*'c'\\
+&=&\phi(a*b)*'\phi(c)\\
+&=&\phi([a*b]*c)\\
+&=&\phi(a*[b*c])\\
+&=&\phi(a)*'\phi(b*c)\\
+&=&a'*'(\phi(b)*'\phi(c))\\
+&=&a'*'(b'*'c')\\
+\end{array}\]
+\end{proof}
+
+\item[31.] There exists an element $b\in S$ such that $b*b=b$. 
+
+\begin{proof}
+Using notation as expected; if $b*b=b$, then $\phi(b*b)=\phi(b)$, so $\phi(b)*'\phi(b)=\phi(b)$, thus $b'*'b'=b'$. Therefore we have found an element $b'\in S'$ with the desired property, so we are done. 
+\end{proof}
+
+\item[32.] Let $H$ be the subset of $M_2(\R)$ consisting of all matrices of the form 
+$\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a & -b \\
+b & a \\
+\end{array} \right]$
+for $a,b\in\R$. 
+	\begin{enumerate}[label=\alph*.]
+	\item Show that $\inner{\C}{+}$ is isomorphic to $\inner{H}{+}.$
+	\item Show that $\inner{\C}{\cdot}$ is isomorphic to $\inner{H}{\cdot}.$
+	\end{enumerate}
+(We say that $H$ is a \emph{matrix representation} of the complex numbers $\C$.) 
+
+\begin{proof} 
+Let $\phi:\C\to H$ be defined as 
+$\phi(a+bi)=
+\arraycolsep=1.4pt\def\arraystretch{1}
+\left[\begin{array}{lr}
+a & -b \\
+b & a \\
+\end{array} \right].$ It should be clear that $\phi$ is one-to-one and onto, since this definition holds for all real numbers $a$ and $b$. Now we show that $\phi$ commutes with the operations in parts (a) and (b). 
+	\begin{enumerate}[label=\alph*.]
+	\item \[\def\arraystretch{2}
+	\begin{array}{rcl}
+	\phi\big((a+bi)+(c+di)\big)&=&\phi\big((a+c)+(b+d)i\big)\\
+	&=&
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		(a+c) & -(b+d) \\
+		(b+d) & (a+c) \\
+		\end{array} \right]
+		\\
+	&=&
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		a & -b \\
+		b & a  \\
+		\end{array} \right]
+		+
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		c & -d \\
+		d & c  \\
+		\end{array} \right]
+		\\
+	&=&\phi(a+bi)+\phi(c+di)\\
+	\end{array}\]\qedwhite
+	
+	\item \[\def\arraystretch{2}
+	\begin{array}{rcl}
+	\phi\big((a+bi)(c+di)\big)&=&\phi\big((ac-bd)+(ad+bc)i\big)\\
+	&=&
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		(ac-bd) & -(ad+bc) \\
+		(ad+bc) & (ac-bd) \\
+		\end{array} \right]
+		\\
+	&=&
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		a & -b \\
+		b & a  \\
+		\end{array} \right]
+		%
+		\arraycolsep=3pt\def\arraystretch{1}
+		\left[\begin{array}{lr}
+		c & -d \\
+		d & c  \\
+		\end{array} \right]
+		\\
+	&=&\phi(a+bi)\cdot\phi(c+di)\\
+	\end{array}\]
+	
+	\end{enumerate}
+\end{proof}
+
+\end{enumerate}
+\end{document}

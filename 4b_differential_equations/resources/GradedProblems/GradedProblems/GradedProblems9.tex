@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry,calc}
+\usepackage{amsmath,amssymb,hyperref}
+
+\def\quiztitle{Graded Problem 9}
+\def\quizsubtitle{Math 4B,\qquad Spring 2017,\qquad Dr. Paul}
+\pagestyle{empty}
+
+\geometry{body={6.5in, 9in}, left=1in, top=1in}
+\input{../../AxesFunction.tex}
+
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+%\hfill Student Name: \rule{2in}{.1pt}\\
+
+%\hfill Section Time (e.g. 8am): \rule{2in}{.1pt}\\
+
+\begin{center}
+{\Huge \quiztitle}
+\vskip.1in
+{\large \quizsubtitle}
+\end{center}
+
+
+
+ This problem is a modification of an earlier practice problem. The additions are \textbf{bolded}.
+
+Consider a simplified Social Accounting Matrix for the United States in which we consider the flow of money among three institutional agents of the economy: Households (H), Firms (F), and Government (G). Each of these agents possesses a certain amount of wealth, $h$, $f$, and $g$ respectively.  The agents pay each other at the following yearly rates:
+ 
+ \begin{itemize}
+  \item (H) pays (F) at a rate of 50\% (of $h$) per year (consumer spending).
+  \item (F) pays (H) at a rate of 50\% (of $f$) per year (wages).
+  \item (H) pays (G) at a rate of 5\% (of $h$) per year (taxes).
+  \item (F) pays (G) at a rate of 10\% (of $f$) per year (taxes).
+  \item (G) pays (H) at a rate of 100\% (of $g$) per year (government wages, entitlements, and bonds).
+  \item (G) pays (F) at a rate of 40\% (of $g$) per year (government contracts).
+  \item \textbf{Additionally,} All three agents enjoy a 3\% interest rate on any wealth they posses (i.e., each year $h$ grows by 3\% of $h$ per year, $f$ grows at a rate of 3\% of $f$ per year, and $g$ grows at a rate of 3\% of $g$ per year)
+ \end{itemize}
+ 
+ \textbf{Additionally,} we consider wealth leaving the system as follows:
+ \begin{itemize}
+  \item (G) pays interest $0.4$ trillion dollars on debt to foreign governents each year.
+  \item (F) pays $0.6$ trillion dollars to foreign entities in net imports.
+ \end{itemize}
+ 
+ \hrule
+~ \\~\\
+ Answer the following.
+ \be
+  \item Use the data above to write down a system of differential equations for $h$, $f$, and $g$.
+  \item Are there any equilibria? Are they stable?
+  \item In the U.S., we currently have $h=82$, $f=35$, and $g=8$ (in trillions). Which of the three should we forecast to increase and which should we forecase to decrease?
+  \item Solve the initial value problem using the system of ODEs from part (a) and the initial data from part (b). (You should use a calculator for computing eigenvalues.)
+ \ee
+
+
+
+
+
+\end{document}

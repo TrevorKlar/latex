@@ -1,0 +1,160 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xfrac}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Math 360 \linebreak
+Section 2.4 Exercises}
+\author{Trevor Klar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\instructions}[1]{\hspace*{-0.6cm}\textbf{#1}}
+
+\begin{document}
+
+%\maketitle
+
+\begin{enumerate}
+
+\item[3.] Recall that $GL_2(\R)$ is the group of invertible $2\times 2$ matrices, $SL_2(\R)$ is its subgroup of all invertible $2\times 2$ matrices with determinant equal to one.
+	\begin{enumerate}
+	\item Let $H=\left\lbrace
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	a & b \\
+	0 & c \\
+	\end{array} \right]
+	: a,b,c \in \R, a,c,\neq 0
+	\right\rbrace.$
+	\textbf{Prove} $H$ is a subgroup of $GL_2(\R)$. 
+	\begin{proof}
+	We must show that (1) every element of $H$ is in $GL_2(\R)$, and (2) $H$ is closed under matrix multiplication. To see that (1) holds, observe that for any 
+	$h=\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	a & b \\
+	0 & c \\
+	\end{array} \right]
+	\in H$, we have that $\det(h)=ac$, and since $h\in H$, then $a,c\neq 0$, so $ac\neq 0$. Thus $h$ is invertible, and $h\in GL_2(\R)$. Now we will prove (2). Let $h_1, h_2\in H$, with 
+	\[h_1=\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	a_1 & b_1 \\
+	0 & c_1 \\
+	\end{array} \right]
+	, \text{ and }
+	h_2=\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	a_2 & b_2 \\
+	0 & c_2 \\
+	\end{array} \right].\]
+	Then,
+	\[\def\arraystretch{2}\begin{array}{rcl}
+	h_1h_2 &=& 
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	a_1 & b_1 \\
+	0 & c_1 \\
+	\end{array} \right]
+	\left[\begin{array}{lr}
+	a_2 & b_2 \\
+	0 & c_2 \\
+	\end{array} \right]
+	\\
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	&=&
+	\arraycolsep=3.4pt\def\arraystretch{1}
+	\left[\begin{array}{cc}
+	a_1a_2 & (a_1b_2+b_1c_2) \\
+	0 & c_1c_2 \\
+	\end{array} \right]\\
+	%	
+	\end{array} \]
+	and, since we know that $a_1,a_2,c_1,c_2\neq0$, then $a_1a_2,c_1c_2\neq0$ as well. Thus, $h_1h_2\in H$, and $H$ is closed. 
+	\end{proof}		
+	
+	\item Consider the following two matrices in $GL_2(\R)$: 
+	$x=
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	4 & 0 \\
+	0 & 2 \\
+	\end{array} \right],
+	y=
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	4 & 2 \\
+	1 & 1 \\
+	\end{array} \right].$
+	
+	Explain why $SL_2(\R)x=SL_2(\R)y$ (that is, why are these two right cosets
+equal? Think of the equivalence relation).
+	
+	\begin{proof}
+	\textbf{(Or how I expected the proof to go)} 
+	
+	It suffices to show that $x\sim_{{}_R} y$, because since equivalence relations are transitive and symmetric, any matrix which is in one coset will also be in the other. To see that $x\sim_{{}_R} y$, observe that 
+	\[\def\arraystretch{2}\begin{array}{rcl}
+	x\inv{y}&=&
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	4 & 0 \\
+	0 & 2 \\
+	\end{array} \right]
+	\frac{1}{4-2}
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	1 & -2 \\
+	-1 & 4 \\
+	\end{array} \right]
+	\\
+	&=&
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	4 & 0 \\
+	0 & 2 \\
+	\end{array} \right]
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	\sfrac{1}{2} & -1 \\
+	-\sfrac{1}{2} & 2 \\
+	\end{array} \right]
+	\\
+	&=&
+	\arraycolsep=2.4pt\def\arraystretch{1}
+	\left[\begin{array}{lr}
+	2 & -4 \\
+	-1 & 4 \\
+	\end{array} \right]
+	\end{array}\]
+	and $\det(x\inv{y})=1$, so $x\inv{y}\in SL_2(\R)$. \textbf{EXCEPT:} $\det(x\inv{y})$ is not 1, it's 4. So is this my mistake? Or should the numbers in the problem be slightly different?
+	
+	\end{proof}
+	\end{enumerate}
+
+%(b)  ��! R : � = 4 0
+
+%0 2 , � = 4 2
+%1 1 .
+%Explain why ��! R � = ��! R � (that is, why are these two right cosets
+%equal? Think of the equivalence relation)
+%(I don’t mind if you have to look up the formula for the inverse of a two by two
+%invertible matrix – but it may be on the final)
+
+\end{enumerate}
+
+\end{document}

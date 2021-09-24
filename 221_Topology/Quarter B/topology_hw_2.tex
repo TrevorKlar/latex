@@ -1,0 +1,177 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{fancyhdr,fancybox}
+\usepackage{wrapfig}
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\input{tsktheoremstyles}
+
+%%
+%% Page set-up:
+%%
+\pagestyle{empty}
+\lhead{\textsc{221 - Topology} \\ } %=================UPDATE THIS=================%
+\rhead{\textsc{McCammond, Winter 2019} \\ Trevor Klar}
+%\chead{\Large\textbf{A New Integration Technique \\ }}
+\renewcommand{\headrulewidth}{0pt}
+%
+\renewcommand{\footrulewidth}{0pt}
+%\lfoot{
+%Office: \quad \quad \, M 2-3 \, \, SH 6431x \\
+%Math Lab: \, W 12-2 \, SH 1607
+%}
+%\rfoot{trevorklar@math.ucsb.edu}
+
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{center}
+{\Large Homework 2}%=================UPDATE THIS=================%
+\end{center}
+
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item For $n > 2$, construct an $n$ room analog of the house with two rooms.
+
+\answer We will call this space the office building with $n$ floors, denoted $O$. Begin with an $(n+1)\times 2 \times n$ rectangular prism, divided into $n$ floors. In the interior of each floor is an elevator shaft, providing access from beneath the building, one shaft for every floor (black, see figure). There is also a wall spanning from the elevator shaft column to the exterior of the building (pink, see figure). 
+\jpg{width=0.58\textwidth}{hw2-p1-1}
+Every floor except the top floor has some inaccessible floorspace which is occupied by the elevator shafts which lead to upper floors. 
+\jpg{width=0.48\textwidth}{hw2-p1-2}
+This space is contractible for the same reasons that the house with two rooms is; a ball of clay can be shaped into an $\epsilon$-neighborhood of $O$ by pushing a hand into the ball to for the shaft which leads to floor $n$, and hollowing out the floor. Then a hand can be pushed into a place next to the first shaft, leading up to the $(n-1)$-th floor, and hollowing out the floor without disturbing the walls of the $n$-th shaft. This continues all the way to the 1st floor. \qed
+
+\item Show that a retract of a contractible space is contractible.
+\begin{proof}
+Let $A\subset X$ with $X$ contractible, and $g$ a retraction $X\to A$. Since $X$ is contractible, There exists a homotopy $F:X\times I \to X$ so that $f_0=\id_X$ and $f_1(x)$ is constantly $x_0\in X$ for all $x\in X$. Composing $g$ with $F$ gives a homotopy $g\circ F:X\times I\to A$ where $gf_1(x)\equiv g(x_0)\in A$ for all $x\in X$, so $A$ is contractible. 
+\end{proof}
+
+\item Show that (i) a space $X$ is contractible iff every map $f: X\to Y$ , for arbitrary $Y$ , is nullhomotopic. Similarly, show (ii) $X$ is contractible iff every map $f : Y\to X$ is nullhomotopic.
+\begin{proof}
+The forward direction of (i) follows immediately by the same proof as problem (9) if $g:X\to Y$, and (ii) follows by composing $F\circ g$ with $g:Y\to X$. 
+
+For the converse direction, let $Y=X$. Then $\id_X$ satifies the hypothesis for both (i) and (i), so is nullhomotopic and we're done.
+\end{proof}
+
+\item Show that $f : X \to Y$ is a homotopy equivalence if there exist maps $g, h : Y\to X$ such that $f g \simeq \id$  and $hf \simeq \id$ . More generally, show that $f$ is a homotopy equivalence if $f g$ and $hf$ are homotopy equivalences.
+
+\begin{proof}
+If $fg$ and $hf$ are homotopy equivalences, then there exist functions $j$ and $k$ such that $(fg)j\simeq\id$ and $k(hf)\simeq\id$. Then $f$ is a homotopy equivalence, since 
+\begin{align*}
+(khfgj)f&= kh(fgj)f \\
+&= khf \\
+&= \id \\
+\end{align*}
+and 
+\begin{align*}
+f(khfgj)&= f(khf)gj \\
+&= fgj \\
+&= \id. \\
+\end{align*}
+This also prove the first part of this problem since we can  let $j=\id$ and $ k=\id$.\footnote{This reminds me \emph{a lot} of group theory. If you don't pay too close attention to the domains, this feels like a group of functions with operation $\circ$. It's not, because you have functions from $Y\to X$, $X\to Y$, $X\to X$, and $Y\to Y$ and they can only be composed in an order that makes sense.}
+\end{proof}
+
+\pagebreak
+\item (i) Show that a homotopy equivalence $f : X\to Y$ induces a bijection between the set
+of path-components of $X$ and the set of path-components of $Y$, and that $f$ restricts to
+a homotopy equivalence from each path-component of $X$ to the corresponding path component of $Y$ . (ii) Prove also the corresponding statements with components instead
+of path-components. (iii) Deduce that if the components of a space $X$ coincide with its
+path-components, then the same holds for any space $Y$ homotopy equivalent to $X$ .
+
+\begin{proof}(i) 
+We write $x_1\sim x_2$ if there is a path from $x_1$ to $x_2$, and denote the set of all points path-connected to $x$ as $[x]$. We claim that $\Phi([x])=[f(x)]$ is a well-defined bijection. It is well-defined since if $\gamma(t)$ is a path between $x_1$ and $x_2$, then $f(\gamma(t)) $ is a path between $f(x_1)$ and $f(x_2)$, since the continuous image of a path-connected set is path connected. Thus $x_2\sim x_2\implies f(x_1)\sim f(x_2)$. 
+
+To see that $\Phi$ is injective, if $\eta$ is a path from $f(x_1)$ to $f(x_2)$, then $g(\eta)$ is a path from $g f(x_1)$ to $g f(x_2)$. Since $gf\simeq\id$, then the homotopy $F(x,t)$ between $gf$ and $\id$ gives curves from $F(x_1,0)=gf(x_1)$ to $F(x_1,1)=x_1$ and from $F(x_2,0)=gf(x_2)$ to $F(x_2,1)=x_2$. Concatenating the curves $F(x_1, 1-t)$, $\eta(t)$, and $F(x_2, t)$ gives a path from $x_1$ to $x_2$. Thus $f(x_1)\sim f(x_2) \implies x_2\sim x_2$. 
+
+To see that $\Phi$ is surjective, observe that for any $y\in Y$, there exists $g(y)\in X$ such that $fg(y)\sim y$, so $\Phi([g(y)])=[y]$.  
+
+For each path-component $X_\alpha$ and corresponding path-component $Y_\alpha$, $f|_{X_\alpha}$ and $g|_{Y_\alpha}$ form a homotopy equivalence between $X_\alpha$ and $Y_\alpha$. We have shown that $f(X_\alpha)\subset Y_\alpha$ and $g(Y_\alpha)\subset X_\alpha$, so $f|_{X_\alpha}\circ g|_{Y_\alpha}=fg|_{Y_\alpha}$. To see that $fg|_{Y_\alpha}\simeq\id_{Y_\alpha}$, use the same homotopy which relates $fg$ and $\id_Y$. $F(Y_\alpha\times I)$ is path-connected, so $F(Y_\alpha\times I)\subset Y_\alpha$, so $F|_{Y_\alpha\times I}$ is a homotopy between $fg|_{Y_\alpha}$ and $\id_{Y_\alpha}$. A similar argument shows that $g|_{Y_\alpha}\circ f|_{X_\alpha}\simeq\id_{X_\alpha}$. 
+\qedwhite \let\qed\relax
+\end{proof}
+
+\begin{proof}(ii)
+Using the same notation as in $(i)$, $\Phi$ is well-defined for essentially the same reason as it was in $(i)$; the continuous image of a connected set is connected. Suppose $x_1\sim x_2$, then $x_1,x_2\in[x_1]$, so $f(x_1),f(x_2)\in f([x_1])$ which is connected, so $f(x_1)\sim f(x_2)$. 
+
+To see $\Phi$ is injective, suppose $f(x_1)\sim f(x_2)$. Then the image $g[f(x_1)]$ is connected, so $gf(x_1)\sim gf(x_2)$. Now $gf\simeq\id$, so there exists a homotopy $F$ between $gf$ and $\id$. Since $\{x_1\}\times I$ and $\{x_2\}\times I$ are connected in the product topology, then their images $F(\{x_i\}\times I)$ are connected, so $x_1 \sim gf(x_1)$ and $gf(x_2)\sim x_2$, thus by transitivity $x_1\sim x_2$. 
+
+To see that $\Phi$ is surjective, observe that for any $y\in Y$, there exists $g(y)\in X$ such that $fg(y)\sim y$, so $\Phi([g(y)])=[y]$.  
+
+The same argument from (i) also holds for connected components, so $f|_{X_\alpha}$ and $g|_{Y_\alpha}$ form a homotopy equivalence between $X_\alpha$ and $Y_\alpha$ for each pair of components $X_\alpha$ and $Y_\alpha$. \qedwhite \let\qed\relax
+\end{proof}
+
+\begin{proof}(iii) 
+If $X_\alpha=\tilde{X}_\alpha$ for each connected component $X_\alpha$ and path-component $\tilde{X}_\alpha$, then $${Y_\alpha = \Phi(X_\alpha) = \Phi(\tilde{X}_\alpha) = \tilde{Y}_\alpha},$$
+where we are making a mild abuse of notation with $\Phi$, but the meaning should be clear.
+\end{proof}
+
+\setcounter{enumi}{13}
+\item Given positive integers $v , e,$ and $f$ satisfying $v - e + f = 2$, construct a cell
+structure on $S^2$ having $v$ 0-cells, $e$ 1-cells, and $f$ 2-cells.
+
+\begin{proof}
+Begin by attaching $\min(v,e)$ of the edges and vertices together to form a polygon.\footnote{A 1-gon is an edge with both ends attached to the same point.}
+
+\textsc{Case I:} If there are no edges or vertices left over, then there are 2 faces left. Attach each of their boundaries to the polygon, and we are done. 
+
+\textsc{Case II:} If there are any vertices left, then there is exactly 1 vertex and 1 face left. Attach the polygon to the interior of the face, and attach the boundary of the face to the remaining vertex. 
+
+\textsc{Case III:} Otherwise, there are $e'$ edges remaining and $e'+2$ faces remaining. Choose two distinct points on the polygon. Call one the north pole and the other the south pole, and attach the endpoints of all the remaining edges to them, so that there are $e'+2$ meridian lines connecting the poles. Then attach the faces to span every pair of adjacent meridians.
+\jpg{width=0.8\linewidth}{hw2-p14-2}
+\end{proof}
+
+\pagebreak
+\setcounter{enumi}{16}
+\item 
+	\begin{enumerate}[label=(\alph*)]
+	\item  Show that the mapping cylinder of every map $f:S^1\to S^1$ is a CW complex.
+	\begin{proof}
+	$S^1\times I$ is the product of two CW complexes, and the mapping cylinder 
+	is \linebreak 
+	$(S^1\times I)\sqcup_{\tilde{f}} S^1$ 
+	(where $\tilde{f}:S^1\times\{1\}\to S^1$ is given by $\tilde{f}(x,1)=f(x)$), so it is a CW complex.
+	\end{proof}
+	
+	\item  Construct a 2-dimensional CW complex that contains both an annulus $S^1\times I$ and a M\"{o}bius band as deformation retracts. 
+	\begin{proof}
+	Map a circle to the central circler of a M\"obius loop. Then the mapping cylinder deformation retracts to the M\"obius loop by retracting the cylinder, and it retracts to the annulus by retracting the loop to its central circle.
+	\jpg{width=0.33\textwidth}{hw2-p17}
+	 
+	\end{proof}
+	\end{enumerate}
+
+
+\end{enumerate}
+
+\vfill
+
+Collaborators:
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item 
+
+\item Zach Wagner
+
+\item
+
+\item
+
+\item Zach Wagner
+
+\setcounter{enumi}{13}
+\item 
+
+\setcounter{enumi}{16}
+\item Michael Zshornack
+\end{enumerate}
+\end{document}
+
+
+

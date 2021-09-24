@@ -1,0 +1,72 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=.75in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+%\graphicspath{../images}	  %%where to look for images
+
+\input{../tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+\title{Math 450b \linebreak
+Homework 12}
+\author{Trevor Klar}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Let $f(x,y)=y^2$, and let $C$ denote the upper half semi-circle of the unit circle in $\R^2$. 
+\begin{itemize}
+\item[$\phantom{\bullet}$] Professor Doofus computes: $\int_C f=\int_C y^2=\int_{-1}^1(\sqrt{1-x^2})^2 dx = \frac{4}{5}.$
+\item[$\phantom{\bullet}$] Professor Egregious computes: $\int_C f=\int_C y^2=\int_0^x(\sin t)^2 dt=\frac{x}{2}$
+\end{itemize}
+Compute the path integral correctly, and decide if either of them got it right by accident. 
+
+\textbf{Answer:} Let $\vecb{c}:(0,\pi)\to \R^2$ be defined by $\vecb{c}(t)=(\cos t, \sin t)$. Then 
+$$\int_C f=\int_C y^2=\int_0^\pi \sin^2 \norm{\vecb{c}'(t)}dt,$$
+so we compute $\norm{\vecb{c}'(t)}$. 
+\[\begin{array}{rcl}
+\vecb{c}(t)&=&(\cos t, \sin t)\\
+\vecb{c}'(t)&=&(-\sin t, \cos t)\\
+\norm{\vecb{c}'(t)}&=&\norm{(-\sin t, \cos t)}\\
+&=&\sqrt{\sin^2 t+\cos^2 t}\\
+&=&1
+\end{array}\]
+Thus, $$\int_C f=\int_0^\pi \sin^2 dt=\int_0^\pi \frac{1}{2}(1-\cos(2t)) dt= \left[\frac{1}{2}(t-\frac{1}{2}\sin(2t))\right]_0^\pi=\frac{\pi}{2}.$$
+\qed
+
+\begin{comment}
+\setcounter{enumi}{3}
+\item Let $\vecb{c}$ be a $C^1$ path. 
+	\begin{enumerate}[label=(\alph*)]
+	\item Suppose $\vecb{F}$ is orthogonal to $\vecb{c}'(t)$ at $\vecb{c}(t)$ for all $t$. Show that $\int_{\vecb{c}}\vecb{F}\cdot d\vecb{s}=0.$
+	\end{enumerate}
+\end{comment}
+
+\end{enumerate}
+\end{document}

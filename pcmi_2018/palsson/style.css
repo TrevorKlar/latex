@@ -1,0 +1,244 @@
+/* @group Reset */
+
+body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, del, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, thead, tr, th, td, blockquote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+a img {
+	border: none;
+}
+
+/* @end */
+
+
+
+/* @group Layout */
+
+body, html {
+	background: #fff;
+	font: 14px Verdana, Geneva, Arial, sans-serif;
+	color: #000000;
+	height: 100%;
+	line-height: 1.5;
+}
+
+#container {
+	min-height: 100%;
+	height: auto !important;
+	width: 800px;
+	height: 100%;
+	margin: 0 auto;
+	overflow-x: hidden;
+}
+
+#header {
+	padding-top: 10px;
+}
+
+#content {
+	float: left;
+	width: 800px;
+	margin: 30px 0 0;
+	padding: 5px 0 0;
+}
+
+#contact {
+	overflow: hidden;
+	padding-bottom: 25px;
+	width: 600px;
+}
+
+#publications {
+	padding-bottom: 25px;
+}
+
+#talks {
+	padding-bottom: 25px;
+}
+
+#current-course {
+	padding-top: 25px;
+}
+
+#office-hours {
+	padding-top: 0px;
+}
+
+#virginiatech {
+	padding-bottom: 25px;
+}
+
+#williams {
+	padding-bottom: 25px;
+}
+
+#rochester {
+	padding-bottom: 25px;
+}
+
+#cornell {
+	padding-bottom: 25px;
+}
+
+#iceland {
+	padding-bottom: 25px;
+}
+
+/* @end */
+
+
+
+/* @group Typography */
+
+/* @group Type */
+
+p {
+	color: #000000;
+	font: 14px/20px Verdana, Geneva, Arial, sans-serif;
+	padding-bottom: 5px;
+	padding-top: 3px;
+	margin: 10px;
+	margin-bottom:18px;
+}
+
+p SUP {
+	line-height: 0;
+}
+
+h2 + p {
+	padding-bottom: 25px;
+	padding-top: 0;
+}
+
+
+
+/* @end */
+
+
+/* @group Headings */
+
+h1, h2 {
+	color: #000000;
+	font: normal normal 100% "Lucida Grande", Lucida, Verdana, sans-serif;
+	padding: 5px 0 10px;
+}
+
+h1#eap {
+	padding: 0;
+	font: normal normal 100% "Lucida Grande", Lucida, Verdana, sans-serif;
+	font-size: 36px;
+}
+
+
+h1 {
+	font-size: 30px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+
+/* @end */
+
+
+/* @group Lists */
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	padding: 2px 0;
+	margin-left: 10px;
+}
+
+ol li {
+	padding: 2px 0;
+	margin-left: 30px;
+}
+
+li {
+	margin-left: 20px;
+	padding-bottom: 5px;
+}
+
+ul#navigation {
+	float:left;
+	padding:0;
+	margin:1px 0 0 0;
+	font: normal normal 100% "Lucida Grande", Lucida, Verdana, sans-serif;
+	color:#666;
+	font-size: 18px;
+	}
+
+ul#navigation li {
+	display:inline;
+	margin-left: 0;
+	}
+
+ul#navigation li a {
+	color:#666;
+	text-decoration:none;
+	}
+
+ul#navigation li a.selected {
+	color:#000;
+	border-bottom:1px dotted #ccc;
+	}
+
+ul#navigation li a:hover {color:#A92C32}
+
+ul.nested {
+	list-style: disc;
+	margin-bottom: 20px;
+}
+
+ul.nested li {
+	padding: 2px 0;
+	margin-left: 20px;
+}
+
+
+/* @end */
+
+/* @group Links */
+
+a:link {
+	color: #396579;
+}
+
+a:visited {
+	color: #515776;
+
+}
+
+a:hover, a:active {
+	color: #33394C;
+}
+
+/* @end */
+
+/* @end */
+
+
+
+/* @group Images */
+
+
+img#profile {
+	padding: 3px;
+	border: 1px solid #CCCCCC;
+	background-color: #FFFFFF;
+	float: right;
+	margin-right: 15px;
+}
+
+/* @end */

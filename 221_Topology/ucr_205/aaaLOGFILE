@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This is the record of changes to files in
+the directory math.ucr.edu/~res/math144
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
++++++++++++++++++++++++++++
+FRIDAY, SEPTEMBER 30, 2005
++++++++++++++++++++++++++++
+
+At the beginning of the quarter the directory
+contained the following files:
+
+aaaLOGFILE
+
+The file that is now open and being read.
+
+aaaREADME
+
+Statement that files are only to be used for
+UCR purposes.
+
+braintest.pdf
+braintest.ps
+
+Amusement file to point out the need for looking
+carefully at questions before impulsively going
+in the wrong direction.
+
+NOTE.  These two files yield the same output but they
+are in different formats that are indicated by the
+extensions ps and pdf.  The pdf version was created from
+the ps version.  For various reasons the ps version might
+have better quality in a few cases.
+
+categories.pdf
+categories.ps
+
+Supplementary background material.
+
+concat.pdf
+concat.ps
+
+Illustration to accompany the notes.
+
+cubicroots.pdf
+cubicroots.ps
+
+Supplementary material.
+
+fall03/
+
+This is a directory with files from an older version of
+the course.  None of these files will be needed for the
+current course.
+
+foundations1.pdf
+foundations1.ps
+
+Background material.
+
+foundations2.pdf
+foundations2.ps
+
+Background material.
+
+general205Af05.pdf
+general205Af05.ps
+
+General announcements for the course
+
+gentopcontents2005.dvi
+gentopcontents2005.pdf
+gentopcontents2005.ps
+
+Table of contents for the lecture notes.
+
+gentopexercises2005.dvi
+gentopexercises2005.pdf
+gentopexercises2005.ps
+
+"Homework" exercises for the course.
+
+gentopnotes2005.dvi
+gentopnotes2005.pdf
+gentopnotes2005.ps
+
+Lecture notes for the course.
+
+gradescaling.dvi
+gradescaling.pdf
+gradescaling.ps
+
+Grading policies.
+
+Lambertfcn.dvi
+Lambertfcn.pdf
+Lambertfcn.ps
+
+An example of a transcendental function.
+
+metgeom.dvi
+metgeom.pdf
+metgeom.ps
+
+Supplementary material.
+
+nicecurves.pdf
+nicecurves.ps
+
+More supplementary material.
+
+numberexpansions.doc
+numberexpansions.pdf
+numberexpansions.ps
+numberexpressions.doc
+numberexpressions.pdf
+numberexpressions.ps
+
+More background material.
+
+ordinals.pdf
+ordinals.ps
+
+Still more background material.
+
+polya.pdf
+polya.ps
+
+Hints for solving problems taken from
+a classic book on the subject.
+
+proper.pdf
+proper.ps
+
+Supplementary material.
+
+radproj.pdf
+radproj.ps
+
+Illustrations to accompany the notes.
+
+realnumbers.pdf
+realnumbers.ps
+
+Background material.
+
+smirnov.pdf
+smirnov.ps
+
+Supplementary material.
+
+solutions1.dvi
+solutions1.pdf
+solutions1.ps
+solutions2.dvi
+solutions2.pdf
+solutions2.ps
+solutions3.dvi
+solutions3.pdf
+solutions3.ps
+solutions4.dvi
+solutions4.pdf
+solutions4.ps
+solutions5.dvi
+solutions5.pdf
+solutions5.ps
+solutions6.dvi
+solutions6.pdf
+solutions6.ps
+
+Solutions for the homework exercises.
+
+stereopic1.pdf
+stereopic1.ps
+stereopic2.pdf
+stereopic2.ps
+swisscheese.pdf
+swisscheese.ps
+tubelemma.pdf
+tubelemma.ps
+
+Illustrations to accompany the notes.
+
+uniqreals.pdf
+uniqreals.ps
+
+Supplementary material.
+
++++++++++++++++++++++++++++
+TUESDAY, OCTOBER 11, 2005
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aupdate1.dvi
+math205Aupdate1.pdf
+math205Aupdate1.ps
+
+Announcement that the first midterm
+examination has been rescheduled.
+
++++++++++++++++++++++++++++
+WEDNDAY, OCTOBER 12, 2005
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aupdate2.pdf
+math205Aupdate2.ps
+
+Clarifications and details for two
+points in Section II.1 of the notes.
+
+++++++++++++++++++++++++++++++
+WEDNESDAY, OCTOBER 19, 2005
+++++++++++++++++++++++++++++++
+
+The following files were added:
+
+dpmetrics.dvi
+dpmetrics.pdf
+dpmetrics.ps
+
+Description of the p-metrics on a product 
+of metric spaces.
+
++++++++++++++++++++++++++++
+THURSDAY, NOVEMBER 3, 2005 
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aexam1key.pdf
+math205Aexam1key.ps
+
+Answer key for the first midterm examination.
+
++++++++++++++++++++++++++++ 
+MONDAY, NOVEMBER 28, 2005 
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aupdate3.dvi
+math205Aupdate3.pdf
+math205Aupdate3.ps
+
+Suggestions for study when preparing for the second examination
+
++++++++++++++++++++++++++++
+FRIDAY, DECEMBER 2, 2005 
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aexam2key.pdf
+math205Aexam2key.ps
+
+Answer key for the second midterm examination.
+
+
++++++++++++++++++++++++++++
+THURSDAY, DECEMBER 8, 2005 
++++++++++++++++++++++++++++
+
+The following files were added:
+
+math205Aupdate4.dvi
+math205Aupdate4.pdf
+math205Aupdate4.ps
+
+References for the topological structure on 
+the projective compactifications of Euclidean
+and complex unitary space, and suggestions for 
+study when preparing for the final examination
+
+topschroederbernstein.dvi
+topschroederbernstein.pdf
+topschroederbernstein.ps
+
+A note on one point arising in the previous
+document; namely, the fact that the classical
+Schroeder-Bernstein Theorem in set theory
+does not have a generaliztions to topological
+spaces.
+
