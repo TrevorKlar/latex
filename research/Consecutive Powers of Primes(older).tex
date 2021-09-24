@@ -1,0 +1,44 @@
+\documentclass[letterpaper]{article}
+%\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+%\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+\input{tskpreamble}
+
+\pgfplotsset{compat=1.13}
+
+\title{Some Problems About Consecutive Products of Primes}
+\author{Trevor Klar \\ Eli Moore}
+ 
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Suppose $p$ and $q$ are both prime numbers with $p < q$. Consider all integers of the form $p^\alpha q^\beta$ with $\alpha, \beta \in \N$ and let $\{a_n\}$ be the sequence of these integers in increasing order.
+ 
+\begin{lemma}
+    If $a_k = q^n$, then $a_{k+1} \neq q^{n+1}$.
+\end{lemma}
+\begin{proof} (By Contradiction) \\Suppose that $a_k = q^n$ and $a_{k+1} = q^{n+1}$.\\
+$1 < p < q \implies q^n < pq^n < q^{n+1}$ which is a contradiction as $pq^n$ must be a term between $a_k$ and $a_{k+1}$
+\end{proof}
+\begin{lemma}
+    There exist at most finitely many $a_k = p^n$ such that $a_{k+1} = p^{n+1}$.
+\end{lemma}
+\begin{proof} 
+    Consider the smallest $n \in \N$ such that $p^n < q < p^{n+1}$. Note that $a_n$ begins as $\{1,p, p^2, ..., p^n, q, p^{n+1},...\}$.
+    
+    Claim: $\forall m \in \N,$ $p^{n+m} < p^mq < p^{n+m+1}$. Let T(m) denote this statement. We now prove this claim by induction.\\
+    T(1) holds as $p^n < q < p^{n+1} \implies p^{n+1} < pq < p^{n+2}$.\\
+    We now assume T(m) and show T(m+1) holds.\\
+    $p^{n+m} < p^mq < p^{n+m+1} \implies p^{n+m+1} < p^{m+1}q < p^{n+m+2}$.\\
+    As such, every integer $p^{n+m} > p^n$ is followed by the term $p^mq$ before $p^{n+m+1}$ in the sequence $a_n$. Thus, $a_k = p^n$ and $a_{k+1} = p^{n+1}$ can only occur at the beginning of the sequence (finitely many times) as shown above.
+\end{proof}
+\end{document}

@@ -1,0 +1,739 @@
+
+%\RequirePackage{snapshot}
+
+%\documentclass[letterpaper]{article}
+\documentclass[a5paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+%%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=1.75cm]{geometry}
+\usepackage[a5paper,top=1cm,bottom=1cm,left=1cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{xfrac}
+
+
+\input{tskpreamble_nothms} %find me at /home/trevor/texmf/tex/latex/tskpreamble_nothms.tex
+\newcommand{\curl}{\text{curl}}
+
+
+\graphicspath{{/home/trevor/Documents/latex/images/}{/home/trevor/Documents/latex/images/adv_calc/}}
+
+%===============================================
+%===============Theorem Styles==================
+%===============================================
+
+%================Default Style==================
+%\theoremstyle{plain}% is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%===============Highlight Style=================
+\usepackage{xcolor}
+\usepackage{mdframed}
+%\newtheorem{mdtheorem}{Theorem}
+\newenvironment{theorembold}%
+  {\begin{mdframed}[backgroundcolor=gray!20]\begin{mdtheorem}}%
+  {\end{mdtheorem}\end{mdframed}}
+  
+%\begin{comment}
+%==============Definition Style=================
+\theoremstyle{definition}% adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{section} %This sets the numbering system for theorems to number them down to the {argument} level. I have it set to number down to the {section} level right now.
+\newtheorem*{theorem*}{Theorem} %Theorem with no numbering
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problemstatement}[theorem]{Problem Statement}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{romantheorem*}{Theorem} %Theorem with no numbering
+\newtheorem{exercise}{Exercise}
+\numberwithin{exercise}{section}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+%================Remark Style===================
+\theoremstyle{remark}% is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{claim}[theorem]{Claim}  %%use this if you ever want claims to be numbered
+\newtheorem*{claim}{Claim}
+%\end{comment}
+
+%===============================================
+%===========Document-specific commands==========
+%===============================================
+%\newcommand{\T}{\mathcal{T}}
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\S}{\mathcal{S}}
+
+%These commands are now in tskpreamble_nothms.tex, but are left as a comment here for reference. 
+%\newcommand{\arbcup}[1]{\bigcup\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcap}[1]{\bigcap\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\arbcoll}[1]{\{#1_\alpha\}_{\alpha\in\Gamma}}
+%\newcommand{\arbprod}[1]{\prod\limits_{\alpha\in\Gamma}#1_\alpha}
+%\newcommand{\finitecoll}[1]{#1_1, \ldots, #1_n}
+%\newcommand{\finitefuncts}[2]{#1(#2_1), \ldots, #1(#2_n)}
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+
+%================Start of document==============
+
+\title{Differential Equations Math 351 - Shen, 2018}
+\author{Trevor Klar}
+\makeindex
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\addcontentsline{toc}{section}{Introduction}
+
+%\begin{mdframed}[backgroundcolor=blue!20]
+%If you would like to copy and paste some of this \LaTeX \, for your own notes, you can download the .tex file \href{https://goo.gl/GYnmeX}{here}. (Warning, this file won't compile as-is, it needs a bunch of other files which are stored on my computer.)
+%\end{mdframed}
+
+\begin{highlight}
+Note: If you find any typos in these notes, please let me know at \\ \href{mailto:trevor.klar.834@my.csun.edu}{trevor.klar.834@my.csun.edu}. If you could include the page number, that would be helpful. 
+
+Note to the reader: I have highlighted topics which seem important to me, but the emphasis is mine, not the Professor's. Bear that in mind when studying. 
+\end{highlight}
+
+\pagebreak
+\section{Introduction}
+
+\subsection{What is a Differential Equation?}
+
+Suppose we have some falling object, with velocity $v$. 
+
+\mbox{}
+
+\noindent Newton's law tells us that $$F=ma,$$ where $a$ is the acceleration, given by $$ a=\frac{dv}{dt}.$$ Now, $F$ is the net force on the object, given by 
+\[
+\begin{array}{rclcl}
+F&=&\text{gravity } &+& \text{air resistance}\\
+&=&mg &-& \alpha v\\
+\end{array}\]
+Which gives us a more expanded version of Newton's Law:
+\begin{highlight}
+$$mg-\alpha v = m \frac{dv}{dt}.$$
+\end{highlight}
+Now let's try to solve this, assuming that 
+$$\alpha=2 \,kg/s, \quad m=1 \,kg, g \approx 10 m/s^2.$$
+Thus, our equation looks like 
+$$1 \cdot \frac{dv}{dt} = 1 \cdot 10-2v,$$
+or if we include units, 
+$$kg \cdot \frac{m/s}{s} = kg \cdot 10 \frac{m}{s^2}-2v \frac{kg}{s}\cdot\frac{m}{s},$$
+We only do this to confirm that the dimensional analysis works out- that is, the units are the same on both sides (check for yourself, are they?).
+
+Now, $\frac{dv}{dt}$ only depends on $v$, so if we graph $v$ as a function of $t$, we will see that the slope ($\frac{dv}{dt}$) is the same on any horizontal line in the graph. 
+
+[jpg]
+
+
+This sort of graph is called a \textbf{directional field}, and different paths on this field (the yellow lines) are called \textbf{integral curves}. 
+
+\pagebreak
+\begin{highlight}
+\begin{definition*}
+A \textbf{differential equation} is an equation 
+$$\frac{dy}{dt}=f(t,y).$$
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+A special case of this is when $\frac{dy}{dt}$ does not depend on $t$, i.e.
+$$\frac{dy}{dt}=f(y).$$
+This is called an \textbf{autonomous equation}. 
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+An even more special case is when $\frac{dy}{dt}$ vanishes, that is,
+$$\frac{dy}{dt}=f(\bar{y})=0,$$
+which means that if $y_0=\bar{y}$, then $y=\bar(y)$ for all $t$. This is called an \textbf{equilibrium point}, or a \textbf{fixed point}.
+\end{definition*}
+\end{highlight}
+
+\begin{highlight}
+\begin{definition*}
+A system where we are given  
+$$\begin{cases}
+\frac{dy}{dt}&=f(y)\\
+y(0)&=y_0
+\end{cases}$$
+and asked to find a solution is called an \textbf{initial value problem (or I.V.P.)}, and these are some of the most common and important problems we will learn in our introduction of differential equations. 
+\end{definition*}
+\end{highlight}
+
+\subsection{Finding Solutions}
+
+So, let's try to solve our example problem from earlier. 
+
+\[\begin{array}{rcl}
+\frac{dv}{dt} &=& 10-2v\\
+dv&=&(10-2v)dt\\
+\int \frac{dv}{10-2v} &=& \int dt + C\\
+\frac{-1}{2}\ln (10-2v)&=&t+C\\
+\ln (10-2v)&=&-2t+\tilde{C}\\
+10-2v&=&e^{-2t+\tilde{C}}\\
+v&=&\frac{1}{2}(10-\tilde{\tilde{C}}e^{-2t})\\
+\end{array}\]
+Now we can find the actual value of the constant $C$ \footnote{By the way, I will sometimes ignore tildes for constants which are unknown, since the between $C$ and $\tilde{C}$ is meaningless if both constants are unknown.}, if we are given $v(0)$. 
+
+\noindent Suppose $$v(0)=6.$$ Then, 
+\[\begin{array}{rcl}
+v(0)&=&\frac{1}{2}(10-\tilde{\tilde{C}}e^{-2t})=6
+\end{array}\]
+and we can solve to find 
+\[\begin{array}{rcl}
+\tilde{\tilde{C}}&=&-2.
+\end{array}\]
+
+\subsection{Classification of Differential Equations}
+
+There are many different types of differential equations. Here are a few of them:
+
+\begin{highlight}
+\begin{definition*}
+An \textbf{ordinary differential equation (or ODE)} has only one independent variable, $t$. i.e.
+$$\frac{dy}{dt}=f(t,y).$$
+\end{definition*}
+\end{highlight}
+
+\begin{definition*}
+An \textbf{partial differential equation (or PDE)} has multiple independent variables, $t$. i.e.
+$$\frac{dy}{dt}-2\frac{dy}{dx}=0.$$
+In this example, we have two independent variables, $t$ and $x$.
+\end{definition*}
+
+The good news is, we're only going to focus on ODEs for this class. 
+
+\noindent The second way to classify differential equations is by their \textbf{order}, or the highest order derivative in the equation. 
+
+\begin{highlight}
+Examples:
+\[\begin{array}{ll}
+\frac{dv}{dt}=10-2t & 1\text{st order ODE}\\
+\frac{d^2y}{dt^2}+y\frac{dy}{dt}+t=0 & 2\text{nd order ODE}
+\end{array}\]
+\end{highlight}
+
+\noindent We can also classify differential equations by linearity, that is, are they \textbf{linear} or \textbf{nonlinear}?
+
+\pagebreak
+\begin{highlight}
+A differential equation is \textbf{linear} in the variables $\{y, y', y''...\}$ if it can be written as 
+$$(\text{something})y+(\text{something})y'+(\text{something})y''+\dots \, , $$
+where none of the "something"s are a function of any of the variables $\{y, y', y'', \ldots\}$. 
+\end{highlight}
+
+\textbf{Examples:}
+\[\begin{array}{ll}
+ty'''+y'+y=t & \text{linear}\\
+y''+ty'=y^2 & \text{nonlinear}\\
+\dfrac{d^2\theta}{dt^2}=\sin\theta & \text{nonlinear}
+
+\end{array}\]
+
+
+\section{Chapter 2}
+
+\subsection{2.1 Integrating Factors (product rule}
+
+Integrating factors ()
+
+\subsection{2.2 Seperable eqns}
+
+idea: separate $y$ and $t$. 
+
+In general, we are given an equation of the form 
+$$
+\frac{dy}{dy}=f(y,t)=\frac{M(y)}{N(t)}$$
+and we separate the variables, and integrate.
+$$\int \frac{dy}{M(y)}=\int \frac{dt}{N(t)} +C$$
+
+\begin{example*}
+$$\frac{dy}{dx}=\frac{x^2}{1-y^2}$$
+
+$$\int (1-y^2)dy = \int	x^2 \, dx +C$$
+
+$$y-\frac{1}{3}y^3=\frac{1}{3}x^3 +C$$.
+
+\end{example*}
+
+\begin{example*}
+$$\frac{dy}{dx}=\frac{3x^2+4x+2}{2(y-1)}\quad y(o)=-1$$
+$$\int 2(y-1) dy=\int 3x^2+4x+2 \, dx + C$$
+$$ y^2-2y =x^3+2x^2+2x + C$$	
+Now, $y(0)=-1$, so 
+$$1+2=C \implies C=3.$$
+Thus, 
+$$ y^2-2y =x^3+2x^2+2x+3.$$	
+and we have an \emph{implicit} solution to this problem. In some cases (like here, where $y$ is a quadratic equation), we can actually make this a little better. Let's rearrange this solution to get an \emph{explicit} solution. If 
+$$ y^2-2y =x^3+2x^2+2x+3,$$	
+then 
+$$ y^2-2y -(x^3+2x^2+2x+3)=0.$$	
+now we use the quadratic formula to solve for $y$ (think of $x$ as a constant when you do this). 
+$$y(x)=\frac{2\pm\sqrt{4+4\cdot1\cdot(x^3+2x^2+2x+3)}}{2}$$
+and, plugging in our initial value, we find that 
+$$y(0)=\frac{2\pm4}{2},$$ 
+which yields $y=3$ or $y=-1$. Of course we know that $-1$ should be the answer, so we reject the positive part of the $\pm$ in the above equation, which gives (after a little simplification)
+$$y(x)=1-\sqrt{x^3+2x^2+2x+4}.$$
+and we are done. 
+\end{example*}
+
+\subsection[2.6]{Exact Equations}
+
+Consider this problem:
+\begin{example*}
+$$2x+y^2+2xyy'=0$$
+\end{example*}
+Try to use separation of variables on this problem. \\
+\\
+\\
+Give up? This is actually impossible to separate. We need another method. Let's explore here. Let's try integrating this with respect to $x$. 
+$$\Psi\footnotemark(x,y)=x^2+xy^2 \text{  WAIT!}$$
+\footnotetext{This is the capital greek letter $\Psi$, called psi and pronounced like "sigh". Write it with just a swoop and a stem. We don't use serifs or curly parts when we write it by hand.}
+If I was going to go backwards here and differentiate, I would have to do a product rule on that second term (since $y$ is a function of $x$). And, if I mentally do that derivative, I notice something cool:
+$$\frac{d\Psi}{dx}=2x+y^2+x(2yy')$$
+Which is exactly our starting problem! So this means that 
+$$\frac{d\Psi}{dx}=2x+y^2+x(2yy')=0$$
+So since the derivative of $\Psi$ is zero, then $\Psi$ is constant. 
+$$\Psi(x,y)=x^2+xy^2=C$$
+
+\begin{highlight}
+\textbf{Exact Equations}\\
+In general, given an ODE of the form 
+$$M(x,y)+ N(x,y)y'=0$$
+If we can find a function $\Psi(x,y)$ such that 
+\begin{itemize}
+\item $\frac{\del\Psi}{\del x}=M(x,y)$
+\item $\frac{\del\Psi}{\del y}=N(x,y)$
+\end{itemize}
+then, 
+\[\begin{array}{rcl}
+\frac{d\Psi}{d x}&=&\frac{\del\Psi}{\del x} + \frac{\del\Psi}{\del y}\cdot \frac{dy}{dx}\\
+&=&M(x,y)+ N(x,y)y'\\
+&=&0
+\end{array}\]
+so, $$\Psi(x,y)=C$$ which gives us an implicit solution (don't forget to check if an explicit solution can be found.)
+\end{highlight}
+
+\begin{theorem*}
+Let $M, N, M_y, N_x,$ be continuous. Then $M+Ny'=0$ is exact (i.e. $\exists \Psi(x,y)$ s.t. $\Psi_x=M, \Psi_y=n$) \textbf{if and only if} $M_y=N_x$. 
+\end{theorem*}
+
+\begin{proof}
+The proof is long and confusing and not that important. If you really want to understand the proof, read it in the textbook. It will be easier to read than what we discussed in class. 
+\end{proof}
+
+\begin{highlight}
+\begin{example*}
+$$\underbrace{3xy+y^2}_M+\underbrace{(x^2)}_Ny'=0.$$ Observe how this seems to follow the form 
+$$\Psi_x + \Psi_yy'=0,$$
+by checking if $\Psi_{xy} = \Psi_{yx}$. Sure enough, 
+\[\begin{array}{rcl}
+\Psi_{xy} &=& 3x+2y\\
+\Psi_{yx} &=& 2x\\
+\end{array}\]
+Oh No! They're not the same! So this actually isn't exact, so we can't use this strategy here. 
+\end{example*}
+\end{highlight}
+
+\begin{highlight}
+\begin{example*}
+$$(y\cos x+2xe^y)+(\sin x+x^2e^y-1)y'=0$$
+Okay, this seems to fit the pattern, so let's check that the equation is exact. 
+\[\begin{array}{rcl}
+M_y &=& \cos x+2xe^y\\
+N_x &=& \cos x+2xe^y\\
+\end{array}\]
+It works! Notice how we wrote $M_y$ and $N_x$ instead of $\Psi_{xy}$ and $\Psi_{yx}$. Either notation is fine, they mean the same thing. 
+
+Now let's solve it:
+$$\Psi_x=y\cos x+2xe^y,$$
+so let's integrate with respect to $x$:
+$$\Psi=y\sin x+x^2e^y+f(y),$$
+where $f(y)$ is a (currently unknown) function of $y$. 
+
+Now we do the same for $\Psi_y$ and get them to both agree. 
+$$\Psi_y=\sin x+x^2e^y-1,$$
+so 
+$$\Psi=y\sin x+x^2e^y-y+f(x)$$
+
+Now we put these together to find 
+$$\Psi=y\sin x+x^2e^y-y+C$$
+
+and use our usual strategy to find the value of $C$ if we have an initial value. 
+\end{example*}
+\end{highlight}
+
+\pagebreak
+\begin{highlight}
+\textbf{How to solve an exact equation}\\
+For an equation of the following form:
+$$M(x,y)+ N(x,y)y'=0$$
+
+Remember, the idea is that we think $M = \Psi_x$ and $N=\Psi_y$.
+\begin{itemize}
+\item Check that $M_y=N_x$. 
+	\begin{itemize}
+	\item Take $\frac{d}{dy}(M)$ and $\frac{d}{dx}(N)$. If they are not the same, \textbf{you cannot continue} unless you can rearrange the eqation so that it is exact. 
+	\end{itemize}
+\item Find $\Psi$ by integrating $\int M dx$ and $\int N dy$ (Notice how the variables of integration are reversed compared to the previous step). 
+	\begin{itemize}
+	\item $\Psi = \int M dx + f(x)$. This part will miss any terms which have no $x$s in them, so we compare to the next step. 
+	\item $\Psi = \int N dy + g(y)$ This part will miss any terms which have no $y$s in them.
+	\item Now we look at our two answers, and our final answer is obtained by combining the two answers so that the answer has everything (don't repeat terms that appear in both).
+	\item For example, if your two answers are $xy + x$ and $xy + y$, your final answer will be $xy + x + y + C$
+	\item Don't forget $+C$!!
+	\end{itemize}
+\end{itemize}
+\end{highlight}
+
+\noindent Why does this work? Well, we're working with an equation of the form 
+\[ M(x,y)+ N(x,y)y'=0,\]
+aka
+$$\frac{\del\Psi}{\del x}+ \frac{\del\Psi}{\del y}\frac{dy}{dx	} = 0,$$
+aka
+$$\frac{d}{dx}\Psi = 0,$$
+which means that
+$$\Psi(x)=C.$$
+So really, the solution to this differential equation is a level curve of $\Psi$. 
+
+\jpg{width=0.33\textwidth}{de_1}
+
+\noindent By the way, if you think of $M(x,y)+ N(x,y)y'=0$ as a dot product, you'll see that $(1, \frac{dy}{dx}|_{x_0})\cdot(M(x,y)+ N(x,y))|_{x_0}=0$. This means that the vector $(M(x,y)+ N(x,y))|_{x_0}$ is orthogonal to the tangent line at the same point. 
+
+\jpg{width=0.33\textwidth}{de_2}
+
+\begin{highlight}
+\textbf{How to make an equation exact if it wasn't already}
+
+If you find yourself in a situation where $M(x,y)+ N(x,y)y'=0$ but $M_y\neq N_x$, we need to find some function $\mu$\footnotemark that we can multiply the both sides of the equation by, so that
+$$\mu M(x,y)+ \mu N(x,y)y'=0$$
+and the new equation is exact. That is, we want $(\mu M)_y=(\mu N)_x$ (but don't forget, there will be a product rule in each side of this). 
+\footnotetext{This is the Greek letter mu. t is pronounced like "mew", and written just like the letter "u", but starting at the bottom of the tail on the left.}
+
+\begin{example*}
+$(3xy+y^2)+(x^2+xy)\frac{dy}{dx}$\\
+\textbf{Step 1:}
+\[\begin{array}{rcl}
+M &=& 3xy+y^2\\
+M_y &=& 3x+2y.\\
+
+N &=& x^2+xy\\
+N_x &=& 2x+y\\
+\end{array}\]
+and we see this equation is not exact. So let's multiply by $\mu$ on all sides, then try to figure our what $\mu$ is by solving. \\
+\mbox{}\\
+\textbf{Step 2:}
+$\mu(3xy+y^2)+\mu(x^2+xy)\frac{dy}{dx}=0$\\
+\[\begin{array}{rcl}
+\widetilde{M}_y &=& \mu_y(3xy+y^2)+\mu(3x+2y)\\
+
+\widetilde{N}_x &=& \mu_x(x^2+xy)+\mu(2x+y)\\
+\end{array}\]
+Now at this point, we know that $\widetilde{M}_y=\widetilde{N}_x$. So as a trick to find $\mu$, we will just hope that either $\mu_x$ or $\mu_y$ is zero. So let's guess $\mu_x=0$ and solve for $\mu$:
+\[\begin{array}{rcl}
+(0)(3xy+y^2)+\mu(3x+2y) &=& \mu_x(x^2+xy)+\mu(2x+y)\\
+\mu_x(x^2+xy) &=& \mu(3x+2y) -\mu(2x+y) \\
+\mu_x(x^2+xy) &=& \mu(3x+2y-2x-y) \\
+\mu_x  &=& \frac{\mu(x+y)}{(x^2+xy)} \\
+\mu_x  &=& \frac{\mu(x+y)}{x(x+y)} =\frac{\mu}{x}\\
+\end{array}\]
+Now we quickly solve the DE $\mu_x=\frac{\mu}{x}$ to find that $\mu=x$ (You can do this). By the way, if we have gotten a differential equation that had any $y$s in it, then our trick didn't work, so we should try something else. \\
+\mbox{}\\
+\textbf{Step 3:}
+Plug in $\mu=x$ and solve the exact equation.\\
+$x(3xy+y^2)+x(x^2+xy)\frac{dy}{dx}=0$\\
+$(3x^2y+xy^2)+(x^3+x^2y)\frac{dy}{dx}=0$\\
+\end{example*}
+\end{highlight}
+
+\subsection{(2.3, 2.5) Modeling with First-Order ODE}
+
+\textbf{Mixing Problems.} Suppose we are trying to solve a mixing problem, where we are mixing salt with water in a well-mixed 100 gal tank. We are adding $r$gal/min of saltwater with concentration of 4lb/gal, and the same amount $r$gal/min of well-mixed solution is leaving the tank. 
+\jpg{width=0.33\textwidth}{de_3}
+\begin{enumerate}
+\item Find the amount of salt $Q(t)$ in the tank,
+\item Find $\lim\limits_{t\to\infty} Q(t)$. 
+\end{enumerate}
+\begin{highlight}
+To solve this equation, we need only remember that the change in salt is equal to (salt in)-(salt out).
+\end{highlight}
+\[\begin{array}{rrcl}
+\text{salt in:}& r\frac{\text{gal}}{\text{min}}\frac{4\text{lb}}{\text{gal}}&=&4r\text{lb}/\text{min}\\
+\text{salt out:}& r\frac{\text{gal}}{\text{min}}\frac{Q(t)\text{lb}}{100\text{gal}}&=&\frac{rQ(t)}{100}\text{lb}/\text{min}\\
+\text{Thus, }\\
+\text{change of salt:}& \frac{dQ(t)}{dt} &=& 4r-\frac{rQ}{100}
+\end{array}\]
+and this is a separable equation. If you try it, you will find that 
+$$Q(t) = 400+Ce^{-rt/100}$$
+Then, we can just plug in $Q(0)=Q_0$, to find that 
+$$Q(t) = 400+(Q_0-400)e^{-rt/100}.$$
+Thus, we have answered (1).
+
+Now to answer part (2), we will plot $\frac{dQ}{dt}$ versus $Q$. 
+\jpg{width=0.33\textwidth}{de_4}
+Note: we can do this precisely because it is possible to write $\frac{dQ}{dt}$ purely as a function of $Q$. Since $Q'$ is positive for $Q<400$ and negative for $Q>400$, $Q$ will always get closer and closer to 400. Thus we have answered number (2).
+
+\noindent \textbf{Population problems.} 
+\begin{enumerate}[label=\Alph*:]
+\item \textbf{Exponential Growth.} Let's represent a population with $y(t)$, and the population changes with time. Suppose the change in population $y'$ is proportional to the population (More individuals, more breeding). Then 
+$$\frac{dy}{dt}=ry, \quad \text{for some constant }r.$$
+We call $r$ a \emph{rate of growth} if $r>0$ and a \emph{rate of decay} if $r<0$ (can you guess why?). We've seen this ODE before, so we know its solution is 
+\begin{highlight}
+$$y(t)=y_0e^{rt}$$
+\end{highlight}
+(if you forget why, just observe that this equation is separable). Here's what the graphs for this DE look like (in this figure, $r$ is positive.)
+
+\jpg{width=0.33\textwidth}{exp_growth}
+
+In practice, this is a fairly unrealistic simplification. Assuming that $y' \propto y$ makes the math \emph{very} easy, but real populations can't grow forever without bound. This leads us to the second type of model.
+
+\item \textbf{Logistic Equation.}Here, instead of considering $r$ to be a constant, we will suppose that $r$ is a function of $y$ so that as $y$ grows, $r$ gets smaller. That is, $r(y)=r_0-ay$. Then our equation is 
+$$\frac{dy}{dt}=(r_0-ay)y.$$
+Very often, we instead write this as 
+\begin{highlight}
+$$\frac{dy}{dt}=r_0\left(1-\tfrac{y}{k}\right)y.$$
+\end{highlight}
+This form is nice because we can see right in the equation what $
+lim_{t\to\infty}y(t)$ is. Observe that for $y<k$, $y'$ is positive, and for $y>k$, $y'$ is negative. So $y$ will always "settle in" to $k$ after a long time. 
+
+\begin{highlight}
+We call this model the \textbf{logistic equation}, and $r_0$ is called the \emph{instrinsic growth rate}, and $k$ is called the \emph{carrying capacity}. 
+\end{highlight}
+
+\pagebreak
+So, what does this look like? Solutions to the logistic equation have a very famous shaped graph:\footnote{This shape is called a \emph{sigmoid}, because it looks like an alternate version of the Greek letter sigma, $\varsigma$. }
+
+\jpg{width=0.5\textwidth}{de_5}
+
+This graph is famous enough that you should be able to sketch it, so maybe practice a few. 
+
+To see why it is shaped like this, we can graph $\frac{dy}{dt}$ versus $y$, and see that it is a parabola:
+
+\jpg{width=0.5\textwidth}{de_6}
+
+So if $y_0$ is between $0$ and $k$, then $y'$ is positive. If $y_0=k$, then $y'=0$, so $y$ will remain equal to $k$ forever (the dotted line in the first figure). Also, if $y_0$ is greater than the carrying capacity $k$, the population will decrease. Look on the parabola: if $y_0>k$, then $y'$ is negative. This means the solution will decay exponentially to $k$ (not shown in the first figure).
+
+You can also solve the logistic equation analytically, but you have to use partial fraction decomposition (try it!). You will find that the explicit solution is 
+\begin{highlight}
+\[y=\frac{y_0k}{y_0+(k-y_0)e^{-rt}}\]
+\end{highlight}
+
+\textbf{Remark:} Recall that points such as $0$ and $k$ in the logistic equation are called \textbf{fixed points}, because any solution which starts at one of those points will remain there forever. 
+
+\item \textbf{Critical threshold.} The logistic equation is a much better model than exponential growth, but it still fails to account for something: if we are modeling real populations, it would seem reasonable that for very small (but still nonzero) populations, we would expect the population to decrease.\footnote{Think 4 pandas in an entire forest. Is their population likely to thrive if they can't find each other?} 
+
+To fix this, we will take our graph of $y'$ vs $y$ from a parabola  to another shape, so that small values of $y$ give negative values of $y'$. 
+\jpg{width=0.5\textwidth}{crit_thresh_1}
+Notice that we no longer have a parabola. We must still have a root at $y=0$. If not, then $y'$ would be negative for $y=0$, which would cause the population to \emph{decrease} if it starts at zero!
+
+So to accomplish this, we add a root at $y=T$. This gives the equation
+\begin{highlight}
+$$\frac{dy}{dt}=-r_0\left(1-\tfrac{y}{T}\right)\left(1-\tfrac{y}{k}\right)y.$$
+\end{highlight}
+All we have done is written a function with three roots; 0, $T$, and $k$. We have given it a scale factor of $r_0$ (the intrinsic growth rate), and we have made $r_0$ negative so that $y'$ is negative between 0 and $T$ and positive between $T$ and $k$. 
+
+\pagebreak
+Here is what some of the solutions of this equation look like. Notice how if $y$ starts at any of the roots of $y'$, then $y$ stays the same forever. 
+\jpg{width=0.8\textwidth}{crit_thresh_2}
+In the figure, those equilibrium solutions are labeled $\phi_1, \phi_2,$ and $\phi_3.$\footnote{$\phi$ is the Greek letter phi, pronounced "fie" or "fai" (the two spellings are intended to convey the same pronunciation). Write it with a circle and a tall slash. The alternate form, $\varphi$, is written exactly the same way it is printed here, and is often easier to handwrite instead of $\phi$. The two versions of this letter almost always mean the exact same thing.}
+
+
+\end{enumerate}
+
+
+\subsection{(2.4, 2.8) Existence, Uniqueness: Linear and Nonlinear}
+
+\begin{example*}
+Consider the equations
+$$ty'+2y=4t^2, \quad	y(1)=0$$
+and 
+$$y'=y^2, \quad	y(0)=1.$$
+\end{example*}
+Notice that the first equation here is linear, and the second is nonlinear. By now we've gotten pretty good at finding solutions to equations like these, but now we want to ask a slightly different question. Instead of "what is the solution" we ask "\emph{Is} there a solution?" (existence) or "Is there \emph{only one }solution, or many solutions?" (uniqueness.)
+
+If we want to use differential equations to predict things, then we need to know that our solution is reliable, that is, it is \emph{unique}. If solutions are not unique for a differential equation, then the solution we find could not be the solution that we will then observe later, and our predictions are meaningless. 
+
+\pagebreak
+First, lets' recall the general form for a linear differential equation: 
+$$\begin{cases}
+y' + p(t)=g(t)\\
+y(t_0)=y_0
+\end{cases}$$
+
+\begin{highlight}
+\begin{theorem*}
+If $p(t)$ and $q(t)$ are continuous in some open interval $I = (\alpha, \beta)$ containing $t_0$, then a linear (IVP) has a unique solution in $I$. 
+\end{theorem*}
+\end{highlight}
+
+So this means that if we can rearrange our IVP to match the form above, and find an interval around $t_0$ such that $p(t)$ and $q(t)$ are in fact continuous on $I$, then we are guaranteed the \emph{existence} of a \emph{unique }solution. 
+
+\begin{example*}
+Find an interval $I$ such that this IVP has a unique solution:
+\[y'+\frac{2}{t}y=4t, \quad t_0=1\]
+So our $p(t)=\frac{2}{t}$ and our $q(t)=4t$. They are both continuous when $t\neq0$, so our interval can be $I=(0,\infty)$. 
+\end{example*}
+
+\begin{example*}
+Find an interval $I$ such that this IVP has a unique solution:
+\[ty'+2y=4t^2, \quad t_0=-1\]
+Notice that in this case, our IVP doesn't match the general form, so we must first rearrange it. Let's divide the whole equation by $t$ so that $y'$ is alone in the first term. 
+\[y'+\frac{2}{t}y=4t, \quad t_0=1\]
+Look familiar?
+
+So our $p(t)=\frac{2}{t}$ and our $q(t)=4t$. They are both continuous when $t\neq0$, so our interval can be $I=(-\infty,0)$, since $t_0=-1$. 
+\end{example*}
+
+Here's another form we can use. 
+
+\begin{highlight}
+\begin{theorem*}(2.4.2)
+Given an IVP of the form 
+\[
+\begin{cases}
+y'=f(t,y)\\
+y(t_0)=y_0
+\end{cases},
+\]
+If $f$ and $\frac{\del f}{\del y}$ are continuous in some rectangle
+\[R=\{\alpha<t<\beta, \, \, \gamma<y<\delta\}\]
+containing $(t_0, y_0)$, then the IVP has a unique solution on some subinterval $(t_0-h, t_0+h)\subseteq(\alpha,\beta)$. 
+
+\jpg{width=0.5\textwidth}{thm_2_4_2}
+\end{theorem*}
+\end{highlight}
+
+\begin{example*}
+\[
+\begin{cases}
+y'=y^2\\
+y(0)=1
+\end{cases},
+\]
+
+\noindent Since $f(t,y)=y^2$ and $\frac{\del f}{\del y}=2y$ are continuous everywhere, then our interval is $(-\infty,\infty)$. So we are guaranteed a solution somewhere \emph{inside} that interval, not necessarily in all of it. So; what's the solution? It's separable, so go ahead and give it a shot. 
+
+\mbox{}
+
+\noindent Got it? The solution is 
+\[y(t)=\frac{1}{1-t}.\]
+This is clearly going to get difficult at $t=1$, so we can't guarantee existence and uniqueness on the whole plane. We can however, say that there exists a unique solution on the interval $(-infty, 1)$. 
+\end{example*}
+
+\begin{example*}
+\jpg{width=0.95\textwidth}{no_uniqueness_example}
+\end{example*}
+
+\begin{remark*}
+For an interesting numerical method for finding solutions, check out Picard's Iteration Method, in section 2.8 in the textbook. 
+\end{remark*}
+
+\pagebreak
+\section{Second-Order Linear ODEs}
+
+\begin{highlight}
+The general form for a second order linear ODE is 
+\[p_1(t)y'' + p_2(t)y' + p_3(t)y + p_4(t)=0.\]
+\end{highlight}
+
+This might look scary,but just think of this as 
+\[(\text{blah blah})y'' + (\text{blah blah})y' + (\text{blah blah})y + (\text{blah blah})=0,\]
+where each of the $(\text{blah blah})$ parts are just expressions which only have $t$ as a variable in them (no $y$s or derivatives of $y$).
+
+\begin{highlight}
+In the special case where all the $p_i(t)$ functions are constant and $p_4(t)=0$, then we can\footnotemark\,get our equation to look like 
+\[y''+ay'+by=0,\]
+which we call a \textbf{homogeneous equation}.
+\end{highlight}
+\footnotetext{In case $p_1(t)$ is constant but not 1, we can divide the whole system by $p_1(t)$ and then it will look like what we have written.}
+
+\begin{example*}
+Consider the ODE
+\[y''-y=0.\]
+What well-known function has a second derivative equal to itself? Can you think of one more?\\
+\\
+Both $e^x$ and $e^-x$ solve this equation, and furthermore since the derivative is a linear operator,\footnotemark\,any linear combination of them will also work. So any function of the form
+\[ae^x+be^{-x}\]
+is a solution. \footnotetext{Linear operator is just a fancy word that means "constants pop out, and it distributes over addition". You already know that $\frac{d}{dx}\big(af(x)+bg(x)\big) = a\frac{d}{dx}\big(f(x)\big)+b\frac{d}{dx}\big(g(x)\big)$, and that's all this means.}
+
+\begin{highlight}
+So in this example, we say that $e^x$ and $e^{-x}$ are the \textbf{fundamental solutions} of this equation. A \textbf{general solution} will be some linear combination of the fundamental solutions of any ODE. 
+\end{highlight}
+
+\pagebreak
+\begin{highlight}
+For a second-order ODE, we need \textbf{two initial conditions}, 
+\[\begin{array}{rcl}
+y(t_0)&=&y_0, \, \, \text{and}\\
+y'(t_0)&=&y'_0\\
+\end{array}\]
+To find a particular solution. 
+\end{highlight}
+
+
+\noindent\textbf{How to solve any homogeneous ODE:}\\
+For an ODE of the form 
+\[y''+ay'+by=0,\]
+The fundamental solutions will be of the form $e^{rt}$. To find them, plug in $y=e^{rt}$ to the ODE and try to solve (don't forget to take derivatives when you plug in for $y', y''$). You should find that 
+\[e^{rt}(r^2+ar+b)=0.\]
+So since $e^{rt}$ is never zero, we really just need to solve the quadratic equation $(r^2+ar+b)=0$. 
+\begin{highlight}
+We call $(r^2+ar+b)=0$ the \textbf{characteristic polynomial} of the system. 
+\end{highlight}
+Solving this will give us two fundamental solutions, which we can combine to make one general solution; 
+\[y(t)=ae^{r_1t}+be^{r_2t},\]
+where $r_1, r_2$ are the roots you found in the earlier step. Now, you can use your two initial values to determine the constants $a$ and $b$. Just use $t=t_0$, $y=y_0$, and $y'=y'_0$, and plug in to the equations for $y(t)$ and $y'(t)$ (differentiate to find $y'(t)$ ).
+
+\begin{highlight}
+In summary, for 
+\[y''+ay'+by=0,\]
+Solve $(r^2+ar+b)=0$.
+\begin{enumerate}%(label=Roman*)
+\item If there are 2 distinct roots, the general solution is 
+$$C_1e^{r_1t}+C_2e^{r_2t}.$$
+\item If there is 1 repeated root, the general solution is 
+$$C_1e^{rt}+C_2te^{rt}.$$
+\item If there are complex roots, the general solution is 
+$$1.$$
+
+\end{enumerate}
+\end{highlight}
+
+
+
+\end{example*}
+
+
+
+
+
+
+
+
+
+\pagebreak
+\section{Index}
+\printindex
+
+\end{document}
+
