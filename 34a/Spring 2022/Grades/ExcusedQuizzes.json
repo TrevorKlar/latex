@@ -1,0 +1,412 @@
+{
+  "Toby Gollan-Myers": {
+    "perm": "5776126",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 2",
+      "Quiz 10"
+    ]
+  },
+  "Jasmine Belflower": {
+    "perm": "5109186",
+    "TA": "Daniel",
+    "section": "Thurs 8am",
+    "excusedQuizzes": [
+      "Quiz 2"
+    ]
+  },
+  "Connell Trainor": {
+    "perm": "6872899",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 1",
+      "Quiz 2",
+      "Quiz 6"
+    ]
+  },
+  "Anushka Ghosh Dastidar": {
+    "perm": "7424708",
+    "TA": "Daniel",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 2"
+    ]
+  },
+  "Paulina Dsouza": {
+    "perm": "5095377",
+    "TA": "Daniel",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 3"
+    ]
+  },
+  "Desmond Casto": {
+    "perm": "5288089",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": [
+      "Quiz 3", "Quiz9"
+    ]
+  },
+  "Hana Ibarra": {
+    "perm": "6234348",
+    "TA": "Daniel",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 3"
+    ]
+  },
+  "Andy Estrada": {
+    "perm": "5408125",
+    "TA": "Daniel",
+    "section": "Thurs 5pm",
+    "excusedQuizzes": [
+      "Quiz 2"
+    ]
+  },
+  "Evelyn Ibarra": {
+    "perm": "5160684",
+    "TA": "Daniel",
+    "section": "Thurs 5pm",
+    "excusedQuizzes": [
+      "Quiz 1"
+    ]
+  },
+  "Francesca McCants": {
+    "perm": "6216881",
+    "TA": "Daniel",
+    "section": "Thurs  5pm",
+    "excusedQuizzes": [
+      "Quiz 2",
+      "Quiz 3"
+    ]
+  },
+  "Brooke Ryan": {
+    "perm": "3857836",
+    "TA": "Daniel",
+    "section": "Thurs 5pm",
+    "excusedQuizzes": [
+      "Quiz 3"
+    ]
+  },
+  "Claire Ramsey": {
+    "perm": "6596795",
+    "TA": "Daniel",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 3", "Quiz5"
+    ]
+  },
+  "Veronica Acevedo": {
+    "perm": "6553622",
+    "TA": "Daniel",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 3"
+    ]
+  },
+  "Ava Gurwitz": {
+    "perm": "8686594",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 3"
+    ]
+  },
+  "Harper Giordano": {
+    "perm": "5884150",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 4"
+    ],
+    "excusedExams": [
+      "Midterm 1"
+    ]
+  },
+  "*": {
+    "perm": "*",
+    "TA": "Trevor",
+    "section": "*",
+    "excusedQuizzes": [
+      "Quiz 4",
+      "Quiz 6"
+    ]
+  },
+  "Fleurette Juda": {
+    "perm": "5279351",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": null,
+    "excusedExams": [
+      "Midterm 1"
+    ]
+  },
+  "Noelle Magana": {
+    "perm": "6215446",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 5"
+    ],
+    "excusedExams": null
+  },
+  "Anyi Zhao": {
+    "perm": "X307060",
+    "TA": "Trevor",
+    "excusedQuizzes": [
+      "Quiz 5"
+    ],
+    "excusedExams": null
+  },
+  "Taylor Iden": {
+    "perm": "5709415",
+    "TA": "Trevor",
+    "excusedQuizzes": [
+      "Quiz 5"
+    ],
+    "excusedExams": null
+  },
+  "Sean Andampour": {
+    "perm": "6120505",
+    "TA": "Trevor",
+    "section": "Tues 6pm",
+    "excusedQuizzes": [
+      "Quiz 1," "Quiz 6", "Quiz 9"
+    ],
+    "excusedExams": null
+  },
+  "Yang Li": {
+    "perm": "3996188",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 6"
+    ],
+    "excusedExams": null
+  },
+  "Sophia Pan": {
+    "perm": "6463467",
+    "TA": "Trevor",
+    "section": "Tues 6pm",
+    "excusedQuizzes": [
+      "Quiz 5"
+    ],
+    "excusedExams": null
+  },
+  "Sebastian Avila": {
+    "perm": "5976220",
+    "TA": "Trevor",
+    "section": "Tues 7pm",
+    "excusedQuizzes": [
+      "Quiz 6", "Quiz 7"
+    ],
+    "excusedExams": [
+      "Midterm 2"
+    ]
+  },
+  "Jessica Taghizadeh": {
+    "perm": "6681472",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 6"
+    ],
+    "excusedExams": [
+      "Midterm 2"
+    ]
+  },
+  "Breanna Flores": {
+    "perm": "4283842",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": null,
+    "excusedExams": [
+      "Midterm 2"
+    ]
+  },
+  "Hidei Spanke": {
+    "perm": "5958525",
+    "TA": "Trevor",
+    "section": "Tues 6pm",
+    "excusedQuizzes": [
+      "Quiz 7"
+    ],
+    "excusedExams": null
+  },
+  "Nissa Aguiniga": {
+    "perm": "6646624",
+    "TA": "Trevor",
+    "section": "Tues 7pm",
+    "excusedQuizzes": [
+      "Quiz 5",
+      "Quiz 8",
+      "Quiz 9"
+    ],
+    "excusedExams": null
+  },
+  "Toha Hossain": {
+    "perm": "5757406",
+    "TA": "Trevor",
+    "section": "Tues 6pm",
+    "excusedQuizzes": [
+      "Quiz 9",
+      "Quiz 10"
+    ],
+    "excusedExams": [
+      "let Exam 3 = Final Exam"
+    ]
+  },
+  "Mason Montgomery": {
+    "perm": "3929569",
+    "TA": "Trevor",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz 8"
+    ],
+    "excusedExams": null
+  },
+  "Sam Stevens": {
+    "perm": "5113980",
+    "TA": "Trevor",
+    "section": "Tues 6pm",
+    "excusedQuizzes": [
+      "Quiz 8"
+    ],
+    "excusedExams": null
+  },
+  "Leo Safir": {
+    "perm": "5194121",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 8"
+    ],
+    "excusedExams": null
+  },
+  "Kyla Drengler Spin": {
+    "perm": "8696767",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 8"
+    ],
+    "excusedExams": null
+  },
+  "Joelle Haddad": {
+    "perm": "4700282",
+    "TA": "Trevor",
+    "section": null,
+    "excusedQuizzes": null,
+    "excusedExams": [
+      "Midterm 3 = Final Exam"
+    ]
+  },
+  "": {
+    "perm": "",
+    "TA": "Trevor",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz 7"
+    ],
+    "excusedExams": null
+  },
+  "Veronica Bosso": {
+    "perm": "4992202",
+    "TA": "Daniel",
+    "section": "Tues 5pm",
+    "excusedQuizzes": [
+      "Quiz5"
+    ]
+  },
+  "Donovan K Toney": {
+    "perm": "5292206",
+    "TA": "Daniel",
+    "section": "Tues 8am",
+    "excusedQuizzes": [
+      "Quiz5"
+    ]
+  },
+  "Pierce Medosch-Myers": {
+    "perm": "6179702",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": [
+      "Quiz5"
+    ]
+  },
+  "Mina Kaldi": {
+    "perm": "6424220",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": [
+      "Quiz8"
+    ]
+  },
+  "Peter Kim": {
+    "perm": "5669577",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": [
+      "Quiz8"
+    ]
+  },
+  "Yixen Wang": {
+    "perm": "4761847",
+    "TA": "Daniel",
+    "section": "Tuesday 8am",
+    "excusedQuizzes": [
+      "Quiz8"
+    ]
+  },
+  "Caitlin Black": {
+    "perm": "6623219",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": [
+      "Quiz8"
+    ]
+  },
+  "Yael Berukhim": {
+    "perm": "6488936",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": [
+      "Quiz6"
+    ]
+  },
+  "Benjamin Schaffer": {
+    "perm": "5428578",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": [
+      "Quiz6"
+    ]
+  },
+  "Stella Velasco": {
+    "perm": "8991408",
+    "TA": "Daniel",
+    "section": "Thursday 8am",
+    "excusedQuizzes": [
+      "Quiz6"
+    ]
+  },
+  "Robert Keltner": {
+    "perm": "37827708",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": [
+      "Quiz6"
+    ]
+  },
+  "Hadeel Eljarrari": {
+    "perm": "8822272",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": [
+      "Quiz6"
+    ]
+  }
+}
