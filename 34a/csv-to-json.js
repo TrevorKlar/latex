@@ -5,7 +5,7 @@ csv = fs.readFileSync("CSV_file.csv")
 
 // Convert the data to String and
 // split it in an array
-var array = csv.toString().split("\r");
+var array = csv.toString().split("\n");
 
 // All the rows of the CSV will be
 // converted to JSON objects which

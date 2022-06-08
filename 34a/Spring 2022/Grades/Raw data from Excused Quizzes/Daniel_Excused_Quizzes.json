@@ -1,0 +1,51 @@
+[
+  {
+    "Name": "Mia Watson",
+    "perm": "6036131",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": "Quiz10"
+  },
+  {
+    "Name": "Elisha Mata",
+    "perm": "6139554",
+    "TA": "Daniel",
+    "section": "Thursday 8am",
+    "excusedQuizzes": "Quiz10"
+  },
+  {
+    "Name": "Yael Berukhim",
+    "perm": "6488936",
+    "TA": "Daniel",
+    "section": "Thursday 5pm",
+    "excusedQuizzes": "Quiz6"
+  },
+  {
+    "Name": "Elyse Hartmann",
+    "perm": "6139554",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": "Quiz6"
+  },
+  {
+    "Name": "Elyse Hartmann",
+    "perm": "6139554",
+    "TA": "Daniel",
+    "section": "Tuesday 5pm",
+    "excusedQuizzes": "Quiz7"
+  },
+  {
+    "Name": "Jessica Espinoza",
+    "perm": "6312839",
+    "TA": "Daniel",
+    "section": "Thursday 5am",
+    "excusedQuizzes": "Quiz4"
+  },
+  {
+    "Name": "Samuel Esparza",
+    "perm": "XXX",
+    "TA": "Daniel",
+    "section": "Thursday 8am",
+    "excusedQuizzes": "Quiz8"
+  }
+]
