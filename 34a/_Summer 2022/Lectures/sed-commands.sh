@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 
 cd /Users/trevor/git/latex/34a/_Summer\ 2022
 
