@@ -1,0 +1,481 @@
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
+
+\input{../lecture-setup.tex}
+
+\title{Inverse Functions \& Word Problems!}
+\date{April 7, 2017}
+
+
+\begin{document}
+\small
+
+\section{Administrative}
+
+\frame{
+  \frametitle{Office Hours!}
+  % \ \vspace*{0.25in}
+
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Peter M.\ Garfield, \url{garfield@math.ucsb.edu}\\[0.25em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} Mondays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} Tuesdays 10:30--11:30\textsc{am}\\
+  \ \hspace*{0.2in} Thursdays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} or by appointment \\[0.25em]
+
+  {\Large{}Office:}\\
+  \ \hspace*{0.2in} South Hall 6510\\[0.5em]
+
+  \copyright\ 2017\ Daryl Cooper, Peter M.\ Garfield
+
+  % \vspace*{2in}
+}
+
+\section{Inverse Functions}
+
+\frame{
+  \frametitle{Inverse Functions}
+
+  \alert{Idea:}\ 
+  \parbox[t]{3in}{%
+    You can plug in a power cord\\ \pause
+    Inverse is to \colorbox{yellow}{\emph{unplug}}\ the cord.
+  }
+  \pause
+  \bigskip
+ 
+  \alert{Example:}\ 
+  \parbox[t]{3in}{%
+    $f(x) = 3x-2$ is a function of $x$ \\ \pause
+    Inverse is $f^{-1}(y) = (y+2)/3$
+  }
+  \pause
+  \vspace*{0.5in}
+
+  \alert{General idea:}\ 
+  \parbox[t]{3in}{%
+    The inverse of $y=f(x)$ is $x=f^{-1}(y)$ \\ \pause
+    Solve for $x$ in terms of $y$
+  }
+  \pause
+  \bigskip 
+
+  \alert{Example again:}\ 
+  \parbox[t]{3in}{%
+    $y = 3x-2$ is a function $f(x)$ \\ \pause
+    Inverse is $x = f^{-1}(y) = (y+2)/3$
+  }
+
+}
+
+\frame{
+  \frametitle{More Examples}
+
+  Try these, clicking as you go\ldots
+
+  \begin{center}
+    \begin{tabular}{cll}
+      Click & \makebox[1in][l]{$y=f(x)$} & \makebox[1in][l]{$x=f^{-1}(y)$} \\ \toprule
+      A & $y=5x$  &  $x = $\uncover<2->{$\,y/5$} 
+      \\ \midrule
+      B & $y=x+7$  &  $x = $\uncover<3->{$\,y-7$} 
+      \\ \midrule
+      C & $y=3x-4$  &  $x = $\uncover<4->{$\,(y+4)/3$} 
+      \\ \midrule
+      D & $y=x^3$  &  $x = $\uncover<5->{$\,\sqrt[3]{y} = y^{1/3}$} 
+      \\ \midrule
+      E & $y=10^x$  &  $x = $\only<6>{$\,$????}\only<7>{$\,\log(y)$} 
+      \\ \bottomrule
+    \end{tabular}
+  \end{center}
+
+
+}
+
+\frame{
+  \frametitle{Converting Temperature}
+  \small
+
+  ${\red x}=$ {\red temperature in Celsius}\qquad ${\blue y} = $ {\blue temperature in Fahrenheit}\ 
+  \pause
+  
+  \gap 
+
+  This table shows how to convert between  Fahrenheit and Celsius.
+
+  \begin{table}
+    \begin{tabular}{l*{11}{c}}
+      \toprule
+      ${\red ^oC}$ & {\red 0} & {\red 10}  & {\red \bf 20} & {\red 30} & {\red 40} & {\red 50} & {\red 60} & {\red 70} & {\red 80} & {\red 90} & {\red 100}\\
+      ${\blue ^oF}$ & {\blue 32}  & {\blue 50}  & {\blue \bf 68} & {\blue 86} & {\blue 104} & {\blue 122} & {\blue 140} & {\blue 158} & {\blue 176} & {\blue 194} & {\blue 212}\\
+      \toprule
+    \end{tabular}
+  \end{table}
+  \pause
+
+  There is a function $f$ that converts the temperature $\red x$ in
+  Celsius to the temperature $\blue y$ in Fahrenheit: ${\blue
+    y}=f({\red x})$
+  \smallskip
+
+  Example $f({\red 20})={\blue 68}$\quad means $\red {\bf 20}^oC$ is $\blue {\bf 68}^oF$\\
+  \pause
+
+  \gap
+  The inverse function ${\red x}=f^{-1}({\blue y})$ converts
+  Fahrenheit back into Celsius
+  \pause
+
+  Example: $f^{-1}({\blue 68})=\red 20$ 
+  \pause
+
+  \gap
+
+  You can use a  table of data two ways:
+  \begin{itemize}
+  \item  Using it forwards gives you the function $f$
+  \item  Using it backwards gives you the  inverse function $f^{-1}$
+  \end{itemize}
+
+}
+
+\frame{
+  \frametitle{Find $f$ and $f^{-1}$ for Temperature}
+  \small
+  \begin{enumerate}
+  \item Find $y=f(x)$, the function that gives $y\,^{\circ}\text{F}$
+    from $x\,{}^{\circ}\text{C}$.
+
+    \begin{equation*}
+      \text{A}\ y = 9x/5
+      \quad 
+      \text{B}\ y = 9(x+32)/5
+      \quad 
+      \text{C}\ y = (9x/5)+32
+      \quad 
+      \text{D}\ y = (9x+32)/5
+    \end{equation*}
+    \pause
+    \alert{Answer:} \answer{C}      
+    \bigskip
+    \pause
+
+  \item Find $x=f^{-1}(y)$, the function that gives $x\,^{\circ}\text{C}$
+    from $y\,{}^{\circ}\text{F}$.
+
+    \begin{equation*}
+      \text{A}\ x = 5y/9
+      \quad 
+      \text{B}\ x = (5y+32)/9
+      \quad 
+      \text{C}\ x=(5y/9) + 32
+      \quad 
+      \text{D}\ x = 5(y-32)/9
+    \end{equation*}
+    \pause
+    \alert{Answer:}\ \answer{D}      
+    \bigskip
+    \pause
+
+  \item What temperature is the same in both Celsius and Fahrenheit?
+
+    \begin{equation*}
+      \text{A}\ -50^{\circ}
+      \qquad 
+      \text{B}\ -40^{\circ}
+      \qquad 
+      \text{C}\ -30^{\circ}
+      \qquad 
+      \text{D}\ -20^{\circ}
+      \qquad 
+      \text{E}\ -10^{\circ}
+      \qquad 
+      \pause
+      \fbox{B}      
+    \end{equation*}
+
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Tax Table}
+  \small
+  \begin{table}
+    \begin{tabular}{lllllll}
+      \toprule
+      Income 
+      & {\blue\$$10,000\ \text{to}\ \$14,999$} 
+      & {\red\$$15,000\ \text{to}\ \$19,999$} 
+      & {\green\$$20,000\ \text{and over}$} 
+      \\ 
+      % \cmidrule[\heavyrulewidth](lr){1-1}
+      \cmidrule[\heavyrulewidth](lr){2-2}
+      \cmidrule[\heavyrulewidth](lr){3-3}
+      \cmidrule[\heavyrulewidth](lr){4-4}
+      %%%
+                    & $\$600 +$  & $\$1,000 +$  &  $\$1,500+$ \\
+      \text{Tax}    & $8\% \text{ of  amount }$ &  $10\% \text{ of  amount}$  & $12\%  \text{ of amount over}$  \\
+                    & over {\blue$\$10,000$}    &  over {\red$\$15,000$}   &  over {\green$\$20,000$} \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{tikzpicture}[x=3.25mm,y=1.8mm,>=latex]
+    \draw[thin,black,->] (0,0) -- (14,0) node[above] {Income};
+    \draw[thin,black,->] (0,0) -- (0,22) node[right] {Tax};
+    \foreach \y in {600,1000,1500} {
+      \draw[thin,black] (0,{\y/100}) -- (-3pt,{\y/100}) node[left] {$\scriptstyle\y$};
+    }
+    % \foreach \x in {10000,15000,20000} {
+      \draw[thin,black] (3,0) -- (3,-3pt) node[below] {$\scriptstyle10,000$};
+      \draw[thin,black] (7,0) -- (7,-3pt) node[below] {$\scriptstyle15,000$};
+      \draw[thin,black] (11,0) -- (11,-3pt) node[below] {$\scriptstyle20,000$};
+    % }
+    \draw[ultra thick,blue] (3,6) -- (7,10);
+    \draw[ultra thick,red] (7,10) -- (11,15);
+    \draw[ultra thick,orange] (11,15) -- (14,19.5);
+    \filldraw[black] (3,6) circle (2pt);
+    \filldraw[black] (7,10) circle (2pt);
+    \filldraw[black] (11,15) circle (2pt);
+  \end{tikzpicture}
+  \qquad
+  \parbox[b]{37.5mm}{%
+    There are 3 {\purple tax brackets}
+    \begin{center}
+      {\blue 10K to 15K}\\
+      {\red 15K to 20K}\\
+      {\orange above 20K} 
+    \end{center}
+    \vspace{1in}
+  }
+  \vspace*{1.5in}
+
+}
+
+
+\frame{
+  \frametitle{Tax, continued}
+  \small
+  \begin{table}
+    \begin{tabular}{lllllll}
+      \toprule
+      Income 
+      & {\blue\$$10,000\ \text{to}\ \$14,999$} 
+      & {\red\$$15,000\ \text{to}\ \$19,999$} 
+      & {\green\$$20,000\ \text{and over}$} 
+      \\ 
+      % \cmidrule[\heavyrulewidth](lr){1-1}
+      \cmidrule[\heavyrulewidth](lr){2-2}
+      \cmidrule[\heavyrulewidth](lr){3-3}
+      \cmidrule[\heavyrulewidth](lr){4-4}
+      %%%
+                    & $\$600 +$  & $\$1,000 +$  &  $\$1,500+$ \\
+      \text{Tax}    & $8\% \text{ of  amount }$ &  $10\% \text{ of  amount}$  & $12\%  \text{ of amount over}$  \\
+                    & over {\blue$\$10,000$}    &  over {\red$\$15,000$}   &  over {\green$\$20,000$} \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{enumerate}
+    \setcounter{enumi}{3}
+  \item If you earn \$$12,500$, how much tax do you pay?
+    \qquad\qquad\qquad{\purple  read page 27} 
+    \begin{equation*}
+      \text{A}\ \$600
+      \quad 
+      \text{B}\ \$700
+      \quad 
+      \text{C}\ \$800
+      \quad 
+      \text{D}\ \$900
+      \quad 
+      \text{E}\ \$1,000
+      \quad 
+      \pause
+      \fbox{C}
+    \end{equation*}
+    % \smallskip
+    \vspace*{-2em}
+    \pause
+    \bigskip
+
+    \item If you pay \$$1,200$\ in tax, how much do you earn?
+      \begin{equation*}
+        \text{A}\ \$16,000
+        \quad 
+        \text{B}\ \$17,000
+        \quad 
+        \text{C}\ \$18,000
+        \quad 
+        \text{D}\ \$20,000
+        \quad 
+        \pause
+        \fbox{B}
+      \end{equation*}
+  \end{enumerate}
+  % \smallskip
+  \vspace*{1in}
+
+
+}
+
+\frame{
+  \frametitle{Tax, continued some more}
+  \small
+  \begin{table}
+    \begin{tabular}{lllllll}
+      \toprule
+      Income 
+      & {\blue\$$10,000\ \text{to}\ \$14,999$} 
+      & {\red\$$15,000\ \text{to}\ \$19,999$} 
+      & {\green\$$20,000\ \text{and over}$} 
+      \\ 
+      % \cmidrule[\heavyrulewidth](lr){1-1}
+      \cmidrule[\heavyrulewidth](lr){2-2}
+      \cmidrule[\heavyrulewidth](lr){3-3}
+      \cmidrule[\heavyrulewidth](lr){4-4}
+      %%%
+                    & $\$600 +$  & $\$1,000 +$  &  $\$1,500+$ \\
+      \text{Tax}    & $8\% \text{ of  amount }$ &  $10\% \text{ of  amount}$  & $12\%  \text{ of amount over}$  \\
+                    & over {\blue$\$10,000$}    &  over {\red$\$15,000$}   &  over {\green$\$20,000$} \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  \bigskip
+
+
+  If $x = \text{income}$ and $y = \text{tax}$, then
+  \begin{itemize}
+  \item $y=f(x)$ is the function with input income and output tax
+    \medskip
+
+  \item The inverse function $x=f^{-1}(y)$ has input tax and output income
+    \medskip
+  \end{itemize}
+  \vspace*{2in}
+
+}
+
+
+\section{Word Problems}
+
+\frame{
+  \frametitle{Bourne, Jason Bourne}
+
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item The road from Santa Barbara ({\purple SB}) to Palo Alto
+    ({\purple PA}) is 300 miles long. {\blue Your }friend {\blue
+      Marie} leaves {\purple SB} at noon driving at {\orange 60} mph
+    to {\purple PA}.
+    \smallskip
+
+    A {\red  bad guy} leaves {\purple PA} at 1pm driving along the same
+    road at 60 mph. 
+    \smallskip
+
+    At 2pm you find out and decide to save your friend. You drive at 80
+    mph from {\purple SB}. Will you get to your  friend  before the  bad
+    guy does?
+    \smallskip
+
+    \begin{center}
+      (A) YES
+      \qquad
+      (B) NO 
+      \qquad
+      (C) SAME TIME    
+      \qquad
+      \uncover<4->{\fbox{(B)}}
+    \end{center}
+    \uncover<2->{\blue Think - pair - share} 
+    \quad 
+    \uncover<3->{\colorbox{yellow}{There are many ways to work it out}}
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Bourne (continued!)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{6}
+  \item {\blue You}\ jump into your car.  {\blue You}\ need to catch
+    up with Marie before the bad guy.  How long until {\blue you} get
+    to her?
+    \smallskip
+    \pause
+
+    {\red But\ldots}\pause your name is {\blue Jason Bourne}.
+    \pause 
+    You always have a {\red plan}.\\ 
+    \pause
+    \begin{itemize}
+    \item {\purple SB} to  {\purple PA} is 300 miles.  
+    \item {\blue Marie} leaves {\purple SB} at noon driving at {\orange 60} mph to {\purple PA}.
+    \item The {\red  bad guy} leaves {\purple PA} at 1pm driving  at ${\orange 60}$ mph.
+    \item At 2pm you drive at 80mph from {\purple SB}. {\orange At 2:01 you call Marie and tell her to stop her car. }
+      \pause
+    \end{itemize}
+
+    {\red About} how many hours before bad guy do you get to Marie?\\
+    (A) 1\ \      
+    (B) 3/4 \ \     
+    (C) 1/2 \ \  
+    (D) same time\  \ 
+    (E) after\ \ 
+    \pause 
+    \answer{C} 
+
+  \end{enumerate}
+
+}
+
+\section{Crasher Info}
+
+\frame{
+  \frametitle{Waitlist / Crashers}
+
+  \begin{itemize}
+  \item All approval codes are controlled by the Math Department
+    \begin{itemize}
+    \item Before Friday, April 7th:
+      \begin{itemize}
+      \item[\green$\bullet$] Automatically done from waitlist through GOLD. 
+      \item[\green$\bullet$] Approval codes emailed.
+      \item[\green$\bullet$] Approval codes are not currently available.
+      \end{itemize}
+
+    \item April 8th to April 21st (last day to add)
+      \begin{itemize}
+      \item[\green$\bullet$] Only students on waitlist and crashing!
+
+      \item[\green$\bullet$] Approval codes mailed Thursdays: 4/13 and 4/20.
+
+      \item[\green$\bullet$] You have 24 hours to add.
+
+      \end{itemize}
+    \end{itemize}      
+    \bigskip
+
+  \item If you're crashing, please sign my crashers' list!
+
+
+  \end{itemize}
+
+
+
+}
+
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

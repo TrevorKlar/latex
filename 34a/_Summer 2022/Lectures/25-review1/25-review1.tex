@@ -1,0 +1,797 @@
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
+
+\input{../lecture-setup.tex}
+
+\title{}
+\title{Final Exam Review}
+\date{June 7, 2017}
+
+
+\begin{document}
+\small
+
+\section*{Administration}
+
+\frame{
+  \frametitle{Office Hours!}
+  % \ \vspace*{0.25in}
+
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Peter M.\ Garfield, \url{garfield@math.ucsb.edu}\\[0.25em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} Mondays 2--3\textsc{pm}\\
+  \ \hspace*{0.2in} Tuesdays 10:30--11:30\textsc{am}\\
+  \ \hspace*{0.2in} Thursdays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} or by appointment \\[0.25em]
+
+  {\Large{}Office:}\\
+  \ \hspace*{0.2in} South Hall 6510\\[0.5em]
+
+  \copyright\ 2017\ Daryl Cooper, Peter M.\ Garfield
+
+  % \vspace*{2in}
+}
+
+\if0
+\frame{
+  \frametitle{That Exam Problem}
+  \ \hspace*{-0.45in}
+  \begin{minipage}{0.6\linewidth}
+    \begin{center}
+      \begin{tikzpicture}[x=60mm,y=6mm,>=latex]
+        \foreach \x in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
+        {
+          \draw[ultra thick,gray!75] (\x,10.2) -- (\x,-0.2) node[black,below] {$\scriptstyle\x$};
+        }
+        \foreach \y in {0,1,...,10} 
+        {
+          \draw[ultra thick,gray!75] (1.02,\y) -- (-0.02,\y) node[black,left] {$\scriptstyle\y$};
+        }
+        \foreach \k in {2,4,...,98}
+        {
+          \draw[thin,gray!95] ({\k/100},10.2) -- ({\k/100},0);
+          \draw[thin,gray!95] (1.02,{\k/10}) -- (0,{\k/10});
+        }
+        % 
+        \draw[thick,black,->] (0,0) -- (1.08,0) node[below] {$\scriptstyle{}x$};
+        \draw[thick,black,->] (0,0) -- (0,10.8) node[left] {$\scriptstyle{}y$};
+        \draw[thick,black] plot[domain=0:1] (\x,{10^(\x)});
+        \node[black,fill=white] at (0.21,8.2) {\Large$y=10^x$};
+        \uncover<2->{%
+          \draw[thin,red] (0,0) -- (1.1,11) node[left] {$m=10$};
+        }
+        \uncover<3->{%
+          \draw[thin,red,domain=0:1.1,smooth] plot (\x,{10^(0.2)+10*(\x-0.2)});
+          \fill[red] (0.2,{10^(0.2)}) circle (2pt);
+        }
+        \uncover<4->{%
+          \fill[blue] (0.965,{10^(0.965)}) circle (2pt);
+          \draw[thin,black] (0.965,0) -- (0.965,-3pt) node[below,blue] {$c$};
+        }
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \hspace*{0.35in}
+  \begin{minipage}{0.35\linewidth}
+    \alert{Question:}
+
+    Find a number $c$ so that the average rate of change of $10^x$
+    between $x=0.2$ and $x=c$ is $10$.
+  \end{minipage}
+
+
+
+
+}
+\fi
+
+
+\section{Meaning of Derivatives}
+
+\frame{
+  \frametitle{Review: Meaning of Derivatives}
+
+  \begin{enumerate}
+  \item Find the equation of the tangent line to $y=x^3-5x$ at $x=2$.
+
+    \begin{center}
+      A\ $y=2x-6$
+      \quad 
+      B\ $y=16x-7$
+      \quad 
+      C\ $y= 7x+16$
+      \quad 
+      D\ $y = 7x-16$
+      \quad
+      \uncover<4->{\fbox{D}}
+    \end{center}
+    \bigskip
+
+    \uncover<2->{%
+      \begin{center}
+        \begin{tikzpicture}[x=12mm,y=0.5mm,>=latex]
+          \draw[thin,black,->] (-3.5,0) -- (4.75,0) node[below] {$\scriptstyle{}x$};
+          \draw[thin,black,->] (0,-35) -- (0,50) node[left] {$\scriptstyle{}y$};
+          % ticks:
+          \foreach \x in {-3,-2,-1,1,2,3,4}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-3pt) node[below] {$\scriptstyle\x$};
+          }
+          \foreach \x in {-3,-2.8,...,4.6}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-1.5pt);
+          }
+          \foreach \y in {-20,20,40}
+          {
+            \draw[thin,black] (0,\y) -- (-3pt,\y) node[left] {$\scriptstyle\y$};
+          }
+          \foreach \y in {-35,-30,...,45}
+          {
+            \draw[thin,black] (0,\y) -- (-1.5pt,\y);
+          }
+          \begin{scope}
+            \clip (-3.5,-35) rectangle (4.75,50);
+            \draw[thick,blue,domain=-3.5:4.75,smooth] plot (\x,{(\x)^3-5*\x});
+            \uncover<3->{%
+              \draw[thick,red,domain=-3.5:4.75,smooth] plot (\x,{7*\x-16});
+            }
+            \fill[red] (2,-2) circle (2pt);
+          \end{scope}
+        \end{tikzpicture}
+      \end{center}
+  \end{enumerate}
+  }
+  \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{Review: Meaning of Derivatives 2}
+
+  \begin{enumerate}
+    \setcounter{enumi}{1}
+  \item Where is $f(x)=3x^2+12x-4$ decreasing?
+    \begin{center}
+      A\ $x < -2$
+      \quad 
+      B\ $x > -2$
+      \quad 
+      C\ $x < 2$
+      \quad 
+      D\ $x > 2$
+      \quad 
+      E\ $x=2$
+      \quad
+      \uncover<4->{\fbox{A}}
+    \end{center}
+    \bigskip
+
+    \uncover<2->{%
+      \begin{center}
+        \begin{tikzpicture}[x=4mm,y=0.25mm,>=latex]
+          \draw[thin,black,->] (-11.5,0) -- (7,0) node[below] {$\scriptstyle{}x$};
+          \draw[thin,black,->] (0,-40) -- (0,150) node[left] {$\scriptstyle{}y$};
+          % ticks:
+          \foreach \x in {-10,-5,5}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-3pt) node[below] {$\scriptstyle\x$};
+          }
+          \foreach \x in {-11,-10,...,6}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-1.5pt);
+          }
+          \foreach \y in {-25,25,50,75,100,125}
+          {
+            \draw[thin,black] (0,\y) -- (-3pt,\y) node[left] {$\scriptstyle\y$};
+          }
+          \foreach \y in {-35,-30,...,140}
+          {
+            \draw[thin,black] (0,\y) -- (-1.5pt,\y);
+          }
+          \begin{scope}
+            \clip (-11.5,-40) rectangle (7,150);
+            \draw[thick,blue,domain=-11.5:7,smooth] plot (\x,{3*(\x)^2+12*\x-4});
+            \uncover<3->{%
+              \draw[ultra thick,red,domain=-11.5:-2,smooth] plot (\x,{3*(\x)^2+12*\x-4});
+              \draw[thick,red,fill=white] (-2,-16) circle (2.5pt);
+            }
+          \end{scope}
+        \end{tikzpicture}
+      \end{center}
+    \end{enumerate}
+  }
+  \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{Review: Meaning of Derivatives 3}
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+  \item Where is $f(x)=x^3 + 12 x^2 + 6x + 18$ concave up?
+    \begin{center}
+      A\ $x< -4$
+      \quad 
+      B\ $x >-4$
+      \quad 
+      C\ $x > -2$
+      \quad 
+      D\ $x < -2$ 
+      \quad
+      \uncover<3->{\fbox{B}}
+    \end{center}
+    \bigskip
+
+    \uncover<2->{%
+      \begin{center}
+        \begin{tikzpicture}[x=4mm,y=0.05mm,>=latex]
+          \draw[thin,black,->] (-16,0) -- (7,0) node[below] {$\scriptstyle{}x$};
+          \draw[thin,black,->] (0,-300) -- (0,500) node[left] {$\scriptstyle{}y$};
+          % ticks:
+          \foreach \x in {-15,-10,-5,5}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-3pt) node[below] {$\scriptstyle\x$};
+          }
+          \foreach \x in {-16,-15,...,6}
+          {
+            \draw[thin,black] (\x,0) -- (\x,-1.5pt);
+          }
+          \foreach \y in {-200,200,400}
+          {
+            \draw[thin,black] (0,\y) -- (-3pt,\y) node[left] {$\scriptstyle\y$};
+          }
+          \foreach \y in {-300,-250,...,450}
+          {
+            \draw[thin,black] (0,\y) -- (-1.5pt,\y);
+          }
+          \begin{scope}
+            \clip (-16,-300) rectangle (7,500);
+            \draw[thick,blue,domain=-16:7,smooth] plot (\x,{(\x)^3+12*(\x)^2+6*\x+18});
+            \uncover<3->{%
+              \draw[ultra thick,red,domain=-4:7,smooth] plot (\x,{(\x)^3+12*(\x)^2+6*\x+18});
+              \draw[thick,red,fill=white] (-4,122) circle (2.5pt);
+            }
+          \end{scope}
+        \end{tikzpicture}
+      \end{center}
+  \end{enumerate}
+  }
+}
+
+
+
+
+
+\frame{
+  \frametitle{Review: Derivatives}
+
+  \begin{enumerate}
+    \setcounter{enumi}{3}
+  \item Suppose
+    \begin{equation*}
+      f(x)=2x^4-3x^2+5x + 3
+    \end{equation*}
+    Click as you compute the following:
+    \begin{itemize}
+    \item[(A)] $f'(x) = $ \uncover<2->{{\blue$8x^3-6x+5$}} 
+      \smallskip
+
+    \item[(B)] $f''(x)= $ \uncover<3->{{\blue$24x^2-6$}} 
+      \smallskip
+
+    \item[(C)] $f'''(x)= $ \uncover<4->{{\blue$48x$}}
+      \smallskip
+
+    \item[(D)] $\dfrac{d^4f}{dx^4} = $ \uncover<5->{{\blue$48$}}
+
+    \end{itemize}
+    \bigskip
+
+    \uncover<6->{
+      \item Find the {\red minimum} of $f(x)=2x^2+8x+3$
+      \begin{center}
+        A $=-5$
+        \quad 
+        B $= -2$
+        \quad 
+        C $= 0$
+        \quad 
+        D $= 2$
+        \quad 
+        E $= 5$
+        \quad
+        \uncover<7->{\fbox{A}}
+      \end{center}
+    }
+    \bigskip
+
+  \end{enumerate}
+}
+
+
+\frame{
+  \frametitle{Derivatives (cont'd)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item Suppose $f(x)=x^2-4x +5$.  Click as you do the following:
+
+    \begin{itemize}
+    \item[(A)] What is the slope of the graph when $x= 3$?
+      \hfill 
+      \uncover<2->{{\blue$f'(3) = 2$}}
+      \bigskip
+
+    \item[(B)] What is the equation of the tangent line to the graph
+      $y=f(x)$ at $x=3$?
+      \hfill
+      \uncover<3->{{\blue$y=2x-4$}}
+      \bigskip
+
+    \item[(C)] Is the graph concave up or concave down?
+      \\
+
+      \ \hfill
+      \uncover<4->{{\blue$f''(x)=2>0$; concave up}}
+      \bigskip
+    \end{itemize}
+    
+    \textbf{Hint:}\ Draw a picture!
+    \bigskip
+
+
+    \uncover<5->{%
+      How many did you get?
+      \begin{center}
+        A $=3$
+        \quad 
+        B $=2$
+        \quad 
+        C $=1$
+        \quad 
+        D $=0$
+        \quad 
+        E $=\text{{\red Don't press this button!}}$
+      \end{center}
+    }
+
+  \end{enumerate}
+
+}
+
+
+\frame{
+  \frametitle{Objects in Motion}
+  \vspace*{-0.5em}
+
+  \begin{enumerate}
+    \setcounter{enumi}{6}
+  \item A gorilla standing on top of Campbell Hall and throws a banana
+    at a   monkey on top of Cheadle Hall $100$ meters away.
+    \begin{itemize}
+    \item $h(t) = 35 + 50 t - 5 t^2$ meters is the height of the banana
+      $t$ seconds after it is thrown
+
+    \item Banana lands at the monkey's feet $6$ seconds after it is thrown
+    \end{itemize}
+  \end{enumerate}
+  \vspace*{-0.5em}
+
+  
+  Click as you do the following:
+  \begin{itemize}
+  \item[\red(A)] Draw a diagram showing Campbell Hall, Cheadle Hall,
+    and the flight path of the banana.
+
+  \item[\red(B)] How high is Cheadle Hall?
+    \ \uncover<2->{{\hfill\blue$h(6)=155\ \text{m}$}}
+
+  \item[\red(C)] How high above ground did the banana fly?
+    \ \uncover<3->{{\hfill\blue$h(5)=160\ \text{m}$}}
+
+  \item[\red(D)] How high above Cheadle Hall did the banana fly?
+    \ \uncover<4->{{\hfill\blue$5\ \text{m}$}}
+
+  \item[\red(E)] For how many seconds of the flight was the banana
+    gaining height?
+    \ \uncover<5->{{\hfill\blue until $h'(t)=0$; until $t=5$ seconds}}
+
+  \item[\blue(A)] How fast was the banana going when it landed?
+    \ \uncover<6->{{\hfill\blue $|h'(6)|=10\ \text{m}/\text{s}$}}
+
+  \end{itemize}
+
+}
+
+\end{document}
+
+\section{General Review}
+
+\frame{
+  \frametitle{Review: Lines!}
+
+  \begin{enumerate}
+    \setcounter{enumi}{7}
+  \item Find the equation of the line with slope $3$ that contains the
+    point $(2,5)$.
+    \begin{center}
+      A\ $y = 3x+5$
+      \quad 
+      B\ $y=3x-1$
+      \quad 
+      C\ $y =3x + 2$
+      \pause
+      \quad
+      \fbox{B}
+    \end{center}
+    \bigskip
+
+    \item What is the $x$-coordinate of the point where the two lines 
+      \begin{equation*}
+        y= 3x+2
+        \qquad\text{and}\qquad
+        y - 4x+1=0
+      \end{equation*}
+      cross?
+      \begin{center}
+        A\ $x=-3$
+        \quad 
+        B\ $x=-1$
+        \quad 
+        C\ $x=1$
+        \quad
+        D\ $x=3$
+        \quad 
+        E\ $x=4$
+        \pause
+        \quad
+        \fbox{D}
+      \end{center}
+      \bigskip
+
+      % \item Find the equation of the tangent line to $y=2x^3-2x$ at $x=1$.
+      % \begin{center}
+      %   A\ $y=2x-6$
+      %   \quad 
+      %   B\ $y=16x-7$
+      %   \quad 
+      %   C\ $y = 7x+16$
+      %   \quad 
+      %   D\ $y = 7x-16$
+      %   \pause
+      % \end{center}
+
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Review: Logs!}
+
+  \begin{enumerate}
+    \setcounter{enumi}{9}
+  \item Solve $3^x=7$.
+    \begin{center}
+      A\ $x= 7/3$
+      \quad 
+      B\ $x=\log(7/3)$
+      \\
+      \ \quad
+      C\ $x =\log(7)/\log(3)$
+      \quad 
+      D\ $x = \log(7)-\log(3)$
+      \pause
+      \quad
+      \fbox{C}
+    \end{center}
+    \vspace*{-1em}
+
+
+    \ \hspace*{-0.5in}
+    \begin{minipage}[t]{0.35\linewidth}
+      \bluealert{Remember half-life}:\ 
+    \end{minipage}
+    \begin{minipage}[t]{0.65\linewidth}
+      \begin{itemize}
+      \item Half-life $=K$ years 
+      \item Initial amount $=A$
+      \item Amount after $t$ years is \fbox{$=A \times 2^{-t/K}$}
+      \end{itemize}
+    \end{minipage}
+    % \bigskip
+
+  \item Let's start with $8$ grams of an element with half-life of $5$
+    years.
+
+    {\red(a)}\ How many grams remain after $10$ years?
+    \begin{center}
+      A\ $= 0$
+      \quad 
+      B\ $=2$
+      \quad 
+      C\ $= 4$
+      \quad 
+      D\ $=8$
+      \pause
+      \quad
+      \fbox{B}
+    \end{center}
+    % \smallskip
+
+    {\red(b)}\ How many years until $3$ grams remain?
+    \begin{center}
+      A\ $= 8/3$
+      \quad 
+      B\ $= -5\log(3/8)/\log(2)$
+      \\[0.5em] 
+      \ 
+      \quad 
+      C\ $=-5\log(3/16)$
+      \ \quad 
+      D\ $= \log(3/8)-\log(2)$
+      \pause
+      \quad
+      \fbox{B}
+    \end{center}
+
+  \end{enumerate}
+}
+
+
+\end{document}
+\frame{
+  \frametitle{Review: Rates of Change}
+
+  {\red(1)} Suppose $f(x) = x^2-x$. 
+  \smallskip
+
+  {\blue(a)}\ What is the average rate of change of $f(x)$ between
+  $x=1$ and $x=3$?
+  \vspace*{-0.5em}
+  \begin{center}
+    A $=1$
+    \quad 
+    B $=2$
+    \quad 
+    C $=3$
+    \quad 
+    D $=4$
+    \quad 
+    E $=5$
+    \pause
+    \quad
+    \fbox{C}
+  \end{center}
+
+  {\blue(b)}\ What is the instantaneous rate of change of $f(x)$ at $x=3$?
+  \begin{center}
+    A $=1$
+    \quad 
+    B $=2$
+    \quad 
+    C $=3$
+    \quad 
+    D $=4$
+    \quad 
+    E $=5$
+    \pause
+    \quad
+    \fbox{E}
+  \end{center}
+  % \bigskip
+  \pause
+
+  \begin{minipage}{0.65\linewidth}
+    {\red(2)}\ The table to the right shows the number total number of
+    people treated in a hospital up to and including the day shown
+    during a flu outbreak.
+  \end{minipage}
+  \begin{minipage}[t]{0.3\linewidth}
+    \begin{tabular}{|l||l|l|l|l|l|l|}\hline
+      days & 0 & 3 & 7 & 9 \\
+      \hline
+      cases & 0 & 18 & 56 & 81 \\
+      \hline
+    \end{tabular}    
+  \end{minipage}
+  \smallskip
+
+  {\blue(a)}\ On average, how many people were treated per day during the first week?
+  \begin{center}
+    A $=56$
+    \quad 
+    B $= 38$
+    \quad 
+    C $= 81$
+    \quad 
+    D $= 8$
+    \pause
+    \quad
+    \fbox{D}
+  \end{center}
+
+  {\blue(b)}\ Which period had the greatest average number of cases per day?
+  \begin{center}
+    A $=0-3$ 
+    \quad 
+    B $= 3-7$
+    \quad 
+    C $= 7-9$
+    \pause
+    \quad
+    \fbox{C}
+  \end{center}
+
+
+}
+
+
+
+
+\frame{
+  \frametitle{Jason \& Marie}
+
+  \begin{itemize}
+  \item Jason Bourne and Marie Kreutz are $270$ miles apart at noon.
+
+  \item Marie drives towards Jason at constant speed $M$ starting at
+    noon. 
+
+  \item Jason sets out at $2$pm driving towards Marie at constant speed
+    $J$. 
+
+  \item They meet at $4$pm. 
+
+  \end{itemize}
+
+  {\red(1)}\ Which of the following equations is true?
+  \begin{center}
+    A\ $J+M=270$
+    \quad 
+    B\ $2J=4M$
+    \quad 
+    C\ $J-M=270$\\[0.5em]
+    \ 
+    \quad
+    D\ $2J+4M=270$
+    \quad 
+    E\ $2J=270+4M$
+    \quad
+    \pause
+    \fbox{D}
+  \end{center}
+  \pause
+  \begin{itemize}
+  \item At $3$pm, they are $100$ miles apart. 
+  \end{itemize}
+
+  {\red(2)}\ Which of the following equations is true?\\
+  \begin{center}
+    A\ $J+M=100$
+    \quad 
+    B\ $2J=4M$
+    \quad 
+    C\ $J-M=100$\\[0.5em]
+    D\ $2J+4M=100$
+    \quad 
+    E\ $2J=100+4M$
+    \quad
+    \pause
+    \fbox{A}
+  \end{center}
+  \vspace*{2.5in}
+
+
+
+}
+
+
+
+\frame{
+  \frametitle{Jason \& Marie (continued)}
+
+  \begin{itemize}
+  \item Jason Bourne and Marie Kreutz are $270$ miles apart at noon.
+
+  \item Marie drives towards Jason at constant speed $M$ starting at
+    noon. 
+
+  \item Jason sets out at $2$pm driving towards Marie at constant speed
+    $J$. 
+
+  \item They meet at $4$pm. 
+
+  \item At $3$pm, they are $100$ miles apart. 
+  \end{itemize}
+
+  {\red(3)}\ What was Jason's speed ?
+  \begin{center}
+    A $= 35$
+    \quad 
+    B $= 45$
+    \quad 
+    C $= 55$
+    \quad 
+    D $= 65$
+    \quad 
+    E $= 75$
+    \pause
+    \quad
+    \fbox{D}
+  \end{center}
+  \vspace*{4in}
+
+
+}
+
+
+\frame{
+
+  \ \hspace*{-0.45in}
+  \begin{minipage}{0.6\linewidth}
+    \begin{center}
+      \begin{tikzpicture}[x=60mm,y=6mm,>=latex]
+        \foreach \x in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
+        {
+          \draw[ultra thick,gray!75] (\x,10.2) -- (\x,-0.2) node[black,below] {$\scriptstyle\x$};
+        }
+        \foreach \y in {0,1,...,10} 
+        {
+          \draw[ultra thick,gray!75] (1.02,\y) -- (-0.02,\y) node[black,left] {$\scriptstyle\y$};
+        }
+        \foreach \k in {2,4,...,98}
+        {
+          \draw[thin,gray!95] ({\k/100},10.2) -- ({\k/100},0);
+          \draw[thin,gray!95] (1.02,{\k/10}) -- (0,{\k/10});
+        }
+        % 
+        \draw[thick,black,->] (0,0) -- (1.08,0) node[below] {$\scriptstyle{}x$};
+        \draw[thick,black,->] (0,0) -- (0,10.8) node[left] {$\scriptstyle{}y$};
+        \draw[thick,black] plot[domain=0:1] (\x,{10^(\x)});
+        \node[black,fill=white] at (0.21,8.2) {\Large$y=10^x$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \hspace*{0.35in}
+  \begin{minipage}{0.35\linewidth}
+    Use the graph of $y=10^x$ to find:
+    \begin{itemize}
+    \item[(A)] $10^{3.65}$
+      
+      \uncover<2->{\alert{Answer:}\ $4500$}
+
+    \item[(B)] Solve $10^x =73$
+
+      \uncover<3->{\alert{Answer:}\ $1.86$}
+
+    \item[(C)] The slope of the graph at $x=0.65$
+
+      \uncover<4->{\alert{Answer:}\ $10$}
+
+    \item[(D)] The average rate of change of $10^x$ between $x=0.1$
+      and $x=0.6$ 
+
+      \uncover<5->{\alert{Answer:}\ $5$}
+
+    \end{itemize}
+
+
+    
+  \end{minipage}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+\end{document}

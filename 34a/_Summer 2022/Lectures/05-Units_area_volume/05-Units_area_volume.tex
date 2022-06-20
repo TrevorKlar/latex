@@ -1,0 +1,785 @@
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
+
+\input{../lecture-setup.tex}
+
+\title{}
+\title{Units, Areas \& Volumes}
+\date{April 10, 2017}
+
+
+\begin{document}
+\small
+
+\section*{Administration}
+
+\frame{
+  \frametitle{Office Hours!}
+  % \ \vspace*{0.25in}
+
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Peter M.\ Garfield, \url{garfield@math.ucsb.edu}\\[0.25em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} Mondays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} Tuesdays 10:30--11:30\textsc{am}\\
+  \ \hspace*{0.2in} Thursdays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} or by appointment \\[0.25em]
+
+  {\Large{}Office:}\\
+  \ \hspace*{0.2in} South Hall 6510\\[0.5em]
+
+  \copyright\ 2017\ Daryl Cooper, Peter M.\ Garfield
+
+  % \vspace*{2in}
+}
+
+\section*{Review}
+
+\frame{
+  \frametitle{Exercise}
+
+  \begin{enumerate}
+    % \setcounter{enumi}{10}
+  \item When you substitute $x = y+3$ into $x^2- 6x+8$ you get\ldots
+    \begin{center}
+      A $=y^2-6y-1$
+      \quad 
+      B $= y^2 + 35$
+      \quad 
+      C $=y^2-6 y+35$
+      \quad 
+      D $=y^2 -1$
+      \quad
+      \pause
+    \end{center}
+    \alert{Answer:}\ \answer{D}
+    \pause
+    \bigskip
+
+  \item Can you check your answer to the previous question?
+    \pause
+
+    \textbf{Hint:}\ Plug in, say, $y=1$.  What is $x$?
+    \pause
+
+    When $y=1$, $x=4$ so $x^2 - 6x + 8 = 4^2 - 6(4)+8 = 0$.
+    \pause
+
+    The other expressions are\ldots
+    \begin{center}
+      A $=y^2-6y-1 = -6$
+      \qquad \qquad 
+      B $= y^2 + 35 = 36$
+      \\[1em]
+      C $=y^2-6 y+35 = 30$
+      \qquad \qquad 
+      D $=y^2 -1 = 0$
+    \end{center}
+    
+
+
+
+  \end{enumerate}
+
+}
+ 
+
+\section*{Units!}
+
+\frame{
+  \frametitle{Units: A Meaningless Calculation}
+
+  \begin{center}
+    \includegraphics[scale=0.6]{Snowmass}
+  \end{center}
+}
+   
+\frame{
+  \frametitle{Units: A Meaningless Calculation}
+
+  \alert{Rule:}\ Only \alert{add or subtract}\ things measured in \emph{same units}\\ \pause
+  \begin{itemize}
+  \item  3 meters + 7 inches is NOT 10 of {\blue anything} \pause
+  \item 2 days + 5 hours $\ne 7$ \pause
+  \item 3 nickels + 2 dimes $\ne$ 5\pause
+  \end{itemize}
+  
+  \gap
+  \alert{BUT!}\ You \emph{can multiply or divide things}\ in different units:
+  
+\begin{center}  \fbox{average speed = (distance gone)/(time taken)}\end{center}
+  
+(50 {\green miles}){\blue /}(1 {\green hour}) = 50 ({\green miles{\blue /}hours}) = 50 {\green miles {\blue per} hour} = 50 {\green m{\blue p}h}\\
+  You must {\blue multiply or divide} the {\green units} too !\\ \pause
+  {\green miles} {\blue divided} by {\green hours} is {\green miles {\blue per} hour}
+
+}
+
+\frame{
+
+  When a problem has {\red mixed units} like {\green miles and feet}
+  or {\purple years and seconds} {\red decide} what units you will use
+  (like {\orange miles} and {\purple seconds}) and convert everything
+  into those units, or\
+  \pause 
+  \begin{center}
+    \colorbox{yellow}{{\red\Huge\textsf{SUFFER}}}
+  \end{center}
+
+
+  \alert{\large{}Units conversions}
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+  \item How fast does your hair grow\ldots\pause{}in mph?
+
+    \begin{center}
+      A$=10^{-3}$
+      \quad
+      B$=10^{-4}$
+      \quad
+      C$=10^{-5}$
+      \quad
+      D$=10^{-6}$
+      \quad
+      E$=10^{-8}$
+      \quad
+      \pause\fbox{???}
+    \end{center}
+    I don't know either.
+    \gap
+
+  \item How fast does your hair grow\ldots\pause{}in $\text{cm}/\text{month}$?
+
+    \begin{center}
+      A$=$faster
+      \quad
+      B$=10$
+      \quad
+      C$=1$
+      \quad
+      D$=1/10$
+      \quad
+      E$=$slower
+      \quad
+      \pause\fbox{C}
+    \end{center}
+  \end{enumerate}
+
+  \alert{\large{}Conversions:}
+  \begin{equation*}
+    2.54\ \text{cm} = 1\ \text{inch}
+    \qquad
+    12\ \text{inches} = 1\ \text{foot}
+    \qquad
+    5280\ \text{feet} = 1\ \text{mile}
+  \end{equation*}
+  \begin{equation*}
+    30\ \text{days} = 1\ \text{month}
+    \qquad
+    24\ \text{hours} = 1\ \text{day}
+  \end{equation*}
+
+}
+
+\frame{
+
+\gap
+
+  \begin{tabular}{ccccc}
+    \begin{tikzpicture}[x=14mm,y=14mm,>=latex,baseline=0]
+      \draw[thick,black,fill=orange] (0,0) rectangle (1,1);
+      \draw[thick,black,fill=orange] (0,0) rectangle (1,-1);
+      \draw[thick,black,fill=orange] (0,0) rectangle (-1,-1);
+      \draw[thick,black,fill=purple!50!blue] (0,0) rectangle (-1,1);
+    \end{tikzpicture}
+    & \hspace*{0.25in}
+    &
+    \begin{tikzpicture}[x=14mm,y=14mm,>=latex,baseline=0]
+      \draw[thin,black,fill=orange] (0,0) circle (0.8);
+      \draw[thin,black,fill=purple!50!blue] (-0.4,0) circle (0.4);
+      \draw[thin,black,fill=purple!50!blue] (0.4,0) circle (0.4);
+    \end{tikzpicture}
+    & \hspace*{0.25in}
+    &
+    \begin{tikzpicture}[x=14mm,y=14mm,>=latex,baseline=-6mm]
+      \draw[thin,black,fill=orange] (-1,-0.9) -- (1,-1) -- (-0.1,0.5) -- cycle;
+      \draw[thin,black,fill=purple!50!blue] (-1,-0.9) --
+      ({-1+0.5*2},{-0.9+0.5*(-0.1)}) --
+      ({-1+0.5*(0.9)},{-0.9+0.5*1.4}) -- cycle;
+    \end{tikzpicture}
+    \\[4em]
+    \parbox{28mm}{The\ {\color{orange}large square}\ is $2$ times the
+    base of the {\color{purple!50!blue}small square}.  It has $2\times
+    2= 4$ times the area.}
+    &&
+    \parbox{28mm}{The\ {\color{orange}large circle}\ is $2$ times the
+    size of the {\color{purple!50!blue}small circle}.  It has $4$
+      times the area.} 
+    &&
+    \parbox{28mm}{The\ {\color{orange}large triangle}\ is $2$ times the
+    size of the {\color{purple!50!blue}small triangle}.  It has $4$
+       times the area.} 
+  \end{tabular}
+  \gap
+  \pause
+
+  When you {\red double} the size of a shape the {\blue area} is multiplied by {\blue 4}\\ \pause
+  \smallskip
+
+  If you make a shape {\blue 3} times larger the area is {\blue 9} times as much\\ \pause
+  \smallskip
+
+  $\red x$ times larger gives {$\red {x}^{\blue 2}$} times as much area \pause
+  % \smallskip
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{ area grows as {\blue the square} of the linear dimensions}
+  \end{empheq}
+
+
+  \begin{center}
+  \end{center}
+
+
+}
+
+\frame{
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{When you {\red double} the size of a solid object,}\\
+    \text{the volume is {\blue 8} times as much}\qquad\quad
+  \end{empheq}
+  \gap
+  What is going on?\pause
+
+  \halfgap
+  An area has {\blue two dimensions} : {\red length} and {\red width}. \\
+  Both of these get doubled so area is doubled {\purple twice} so multiplied by $2^{\blue 2}$\pause
+
+  \gap A solid object has {\blue three dimensions} : {\red length, width} and {\red height}.\\
+  Each dimension is doubled so volume  doubled {\purple three times} : multiplied by $2^{\blue 3}$
+  \pause
+
+  Make a solid object $\red x$ times bigger, volume is {${\red x}^{\blue 3}$} times as much.\pause
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{volume grows as {\blue the cube} of the linear dimensions}
+  \end{empheq}
+  \pause
+
+
+  {\blue Conclusion} Volume and area grow at {\red different rates}\\
+  As you make an object bigger the volume gets bigger faster ({\blue cubing}) than the area (only {\blue squaring}).
+  Opposite effect when you make it smaller: volume gets smaller faster than area.
+
+
+
+}
+
+\frame{
+  \frametitle{Consequences!} % of: Volume and area grow at different rates}
+
+  \alert{Many important consequences} read {\purple section 4.4}
+  \bigskip
+
+  Why do babies get cold faster than adults?\\ 
+  Why can an ant pick up something weighing 10 times its own weight?\\ 
+  Why are humans 60 feet tall  {\blue mathematically impossible}?\\
+  Why can't you build a jumbo jet twice as big?\\
+  Why are my lungs crinkly?\\
+  A planet made of rock behaves like a liquid\\
+  Why can a fly walk on the ceiling, but I cant?\\
+  Why is water so dangerous to an insect but not gravity?\\
+  \pause
+  \gap 
+
+  Paraphrasing {\orange J.B.S.Haldane}\quad Falling down a {\red thousand yard mine shaft}\\
+  A mouse  {\blue walks away}\\
+  \pause
+  A rat is {\blue killed}\\
+  \pause
+  A man is {\blue broken}\\
+  \pause
+  A horse {\blue splashes}
+}
+
+\frame{
+
+  \begin{enumerate}
+    \setcounter{enumi}{4}
+  \item An oil leak!
+    \begin{itemize}
+    \item  Oil is leaking from an oil tanker at the rate of {\blue 4000} liters per hour.
+    \item {\orange 8} liters of oil spread out over {\red 10} square meters of ocean surface.
+    \item A {\purple SQUARE} oil slick forms. 
+    \end{itemize}
+    \begin{enumerate}
+    \item Express the length, $X$,  of one side of the square  oil
+      slick as a function of the time $t$ (in hours) the tank has been
+      leaking. 
+
+    \item After {\blue how many hours} will the oil slick be a square
+      with side length 2 kilometers?  
+    \end{enumerate}
+  \end{enumerate}
+  \pause
+
+  {\blue PLAN:} 
+  \begin{itemize}
+  \item[(i)] How many liters of oil on ocean  after $t$ hours?
+
+  \item[(ii)] How much area does this oil cover?
+  \end{itemize}
+  \pause
+  \gap
+
+  \alert{Answert to (b)}: \answer{$t=800\ \text{hours}$}
+
+}
+
+\section*{Lines}
+
+\frame{
+  \frametitle{Straight Lines (\S 6.1)}
+
+  Calculus is about {\red{}derivatives (Math 34A)}\ and
+  {\blue{}integrals (Math 34B)}.
+  \pause
+  \halfgap
+
+  A {\red{}derivative}\ is the slope of a line.
+  \pause = {\blue RISE}/{\red RUN}
+
+  \begin{center}
+    \begin{tikzpicture}[x=10mm,y=6mm,>=latex]
+      \draw[thin,black,->] (-2,0) -- (6,0) node[below] {$x$};
+      \draw[thin,black,->] (0,-2) -- (0,5) node[left] {$y$};
+      % y=-2+(3/4)*(x+2) or y=3/4 x - 1/2 = (3x-2)/4
+      \draw[thick,black] (-2,-2) -- (6,4) node[right] {positive slope};
+      \draw[thick,blue] (4,{(3*2-2)/4}) -- (4,{(3*4-2)/4}) node[midway,right] {RISE};
+      \draw[thick,red] (2,{(3*2-2)/4}) -- (4,{(3*2-2)/4}) node[midway,below] {RUN};
+      \uncover<4->{%
+        \draw[thick,blue] (5,{(3*-0.5-2)/4}) -- (5,{(3*5-2)/4}) node[midway,right] {RISE};
+        \draw[thick,red] (-0.5,{(3*-0.5-2)/4}) -- (5,{(3*-0.5-2)/4}) node[midway,below] {RUN};
+      }
+    \end{tikzpicture}
+  \end{center}
+
+} 
+
+\frame{
+  \frametitle{Examples}
+
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item  What is the slope here:
+    \vspace*{-1em}
+  \begin{center}
+    \begin{tikzpicture}[x=8mm,y=6mm,>=latex]
+      \draw[thin,black,->] (-3,0) -- (7,0) node[below] {$x$};
+      \draw[thin,black,->] (0,-0.5) -- (0,5) node[left] {$y$};
+      % y=-2+(3/4)*(x+2) or y=3/4 x - 1/2 = (3x-2)/4
+      % m=5/10 = 1/2, so y=4+(1/2)*(x-6) or y=x/2+1:
+      \draw[thick,black] (-3,-0.5) -- (7,4.5);
+      % \draw[thick,blue] (4,{(3*2-2)/4}) -- (4,{(3*4-2)/4}) node[midway,right] {RISE};
+      % \draw[thick,red] (2,{(3*2-2)/4}) -- (4,{(3*2-2)/4}) node[midway,below] {RUN};
+      % \uncover<4->{%
+      %   \draw[thick,blue] (5,{(3*-0.5-2)/4}) -- (5,{(3*5-2)/4}) node[midway,right] {RISE};
+      %   \draw[thick,red] (-0.5,{(3*-0.5-2)/4}) -- (5,{(3*-0.5-2)/4}) node[midway,below] {RUN};
+      % }
+      \draw[thin,black,dotted] (2,2) -- (2,0) node[below,red] {$2$};
+      \draw[thin,black,dotted] (2,2) -- (0,2) node[left,blue] {$2$};
+      \draw[thin,black,dotted] (6,4) -- (6,0) node[below,red] {$6$};
+      \draw[thin,black,dotted] (6,4) -- (0,4) node[left,blue] {$4$};
+      \filldraw[orange] (2,2) circle (1.5pt);
+      \filldraw[orange] (6,4) circle (1.5pt);
+      \uncover<2->{%
+        \draw[thick,red] (2,2) -- (6,2) node[midway,below]{$\text{RUN}=6-2=4$};
+        \draw[thick,blue] (6,2) -- (6,4) node[midway,right]{$\text{RISE}=4-2=2$};
+      }
+    \end{tikzpicture}
+  \end{center}
+  \end{enumerate}
+  \vspace*{-1.5em}
+
+  \begin{center}
+    A$=3$
+    \qquad
+    B$=3/2$
+    \qquad
+    C$=1$
+    \qquad
+    D$=1/2$
+    \qquad
+    E$=\text{other}$
+    \qquad
+    \uncover<2->{\fbox{D}}
+  \end{center}
+  \pause
+
+  slope = \#\ units {\blue UPWARDS}\ you move for each unit you move\ {\red{}TO THE RIGHT}
+  \pause
+
+  Idea: \parbox[t]{3.75in}{%
+      $\text{{\blue RISE}}=\text{{\orange slope}}\times\text{{\red RUN}}$\pause
+      \qquad
+      So if $\text{{\red RUN}}={\red 1}$ then {\blue RISE}={\orange slope}.
+    }
+    \halfgap
+    \pause
+ 
+  A 10\% gradient on a mountain road is a {\orange slope} of $1/10$. 
+  It means for every 10 feet you move horizontally you go up (or down) 1 foot.
+
+}
+
+\frame{
+  \frametitle{Examples (page 2)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{6}
+  \item  What is the slope here:
+    \begin{center}
+      \begin{tikzpicture}[x=6mm,y=4mm,>=latex]
+        \draw[thin,black,->] (-1,0) -- (9,0) node[below] {$x$};
+        \draw[thin,black,->] (0,-1) -- (0,8) node[left] {$y$};
+        \begin{scope}
+          \clip (-1,-1) rectangle (9,8);
+          % line thru (4,2) and (8,7):
+          \draw[thick,black] plot[domain=-1:9] (\x,{2+5*(\x-4)/4});
+        \end{scope}
+        % y=-2+(3/4)*(x+2) or y=3/4 x - 1/2 = (3x-2)/4
+        % m=5/10 = 1/2, so y=4+(1/2)*(x-6) or y=x/2+1:
+        % \draw[thick,black] (-3,-0.5) -- (7,4.5);
+        % \draw[thick,blue] (4,{(3*2-2)/4}) -- (4,{(3*4-2)/4}) node[midway,right] {RISE};
+        % \draw[thick,red] (2,{(3*2-2)/4}) -- (4,{(3*2-2)/4}) node[midway,below] {RUN};
+        % \uncover<4->{%
+        % \draw[thick,blue] (5,{(3*-0.5-2)/4}) -- (5,{(3*5-2)/4}) node[midway,right] {RISE};
+        % \draw[thick,red] (-0.5,{(3*-0.5-2)/4}) -- (5,{(3*-0.5-2)/4}) node[midway,below] {RUN};
+        % }
+        %   \draw[thin,black,dotted] (2,2) -- (2,0) node[below,red] {$2$};
+        %   \draw[thin,black,dotted] (2,2) -- (0,2) node[left,blue] {$2$};
+        %   \draw[thin,black,dotted] (6,4) -- (6,0) node[below,red] {$6$};
+        %   \draw[thin,black,dotted] (6,4) -- (0,4) node[left,blue] {$4$};
+        \filldraw[orange] (4,2) circle (1.5pt) node[black,left,yshift=1mm] {$(4,2)$};
+        \filldraw[orange] (8,7) circle (1.5pt) node[black,left,yshift=1mm] {$(8,7)$};
+        \uncover<2->{%
+          \draw[thick,red] (4,2) -- (8,2) node[midway,below]{$\text{RUN}=8-4=4$};
+          \draw[thick,blue] (8,2) -- (8,7) node[midway,right]{$\text{RISE}=7-2=5$};
+        }
+      \end{tikzpicture}
+    \end{center}
+    \begin{center}
+      A$=5/4$
+      \quad 
+      B$ = 4/5$
+      \quad 
+      C$ =1/4$
+      \quad
+      D$ =4$
+      \quad 
+      E$ =5$
+      \qquad
+      \uncover<3->{\fbox{A}}
+    \end{center}
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Examples (page 3)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{7}
+  \item  What is the slope here:
+    \begin{center}
+      \begin{tikzpicture}[x=6mm,y=6mm,>=latex]
+        \draw[thin,black,->] (-4,0) -- (6,0) node[below] {$x$};
+        \draw[thin,black,->] (0,-1) -- (0,5) node[left] {$y$};
+        \begin{scope}
+          \clip (-4,-1) rectangle (6,5);
+          % line thru (4,2) and (8,7):
+          \draw[thick,black] plot[domain=-4:6] (\x,3);
+        \end{scope}
+        \filldraw[orange] (-2,3) circle (1.5pt) node[black,above] {$(-2,3)$};
+        \filldraw[orange] (5,3) circle (1.5pt) node[black,above] {$(5,3)$};
+        \uncover<2->{%
+          \node[blue,right] at (6.5,3.5) {$\text{RISE}=3-3=0$};
+        }
+        \uncover<3->{%
+          \node[red,right] at (6.5,2.5) {$\text{RUN}=$\,who cares?};
+        }
+        \uncover<4->{%
+          \node[right] at (6.5,1.5) {$\displaystyle\text{slope}=\frac{0}{\text{something}}=0$};
+        }
+      \end{tikzpicture}
+    \end{center}
+    \begin{center}
+      A$=0$
+      \quad 
+      B$ = 7$
+      \quad 
+      C$ =5/3$
+      \quad
+      D$ =\infty$
+      \quad 
+      E$ =3/5$
+      \qquad
+      \uncover<4->{\fbox{A}}
+    \end{center}
+  \end{enumerate}
+
+}
+
+
+\frame{
+  \frametitle{Examples (big finish!)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{8}
+  \item  What is the slope here:
+    \begin{center}
+      \begin{tikzpicture}[x=10mm,y=10mm,>=latex]
+        \draw[thin,black,->] (-3,0) -- (3,0) node[below] {$x$};
+        \draw[thin,black,->] (0,-2) -- (0,2) node[left] {$y$};
+        \begin{scope}
+          \clip (-3,-2) rectangle (3,2);
+          % line thru (-2,0) and (0,-1):
+          \draw[thick,black] plot[domain=-4:6] (\x,{-1*\x/2-1});
+        \end{scope}
+        % \foreach \x in {-2} 
+        % {
+        %   \draw[thin,black] (\x,0) -- (\x,-3mm) node[below] {$\x$};
+        % }
+        % \foreach \y in {-1} 
+        % {
+        %   \draw[thin,black] (0,\y) -- (-3mm,\y) node[left] {$\y$};
+        % }
+        \uncover<2->{%
+          \draw[thick,blue] (0,0) -- (0,-1) node[midway,right] {$\text{RISE}=-1$};
+          \draw[thick,red] (0,0) -- (-2,0) node[midway,above] {$\text{RUN}=2$};
+          % \draw[thick,blue] (0,0) -- (0,-1) node[midway,right] {$\text{RISE}=-1-0=-1$};
+          % \draw[thick,red] (0,0) -- (-2,0) node[midway,above] {$\text{RUN}=0-(-2)=2$};
+        }
+        \filldraw[orange] (-2,0) circle (1.5pt) node[black,below,xshift=-1mm] {$-2$};
+        \filldraw[orange] (0,-1) circle (1.5pt) node[black,left,yshift=-1mm] {$-1$};
+      \end{tikzpicture}
+    \end{center}
+    \begin{center}
+      A$=-1$
+      \quad 
+      B$ = 1$
+      \quad 
+      C$ =1/2$
+      \quad
+      D$ =-1/2$
+      \quad 
+      E$ =-2$
+      \qquad
+      \uncover<3->{\fbox{D}}
+    \end{center}
+  \end{enumerate}
+
+}
+
+
+\frame{ 
+  \frametitle{General Case}
+
+  \begin{enumerate}
+    \setcounter{enumi}{9}
+  \item 
+    A line goes throught two points: $(x_0,y_0)$ and $(x_1,y_1)$.  Find
+    the slope of this line.  \alert{\emph{Draw a picture!}}
+
+    \begin{center}
+      A$ = y_1-y_0$
+      \quad 
+      B$=(y_1-x_1)/(y_0-x_0)$
+      \quad 
+      C$=(y_1-y_0)(x_1-x_0)$
+      \medskip
+
+      D$=(y_1-y_0)/(x_1-x_0)$
+      \quad 
+      E$ = \text{Shirley you're joking}$
+      \quad
+      \uncover<4->{\fbox{D}}
+    \end{center}
+  \end{enumerate}
+  \halfgap
+
+  \uncover<2->{%
+    \begin{center}
+      \begin{tikzpicture}[x=8mm,y=6mm,>=latex]
+        \draw[thin,black,->] (-3,0) -- (7,0) node[below] {$x$};
+        \draw[thin,black,->] (0,-0.5) -- (0,5) node[left] {$y$};
+        % y=-2+(3/4)*(x+2) or y=3/4 x - 1/2 = (3x-2)/4
+        % m=5/10 = 1/2, so y=4+(1/2)*(x-6) or y=x/2+1:
+        \draw[thick,black] (-3,-0.5) -- (7,4.5);
+        % \draw[thick,blue] (4,{(3*2-2)/4}) -- (4,{(3*4-2)/4}) node[midway,right] {RISE};
+        % \draw[thick,red] (2,{(3*2-2)/4}) -- (4,{(3*2-2)/4}) node[midway,below] {RUN};
+        % \uncover<4->{%
+        % \draw[thick,blue] (5,{(3*-0.5-2)/4}) -- (5,{(3*5-2)/4}) node[midway,right] {RISE};
+        % \draw[thick,red] (-0.5,{(3*-0.5-2)/4}) -- (5,{(3*-0.5-2)/4}) node[midway,below] {RUN};
+        % }
+        \draw[thin,black,dotted] (2,2) -- (2,0) node[below,red] {$x_0$};
+        \draw[thin,black,dotted] (2,2) -- (0,2) node[left,blue] {$y_0$};
+        \draw[thin,black,dotted] (6,4) -- (6,0) node[below,red] {$x_1$};
+        \draw[thin,black,dotted] (6,4) -- (0,4) node[left,blue] {$y_1$};
+        \uncover<3->{%
+          \draw[thick,red] (2,2) -- (6,2) node[midway,below]{$\text{RUN}=x_1-x_0$};
+          \draw[thick,blue] (6,2) -- (6,4) node[midway,right]{$\text{RISE}=y_1-y_0$};
+        }
+        \filldraw[orange] (2,2) circle (1.5pt) node[black,above,xshift=-1.5mm] {$(x_0,y_0)$};
+        \filldraw[orange] (6,4) circle (1.5pt) node[black,above,xshift=-1.5mm] {$(x_1,y_1)$};
+      \end{tikzpicture}
+    \end{center}
+  }
+  \uncover<4->{%
+    \begin{equation*}
+      \text{Slope} 
+      = \frac{\text{\blue{}RISE}}{\text{\red{}RUN}}
+      = \frac{{\blue y_1- y_0}}{{\red x_1- x_0}}
+    \end{equation*}
+  }
+} 
+
+
+
+
+
+\frame{ 
+  \frametitle{The Equation of a Line}
+
+  \alert{The Slope Intercept Form}\ 
+
+  The \textbf{slope intercept}\ equation of a straight line is \ \fbox{$y = {\color{blue}m}x + {\color{red}b}$}\,.
+
+  \begin{center}
+    \begin{tikzpicture}[x=8mm,y=6mm,>=latex]
+      \draw[thin,black,->] (-3,0) -- (7,0) node[below] {$x$};
+      \draw[thin,black,->] (0,-0.5) -- (0,5) node[left] {$y$};
+      % y=-2+(3/4)*(x+2) or y=3/4 x - 1/2 = (3x-2)/4
+      % m=5/10 = 1/2, so y=4+(1/2)*(x-6) or y=x/2+1:
+      \draw[thick,black] (-3,-0.5) -- (7,4.5) node[right] {$y=mx+b$};
+      \filldraw[red] (0,1) circle (1.5pt) node[red,left,yshift=1.5mm] {$b$};
+    \end{tikzpicture}
+  \end{center}
+  \vspace*{-1.5em}
+
+  \begin{align*}
+    {\color{blue}m} & = \text{the \textbf{slope}.  CRUCIAL for calculus.} \\
+    {\color{red}b}  & =\, \text{where the line crosses\ the $y$-axis (the ``$y$-intercept'').}
+  \end{align*}
+  \pause  
+  WHY? Because when you plug in $x=0$, you get $y={\color{red}b}$.
+
+}
+
+\frame{
+  \frametitle{Example}
+
+  \begin{enumerate}
+    \setcounter{enumi}{9}
+  \item Find the equation of the line \fbox{$y={\blue m}x+{\red b}$}
+    through the points $(1,3)$ and $(7,5)$.
+  \bigskip
+
+  Plan: Find $m$, then find $b$.
+  \bigskip
+
+  \begin{enumerate}
+  \item 
+    What is $m$?
+    \begin{center}
+      A$=1$
+      \quad 
+      B$=3$
+      \quad 
+      C$=5$
+      \quad 
+      D$=1/3$
+      \quad 
+      E$=2$
+      \quad
+      \pause
+      \fbox{D}
+    \end{center}
+    \bigskip
+    \pause
+
+    So $\displaystyle{}y=\frac{1}{3}x + b$.  What is $b$?  Plug in
+    either point!
+    \bigskip
+
+    \item What do you get for ${\red b}$?
+      \begin{center}
+        A$=1/3$
+        \quad 
+        B$= 4/3$
+        \quad 
+        C$= 7/3$
+        \quad 
+        D$= 8/3$
+        \quad
+        E$= 10/3$ 
+        \pause
+        \quad
+        \fbox{D}
+      \end{center}
+
+      \halfgap
+
+      Can we check?
+      \pause
+    \end{enumerate}
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{You Try It}
+
+  \begin{enumerate}
+    \setcounter{enumi}{10}
+  \item  A line has slope $1/2$ and goes through the point $(2,5).$
+    What is the $y$-coordinate of the point on this line where $x=6$?
+    \bigskip
+    \begin{center}
+      A$=3$
+      \qquad 
+      B$=4$
+      \qquad 
+      C$=5$
+      \qquad 
+      D$=6$
+      \qquad 
+      E$=7$ 
+      \quad
+      \uncover<3->{\fbox{E}}
+    \end{center}
+    \pause
+    \bigskip
+
+    \uncover<2->{%
+      \alert{Plan:}\ 
+      \parbox[t]{2in}{%
+        1.\ Find equation of the line. \\
+        2.\ Plug in $x=6$ to find $y$.
+      }
+    }
+  \end{enumerate}
+  \vspace*{1in}
+  \ 
+}
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
