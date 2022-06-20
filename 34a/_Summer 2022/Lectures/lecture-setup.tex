@@ -1,0 +1,184 @@
+%%
+%%
+%%
+% From http://tex.stackexchange.com/questions/2072/beamer-navigation-circles-without-subsections
+% Solution #2 or 3:
+% \usepackage{etoolbox}
+% \makeatletter
+% % replace the subsection number test with a test that always returns true
+% \patchcmd{\slideentry}{\ifnum#2>0}{\ifnum2>0}{}{\@error{unable to patch}}%
+% \makeatother
+% Solution #1:
+\usepackage{remreset}% tiny package containing just the \@removefromreset command
+\makeatletter
+\@removefromreset{subsection}{section}
+\makeatother
+\setcounter{subsection}{1}
+
+
+\usepackage{etex}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{color}
+% \definecolor{red}{rgb}{1,0,0}
+\usepackage{ulem}
+% \usepackage{booktabs}
+\usepackage{colortbl,booktabs}
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{fancybox}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfdefinestyle{FactStyle}{%
+  outerlinewidth=0.5,
+  roundcorner=1pt,
+  leftmargin=1cm,
+  linecolor=blue,
+  outerlinecolor=blue!70!black,
+  backgroundcolor=yellow!40
+}
+\usepackage{cancel}
+
+  \newcommand\Warning{%
+    \makebox[2.4em][c]{%
+      \makebox[0pt][c]{\raisebox{.2em}{\Large!}}%
+      \makebox[0pt][c]{\color{red}\Huge$\bigtriangleup$}}}%
+
+\usepackage{stackengine}
+\usepackage{scalerel}
+\usepackage{xcolor}
+  \newcommand\dangersign[1][2ex]{%
+    \renewcommand\stacktype{L}%
+    \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
+  }
+
+
+
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+% From
+% http://tex.stackexchange.com/questions/109900/how-can-i-box-multiple-aligned-equations
+\usepackage{empheq}
+\usepackage{tcolorbox}  \newtcbox{\othermathbox}[1][]{%
+  nobeforeafter, tcbox raise base, 
+  colback=black!10, colframe=red!30, 
+  left=1em, top=0.5em, right=1em, bottom=0.5em}
+
+\newcommand\blue{\color{blue}}
+\newcommand\red{\color{red}}
+\newcommand\green{\color{green!75!black}}
+\newcommand\purple{\color{purple}}
+\newcommand\bluegreen{\color{blue!75!green}}
+\newcommand\orange{\color{orange}}
+\newcommand\redgreen{\color{red!50!green}}
+\newcommand\grey{\color{black}}
+\newcommand\gap{\vspace{.1in}}
+\newcommand\nb{${\red\bullet}\ $}
+\newcommand\halfgap{\vspace{.05in}}
+\newcommand\divideline{\line(1,0){352}}
+\usepackage{marvosym} % for \Smiley
+
+\newcommand{\bluealert}[1]{{\blue\textbf{#1}}}
+
+% \usepackage{beamerthemesplit} %Key package for beamer
+\usetheme{Singapore}
+% \usetheme{Szeged}
+% \usetheme{Garfield}
+% \usetheme{CambridgeUS}
+% \usenavigationsymbolstemplate{} %Gets rid of slide navigation symbols
+
+
+\setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
+% \begin{beamercolorbox}[colsep=0.5pt]
+%   {upper separation line foot}
+% \end{beamercolorbox}
+
+
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+% \begin{beamercolorbox}[colsep=0.5pt]
+%   {upper separation line foot}
+% \end{beamercolorbox}
+
+
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=2ex,colsep=0.5pt]%
+    {upper separation line foot}
+    \usebeamerfont{author in head/foot}%
+    \hspace*{2ex}\insertshortdate:\ \insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=2ex,right]{title in head/foot}%
+    \usebeamerfont{title in head/foot}
+    {\insertshortauthor}\hspace*{2ex}
+  \end{beamercolorbox}}%
+  % \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=2ex,right]{date in head/foot}%
+  %   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+  %   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  % \end{beamercolorbox}%
+  \vskip0pt%
+}
+\makeatother
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows}
+
+
+\title{Final Exam Review}
+\author{Peter Garfield, UCSB Mathematics}
+\date{March 15, 2017}
+%\institute{}
+
+
+\useinnertheme{default}
+
+\usefonttheme{serif}
+% \usecolortheme{rose}
+% \usecolortheme{whale}
+% \usecolortheme{orchid}
+\usecolortheme{crane}
+% \usecolortheme{dolphin}
+
+
+%TEMPLATE
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{note page}[compress]
+
+\setbeamertemplate{frametitle}{
+  \vspace{0.5em}
+  % \begin{centering}
+  {\huge\blue\textbf{\textmd{\insertframetitle}}}
+  \par
+  % \end{centering}
+}
+
+% From http://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers:
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,fill=orange,inner sep=1pt] (char) {#1};}} 
+% \renewcommand{\labelenumi}{\circled{\textbf{\arabic{enumi}}}}
+
+\let\olddescription\description
+\let\oldenddescription\enddescription
+\usepackage{enumitem}
+\let\description\olddescription
+\let\enddescription\oldenddescription
+
+% \usepackage[loadonly]{enumitem}
+\setlist[enumerate,1]{label=\colorbox{orange}{\arabic*.},font=\bfseries}
+%\setlist[enumerate,2]{label=\colorbox{blue!25}{(\alph*)},font=\bfseries}
+% \setlist[enumerate,1]{label=\arabic*.,font=\bfseries}
+\setlist[itemize,1]{label=\red$\bullet$}
+\setlist[itemize,2]{label=\blue$\bullet$}
+
+\newcommand\answer[1]{\fbox{#1}}
+% \renewcommand\answer[1]{}
+
+\newcommand{\antilog}{\operatorname{antilog}}
+
+
+
+
+

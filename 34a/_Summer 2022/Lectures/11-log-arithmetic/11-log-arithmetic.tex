@@ -1,0 +1,686 @@
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
+
+\input{../lecture-setup.tex}
+
+\title{}
+\title{Ch.\ 7: Arithmetic Using Logs}
+\date{April 28, 2017}
+
+
+\begin{document}
+\small
+
+\section*{Administration}
+
+\frame{
+  \frametitle{Office Hours!}
+  % \ \vspace*{0.25in}
+
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Peter M.\ Garfield, \url{garfield@math.ucsb.edu}\\[0.25em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} Mondays 2--3\textsc{pm}\\
+  \ \hspace*{0.2in} Tuesdays 10:30--11:30\textsc{am}\\
+  \ \hspace*{0.2in} Thursdays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} or by appointment \\[0.25em]
+
+  {\Large{}Office:}\\
+  \ \hspace*{0.2in} South Hall 6510\\[0.5em]
+
+  \copyright\ 2017\ Daryl Cooper, Peter M.\ Garfield
+
+  % \vspace*{2in}
+}
+
+
+% \frame{
+%   \frametitle{Homework Survey:}
+
+%   {\large\alert{For the size of the universe question on Homework}}
+%   \begin{itemize}
+%   \item[A] I did it on my own
+%     \smallskip
+
+%   \item[B] I got help but now I understand
+%     \smallskip
+
+%   \item[C] I got help but I don't understand
+%     \smallskip
+
+%   \item[D] I did not get the right answers 
+%     \bigskip
+%   \end{itemize}
+
+% }
+
+
+\if0 % commenting out!
+\frame{
+  \frametitle{HW 10 \#8 (Cooper 4.1.8)}
+
+  {\blue
+    Light travels $186,282$ miles in one second. A light year is the
+    distance light travels in one year. It is about $4.3$ light years to
+    the nearest star, Proxima Centauri, (other than our sun!).
+    \smallskip
+
+    (a) How many miles away is Proxima Centauri? 
+  }
+  \medskip
+
+  \begin{align*}
+    \uncover<2->{
+      1\ \text{light-year}
+      & = \big(\ \text{speed of light}\ \big) \times \big(\ 1\
+        \text{year}\ \big) \\
+    }
+    \uncover<3->{%
+      & = \left( 186,282\ \frac{\text{miles}}{\text{second}} \right)
+        \cdot \frac{60\ \text{sec}}{1\ \text{min}}
+        \cdot \frac{60\ \text{min}}{1\ \text{hr}}
+        \cdot \frac{24\ \text{hr}}{1\ \text{day}}
+        \cdot \frac{365\ \text{days}}{1\ \text{yr}}
+        \cdot \big(\ 1\ \text{yr}\ \big) \\
+    }
+    \uncover<4->{%
+      & = 5,874,589,152,000\ \text{miles}
+        }
+    \end{align*}
+    \uncover<5->{%
+      So the distance to Proxima Centauri is
+    }
+    \begin{align*}
+      \uncover<5->{%
+      4.3\ \text{light-years}
+      & = \big(\ 4.3\ \text{light-years}\
+        \big)\times\frac{5,874,589,152,000\ \text{miles}}{1\
+        \text{light-year}}
+        \\
+      }
+    \uncover<6->{%
+      & \approx 2.53 \times 10^{13}\ \text{miles}
+        }
+    \end{align*}
+    \vspace*{2in}
+
+}
+\frame{
+  \frametitle{HW 10 \#8 (Cooper 4.1.8)}
+
+  {\blue
+    Light travels $186,282$ miles in one second. A light year is the
+    distance light travels in one year. It is about $4.3$ light years to
+    the nearest star, Proxima Centauri, (other than our sun!).
+    \smallskip
+
+    (b) The distance from Los Angeles to New York is about $2,000$
+    miles. If this distance is represented by the width of a grain of
+    sand (say $1/100$ of an inch), how many miles away would Proxima
+    Centauri be?
+  }
+  \medskip
+
+  \uncover<2->{%
+    How many grains of sand are there from LA to NY?
+  }
+
+  \uncover<3->{%
+    \begin{align*}
+      \big(\ 2000\ \text{miles}\ \big)
+      \cdot \frac{5280\ \text{ft}}{1\ \text{mile}}
+      \cdot \frac{12\ \text{in}}{1\ \text{ft}}
+      \cdot \frac{100\ \text{grains}}{1\ \text{in}}
+      \approx 1.27\times 10^{10}\ \text{grains}.
+    \end{align*}
+  }
+  \uncover<4->{%
+    So we're scaling by a factor of $1.27\times 10^{10}$.  That is,
+    \begin{equation*}
+      1\ \text{``fake mile''} = 1.27 \times 10^{10}\ \text{real miles}.
+    \end{equation*}
+  }
+  \uncover<5->{%
+    Thus the distance to Proxima Centauri is 
+    \begin{align*}
+      4.3\ \text{light-years}
+      \approx 2.53 \times 10^{13}\ \text{real miles}
+        \cdot \frac{1\ \text{fake mile}}{1.27 \times 10^{10}\
+        \text{miles}} 
+      \approx 1993\ \text{``fake miles''}.
+    \end{align*}
+  }
+  \vspace*{2in}
+}
+\fi % end commenting out
+
+
+\section*{Review}
+
+\frame{
+  \frametitle{Finding the log of any number}
+
+  {\red(1)}\ Write the number as ${\redgreen 10^n}\times$({\red number between 1 and 10})\\[0.5em]
+
+  {\red(2)}\ Find the log of the {\red number between 1 and 10}\ using
+  table or graph\\[0.5em]
+
+  {\red(3)}\ Log is ${\redgreen{}n} + \log(\text{\red number between 1
+    and 10})$
+  \gap\ 
+  \gap\ 
+  \pause
+
+  \alert{\large{}Example:}\ Find $\log(573)$
+  \gap
+
+  {\red(1)}\ $\log({\blue 573}) = \log({\redgreen 100}\times{\red 5.73})
+  = \log({\redgreen 100}) + \log({\red 5.73}) = {\redgreen 2}+\log({\red 5.73})$
+  \smallskip
+
+  {\red(2)}\ \fbox{$\log({\red 5.73}) \approx 0.7582$}
+  \smallskip
+
+  {\red(3)}\ $\log({\blue573}) \approx 2 + 0.7582 = 2.7582$
+  \gap
+
+  Find $\log({\blue 57.3})$
+  \begin{center}
+    A$\approx7.582$
+    \quad 
+    B$\approx10+0.7582$
+    \quad 
+    C$\approx 1+0.7582$
+    \quad 
+    D\ Other
+    \quad
+    \pause
+    \fbox{C}
+  \end{center}
+  \gap
+
+  Find $\log(0.573)$
+  \begin{center}
+    A$\approx-1.7582$
+    \quad 
+    B$\approx-1+0.7582$
+    \quad 
+    C$\approx-0.7582$
+    \quad 
+    D\ Other
+    \quad
+    \pause
+    \fbox{B}
+  \end{center}
+
+}
+
+
+\frame{
+  \frametitle{Finding the antilog of any number}
+
+  \alert{Example:} ${\blue2}.306$ is not on $x$-axis of graph $y=10^x$
+  or in middle of log table.  So how do you use table or graph to find
+  {${\red\mbox{antilog}}({\blue 2}.306)$}?
+  \gap 
+  
+  {\redgreen\large{}Think about it:}
+  \vspace*{-2em}
+  \begin{align*}
+    {\red\mbox{antilog}}({\blue 2}.306)  
+    & =  10^{{\blue2}.306}  \\
+    \uncover<2->{%
+    & = \underbrace{10^{\blue 2}}_{\text{\red{}duh!}} \times
+      \underbrace{ 10^{0.306}}_{\text{\blue{}look it up!}} 
+      \\ 
+    }
+    \uncover<3->{%
+    & \approx {\blue100} \times 2.02 \\
+    & = 202 
+      }
+  \end{align*}
+
+  \uncover<3->{This is like the {\blue moving decimal point trick}\ for logs.}
+
+  \uncover<4->{%
+    \divideline
+
+    From log table: $10^{0.{\green 86}}\approx7.25$. \qquad
+    Use this to find ${\red\mbox{antilog}}(3.{\green 86})$ 
+  }
+  \uncover<5->{%
+    \fbox{\blue$\approx 7250$}\\
+    \begin{center}
+      A$=\text{I got it right}$
+      \qquad 
+      B$=\text{I was close}$
+      \qquad
+      C$=\text{I was wrong}$
+    \end{center}
+  }
+}
+
+\section*{Multiplication}
+
+\frame{
+  \frametitle{\S7.5: Using logs to multiply}
+
+  First rule of logs:\  $\log(a{\blue \times }b)= \log(a){\blue +}\log(b)$
+  \gap
+
+  Example: Find $2.7\times 1.6$ using logs
+
+  {\red{}Hint:}\ $\log(2.7)\approx 0.43$ and $\log(1.6)\approx 0.20$
+  \gap
+
+
+  {\blue Method}\\
+  {\red(i)}\ Look up $\log(2.7)$ and $\log(1.6)$\\
+  {\red(ii)}\ Add these\\
+  {\red(iii)}\ Take the ${\red\mbox{antilog}}$ of result from (ii)\\
+  {\red(iv)}\ Think: Is the answer {\red reasonable} or did I goof up?\\
+  \begin{center}
+    A$= \text{done}$
+    \qquad
+    B$=\text{confused}$
+  \end{center}
+
+  \vspace*{2in}
+
+}
+
+
+\frame{
+  \frametitle{\S7.5: Using logs to multiply}
+
+  First rule of logs:\  $\log(a{\blue \times }b)= \log(a){\blue +}\log(b)$
+  \gap
+
+  Example: Find $2.7\times 1.6$ using logs
+
+  {\red{}Hint:}\ $\log(2.7)\approx 0.43$ and $\log(1.6)\approx 0.20$
+  \gap
+
+  {\blue Look how I write the answer.}
+  \smallskip
+
+  \begin{itemize}
+  \item $\log(2.7{\red \times}1.6) {\blue =} \log(2.7){\red
+      +}\log(1.6)$
+    \pause
+
+  \item Look up $\log(2.7){\blue \approx} 0.43$ and $\log(1.6){\blue \approx} 0.20$,
+    so $\log(2.7{\red \times}1.6){\blue \approx} 0.43{\red +}0.20 =
+    {\green 0.63}$
+    \pause
+
+  \item {\purple Is this the answer ?}\pause\  {\large{ \red Heck
+        No!}} It is the {\red log} of the answer\\ 
+    \pause
+
+  \item $2.7{\red \times}1.6 \approx {\red\mbox{antilog}}({\green 0.63})=10^{\green 0.63}$
+
+  \item Look up $10^{\green 0.63} \approx 4.3$\\
+
+  \item Is my answer \fbox{4.3} reasonable? Yes, about $2\times 2=4$.
+  \end{itemize}
+  \vspace*{1in}
+
+}
+
+
+\frame{
+  \frametitle{A Really Bad Answer}
+
+  \begin{center}
+    \tcbox[colback=red!5!white,colframe=red!75!black]{%
+    \begin{minipage}{3in}
+      $2.7\times 1.6 
+      \quad 
+      \log(2.7 \times1.6)
+      \qquad 
+      \log(2.7)+ \log(1.6)$
+
+      \hspace{1.8in}$=0.43$ \quad $=0.20$
+      \bigskip
+
+      $0.43+0.20 = 0.63\ \longleftarrow$ my answer!!
+    \end{minipage}
+    }
+  \end{center}
+
+  {\blue Common mistake:}\  Writing math {\red so badly} it is {\blue
+    not even wrong}\footnote{%
+    ``Not even wrong'' is due to the physicist Wolfgang Pauli.
+  }.
+  \pause
+  \gap
+
+  {\red Stare at what is written} does it make {\blue any sense}?
+  \gap
+  \pause
+
+  The answer can't be right: how can $2.7\times 1.6$ be $0.43$?
+  \smallskip
+
+  Where is the mistake?  It is so badly written that there is no
+  mistake to find because it is \alert{nonsense}.
+  \pause 
+
+
+}
+
+\frame{
+  \frametitle{Summary of Good Advice}
+
+  \begin{itemize}
+  \item \colorbox{yellow}{Write your work properly.}\pause
+  \item {\blue Eat your fruit \& vegetables}
+  \item {\blue Exercise regularly}
+  \item {\blue Get enough sleep}
+    \\
+    \pause
+    % 
+    $[\text{This advice brought to you by your mother}]$
+  \end{itemize}
+
+}
+
+\frame{
+  \frametitle{Examples:}
+
+  \alert{Example:}\ Find $352\times 17.7$ using logs and tables.
+  \smallskip
+
+  {\red{}Hint:}\ $\log(3.52)\approx 0.5465$ and $\log(1.77)\approx 0.2480$
+  \begin{center}
+    A$=\text{done}$
+    \qquad
+    B$=\text{I'm working!}$
+    \qquad
+    C$=\text{confused}$
+  \end{center}
+  \pause
+  \gap
+
+  {\large\blue{}My Steps:}
+  \begin{itemize}
+  \item[\red(1)] $\log(352)=2+\log(3.52)\approx 2.5465$\quad (move the
+    decimal point)
+
+  \item[\red(2)] $\log(17.7)=1+\log(1.77)\approx 1.2480$\quad (move
+    the decimal point)
+    \pause
+    
+  \item[\red(3)] Add: $\log(352{\red\times} 17.7) = \log(352){\red +}\log(17.7)\approx 2.5465+1.2480= 3.7945$
+    \pause
+
+  \item[\red(4)] So: \qquad $352\times 17.7\approx{\red\mbox{antilog}}(3.7945)
+    =10^{3.7945}=10^3\times 10^{0.7945}\approx6230$
+    \pause
+
+  \item[\red(5)] Check: {\blue Is this reasonable?}\  Should be about $300\times 20=6000$
+
+  \end{itemize}
+  Did you get close?
+  \begin{center}
+    A $=$ Yes 
+    \quad 
+    B $=$ No
+    \quad 
+    C $=$ 
+    Didn't finish
+  \end{center}
+
+}
+
+\section*{Division}
+
+\frame{
+  \frametitle{\S7.5: Using logs to divide}
+
+  Remember Log Rule (5): \fbox{$\log(a{\blue\div} b) = \log(a){\blue -}\log(b)$}
+  \gap
+
+  \alert{Example:}\ Use this rule to find $38.2/1.77$
+
+  {\red{}Hint:}\ $\log(3.82)\approx 0.58$ and $\log(1.77)\approx 0.25$
+  \gap
+  
+  {\blue Method}\\
+  {\red(i)}\ Look up $\log(3.82)$ and $\log(1.77)$, find $\log(38.2)$\\
+  {\red(ii)}\ {\red{}Subtract!}\\
+  {\red(iii)}\ Take the ${\red\mbox{antilog}}$ of result from (ii)\\
+  {\red(iv)}\ Think: Is the answer {\red reasonable} or did I goof up?\\
+  \begin{center}
+    A$= \text{done}$
+    \qquad
+    B$=\text{confused}$
+  \end{center}
+  \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{\S7.5: Using logs to divide}
+
+  Remember Log Rule (5): \fbox{$\log(a{\blue\div} b) = \log(a){\blue -}\log(b)$}
+  \gap
+
+  \alert{Example:}\ Use this rule to find $38.2/1.77$
+
+  {\red{}Hint:}\ $\log(3.82)\approx 0.58$ and $\log(1.77)\approx 0.25$
+  \gap
+  
+  {\blue Look how I write the answer.}
+  \smallskip
+
+  \begin{itemize}
+  \item $\log(38.2{\blue \div}1.77) = \log(38.2){\blue -}\log(1.77)$\quad {\blue using $\log(a/b)=\log(a)-\log(b)$}
+
+  \item $\log(38.2)=1+\log(3.82)\approx 1.58$\quad{\blue  from graph and move decimal point}
+
+  \item $\log(1.77)\approx 0.25$ from graph
+
+  \item $\log(38.2){\blue -}\log(1.77)\approx 1.58-0.25=1.33$
+
+  \item Therefore\ $38.2{\blue \div}1.77 \approx{\red\mbox{antilog}}(1.33)=10^{1.33}$
+
+  \item From graph $10^{0.33}\approx 2.1$ so $10^{1.33}\approx 21$.
+
+  \item Check: Is the answer \fbox{21} reasonable? Yes, about $40\div 2=20$.
+
+  \end{itemize}
+
+
+}
+
+\frame{
+  \frametitle{Examples:}
+
+  \alert{Example:}\ Find $352/17.7$ using logs and tables.
+  \smallskip
+
+  {\red{}Hint:}\ $\log(3.52)\approx 0.5465$ and $\log(1.77)\approx 0.2480$
+  \begin{center}
+    A$=\text{done}$
+    \qquad
+    B$=\text{I'm working!}$
+    \qquad
+    C$=\text{confused}$
+  \end{center}
+  \pause
+  \gap
+
+  {\large\blue{}My Steps:}
+  \begin{itemize}
+  \item[\red(1)] $\log(352)=2+\log(3.52)\approx 2.5465$\quad (move the
+    decimal point)
+
+  \item[\red(2)] $\log(17.7)=1+\log(1.77)\approx 1.2480$\quad (move
+    the decimal point)
+    \pause
+    
+  \item[\red(3)] Subtract: $\log(352{\red\div}17.7) = \log(352){\red -}\log(17.7)\approx 2.5465-1.2480= 1.2985$
+    \pause
+
+  \item[\red(4)] So: \qquad $352\div 17.7\approx{\red\mbox{antilog}}(1.2985)
+    =10^{1.2985}=10^1\times 10^{0.2985}\approx19.9$
+    \pause
+
+  \item[\red(5)] Check: {\blue Is this reasonable?}\  Should be about $350\div 20\approx20$
+
+  \end{itemize}
+  Did you get close?
+  \begin{center}
+    A $=$ Yes 
+    \quad 
+    B $=$ No
+    \quad 
+    C $=$ 
+    Didn't finish
+  \end{center}
+
+}
+
+\section*{Further Applications}
+
+\frame{
+  \frametitle{Powers Using Logs}
+
+  Or, exploting Log Rule (4):
+  \begin{empheq}[box=\othermathbox]{align*}
+    \log(a^{\red p}) = {\red p}\log(a)
+  \end{empheq}
+  \gap
+  Use this and the graph of $y=10^x$ to find $\sqrt{70}$.
+
+  {\large\blue{}One Approach:}
+  \begin{itemize}
+  \item[\red(i)] Use graph and move decimal point trick to find
+    $\log(70)$
+
+  \item[\red(ii)] $\log(\sqrt{70})=\log(70^{\red 1/2}) =({\red 1/2})\log(70)$
+
+
+  \item[\red(iii)] Take the {\red$\antilog$}\ of result from
+    {\red(ii)}
+
+  \item[\red(iv)] Think: Is the answer {\red reasonable} or did I goof up?
+
+  \end{itemize}
+  \textbf{Hint:}\ $\log(7)\approx 0.84$
+
+  \begin{center}
+    A$=\text{done}$
+    \quad
+    B$=\text{working}$
+    \quad
+    C$=\text{confused}$
+  \end{center}
+  \pause
+
+  Answer: $\sqrt{70} \approx 8.3$.  Is that reasonable?
+  \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{Computer Applications}
+
+  One kilobyte ($1$\ {\red{}KB})\ is $2^{10}$.  
+  \halfgap
+
+  \alert{Problem:}\ Calculate $2^{10}$ using logs.
+  \qquad 
+  \textbf{Hint:}\ $\log(2)\approx 0.3$
+
+  \begin{center}
+    A$\approx 3$
+    \quad 
+    B$\approx 10.3$
+    \quad 
+    C$\approx 30$
+    \quad 
+    D$ \approx 1000$
+    \quad 
+    E$\approx 1100$
+    \pause
+    \qquad 
+    \fbox{D}    
+  \end{center}
+
+  So: $2^{10} \approx 10^3 = 1000$ (really $2^{10} = 1024$).
+  \vspace*{-1em}
+
+  \begin{align*}
+    \text{{\red 1KB} is really}\ 2^{10}
+    & =1024 \approx 10^{\red 3}
+    && \text{({\red K} is {\red K}ilo = thousand)}\\
+    \text{{\red 1MB}  is really}\ 2^{20}
+    & = \left(2^{10}\right)^2\approx(10^3)^2=10^{\red 6}
+    && \text{({\red M} is {\red M}ega = million)}\\
+    \text{{\red 1GB} is really}\ 2^{30}
+    & =\left(2^{10}\right)^3\approx(10^3)^3=10^{\red 9}
+    && \text{({\red G} is {\red G}iga = billion)}\\
+    \text{{\red 1TB} is really}\ 2^{40}
+    & =\left(2^{10}\right)^4\approx(10^3)^4=10^{\red 12}
+    && \text{({\red T} is {\red T}era = trillion)}
+  \end{align*}
+  \vspace*{-1em}
+  \pause
+
+  Example: suppose on a certain island the population of rabbits
+  doubles every generation.  After $20$ generations it
+  multiplies by\ldots\pause\ $2^{20}\approx $ 1 million.
+  \pause
+  \gap 
+  
+  Powers of $2$ are easy to do, even in your head. To work out
+  $2^{\red n}$ the {\blue log} of the answer is approximately
+  $0.3{\red n},$ so $2^{\red n}$ is $1$ followed by $0.3{\red n}$
+  zeroes.
+
+
+}
+
+
+
+\frame{
+  \frametitle{Summary of calculations with logs} 
+  \alert{[Courtesy of Daryl Cooper]}
+  \smallskip
+  
+  Calculate the {\blue log} of the thing you want then take {\red$\antilog$}\  of the result.
+  % \smallskip
+
+  Example: To calculate ${\purple puppy}=\purple 17^{3.1}$\\ \pause
+  (i)  {\orange doggy} $={\blue \log}({\purple puppy})$\\
+  (ii) rules of {\blue logs} to expand {\orange doggy}\\ \pause
+  (iii) look up {\blue logs} of individual terms in {\orange doggy}. Move decimal point trick.\\ \pause
+  (iv) Now have numerical value for  {\orange doggy}.\\ \pause %This is $\log({\purple puppy})$\\ \pause
+  (v) so ${\purple puppy}={\red\antilog}({\orange doggy})$ is the answer. \pause
+
+\gap Make sure you never jot down a number on its own. It should always be part of an equation
+like ${\blue \log}(945\times 32) \approx 4.48$ This way one can read and understand what is written.
+Otherwise you get {\blue gibberish}
+\smallskip
+
+{\blue Write math the way I do.} With {\blue words} and {\blue equations}. One should be able to
+ {\redgreen read and understand} what is on the paper {\red without being telepathic}.\\
+  Imagine it is a {\blue report} for your employer.  In reality you are {\redgreen explaining it to yourself}.
+
+
+}
+
+
+
+
+
+
+
+
+
+\end{document}
+

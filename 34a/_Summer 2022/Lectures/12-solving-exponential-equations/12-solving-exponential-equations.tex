@@ -1,0 +1,518 @@
+% \documentclass[handout]{beamer}
+\documentclass{beamer}
+
+\input{../lecture-setup.tex}
+
+\title{}
+\title{Solving Exponential Equations}
+\date{May 1, 2017}
+
+
+\begin{document}
+\small
+
+\section*{Administration}
+
+\frame{
+  \frametitle{Office Hours!}
+  % \ \vspace*{0.25in}
+
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Peter M.\ Garfield, \url{garfield@math.ucsb.edu}\\[0.25em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} Mondays 2--3\textsc{pm}\\
+  \ \hspace*{0.2in} Tuesdays 10:30--11:30\textsc{am}\\
+  \ \hspace*{0.2in} Thursdays 1--2\textsc{pm}\\
+  \ \hspace*{0.2in} or by appointment \\[0.25em]
+
+  {\Large{}Office:}\\
+  \ \hspace*{0.2in} South Hall 6510\\[0.5em]
+
+  \copyright\ 2017\ Daryl Cooper, Peter M.\ Garfield
+
+  % \vspace*{2in}
+}
+
+\section*{Review}
+
+\frame{
+  \frametitle{Summary of calculations with logs} 
+  \alert{[Courtesy of Daryl Cooper]}
+  \smallskip
+
+  Calculate the {\blue log} of the thing you want then take {\red$\antilog$}\  of the result.
+
+
+Example: To calculate ${\purple puppy}=\purple 17^{3.1}$\\ \pause
+(i)  {\orange doggy} $={\blue \log}({\purple puppy})$\\
+(ii) rules of {\blue logs} to expand {\orange doggy}\\ \pause
+(iii) look up {\blue logs} of individual terms in {\orange doggy}. Move decimal point trick.\\ \pause
+(iv) Now have numerical value for  {\orange doggy}.\\ \pause %This is $\log({\purple puppy})$\\ \pause
+(v) so ${\purple puppy}={\red\antilog}({\orange doggy})$ is the answer. \pause
+
+\gap Make sure you never jot down a number on its own. It should always be part of an equation
+like ${\blue \log}(945\times 32) \approx 4.48$ This way one can read and understand what is written.
+Otherwise you get {\blue gibberish}
+
+\gap
+{\blue Write math the way I do.} With {\blue words} and {\blue equations}. One should be able to
+ \colorbox{yellow}{read and understand} what is on the paper {\red without being telepathic}.
+  Imagine it is a {\blue report} for your employer.  In reality you are \colorbox{yellow}{explaining it to yourself}.
+
+
+}
+
+\section*{Solving Equations}
+
+\frame{
+  \frametitle{\S7.7: Solving Exponential Eq'ns}
+
+  \begin{enumerate}
+  \item   Find $x$ by solving $10^{x} = 5$.
+    \begin{center}
+      A$=5$
+      \quad 
+      B$=0.5$
+      \quad
+      C$=\log(5)$
+      \quad
+      D$=\log(0.5)$
+      \quad
+      E$=\log(5)-\log(10)$
+      \pause
+      \qquad
+      \fbox{C}
+    \end{center}
+  \end{enumerate}
+  \pause
+
+  {\Large\blue{}Look how I write the answer!}
+  \begin{align*}
+    \log(10^{x})
+    & =\log(5)
+    & & \text{\blue Take logs of both sides}\\
+    x = \log(10^{x})
+    & =\log(5)
+    & & \text{\blue Using $\log(a^{\red p})={\red p}\log(a)$ and $\log(10)=1$}
+  \end{align*}
+  \pause
+  % \gap
+
+  {\Large\blue{}Why didn't I use antilog?}
+  \pause
+
+  Answer: I found $x$, so why would I?
+
+  I have \alert{written}\ equations so I can \alert{see}\ what each
+  thing I write \alert{means}. I can \alert{see}\ that I've found $x$
+  and so don't need to take antilog.
+  \pause\gap
+
+  {\Large\blue{}How do I \emph{know}\ when to take antilog?}
+  \pause
+  \qquad
+  How do {\red{you}}\ know?
+  \pause
+  My answer: If you write the problem the way I do, so it makes sense,
+  you can \alert{see} what to do. 
+
+
+}
+
+\frame{
+  \frametitle{Examples:}
+
+  Use the Fourth Law:
+  \begin{empheq}[box=\othermathbox]{align*}
+    \log(a^{\red{}x})={\red{}x} \log(a)
+  \end{empheq}
+  Slogan: Logs bring exponents down to ground level. 
+  \gap 
+
+  % If ${\red x}$ is the unknown you can't find it until it is at {\blue ground level}\\
+  % So with these equations the first step is always to write on the paper \\ {\blue Take logs of both sides}.
+  % \gap  
+
+  \begin{enumerate}
+    \setcounter{enumi}{1}
+  \item Solve $3^{\red x} = 7$
+    \begin{center}
+      A$=\log(7/3)$
+      \quad 
+      B$ = \log(7)-\log(3)$
+      \quad 
+      C$=\log(7)+\log(3)$
+      \\
+      D$ =\log(3)/\log(7)$
+      \quad 
+      E$=\log(7)/\log(3)$
+      \pause
+      \quad 
+      \fbox{E}
+    \end{center}
+  \end{enumerate}
+  \gap
+
+  {\large\blue Look how I write the answer:}
+  \begin{align*}
+    \log(3^{x})
+    & =\log(7)
+    && \text{\blue Take logs of both sides}\\
+    x\log(3)
+    =\log(3^{x})
+    & = \log(7)
+    && \text{\blue Using $\log(a^{\red{}p})={\red{}p}\log(a)$} \\
+    \text{So:}\qquad 
+    x & = \log(7)/\log(3)
+  \end{align*}
+  \vspace*{1in}
+
+}
+
+\frame{
+  \frametitle{Examples:}
+
+  Use the Fourth Law:
+  \begin{empheq}[box=\othermathbox]{align*}
+    \log(a^{\red{}x})={\red{}x} \log(a)
+  \end{empheq}
+  Slogan: Logs bring exponents down to ground level. 
+  \gap 
+
+  % If ${\red x}$ is the unknown you can't find it until it is at {\blue ground level}\\
+  % So with these equations the first step is always to write on the paper \\ {\blue Take logs of both sides}.
+  % \gap  
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+  \item Solve $7^{{\red x}+2} =30.$\\[1em]
+    \begin{center}
+      A$\displaystyle=\frac{\log(30)-2\log(7)}{\log(7)}$
+      \quad
+      B$\displaystyle= \frac{\log(30)}{\log(7)} - 2$ 
+      \quad
+      C$\displaystyle= \frac{\log(30)-\log(49)}{\log(7)}$
+      \\[1em]
+      D$\displaystyle = \frac{\log(30/49)}{\log(7)}$
+      \quad\qquad 
+      E$\approx -0.25213$
+    \end{center}
+    \pause 
+    \fbox{\blue All are correct!}
+    \vspace*{2in}
+  \end{enumerate}
+}
+
+\frame{
+  \frametitle{Examples:}
+
+  Use the Fourth Law:
+  \begin{empheq}[box=\othermathbox]{align*}
+    \log(a^{\red{}x})={\red{}x} \log(a)
+  \end{empheq}
+  Slogan: Logs bring exponents down to ground level. 
+  \gap 
+
+  % If ${\red x}$ is the unknown you can't find it until it is at {\blue ground level}\\
+  % So with these equations the first step is always to write on the paper \\ {\blue Take logs of both sides}.
+  % \gap  
+
+  \begin{enumerate}
+    \setcounter{enumi}{3}
+  \item Solve $7\times 3^{y} =  2^{4y+3}$ \\[1em]
+    \begin{center}
+      A$\displaystyle=\frac{3\log(2)-\log(7)}{\log(3)-4\log(2)}$
+      \quad
+      B$\displaystyle=\frac{3\log(2)}{7\log(3)}$
+      \quad
+      C$\displaystyle=\frac{3\log(2)}{7\log(3)-4\log(2)}$
+      \\[2em]
+      D$\displaystyle=\frac{7\log(3)-4\log(2)}{3\log(2)}$
+      \qquad\qquad
+      E=$\text{none of the above}$
+    \end{center}
+    \pause\gap 
+    \fbox{A}
+    \vspace*{2in}
+   \end{enumerate}
+
+}
+
+
+\section*{Interest}
+
+\frame{
+  \frametitle{Compound Interest}
+
+  At end of each year a bank pays $7\%$ interest into your
+  account. Initially have \$10,000 in account. How much after 10 years?
+  \gap 
+
+  {\red Think} $10\times 7\%=70\%$ in 10 years, so 
+  \uncover<2->{have {\red \$17,000} but that is {\red wrong}.}
+  \vspace*{-1em}
+
+  \begin{align*}
+    \uncover<3->{%
+    \text{After $1$ year:}
+    && \$10,000\times 1.07 & =\$10,700\\[.25em]
+    }
+    \uncover<4->{%
+    \text{After 2 years:}
+    && \$10,700\times 1.07
+       = \$10,000 \times 1.07 \times 1.07
+       & = \$11,4{\red 49}\\[.25em]
+    }
+    \uncover<5->{%
+    \text{After 3 years:}
+    && \$11,449\times 1.07
+       = \$10,000 \times (1.07)^3
+       & = \$12,{\red{}250.40}
+         }
+  \end{align*}
+  %
+  \uncover<5->{%
+    Each year {\blue what you had before} is {\red{}multiplied} by
+    $1.07$. Thus {\blue compound} interest.
+  }
+
+  \uncover<6->{%
+    So after 10 years have
+    \begin{equation*}
+      \$10,000\times 
+      \underbrace{1.07\times 1.07\times\cdots\times 1.07}_{\text{$10$ times}}
+      = 10,000\times(1.07)^{10}
+      \approx \fbox{{\blue \$20,000}}
+    \end{equation*}
+  }
+  \vspace*{-1em}
+
+  \uncover<7->{%
+    {\blue Conclusion:}\  
+    Money approximately doubles in 10 years!\\ 
+    So in 20 years multiplies by 4, in 30 years by 8,$\ldots$
+  }
+}
+
+
+\frame{
+  \frametitle{General Compound Interest}
+
+  If the interest rate is ${\red r}\%$, then each year money {\blue
+    m}ultiplies by
+  \begin{equation*}
+    {\blue m}=1+\frac{{\red r}}{100}.
+  \end{equation*}
+  If you start with an initial amount ${\orange A}$ of money then
+  after ${\redgreen t}$ years you have
+
+  \begin{equation*}
+    {\orange A}\times {\blue m}^{\redgreen t}
+    = {\orange A}\times \left( 1 + \frac{{\red r}}{100} \right)^{\redgreen t}
+  \end{equation*}
+
+  \begin{enumerate}
+    \setcounter{enumi}{4}
+  \item If you invest \$1000 at $14$\% interest, how much
+    will you have $5$ years later? ({\blue{}Guess!})
+    \begin{center}
+      A$\approx \$700$
+      \quad 
+      B$\approx \$1400$
+      \quad 
+      C$\approx \$1500$
+      \quad 
+      D$\approx\$1700$
+      \quad 
+      E$\approx \$2000$
+      \pause
+      % \quad
+      \fbox{E}
+    \end{center}
+  \end{enumerate}
+
+  After 5 years, you have
+  \begin{equation*}
+    \$1,000\times \left(1 + \frac{14}{100} \right)^5 
+    = \$1,000 \times (1.14)^5.
+  \end{equation*}
+  How much is this? 
+  \pause
+  % \gap 
+  {\red Smart way: 14\% in 1 year $\approx$ 7\% per year
+    for 2.} 
+  \vspace*{1in}
+}
+
+
+\frame{
+  \frametitle{General Compound Interest}
+
+  If the interest rate is ${\red r}\%$, then each year money {\blue
+    m}ultiplies by
+  \begin{equation*}
+    {\blue m}=1+\frac{{\red r}}{100}.
+  \end{equation*}
+  If you start with an initial amount ${\orange A}$ of money then
+  after ${\redgreen t}$ years you have
+
+  \begin{equation*}
+    {\orange A}\times {\blue m}^{\redgreen t}
+    = {\orange A}\times \left( 1 + \frac{{\red r}}{100} \right)^{\redgreen t}
+  \end{equation*}
+
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item If you invest $\$1,000$  at $14$\% interest, how
+    many years until you have \$$7,000$? 
+    \begin{center}
+      A$ = \log(7/1.14)$
+      \quad 
+      B$= \log(7)/\log(1.14)$
+      \quad 
+      C$= \log(1.14)/\log(7)$
+      \\[0.5em]
+      D$ = \log(7)-\log(1.14)$
+      \quad 
+      E$ =\text{other}$
+      \pause
+      \quad
+      \fbox{B}
+    \end{center}
+  \end{enumerate}
+  \vspace*{2in}
+}
+
+\section*{Population}
+
+\frame{
+  \frametitle{\S7.9: Population Growth}
+  
+  Assume each generation of bunnies has $3$ times as many bunnies as
+  previous one.  Initially have $100$ bunnies. How many bunnies after
+  $n$ generations?
+  \begin{center}
+    A$= 100\times 3n$
+    \quad 
+    B$ = 100+3n$
+    \quad 
+    C$ = 100(1+3n)$
+    \\
+    D$= 100^{3n}$
+    \quad 
+    E$= 100\times 3^n$
+  \end{center}
+  \alert{Answer:}\ \answer{E}
+  \halfgap
+ 
+  Start with $100$\\
+  After 1 generation have $100\times 3$ bunnies\\ \pause
+  After 2 generations have $100\times 3\times 3$ bunnies \\ \pause
+  After 3 generations have $100\times 3\times 3\times 3$ bunnies \\ \pause
+  So$\ldots$after $n$ generations have 
+  \begin{equation*}
+    100\times \underbrace{{\blue3\times3\times\cdots\times 3}}_{\text{$n$\ times}} 
+    = 100\times 3^n\ \text{bunnies}.
+  \end{equation*}
+
+}
+
+\frame{
+  \frametitle{More Bunnies}
+
+  We saw that:
+  \begin{itemize}
+  \item if we start with $100$\ bunnies, and
+  \item the bunny population triples every generation,
+  \end{itemize}
+  then we have $100 \times 3^n$ bunnies after $n$ generations.
+  \bigskip
+
+  \begin{enumerate}
+    \setcounter{enumi}{6}
+  \item How many generations until there are $10^7 = 10,000,000$ bunnies?
+    \begin{center}
+      A$ = \log(5/3)$
+      \qquad 
+      B$ = 5-\log(3)$
+      \qquad 
+      C$= 5/\log(3)$ 
+      \\
+      D$ = 5/3$
+      \qquad 
+      E$ = 10^5/3$
+      \pause
+      % \quad
+      % \fbox{C}
+    \end{center}
+    \begin{center}
+      A$\approx 0.22$
+      \qquad 
+      B$\approx 4.52$
+      \qquad 
+      C$\approx 10.48$
+      \\ 
+      \ 
+      \qquad
+      D$\approx 1.67$
+      \qquad 
+      E$\approx 3,333$
+      \pause
+      \qquad
+      \answer{C}
+    \end{center}
+
+  \end{enumerate}
+}
+
+
+\frame{
+  \frametitle{Flu Outbreak}
+
+  At the start of an outbreak of H1N1 flu in a large herd of cattle,
+  there were $5$ infected individuals. The numbers doubles every $3$
+  days. How many days until there are $80$ infected cows?
+  \medskip
+
+  \begin{center}
+    A$ = \log(16)/\log(2)$
+    \quad 
+    B$=\log(16/2)$
+    \quad 
+    C$=16/\log(2)$
+    \\[1em]
+    D$=3\log(16)/\log(2)$
+    \quad 
+    E$ = \log(48/2)$
+  \end{center}
+  \pause
+  \vspace*{0.5in}
+
+  At the start of an outbreak of H1N1 flu in a large class of
+  students, there were $5$ infected individuals. The numbers doubles
+  every $3$ days. How many days until there are $80$ infected
+  students?
+  \smallskip
+
+  \begin{center}
+    A$ = \log(16)/\log(2)$
+    \quad 
+    B$=\log(16/2)$
+    \quad 
+    C$=16/\log(2)$
+    \\[1em]
+    D$=3\log(16)/\log(2)$
+    \quad 
+    E$ = \log(48/2)$
+    \pause
+    \qquad
+    \fbox{D}
+  \end{center}
+  \vspace*{1in}
+}
+
+
+
+\end{document}
+
