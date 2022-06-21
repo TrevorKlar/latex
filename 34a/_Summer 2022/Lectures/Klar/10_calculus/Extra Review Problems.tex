@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabto}
+\usepackage{amsfonts}
+%\usepackage{MnSymbol}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+\usepackage[utf8x]{inputenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{verbatim}
+\usepackage{tikz, pgfplots}
+\usepackage{tkz-euclide}
+\usepgfplotslibrary{fillbetween}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{xfrac}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\graphicspath{ {images/} }
+
+
+\renewcommand{\v}{\vec{v}}
+\renewcommand{\u}{\vec{u}}
+\renewcommand{\w}{\vec{w}}
+
+
+\setlength\parindent{0pt}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut} 
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\Nd}{and}
+\DeclareMathOperator{\st}{such\ that}
+\DeclareMathOperator{\writhe}{writhe}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\font\msbmx=msbm10 at 10pt
+\textfont15=\msbmx
+\mathchardef\subsetneqq="3F24
+\mathchardef\subsetneq="3F28
+\mathchardef\supsetneq="3F29
+
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand{\pn}[1]{\left( #1 \right)}
+\newcommand{\bk}[1]{\left[ #1 \right]}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\mat}[1]{\ensuremath{ \begin{bmatrix} #1 \end{bmatrix} }}
+
+\newcommand{\ansbox}[2]{\raisebox{-.5\height}{\framebox(#1,#2){}}}
+
+
+
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pgfplotsset{soldot/.style={color=black,only marks,mark=*},
+	holdot/.style={color=black,fill=white,only marks,mark=*},
+	compat=1.12}
+\pagestyle{fancy}
+\lhead{Math 34A, UCSB}
+\rhead{Spring 2022}
+
+\pagenumbering{gobble}
+\begin{document}
+\newtheorem*{theorem*}{Theorem}
+	
+	
+	\begin{enumerate} 
+	\centerline{\Large{ Sums}}\vspace{12 pt}
+	\item Write out the following sum:
+    $$\sum_{n=1}^6 (n+1)(n+2)$$
+    $$\phantom{\fbox{2\cdot3+3\cdot4+4\cdot5+5\cdot6+6\cdot7+7\cdot8}}$$
+    \item Write out the following sum:
+    $$ \sum_{m=2}^4 \frac{m^2}{1-m}. $$ 
+    $$\phantom{\frac{2^2}{-1}+\frac{3^2}{-2}+\frac{4^2}{-3}}$$\vspace{50pt} \\ 
+
+	
+	\centerline{\Large{ Limits}}\vspace{12 pt}
+	\item $\underset{x \rightarrow \infty}{\lim} \ 4 - \frac{1}{x}$ $\phantom{=\fbox{4}}$ 
+	\item $\underset{h \rightarrow 0}{\lim} \ \frac{4h - 4h^2}{h}$ $\phantom{=\fbox{4}}$
+	\item $\underset{h \rightarrow 0}{\lim} \ \frac{147h + 21h^2+h^3}{h}$ $\phantom{=\fbox{147}}$
+	\vspace{50pt} \\ 
+
+	
+	\centerline{\Large{Average Speed}}\vspace{12 pt}
+	\item Find the average speed of a race car over the time period from 2 seconds to 3 seconds if $f(t) = t^3$ is the distance from the starting line $t$ seconds after the start. \\ \\ \\ 
+	\phantom{$\frac{27-8}{1}$=\fbox{$19$}}
+	
+	\end{enumerate}
+    
+
+	
+\end{document}
+	

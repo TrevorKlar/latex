@@ -1,0 +1,71 @@
+\frame{
+  \frametitle{Bourne, Jason Bourne}
+
+  \begin{enumerate}
+    \setcounter{enumi}{7}
+  \item The road from Santa Barbara ({\purple SB}) to Palo Alto
+    ({\purple PA}) is 300 miles long. {\blue Your }friend {\blue
+      Marie} leaves {\purple SB} at noon driving at {\orange 60} mph
+    to {\purple PA}.
+    \smallskip
+
+    A {\red  bad guy} leaves {\purple PA} at 1pm driving along the same
+    road at 60 mph. 
+    \smallskip
+
+    At 2pm you find out and decide to save your friend. You drive at 80
+    mph from {\purple SB}. Will you get to your  friend  before the  bad
+    guy does?
+    \smallskip
+
+    \begin{center}
+      (A) YES
+      \qquad
+      (B) NO 
+      \qquad
+      (C) SAME TIME    
+      \qquad
+      \uncover<4->{\fbox{(B)}}
+    \end{center}
+    \uncover<2->{\blue } 
+    \quad 
+    \uncover<3->{\colorbox{yellow}{There are many ways to work it out}}
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Bourne (continued!)}
+
+  \begin{enumerate}
+    \setcounter{enumi}{8}
+  \item {\blue You}\ jump into your car.  {\blue You}\ need to catch
+    up with Marie before the bad guy.  How long until {\blue you} get
+    to her?
+    \smallskip
+    \pause
+
+    {\red But\ldots}\pause your name is {\blue Jason Bourne}.
+    \pause 
+    You always have a {\red plan}.\\ 
+    \pause
+    \begin{itemize}
+    \item {\purple SB} to  {\purple PA} is 300 miles.  
+    \item {\blue Marie} leaves {\purple SB} at noon driving at {\orange 60} mph to {\purple PA}.
+    \item The {\red  bad guy} leaves {\purple PA} at 1pm driving  at ${\orange 60}$ mph.
+    \item At 2pm you drive at 80mph from {\purple SB}. {\orange At 2:01 you call Marie and tell her to stop her car. }
+      \pause
+    \end{itemize}
+
+    {\red About} how many hours before bad guy do you get to Marie?\\
+    (A) 1\ \      
+    (B) 3/4 \ \     
+    (C) 1/2 \ \  
+    (D) same time\  \ 
+    (E) after\ \ 
+    \pause 
+    \answer{C} 
+
+  \end{enumerate}
+
+}

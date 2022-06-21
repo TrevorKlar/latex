@@ -11,9 +11,11 @@
 % Solution #1:
 \usepackage{remreset}% tiny package containing just the \@removefromreset command
 \makeatletter
-\@removefromreset{subsection}{section}
-\makeatother
-\setcounter{subsection}{1}
+%\@removefromreset{subsection}{section}
+%\makeatother
+%\setcounter{subsection}{1}
+
+
 
 
 \usepackage{etex}
@@ -61,8 +63,8 @@
 % http://tex.stackexchange.com/questions/109900/how-can-i-box-multiple-aligned-equations
 \usepackage{empheq}
 \usepackage{tcolorbox}  \newtcbox{\othermathbox}[1][]{%
-  nobeforeafter, tcbox raise base,
-  colback=black!10, colframe=red!30,
+  nobeforeafter, tcbox raise base, 
+  colback=black!10, colframe=red!30, 
   left=1em, top=0.5em, right=1em, bottom=0.5em}
 
 \newcommand\blue{\color{blue}}
@@ -117,7 +119,7 @@
   \end{beamercolorbox}}%
   % \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=2ex,right]{date in head/foot}%
   %   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
-  %   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  %   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
   % \end{beamercolorbox}%
   \vskip0pt%
 }
@@ -128,7 +130,7 @@
 
 
 \title{Final Exam Review}
-\author{Peter Garfield, UCSB Mathematics}
+\author{Schley, UCSB Mathematics}
 \date{March 15, 2017}
 %\institute{}
 
@@ -157,7 +159,7 @@
 }
 
 % From http://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers:
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,fill=orange,inner sep=1pt] (char) {#1};}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,fill=orange,inner sep=1pt] (char) {#1};}} 
 % \renewcommand{\labelenumi}{\circled{\textbf{\arabic{enumi}}}}
 
 \let\olddescription\description
@@ -177,3 +179,21 @@
 % \renewcommand\answer[1]{}
 
 \newcommand{\antilog}{\operatorname{antilog}}
+
+\newcommand{\instructor}{Nathan Schley ({\it Sh}+{\it lye})}
+\newcommand{\officehours}{T R 11-11:50, T 3:45-4:35 Details on Gauchospace.}
+\newcommand{\email}{schley@math.ucsb.edu}
+\newcommand{\officeloc}{South Hall 6701}
+\newcommand{\copyrightinfo}{2022\ Daryl Cooper, Peter M.\ Garfield, Ebrahim Ebrahim \& Nathan Schley}
+    
+
+
+
+
+
+
+
+
+
+
+

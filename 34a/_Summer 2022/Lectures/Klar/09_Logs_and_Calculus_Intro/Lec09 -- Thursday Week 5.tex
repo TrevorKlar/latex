@@ -1,0 +1,1606 @@
+\documentclass
+[handout]
+{beamer}
+
+\input{../lecture-setup.tex}
+
+
+\title{Logarithm Applications}
+\date{April 28, 2022}
+
+
+\begin{document}
+\small
+
+
+
+
+\frame{
+  \frametitle{}
+  {\Huge{}Welcome Back!}\\[.5em]
+
+  {\Huge{}Differential Calculus}
+  \vfill
+  {\Large{}Instructor:}\\
+  \ \hspace*{0.2in} Nathan Schley ({\it Sh}+{\it lye}), \url{schley@math.ucsb.edu}\\
+  \ \hspace*{0.2in} South Hall 6701
+  \\[0.5em]
+
+  {\Large{}Office Hours:}\\
+  \ \hspace*{0.2in} T R 11-11:50, T 3:45-4:35 Details on Gauchospace. 
+  \bigskip
+
+  \copyright\ 2022\ Daryl Cooper, Peter M.\ Garfield, Ebrahim Ebrahim \& Nathan Schley\\
+  Please do not distribute outside of this course.
+  \vfill
+
+}
+
+\section{Review}
+
+\frame{
+  \frametitle{Summary of Logs}
+
+  $\log(y)$ is {\blue how many tens you multiply together to get $y$}.
+  \bigskip
+
+  \begin{minipage}{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      10^{\log(y)} = y
+    \end{empheq}
+  \end{minipage}
+  \hspace*{0.25in}
+  \begin{minipage}{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      \log\left( 10^a \right) = a
+    \end{empheq}
+  \end{minipage}
+  \bigskip
+  \pause
+
+  \begin{minipage}{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      10^{a} {\red\times} 10^b = 10^{a{\red+}b}
+    \end{empheq}
+  \end{minipage}
+  \hspace*{0.25in}
+  \begin{minipage}{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      \log(x{\red\times}y) = \log(x) {\red+} \log(y)
+    \end{empheq}
+  \end{minipage}
+  \bigskip
+  \pause
+
+  \begin{minipage}[b]{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      \left( 10^{a} \right)^{\red{}p} = 10^{a{\red{}p}}
+    \end{empheq}
+  \end{minipage}
+  \hspace*{0.25in}
+  \begin{minipage}[b]{0.4\linewidth}
+    \begin{empheq}[box=\othermathbox]{align*}
+      \log(a^{\,\red{}p}) = {\red{}p}\log(a)
+    \end{empheq}
+  \end{minipage}
+  \bigskip
+
+  \pause
+  {\red{}Each of these pairs of equalities says one thing!}
+
+
+}
+
+
+\section{More Logs}
+
+\frame{
+  \frametitle{General Compound Interest}
+
+  If the interest rate is ${\red r}\%$, then each year money {\blue
+    m}ultiplies by
+  \begin{equation*}
+    {\blue m}=1+\frac{{\red r}}{100}.
+  \end{equation*}
+  If you start with an initial amount ${\orange A}$ of money then
+  after ${\redgreen t}$ years you have
+
+  \begin{equation*}
+    {\orange A}\times {\blue m}^{\redgreen t}
+    = {\orange A}\times \left( 1 + \frac{{\red r}}{100} \right)^{\redgreen t}
+  \end{equation*}
+
+  \begin{enumerate}
+    \setcounter{enumi}{4}
+  \item If you invest \$1000 at $14$\% interest, how much
+    will you have $5$ years later? ({\blue{}Guess!})
+    \begin{center}
+      A$\approx \$700$
+      \quad 
+      B$\approx \$1400$
+      \quad 
+      C$\approx \$1500$
+      \quad 
+      D$\approx\$1700$
+      \quad 
+      E$\approx \$2000$
+      \pause
+      % \quad
+      \fbox{E}
+    \end{center}
+  \end{enumerate}
+
+  After 5 years, you have
+  \begin{equation*}
+    \$1,000\times \left(1 + \frac{14}{100} \right)^5 
+    = \$1,000 \times (1.14)^5.
+  \end{equation*}
+  How much is this? 
+  \pause
+  % \gap 
+  {\red Smart way: 14\% in 1 year $\approx$ 7\% per year
+    for 2.} 
+  \vspace*{1in}
+}
+
+
+\frame{
+  \frametitle{\S7.9: Population Growth}
+  
+  Assume each generation of bunnies has $3$ times as many bunnies as
+  previous one.  Initially have $100$ bunnies. How many bunnies after
+  $n$ generations?
+  \begin{center}
+    A$= 100\times 3n$
+    \quad 
+    B$ = 100+3n$
+    \quad 
+    C$ = 100(1+3n)$
+    \\
+    D$= 100^{3n}$
+    \quad 
+    E$= 100\times 3^n$
+  \end{center}
+  \pause
+  \alert{Answer:}\ \answer{E}
+  \pause
+  \halfgap
+ 
+  Start with $100$\\
+  After 1 generation have $100\times 3$ bunnies\\ \pause
+  After 2 generations have $100\times 3\times 3$ bunnies \\ \pause
+  After 3 generations have $100\times 3\times 3\times 3$ bunnies \\ \pause
+  So$\ldots$after $n$ generations have 
+  \begin{equation*}
+    100\times \underbrace{{\blue3\times3\times\cdots\times 3}}_{\text{$n$\ times}} 
+    = 100\times 3^n\ \text{bunnies}.
+  \end{equation*}
+
+}
+
+\frame{
+  \frametitle{More Bunnies}
+
+  We saw that:
+  \begin{itemize}
+  \item if we start with $100$\ bunnies, and
+  \item the bunny population triples every generation,
+  \end{itemize}
+  then we have $100 \times 3^n$ bunnies after $n$ generations.
+  \bigskip
+
+  \begin{enumerate}
+    \setcounter{enumi}{0}
+  \item How many generations until there are $10^7 = 10,000,000$ bunnies?
+    \begin{center}
+      A$ = \log(5/3)$
+      \qquad 
+      B$ = 5-\log(3)$
+      \qquad 
+      C$= 5/\log(3)$ 
+      \\
+      D$ = 5/3$
+      \qquad 
+      E$ = 10^5/3$
+      \pause
+      % \quad
+      % \fbox{C}
+    \end{center}
+    \begin{center}
+      A$\approx 0.22$
+      \qquad 
+      B$\approx 4.52$
+      \qquad 
+      C$\approx 10.48$
+      \\ 
+      \ 
+      \qquad
+      D$\approx 1.67$
+      \qquad 
+      E$\approx 3,333$
+      \pause
+      \qquad
+      \answer{C}
+    \end{center}
+
+  \end{enumerate}
+}
+
+
+\frame{
+  \frametitle{Flu Outbreak}
+
+ 
+
+  \begin{enumerate}
+    \setcounter{enumi}{1}
+  \item At the start of an outbreak of H1N1 flu in a large class of
+    students, there were $5$ infected individuals. The numbers doubles
+    every $3$ days. How many days until there are $80$ infected
+    students?  
+    \smallskip
+  \end{enumerate}
+
+  \begin{center}
+    A$ = \log(16)/\log(2)$
+    \quad 
+    B$=\log(16/2)$
+    \quad 
+    C$=16/\log(2)$
+    \\[1em]
+    D$=3\log(16)/\log(2)$
+    \quad 
+    E$ = \log(48/2)$
+    \pause
+    \qquad
+    \fbox{D}
+  \end{center}
+  \vspace*{1in}
+}
+
+
+\section{Doubling Time}
+
+\frame{
+  \frametitle{Doubling Time Formula}
+
+  Suppose something doubles every $\red{}K$\
+  {\redgreen{}minutes}\footnote{%
+    Any time unit will work, not just minutes. Just be consistent!}.  If
+  there is a mass of $\blue{}A$ at time $t=0$, how much is there at
+  time $t$\ {\redgreen{}minutes}?
+  \pause
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{mass after t  {\redgreen minutes}} = {\blue{A}}\times 2^{(t/{\red K})}
+  \end{empheq}
+  Idea: $t/{\red K}$ is {\blue number of doubling periods} in $t$  {\redgreen{}minutes}.
+  \pause
+  \gap
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+  \item A disease spreads through a community. On March 1 there were
+    100 infected people. The number of people doubles in a $3$
+    days. How many infected people are there $t$ days after March 1?
+    \begin{center}
+      A$ = 2^t$
+      \quad 
+      B$= 3\times 2^{t/100}$
+      \quad 
+      C$ = 100\times 2^t$
+      \quad 
+      D$= 100\times 2^{t/3}$
+      \pause
+      \fbox{D}
+    \end{center}
+  \end{enumerate}
+
+  \gap   
+
+  How many days until there are $1,000$ infected people?
+  \begin{center}
+    A$ = \log(10)/\log(2)$
+    \quad  
+    B$=  3\log(10)/\log(2)$
+    \quad 
+    C$=3\log(5)$
+    \\
+    D$=3 (\log(10)-\log(2))$
+    \quad 
+    E$=3\log(20)$
+    \pause
+    \quad 
+    \fbox{B}
+  \end{center}
+  % \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{A More Complicated Example}
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{mass after t  {\redgreen minutes}} = {\blue{A}}\times 2^{(t/{\red K})}
+  \end{empheq}
+  where
+  \begin{itemize}
+  \item $K$ is the \colorbox{yellow}{doubling time}, and
+  \item $t/{\red K}$ is the \colorbox{yellow}{number of doubling periods} in $t$ {\redgreen{}minutes}.
+  \end{itemize}
+  % \gap
+
+  \begin{enumerate}
+    \setcounter{enumi}{3}
+  \item A colony of mold is growing on a cheeseburger in the back of a
+    dorm refrigerator. When discovered it has a mass of
+    $10\ \text{mg}$. One week later it was found to have a mass of
+    $30\ \text{mg}$.  What is the {\red doubling time} measured in
+    {\redgreen days}?
+    \begin{center}
+      A$=\log(2)/\log(3)$
+      \quad        
+      B$= 7\log(2)/\log(3)$
+      \quad 
+      C$=7\log(2/3)$
+      \quad 
+      D$= 7\log(3/2)$
+    \end{center}
+  \end{enumerate}
+
+  \alert{Hint:}\ We know $A$ and the mass $t$\ {\redgreen{}days}\
+  after discovery (for some $t$). 
+  \pause
+  \halfgap
+
+  Solving $30 = 10\times 2^{7/{\red K}}$ gives \fbox{B}
+
+}
+
+
+\frame{
+  \frametitle{More Bunnies}
+
+  We saw that:
+  \begin{itemize}
+  \item if we start with $100$\ bunnies, and
+  \item the bunny population triples every generation,
+  \end{itemize}
+  then we have $100 \times 3^n$ bunnies after $n$ generations.
+  \bigskip
+
+  \begin{enumerate}
+    \setcounter{enumi}{0}
+  \item How many generations until there are $10^7 = 10,000,000$ bunnies?
+    \begin{center}
+      A$ = \log(5/3)$
+      \qquad 
+      B$ = 5-\log(3)$
+      \qquad 
+      C$= 5/\log(3)$ 
+      \\
+      D$ = 5/3$
+      \qquad 
+      E$ = 10^5/3$
+      \pause
+      % \quad
+      % \fbox{C}
+    \end{center}
+    \begin{center}
+      A$\approx 0.22$
+      \qquad 
+      B$\approx 4.52$
+      \qquad 
+      C$\approx 10.48$
+      \\ 
+      \ 
+      \qquad
+      D$\approx 1.67$
+      \qquad 
+      E$\approx 3,333$
+      \pause
+      \qquad
+      \answer{C}
+    \end{center}
+
+  \end{enumerate}
+}
+
+
+\frame{
+  \frametitle{Flu Outbreak}
+
+ 
+
+  \begin{enumerate}
+    \setcounter{enumi}{1}
+  \item At the start of an outbreak of H1N1 flu in a large class of
+    students, there were $5$ infected individuals. The numbers doubles
+    every $3$ days. How many days until there are $80$ infected
+    students?  
+    \smallskip
+  \end{enumerate}
+
+  \begin{center}
+    A$ = \log(16)/\log(2)$
+    \quad 
+    B$=\log(16/2)$
+    \quad 
+    C$=16/\log(2)$
+    \\[1em]
+    D$=3\log(16)/\log(2)$
+    \quad 
+    E$ = \log(48/2)$
+    \pause
+    \qquad
+    \fbox{D}
+  \end{center}
+  \vspace*{1in}
+}
+
+
+\frame{
+  \frametitle{Doubling Time Formula}
+
+  Suppose something doubles every $\red{}K$\
+  {\redgreen{}minutes}\footnote{%
+    Any time unit will work, not just minutes. Just be consistent!}.  If
+  there is a mass of $\blue{}A$ at time $t=0$, how much is there at
+  time $t$\ {\redgreen{}minutes}?
+  \pause
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{mass after t  {\redgreen minutes}} = {\blue{A}}\times 2^{(t/{\red K})}
+  \end{empheq}
+  Idea: $t/{\red K}$ is {\blue number of doubling periods} in $t$  {\redgreen{}minutes}.
+  \pause
+  \gap
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+  \item A disease spreads through a community. On March 1 there were
+    100 infected people. The number of people doubles in a $3$
+    days. How many infected people are there $t$ days after March 1?
+    \begin{center}
+      A$ = 2^t$
+      \quad 
+      B$= 3\times 2^{t/100}$
+      \quad 
+      C$ = 100\times 2^t$
+      \quad 
+      D$= 100\times 2^{t/3}$
+      \pause
+      \fbox{D}
+    \end{center}
+  \end{enumerate}
+
+  \gap   
+
+  How many days until there are $1,000$ infected people?
+  \begin{center}
+    A$ = \log(10)/\log(2)$
+    \quad  
+    B$=  3\log(10)/\log(2)$
+    \quad 
+    C$=3\log(5)$
+    \\
+    D$=3 (\log(10)-\log(2))$
+    \quad 
+    E$=3\log(20)$
+    \pause
+    \quad 
+    \fbox{B}
+  \end{center}
+  % \vspace*{2in}
+
+}
+
+\frame{
+  \frametitle{A More Complicated Example}
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{mass after t  {\redgreen minutes}} = {\blue{A}}\times 2^{(t/{\red K})}
+  \end{empheq}
+  where
+  \begin{itemize}
+  \item $K$ is the \colorbox{yellow}{doubling time}, and
+  \item $t/{\red K}$ is the \colorbox{yellow}{number of doubling periods} in $t$ {\redgreen{}minutes}.
+  \end{itemize}
+  % \gap
+
+  \begin{enumerate}
+    \setcounter{enumi}{3}
+  \item A colony of mold is growing on a cheeseburger in the back of a
+    dorm refrigerator. When discovered it has a mass of
+    $10\ \text{mg}$. One week later it was found to have a mass of
+    $30\ \text{mg}$.  What is the {\red doubling time} measured in
+    {\redgreen days}?
+    \begin{center}
+      A$=\log(2)/\log(3)$
+      \quad        
+      B$= 7\log(2)/\log(3)$
+      \quad 
+      C$=7\log(2/3)$
+      \quad 
+      D$= 7\log(3/2)$
+    \end{center}
+  \end{enumerate}
+
+  \alert{Hint:}\ We know $A$ and the mass $t$\ {\redgreen{}days}\
+  after discovery (for some $t$). 
+  \pause
+  \halfgap
+
+  Solving $30 = 10\times 2^{7/{\red K}}$ gives \fbox{B}
+
+}
+
+
+\frame{
+  \frametitle{\S7.11: Half-Life, Doubling Time}
+  % \gap
+
+  The \underline{\blue half-life}\ of a radioactive isotope is the
+  time it takes for {\blue half} of the isotope to decay.
+  \halfgap 
+
+  \alert{Example:} Isotope W has a {\blue half-life} of {\blue $10$}
+  years. How much remains after {\red 20} years? 
+  \pause
+  {\red None?}
+  \pause
+  \begin{equation*}
+    \frac{1}{2}\times\frac{1}{2}\times\text{(amount you start with)}
+  \end{equation*}
+  \pause
+  \vspace*{-1em}
+
+  \alert{Idea:}\ In half-life problems, convert time into {\blue half-lives}.
+  \halfgap
+  \pause 
+  
+  In this problem, the half-life is {\blue 10 years}. Therefore, {\red
+    20 years}\ is {\blue two half-lives}. 
+  \pause
+  \halfgap
+
+  \alert{In general:}\ After $\red n$ half-lives, 
+  \begin{equation*}
+    \text{\blue remaining amount} 
+    = \left(\frac{1}{2}\right)^{\red n}\times 
+    \text{({\blue amount started with})}
+  \end{equation*}
+  \pause
+  \vspace*{-1.5em}
+  
+  \begin{enumerate}
+    \setcounter{enumi}{4}
+  \item Start with ${\red 120}$ grams of an isotope with
+    a half-life of {\blue 12} years. How many grams remains after {\redgreen
+      $36$} years? 
+    \begin{center}
+      A$=0$
+      \quad 
+      B$ = 10$
+      \quad 
+      C$ = 15$
+      \quad 
+      D$ = 20$
+      \quad 
+      E$ = 40$
+      \pause
+      \quad
+      \fbox{C}
+    \end{center}
+
+  \end{enumerate}
+
+}
+
+\frame{
+  \frametitle{Another Example}
+
+  \alert{In general:}\ After $\red n$ half-lives, 
+  \begin{equation*}
+    \text{\blue remaining amount} 
+    = \left(\frac{1}{2}\right)^{\red n}\times 
+    \text{({\blue amount started with})}
+  \end{equation*}
+  \pause
+  \vspace*{-0.5em}
+
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item An isotope has a half-life of {\red$5$\ years}.
+
+    \colorbox{blue!25}{(a)}\ If we start with {\blue$70$\ grams}, how
+    many grams will be left after $t$ years?
+    \begin{center}
+      A$\displaystyle={\blue70}\left(\frac{1}{2}\right)^t$
+      \quad 
+      B$\displaystyle = {\red5}\left(\frac{1}{2}\right)^{{\blue70}t}$
+      \quad
+      C$\displaystyle = {\blue70}\left(\frac{1}{2}\right)^{{\red5}t}$
+      \\
+      D$\displaystyle={\blue70}\left(\frac{1}{2}\right)^{t/{\red5}}$
+      \quad 
+      E$=0$
+      \pause
+      \quad
+      \fbox{D}
+    \end{center}
+    % \gap
+
+    \colorbox{blue!25}{(b)}\ How many years until ${\purple 10}$ grams
+    remain? 
+    \begin{center}
+      A$=5(\log(7)-\log(2))$
+      \quad 
+      B$=\log(7)/\log(2)$
+      \quad 
+      C$= 5\log(7/2)$\\[0.5em]
+
+      D$=5\log(7)/\log(2)$
+      \quad 
+      E$=\log(7)/(5\log(2))$
+      \pause
+      \quad
+      \fbox{D}
+    \end{center}
+  \end{enumerate}
+
+}
+
+
+\frame{
+  \frametitle{Half-Life Formula}
+
+  Suppose something has a half-life of $\red{}K$\
+  {\redgreen{}years}\footnote{%
+    Any time unit will work, not just years. Just be consistent!}.  If
+  there is a mass of $\blue{}A$ at time $t=0$, how much is there at
+  time $t$\ {\redgreen{}years}?
+  \pause
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{mass after $t$  {\redgreen years}} = {\blue{A}}\times \left(\tfrac{1}{2}\right)^{(t/{\red K})}
+  \end{empheq}
+  Idea: $t/{\red K}$ is {\blue number of half-lives} in $t$ {\redgreen{}years}.
+  \pause
+  \gap
+
+  \begin{enumerate}
+    \setcounter{enumi}{6}
+  \item (\alert{Radiocarbon Dating})\ A bone is found with
+    ${\purple 2\%}$ of the usual amount of {\blue carbon-14} in
+    it. The half-life of carbon-14 is {\red $5730$\ years}.  How old
+    (in years) is the bone?
+    \begin{center}
+      A$={\red 5730} \log(.01)/\log(2)$
+      \quad 
+      B$={\red 5730}\log(50)/\log(2)$\\[0.5em]
+      \hspace*{1in}
+      C$= {\red 5730}\times 50$
+      \quad 
+      D$ = \text{wicked old}$
+      \pause
+    \end{center}
+  \end{enumerate}
+  \alert{Answer:}\ \answer{B} $\approx 32,000$ years
+
+
+}
+
+
+
+
+\section{Other Bases}
+
+\frame{
+  \frametitle{\S7.13: Logs in Other Bases}
+
+  $\log(y)$ is {\blue how many tens you multiply together to get $y$}.
+  \bigskip
+
+  \uncover<2->{%
+    $\log_2(y)$ is {\blue how many {\red{}twos}\ you multiply together to get $y$}.
+    \bigskip
+  }
+
+  \uncover<3->{%
+    So ${\orange2}^{\red 3}={\blue 8} \qquad\text{means the same thing as}\qquad\log_{{\orange2}}({\blue 8})={\red 3}$
+    \gap
+    \pause
+  }
+
+  \uncover<4->{%
+    \alert{Examples:}
+  }
+  \begin{align*}
+    \uncover<4->{\log_{{\redgreen2}}({\blue 16})
+    & = }
+      \uncover<5->{%
+      {\red 4}
+    && \text{because}\ {\redgreen2}^{\red 4}={\blue 16} \\
+    \log_{{\redgreen2}}({\blue 32})
+    & = }
+      \uncover<6->{%
+      {\red 5}
+    &&\text{because}\ {\redgreen2}^{\red 5}={\blue 32}\\
+    \log_{{\redgreen2}}({\blue 1/8})
+    & = }
+      \uncover<7->{%
+      {\red -3}
+    && \text{because}\ {\redgreen2}^{\red -3}={\blue 1/8}
+       }
+  \end{align*}
+
+  \uncover<8->{%
+    The five laws of logs work {\blue for any base} {\red b}\
+    exactly the same way except\ldots
+  }
+
+  \uncover<9->{%
+    \begin{minipage}{0.4\linewidth}
+      \begin{empheq}[box=\othermathbox]{align*}
+        {\red{}b}^{\log_{\red{}b}(y)} = y
+      \end{empheq}
+    \end{minipage}
+    \hspace*{0.25in}
+    \begin{minipage}{0.4\linewidth}
+      \begin{empheq}[box=\othermathbox]{align*}
+        \log_{\red{}b}\left( {\red{}b}^a \right) = a
+      \end{empheq}
+    \end{minipage}
+  }
+
+}
+
+\frame{
+  \frametitle{Summary \& Examples}
+
+  \alert{Important bases:}
+  \begin{itemize}
+  \item $\log_{\red2}$ is used extensively in computer science
+  \item $\ln = \log_{\red{}e}$ is used everywhere (the {\red{}natural log})
+    ($e\approx2.718$) \\
+    \pause
+    $\log_{\red e}({\blue y})={\redgreen x}$ means ${\red e}^{\redgreen x}={\blue y}$
+    \\ \pause
+    $\log_{\red e}({\blue y})$ is how many ${\red e}$'s you multiply to get ${\blue y}$.
+    \\ \pause
+    Read as: `` log base ${\red e}$ of ${\blue y}$ equals ${\redgreen x}$.''
+  \end{itemize}
+  \pause
+  \gap 
+
+  \alert{Examples:}
+  \smallskip
+
+  $\log_{\red 3}({\blue 81})=$
+  \vspace*{-1.85em}
+
+  \begin{center}
+    A$=0$
+    \quad 
+    B$=1$
+    \quad 
+    C$=2$
+    \quad 
+    D$=3$
+    \quad 
+    E$=4$
+    \pause
+    \quad
+    \fbox{E} 
+  \end{center}
+  \gap
+
+  $\log_{\red 5}({\blue 25})=$
+  \vspace*{-1.85em}
+
+  \begin{center}
+    A$=0$
+    \quad 
+    B$=1$
+    \quad 
+    C$=2$
+    \quad 
+    D$=3$
+    \quad 
+    E$=4$
+    \pause
+    \quad
+    \fbox{C}
+  \end{center}
+  \halfgap
+
+  Simplify $\ln\left(\left(e^{3x}\times e^{y}\right)^2\right)$
+  \begin{center}
+    A$=6x+ y$
+    \quad 
+    B$ = 2x+2y$
+    \quad 
+    C$ = 3x+2y$
+    \quad 
+    D$ = 6x+2y$
+    \quad 
+    E$=6xy$
+    \quad 
+    \pause
+    \fbox{D}
+  \end{center}
+  \pause
+
+  Teaser: $e$ is special because the derivative of $e^x$ is $e^x$
+  \pause
+  \ whatever that means.
+
+
+}
+
+
+
+
+\section{Calculus Ideas}
+
+\frame{
+  \frametitle{Derivatives \&\ Differential Calculus}
+  \ldots{}are about {\red how quickly things change}.
+  % \gap
+
+  \begin{itemize}
+    \item Need to understand PRACTICAL significance in various
+      situations
+      \smallskip
+
+      Spread of infectious disease, population growth, speed,
+      acceleration, marginal rates in economics, global warming
+      \medskip
+      \pause
+
+    \item {\blue Calculate (or estimate) rate of change}\ from various sources:
+      \smallskip
+
+      {\red graph}\\ 
+      {\red table of data}\\ 
+      {\red formula}
+      \medskip
+      \pause
+
+    \item Applications: 
+      \smallskip
+
+      {\red measure change}\\ 
+      {\red predict the future}\\  
+      {\red optimization} -- find the best, or smallest, or biggest, or most\ldots\\ 
+      \pause
+
+  \end{itemize}
+  %
+  This is all about {\red\it{understanding}}\ the world.
+
+}
+
+
+\frame{
+  \frametitle{Philosophical problem}
+
+  How quickly is something changing at {\blue one moment}\ in time?
+  \gap
+
+  \uncover<2->{%
+    Example: Does a ball {\red{}stop}\ when I throw it straight up?
+  }
+  \medskip
+
+  \uncover<3->{%
+    Example: How fast is the temperature rising at 7am?
+  }
+  \gap
+
+  \begin{minipage}{50mm}
+    \uncover<4->{%
+      $\left(
+        \begin{array}{l}
+          \text{{\blue change} in temp} \\
+          \text{between 7am \& 8am}
+        \end{array}
+      \right)$
+      \\[0.5em]
+      $= 64-49 = 15^{\circ}\ \text{F}$
+    }
+    \gap
+    
+    \uncover<5->{%
+      $\left(
+        \begin{array}{c}
+          \text{{\blue average} rate of} \\
+          \text{ change in temp}\\
+          \text{between 7am \& 8am}
+        \end{array}
+      \right)$
+      \\[0.5em]
+      $= \frac{15^{\circ}\ \text{F}}{1\ \text{hour}} 
+      = 15^{\circ}\ \text{F}/\text{hour}$
+      \\[0.5em]
+    }
+    \uncover<6->{%
+      $= \text{{\blue{}slope of}\ {\orange{}secant line}}$
+    }
+    \vspace*{0.2in}
+  \end{minipage}
+  \begin{minipage}{56.5mm}
+    \begin{tikzpicture}[x=12mm,y=13mm,>=latex]
+      \uncover<3->{%
+        \draw[black,->] (0,0) -- (3,0) node[above] {\small{}Time};
+        \draw[black,->] (0,0) -- (0,3);
+        % Ticks:
+        \draw[thin,black] (0.75,0) -- (0.75,-2mm) node[below] {$7$am};
+        \draw[thin,black] (2,0) -- (2,-2mm) node[below] {$8$am};
+        \draw[thin,black] (0,1) -- (-2mm,1) node[left] {$49$};
+        \draw[thin,black] (0,{0.75+(2+1/2)^2/6}) -- (-2mm,{0.75+(2+1/2)^2/6}) node[left] {$64$};
+        \draw[black,thick] plot[domain=0:3] (\x,{0.75+(\x+1/2)^2/6});
+        \node[rotate=90] at (-0.85,1.5) {Temperature (${}^{\circ}\ \text{F}$)};
+      }
+      %
+      \uncover<6->{%
+        \draw[thick,blue,dashed] (0.75,{0.75+(0.75+1/2)^2/6}) -- node[midway,below] {Run} (2,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6}) node[midway,right] {Rise};
+        % 
+        \draw[thick,orange] (0.75,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6}) node[near end,left,yshift=2mm] {secant line};
+      }
+      %
+      \uncover<4->{%
+        \fill[red] (0.75,{0.75+(0.75+1/2)^2/6}) circle (2pt);
+        \fill[red] (2,{0.75+(2+1/2)^2/6}) circle (2pt);
+      }
+    \end{tikzpicture}
+  \end{minipage}
+
+
+}
+
+
+
+\frame{
+  \frametitle{Continuing Example}
+
+  Similarly,
+  \begin{equation*}
+    \left(
+      \begin{array}{c}
+        \text{{\blue average} rate of} \\
+        \text{ change in temp}\\
+        \text{between 6am \& 8am}
+      \end{array}
+    \right)
+    = \blue \frac{\text{change in temp}}{\text{time taken}}
+  \end{equation*}
+  \halfgap
+
+  \alert{Question:}\ \ Suppose temperature at time $t$ given by the
+  formula $f(t)=t^2$.  What is the average rate of change of
+  temperature from 6am to 8am?
+  \begin{center}
+    A$= 1$
+    \quad 
+    B$= 7$ 
+    \quad 
+    C$= 9$
+    \quad 
+    D$= 14$
+    \quad 
+    E$= 28$
+    \pause
+    \quad 
+    \fbox{D} 
+  \end{center}
+  \gap
+  \pause
+ 
+ }
+ 
+ \frame{
+   \frametitle{Average Rate of Change}
+
+   Suppose temperature at time $t$ given by the formula $f(t)=t^2$.
+
+   Using a calculator one can find the {\blue average rate of change}
+   over shorter and shorter time spans ${\blue\Delta t}$, starting
+   at 7am: 
+
+   \begin{table}
+     \begin{tabular}{lllllld{2.5}}
+       ${\blue\Delta t}$ & $(f(7+{\blue\Delta t})-f(7))/{\blue\Delta t}$
+       & \multicolumn{1}{c}{{\blue ave\ rate of change} $^o\text{F}/\text{hr}$}\\
+       \toprule
+       {\blue1} &$(8^2-7^2)/{\blue 1}$ & 15 \\ \pause
+       {\blue0.1} &$(7.1^2-7^2)/{\blue0.1}$ &14.1 \\ \pause
+       {\blue0.01} &$(7.01^2-7^2)/{\blue0.01}$& 14.01 \\ \pause
+       {\blue0.001} &$(7.001^2-7^2)/{\blue0.001}$& 14.001 \\
+       {\blue0.0001} &$(7.0001^2-7^2)/{\blue0.0001}$& 14.0001 \\
+       {\blue0.00001} &$(7.00001^2-7^2)/{\blue0.00001}$& 14.00001 \\ \pause
+       {\blue 0} & { $(7^2-7^2)/{\blue 0}$} 
+       & \multicolumn{1}{c}{$0/{\red 0}$\qquad\qquad{\red arghhhh}}\\
+       \bottomrule
+     \end{tabular}
+     \caption{Average rate of change over various time spans}
+   \end{table}
+   \vspace*{-1.5em}
+   \pause
+
+   What would you {\red guess}\ the {\red exact}\ {\blue
+     \emph{instantaneous}\ rate of change} of temperature at precisely
+   7am is?\pause\ \  Yes! \fbox{{\blue 14}}.  But how do we get this?\pause
+   \ \ Answer: it is a {\red limit}!
+ 
+}
+
+\frame{
+   \frametitle{Instantaneous Rate of Change}
+   
+   What does the limit
+   \begin{equation*}
+     \lim_{\Delta t \to 0} \frac{f(7+\Delta t) - f(7)}{\Delta t}
+   \end{equation*}
+   {\red mean} in practice?
+   \gap
+   \pause 
+
+   Work out the average rate of change over a {\blue very short} time interval.\\
+   That is {\blue very nearly} the correct answer.\\
+   The shorter the time interval you use, the more accurate you expect
+   the answer to be. 
+   \gap
+   \pause
+
+   To get the {\red exact} answer you would need to take a time interval of zero length.\\
+   This leads to the nonsense $\red 0/0.$ So you can't do this.\\
+   That is the {\red philosophical} problem. 
+   \pause
+   \gap
+
+   Mathematical solution: {\red take the limit}.
+
+}
+
+
+%\section{Slopes}
+
+\frame{
+  \frametitle{An Example}
+  
+  \begin{minipage}{0.5\linewidth}
+    A hamster runs along the $x$-axis, so that after $t$ seconds the
+    hamster is $t^2$ cm from the origin.  Our goal is to find the
+    hamster's speed at time $t=1\ \text{sec}$.
+  \end{minipage}
+  \begin{minipage}{0.45\linewidth}
+    \begin{tikzpicture}[x=16mm,y=6mm,>=latex]
+      \draw[black,->] (0,0) -- (2.75,0) node[below] {$t$ (sec)};
+      \draw[black,->] (0,0) -- (0,4.75) node[left] {$x$ (cm)};
+      % Ticks:
+      \draw[thin,blue] (1,0) -- (1,-3pt) node[below] {$1$};
+      \draw[thin,blue] (0,1) -- (-3pt,1) node[left] {$1$};
+      \uncover<2->{%
+        \draw[thin,orange] (2,0) -- (2,-3pt) node[below] {$2$};
+        \draw[thin,orange] (0,4) -- (-3pt,4) node[left] {$4$};
+      }
+      \uncover<3->{%
+        \draw[thin,red] (1.4,0) -- (1.4,-3pt) node[below] {$1.1$};
+        \draw[thin,red] (0,{1.4^2}) -- (-3pt,{1.4^2}) node[left] {$1.21$};
+      }
+      % 
+      \draw[black,thick] plot[domain=0:2.1] (\x,{(\x)^2});
+      \node[left] at (1.6,{1.6^2}) {$x=t^2$};
+      \draw[thick,dashed,blue] (0,1) -- (1,1) -- (1,0);
+      \fill[blue] (1,1) circle (2pt);
+      \uncover<2->{%
+        \draw[thick,dashed,orange] (0,4) -- (2,4) -- (2,0);
+        \fill[orange] (2,4) circle (2pt);
+      }
+      \uncover<3->{%
+        \draw[thick,dashed,red] (0,{1.4^2}) -- (1.4,{1.4^2}) -- (1.4,0);
+        \fill[red] (1.4,{1.4^2}) circle (2pt);
+      }
+    \end{tikzpicture}
+  \end{minipage}
+
+  \begin{align*}
+    \uncover<2->{%
+      \left(
+    \begin{array}{c} 
+      \text{average speed from} \\ 
+      \text{$t={\blue 1}$ to $t={\orange 2}$}
+    \end{array}
+    \right) 
+    & =  \frac{\text{distance gone}}{\text{time taken}}
+    = {{\frac{{\orange 2}^2-{\blue 1}^2}{{\orange 2}-{\blue 1}}}}
+    = 3\ \ \text{cm}/\text{sec}
+    }
+    \\ 
+    \uncover<3->{%
+    \left(
+    \begin{array}{c} 
+      \text{average speed from} \\ 
+      \text{$t={\blue 1}$ to $t={\red 1.1}$}
+    \end{array}\right)  
+    & = \frac{\text{distance gone}}{\text{time taken}} 
+      =  {{\frac{{\red 1.1}^2-{\blue 1}^2}{{\red 1.1}-{\blue 1}}}}
+      % = \frac{1.21-1}{0.1}
+      = 2.1\ \text{cm}/\text{sec}
+    }
+  \end{align*}
+
+
+}
+
+\frame{
+  \frametitle{Example Concluded}
+
+  How do we work out the {\blue exact} speed of the hamster after $1$
+  second?
+  \smallskip
+
+  \uncover<2->{%
+  Plan:
+  \begin{itemize}
+  \item Find the {\blue average speed} over a short time interval
+    ${\red\Delta t}$, then
+
+  \item Take the {\blue limit} as ${\red\Delta t}\to0$.
+  \end{itemize}
+  }
+  \vspace*{-1.5em}
+
+  \begin{align*}
+    \uncover<3->{%
+    \left(
+      \begin{array}{c} 
+        \text{average speed from} \\ 
+        \text{$t=1$ to $t=1+{\red\Delta t}$}
+      \end{array}
+    \right) 
+    & = \frac{\text{distance gone}}{\text{time taken}}\\ 
+    }
+    \uncover<4->{%
+    & = {{\frac{\left(1+{\red\Delta t}\right)^2\ -\ 1^2}{(1+{\red\Delta t})-1}}}\\ 
+    }
+    \uncover<5->{%
+    & = \frac{(1+2{\red\Delta t}+({\red\Delta t})^2)\ -\ 1}{{\red\Delta t}}\\ 
+    }
+    \uncover<6->{%
+    & = \frac{2{\red\Delta t}+({\red\Delta t})^2}{{\red\Delta t}}\\
+    & = 2 + {\red\Delta t}
+      }
+  \end{align*}
+
+  \uncover<7->{%
+  The {\blue limit } of this as ${\red\Delta t}\to0$ is $2$.
+  }
+
+  \uncover<8->{%
+    Conclusion: At $t=1$ sec, the {\blue exact} speed of the hamster is $2$ cm/sec.
+  }
+ 
+  % {\Huge\red\Smiley} \ We have just calculated the.... \pause {\blue instantaneous {\red RAT} of change !}
+
+
+}
+
+
+\frame{
+  \frametitle{Hamster Summary}
+
+  Soon we will calculate that\ldots
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{the {\red exact speed} of the hamster after $t$ seconds is {\red $2t$} cm/sec.}    
+  \end{empheq}
+  \gap
+
+  Summary:
+  \begin{align*}
+    {\blue f(t)} 
+    &{\blue=  t^2} 
+      = \text{{\blue distance} in cm of hamster from origin after $t$ seconds}\\
+    & \ \ \text{(a function that gives the distance the hamster has traveled at time $t$)}\\[0.5em]
+    %
+    {\red f'(t)} 
+    &{\red= 2t} 
+      = \text{{\red speed} of hamster in cm/sec after $t$ seconds}\\
+    & \ \ \text{(called the {\red derivative} of $\blue t^2$
+  because it can be {\red derived} or {\red obtained}}\\[-0.5em]
+    & \ \ \text{from the function ${\blue t^2}$)} 
+  \end{align*}
+  \vspace*{-1em}
+  \pause
+
+  \alert{Question:}\ \ How many cm had the hamster run by the time its {\red speed} was {\red 8} cm/sec?
+  \begin{center}
+    A$= 4$
+    \quad 
+    B$ = 8$
+    \quad 
+    C$ = 16$
+    \quad 
+    D$ = 32$
+    \quad 
+    E$ = 64$
+    \quad
+    \pause
+    \fbox{C}
+  \end{center}
+
+}
+
+
+\frame{
+  \frametitle{Exact Hamster Speed}
+  Now we calculate that\ldots
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{the {\red exact speed} of the hamster after $t$ seconds is {\red $2t$} cm/sec.}    
+  \end{empheq}
+  \vspace*{-0.5em}
+
+  \uncover<2->{%
+  Do this as before: working out the {\blue average speed} over a short time
+  interval ${\red\Delta t}$ and taking the {\blue limit} as
+  ${\red\Delta t}\to0$ 
+  }
+  \vspace*{-1em}
+
+  \begin{align*}
+    \uncover<3->{%
+    \left(
+      \begin{array}{c} 
+        \text{average speed from} \\ 
+        \text{$t$ to $t+{\red\Delta t}$}
+      \end{array}
+    \right) 
+    & = \frac{\text{distance gone}}{\text{time taken}}\\ 
+    }
+    \uncover<4->{%
+    & = {{\frac{\left(t+{\red\Delta t}\right)^2\ -\ t^2}{(t+{\red\Delta t})-t}}}\\ 
+    }
+    \uncover<5->{%
+    & = \frac{(t^2+2t{\red\Delta t}+({\red\Delta t})^2)\ -\ t^2}{{\red\Delta t}}\\ 
+    }
+    \uncover<6->{%
+    & = \frac{2t{\red\Delta t}+({\red\Delta t})^2}{{\red\Delta t}}\\
+    & = 2t + {\red\Delta t}
+      }
+  \end{align*}
+
+  \uncover<7->{%
+    The {\blue limit}\ of this as ${\red\Delta t}\to0$ is $2t$.
+  }
+  % \\
+  % \fbox{ So after {\purple t} seconds the {\blue exact} speed of the hamster is $2{\purple t}$ cm/sec.}
+ 
+}
+
+\frame{
+  \frametitle{Hamster Questions!}
+  
+  After $t$ seconds, the hamster is $f(t)=t^2$ cm from origin.
+
+  {\red(1)} What is the {\blue exact} speed (in cm/sec) of the hamster
+  at $t=2$?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{C}
+  \end{center}
+  \medskip
+  \pause
+
+  {\red(2)} What is the {\blue exact} speed (in cm/sec) of the hamster
+  at $t=4$?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{E}
+  \end{center}
+  \medskip
+  \pause
+
+  {\red(3)} What is the {\blue average} speed (in cm/sec) of the hamster
+  from $t=2$ to $t=4$ seconds?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{D}
+  \end{center}
+  \medskip
+  \pause
+
+  Does this make sense?
+
+}
+
+\section{Derivatives}
+
+\frame{
+  \frametitle{Graphical Approach}
+
+  \begin{minipage}{0.5\linewidth}
+    \begin{tikzpicture}[x=12mm,y=12mm,>=latex]
+        \draw[black,->] (0,0) -- (3,0) node[below] {$t$};
+        \draw[black,->] (0,0) -- (0,2.5) node[left] {$y$};
+        % Ticks:
+        \draw[thin,black] (0.75,0) -- (0.75,-3pt) node[below] {$t_0$};
+        \draw[thin,black] (2,0) -- (2,-2pt) node[below] {$t_1$};
+        \draw[thin,black] (0,1) -- (-2pt,1) node[left] {$f(t_0)$};
+        \draw[thin,black] (0,{0.75+(2+1/2)^2/6}) -- (-3pt,{0.75+(2+1/2)^2/6}) node[left] {$f(t_1)$};
+        \draw[black,thick] plot[domain=0:2.5] (\x,{0.75+(\x+1/2)^2/6});
+      %
+        \draw[thick,blue] (0.75,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6}) node[near end,left,yshift=2mm] {secant line};
+        \draw[thin,black,<->] (0.75,{0.75+(0.75+1/2)^2/6-0.2}) -- (2,{0.75+(0.75+1/2)^2/6-0.2}) node[midway,red,fill=white] {$\scriptstyle\Delta t$};
+        \draw[thin,black,<->] (2.2,{0.75+(0.75+1/2)^2/6}) -- (2.2,{0.75+(2+1/2)^2/6}) node[midway,fill=white,right,xshift=-0.75em] {$\scriptstyle{\red\Delta f}=f({\blue t_1})-f({\blue t_0})$};
+        \draw[thin,blue,dashed] (0.75,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6});
+        % 
+      %
+        \fill[red] (0.75,{0.75+(0.75+1/2)^2/6}) circle (2pt);
+        \fill[red] (2,{0.75+(2+1/2)^2/6}) circle (2pt);
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \parbox{50mm}{%
+    ${\red\Delta f}=$ change in $f$ \\
+    ${\red\Delta t}=$ change in $t$\\[0.5em]
+    \alert{Many ways to say same thing:}\\
+    $\begin{array}{l}
+       \left(\begin{array}{c} \text{{\blue average} rate of}\\ \text{change of $f$}\end{array}\right)  = \dfrac{\text{change in $f$}}{\text{change in $t$}}\\
+       = \dfrac{\red \Delta f}{\red\Delta t}\\
+       =  \text{slope of {\blue secant line}}
+       = \dfrac{f({\blue t_1})-f({\blue t_0})}{{\blue t_1}-{\blue t_0}}
+     \end{array}$
+   }
+   \pause
+
+   The derivative is defined to be
+   \begin{equation*}
+     \lim_{\Delta t\to0} \left(\frac{\red\Delta f}{\red\Delta t}\right) 
+     = \frac{df}{dt}
+   \end{equation*}
+   \pause
+
+   Idea: As $t_1$ moves closer to $t_0$ the secant line approaches the {\blue tangent line}  at $t_0$.
+   This is the line with the {\blue same slope} as the graph at $t_0$.
+
+   % \fbox{{\red Let's watch a movie }} \qquad\qquad  No, not  {\blue The Bourne Identity}  :(\\
+
+   % http://www.youtube.com/watch?v=AdQG2iSLDjA\\
+   % http://www.youtube.com/watch?v=s3q8D79bjiE\&feature=related
+}
+
+
+
+\frame{
+  \frametitle{Understanding Derivatives}
+
+  There are many ways to {\blue think} about derivatives.  You {\blue
+    need} to understand these to apply to problems. 
+  \gap
+  \gap 
+
+  \begin{minipage}{0.35\linewidth}
+    \begin{tikzpicture}[x=12mm,y=12mm,>=latex]
+        \draw[black,->] (0,0) -- (3,0) node[below] {$t$};
+        \draw[black,->] (0,0) -- (0,2.5) node[left] {$y$};
+        % Ticks:
+        \draw[thin,black] (0.75,0) -- (0.75,-3pt) node[below] {\red$a$};
+        % \draw[thin,black] (2,0) -- (2,-2pt) node[below] {$t_1$};
+        % \draw[thin,black] (0,1) -- (-2pt,1) node[left] {$f(t_0)$};
+        % \draw[thin,black] (0,{0.75+(2+1/2)^2/6}) -- (-3pt,{0.75+(2+1/2)^2/6}) node[left] {$f(t_1)$};
+        \draw[black,thick] plot[domain=0:2.5] (\x,{0.75+(\x+1/2)^2/6});
+        \begin{scope}
+          \clip (0,0) rectangle (3,2.5);
+          \draw[blue,thick] plot[domain=0:3] (\x,{(0.75+1/2)*(\x-0.75)/3+0.75+(0.75+1/2)^2/6});
+          \node[blue,right] at (1.3,1.15) {tangent line};
+          \node[blue,right] at (1.3,0.85) {at $t={\red{}a}$};
+          \node[left] at (2.1,2) {$y=f(t)$};
+        \end{scope}
+      %
+      %
+        \fill[red] (0.75,{0.75+(0.75+1/2)^2/6}) circle (2pt);
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \parbox{60mm}{%
+    slope of {\blue graph} at {\red a}\\
+    = slope of {\blue tangent line} \\%\small{\red $\quad\quad^{discuss}$}\\
+    = {\purple instantaneous rate of change} of $f$ at ${\red a}$\\
+    \\
+    $= \left(
+      \begin{array}{l}
+        \text{limit of average rate of change } \\ 
+        \text{of $f$ over shorter and shorter}\\
+        \text{ time intervals starting at\ {\red$a$}}
+      \end{array}
+    \right)$\\
+    \\
+    $=$ limit of slopes of secant lines\\
+    $= f'({\red a})\ =\ \left. \dfrac{df}{dt}\right|_{t={\red a}}$
+  }
+
+}
+
+\frame{
+  \frametitle{Summary}
+
+  \begin{itemize}
+  \item[$\red \bullet$] How fast something changes $=$ {\blue rate of
+      change}
+    \bigskip
+
+  \item[$\red \bullet$] {\red Instantaneous} {\blue rate of change} is
+    the {\redgreen limit} of the average rate of change over shorter
+    and shorter time spans. This gets around the ${\red 0/0}$
+    problem. 
+    \bigskip
+
+  \item[$\red \bullet$] {\blue speed} $=$ rate of change of distance traveled.
+    \bigskip
+
+  \end{itemize}
+
+}
+
+\frame{
+  \frametitle{Speed=Slope=Derivative}
+  \begin{minipage}{0.5\linewidth}
+    \begin{tikzpicture}[x=10mm,y=6mm,>=latex]
+      \draw[thin,black,->] (0,0) -- (5,0) node[below] {$t$ (sec)};
+      \draw[thin,black,->] (0,0) -- (0,4.5) node[above] {$x$ (cm)};
+      \draw[thick,blue] plot[domain=0:5] (\x,{exp((\x-2)/2)});
+      \foreach \x in {1,2,3,4}
+      {
+        \draw[thin,black] (\x,0) -- (\x,-3pt) node[below] {$\red\x$};
+        \fill[red] (\x,{exp((\x-2)/2)}) circle (2pt);
+      }
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.4\linewidth}
+    The graph shows the distance from the origin in cm after $t$
+    seconds of a hamster.  Which of the numbers below is the largest? 
+    \bigskip
+    
+    \textbf{Hint:}\ Speed is a slope!
+  \end{minipage}
+
+  \begin{align*}
+    \text{A} & = \text{speed of the hamster at $t=1$} \\
+    \text{B} & = \text{speed of the hamster at $t=2$} \\
+    \text{C} & = \text{speed of the hamster at $t=3$} \\
+    \text{D} & = \text{average speed of the hamster between $t=2$ and $t=3$} \\
+    \text{E} & = \text{average speed of the hamster between $t=3$ and $t=4$}
+  \end{align*}
+  \pause
+  \alert{Answer:}\ \fbox{E}
+
+}
+
+
+% ------- line dividing garfield15 and garfield16 ------------------
+
+
+
+\frame{
+  \frametitle{Practical Meaning}
+
+  Our goal is that you understand the {\blue practical meaning} of the
+  derivative in various situations. 
+  \gap
+  \pause
+
+  \begin{align*}
+    f({\blue t})
+    & = \text{temperature in ${}^{\circ}\ \text{F}$ at ${\blue t}$ hours after midnight}\\
+    f({\blue 7})
+    & = {\orange 48}\ 
+      \text{means the temperature at {\blue 7}am was ${\orange 48}^\circ\ \text{F}$}\\
+    f{\red '}({\blue 7})
+    & ={\orange 3}\ 
+      \text{means}\
+      \text{at {\blue 7}am the temperature was rising at a rate of
+      ${\orange 3}^{\circ}\ \text{F}/\text{hr}$} \\
+    f{\red '}({\blue 9})
+    & ={\orange -5}\ 
+      \text{means}\ 
+      \text{at {\blue 9}am the temperature was {\red falling} at a
+      rate of ${\orange 5}^{\circ}\ \text{F}/\text{hr}$}\\ 
+    & \hspace*{0.75in}\text{or {\red rising} at a rate of ${\orange
+      -5}^{\circ}\ \text{F}/\text{hr}$}
+  \end{align*}
+  \gap
+  \pause
+  \begin{align*}
+    g({\blue t})
+    & = \text{distance from origin in cm of hamster on $x$-axis  after $\blue t$ seconds}\\
+    g({\blue 7})
+    & ={\orange 3}\
+      \text{means after ${\blue 7}$ seconds hamster was ${\orange 3}$ cm from origin}\\
+    g{\red '}({\blue 9})
+    & ={\orange -5}\
+    \text{means after {\blue 9} seconds our furry friend was running {\blue towards}}\\ 
+    & \hspace*{0.25in}\text{the origin at a speed of ${\orange 5}\ \text{cm}/\text{sec}$}
+  \end{align*}
+}
+
+\frame{
+  \frametitle{Another Context}
+  
+  Suppose $f({\blue t})=$ temperature of oven in ${}^{\circ} \text{C}$
+  after $t$ minutes.
+  \smallskip
+
+  What do $f(3)=20$ and $f{\red '}(3)=15$ mean?
+  \begin{itemize}
+  \item[A] After $20$ minutes the oven was at $3^{\circ}\ \text{C}$ and heating up at a rate of $15^{\circ}\ \text{C}/\text{min}$
+
+  \item[B] After $3$ minutes oven temperature was $15^{\circ}\ \text{C}$ and cooling down at a rate to $20^{\circ}\ \text{C}/\text{min}$ 
+
+  \item[C] The oven was heating up at rate of $3^{\circ}\ \text{C}/\text{min}$ after 15 minutes and also after 20 minutes
+
+  \item[D] After 3 minutes the oven was at $20^{\circ}\ \text{C}$ and heating up at a rate of $15^{\circ}\ \text{C}/\text{min}$ 
+
+  \item[E] None of the above
+
+  \end{itemize}
+  \pause
+  \alert{Answer:}\ \fbox{D}
+
+}
+
+
+\frame{
+  \frametitle{That's it. Thanks for being here. }
+
+  \begin{center}
+    \includegraphics[scale=.31]{Lecture 9 Picture (Original Size).jpg}
+  \end{center}
+}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+

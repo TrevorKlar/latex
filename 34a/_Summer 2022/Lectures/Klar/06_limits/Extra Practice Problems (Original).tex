@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabto}
+\usepackage{amsfonts}
+%\usepackage{MnSymbol}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+\usepackage[utf8x]{inputenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{verbatim}
+\usepackage{tikz, pgfplots}
+\usepackage{tkz-euclide}
+\usepgfplotslibrary{fillbetween}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{xfrac}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\graphicspath{ {images/} }
+
+
+\renewcommand{\v}{\vec{v}}
+\renewcommand{\u}{\vec{u}}
+\renewcommand{\w}{\vec{w}}
+
+
+\setlength\parindent{0pt}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut} 
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\Nd}{and}
+\DeclareMathOperator{\st}{such\ that}
+\DeclareMathOperator{\writhe}{writhe}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\font\msbmx=msbm10 at 10pt
+\textfont15=\msbmx
+\mathchardef\subsetneqq="3F24
+\mathchardef\subsetneq="3F28
+\mathchardef\supsetneq="3F29
+
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand{\pn}[1]{\left( #1 \right)}
+\newcommand{\bk}[1]{\left[ #1 \right]}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\mat}[1]{\ensuremath{ \begin{bmatrix} #1 \end{bmatrix} }}
+
+\newcommand{\ansbox}[2]{\raisebox{-.5\height}{\framebox(#1,#2){}}}
+
+
+
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pgfplotsset{soldot/.style={color=black,only marks,mark=*},
+	holdot/.style={color=black,fill=white,only marks,mark=*},
+	compat=1.12}
+\pagestyle{fancy}
+\lhead{Math 34A, UCSB}
+\rhead{Winter 2020}
+
+\pagenumbering{gobble}
+\begin{document}
+\newtheorem*{theorem*}{Theorem}
+	
+	
+	\centerline{\Large{ Limits}}\vspace{12 pt}
+	\begin{enumerate} 
+	\item $\underset{x \rightarrow 0}{\lim} \ 2+x=\fbox{2}$
+	\item $\underset{x \rightarrow 0}{\lim} \ 2+3x=\fbox{2}$
+	\item $\underset{x \rightarrow 0}{\lim} \ \frac{2x}{3x}=\fbox{2/3}$
+\item $\underset{x \rightarrow \infty}{\lim} \ \frac{1}{x}=\fbox{0}$
+	\item $\underset{x \rightarrow \infty}{\lim} \ 2 + \frac{3}{x}=\fbox{2}$ 
+	\item $\underset{x \rightarrow 0}{\lim} \ \frac{2x + x^2}{3x - 6x^2}=\fbox{2/3}$
+	%\item $\underset{x \rightarrow 1}{\lim} \ \frac{x-1}{(x-1)(x+1)}=$ 
+	\\ \\
+	\centerline{\Large{ Logs \ \ \ \ \ \ \ \ \ \ \ }}\vspace{12 pt}
+	\item $\log_2(4) = \fbox{2}$
+	\item $\log_2(8) = \fbox{3}$
+	\item $\log_2(16) = \fbox{4}$
+	\item $\log_2(2) = \fbox{1}$
+	\item $\log_2(\frac{1}{2}) = \fbox{-1}$
+	\item $\log_5(25) = \fbox{2}$
+	\item $\log_{10}(100) = \fbox{2}$
+	\item $\log_{10}(\frac{1}{10}) = \fbox{-1}$
+	\item $\log_{10}(.1) = \fbox{-1}$
+	\item $\log_{10}(.001) = \fbox{-3}$
+	\item $\log_{10}(1,000,000) = \fbox{6}$
+	
+	\end{enumerate}
+    
+
+	
+\end{document}
+	

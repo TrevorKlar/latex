@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabto}
+\usepackage{amsfonts}
+%\usepackage{MnSymbol}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+\usepackage[utf8x]{inputenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{verbatim}
+\usepackage{tikz, pgfplots}
+\usepackage{tkz-euclide}
+\usepgfplotslibrary{fillbetween}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{xfrac}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\graphicspath{ {images/} }
+
+
+\renewcommand{\v}{\vec{v}}
+\renewcommand{\u}{\vec{u}}
+\renewcommand{\w}{\vec{w}}
+
+
+\setlength\parindent{0pt}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut} 
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\Nd}{and}
+\DeclareMathOperator{\st}{such\ that}
+\DeclareMathOperator{\writhe}{writhe}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\font\msbmx=msbm10 at 10pt
+\textfont15=\msbmx
+\mathchardef\subsetneqq="3F24
+\mathchardef\subsetneq="3F28
+\mathchardef\supsetneq="3F29
+
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand{\pn}[1]{\left( #1 \right)}
+\newcommand{\bk}[1]{\left[ #1 \right]}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\mat}[1]{\ensuremath{ \begin{bmatrix} #1 \end{bmatrix} }}
+
+\newcommand{\ansbox}[2]{\raisebox{-.5\height}{\framebox(#1,#2){}}}
+
+
+
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pgfplotsset{soldot/.style={color=black,only marks,mark=*},
+	holdot/.style={color=black,fill=white,only marks,mark=*},
+	compat=1.12}
+\pagestyle{fancy}
+\lhead{Math 34A, UCSB}
+\rhead{Winter 2020}
+
+\pagenumbering{gobble}
+\begin{document}
+\newtheorem*{theorem*}{Theorem}
+	
+	
+	\centerline{\Large{ Peaks and Valleys}}\vspace{12 pt}
+	{\bf \large Key Idea:} What must the slope of the graph be at the highest and lowest points? \\ \\
+	\begin{enumerate} 
+	\item Find the coordinates of the vertex (lowest point) of the parabola 
+	$$y=x^2 + 4x - 72.$$
+	\phantom{.} \hfill $x=$\ \ansbox{90}{50} \\ 
+	\phantom{.} \hfill $y=$\ \ansbox{90}{50} \\ 
+    
+    
+    
+    \item You have 100m of fencing to make a pen on a farm, and one of sides of your pen is provided by the wall of your barn. So you only need fencing for three sides. If $\ell$ and $w$ are the dimensions (length and width) of your pen, the total fencing equation below relates the length and width 
+    $$2\ell + w = 100.$$
+    Here there are two lengths and only one width because the barn wall serves as the second width. \\ 
+    \begin{enumerate}
+    \item You know the area of the pen in terms of $\ell$ and $w$. Express the area of the pen in terms of \underline{$\ell$ only}. \vspace{.8in}\\
+    \phantom{.}\hfill$A(\ell) =$\ \ansbox{190}{50}
+    \item Find the length that results in the largest area $A(\ell)$ for your pen. \vspace{.9in}\\
+    \phantom{.}\hfill$\ell =$\ \ansbox{190}{50}
+    \item Use your answer in part (b) to find the maximum area for your pen. \vspace{.8in}\\
+    \phantom{.}\hfill $A_{\text{max}} =$\ \ansbox{190}{50}
+    \end{enumerate}
+	
+	
+	
+	\end{enumerate}
+    
+
+	
+\end{document}
+	
