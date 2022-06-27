@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabto}
+\usepackage{amsfonts}
+%\usepackage{MnSymbol}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+\usepackage[utf8x]{inputenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{verbatim}
+\usepackage{tikz, pgfplots}
+\usepackage{tkz-euclide}
+\usepgfplotslibrary{fillbetween}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{xfrac}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\graphicspath{ {images/} }
+
+
+%\renewcommand{\v}{\vec{v}}
+%\renewcommand{\u}{\vec{u}}
+%\renewcommand{\w}{\vec{w}}
+
+
+\setlength\parindent{0pt}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut} 
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\Nd}{and}
+\DeclareMathOperator{\st}{such\ that}
+\DeclareMathOperator{\writhe}{writhe}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\font\msbmx=msbm10 at 10pt
+\textfont15=\msbmx
+\mathchardef\subsetneqq="3F24
+\mathchardef\subsetneq="3F28
+\mathchardef\supsetneq="3F29
+
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand{\pn}[1]{\left( #1 \right)}
+\newcommand{\bk}[1]{\left[ #1 \right]}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\mat}[1]{\ensuremath{ \begin{bmatrix} #1 \end{bmatrix} }}
+
+\newcommand{\ansbox}[2]{\raisebox{-.5\height}{\framebox(#1,#2){}}}
+
+
+
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\pgfplotsset{soldot/.style={color=black,only marks,mark=*},
+	holdot/.style={color=black,fill=white,only marks,mark=*},
+	compat=1.12}
+\pagestyle{fancy}
+\lhead{Math 34A, UCSB}
+\rhead{Spring 2022}
+
+\pagenumbering{gobble}
+\begin{document}
+\newtheorem*{theorem*}{Theorem}
+
+
+	\centerline{\Large{ Quiz 2}}\vspace{12 pt}
+	\begin{tabular}{ll}
+    {\bf Name}: \ansbox{230}{35} %\hspace{1.8in} 
+    & {\bf Perm Number}: \ansbox{120}{35} 
+    \end{tabular} \\ \\
+	
+	
+	
+
+{\Large 1)}	Simplify the expression below and write it as a percent. 
+    $$\frac{1}{20}\left( 18^{-1} + 24^{-1} \right)^{-1}$$
+    \vfill     
+\phantom{.} \hfill \ansbox{160}{35} \\ 
+{\Large 2)} \ Multiply out and simplify. writing the simplified answer in the box. 
+	{\Large $$(x-1)(x^3+x^2+x+1)$$}
+    \\
+    \vfill 
+    
+\phantom{.} \hfill \ansbox{160}{35} \\ 
+
+
+\newpage
+{\Large 3)} \ Multiply out and simplify. writing the simplified answer in the box. 
+	{\Large $$\left(\frac{5a - 3ab}{2a}\right)\left(\frac{26a-52b}{13}\right)$$}
+    \\
+\vfill
+    \vfill
+    \phantom{.} \hfill \ansbox{200}{70} \\ 
+    
+{\Large 4)} A bad guy leaves Isla Vista at midnight, traveling on the 101. To avoid being pulled over, he maintains a speed of 60 miles per hour. At 1:20AM, Jason Borne leaves Isla Vista in the same direction at 100 miles per hour. At what time will Jason catch up to the bad guy? \\
+	
+	\vfill
+	\vfill
+	${\phantom{..............}}$ \hfill \ansbox{160}{35} \\ 
+    
+    
+
+	
+\end{document}
+	

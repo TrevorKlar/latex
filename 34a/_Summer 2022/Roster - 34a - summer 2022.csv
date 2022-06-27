@@ -1,19 +1,20 @@
-First name;Phonetic Name;Last name;Pronouns;Username;Email address;Enroll Code;Perm number;Roles;Groups
-Franci;;Adjangba;She/Her/Hers;franci;franci@umail.ucsb.edu;12559;5894506;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
-Nelly;;Aparicio;He/Him/His;naparicio;naparicio@umail.ucsb.edu;12567;6586499;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Rhy;;Apostol;She/Her/Hers;rhyanne;rhyanne@umail.ucsb.edu;12567;9693664;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Ricardo;;de la Cabada;;rdelacabada;rdelacabada@umail.ucsb.edu;12567;8490484;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Breanna;;Flores;She/Her/Hers;breanna_flores;breanna_flores@umail.ucsb.edu;12567;4283842;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Yesenia;;Gil;;yeseniagil;yeseniagil@umail.ucsb.edu;12567;5005103;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Qixuan;;He;;qixuanhe;qixuanhe@umail.ucsb.edu;12559;3666948;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
-Andrew;;Liu;He/Him/His;andrewliu;andrewliu@umail.ucsb.edu;12567;4348439;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Giselle;;Martinez Salceda;She/Her/Hers;g_martinezsalceda;g_martinezsalceda@umail.ucsb.edu;12567;6672240;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Katie;;Meade;;kmeade;kmeade@umail.ucsb.edu;12567;8165748;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Richard;;Montes Lemus;He/Him/His;richardmonteslemus;richardmonteslemus@umail.ucsb.edu;12559;9709999;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
-Cami;;Mras;;camillemras;camillemras@umail.ucsb.edu;12567;5694757;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Ebany;;Negrete;She/Her/Hers;ebanynegrete;ebanynegrete@umail.ucsb.edu;12567;5705215;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Jordan;;Nguyen;He/Him/His;jordan_nguyen;jordan_nguyen@umail.ucsb.edu;12567;4170098;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Christian;;Perez;He/Him/His;cperez894;cperez894@umail.ucsb.edu;12567;7987662;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Haris;;Sohail;He/Him/His;hsohail;hsohail@umail.ucsb.edu;12567;5227541;student;[Alfredo Ramirez] M W     02:30PM SH   1609
-Tonglin;;Wu;;tonglin;tonglinwu2021@gmail.com;12559;5668660;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
-Anthony;;Zendejas;He/Him/His;eazendejas;eazendejas@ucsb.edu;12567;4233565;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+x;First name;Phonetic Name;Last name;Pronouns;Username;Email address;Enroll Code;Perm number;Roles;Groups
+;Franci;;Adjangba;She/Her/Hers;franci;franci@umail.ucsb.edu;12559;5894506;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
+;Nelly;Nelly;Aparicio;He/Him/His;naparicio;naparicio@umail.ucsb.edu;12567;6586499;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Rhy;\Ree\;Apostol;She/Her/Hers;rhyanne;rhyanne@umail.ucsb.edu;12567;9693664;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Ricardo;;de la Cabada;;rdelacabada;rdelacabada@umail.ucsb.edu;12567;8490484;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Breanna;“Bre” [YOU'VE HAD HER TWICE];Flores;She/Her/Hers;breanna_flores;breanna_flores@umail.ucsb.edu;12567;4283842;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Yesenia;Yessy;Gil;;yeseniagil;yeseniagil@umail.ucsb.edu;12567;5005103;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Qixuan;“Cassie”;He;;qixuanhe;qixuanhe@umail.ucsb.edu;12559;3666948;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
+;Jasmine;Jasmine;Jackson;;;;;;;
+;Andrew;;Liu;He/Him/His;andrewliu;andrewliu@umail.ucsb.edu;12567;4348439;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Giselle;\Giss-elle\;Martinez Salceda;She/Her/Hers;g_martinezsalceda;g_martinezsalceda@umail.ucsb.edu;12567;6672240;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Katie;Katie;Meade;;kmeade;kmeade@umail.ucsb.edu;12567;8165748;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Richard;Richie;Montes Lemus;He/Him/His;richardmonteslemus;richardmonteslemus@umail.ucsb.edu;12559;9709999;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
+;Cami;Cami;Mras;;camillemras;camillemras@umail.ucsb.edu;12567;5694757;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Ebany;\Ebonny\;Negrete;She/Her/Hers;ebanynegrete;ebanynegrete@umail.ucsb.edu;12567;5705215;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Jordan;Jordan;Nguyen;He/Him/His;jordan_nguyen;jordan_nguyen@umail.ucsb.edu;12567;4170098;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Christian;Chris;Perez;He/Him/His;cperez894;cperez894@umail.ucsb.edu;12567;7987662;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Haris;;Sohail;He/Him/His;hsohail;hsohail@umail.ucsb.edu;12567;5227541;student;[Alfredo Ramirez] M W     02:30PM SH   1609
+;Tonglin;\Tong-LEEN\;Wu;;tonglin;tonglinwu2021@gmail.com;12559;5668660;student;[Alfredo Ramirez] M W     03:30PM HSSB 2251
+;Anthony;;Zendejas;He/Him/His;eazendejas;eazendejas@ucsb.edu;12567;4233565;student;[Alfredo Ramirez] M W     02:30PM SH   1609
