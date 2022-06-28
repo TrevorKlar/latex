@@ -1,7 +1,7 @@
 \documentclass
 %[handout]
 {beamer}
-\documentclass{beamer}
+%\documentclass{beamer}
 
 \input{../lecture-setup.tex}
 
@@ -10,6 +10,7 @@
 \title{Calculus Intro}
 \date{May 12, 2022}
 
+\renewcommand{\fbox}{}
 
 \begin{document}
 \small
@@ -67,15 +68,13 @@ also known as ``instantaneous rate of change''
 
 \frame{
  \frametitle{Why use $h$ to find the derivative?}
-   {\large\blue$$\text{Without $h$: \ }\fbox{f'(x) = \lim_{\chi \rightarrow x} \frac{f(\chi)-f(x)}{\chi-x}}$$}
+   {\large\blue$\text{Without }h\text{: \ }\fbox{f'(x) = \lim_{\chi \rightarrow x} \frac{f(\chi)-f(x)}{\chi-x}}$}
+   
    Here is an example without $h$. For $f(x) = x^2$, if we wanted to find $f'(2)$ it would be the limit of the average rate of change from 2 to a second point $\chi$ as that second point approaches 2. \pause
    $$\underset{\chi\rightarrow2}{\lim} \frac{\chi^2 - 2^2}{\chi-2}\pause=\underset{\chi\rightarrow2}{\lim} \frac{(\chi - 2)(\chi+2)}{(\chi-2)}\pause=\underset{\chi\rightarrow2}{\lim} \ \chi + 2\pause=4$$\pause
    Second example: For $g(x) = x^3$, if we wanted to find $g'(5)$ it would be the limit of the average rate of change from 5 to a second point $\chi$ as that second point approaches 5. \pause
    $$\underset{\chi\rightarrow5}{\lim} \frac{\chi^3 - 5^3}{\chi-5}\pause=\underset{\chi\rightarrow5}{\lim} \frac{(\chi - 5)(\chi^2+5\chi + 5^2)}{(\chi-5)}\pause=\underset{\chi\rightarrow5}{\lim} \ \chi^2+5\chi + 5^2\pause=75$$ \pause
    {\large\blue It's often harder to find the derivative this way, so we just make $\Delta x = h$ and let $h$ disappear.}
-   
-   
-   
 }
 
 
