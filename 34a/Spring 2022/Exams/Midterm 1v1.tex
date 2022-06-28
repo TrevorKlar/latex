@@ -1,0 +1,250 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphics}
+\usepackage{tikz}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+
+\newbool{alt}
+\booltrue{alt}
+%\boolfalse{alt}
+ 
+% Standard things to include for math   
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\usepackage{wasysym}
+
+\usepackage{enumitem}
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ top=2cm,
+ bottom=2cm,
+ left=2cm,
+ right=2cm,
+ }
+
+
+
+
+% Some of Ebrahim's definitions
+\newcommand{\done}{\\\hspace*{0pt}\hfill$\blacksquare$}
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\Z{\mathbb{Z}}
+\def\e{\epsilon}
+\newcommand{\seq}[1]{\left(#1\right)_{n\in\N}}
+\newcommand{\Euc}[1]{\mathbb{R}^{#1}}
+\newcommand{\pathvarNaked}{p}
+\newcommand{\pathvar}{\vec{\pathvarNaked}}
+\newcommand{\pathvarAlt}{\vec{q}}
+\newcommand{\exercisesList}[2]{\textcolor{ForestGreen}{Exercises from WeBWorK HW#1: #2.}}
+\newcommand{\exerciseText}[1]{\textcolor{ForestGreen}{Exercise: #1}}
+\def\vx{\vec{x}}
+\def\vu{\vec{u}}
+\def\vv{\vec{v}}
+\def\vw{\vec{w}}
+\newcommand{\der}[2]{\frac{\textrm{d}#1}{\textrm{d}#2}}
+\newcommand{\derOp}[1]{\der{\phantom{#1}}{#1}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pderOp}[1]{\pder{\phantom{#1}}{#1}}
+\newcommand{\colvectwo}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
+\newcommand{\colvectwoXYVEC}[2]{\left[#1\right]\,\cbv{x} + \left[#2\right]\,\cbv{y}}
+\newcommand{\colvecthree}[3]{\left[\begin{array}{c}#1\\#2\\#3\end{array}\right]}
+\newcommand{\colvecfour}[4]{\left[\begin{array}{c}#1\\#2\\#3\\#4\end{array}\right]}
+\newcommand{\colvecfourL}[4]{\left[\begin{array}{l}#1\\#2\\#3\\#4\end{array}\right]}
+\newcommand{\norm}[1]{\left|\hspace{-1.5pt}\left|#1\right|\hspace{-1.5pt}\right|}
+\def\grad{\vec{\nabla}}
+\newcommand{\Dir}[3]{\operatorname{Dir}(#1,#2,#3)}
+\newcommand{\D}[1]{\textrm{D}#1}
+\def\vn{\vec{n}}
+\newcommand{\cbv}[1]{\partial_{#1}}
+\newcommand{\arrayBrackets}[2]{\left[ \begin{array}{#1} #2 \end{array} \right] }
+
+\makeatletter
+\newcommand*\dotp{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+
+
+\newcommand{\ansbox}[2]{\raisebox{-.5\height}{\framebox(#1,#2){}}}
+
+\def\endans{\hspace{1em}\ansbox{40}{40}}
+
+
+\newcommand{\NEcheckbox}{ % Put check box on northeast corner of page
+\begin{tikzpicture}[remember picture,overlay] 
+\path (current page.north east) ++(-1,-1) node[below left] {
+{\small graded?} {\Large\Square}
+};
+\end{tikzpicture}
+}
+
+\newcommand{\LEFTcheckbox}{ % Put check box in the left margin
+\\\begin{tikzpicture}[remember picture,overlay] 
+\path ++(-2,0) node[below left] {
+ {\Large\Square}
+};
+\end{tikzpicture}
+}
+
+\newcommand{\LEFTcheckboxOwnLine}{ % Put check box in the left margin, use this one if on own line
+\begin{tikzpicture}[remember picture,overlay] 
+\path ++(-2,0) node[below left] {
+ {\Large\Square}
+};
+\end{tikzpicture}
+}
+
+
+
+
+
+
+\pagenumbering{gobble}
+\begin{document}
+
+
+
+
+% --- Score table ---
+
+%\def\gap{\hspace*{2.5em}}
+%
+%\begin{tikzpicture}[overlay, remember picture]
+%\path (current page.north east) ++(-1,-1) node[below left] {
+%\begin{tabular}{c|c|c|c|c|c|c|c}
+% 1 &  2 & 3 & 4 & 5 & 6 & 7 & $\Sigma$\\ \hline
+% \gap & \gap & \gap & \gap & \gap & \gap & \gap & \gap \\
+% \gap & \gap & \gap & \gap & \gap & \gap & \gap & \gap
+%\end{tabular}
+%};
+%\end{tikzpicture}
+
+% ---
+
+
+\def\namepos{(current page.north west) ++(5,-0.8)}
+\begin{tikzpicture}[overlay, remember picture]
+\draw [black] \namepos rectangle ++(10,-1);
+\draw [black] \namepos ++(0,-1.2) rectangle ++(10,-1);
+%\draw [black] \namepos ++(0,-1.2) ++(0,-1.2) rectangle ++(10,-1);
+%\draw [black] \namepos ++(0,-1.2) ++(0,-1.2) ++(0,-1.2) rectangle ++(10,-1);
+\path \namepos ++(0,-0.4) node [left] {\textbf{Name:}};
+\path \namepos ++(0,-0.4) ++ (0,-1.2) node [left] {\textbf{Perm:}};
+%\path \namepos ++(0,-0.4) ++ (0,-1.2) ++ (0,-1.2) node [left] {\textbf{Seat Number:}};
+%\path \namepos ++(0,-0.4) ++ (0,-1.2) ++ (0,-1.2) ++ (0,-1.2) node [left] {\textbf{ID Checker Name:}};
+\end{tikzpicture}
+
+\def\versionRowText{
+\textit{version \ifbool{alt}{1}{2},row}
+\raisebox{-3pt}{\framebox(15,15){A}}
+}
+\begin{tikzpicture}[overlay, remember picture]
+\path (current page.north east) ++ (-2,-1.5) node [left] %{\versionRowText};
+\end{tikzpicture}
+
+
+
+\vspace{5em}
+
+\begin{center}\textbf{Math 34A Midterm 1, Spring 2022}\end{center}
+\begin{enumerate}
+
+\newpage
+\phantom{.}
+%%%%%%%%%%% (1)
+\newpage
+\item ({\it 2pts}) Solve the system of equations below for $s$ and $t$. Your answers should be in terms of $x$ and $y$. 
+\begin{align*}
+s + 4t &= 14x \\
+3s - 2t &= 14y 
+\end{align*}
+\vfill \\ 
+\phantom{.} \hfill$s = \ $ \ansbox{100}{60} \\ \\
+\phantom{.} \hfill$t = \ $ \ansbox{100}{60} \\ \\
+
+
+%%%%%%%%%%% (2)
+\item ({\it 2pts}) Multiply out and simplify. Your answer should have no negative exponents in it. 
+$$\frac{\sqrt[3]{x^{-6}y^{-3}}}{ab^{-1}}\cdot \left( \frac{xy}{ab^{-1}} \right)^{-2}$$
+\vspace{230pt} \\ \phantom{.} \hfill$ \ $ \ansbox{200}{140} 
+
+%%%%%%%%%%% (3)
+\newpage
+\item ({\it 2pts}) Substitute $x=a-b$ into the expression below and simplify completely. There should be no parentheses in your answer. 
+$$x(a^4 + a^3b + a^2b^2 + ab^3 + b^4)(x+2b)$$
+\vfill \\ \phantom{.} \hfill$ \ $ \ansbox{300}{70} \\ \\
+
+
+\newpage
+%%%%%%%%%%% (4)
+\item ({\it 4pts}) You discovered this week that if you microwave frozen pizza to bring it above room temperature, you can finish it in the oven at 450$^\circ$ to retain more moisture and have the pizza ready faster. You set your oven to preheat to 450$^\circ$. You notice that at exactly 5:13PM, the oven's temperature is 90$^\circ$. You check back at exactly 5:17PM and the oven's temperature is now 330$^\circ$. Assuming linear growth for the temperature (so using linear extrapolation), at what time will the oven be preheated to 450$^\circ$? 
+
+\vfill \\ 
+\phantom{.} \hfill \ansbox{200}{50} \ minutes. 
+
+
+
+%%%%%%%%%%% (5)
+\newpage
+\item ({\it 4pts}) A farmer wants to raise cattle in his pasture, but he first needs fencing. The field is twice as wide as it is long. Fencing purchases are \$35 plus \$5 per foot of fencing. Express the costing of fencing for the perimeter in terms of the length of the field. 
+\vfill \\ \phantom{.} \hfill Fencing Cost$ \ = \ \$$ \ansbox{250}{70}  \\ \\
+%%%%%%%%%%% (6)
+\newpage
+
+\item ({\it 5 points})   
+The aspect ratio of a screen is the ratio of the width to the height. You are considering the purchase of a 45in TV (TV sizes are measured by the diagonal, not the length or width). In addition to this information, the manufacturer will only disclose the height of the TV, not the width. Express the aspect ratio in terms of the height $h$ of the TV in inches. 
+\vfill \\ 
+\phantom{.} \hfill Aspect Ratio $ = \ $ \ansbox{240}{140} \\
+\vspace{10pt} \\ 
+
+
+%%%%%%%%%%% (7)
+\newpage
+\item ({\it 3 points}) What are the following limits? 
+\begin{enumerate} 
+\item {\large $\underset{x \rightarrow 2}{\lim}$} \ \ {\large $15x-10$} \\ \\ \phantom{.} \hfill\ansbox{140}{70} \\ \\  
+\item {\large $\underset{x \rightarrow \infty}{\lim} \ \ $} {\Large $\frac{5x-3}{10x+17}$} \\ \\ \phantom{.} \hfill\ansbox{140}{70} \\ \\  
+\item {\large $\underset{n \rightarrow 0}{\lim}$} \ \ {\Large$\frac{2x^2+4x}{2x}$} \\ \\ \phantom{.} \hfill\ansbox{140}{70} \end{enumerate}
+
+
+%%%%%%%%%%% (8)
+\item ({\it 3 points}) Compute the logarithms below. 
+\begin{enumerate} 
+\item $\log_2(32)$ \\ \phantom{.} \hfill\ansbox{140}{70} \\ \\  
+\item $\log_{10}(.001)$ \\ \phantom{.} \hfill\ansbox{140}{70} \\ \\  
+\item $\log_{7}(49)$ \\ \phantom{.} \hfill\ansbox{140}{70} \\ \\  
+\end{enumerate}
+
+
+%%%%%%%%%%% (9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+\end{document}
+
