@@ -1,3 +1,0 @@
-- top and bottom margins are too small. increase and the check that an attempt to print doesn't prefer to shrink the page. 
-- also make the same adjustment to Midterm 1
-

@@ -1,14 +1,15 @@
 \documentclass
-%[handout]
+[handout]
 {beamer}
 %\documentclass{beamer}
 
 \input{../lecture-setup.tex}
 
 
-\title{}
 \title{Calculus Intro}
-\date{May 3, 2022}
+\author{Trevor Klar, UCSB Mathematics}
+\date{July 11, 2022}
+
 
 
 \begin{document}
@@ -16,41 +17,13 @@
 
 
 
-\section*{Administration}
 
-\frame{
-  \frametitle{}
-  {\Huge{}Welcome Back!}\\[.5em]
-
-  {\Huge{}Differential Calculus}
-  \vfill
-  {\Large{}Instructor:}\\
-  \ \hspace*{0.2in} Nathan Schley ({\it Sh}+{\it lye}), \url{schley@math.ucsb.edu}\\
-  \ \hspace*{0.2in} South Hall 6701
-  \\[0.5em]
-
-  {\Large{}Office Hours:}\\
-  \ \hspace*{0.2in} T R 11-11:50, T 3:45-4:35 Details on Gauchospace. 
-  \bigskip
-
-  \copyright\ 2022\ Daryl Cooper, Peter M.\ Garfield, Ebrahim Ebrahim \& Nathan Schley\\
-  Please do not distribute outside of this course.
-  \vfill
-
-}
+\input{../course-data.tex}
 
 
 
 
-% \frame{
-%   \frametitle{i-clicker}
 
-%   {\large {\blue If you have been having i-clicker trouble, please email me about this with a photo of your i-clicker and your Gauchospace page. The first photo gives ID the serial number for your i-clicker and the second verifies your identity (for them). } }
-  
-  
-  
-
-% } 
 
 \frame{
   \frametitle{Warm-up}
@@ -95,10 +68,10 @@
 
 } 
 
-\section*{Exam Info}
+%\section*{Exam Info}
 
 \frame{
-  \frametitle{Midterm 2: One week from today}
+  \frametitle{Midterm 2: Wednesday}
 
   {\Large\color{blue}Bring:}
   \begin{itemize}
@@ -137,11 +110,528 @@
 
 }
 
+\frame{
+  \frametitle{Midterm 2 Topics}
+
+ To refresh your memory, let's do this example right now:
+  $$\sum_{n=1}^{4} 2^n-1$$
+  
+  \vspace*{1.25 in}
+  
+  It would be a great idea to look back over Lecture 6 to prepare for the midterm. 
+}
+
+
+
+\section{Calculus Ideas}
+
+\frame{
+  \frametitle{Derivatives \&\ Differential Calculus}
+  \ldots{}are about {\red how quickly things change}.
+  % \gap
+
+  \begin{itemize}
+    \item Need to understand PRACTICAL significance in various
+      situations
+      \smallskip
+
+      Spread of infectious disease, population growth, speed,
+      acceleration, marginal rates in economics, global warming
+      \medskip
+      \pause
+
+    \item {\blue Calculate (or estimate) rate of change}\ from various sources:
+      \smallskip
+
+      {\red graph}\\ 
+      {\red table of data}\\ 
+      {\red formula}
+      \medskip
+      \pause
+
+    \item Applications: 
+      \smallskip
+
+      {\red measure change}\\ 
+      {\red predict the future}\\  
+      {\red optimization} -- find the best, or smallest, or biggest, or most\ldots\\ 
+      \pause
+
+  \end{itemize}
+  %
+  This is all about {\red\it{understanding}}\ the world.
+
+}
+
+
+\frame{
+  \frametitle{Philosophical problem}
+
+  How quickly is something changing at {\blue one moment}\ in time?
+  \gap
+
+  \uncover<2->{%
+    Example: Does a ball {\red{}stop}\ when I throw it straight up?
+  }
+  \medskip
+
+  \uncover<3->{%
+    Example: How fast is the temperature rising at 7am?
+  }
+  \gap
+
+  \begin{minipage}{50mm}
+    \uncover<4->{%
+      $\left(
+        \begin{array}{l}
+          \text{{\blue change} in temp} \\
+          \text{between 7am \& 8am}
+        \end{array}
+      \right)$
+      \\[0.5em]
+      $= 64-49 = 15^{\circ}\ \text{F}$
+    }
+    \gap
+    
+    \uncover<5->{%
+      $\left(
+        \begin{array}{c}
+          \text{{\blue average} rate of} \\
+          \text{ change in temp}\\
+          \text{between 7am \& 8am}
+        \end{array}
+      \right)$
+      \\[0.5em]
+      $= \frac{15^{\circ}\ \text{F}}{1\ \text{hour}} 
+      = 15^{\circ}\ \text{F}/\text{hour}$
+      \\[0.5em]
+    }
+    \uncover<6->{%
+      $= \text{{\blue{}slope of}\ {\orange{}secant line}}$
+    }
+    \vspace*{0.2in}
+  \end{minipage}
+  \begin{minipage}{56.5mm}
+    \begin{tikzpicture}[x=12mm,y=13mm,>=latex]
+      \uncover<3->{%
+        \draw[black,->] (0,0) -- (3,0) node[above] {\small{}Time};
+        \draw[black,->] (0,0) -- (0,3);
+        % Ticks:
+        \draw[thin,black] (0.75,0) -- (0.75,-2mm) node[below] {$7$am};
+        \draw[thin,black] (2,0) -- (2,-2mm) node[below] {$8$am};
+        \draw[thin,black] (0,1) -- (-2mm,1) node[left] {$49$};
+        \draw[thin,black] (0,{0.75+(2+1/2)^2/6}) -- (-2mm,{0.75+(2+1/2)^2/6}) node[left] {$64$};
+        \draw[black,thick] plot[domain=0:3] (\x,{0.75+(\x+1/2)^2/6});
+        \node[rotate=90] at (-0.85,1.5) {Temperature (${}^{\circ}\ \text{F}$)};
+      }
+      %
+      \uncover<6->{%
+        \draw[thick,blue,dashed] (0.75,{0.75+(0.75+1/2)^2/6}) -- node[midway,below] {Run} (2,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6}) node[midway,right] {Rise};
+        % 
+        \draw[thick,orange] (0.75,{0.75+(0.75+1/2)^2/6}) -- (2,{0.75+(2+1/2)^2/6}) node[near end,left,yshift=2mm] {secant line};
+      }
+      %
+      \uncover<4->{%
+        \fill[red] (0.75,{0.75+(0.75+1/2)^2/6}) circle (2pt);
+        \fill[red] (2,{0.75+(2+1/2)^2/6}) circle (2pt);
+      }
+    \end{tikzpicture}
+  \end{minipage}
+
+
+}
+
+
+
+\frame{
+  \frametitle{Continuing Example}
+
+  Similarly,
+  \begin{equation*}
+    \left(
+      \begin{array}{c}
+        \text{{\blue average} rate of} \\
+        \text{ change in temp}\\
+        \text{between 6am \& 8am}
+      \end{array}
+    \right)
+    = \blue \frac{\text{change in temp}}{\text{time taken}}
+  \end{equation*}
+  \halfgap
+
+  \alert{Question:}\ \ Suppose temperature at time $t$ given by the
+  formula $f(t)=t^2$.  What is the average rate of change of
+  temperature from 6am to 8am?
+  \begin{center}
+    A$= 1$
+    \quad 
+    B$= 7$ 
+    \quad 
+    C$= 9$
+    \quad 
+    D$= 14$
+    \quad 
+    E$= 28$
+    \pause
+    \quad 
+    \fbox{D} 
+  \end{center}
+  \gap
+  \pause
+ 
+ }
+ 
+ \frame{
+   \frametitle{Average Rate of Change}
+
+   Suppose temperature at time $t$ given by the formula $f(t)=t^2$.
+
+   Using a calculator one can find the {\blue average rate of change}
+   over shorter and shorter time spans ${\blue\Delta t}$, starting
+   at 7am: 
+
+   \begin{table}
+     \begin{tabular}{lllllld{2.5}}
+       ${\blue\Delta t}$ & $(f(7+{\blue\Delta t})-f(7))/{\blue\Delta t}$
+       & \multicolumn{1}{c}{{\blue ave\ rate of change} $^o\text{F}/\text{hr}$}\\
+       \toprule
+       {\blue1} &$(8^2-7^2)/{\blue 1}$ & 15 \\ \pause
+       {\blue0.1} &$(7.1^2-7^2)/{\blue0.1}$ &14.1 \\ \pause
+       {\blue0.01} &$(7.01^2-7^2)/{\blue0.01}$& 14.01 \\ \pause
+       {\blue0.001} &$(7.001^2-7^2)/{\blue0.001}$& 14.001 \\
+       {\blue0.0001} &$(7.0001^2-7^2)/{\blue0.0001}$& 14.0001 \\
+       {\blue0.00001} &$(7.00001^2-7^2)/{\blue0.00001}$& 14.00001 \\ \pause
+       {\blue 0} & { $(7^2-7^2)/{\blue 0}$} 
+       & \multicolumn{1}{c}{$0/{\red 0}$\qquad\qquad{\red arghhhh}}\\
+       \bottomrule
+     \end{tabular}
+     \caption{Average rate of change over various time spans}
+   \end{table}
+   \vspace*{-1.5em}
+   \pause
+
+   What would you {\red guess}\ the {\red exact}\ {\blue
+     \emph{instantaneous}\ rate of change} of temperature at precisely
+   7am is?\pause\ \  Yes! \fbox{{\blue 14}}.  But how do we get this?\pause
+   \ \ Answer: it is a {\red limit}!
+ 
+}
+
+\frame{
+   \frametitle{Instantaneous Rate of Change}
+   
+   What does the limit
+   \begin{equation*}
+     \lim_{\Delta t \to 0} \frac{f(7+\Delta t) - f(7)}{\Delta t}
+   \end{equation*}
+   {\red mean} in practice?
+   \gap
+   \pause 
+
+   Work out the average rate of change over a {\blue very short} time interval.\\
+   That is {\blue very nearly} the correct answer.\\
+   The shorter the time interval you use, the more accurate you expect
+   the answer to be. 
+   \gap
+   \pause
+
+   To get the {\red exact} answer you would need to take a time interval of zero length.\\
+   This leads to the nonsense $\red 0/0.$ So you can't do this.\\
+   That is the {\red philosophical} problem. 
+   \pause
+   \gap
+
+   Mathematical solution: {\red take the limit}.
+
+}
+
+
+%\section{Slopes}
+
+\frame{
+  \frametitle{An Example}
+  
+  \begin{minipage}{0.5\linewidth}
+    A hamster runs along the $x$-axis, so that after $t$ seconds the
+    hamster is $t^2$ cm from the origin.  Our goal is to find the
+    hamster's speed at time $t=1\ \text{sec}$.
+  \end{minipage}
+  \begin{minipage}{0.45\linewidth}
+    \begin{tikzpicture}[x=16mm,y=6mm,>=latex]
+      \draw[black,->] (0,0) -- (2.75,0) node[below] {$t$ (sec)};
+      \draw[black,->] (0,0) -- (0,4.75) node[left] {$x$ (cm)};
+      % Ticks:
+      \draw[thin,blue] (1,0) -- (1,-3pt) node[below] {$1$};
+      \draw[thin,blue] (0,1) -- (-3pt,1) node[left] {$1$};
+      \uncover<2->{%
+        \draw[thin,orange] (2,0) -- (2,-3pt) node[below] {$2$};
+        \draw[thin,orange] (0,4) -- (-3pt,4) node[left] {$4$};
+      }
+      \uncover<3->{%
+        \draw[thin,red] (1.4,0) -- (1.4,-3pt) node[below] {$1.1$};
+        \draw[thin,red] (0,{1.4^2}) -- (-3pt,{1.4^2}) node[left] {$1.21$};
+      }
+      % 
+      \draw[black,thick] plot[domain=0:2.1] (\x,{(\x)^2});
+      \node[left] at (1.6,{1.6^2}) {$x=t^2$};
+      \draw[thick,dashed,blue] (0,1) -- (1,1) -- (1,0);
+      \fill[blue] (1,1) circle (2pt);
+      \uncover<2->{%
+        \draw[thick,dashed,orange] (0,4) -- (2,4) -- (2,0);
+        \fill[orange] (2,4) circle (2pt);
+      }
+      \uncover<3->{%
+        \draw[thick,dashed,red] (0,{1.4^2}) -- (1.4,{1.4^2}) -- (1.4,0);
+        \fill[red] (1.4,{1.4^2}) circle (2pt);
+      }
+    \end{tikzpicture}
+  \end{minipage}
+
+  \begin{align*}
+    \uncover<2->{%
+      \left(
+    \begin{array}{c} 
+      \text{average speed from} \\ 
+      \text{$t={\blue 1}$ to $t={\orange 2}$}
+    \end{array}
+    \right) 
+    & =  \frac{\text{distance gone}}{\text{time taken}}
+    = {{\frac{{\orange 2}^2-{\blue 1}^2}{{\orange 2}-{\blue 1}}}}
+    = 3\ \ \text{cm}/\text{sec}
+    }
+    \\ 
+    \uncover<3->{%
+    \left(
+    \begin{array}{c} 
+      \text{average speed from} \\ 
+      \text{$t={\blue 1}$ to $t={\red 1.1}$}
+    \end{array}\right)  
+    & = \frac{\text{distance gone}}{\text{time taken}} 
+      =  {{\frac{{\red 1.1}^2-{\blue 1}^2}{{\red 1.1}-{\blue 1}}}}
+      % = \frac{1.21-1}{0.1}
+      = 2.1\ \text{cm}/\text{sec}
+    }
+  \end{align*}
+
+
+}
+
+\frame{
+  \frametitle{Example Concluded}
+
+  How do we work out the {\blue exact} speed of the hamster after $1$
+  second?
+  \smallskip
+
+  \uncover<2->{%
+  Plan:
+  \begin{itemize}
+  \item Find the {\blue average speed} over a short time interval
+    ${\red\Delta t}$, then
+
+  \item Take the {\blue limit} as ${\red\Delta t}\to0$.
+  \end{itemize}
+  }
+  \vspace*{-1.5em}
+
+  \begin{align*}
+    \uncover<3->{%
+    \left(
+      \begin{array}{c} 
+        \text{average speed from} \\ 
+        \text{$t=1$ to $t=1+{\red\Delta t}$}
+      \end{array}
+    \right) 
+    & = \frac{\text{distance gone}}{\text{time taken}}\\ 
+    }
+    \uncover<4->{%
+    & = {{\frac{\left(1+{\red\Delta t}\right)^2\ -\ 1^2}{(1+{\red\Delta t})-1}}}\\ 
+    }
+    \uncover<5->{%
+    & = \frac{(1+2{\red\Delta t}+({\red\Delta t})^2)\ -\ 1}{{\red\Delta t}}\\ 
+    }
+    \uncover<6->{%
+    & = \frac{2{\red\Delta t}+({\red\Delta t})^2}{{\red\Delta t}}\\
+    & = 2 + {\red\Delta t}
+      }
+  \end{align*}
+
+  \uncover<7->{%
+  The {\blue limit } of this as ${\red\Delta t}\to0$ is $2$.
+  }
+
+  \uncover<8->{%
+    Conclusion: At $t=1$ sec, the {\blue exact} speed of the hamster is $2$ cm/sec.
+  }
+ 
+  % {\Huge\red\Smiley} \ We have just calculated the.... \pause {\blue instantaneous {\red RAT} of change !}
+
+
+}
+
+
+\frame{
+  \frametitle{Hamster Summary}
+
+  Soon we will calculate that\ldots
+
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{the {\red exact speed} of the hamster after $t$ seconds is {\red $2t$} cm/sec.}    
+  \end{empheq}
+  \gap
+
+  Summary:
+  \begin{align*}
+    {\blue f(t)} 
+    &{\blue=  t^2} 
+      = \text{{\blue distance} in cm of hamster from origin after $t$ seconds}\\
+    & \ \ \text{(a function that gives the distance the hamster has traveled at time $t$)}\\[0.5em]
+    %
+    {\red f'(t)} 
+    &{\red= 2t} 
+      = \text{{\red speed} of hamster in cm/sec after $t$ seconds}\\
+    & \ \ \text{(called the {\red derivative} of $\blue t^2$
+  because it can be {\red derived} or {\red obtained}}\\[-0.5em]
+    & \ \ \text{from the function ${\blue t^2}$)} 
+  \end{align*}
+  \vspace*{-1em}
+  \pause
+
+  \alert{Question:}\ \ How many cm had the hamster run by the time its {\red speed} was {\red 8} cm/sec?
+  \begin{center}
+    A$= 4$
+    \quad 
+    B$ = 8$
+    \quad 
+    C$ = 16$
+    \quad 
+    D$ = 32$
+    \quad 
+    E$ = 64$
+    \quad
+    \pause
+    \fbox{C}
+  \end{center}
+
+}
+
+
+\frame{
+  \frametitle{Exact Hamster Speed}
+  Now we calculate that\ldots
+  \begin{empheq}[box=\othermathbox]{align*}
+    \text{the {\red exact speed} of the hamster after $t$ seconds is {\red $2t$} cm/sec.}    
+  \end{empheq}
+  \vspace*{-0.5em}
+
+  \uncover<2->{%
+  Do this as before: working out the {\blue average speed} over a short time
+  interval ${\red\Delta t}$ and taking the {\blue limit} as
+  ${\red\Delta t}\to0$ 
+  }
+  \vspace*{-1em}
+
+  \begin{align*}
+    \uncover<3->{%
+    \left(
+      \begin{array}{c} 
+        \text{average speed from} \\ 
+        \text{$t$ to $t+{\red\Delta t}$}
+      \end{array}
+    \right) 
+    & = \frac{\text{distance gone}}{\text{time taken}}\\ 
+    }
+    \uncover<4->{%
+    & = {{\frac{\left(t+{\red\Delta t}\right)^2\ -\ t^2}{(t+{\red\Delta t})-t}}}\\ 
+    }
+    \uncover<5->{%
+    & = \frac{(t^2+2t{\red\Delta t}+({\red\Delta t})^2)\ -\ t^2}{{\red\Delta t}}\\ 
+    }
+    \uncover<6->{%
+    & = \frac{2t{\red\Delta t}+({\red\Delta t})^2}{{\red\Delta t}}\\
+    & = 2t + {\red\Delta t}
+      }
+  \end{align*}
+
+  \uncover<7->{%
+    The {\blue limit}\ of this as ${\red\Delta t}\to0$ is $2t$.
+  }
+  % \\
+  % \fbox{ So after {\purple t} seconds the {\blue exact} speed of the hamster is $2{\purple t}$ cm/sec.}
+ 
+}
+
+\frame{
+  \frametitle{Hamster Questions!}
+  
+  After $t$ seconds, the hamster is $f(t)=t^2$ cm from origin.
+
+  {\red(1)} What is the {\blue exact} speed (in cm/sec) of the hamster
+  at $t=2$?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{C}
+  \end{center}
+  \medskip
+  \pause
+
+  {\red(2)} What is the {\blue exact} speed (in cm/sec) of the hamster
+  at $t=4$?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{E}
+  \end{center}
+  \medskip
+  \pause
+
+  {\red(3)} What is the {\blue average} speed (in cm/sec) of the hamster
+  from $t=2$ to $t=4$ seconds?
+  \begin{center}
+    A$=1$
+    \quad 
+    B$=2$ 
+    \quad 
+    C$=4$ 
+    \quad 
+    D$=6$
+    \quad 
+    E$=8$
+    \quad 
+    \pause
+    \fbox{D}
+  \end{center}
+  \medskip
+  \pause
+
+  Does this make sense?
+
+}
+
 
 \section*{Rate of Change}
 
 \frame{
-  \frametitle{Graphical Approach}
+  \frametitle{Derivatives: Graphical Approach}
 
   \begin{minipage}{0.5\linewidth}
     \begin{tikzpicture}[x=12mm,y=12mm,>=latex]
