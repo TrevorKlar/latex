@@ -11,8 +11,8 @@
 \newbool{alt}
 \booltrue{alt}
 %\boolfalse{alt}
- 
-% Standard things to include for math   
+
+% Standard things to include for math
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
 \usepackage{wasysym}
@@ -24,8 +24,8 @@
 \usepackage{geometry}
  \geometry{
  a4paper,
- top=2cm,
- bottom=2cm,
+ top=3cm,
+ bottom=3cm,
  left=2cm,
  right=2cm,
  }
@@ -81,7 +81,7 @@
 
 
 \newcommand{\NEcheckbox}{ % Put check box on northeast corner of page
-\begin{tikzpicture}[remember picture,overlay] 
+\begin{tikzpicture}[remember picture,overlay]
 \path (current page.north east) ++(-1,-1) node[below left] {
 {\small graded?} {\Large\Square}
 };
@@ -89,7 +89,7 @@
 }
 
 \newcommand{\LEFTcheckbox}{ % Put check box in the left margin
-\\\begin{tikzpicture}[remember picture,overlay] 
+\\\begin{tikzpicture}[remember picture,overlay]
 \path ++(-2,0) node[below left] {
  {\Large\Square}
 };
@@ -97,7 +97,7 @@
 }
 
 \newcommand{\LEFTcheckboxOwnLine}{ % Put check box in the left margin, use this one if on own line
-\begin{tikzpicture}[remember picture,overlay] 
+\begin{tikzpicture}[remember picture,overlay]
 \path ++(-2,0) node[below left] {
  {\Large\Square}
 };
@@ -156,204 +156,202 @@
 
 \vspace{5em}
 
-\begin{center}\textbf{Math 34A Final Exam, Spring 2022}\end{center}
+\begin{center}\textbf{Math 34A Final Exam, Summer 2022}
+
+({\it 100 pts total})
+\end{center}
 
 
-\newpage
+
+\pagebreak
+
 \phantom{.}
-
-%%%This one got cut from Exam 3 but it's a great question
-%
-%%%%%%%%%%%% (6)
-%\item ({\it 6pts})  You have 600m of fencing for a rectangular field, but the field needs to also be 
-%
-%\parbox{.5\textwidth}{\vspace*{-30 pt} subdivided into 3 equal areas by fencing as shown in the figure to the right. If $\ell$ and $w$ (length and width) are the dimensions of your pen, the total combined fencing must be 600m, so
-%    $$4\ell + 2w = 600.$$}
-%    \parbox{.5\textwidth}{%
-%      \vspace*{-10 pt}      
-%      \includegraphics[width=.5\textwidth]{problem_6_figure}
-%    }
-%    
-%    %Here there are two extra ``lengths'' to serve as dividers between the three subdivisions. \\
-%    \begin{enumerate}
-%    \item %You know the area of the pen in terms of $\ell$ and $w$. 
-%    Express the \textbf{area} of the pen in terms of \underline{$\ell$ only}. \vfill
-%
-%    \hfill$A(\ell) =$\ \ansbox{190}{50} \phantom{i} m$^2$
-%    \item Find the length that results in the largest area $A(\ell)$ for your field. \vfill
-%
-%    \hfill$\ell =$\ \ansbox{190}{50} \phantom{i} m\phantom{$^2$}
-%    \item Use your answer in part (b) to find the maximum area for your field. \vfill
-%
-%    \hfill $A_{\text{max}} =$\ \ansbox{190}{50} \phantom{i} m$^2$
-%    \end{enumerate}
-%
-%    \newpage
-%
-%
-
-
-
 %%%%%%%%%%% (1)
 \pagebreak
 \begin{enumerate}
-\item ({\it 15 pts}) Please use the graph below to estimate your answers. \\
-\begin{tikzpicture}
- %grid
-  \draw[step=1cm,black!70,very thin] (0,0) grid (10,10);
-  %axes
-  \draw[very thick,->] (0,0) -- (10,0) node[anchor= west] {\bf{$x$}};
-  \draw[very thick,->] (0,0) -- (0,10) node[anchor=south] {\bf{$y$}};
-  \foreach \x in {.2,.4,.6,.8,1}
-    \draw (10*\x cm,1pt) -- (10*\x cm,-1pt) node[anchor=north] {$\mathbf{\x}$};
-  \foreach \y in {2,4,6,8,10}
-    \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\mathbf{\y}$};
-   %Function Name
-   \node[black,fill=white] at (2,8.2)
-   {{\large $y=10^x$}};
-   %function
-   \draw[scale=1.0,domain=0:10,smooth,variable=\x,blue,very thick] plot (\x,{10^(.1*\x)})
-   %Code from previous exam below:
-   %\draw[thick,black] plot[domain=0:10] (\x,{10^(.1*\x)})
-   ;
- \end{tikzpicture}
-\begin{enumerate} 
-\item Find $\log(2512)$ 
+\item Use the log table provided with this exam to answer the following questions:
+
+
+\begin{enumerate}
+\item Find $\log(3118)$
 \vfill
-\phantom{.} \hfill$\log(2512) \approx \ $ \ansbox{100}{60} 
-\item Find $\log(2^{10})$ 
+\phantom{.} \hfill$\log(3118) \approx \ $ \ansbox{100}{60}
+\item Find $\log(5^{10})$
 \vfill
-\phantom{.} \hfill$\log(2^{10}) \approx \ $ \ansbox{100}{60} 
-\item Approximate a solution for $x$ in the equation $2^{3x-5}=5^3$ 
+\phantom{.} \hfill$\log(5^{10}) \approx \ $ \ansbox{100}{60}
+\item Approximate a solution for $x$ in the equation $$10^{x-5}=5^{10}.$$
+(You must use the log table to find a numerical answer.)
+
 \vfill
-\phantom{.} \hfill$x \approx \ $ \ansbox{100}{60} 
-%\item Using the approximation in your previous answer as well as the fact that $2^{10}$ is exactly 1024, compare the two values by writing a $<$, $=$ or $>$ in the box below. \\ 
-%If you are stuck, consider taking the anti-log of both numbers in part (b). 
+\vfill
+\phantom{.} \hfill$x \approx \ $ \ansbox{100}{60}
+%\item Using the approximation in your previous answer as well as the fact that $2^{10}$ is exactly 1024, compare the two values by writing a $<$, $=$ or $>$ in the box below.
+
+
+%If you are stuck, consider taking the anti-log of both numbers in part (b).
 %\vfill
 %\phantom{.} \hfill$\log(2) \ $ \ansbox{40}{40} $ \ .3$
-\end{enumerate} 
+\end{enumerate}
 
 
 
 
-\newpage
+\pagebreak
 %%%%%%%%%%% (2)
-\item ({\it 6 pts}) For this problem, $k$, $m$, and $b$ are constant values. Find $\displaystyle\frac{d}{dx}\left( 2ke^{3kx} + mx + b \right)$ and simplify your answer. \\
-\vfill \\
-$\displaystyle\frac{d}{dx}\left( 2ke^{3kx} + mx + b \right)=$ \ansbox{300}{70} \vspace{20pt} 
+\item ({\it 6 pts}) Find $f'(x)$, where $$f(x)= 2e^{3x} + 3x^2 + 2x + \pi.$$
 
-
-%%%%%%%%%%% (3)
-\item ({\it 10 pts}) This question is about the graph of the function
-$$f(x)=-x^2 + 8x + 16.$$
-\begin{enumerate} 
-\item When does $f$ achieve its highest value? \\ 
-\vfill \\
-\phantom{.} \hfill When $x= \ $ \ansbox{100}{70} 
-\item Write the equation of the tangent line at $x=0$ in the form $y=mx+b$. \\ 
-\phantom{.} \hfill$  y=  $ \ansbox{240}{70} 
-\end{enumerate}
-
-
-\newpage
-%%%%%%%%%%% (4)
-\item ({\it 7 pts}) For each part of problem (4) please use the graph below to estimate your answers. \\
-\begin{tikzpicture}[scale=.8]
- %grid
-  \draw[step=1cm,black!70,very thin] (0,0) grid (12,10);
-  %extra dotted line
-  \draw[red, dashed] (0,3.33) -- (12,3.33);
-  \draw[step=1cm,red!70,very thin, dotted] (0,1.3333) grid (12,1.3333);
-  %axes
-  \draw[very thick,->] (0,0) -- (12,0) node[anchor= west] {\bf{$x$}};
-  \draw[very thick,->] (0,0) -- (0,10) node[anchor=south] {\bf{$y$}};
-  \foreach \x in {1,2,3,4,5,6,7,8,9,10,11}
-    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\frac{\mathbf{\x}}{\mathbf{12}}$};
-    \draw (12 cm,1pt) -- (12 cm,-1.8pt) node[anchor=north] {{\Large $\mathbf{1}$}};
-  \foreach \y in {1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2}
-    \draw (1pt,10*\y cm -10cm) -- (-1.5pt,10*\y cm -10cm) node[anchor=east] {$\mathbf{\y}$};
-   \draw[dashed, red] (-2pt,10*1.33 cm -10cm) -- (-25pt,10*1.33 cm -10cm) node[anchor=east] {\small{\large{$1\frac{\mathbf{1}}{\mathbf{3}}$}}};
-   %Function Name
-   \node[black,fill=white] at (2,8.2)
-   {{\large $y=2^x$}};
-   %function
-   \draw[scale=1.0,domain=0:12,smooth,variable=\x,blue,very thick] plot (\x,{2^(\x/12)*10-10})
-   %Code from previous exam below:
-   %\draw[thick,black] plot[domain=0:10] (\x,{10^(.1*\x)})
-   ;
- \end{tikzpicture}
-\begin{enumerate} 
-\item ({\it 3pts}) Find a solution for $2^x = \frac{4}{3}$\\
-\phantom{.} \hfill$x \approx \ $ \ansbox{100}{90} 
-
-\item ({\it 4pts}) The SoCal Burger restaurant chain has been very popular since they first opened their first location in Santa Barbara a few years ago and they now have hundreds of locations. In fact, over the last twelve months the number of locations has doubled! In order to set a world record, they just need to grow 50\% over the next year. Assuming that their steady, exponential growth from last year continues over the next year, how many months would it take? \\
-(Hint, the answer is {\bf not} 6 months). \\ \\ 
-A model that might be helpful: $y=A\cdot2^t$,
-where $y$ is the number of locations $t$ years from now and $A$ is the current number of locations. \\
+%\vspace*{1 cm}
 \vfill
-\phantom{.} \hfill$\approx \ $ \ansbox{100}{70} months
 
-
-\end{enumerate}
-
+\hfill $\displaystyle f'(x)=$ \ansbox{300}{70} \vspace{20pt}
 
 
 
-\newpage
+
+
 %%%%%%%%%%% (5)
-\newpage
-\item ({\it 9pts}) Below is the graph of a funtion $g(x)$ with five labeled points, $A$, $B$, $C$, $D$, and $E$. Identify a point where $g''(x) < 0$, a point where $g''(x) = 0$, and a point where $g''(x) > 0$. \vspace{10pt} \\ 
+\item ({\it 9pts}) Below is the graph of a funtion $g(x)$ with five labeled points, $A$, $B$, $C$, $D$, and $E$. Identify a point where $g''(x) < 0$, a point where $g''(x) = 0$, and a point where $g''(x) > 0$. \vspace{10pt}
+
+
 
 %f(x)=0.02 (x+4) (x+2) x (x-2) (x-4) for the graph below in Geogebra
-\fbox{\includegraphics[scale=.45]{Final_Exam_Graph_Black.png}} \\
-\vspace{15pt}\\
-    \phantom{.} \hfill 
-     \begin{tabular}{C C C}
-     \ansbox{60}{50} \ & \ \ansbox{60}{50} & \ansbox{60}{50} \\
-     $g''(x) < 0$ & $g''(x) = 0$ & $g''(x) > 0$
+\begin{center}
+\fbox{\includegraphics[width=.8\textwidth]{Final_Exam_Graph_Black_ver2}}
+\end{center}
+
+
+\vspace{15pt}
+
+
+    \phantom{.} \hfill
+     \begin{tabular}{rccc}
+     \text{Be sure to only write }\textbf{one }\text{point in each box!} & \ansbox{60}{50} \ & \ \ansbox{60}{50} & \ansbox{60}{50} \\
+     & $g''(x) < 0$ & $g''(x) = 0$ & $g''(x) > 0$
      \end{tabular}
-     
-    
-    
+     \bigskip
+
+\vfill
+
+\pagebreak
+%%%%%%%%%%% (3)
+\begin{minipage}{.7\linewidth}
+\item ({\it 10 pts}) A goblin catapult sits at at the top of a cliff, overlooking the enemy. When it launches, the height of its ``projectile" (see figure) is given by the equation $$f(t)=-5t^2 + 20t + 25,$$ where $t$ is the time in seconds since launch and $f(t)$ is the height (in meters) of the projectile above the enemy. (In this problem we are ignoring horizontal movement.)
+\end{minipage} 
+\begin{minipage}{.3\linewidth}
+%\vspace*{-3ex}
+%\hfill
+\hspace*{.5 cm}\includegraphics[width=\linewidth]{goblin_cannon}
+\end{minipage}
+
+\begin{enumerate}
+
+\item How high is the cliff which the goblin is launched from?
+
+\phantom{.} \hfill \ansbox{100}{50} meters
+
+\item In your own words, interpret $f(1)=40$, $f'(1)=10$. 
+
+\ansbox{\linewidth}{100}
+
+\item What is the goblin's highest altitude?
+
+\phantom{.} \hfill \ansbox{100}{50} meters
+
+\item How long will we be able to hear the projectile cackling maniacally until it strikes the target?
+
+\phantom{.} \hfill \ansbox{100}{50} seconds
+
+\item As time goes by, is the goblin's acceleration increasing, decreasing, or staying the same? Use calculus to justify your response. 
+
+\ansbox{\linewidth}{100}
+
+\end{enumerate}
+
+
+
+
+
+
+\pagebreak
+
+
 
 %%%%%%%%%%% (6)
-\item ({\it 10pts}) For this problem, $f(x) = (x^2+3)(x+2).$ \vspace{20pt}
-\begin{enumerate} 
+\item ({\it 10pts}) For this problem, $f(x) = (x^2+4)(x+3).$ \vspace{20pt}
+\begin{enumerate}
 \vfill
-\item $f'(x)=$\phantom{.} \ansbox{400}{70} \vspace{20pt} %\\
+\item $f'(x)=$\phantom{.} \ansbox{400}{70} \vspace{20pt} %
+
+
 \vfill
-\item $f''(x)=$ \ansbox{400}{70} \vspace{20pt} %\\
+\item $f''(x)=$ \ansbox{400}{70} \vspace{20pt} %
+
+
 \end{enumerate}
 
 
 
 
-	
-	
-    
-    
-\newpage
-%%%%%%%%%%% (7)    
-\item ({\it 15pts}) Jack Johnson* will be playing at the Santa Barbara Bowl next fall. He gives you 100 concert tickets, asking you to sell them on campus for a charity and to give away any left-over tickets. The price is up to you, but you need to sell them all at the same price. If the price you set is \$20 each then you would sell all 100 tickets. For each dollar you decide to increase the price, the number of tickets you could sell would decrease by 2. 
+%%%%%%%%%%% (6)
+\item ({\it 6pts})  You have 600m of fencing for a rectangular field, but the field needs to also be
+
+\parbox{.5\textwidth}{\vspace*{-30 pt} subdivided into 3 equal areas by fencing as shown in the figure to the right. If $\ell$ and $w$ (length and width) are the dimensions of your pen, the total combined fencing must be 600m, so
+    $$4\ell + 2w = 600.$$}
+    \parbox{.5\textwidth}{%
+      \vspace*{-10 pt}
+      \includegraphics[width=.5\textwidth]{problem_6_figure}
+    }
+
+    %Here there are two extra ``lengths'' to serve as dividers between the three subdivisions.
+
+    \begin{enumerate}
+    \item %You know the area of the pen in terms of $\ell$ and $w$.
+    Express the \textbf{area} of the pen in terms of \underline{$\ell$ only}. \vfill
+
+    \hfill$A(\ell) =$\ \ansbox{190}{50} \phantom{i} m$^2$
+    \item Find the length that results in the largest area $A(\ell)$ for your field. \vfill
+
+    \hfill$\ell =$\ \ansbox{190}{50} \phantom{i} m\phantom{$^2$}
+    \item Use your answer in part (b) to find the maximum area for your field. \vfill
+
+    \hfill $A_{\text{max}} =$\ \ansbox{190}{50} \phantom{i} m$^2$
+    \end{enumerate}
+
+    \pagebreak
+
+
+
+
+
+\pagebreak
+%%%%%%%%%%% (7)
+\item ({\it 15pts}) Jack Johnson* will be playing at the Santa Barbara Bowl next fall. He gives you 100 concert tickets, asking you to sell them on campus for a charity and to give away any left-over tickets. The price is up to you, but you need to sell them all at the same price. If the price you set is \$20 each then you would sell all 100 tickets. For each dollar you decide to increase the price, the number of tickets you could sell would decrease by 2.
 \begin{enumerate}
 \item If your ticket price is
-$\$(20 + x)$, how many tickets would you be able to sell? \\ 
-\vspace{30pt} \\
+$\$x$, how many tickets would you be able to sell?
+
+
+\vspace{30pt}
+
+
 \phantom{.} \hfill  \ansbox{150}{50} tickets
-\item What is the total amount of
-money (in terms of $x$) you would receive for selling those tickets? You do not need to simplify your answer for this part. \\ 
+\item What is the total revenue (in terms of $x$) you would receive for selling those tickets? You do not need to simplify your answer for this part.
+
+
 \vfill
-\phantom{.} \hfill {\Large \$} \ \ansbox{350}{50} 
-\item What is the maximum amount of money you could receive from selling tickets? \\ 
+\phantom{.} \hfill { \$} \ \ansbox{350}{50}
+\item What is the optimal ticket price, and how much money would you raise for charity altogether at that price?
+
+
 \vfill
 \vfill
 \vfill
-\phantom{.} \hfill {\Large \$} \ \ansbox{80}{50} 
+\phantom{.} \hfill { price: \$} \ \ansbox{80}{50} { maximum revenue: \$} \ \ansbox{80}{50}
 \end{enumerate}
-\scriptsize{*Maybe this story isn't so far-fetched. Jack Johnson is a UCSB alumnus and after he heard about a tragic event that happened here a few years ago he came and played a free concert in front of Storke Tower. He also fund-raises frequently for people in need in this area, including a benefit a couple months ago for victims of the Thomas fire.} 
+\scriptsize{*Maybe this story isn't so far-fetched. Jack Johnson is a UCSB alumnus and after he heard about a tragic event that happened here a few years ago he came and played a free concert in front of Storke Tower. He also fund-raises frequently for people in need in this area, including a benefit a couple months ago for victims of the Thomas fire.}
 
 
-%    \newpage
+%    \pagebreak
 %    \phantom{.}
 
 
@@ -373,4 +371,3 @@ money (in terms of $x$) you would receive for selling those tickets? You do not 
 
 
 \end{document}
-
